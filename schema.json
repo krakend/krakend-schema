@@ -1,8 +1,8 @@
 {
     "definitions": {},
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://example.com/object1643708162.json",
-    "title": "Root",
+    "$id": "https://www.krakend.io/schema/",
+    "title": "Schema definition for KrakenD",
     "type": "object",
     "required": [
         "version"
@@ -282,6 +282,41 @@
                     "title": "Cipher Suites",
                     "description": "The list of cipher suites\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
                     "type": "array"
+                }
+            }
+        },
+        "plugin": {
+            "$id": "#service/plugin",
+            "title": "Plugin",
+            "description": "Enables external plugins that are copied in a specific folder",
+            "type": "object",
+            "required": [
+                "pattern",
+                "folder"
+            ],
+            "properties": {
+                "pattern": {
+                    "$id": "#service/plugin/pattern",
+                    "title": "Pattern",
+                    "description": "The pattern narrows down the contents of the folder. It represents the substring that must be present in the plugin name to load.",
+                    "type": "string",
+                    "examples": [
+                        ".so",
+                        "-production.so"
+                    ],
+                    "default": ".so"
+                },
+                "folder": {
+                    "$id": "#service/plugin/folder",
+                    "title": "Folder",
+                    "description": "The path in the filesystem where all the plugins you want to load are. MUST END IN SLASH. The folder can be a relative or absolute path. KrakenD Enterprise uses /opt/krakend/plugins/ for all plugins.",
+                    "type": "string",
+                    "examples": [
+                        "/opt/krakend/plugins/",
+                        "./plugins/"
+                    ],
+                    "default": "/opt/krakend/plugins/",
+                    "pattern": "^.*/$"
                 }
             }
         }

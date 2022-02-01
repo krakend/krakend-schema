@@ -8,13 +8,12 @@
     "output_encoding": "json",
     "read_timeout": "10s",
     "write_timeout": "10s",
-
     "dialer_timeout": "10s",
     "dialer_keep_alive": "15s",
     "dialer_fallback_delay": "300ms",
     "disable_compression": false,
     "disable_keep_alives": true,
-    "max_idle_connections":0,
+    "max_idle_connections": 0,
     "max_idle_connections_per_host": 2,
     "idle_connection_timeout": "10s",
     "response_header_timeout": "10s",
@@ -24,14 +23,21 @@
         "public_key": "./cert.pem",
         "private_key": "./certs/key.pem",
         "disabled": false,
-        "min_version":"TLS12",
+        "min_version": "TLS12",
         "max_version": "SSL3.0",
         "enable_mtls": false,
-        "curve_preferences":[
+        "curve_preferences": [
             23,
             24,
             25
         ],
-        "prefer_server_cipher_suites": false
+        "prefer_server_cipher_suites": false,
+        "cipher_suites": [
+            4865
+        ]
+    },
+    "plugin": {
+        "folder": "/opt/krakend/plugins/",
+        "pattern": ".so"
     }
 }
