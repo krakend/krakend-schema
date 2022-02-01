@@ -56,7 +56,21 @@
             "cache_ttl": "300s",
             "backend": [
                 {
-                    "url_pattern": "/url"
+                    "url_pattern": "/foo/{var}",
+                    "encoding": "json",
+                    "sd": "static",
+                    "method": "GET",
+                    "disable_host_sanitize": false,
+                    "host": ["http://some_host"],
+                    "target": "data",
+                    "deny": ["a"],
+                    "allow": ["b"],
+                    "group": "backend1",
+                    "mapping": {
+                        "from": "to"
+                    },
+                    "is_collection": true
+
                 }
             ]
         }
