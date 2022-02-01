@@ -1,7 +1,7 @@
 {
     "definitions": {},
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/",
+    "$id": "https://www.krakend.io/schema/service.json",
     "title": "Schema definition for KrakenD",
     "type": "object",
     "required": [
@@ -17,7 +17,7 @@
       },
     "properties": {
         "version": {
-            "$id": "#service/version",
+            "$id": "#version",
             "type": "integer",
             "title": "Version of this syntax",
             "description": "The syntax version tells KrakenD how to read this configuration. This is not the KrakenD version. Each KrakenD version is linked to a syntax version.",
@@ -25,14 +25,14 @@
             "enum": [3]
         },
         "name": {
-            "$id": "#service/name",
+            "$id": "#name",
             "title": "Name",
             "description": "Used in telemetry. A friendly name, title, date, version or any other short description that helps you recognize the configuration.",
             "default": "KrakenD configuration at MyCompany",
-            "pattern": "^.*$"
+            "type": "string"
         },
         "port": {
-            "$id": "#service/port",
+            "$id": "#port",
             "title": "Port",
             "description": "The TCP port where KrakenD is listening to. Recommended value is in the range 1024-65535 to run as an unpriviliged user",
             "type": "integer",
@@ -41,14 +41,14 @@
             "default": 8080
         },
         "timeout": {
-            "$id": "#service/timeout",
+            "$id": "#timeout",
             "title": "Global timeout",
             "description": "Defines a default timeout for all endpoints. Can be overriden per endpoint.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/#global-timeout",
             "type": "string",
             "$ref": "#/$defs/timeunit"
         },
         "cache_ttl": {
-            "$id": "#service/cache_ttl",
+            "$id": "#cache_ttl",
             "title": "Cache TTL",
             "description": "The default time you will allow external proxies to cache this content. It's added in the Cache-Control header.",
             "type": "string",
@@ -56,7 +56,7 @@
             "$ref": "#/$defs/timeunit"
         },
         "output_encoding": {
-            "$id": "#service/output_encoding",
+            "$id": "#output_encoding",
             "title": "Output Encoding",
             "description": "The encoding used to display the content to the end-user.\n\nSee: https://www.krakend.io/docs/endpoints/content-types/",
             "type": "string",
@@ -72,7 +72,7 @@
         },
 
         "read_timeout": {
-            "$id": "#service/read_timeout",
+            "$id": "#read_timeout",
             "title": "HTTP read timeout",
             "description": "Advanced HTTP Server settings: Maximum duration for reading the entire HTTP request, including the body.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
             "type": "string",
@@ -80,7 +80,7 @@
             "$ref": "#/$defs/timeunit"
         },
         "read_header_timeout": {
-            "$id": "#service/read_header_timeout",
+            "$id": "#read_header_timeout",
             "title": "HTTP Idle timeout",
             "description": "Advanced HTTP Server settings: Amount of time allowed to read request headers.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
             "type": "string",
@@ -88,7 +88,7 @@
             "$ref": "#/$defs/timeunit"
         },
         "write_timeout": {
-            "$id": "#service/write_timeout",
+            "$id": "#write_timeout",
             "title": "HTTP write timeout",
             "description": "Advanced HTTP Server settings: Maximum duration before timing out writes of the response.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
             "type": "string",
@@ -96,7 +96,7 @@
             "$ref": "#/$defs/timeunit"
         },
         "idle_timeout": {
-            "$id": "#service/idle_timeout",
+            "$id": "#idle_timeout",
             "title": "HTTP Idle timeout",
             "description": "Advanced HTTP Server settings: Maximum amount of time to wait for the next request when keep-alives are enabled.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
             "type": "string",
@@ -105,7 +105,7 @@
         },
 
         "dialer_timeout": {
-            "$id": "#service/dialer_timeout",
+            "$id": "#dialer_timeout",
             "title": "Dialer Timeout",
             "description": "Advanced HTTP Transport settings\nThe timeout of the dial function for creating connections.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
             "type": "string",
@@ -113,7 +113,7 @@
             "$ref": "#/$defs/timeunit"
         },
         "dialer_keep_alive": {
-            "$id": "#service/dialer_keep_alive",
+            "$id": "#dialer_keep_alive",
             "title": "Dialer keep alive",
             "description": "Advanced HTTP Transport settings\nThe amount of time you want to keep alive the connection. If zero, keep-alives are not enabled.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
             "type": "string",
@@ -121,7 +121,7 @@
             "default": "15s"
         },
         "dialer_fallback_delay": {
-            "$id": "#service/dialer_fallback_delay",
+            "$id": "#dialer_fallback_delay",
             "title": "Dialer fallback delay",
             "description": "Advanced HTTP Transport settings\nSpecifies the length of time to wait before spawning a RFC 6555 Fast Fallback connection.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
             "type": "string",
@@ -129,35 +129,35 @@
             "default": "300ms"
         },
         "disable_compression": {
-            "$id": "#service/disable_compression",
+            "$id": "#disable_compression",
             "title": "Disable compression",
             "description": "Advanced HTTP Transport settings\nWhen true prevents requesting compression with an `Accept-Encoding: gzip`\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
             "type": "boolean",
             "default": false
         },
         "disable_keep_alives": {
-            "$id": "#service/disable_keep_alives",
+            "$id": "#disable_keep_alives",
             "title": "Disable keep alives",
             "description": "Advanced HTTP Transport settings\nWhen true it disables HTTP keep-alives and will only use the connection to the server for a single HTTP request.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
             "type": "boolean",
             "default": true
         },
         "max_idle_connections": {
-            "$id": "#service/max_idle_connections",
+            "$id": "#max_idle_connections",
             "title": "Max idle connections",
             "description": "Advanced HTTP Transport settings\nThe maximum number of idle (keep-alive) connections across all hosts. Zero means no limit.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
             "type": "integer",
             "default": 0
         },
         "max_idle_connections_per_host": {
-            "$id": "#service/max_idle_connections_per_host",
+            "$id": "#max_idle_connections_per_host",
             "title": "Max idle connections per host",
             "description": "Advanced HTTP Transport settings\nIf non-zero, controls the maximum idle (keep-alive) connections to keep per-host. If zero, the default (2) is used.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
             "type": "integer",
             "default": 2
         },
         "idle_connection_timeout": {
-            "$id": "#service/idle_connection_timeout",
+            "$id": "#idle_connection_timeout",
             "title": "HTTP Idle timeout",
             "description": "Advanced HTTP Transport settings\nThe maximum number of idle (keep-alive) connections across all hosts. Zero means no limit.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
             "type": "string",
@@ -165,7 +165,7 @@
             "$ref": "#/$defs/timeunit"
         },
         "response_header_timeout": {
-            "$id": "#service/response_header_timeout",
+            "$id": "#response_header_timeout",
             "title": "Response header timeout",
             "description": "Advanced HTTP Transport settings\nIf non-zero, specifies the amount of time to wait for a server’s response headers after fully writing the request (including its body, if any). This time does not include the time to read the response body.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
             "type": "string",
@@ -173,7 +173,7 @@
             "$ref": "#/$defs/timeunit"
         },
         "expect_continue_timeout": {
-            "$id": "#service/expect_continue_timeout",
+            "$id": "#expect_continue_timeout",
             "title": "Expect_continue_timeout",
             "description": "Advanced HTTP Transport settings\nIf non-zero, specifies the amount of time to wait for a server’s first response headers after fully writing the request headers if the request has an `Expect: 100-continue` header. Zero means no timeout and causes the body to be sent immediately, without waiting for the server to approve. This time does not include the time to send the request header.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
             "type": "string",
@@ -182,14 +182,14 @@
         },
 
         "disable_rest": {
-            "$id": "#service/disable_rest",
+            "$id": "#disable_rest",
             "title": "Disable RESTful URLs",
             "description": "Only RESTful URL patterns are valid to access backends. Set to true if backends aren't RESTful, e.g.: /url.{some_variable}.json",
             "type": "boolean",
             "default": true
         },
         "tls": {
-            "$id": "#service/tls",
+            "$id": "#tls",
             "title": "TLS",
             "description": "Use TLS for HTTPS and HTTP/2",
             "type": "object",
@@ -199,7 +199,7 @@
             ],
             "properties": {
                 "public_key": {
-                    "$id": "#service/tls/public_key",
+                    "$id": "#tls/public_key",
                     "title": "Public key",
                     "description": "Absolute path to the public key, or relative to the current working directory.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
                     "type": "string",
@@ -210,7 +210,7 @@
                     ]
                 },
                 "private_key": {
-                    "$id": "#service/tls/private_key",
+                    "$id": "#tls/private_key",
                     "title": "Private key",
                     "description": "Absolute path to the private key, or relative to the current working directory.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
                     "type": "string",
@@ -221,14 +221,14 @@
                     ]
                 },
                 "disabled": {
-                    "$id": "#service/tls/disabled",
+                    "$id": "#tls/disabled",
                     "title": "Disable TLS",
                     "description": "A flag to disable TLS (useful while in development).\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
                     "type": "boolean",
                     "default": false
                 },
                 "min_version": {
-                    "$id": "#service/tls/min_version",
+                    "$id": "#tls/min_version",
                     "type": "string",
                     "title": "Minimum TLS version",
                     "description": "Minimum TLS version supported.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
@@ -242,7 +242,7 @@
                     "default": "TLS12"
                 },
                 "max_version": {
-                    "$id": "#service/tls/max_version",
+                    "$id": "#tls/max_version",
                     "type": "string",
                     "title": "Maximum TLS version",
                     "description": "Maximum TLS version supported.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
@@ -256,14 +256,14 @@
                     "default": "TLS12"
                 },
                 "enable_mtls": {
-                    "$id": "#service/tls/enable_mtls",
+                    "$id": "#tls/enable_mtls",
                     "title": "Enable Mutual Authentication",
                     "description": "Whether to enable or not Mutual Authentication. When mTLS is enabled, all KrakenD endpoints require clients to provide a known client-side X.509 authentication certificate. KrakenD relies on the system’s CA to validate certificates.\n\nSee: https://www.krakend.io/docs/authorization/mutual-authentication/",
                     "type": "boolean",
                     "default": false
                 },
                 "curve_preferences": {
-                    "$id": "#service/tls/curve_preferences",
+                    "$id": "#tls/curve_preferences",
                     "title": "Curve identifiers",
                     "description": "The list of all the identifiers for the curve preferences.\n(use 23 for CurveP256, 24 for CurveP384 or 25 for CurveP521)\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
                     "type": "array",
@@ -272,14 +272,14 @@
                     ]
                 },
                 "prefer_server_cipher_suites": {
-                    "$id": "#service/tls/prefer_server_cipher_suites",
+                    "$id": "#tls/prefer_server_cipher_suites",
                     "title": "Prefer server cipher suites",
                     "description": "Enforces the use of one of the cipher suites offered by the server, instead of going with the suite proposed by the client.\n\nSee: https://www.krakend.io/docs/authorization/mutual-authentication/",
                     "type": "boolean",
                     "default": false
                 },
                 "cipher_suites": {
-                    "$id": "#service/tls/cipher_suites",
+                    "$id": "#tls/cipher_suites",
                     "title": "Cipher Suites",
                     "description": "The list of cipher suites\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
                     "type": "array"
@@ -287,7 +287,7 @@
             }
         },
         "plugin": {
-            "$id": "#service/plugin",
+            "$id": "#plugin",
             "title": "Plugin",
             "description": "Enables external plugins that are copied in a specific folder",
             "type": "object",
@@ -297,7 +297,7 @@
             ],
             "properties": {
                 "pattern": {
-                    "$id": "#service/plugin/pattern",
+                    "$id": "#plugin/pattern",
                     "title": "Pattern",
                     "description": "The pattern narrows down the contents of the folder. It represents the substring that must be present in the plugin name to load.",
                     "type": "string",
@@ -308,7 +308,7 @@
                     "default": ".so"
                 },
                 "folder": {
-                    "$id": "#service/plugin/folder",
+                    "$id": "#plugin/folder",
                     "title": "Folder",
                     "description": "The path in the filesystem where all the plugins you want to load are. MUST END IN SLASH. The folder can be a relative or absolute path. KrakenD Enterprise uses /opt/krakend/plugins/ for all plugins.",
                     "type": "string",
@@ -320,6 +320,17 @@
                     "pattern": "^.*/$"
                 }
             }
+        },
+        "endpoints": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "$ref": "endpoint.json"
+            }
+        },
+        "extra_config": {
+            "type": "object",
+            "$ref": "service_extra_config.json"
         }
     }
 }

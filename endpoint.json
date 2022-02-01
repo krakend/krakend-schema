@@ -1,0 +1,133 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/endpoint.json",
+    "title": "Schema definition for KrakenD endpoints",
+    "type": "object",
+    "required": [
+        "endpoint",
+        "backend"
+    ],
+    "default":
+        {
+            "endpoint": "/foo",
+            "backend": [
+                {
+                    "url_pattern": "/url"
+                }
+            ]
+        }
+    ,
+    "properties": {
+        "endpoint": {
+            "$id": "#endpoint",
+            "title": "Endpoint",
+            "description": "The resource URL you want to expose. Must start with a slash.\n\nSee: https://www.krakend.io/docs/endpoints/creating-endpoints/",
+            "type": "string",
+            "default": "/foo/{var}",
+            "examples": [
+                "/new-endpoint",
+                "/foo/{var}",
+                "/foo/{var1}/{var2}"
+            ],
+            "pattern": "^/[a-zA-Z-_0-9.{}/]+$"
+        },
+        "method": {
+            "$id": "#method",
+            "title": "Method",
+            "description": "The method supported by this endpoint. Create multiple endpoint entries if you need different methods.\n\nSee: https://www.krakend.io/docs/endpoints/creating-endpoints/",
+            "type": "string",
+            "enum": [
+                "GET",
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE"
+            ],
+            "default": "GET"
+        },
+        "output_encoding": {
+            "$id": "#output_encoding",
+            "title": "Output encoding",
+            "description": "The gateway can work with several content types, even allowing your clients to choose how to consume the content.\n\nSee: https://www.krakend.io//docs/endpoints/content-types/",
+            "type": "string",
+            "default": "json",
+            "enum": [
+                "json",
+                "json-collection",
+                "xml",
+                "negotiate",
+                "string",
+                "no-op"
+            ]
+        },
+        "querystring_params": {
+            "$id": "#querystring_params",
+            "title": "Allowed Query String parameters",
+            "description": "Defines the exact list of quey strings parameters that are allowed to reach the backend.\nBy default, KrakenD won't pass any query string to the backend.\n\nSee: https://www.krakend.io/docs/endpoints/parameter-forwarding/",
+            "type": "array",
+            "default": [],
+            "items": {
+                "$id": "#querystring_params/items",
+                "type": "string",
+                "examples": [
+                    "page",
+                    "limit",
+                    "*"
+                ]
+            }
+        },
+        "headers_to_pass": {
+            "$id": "#headers_to_pass",
+            "title": "Allowed Headers In",
+            "description": "Defines the list of all headers allowed to reach the backend when passed.\nBy default, KrakenD won't pass any header from the client to the backend.\n\nSee: https://www.krakend.io/docs/endpoints/parameter-forwarding/",
+            "type": "array",
+            "default": [],
+            "items": {
+                "$id": "#headers_to_pass/items",
+                "type": "string",
+                "examples": [
+                    "User-Agent",
+                    "Accept",
+                    "*"
+                ]
+            }
+        },
+        "concurrent_calls": {
+            "$id": "#concurrent_calls",
+            "title": "Concurrent calls",
+            "description": "The concurrent requests are an excellent technique to improve the response times and decrease error rates by requesting in parallel the same information multiple times. Yes, you make the same request to several backends instead of asking to just one. When the first backend returns the information, the remaining requests are canceled.\n\nSee: https://www.krakend.io/docs/endpoints/concurrent-requests/",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5,
+            "default": 1
+        },
+        "timeout": {
+            "$id": "#timeout",
+            "title": "Timeout",
+            "description": "\n\nSee: https://www.krakend.io/docs/endpoints/creating-endpoints/",
+            "type": "string",
+            "$ref": "service.json#/$defs/timeunit",
+            "examples": [
+                "2s",
+                "1500ms"
+            ]
+        },
+        "cache_ttl": {
+            "$id": "#cache_ttl",
+            "title": "Cache TTL",
+            "$ref": "service.json#cache_ttl"
+        },
+        "backend": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "$ref": "backend.json"
+            }
+        },
+        "extra_config": {
+            "type": "object",
+            "$ref": "endpoint_extra_config.json"
+        }
+
+    }
+}

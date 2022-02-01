@@ -1,5 +1,5 @@
 {
-    "$schema": "/home/artomb/git/devopsfaith/krakend-autocomplete/schema.json",
+    "$schema": "/home/artomb/git/devopsfaith/krakend-autocomplete/service.json",
     "version": 3,
     "name": "KrakenD configuration at MyCompany",
     "port": 8080,
@@ -39,5 +39,27 @@
     "plugin": {
         "folder": "/opt/krakend/plugins/",
         "pattern": ".so"
-    }
+    },
+    "endpoints": [
+        {
+            "endpoint": "/foo/{var}",
+            "method": "GET",
+            "output_encoding": "json-collection",
+            "querystring_params": [
+                "*"
+            ],
+            "headers_to_pass": [
+                "User-Agent"
+            ],
+            "concurrent_calls": 4,
+            "timeout": "1500ms",
+            "cache_ttl": "300s",
+            "backend": [
+                {
+                    "url_pattern": "/url"
+                }
+            ]
+        }
+    ]
+
 }
