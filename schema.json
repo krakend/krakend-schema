@@ -64,6 +64,7 @@
             "enum": [
                 "json",
                 "json-collection",
+                "xml",
                 "negotiate",
                 "string",
                 "no-op"
