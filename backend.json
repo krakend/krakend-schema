@@ -6,6 +6,10 @@
     "required": [
         "url_pattern"
     ],
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+      },
     "properties": {
         "url_pattern": {
             "$id": "#url_pattern",
@@ -91,7 +95,8 @@
             "title": "Deny (data manipulation)",
             "description": "The deny list filter can be read as the don't show this filter. KrakenD will remove from the backend response all matching fields (case-sensitive) defined in the list, and the ones that do not match are returned. Use the deny list to exclude some fields in the response.\n\nSee: https://www.krakend.io/docs/backends/data-manipulation/",
             "type": "array",
-            "default": []
+            "default": [],
+            "uniqueItems": true
         },
         "allow": {
             "$id": "#allow",
@@ -99,6 +104,7 @@
             "description": "The deny list filter can be read as the don't show this filter. KrakenD will remove from the backend response all matching fields (case-sensitive) defined in the list, and the ones that do not match are returned. Use the deny list to exclude some fields in the response.\n\nSee: https://www.krakend.io/docs/backends/data-manipulation/",
             "type": "array",
             "default": [],
+            "uniqueItems": true,
             "examples": [
                 "token",
                 "CVV",

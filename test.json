@@ -1,9 +1,12 @@
 {
     "$schema": "/home/artomb/git/devopsfaith/krakend-autocomplete/service.json",
+    "@comment": "Attribute not in schema, but ignored as it starts with @",
+    "_comment": "Attribute not in schema, but ignored as it starts with _",
+    "$comment": "Attribute not in schema, but ignored as it starts with $",
+    "#comment": "Attribute not in schema, but ignored as it starts with #",
     "version": 3,
     "name": "KrakenD configuration at MyCompany",
     "port": 8080,
-    "@comment": "Some random comment, not in schema",
     "timeout": "2s",
     "output_encoding": "json",
     "read_timeout": "10s",
@@ -61,19 +64,78 @@
                     "sd": "static",
                     "method": "GET",
                     "disable_host_sanitize": false,
-                    "host": ["http://some_host"],
+                    "host": [
+                        "http://some_host"
+                    ],
                     "target": "data",
-                    "deny": ["a"],
-                    "allow": ["b"],
+                    "deny": [
+                        "a"
+                    ],
+                    "allow": [
+                        "b"
+                    ],
                     "group": "backend1",
                     "mapping": {
                         "from": "to"
                     },
                     "is_collection": true
-
                 }
             ]
         }
-    ]
-
+    ],
+    "extra_config": {
+        "security/bot-detector": {
+            "allow": [
+                "MyAndroidClient/1.0"
+            ],
+            "cache_size": 100,
+            "deny": [
+                "facebookexternalhit/1.1"
+            ],
+            "patterns": [
+                "(facebookexternalhit)/.*"
+            ]
+        },
+        "security/cors": {
+            "allow_origins": [
+                "*"
+            ],
+            "allow_methods": [
+                "POST",
+                "GET"
+            ],
+            "allow_headers": [
+                "Accept-Language"
+            ],
+            "expose_headers": [
+                "Header-1"
+            ],
+            "max_age": "15h",
+            "allow_credentials": true,
+            "debug": true
+        },
+        "security/http": {
+            "allowed_hosts": [
+                "host.known.com:443"
+            ],
+            "ssl_proxy_headers": {
+                "X-Forwarded-Proto": "https"
+            },
+            "host_proxy_headers": [
+                "X-Forwarded-Hosts"
+            ],
+            "ssl_redirect": true,
+            "ssl_host": "ssl.host.domain",
+            "sts_seconds": 300,
+            "sts_include_subdomains": true,
+            "frame_deny": true,
+            "referrer_policy": "same-origin",
+            "custom_frame_options_value": "ALLOW-FROM https://example.com",
+            "hpkp_public_key": "pin-sha256=\"base64==\"; max-age=expireTime [; includeSubDomains][; report-uri=\"reportURI\"]",
+            "content_type_nosniff": true,
+            "browser_xss_filter": true,
+            "content_security_policy": "default-src 'self';",
+            "is_development": true
+        }
+    }
 }

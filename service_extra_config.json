@@ -1,0 +1,285 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/service_extra_config.json",
+    "title": "Schema definition for service extra_config",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
+    "properties": {
+        "security/bot-detector": {
+            "$id": "#security/bot-detector",
+            "title": "Bot detector",
+            "description": "The bot detector module checks incoming connections to the gateway to determine if a bot made them, helping you detect and reject bots carrying out scraping, content theft, and form spam.\n\nSee: https://www.krakend.io/docs/throttling/botdetector/",
+            "type": "object",
+            "required": [
+                "allow",
+                "deny",
+                "patterns",
+                "cache_size"
+            ],
+            "properties": {
+                "allow": {
+                    "$id": "#security/bot-detector/allow",
+                    "title": "Allow",
+                    "description": "An array with EXACT MATCHES of trusted user agents that can connect.\n\nSee: https://www.krakend.io/docs/throttling/botdetector/",
+                    "type": "array",
+                    "default": [],
+                    "examples": [
+                        "MyAndroidClient/1.0",
+                        "Pingdom.com_bot_version_1.1"
+                    ]
+                },
+                "deny": {
+                    "$id": "#security/bot-detector/deny",
+                    "title": "Deny",
+                    "description": "An array with EXACT MATCHES of undesired bots, to reject immediately.\n\nSee: https://www.krakend.io/docs/throttling/botdetector/",
+                    "type": "array",
+                    "default": [],
+                    "examples": [
+                        "facebookexternalhit/1.1"
+                    ]
+                },
+                "patterns": {
+                    "$id": "#security/bot-detector/patterns",
+                    "title": "Bot patterns",
+                    "description": "An array with all the regular expressions that define bots. Matching bots are rejected.\n\nSee: https://www.krakend.io/docs/throttling/botdetector/",
+                    "type": "array",
+                    "default": [],
+                    "examples": [
+                        "GoogleBot.*",
+                        "(facebookexternalhit)/.*"
+                    ]
+                },
+                "cache_size": {
+                    "$id": "#security/bot-detector/cache_size",
+                    "title": "Cache size",
+                    "description": "Size of the LRU cache that helps speed the bot detection. The size is the mumber of users agents that you want to keep in memory.\n\nSee: https://www.krakend.io/docs/throttling/botdetector/",
+                    "type": "integer",
+                    "examples": [
+                        100
+                    ],
+                    "default": 500
+                }
+            }
+        },
+        "security/cors": {
+            "$id": "#security/cors",
+            "title": "Cross Origin Resource Sharing",
+            "description": "When KrakenD endpoints are consumed from a browser, you might need to enable the Cross-Origin Resource Sharing (CORS) module as browsers restrict cross-origin HTTP requests initiated from scripts.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+            "type": "object",
+            "required": [
+                "allow_origins"
+            ],
+            "default": {
+                "allow_origins": [
+                    "http://foobar.com"
+                ],
+                "allow_methods": [
+                    "POST",
+                    "GET"
+                ],
+                "max_age": "12h"
+            },
+            "properties": {
+                "allow_origins": {
+                    "$id": "#security/cors/allow_origins",
+                    "title": "Allowed origins",
+                    "description": "An array with all the origins allowed, examples of values are https://example.com, or * (any origin).\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+                    "type": "array",
+                    "items": {
+                        "$id": "#security/cors/allow_origins/items",
+                        "title": "Allowed origins list",
+                        "type": "string",
+                        "examples": [
+                            "*",
+                            "https://example.com"
+                        ]
+                    }
+                },
+                "expose_headers": {
+                    "$id": "#security/cors/expose_headers",
+                    "title": "Expose headers",
+                    "description": "Headers that are safe to expose to the API of a CORS API specification-\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+                    "type": "array",
+                    "default": []
+                },
+                "max_age": {
+                    "$id": "#security/cors/max_age",
+                    "title": "Max age",
+                    "description": "For how long the response can be cached.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+                    "type": "string",
+                    "$ref": "service.json#/$defs/timeunit",
+                    "examples": [
+                        "12h"
+                    ]
+                },
+                "allow_methods": {
+                    "$id": "#security/cors/allow_methods",
+                    "title": "Allowed methods",
+                    "description": "The array of all HTTP methods accepted, in uppercase.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "$id": "#security/cors/allow_methods/items",
+                        "title": "Items",
+                        "description": "\n\nSee: https://www.krakend.io",
+                        "type": "string",
+                        "enum": [
+                            "GET",
+                            "POST",
+                            "PUT",
+                            "DELETE",
+                            "PATCH"
+                        ]
+                    }
+                },
+                "allow_headers": {
+                    "$id": "#security/cors/allow_headers",
+                    "title": "Allowed headers",
+                    "type": "array",
+                    "default": []
+                },
+                "allow_credentials": {
+                    "$id": "#security/cors/allow_credentials",
+                    "title": "Allow_credentials",
+                    "description": "When requests can include user credentials like cookies, HTTP authentication or client side SSL certificates\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+                    "type": "boolean",
+                    "default": true
+                },
+                "debug": {
+                    "$id": "#security/cors/allow_credentials",
+                    "title": "Show debug",
+                    "description": "Show debugging information in the logger, to be used only during development.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+                    "type": "boolean",
+                    "default": true
+                }
+            }
+        },
+        "security/http": {
+            "$id": "#security/http",
+            "title": "HTTP Security",
+            "type": "object",
+            "properties": {
+                "allowed_hosts": {
+                    "$id": "#security/http/allowed_hosts",
+                    "title": "Allowed hosts",
+                    "description": "When a request hits KrakenD, it will confirm if the value of the Host HTTP header is in the list. If so, it will further process the request. If the host is not in the allowed hosts list, KrakenD will simply reject the request.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+                    "type": "array",
+                    "default": []
+                },
+                "ssl_proxy_headers": {
+                    "$id": "#security/http/ssl_proxy_headers",
+                    "title": "SSL Proxy Headers",
+                    "description": "Header keys with associated values that would indicate a valid https request. Useful when using Nginx, e.g: \"X-Forwarded-Proto\": \"https\"\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+                    "type": "object",
+                    "examples": [
+                        {
+                            "X-Forwarded-Proto": "https"
+                        }
+                    ]
+                },
+                "host_proxy_headers": {
+                    "$id": "#security/http/host_proxy_headers",
+                    "title": "SSL Host",
+                    "description": "A set of header keys that may hold a proxied hostname value for the request.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+                    "type": "array",
+                    "default": ["X-Forwarded-Hosts"]
+                },
+                "referrer_policy": {
+                    "$id": "#security/http/referrer_policy",
+                    "title": "Referrer Policy",
+                    "description": "Allows the Referrer-Policy header with the value to be set with a custom value.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+                    "type": "string",
+                    "default": "same-origin"
+                },
+                "ssl_redirect": {
+                    "$id": "#security/http/ssl_redirect",
+                    "title": "SSL redirect",
+                    "description": "Redirect any request that is not using HTTPS\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+                    "type": "boolean",
+                    "default": true
+                },
+                "ssl_host": {
+                    "$id": "#security/http/ssl_host",
+                    "title": "SSL Host",
+                    "description": "When the SSL redirect is true, the host where the request is redirected to.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+                    "type": "string",
+                    "default": "ssl.host.domain",
+                    "examples": [
+                        "ssl.host.domain"
+                    ]
+                },
+                "sts_seconds": {
+                    "$id": "#security/http/sts_seconds",
+                    "title": "HTTP Strict Transport Security (HSTS) seconds",
+                    "description": "Enable this policy by setting the max-age of the Strict-Transport-Security header. Setting to 0 disables HSTS. Use the sts_seconds setting.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+                    "type": "integer",
+                    "default": 300
+                },
+                "sts_include_subdomains": {
+                    "$id": "#security/http/sts_include_subdomains",
+                    "title": "Strict-Transport-Security include_subdomains",
+                    "description": "Set to true when you want the `includeSubdomains` be appended to the Strict-Transport-Security header.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+                    "type": "boolean",
+                    "default": true
+                },
+                "frame_deny": {
+                    "$id": "#security/http/frame_deny",
+                    "title": "Clickjacking protection",
+                    "description": "Set to true to enable clickjacking protection, together with `custom_frame_options_value`.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+                    "type": "boolean",
+                    "default": true
+                },
+                "custom_frame_options_value": {
+                    "$id": "#security/http/custom_frame_options_value",
+                    "title": "Clickjacking protection. Frame-Options value",
+                    "description": "You can add an X-Frame-Options header using custom_frame_options_value with the value of DENY (default behavior) or even set your custom value.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+                    "type": "string",
+                    "examples": [
+                        "ALLOW-FROM https://example.com"
+                    ]
+                },
+                "hpkp_public_key": {
+                    "$id": "#security/http/hpkp_public_key",
+                    "title": "HTTP Public Key Pinning (HPKP)",
+                    "description": "HTTP Public Key Pinning (HPKP) is a security mechanism which allows HTTPS websites to resist impersonation by attackers using mis-issued or otherwise fraudulent certificates. (For example, sometimes attackers can compromise certificate authorities, and then can mis-issue certificates for a web origin.).\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+                    "type": "string",
+                    "examples": [
+                        "pin-sha256=\"base64==\"; max-age=expireTime [; includeSubDomains][; report-uri=\"reportURI\"]"
+                    ]
+                },
+                "content_type_nosniff": {
+                    "$id": "#security/http/content_type_nosniff",
+                    "title": "Nosniff",
+                    "description": "Enabling this feature will prevent the user's browser from interpreting files as something else than declared by the content type in the HTTP headers.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+                    "type": "boolean",
+                    "default": true
+                },
+                "browser_xss_filter": {
+                    "$id": "#security/http/browser_xss_filter",
+                    "title": "This feature enables the Cross-site scripting (XSS) filter in the user's browser.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+                    "type": "boolean",
+                    "default": true
+                },
+                "content_security_policy": {
+                    "$id": "#security/http/content_security_policy",
+                    "title": "Content-Security-Policy (CSP)",
+                    "description": "The HTTP Content-Security-Policy (CSP) default-src directive serves as a fallback for the other CSP fetch directives.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+                    "type": "string",
+                    "examples": [
+                        "default-src 'self';"
+                    ]
+                },
+                "is_development": {
+                    "$id": "#security/http/is_development",
+                    "title": "Development flag",
+                    "description": "This will cause the AllowedHosts, SSLRedirect, and STSSeconds/STSIncludeSubdomains options to be ignored during development. When deploying to production, be sure to set this to false.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+                    "type": "boolean",
+                    "default": true
+                }
+            }
+        }
+    }
+}

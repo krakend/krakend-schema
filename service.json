@@ -7,6 +7,10 @@
     "required": [
         "version"
     ],
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+      },
     "$defs": {
         "timeunit": {
           "type": "string",
@@ -267,6 +271,7 @@
                     "title": "Curve identifiers",
                     "description": "The list of all the identifiers for the curve preferences.\n(use 23 for CurveP256, 24 for CurveP384 or 25 for CurveP521)\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
                     "type": "array",
+                    "uniqueItems": true,
                     "default": [
                         23,24,25
                     ]
@@ -282,7 +287,8 @@
                     "$id": "#tls/cipher_suites",
                     "title": "Cipher Suites",
                     "description": "The list of cipher suites\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
-                    "type": "array"
+                    "type": "array",
+                    "uniqueItems": true
                 }
             }
         },

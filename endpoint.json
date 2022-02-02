@@ -17,6 +17,10 @@
             ]
         }
     ,
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+      },
     "properties": {
         "endpoint": {
             "$id": "#endpoint",
@@ -65,6 +69,7 @@
             "title": "Allowed Query String parameters",
             "description": "Defines the exact list of quey strings parameters that are allowed to reach the backend.\nBy default, KrakenD won't pass any query string to the backend.\n\nSee: https://www.krakend.io/docs/endpoints/parameter-forwarding/",
             "type": "array",
+            "uniqueItems": true,
             "default": [],
             "items": {
                 "$id": "#querystring_params/items",
@@ -81,6 +86,7 @@
             "title": "Allowed Headers In",
             "description": "Defines the list of all headers allowed to reach the backend when passed.\nBy default, KrakenD won't pass any header from the client to the backend.\n\nSee: https://www.krakend.io/docs/endpoints/parameter-forwarding/",
             "type": "array",
+            "uniqueItems": true,
             "default": [],
             "items": {
                 "$id": "#headers_to_pass/items",
