@@ -136,6 +136,14 @@
             "browser_xss_filter": true,
             "content_security_policy": "default-src 'self';",
             "is_development": true
+        },
+        "telemetry/logging": {
+            "level": "CRITICAL",
+            "prefix": "[KRAKEND]",
+            "stdout": true,
+            "syslog": false,
+            "format": "custom",
+            "custom_format": "%{message}"
         }
     }
 }

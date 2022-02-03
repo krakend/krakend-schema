@@ -149,7 +149,7 @@
                     "default": true
                 },
                 "debug": {
-                    "$id": "#security/cors/allow_credentials",
+                    "$id": "#security/cors/debug",
                     "title": "Show debug",
                     "description": "Show debugging information in the logger, to be used only during development.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
                     "type": "boolean",
