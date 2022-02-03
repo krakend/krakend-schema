@@ -144,6 +144,13 @@
             "syslog": false,
             "format": "custom",
             "custom_format": "%{message}"
+        },
+        "telemetry/logstash": {
+            "enabled": false
+        },
+        "telemetry/gelf": {
+            "address": "myGraylogInstance:12201",
+            "enable_tcp": false
         }
     }
 }
