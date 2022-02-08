@@ -80,7 +80,59 @@
                     },
                     "is_collection": true
                 }
-            ]
+            ],
+            "extra_config": {
+                "qos/ratelimit/router": {
+                    "client_max_rate": 10,
+                    "key": "X-TOKEN",
+                    "max_rate": 100,
+                    "strategy": "header"
+                },
+                "proxy": {
+                    "combiner": "combiner_name",
+                    "sequential": true,
+                    "static": {
+                        "data": {
+                            "foo": 1
+                        },
+                        "strategy": "always"
+                    }
+                },
+                "security/http": {
+                    "allowed_hosts": [
+                        "ABC"
+                    ]
+                },
+                "auth/validator": {
+                    "alg": "EdDSA",
+                    "jwk_url": "http://KEYCLOAK:8080/auth/realms/master/protocol/openid-connect/certs",
+                    "jwk_local_path": "./jwk.txt",
+                    "secret_url": "awskms://keyID",
+                    "cypher_key": "",
+                    "cache": true,
+                    "cache_duration": 900,
+                    "audience": [
+                        "audience1"
+                    ],
+                    "roles_key": "resource_access.myclient.roles",
+                    "roles_key_is_nested": true,
+                    "roles": ["r1"],
+                    "scopes": ["s1"],
+                    "scopes_key": "sk",
+                    "scopes_matcher": "all",
+                    "issuer": "issuer",
+                    "cookie_key": "cookie_jwt",
+                    "disable_jwk_security": true,
+                    "jwk_fingerprints": [],
+                    "cipher_suites": [
+                        49199
+                    ],
+                    "jwk_local_ca": "./ca",
+                    "propagate_claims": ["c1"],
+                    "key_identify_strategy": "kid",
+                    "operation_debug": true
+                }
+            }
         }
     ],
     "extra_config": {
@@ -151,6 +203,14 @@
         "telemetry/gelf": {
             "address": "myGraylogInstance:12201",
             "enable_tcp": false
+        },
+        "telemetry/metrics": {
+            "backend_disabled": false,
+            "collection_time": "60s",
+            "endpoint_disabled": false,
+            "listen_address": ":8090",
+            "proxy_disabled": false,
+            "router_disabled": false
         }
     }
 }

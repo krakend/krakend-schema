@@ -4,6 +4,10 @@
     "title": "GELF",
     "description": "Send structured events in GELF format to your Graylog Cluster.\n\nSee: https://www.krakend.io/docs/logging/graylog-gelf/",
     "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
     "required": [
         "address",
         "enable_tcp"

@@ -12,7 +12,7 @@
       },
     "properties": {
         "url_pattern": {
-            "$id": "#url_pattern",
+            "$id": "#backend/url_pattern",
             "title": "URL Pattern",
             "description": "The path inside your service (no protocol, no host, no method). E.g: /users\n\nSee: https://www.krakend.io/docs/backends/overview/",
             "type": "string",
@@ -22,7 +22,7 @@
             ]
         },
         "encoding": {
-            "$id": "#encoding",
+            "$id": "#backend/encoding",
             "title": "Backend Encoding",
             "description": "Informs KrakenD how to parse the responses of your services.\n\nSee: https://www.krakend.io/docs/backends/supported-encodings/",
             "type": "string",
@@ -37,7 +37,7 @@
             ]
         },
         "sd": {
-            "$id": "#sd",
+            "$id": "#backend/sd",
             "title": "Service Discovery",
             "description": "Tells KrakenD how to detect and locate services automatically on your network.\n\nSee: https://www.krakend.io/docs/backends/overview/",
             "type": "string",
@@ -48,7 +48,7 @@
             ]
         },
         "method": {
-            "$id": "#method",
+            "$id": "#backend/method",
             "title": "Method",
             "description": "The method sent to this backend. \n\nSee: https://www.krakend.io/docs/backends/overview/",
             "type": "string",
@@ -66,21 +66,21 @@
             "$ref": "backend_extra_config.json"
         },
         "disable_host_sanitize": {
-            "$id": "#disable_host_sanitize",
+            "$id": "#backend/disable_host_sanitize",
             "title": "Disable host sanitize",
             "description": "Set to true when the address string doesn't need to be checked for the protocol. This is the case of sd=dns",
             "type": "boolean",
             "default": true
         },
         "host": {
-            "$id": "#host",
+            "$id": "#backend/host",
             "title": "Host array",
             "description": "An array with all the available hosts to load balance requests using the format protocol://host:port.\nExample: [\"https://api.service.com\"]\n\nIf you are in a platform where hosts are already balanced write a single name in the array with the service name/balancer address.",
             "type": "array",
             "default": []
         },
         "target": {
-            "$id": "#target",
+            "$id": "#backend/target",
             "title": "Target (data manipulation)",
             "description": "Removes the matching object from the reponse and returns only its contents.\n\nSee: https://www.krakend.io/docs/backends/data-manipulation/",
             "type": "string",
@@ -91,7 +91,7 @@
             ]
         },
         "deny": {
-            "$id": "#deny",
+            "$id": "#backend/deny",
             "title": "Deny (data manipulation)",
             "description": "The deny list filter can be read as the don't show this filter. KrakenD will remove from the backend response all matching fields (case-sensitive) defined in the list, and the ones that do not match are returned. Use the deny list to exclude some fields in the response.\n\nSee: https://www.krakend.io/docs/backends/data-manipulation/",
             "type": "array",
@@ -99,7 +99,7 @@
             "uniqueItems": true
         },
         "allow": {
-            "$id": "#allow",
+            "$id": "#backend/allow",
             "title": "Allow (data manipulation)",
             "description": "The deny list filter can be read as the don't show this filter. KrakenD will remove from the backend response all matching fields (case-sensitive) defined in the list, and the ones that do not match are returned. Use the deny list to exclude some fields in the response.\n\nSee: https://www.krakend.io/docs/backends/data-manipulation/",
             "type": "array",
@@ -112,14 +112,14 @@
             ]
         },
         "group": {
-            "$id": "#group",
+            "$id": "#backend/group",
             "title": "Group (data manipulation)",
             "description": "Instead of placing all the response attributes in the root of the response, create a new key and encapsulate the response inside.\n\nSee: https://www.krakend.io/docs/backends/data-manipulation/",
             "type": "string",
             "default": "backend1"
         },
         "mapping": {
-            "$id": "#mapping",
+            "$id": "#backend/mapping",
             "title": "Mapping",
             "description": "Mapping, or also known as renaming, let you change the name of the fields of the generated responses, so your composed response would be as close to your use case as possible without changing a line on any backend.\n\nSee: https://www.krakend.io/docs/backends/data-manipulation/",
             "type": "object",
@@ -128,7 +128,7 @@
             ]
         },
         "is_collection": {
-            "$id": "#is_collection",
+            "$id": "#backend/is_collection",
             "title": "Is a collection/array",
             "description": "Set to true when your API does not return an object {} but a collection []\n\nSee: https://www.krakend.io/docs/backends/data-manipulation/",
             "type": "boolean",

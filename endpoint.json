@@ -23,7 +23,7 @@
       },
     "properties": {
         "endpoint": {
-            "$id": "#endpoint",
+            "$id": "#endpoint/endpoint",
             "title": "Endpoint",
             "description": "The resource URL you want to expose. Must start with a slash.\n\nSee: https://www.krakend.io/docs/endpoints/creating-endpoints/",
             "type": "string",
@@ -36,7 +36,7 @@
             "pattern": "^/[a-zA-Z-_0-9.{}/]+$"
         },
         "method": {
-            "$id": "#method",
+            "$id": "#endpoint/method",
             "title": "Method",
             "description": "The method supported by this endpoint. Create multiple endpoint entries if you need different methods.\n\nSee: https://www.krakend.io/docs/endpoints/creating-endpoints/",
             "type": "string",
@@ -50,7 +50,7 @@
             "default": "GET"
         },
         "output_encoding": {
-            "$id": "#output_encoding",
+            "$id": "#endpoint/output_encoding",
             "title": "Output encoding",
             "description": "The gateway can work with several content types, even allowing your clients to choose how to consume the content.\n\nSee: https://www.krakend.io//docs/endpoints/content-types/",
             "type": "string",
@@ -65,14 +65,14 @@
             ]
         },
         "querystring_params": {
-            "$id": "#querystring_params",
+            "$id": "#endpoint/querystring_params",
             "title": "Allowed Query String parameters",
             "description": "Defines the exact list of quey strings parameters that are allowed to reach the backend.\nBy default, KrakenD won't pass any query string to the backend.\n\nSee: https://www.krakend.io/docs/endpoints/parameter-forwarding/",
             "type": "array",
             "uniqueItems": true,
             "default": [],
             "items": {
-                "$id": "#querystring_params/items",
+                "$id": "#endpoint/querystring_params/items",
                 "type": "string",
                 "examples": [
                     "page",
@@ -82,14 +82,14 @@
             }
         },
         "headers_to_pass": {
-            "$id": "#headers_to_pass",
+            "$id": "#endpoint/headers_to_pass",
             "title": "Allowed Headers In",
             "description": "Defines the list of all headers allowed to reach the backend when passed.\nBy default, KrakenD won't pass any header from the client to the backend.\n\nSee: https://www.krakend.io/docs/endpoints/parameter-forwarding/",
             "type": "array",
             "uniqueItems": true,
             "default": [],
             "items": {
-                "$id": "#headers_to_pass/items",
+                "$id": "#endpoint/headers_to_pass/items",
                 "type": "string",
                 "examples": [
                     "User-Agent",
@@ -99,7 +99,7 @@
             }
         },
         "concurrent_calls": {
-            "$id": "#concurrent_calls",
+            "$id": "#endpoint/concurrent_calls",
             "title": "Concurrent calls",
             "description": "The concurrent requests are an excellent technique to improve the response times and decrease error rates by requesting in parallel the same information multiple times. Yes, you make the same request to several backends instead of asking to just one. When the first backend returns the information, the remaining requests are canceled.\n\nSee: https://www.krakend.io/docs/endpoints/concurrent-requests/",
             "type": "integer",
@@ -108,7 +108,7 @@
             "default": 1
         },
         "timeout": {
-            "$id": "#timeout",
+            "$id": "#endpoint/timeout",
             "title": "Timeout",
             "description": "\n\nSee: https://www.krakend.io/docs/endpoints/creating-endpoints/",
             "type": "string",
@@ -119,9 +119,9 @@
             ]
         },
         "cache_ttl": {
-            "$id": "#cache_ttl",
+            "$id": "#endpoint/cache_ttl",
             "title": "Cache TTL",
-            "$ref": "service.json#cache_ttl"
+            "$ref": "service.json#/$defs/timeunit"
         },
         "backend": {
             "type": "array",
