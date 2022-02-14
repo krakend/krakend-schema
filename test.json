@@ -78,10 +78,39 @@
                     "mapping": {
                         "from": "to"
                     },
-                    "is_collection": true
+                    "is_collection": true,
+                    "extra_config": {
+                        "modifier/lua-proxy/backend": {
+                            "allow_open_libs": true,
+                            "live": true,
+                            "md5": {
+                                "file1.lua": "49ae50f58e35f4821ad4550e1a4d1de0"
+                            },
+                            "post": "print('Backend response, pre-logic:'); local r = request.load(); print(r:body());",
+                            "pre": "print('Backend response, pre-logic:'); local r = request.load(); print(r:body());",
+                            "skip_next": true,
+                            "sources": [
+                                "file1.lua"
+                            ]
+                        }
+                    }
                 }
             ],
             "extra_config": {
+                "modifier/lua-endpoint": {
+                    "allow_open_libs": true,
+                    "live": true,
+                    "md5": {
+                        "file1.lua": "49ae50f58e35f4821ad4550e1a4d1de0"
+                    },
+                    "pre": "print('Backend response, pre-logic:'); local r = request.load(); print(r:body());",
+                    "sources": [
+                        "file1.lua"
+                    ]
+                },
+                "modifier/lua-proxy": {
+                    "pre": "print('Backend response, pre-logic:'); local r = request.load(); print(r:body());"
+                },
                 "qos/ratelimit/router": {
                     "client_max_rate": 10,
                     "key": "X-TOKEN",

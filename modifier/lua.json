@@ -1,0 +1,65 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/modifier/lua.json",
+    "title": "JWT validator",
+    "description": "Scripting with Lua is an additional choice to extend your business logic, and is compatible with the rest of options such as CEL, Martian, or other Go plugins and middlewares.\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
+    "type": "object",
+    "minItems": 1,
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
+    "properties": {
+        "sources": {
+            "title": "Sources",
+            "description": "An array with all the files that will be processed.\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
+            "type": "array",
+            "default": [
+                "file1.lua"
+            ]
+        },
+        "md5": {
+            "title": "MD5 map",
+            "description": "The md5sum of each file that must match the one found in the disk. Used to make sure that the file has not been modified by a 3rd party.\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
+            "type": "object",
+            "examples": [
+                { "file1.lua": "49ae50f58e35f4821ad4550e1a4d1de0"}
+            ]
+        },
+        "pre": {
+            "title": "Pre-execution code",
+            "description": "pre and post contain the inline code to start the execution in every step.\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
+            "type": "string",
+            "examples": [
+                "print('Backend response, pre-logic:'); local r = request.load(); print(r:body());"
+            ]
+        },
+        "live": {
+            "title": "Live reload",
+            "description": "Whether to live reload the script in every execution or not (snippet cached).\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
+            "type": "boolean",
+            "default": true
+        },
+        "allow_open_libs": {
+            "title": "Open external libs",
+            "description": "The regular lua libraries are not open by default, as an efficiency point. But if you need to use the lua libraries (for file io for example), then set this to true. If not present, default value is false.\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
+            "type": "boolean",
+            "default": true
+        },
+
+        "skip_next": {
+            "title": "Skip next",
+            "description": " only to be set when in a backend section, skips the query to the next backend.\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
+            "type": "boolean",
+            "default": true
+        },
+        "post": {
+            "title": "post-execution code",
+            "description": "pre and post contain the inline code to start the execution in every step. Only available in the backend section.\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
+            "type": "string",
+            "examples": [
+                "local r = response.load(); r:headers('Set-Cookie', 'key1='.. r:data('response'));"
+            ]
+        }
+    }
+}
