@@ -171,6 +171,26 @@
                     ],
                     "key_identify_strategy": "kid",
                     "operation_debug": true
+                },
+                "auth/signer": {
+                    "alg": "EdDSA",
+                    "cipher_suites": [
+                        49199,
+                        49195,
+                        49200,
+                        49196,
+                        52392,
+                        52393
+                    ],
+                    "disable_jwk_security": true,
+                    "full": false,
+                    "jwk_fingerprints": [],
+                    "jwk_local_ca": "",
+                    "jwk_url": "http://your-backend/jwk/symmetric.json",
+                    "keys_to_sign": [
+                        "access_token"
+                    ],
+                    "kid": "sim2"
                 }
             }
         }
