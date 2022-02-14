@@ -104,7 +104,9 @@
                     ]
                 },
                 "security/bot-detector": {
-                    "allow": ["MyAndroidClient/1.0"]
+                    "allow": [
+                        "MyAndroidClient/1.0"
+                    ]
                 },
                 "auth/validator": {
                     "alg": "EdDSA",
@@ -119,8 +121,12 @@
                     ],
                     "roles_key": "resource_access.myclient.roles",
                     "roles_key_is_nested": true,
-                    "roles": ["r1"],
-                    "scopes": ["s1"],
+                    "roles": [
+                        "r1"
+                    ],
+                    "scopes": [
+                        "s1"
+                    ],
                     "scopes_key": "sk",
                     "scopes_matcher": "all",
                     "issuer": "issuer",
@@ -131,7 +137,9 @@
                         49199
                     ],
                     "jwk_local_ca": "./ca",
-                    "propagate_claims": ["c1"],
+                    "propagate_claims": [
+                        "c1"
+                    ],
                     "key_identify_strategy": "kid",
                     "operation_debug": true
                 }
@@ -214,6 +222,81 @@
             "listen_address": ":8090",
             "proxy_disabled": false,
             "router_disabled": false
+        },
+        "telemetry/opencensus": {
+            "sample_rate": 100,
+            "reporting_period": 2,
+            "enabled_layers": {
+                "backend": false,
+                "pipe": true,
+                "router": false
+            },
+            "exporters": {
+                "logger": {
+                    "spans": false,
+                    "stats": false
+                },
+                "zipkin": {
+                    "collector_url": "http://192.168.99.100:9411/api/v2/spans",
+                    "service_name": "krakend"
+                },
+                "jaeger": {
+                    "endpoint": "http://192.168.99.100:14268/api/traces",
+                    "service_name": "krakend"
+                },
+                "influxdb": {
+                    "address": "http://192.168.99.100:8086",
+                    "db": "krakend",
+                    "timeout": "1s",
+                    "password": "kr4k3nd",
+                    "username": "krakend"
+                },
+                "prometheus": {
+                    "namespace": "krakend",
+                    "port": 9091,
+                    "tag_host": false,
+                    "tag_method": false,
+                    "tag_path": false,
+                    "tag_statuscode": false
+                },
+                "xray": {
+                    "access_key_id": "dasdasdas",
+                    "secret_access_key": "dadasdasd",
+                    "region": "eu-west-1",
+                    "use_env": false,
+                    "version": "latest"
+                },
+                "stackdriver": {
+                    "default_labels": {
+                        "env": "production"
+                    },
+                    "metrics_prefix": "krakend",
+                    "project_id": "1234"
+                },
+                "datadog": {
+                    "disable_count_per_buckets": false,
+                    "global_tags": {
+                        "env": "prod"
+                    },
+                    "namespace": "krakend",
+                    "service": "gateway",
+                    "stats_address": "localhost:8125",
+                    "tags": [
+                        "A"
+                    ],
+                    "trace_address": "localhost:8126"
+                },
+                "ocagent": {
+                    "address": "localhost:55678",
+                    "enable_compression": false,
+                    "headers": {
+                        "header1": "value1"
+                    },
+                    "insecure": true,
+                    "reconnection": "2s",
+                    "service_name": "krakend"
+                }
+            }
         }
     }
 }
