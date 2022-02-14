@@ -1,0 +1,136 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/auth/signer.json",
+    "title": "JWT signer",
+    "description": "creates a wrapper for your login endpoint that signs with your secret key the selected fields of the backend payload right before returning the content to the end-user.\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
+    "required": [
+        "alg",
+        "jwk_url",
+        "kid",
+        "keys_to_sign"
+    ],
+    "properties": {
+        "alg": {
+            "$id": "#auth/signer/alg",
+            "title": "Algorithm",
+            "description": "The hashing algorithm used by the token issuer.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+            "type": "string",
+            "default": "RS256",
+            "enum": [
+                "EdDSA",
+                "HS256",
+                "HS384",
+                "HS512",
+                "RS256",
+                "RS384",
+                "RS512",
+                "ES256",
+                "ES384",
+                "ES512",
+                "PS256",
+                "PS384",
+                "PS512"
+            ]
+        },
+        "jwk_url": {
+            "$id": "#auth/signer/jwk_url",
+            "title": "JWK URL",
+            "description": " The URL to the JWK endpoint with the private keys used to sign the token.\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
+            "type": "string",
+            "examples": [
+                "http://your-backend/jwk/symmetric.json"
+            ]
+        },
+        "jwk_local_ca": {
+            "$id": "#auth/signer/jwk_local_ca",
+            "title": "Local CA",
+            "description": "Path to the CA’s certificate verifying a secure connection when downloading the JWK. Use when not recognized by the system (e.g., self-signed certificates).\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+            "type": "string"
+        },
+        "kid": {
+            "$id": "#auth/signer/kid",
+            "title": "Kid",
+            "description": "The key ID purpose is to match a specific key, as the jwk_url might contain several keys\n\nSee: https://www.krakend.io/docs/enterprise/authorization/jwt-validation/",
+            "type": "string",
+            "examples": [
+                "sim2"
+            ]
+        },
+        "keys_to_sign": {
+            "$id": "#auth/signer/keys_to_sign",
+            "title": "Keys to sign",
+            "description": "List of all the specific keys that need signing (e.g., refresh_token and access_token).\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
+            "type": "array",
+            "examples": [
+                "access_token",
+                "refresh_token"
+            ]
+        },
+        "full": {
+            "$id": "#auth/signer/full",
+            "title": "Full format",
+            "description": "Use JSON format instead of the compact form JWT is giving.\n\nSee: https://www.krakend.io/docs/enterprise/authorization/jwt-validation/",
+            "type": "boolean"
+        },
+        "disable_jwk_security": {
+            "$id": "#auth/signer/disable_jwk_security",
+            "title": "Disable_jwk_security",
+            "description": "When true, disables security of the JWK client and allows insecure connections (plain HTTP) to download the keys. Not recommended for production.\n\nSee: https://www.krakend.io/docs/enterprise/authorization/jwt-validation/",
+            "type": "boolean",
+            "default": false
+        },
+        "cipher_suites": {
+            "$id": "#auth/signer/cipher_suites",
+            "title": "Cipher suites",
+            "type": "array",
+            "default": [
+                49199,
+                49195,
+                49200,
+                49196,
+                52392,
+                52393
+            ],
+            "items": {
+                "title": "Items",
+                "description": "\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+                "type": "integer",
+                "enum": [
+                    5,
+                    10,
+                    47,
+                    53,
+                    60,
+                    156,
+                    157,
+                    49159,
+                    49161,
+                    49162,
+                    49169,
+                    49170,
+                    49171,
+                    49172,
+                    49187,
+                    49191,
+                    49199,
+                    49195,
+                    49200,
+                    49196,
+                    52392,
+                    52393
+                ]
+            }
+        },
+        "jwk_fingerprints": {
+            "$id": "#auth/signer/jwk_fingerprints",
+            "title": "JWK Fingerprints",
+            "description": "A list of fingerprints (the unique identifier of the certificate) for certificate pinning and avoid man in the middle attacks. Add fingerprints in base64 format.\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
+            "type": "array"
+        }
+    }
+}
