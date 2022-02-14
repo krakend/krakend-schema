@@ -188,7 +188,7 @@
         "disable_rest": {
             "$id": "#service/disable_rest",
             "title": "Disable RESTful URLs",
-            "description": "Only RESTful URL patterns are valid to access backends. Set to true if backends aren't RESTful, e.g.: /url.{some_variable}.json",
+            "description": "Only RESTful URL patterns are valid to access backends. Set to true if your backends aren't RESTful, e.g.: /url.{some_variable}.json",
             "type": "boolean",
             "default": true
         },

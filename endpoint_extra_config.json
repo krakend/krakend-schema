@@ -109,6 +109,9 @@
         },
         "auth/signer": {
             "$ref": "auth/validator.json"
+        },
+        "security/bot-detector": {
+            "$ref": "service_extra_config.json#service_extra_config/security/bot-detector"
         }
     }
 }

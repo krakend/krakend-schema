@@ -103,6 +103,9 @@
                         "ABC"
                     ]
                 },
+                "security/bot-detector": {
+                    "allow": ["MyAndroidClient/1.0"]
+                },
                 "auth/validator": {
                     "alg": "EdDSA",
                     "jwk_url": "http://KEYCLOAK:8080/auth/realms/master/protocol/openid-connect/certs",
