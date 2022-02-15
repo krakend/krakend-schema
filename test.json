@@ -198,6 +198,17 @@
                 }
             ],
             "extra_config": {
+                "validation/json-schema": {
+                    "type": "object",
+                    "properties": {
+                        "number": {
+                            "type": "number"
+                        },
+                        "street_name": {
+                            "type": "string"
+                        }
+                    }
+                },
                 "security/cors": {
                     "allow_origins": [
                         "*"
