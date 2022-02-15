@@ -46,7 +46,7 @@
         "qos/circuit-breaker": {
             "$ref": "qos/circuit-breaker.json"
         },
-        "qos/ratelimit/proxy":{
+        "qos/ratelimit/proxy": {
             "$ref": "qos/ratelimit/proxy.json"
         },
         "proxy": {
@@ -54,6 +54,18 @@
         },
         "backend/graphql": {
             "$ref": "backend/graphql.json"
+        },
+        "backend/http": {
+            "required": [
+                "return_error_details"
+            ],
+            "properties": {
+                "return_error_details": {
+                    "type": "string",
+                    "title": "Return error details",
+                    "description": "Returns to the client details of a failing request.\n\nSee: https://www.krakend.io/docs/backends/detailed-errors/"
+                }
+            }
         }
     }
 }

@@ -96,7 +96,9 @@
                             "no_wait": false,
                             "prefetch_count": 10,
                             "prefetch_size": 1024,
-                            "routing_key": ["#"]
+                            "routing_key": [
+                                "#"
+                            ]
                         },
                         "backend/amqp/producer": {
                             "name": "queue-1",
@@ -110,7 +112,6 @@
                             "prefetch_size": 1024,
                             "mandatory": false,
                             "immediate": false
-
                         },
                         "backend/lambda": {
                             "endpoint": "",
@@ -145,10 +146,13 @@
                         },
                         "modifier/martian": {
                             "header.Modifier": {
-                                "scope": ["request", "response"],
+                                "scope": [
+                                    "request",
+                                    "response"
+                                ],
                                 "name": "X-Martian",
                                 "value": "true"
-                              }
+                            }
                         },
                         "qos/http-cache": {},
                         "qos/circuit-breaker": {
@@ -163,13 +167,15 @@
                             "max_rate": 1
                         },
                         "proxy": {
-                            "flatmap_filter": [{
-                                "type": "move",
-                                "args": [
-                                    "a.*.b1.*.c",
-                                    "a.*.b1.*.d"
-                                ]
-                            }],
+                            "flatmap_filter": [
+                                {
+                                    "type": "move",
+                                    "args": [
+                                        "a.*.b1.*.c",
+                                        "a.*.b1.*.d"
+                                    ]
+                                }
+                            ],
                             "shadow": true
                         },
                         "backend/graphql": {
@@ -178,12 +184,15 @@
                             "query_path": "./graphql/mutations/marketing.graphql",
                             "type": "mutation",
                             "variables": {
-                                "user":"{user_id}",
+                                "user": "{user_id}",
                                 "other_static_variables": {
                                     "foo": false,
                                     "bar": true
                                 }
                             }
+                        },
+                        "backend/http": {
+                            "return_error_details": "backend_alias"
                         }
                     }
                 }
