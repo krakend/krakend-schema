@@ -51,6 +51,9 @@
         },
         "proxy": {
             "$ref": "proxy.json"
+        },
+        "backend/graphql": {
+            "$ref": "backend/graphql.json"
         }
     }
 }

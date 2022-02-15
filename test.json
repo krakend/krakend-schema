@@ -171,6 +171,19 @@
                                 ]
                             }],
                             "shadow": true
+                        },
+                        "backend/graphql": {
+                            "operationName": "addMktPreferencesForUser",
+                            "query": "{ \n find_follower(func: uid(\"0x3\")) {\n name \n }\n }",
+                            "query_path": "./graphql/mutations/marketing.graphql",
+                            "type": "mutation",
+                            "variables": {
+                                "user":"{user_id}",
+                                "other_static_variables": {
+                                    "foo": false,
+                                    "bar": true
+                                }
+                            }
                         }
                     }
                 }
