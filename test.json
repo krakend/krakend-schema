@@ -142,7 +142,15 @@
                             "sources": [
                                 "file1.lua"
                             ]
-                        }
+                        },
+                        "modifier/martian": {
+                            "header.Modifier": {
+                                "scope": ["request", "response"],
+                                "name": "X-Martian",
+                                "value": "true"
+                              }
+                        },
+                        "qos/http-cache": {}
                     }
                 }
             ],

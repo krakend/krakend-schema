@@ -30,10 +30,18 @@
             "$ref": "modifier/lua.json"
         },
         "modifier/martian": {
-            "$ref": "modifier/martian.json"
+            "type": "object",
+            "title": "Martian modifiers",
+            "minProperties": 1,
+            "description": "Transform requests and responses through a simple DSL definition in the configuration file.\n\nSee: https://www.krakend.io/docs/backends/martian/",
+            "properties": {}
         },
         "qos/http-cache": {
-            "$ref": "qos/http-cache.json"
+            "type": "object",
+            "title": "Backend Cache",
+            "maxProperties": 0,
+            "description": "Enable in-memory caching for backend responses for as long as its Cache-Control header permits.\n\nSee: https://www.krakend.io/docs/backends/caching/",
+            "properties": {}
         },
         "qos/circuit-breaker": {
             "$ref": "qos/circuit-breaker.json"
