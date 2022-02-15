@@ -1,10 +1,48 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/backend_extra_config.json",
-    "title": "Schema definition for extra_config of backends",
+    "title": "Extra configuration for backends",
     "type": "object",
     "additionalProperties": false,
     "patternProperties": {
         "^[@$_#]": {}
-      }
+    },
+    "properties": {
+        "auth/client-credentials": {
+            "$ref": "auth/client-credentials.json"
+        },
+        "backend/amqp/consumer": {
+            "$ref": "backend/amqp/consumer.json"
+        },
+        "backend/amqp/producer": {
+            "$ref": "backend/amqp/producer.json"
+        },
+        "backend/pubsub/subscriber": {
+            "$ref": "backend/pubsub/subscriber.json"
+        },
+        "backend/pubsub/publisher": {
+            "$ref": "backend/pubsub/publisher.json"
+        },
+        "backend/lambda": {
+            "$ref": "backend/lambda.json"
+        },
+        "modifier/lua-proxy/backend": {
+            "$ref": "modifier/lua.json"
+        },
+        "modifier/martian": {
+            "$ref": "modifier/martian.json"
+        },
+        "qos/http-cache": {
+            "$ref": "qos/http-cache.json"
+        },
+        "qos/circuit-breaker": {
+            "$ref": "qos/circuit-breaker.json"
+        },
+        "qos/ratelimit/proxy":{
+            "$ref": "qos/ratelimit/proxy.json"
+        },
+        "proxy": {
+            "$ref": "proxy.json"
+        }
+    }
 }

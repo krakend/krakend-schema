@@ -80,6 +80,18 @@
                     },
                     "is_collection": true,
                     "extra_config": {
+                        "backend/amqp/consumer": {
+                            "auto_ack": false,
+                            "delete": false,
+                            "durable": true,
+                            "exchange": "some-exchange",
+                            "name": "queue1",
+                            "no_local": false,
+                            "no_wait": false,
+                            "prefetch_count": 10,
+                            "prefetch_size": ,
+                            "routing_key": ["#"]
+                        },
                         "auth/client-credentials": {
                             "client_id": "ID1",
                             "client_secret": "mys3cr3t",
