@@ -80,6 +80,17 @@
                     },
                     "is_collection": true,
                     "extra_config": {
+                        "auth/client-credentials": {
+                            "client_id": "ID1",
+                            "client_secret": "mys3cr3t",
+                            "endpoint_params": {
+                                "audience": [
+                                    "YOUR-AUDIENCE"
+                                ]
+                            },
+                            "scopes": "scope1, scope2",
+                            "token_url": "https://your.custom.identity.service.tld/token_endpoint"
+                        },
                         "modifier/lua-proxy/backend": {
                             "allow_open_libs": true,
                             "live": true,
@@ -352,7 +363,9 @@
             "N": 10000000,
             "P": 1e-7,
             "port": 1234,
-            "TokenKeys": ["jti"],
+            "TokenKeys": [
+                "jti"
+            ],
             "TTL": 1500
         }
     }
