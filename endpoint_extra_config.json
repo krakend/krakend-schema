@@ -101,6 +101,9 @@
                 }
             }
         },
+        "router": {
+            "$ref": "router.json"
+        },
         "security/http": {
             "$ref": "security/http.json"
         },
