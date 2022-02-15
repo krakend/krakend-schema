@@ -150,7 +150,14 @@
                                 "value": "true"
                               }
                         },
-                        "qos/http-cache": {}
+                        "qos/http-cache": {},
+                        "qos/circuit-breaker": {
+                            "interval": 60,
+                            "log_status_change": true,
+                            "max_errors": 10,
+                            "name": "cb-backend-1",
+                            "timeout": 10
+                        }
                     }
                 }
             ],
