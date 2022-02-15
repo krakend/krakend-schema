@@ -1,0 +1,74 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/auth/revoker.json",
+    "title": "Schema definition for service extra_config",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
+    "required": [
+        "N",
+        "P",
+        "HashName",
+        "TTL",
+        "port",
+        "TokenKeys"
+    ],
+    "properties": {
+        "N": {
+            "$id": "#auth/revoker/N",
+            "title": "Bot detector",
+            "description": "The maximum number of elements that you want to keep in memory (you can keep millions at a very low cost).\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
+            "type": "integer",
+            "examples": [
+                10000000
+            ],
+            "default": 10000000
+        },
+        "P": {
+            "$id": "#auth/revoker/P",
+            "title": "Probability",
+            "description": "The probability of returning a false positive. E.g: 0.0000001\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
+            "type": "number",
+            "examples": [
+                0.0000001
+            ],
+            "default": 0.0000001
+        },
+        "HashName": {
+            "$id": "#auth/revoker/HashName",
+            "title": "Hash function name",
+            "description": "The hash name used. Possible values are  'optimal' (recommended) or 'default'.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
+            "type": "string",
+            "default": "optimal",
+            "enum": [
+                "optimal",
+                "default"
+            ]
+        },
+        "TTL": {
+            "$id": "#auth/revoker/TTL",
+            "title": "Time To Live",
+            "description": "The lifespan of the JWT you are generating, in seconds. The value must match the expiration you are setting in the backend.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
+            "type": "integer",
+            "default": 1500
+        },
+        "port": {
+            "$id": "#auth/revoker/port",
+            "title": "Port",
+            "description": "The port number exposed (has to be free) for the RPC service to communicate with the bloomfilter.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
+            "type": "integer",
+            "default": 1234
+        },
+        "TokenKeys": {
+            "$id": "#auth/revoker/TokenKeys",
+            "title": "Token keys",
+            "description": "The list with all the fields in your JWT payload that need watching. These fields establish the criteria to revoke accesses in the future.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
+            "type": "array",
+            "examples": [
+                "jti"
+            ]
+        }
+    }
+}

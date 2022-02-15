@@ -346,6 +346,14 @@
                     "service_name": "krakend"
                 }
             }
+        },
+        "auth/revoker": {
+            "HashName": "default",
+            "N": 10000000,
+            "P": 1e-7,
+            "port": 1234,
+            "TokenKeys": ["jti"],
+            "TTL": 1500
         }
     }
 }

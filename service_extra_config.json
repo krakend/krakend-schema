@@ -8,6 +8,9 @@
         "^[@$_#]": {}
     },
     "properties": {
+        "auth/revoker": {
+            "$ref": "auth/revoker.json"
+        },
         "security/bot-detector": {
             "$id": "#service_extra_config/security/bot-detector",
             "title": "Bot detector",
