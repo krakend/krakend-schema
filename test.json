@@ -1,6 +1,6 @@
 {
     "$schema": "/home/artomb/git/devopsfaith/krakend-autocomplete/service.json",
-    "@comment": "Attribute not in schema, but ignored as it starts with @",
+    "@comment": "This configuration is not valid from a functionality point of view, it's only used to test the schema.",
     "_comment": "Attribute not in schema, but ignored as it starts with _",
     "$comment": "Attribute not in schema, but ignored as it starts with $",
     "#comment": "Attribute not in schema, but ignored as it starts with #",
@@ -80,6 +80,12 @@
                     },
                     "is_collection": true,
                     "extra_config": {
+                        "backend/pubsub/publisher": {
+                            "topic_url": ""
+                        },
+                        "backend/pubsub/subscriber": {
+                            "subscription_url": ""
+                        },
                         "backend/amqp/consumer": {
                             "auto_ack": false,
                             "delete": false,
