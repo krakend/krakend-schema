@@ -1,0 +1,63 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/proxy.json",
+    "title": "Proxy option",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
+    "properties": {
+        "shadow": {
+            "$id": "#proxy/shadow",
+            "title": "Traffic shadowing or mirroring",
+            "description": "Mark this backend as a shadow backend. Sending copies of the traffic but ignore its responses.\n\nSee: https://www.krakend.io/docs/backends/shadow-backends/",
+            "type": "boolean",
+            "default": true
+        },
+        "flatmap_filter": {
+            "$id": "#proxy/flatmap_filter",
+            "title": "Flatmap (Array manipulation)",
+            "description": "Allows you to manipulate collections (or arrays, or lists).\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
+            "type": "array",
+            "default": [],
+            "examples": [
+                {
+                    "type": "move",
+                    "args": [
+                        "a.*.b1.*.c",
+                        "a.*.b1.*.d"
+                    ]
+                }
+            ],
+            "items": {
+                "$id": "#proxy/flatmap_filter/items",
+                "title": "Flatmap operation",
+                "type": "object",
+                "required": [
+                    "type",
+                    "args"
+                ],
+                "properties": {
+                    "type": {
+                        "title": "Type",
+                        "description": "The types of operations are defined as follows.\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
+                        "type": "string",
+                        "enum": [
+                            "move",
+                            "del",
+                            "append"
+                        ]
+                    },
+                    "args": {
+                        "title": "Args",
+                        "description": "The arguments passed to the operation.\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
+                        "type": "array",
+                        "default": [],
+                        "maxItems": 2
+                    }
+                }
+            }
+        }
+    }
+}

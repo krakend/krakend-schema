@@ -161,6 +161,16 @@
                         "qos/ratelimit/proxy": {
                             "capacity": 1,
                             "max_rate": 1
+                        },
+                        "proxy": {
+                            "flatmap_filter": [{
+                                "type": "move",
+                                "args": [
+                                    "a.*.b1.*.c",
+                                    "a.*.b1.*.d"
+                                ]
+                            }],
+                            "shadow": true
                         }
                     }
                 }
