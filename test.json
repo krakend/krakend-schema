@@ -89,8 +89,22 @@
                             "no_local": false,
                             "no_wait": false,
                             "prefetch_count": 10,
-                            "prefetch_size": ,
+                            "prefetch_size": 1024,
                             "routing_key": ["#"]
+                        },
+                        "backend/amqp/producer": {
+                            "name": "queue-1",
+                            "exchange": "some-exchange",
+                            "durable": true,
+                            "delete": false,
+                            "no_wait": true,
+                            "no_local": false,
+                            "routing_key": "#",
+                            "prefetch_count": 10,
+                            "prefetch_size": 1024,
+                            "mandatory": false,
+                            "immediate": false
+
                         },
                         "auth/client-credentials": {
                             "client_id": "ID1",
