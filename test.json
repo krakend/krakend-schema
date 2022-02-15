@@ -112,6 +112,13 @@
                             "immediate": false
 
                         },
+                        "backend/lambda": {
+                            "endpoint": "",
+                            "function_name": "",
+                            "function_param_name": "",
+                            "max_retries": 1,
+                            "region": ""
+                        },
                         "auth/client-credentials": {
                             "client_id": "ID1",
                             "client_secret": "mys3cr3t",
