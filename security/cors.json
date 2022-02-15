@@ -1,0 +1,86 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/security/cors.json",
+    "title": "HTTP Security",
+    "description": "Security through HTTP headers, including HSTS, HPKP, MIME-Sniffing prevention, Clickjacking protection, and others.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
+    "required": [
+        "allow_methods",
+        "allow_origins"
+    ],
+    "properties": {
+        "allow_methods": {
+            "$id": "#security/cors/allow_methods",
+            "title": "Allowed methods",
+            "description": "An array with all the HTTP methods allowed, in uppercase.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+            "type": "array",
+            "default":  [
+                "GET",
+                "HEAD",
+                "POST"
+              ],
+            "items": {
+              "enum": [
+                "GET",
+                "HEAD",
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE",
+                "OPTIONS"
+              ]
+            }
+        },
+        "allow_origins": {
+            "$id": "#security/cors/allow_origins",
+            "title": "Allowed origins",
+            "description": "An array with all the origins allowed, examples of values are https://example.com, or * (any origin).\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+            "type": "array",
+            "default": ["*"]
+        },
+        "allow_headers": {
+            "$id": "#security/cors/allow_headers",
+            "title": "Allowed headers",
+            "description": "An array with the headers allowed. Missing headers in this list won’t be accepted.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+            "type": "array",
+            "example": [
+            "Accept-Language"
+          ]
+        },
+        "expose_headers": {
+            "$id": "#security/cors/expose_headers",
+            "title": "Expose headers",
+            "description": "List of headers that are safe to expose to the API of a CORS API specification.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+            "type": "array",
+            "default": [
+                "Content-Length",
+                "Content-Type"
+              ]
+        },
+        "max_age": {
+            "$id": "#security/cors/max_age",
+            "title": "Max Age",
+            "description": "For how long the response can be cached.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+            "$ref": "../service.json#/$defs/timeunit"
+        },
+
+        "allow_credentials": {
+            "$id": "#security/cors/allow_credentials",
+            "title": "Allow credentials",
+            "description": "When requests can include user credentials like cookies, HTTP authentication or client side SSL certificates.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+            "type": "boolean",
+            "default": true
+        },
+        "debug": {
+            "$id": "#security/cors/debug",
+            "title": "Development flag",
+            "description": "Show debugging information in the logger, to be used only during development (defaults to false).\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+            "type": "boolean",
+            "default": false
+        }
+    }
+}
