@@ -10,10 +10,10 @@
     "required": [
         "N",
         "P",
-        "HashName",
+        "hash_name",
         "TTL",
         "port",
-        "TokenKeys"
+        "token_keys"
     ],
     "properties": {
         "N": {
@@ -36,8 +36,8 @@
             ],
             "default": 0.0000001
         },
-        "HashName": {
-            "$id": "#auth/revoker/HashName",
+        "hash_name": {
+            "$id": "#auth/revoker/hash_name",
             "title": "Hash function name",
             "description": "The hash name used. Possible values are  'optimal' (recommended) or 'default'.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
             "type": "string",
@@ -61,8 +61,8 @@
             "type": "integer",
             "default": 1234
         },
-        "TokenKeys": {
-            "$id": "#auth/revoker/TokenKeys",
+        "token_keys": {
+            "$id": "#auth/revoker/token_keys",
             "title": "Token keys",
             "description": "The list with all the fields in your JWT payload that need watching. These fields establish the criteria to revoke accesses in the future.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
             "type": "array",

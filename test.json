@@ -398,11 +398,11 @@
             }
         },
         "auth/revoker": {
-            "HashName": "default",
+            "hash_name": "default",
             "N": 10000000,
             "P": 1e-7,
             "port": 1234,
-            "TokenKeys": [
+            "token_keys": [
                 "jti"
             ],
             "TTL": 1500
