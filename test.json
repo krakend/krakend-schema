@@ -1,5 +1,5 @@
 {
-    "$schema": "/home/artomb/git/devopsfaith/krakend-autocomplete/service.json",
+    "$schema": "./v3.json",
     "@comment": "This configuration is not valid from a functionality point of view, it's only used to test the schema.",
     "_comment": "Attribute not in schema, but ignored as it starts with _",
     "$comment": "Attribute not in schema, but ignored as it starts with $",

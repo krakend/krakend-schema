@@ -11,14 +11,6 @@
     "patternProperties": {
         "^[@$_#]": {}
       },
-    "$defs": {
-        "timeunit": {
-          "type": "string",
-          "pattern": "^[0-9]+(ns|ms|us|µs|s|m|h)$",
-          "title": "Time",
-          "description": "The amount of time you want to assign to this property followed by its unit (e.g.: `2s`, `200ms`,)"
-        }
-      },
     "properties": {
         "version": {
             "$id": "#service/version",
@@ -52,7 +44,7 @@
             "title": "Global timeout",
             "description": "Defines a default timeout for all endpoints. Can be overriden per endpoint.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/#global-timeout",
             "type": "string",
-            "$ref": "#/$defs/timeunit"
+            "$ref": "timeunits.json#/$defs/timeunit"
         },
         "cache_ttl": {
             "$id": "#service/cache_ttl",
@@ -60,7 +52,7 @@
             "description": "The default time you will allow external proxies to cache this content. It's added in the Cache-Control header.",
             "type": "string",
             "default": "300s",
-            "$ref": "#/$defs/timeunit"
+            "$ref": "timeunits.json#/$defs/timeunit"
         },
         "output_encoding": {
             "$id": "#service/output_encoding",
@@ -84,7 +76,7 @@
             "description": "Advanced HTTP Server settings: Maximum duration for reading the entire HTTP request, including the body.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
             "type": "string",
             "default": "10s",
-            "$ref": "#/$defs/timeunit"
+            "$ref": "timeunits.json#/$defs/timeunit"
         },
         "read_header_timeout": {
             "$id": "#service/read_header_timeout",
@@ -92,7 +84,7 @@
             "description": "Advanced HTTP Server settings: Amount of time allowed to read request headers.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
             "type": "string",
             "default": "10s",
-            "$ref": "#/$defs/timeunit"
+            "$ref": "timeunits.json#/$defs/timeunit"
         },
         "write_timeout": {
             "$id": "#service/write_timeout",
@@ -100,7 +92,7 @@
             "description": "Advanced HTTP Server settings: Maximum duration before timing out writes of the response.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
             "type": "string",
             "default": "10s",
-            "$ref": "#/$defs/timeunit"
+            "$ref": "timeunits.json#/$defs/timeunit"
         },
         "idle_timeout": {
             "$id": "#service/idle_timeout",
@@ -108,7 +100,7 @@
             "description": "Advanced HTTP Server settings: Maximum amount of time to wait for the next request when keep-alives are enabled.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
             "type": "string",
             "default": "10s",
-            "$ref": "#/$defs/timeunit"
+            "$ref": "timeunits.json#/$defs/timeunit"
         },
 
         "dialer_timeout": {
@@ -117,14 +109,14 @@
             "description": "Advanced HTTP Transport settings\nThe timeout of the dial function for creating connections.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
             "type": "string",
             "default": "0s",
-            "$ref": "#/$defs/timeunit"
+            "$ref": "timeunits.json#/$defs/timeunit"
         },
         "dialer_keep_alive": {
             "$id": "#service/dialer_keep_alive",
             "title": "Dialer keep alive",
             "description": "Advanced HTTP Transport settings\nThe amount of time you want to keep alive the connection. If zero, keep-alives are not enabled.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
             "type": "string",
-            "$ref": "#/$defs/timeunit",
+            "$ref": "timeunits.json#/$defs/timeunit",
             "default": "15s"
         },
         "dialer_fallback_delay": {
@@ -132,7 +124,7 @@
             "title": "Dialer fallback delay",
             "description": "Advanced HTTP Transport settings\nSpecifies the length of time to wait before spawning a RFC 6555 Fast Fallback connection.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
             "type": "string",
-            "$ref": "#/$defs/timeunit",
+            "$ref": "timeunits.json#/$defs/timeunit",
             "default": "300ms"
         },
         "disable_compression": {
@@ -169,7 +161,7 @@
             "description": "Advanced HTTP Transport settings\nThe maximum number of idle (keep-alive) connections across all hosts. Zero means no limit.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
             "type": "string",
             "default": "10s",
-            "$ref": "#/$defs/timeunit"
+            "$ref": "timeunits.json#/$defs/timeunit"
         },
         "response_header_timeout": {
             "$id": "#service/response_header_timeout",
@@ -177,7 +169,7 @@
             "description": "Advanced HTTP Transport settings\nIf non-zero, specifies the amount of time to wait for a server’s response headers after fully writing the request (including its body, if any). This time does not include the time to read the response body.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
             "type": "string",
             "default": "10s",
-            "$ref": "#/$defs/timeunit"
+            "$ref": "timeunits.json#/$defs/timeunit"
         },
         "expect_continue_timeout": {
             "$id": "#service/expect_continue_timeout",
@@ -185,7 +177,7 @@
             "description": "Advanced HTTP Transport settings\nIf non-zero, specifies the amount of time to wait for a server’s first response headers after fully writing the request headers if the request has an `Expect: 100-continue` header. Zero means no timeout and causes the body to be sent immediately, without waiting for the server to approve. This time does not include the time to send the request header.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
             "type": "string",
             "default": "0s",
-            "$ref": "#/$defs/timeunit"
+            "$ref": "timeunits.json#/$defs/timeunit"
         },
 
         "disable_rest": {

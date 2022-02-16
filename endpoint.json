@@ -112,7 +112,7 @@
             "title": "Timeout",
             "description": "\n\nSee: https://www.krakend.io/docs/endpoints/creating-endpoints/",
             "type": "string",
-            "$ref": "service.json#/$defs/timeunit",
+            "$ref": "timeunits.json#/$defs/timeunit",
             "examples": [
                 "2s",
                 "1500ms"
@@ -121,7 +121,7 @@
         "cache_ttl": {
             "$id": "#endpoint/cache_ttl",
             "title": "Cache TTL",
-            "$ref": "service.json#/$defs/timeunit"
+            "$ref": "timeunits.json#/$defs/timeunit"
         },
         "backend": {
             "type": "array",

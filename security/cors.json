@@ -65,7 +65,7 @@
             "$id": "#security/cors/max_age",
             "title": "Max Age",
             "description": "For how long the response can be cached.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
-            "$ref": "../service.json#/$defs/timeunit"
+            "$ref": "../timeunits.json#/$defs/timeunit"
         },
 
         "allow_credentials": {

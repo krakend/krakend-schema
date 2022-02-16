@@ -195,7 +195,7 @@
                             "examples": [
                                 "2s"
                             ],
-                            "$ref": "../service.json#/$defs/timeunit"
+                            "$ref": "../timeunits.json#/$defs/timeunit"
                         },
                         "username": {
                             "$id": "#telemetry/opencensus/exporters/influxdb/username",
@@ -488,7 +488,7 @@
                             "title": "Reconnection",
                             "description": "The reconnection time\n\nSee: https://www.krakend.io/docs/telemetry/ocagent/",
                             "default": "2s",
-                            "$ref": "../service.json#/$defs/timeunit"
+                            "$ref": "../timeunits.json#/$defs/timeunit"
                         },
                         "insecure": {
                             "$id": "#telemetry/opencensus/exporters/ocagent/insecure",

@@ -25,7 +25,7 @@
             "$id": "#telemetry/influx/ttl",
             "title": "TTL",
             "description": "TTL against Influx.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb-native/",
-            "$ref": "../service.json#/$defs/timeunit"
+            "$ref": "../timeunits.json#/$defs/timeunit"
         },
         "buffer_size": {
             "$id": "#telemetry/influx/buffer_size",

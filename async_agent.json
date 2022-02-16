@@ -40,7 +40,7 @@
                     "health_interval": {
                         "title": "Health interval",
                         "description": "The time between pings checking that the agent is connected to the queue and alive. Regardless of the health interval, if an agent fails, KrakenD will restart it again immediately as defined by max_retriesand backoff_strategy. Defaults to 1s.\n\nSee: https://www.krakend.io/docs/async/agent/",
-                        "$ref": "service.json#/$defs/timeunit"
+                        "$ref": "timeunits.json#/$defs/timeunit"
                     },
                     "backoff_strategy": {
                         "title": "Backoff strategy",
@@ -68,7 +68,7 @@
                     "timeout": {
                         "title": "Timeout",
                         "description": "The maximum time the agent will wait to process an event sent to the backend. If the backend fails to process it, the message is reinserted for later consumption. Defaults to the timeout in the root level, or to 2s if no value is declared.\n\nSee: https://www.krakend.io/docs/async/agent/",
-                        "$ref": "service.json#/$defs/timeunit"
+                        "$ref": "timeunits.json#/$defs/timeunit"
                     },
                     "topic": {
                         "title": "Topic",

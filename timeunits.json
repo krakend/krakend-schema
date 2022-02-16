@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/timeunits.json",
+    "title": "Time units / Duration patterns",
+    "$defs": {
+        "timeunit": {
+            "type": "string",
+            "pattern": "^[0-9]+(ns|ms|us|µs|s|m|h)$",
+            "title": "Time",
+            "description": "The amount of time you want to assign to this property followed by its unit (e.g.: `2s`, `200ms`,)"
+        }
+    }
+}

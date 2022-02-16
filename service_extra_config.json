@@ -108,7 +108,7 @@
                     "title": "Max age",
                     "description": "For how long the response can be cached.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
                     "type": "string",
-                    "$ref": "service.json#/$defs/timeunit",
+                    "$ref": "timeunits.json#/$defs/timeunit",
                     "examples": [
                         "12h"
                     ]
