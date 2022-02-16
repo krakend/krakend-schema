@@ -13,6 +13,10 @@
         "consumer"
     ],
     "items": {
+        "additionalProperties": false,
+        "patternProperties": {
+            "^[@$_#]": {}
+        },
         "properties": {
             "name": {
                 "$id": "#async_agent/name",
