@@ -10,10 +10,6 @@
     },
     "required": [
         "collection_time",
-        "proxy_disabled",
-        "router_disabled",
-        "backend_disabled",
-        "endpoint_disabled",
         "listen_address"
     ],
     "properties": {

@@ -38,6 +38,10 @@
                     "type",
                     "args"
                 ],
+                "additionalProperties": false,
+                "patternProperties": {
+                    "^[@$_#]": {}
+                },
                 "properties": {
                     "type": {
                         "title": "Type",

@@ -77,6 +77,10 @@
                         "data",
                         "strategy"
                     ],
+                    "additionalProperties": false,
+                    "patternProperties": {
+                        "^[@$_#]": {}
+                    },
                     "properties": {
                         "data": {
                             "$id": "#endpoint_extra_config/proxy/static/data",
@@ -129,6 +133,9 @@
             "title": "Validating the body with the JSON Schema",
             "description": "apply automatic validations using the JSON Schema vocabulary before the content passes to the backends. The json schema component allows you to define validation rules on the body, type definition, or even validate the fields' values.\n\nSee: https://www.krakend.io/docs/endpoints/json-schema/",
             "type": "object"
+        },
+        "validation/cel": {
+            "$ref": "validation/cel.json"
         }
     }
 }

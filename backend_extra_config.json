@@ -66,6 +66,9 @@
                     "description": "Returns to the client details of a failing request.\n\nSee: https://www.krakend.io/docs/backends/detailed-errors/"
                 }
             }
+        },
+        "validation/cel": {
+            "$ref": "validation/cel.json"
         }
     }
 }

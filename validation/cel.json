@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/validation/cel.json",
+    "title": "Common Expression Language (CEL) validations",
+    "description": "Security through HTTP headers, including HSTS, HPKP, MIME-Sniffing prevention, Clickjacking protection, and others.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+    "type": "array",
+
+    "minItems": 1,
+    "items":{
+        "$id": "#root/validation/cel/items",
+        "title": "Items",
+        "type": "object",
+        "required": [
+            "check_expr"
+        ],
+        "additionalProperties": false,
+        "patternProperties": {
+            "^[@$_#]": {}
+        },
+        "properties": {
+            "check_expr": {
+                "$id": "#validation/cel/items/check_expr",
+                "title": "Check expression",
+                "description": "The expression that evaluates as a boolean, you can write any conditional. If all stacked conditions are true the request continues, false, it fails to retrieve data from the token, the request, or the response.\n\nSee: https://www.krakend.io/docs/endpoints/common-expression-language-cel/",
+                "type": "string",
+                "examples": [
+                    "int(req_params.Id) % 3 == 0"
+                ]
+            }
+        }
+    }
+}

@@ -10,10 +10,8 @@
     },
     "required": [
         "interval",
-        "name",
         "timeout",
-        "max_errors",
-        "log_status_change"
+        "max_errors"
     ],
     "properties": {
         "interval": {

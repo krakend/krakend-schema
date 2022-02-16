@@ -83,6 +83,49 @@
     ],
     "endpoints": [
         {
+            "@endpoint_comment": "here",
+            "endpoint": "/cel/req-resp/{id}",
+            "headers_to_pass": ["X-Header"],
+            "backend": [
+                {
+                    "@backend_comment": "here",
+                    "host": [ "http://127.0.0.1:8080" ],
+                    "url_pattern": "/__debug/1/{id}",
+                    "group": "backend1",
+                    "extra_config":{
+                        "validation/cel": [
+                            {
+                                "@cel_comment": "here",
+                                "check_expr": "int(req_params.Id) % 3 == 0"
+                            }
+                        ]                    }
+                },
+                {
+                    "host": [ "http://127.0.0.1:8080" ],
+                    "url_pattern": "/__debug/2/{id}",
+                    "group": "backend2",
+                    "extra_config":{
+                        "validation/cel": [
+                            {
+                                "check_expr": "int(req_params.Id) % 5 == 0"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "extra_config":{
+                "validation/cel": [
+                    {
+                        "@cel_comment": "here",
+                        "check_expr": "'something' in req_headers['X-Header']"
+                    },
+                    {
+                        "check_expr": "int(req_params.Id) % 2 == 0"
+                    }
+                ]
+            }
+        },
+        {
             "endpoint": "/foo/{var}",
             "method": "GET",
             "output_encoding": "json-collection",
@@ -119,10 +162,12 @@
                     "is_collection": true,
                     "extra_config": {
                         "backend/pubsub/publisher": {
-                            "topic_url": ""
+                            "topic_url": "",
+                            "@extra_comment": "here"
                         },
                         "backend/pubsub/subscriber": {
-                            "subscription_url": ""
+                            "subscription_url": "",
+                            "@extra_comment": "here"
                         },
                         "backend/amqp/consumer": {
                             "auto_ack": false,
@@ -136,7 +181,8 @@
                             "prefetch_size": 1024,
                             "routing_key": [
                                 "#"
-                            ]
+                            ],
+                            "@extra_comment": "here"
                         },
                         "backend/amqp/producer": {
                             "name": "queue-1",
@@ -149,14 +195,16 @@
                             "prefetch_count": 10,
                             "prefetch_size": 1024,
                             "mandatory": false,
-                            "immediate": false
+                            "immediate": false,
+                            "@extra_comment": "here"
                         },
                         "backend/lambda": {
                             "endpoint": "",
                             "function_name": "",
                             "function_param_name": "",
                             "max_retries": 1,
-                            "region": ""
+                            "region": "",
+                            "@extra_comment": "here"
                         },
                         "auth/client-credentials": {
                             "client_id": "ID1",
@@ -167,7 +215,8 @@
                                 ]
                             },
                             "scopes": "scope1, scope2",
-                            "token_url": "https://your.custom.identity.service.tld/token_endpoint"
+                            "token_url": "https://your.custom.identity.service.tld/token_endpoint",
+                            "@extra_comment": "here"
                         },
                         "modifier/lua-proxy/backend": {
                             "allow_open_libs": true,
@@ -180,7 +229,8 @@
                             "skip_next": true,
                             "sources": [
                                 "file1.lua"
-                            ]
+                            ],
+                            "@extra_comment": "here"
                         },
                         "modifier/martian": {
                             "header.Modifier": {
@@ -190,7 +240,8 @@
                                 ],
                                 "name": "X-Martian",
                                 "value": "true"
-                            }
+                            },
+                            "@extra_comment": "here"
                         },
                         "qos/http-cache": {},
                         "qos/circuit-breaker": {
@@ -198,11 +249,13 @@
                             "log_status_change": true,
                             "max_errors": 10,
                             "name": "cb-backend-1",
-                            "timeout": 10
+                            "timeout": 10,
+                            "@extra_comment": "here"
                         },
                         "qos/ratelimit/proxy": {
                             "capacity": 1,
-                            "max_rate": 1
+                            "max_rate": 1,
+                            "@extra_comment": "here"
                         },
                         "proxy": {
                             "flatmap_filter": [
@@ -211,7 +264,8 @@
                                     "args": [
                                         "a.*.b1.*.c",
                                         "a.*.b1.*.d"
-                                    ]
+                                    ],
+                                    "@extra_comment": "here"
                                 }
                             ],
                             "shadow": true
@@ -227,10 +281,12 @@
                                     "foo": false,
                                     "bar": true
                                 }
-                            }
+                            },
+                            "@extra_comment": "here"
                         },
                         "backend/http": {
-                            "return_error_details": "backend_alias"
+                            "return_error_details": "backend_alias",
+                            "@extra_comment": "here"
                         }
                     }
                 }
@@ -245,7 +301,8 @@
                         "street_name": {
                             "type": "string"
                         }
-                    }
+                    },
+                    "@extra_comment": "here"
                 },
                 "security/cors": {
                     "allow_origins": [
@@ -265,7 +322,8 @@
                         "Accept-Language"
                     ],
                     "allow_credentials": false,
-                    "debug": false
+                    "debug": false,
+                    "@extra_comment": "here"
                 },
                 "router": {
                     "app_engine": false,
@@ -281,7 +339,8 @@
                     "remote_ip_headers": [],
                     "remove_extra_slash": false,
                     "return_error_msg": false,
-                    "trusted_proxies": []
+                    "trusted_proxies": [],
+                    "@extra_comment": "here"
                 },
                 "modifier/lua-endpoint": {
                     "allow_open_libs": true,
@@ -292,16 +351,19 @@
                     "pre": "print('Backend response, pre-logic:'); local r = request.load(); print(r:body());",
                     "sources": [
                         "file1.lua"
-                    ]
+                    ],
+                    "@extra_comment": "here"
                 },
                 "modifier/lua-proxy": {
-                    "pre": "print('Backend response, pre-logic:'); local r = request.load(); print(r:body());"
+                    "pre": "print('Backend response, pre-logic:'); local r = request.load(); print(r:body());",
+                    "@extra_comment": "here"
                 },
                 "qos/ratelimit/router": {
                     "client_max_rate": 10,
                     "key": "X-TOKEN",
                     "max_rate": 100,
-                    "strategy": "header"
+                    "strategy": "header",
+                    "@extra_comment": "here"
                 },
                 "proxy": {
                     "combiner": "combiner_name",
@@ -310,18 +372,22 @@
                         "data": {
                             "foo": 1
                         },
-                        "strategy": "always"
-                    }
+                        "strategy": "always",
+                        "@extra_comment": "here"
+                    },
+                    "@extra_comment": "here"
                 },
                 "security/http": {
                     "allowed_hosts": [
                         "ABC"
-                    ]
+                    ],
+                    "@extra_comment": "here"
                 },
                 "security/bot-detector": {
                     "allow": [
                         "MyAndroidClient/1.0"
-                    ]
+                    ],
+                    "@extra_comment": "here"
                 },
                 "auth/validator": {
                     "alg": "EdDSA",
@@ -356,7 +422,8 @@
                         "c1"
                     ],
                     "key_identify_strategy": "kid",
-                    "operation_debug": true
+                    "operation_debug": true,
+                    "@extra_comment": "here"
                 },
                 "auth/signer": {
                     "alg": "EdDSA",
@@ -376,7 +443,8 @@
                     "keys_to_sign": [
                         "access_token"
                     ],
-                    "kid": "sim2"
+                    "kid": "sim2",
+                    "@extra_comment": "here"
                 }
             }
         }
@@ -392,7 +460,8 @@
             ],
             "patterns": [
                 "(facebookexternalhit)/.*"
-            ]
+            ],
+            "@extra_comment": "here"
         },
         "security/cors": {
             "allow_origins": [
@@ -410,7 +479,8 @@
             ],
             "max_age": "15h",
             "allow_credentials": true,
-            "debug": true
+            "debug": true,
+            "@extra_comment": "here"
         },
         "security/http": {
             "allowed_hosts": [
@@ -433,7 +503,8 @@
             "content_type_nosniff": true,
             "browser_xss_filter": true,
             "content_security_policy": "default-src 'self';",
-            "is_development": true
+            "is_development": true,
+            "@extra_comment": "here"
         },
         "telemetry/logging": {
             "level": "CRITICAL",
@@ -441,14 +512,17 @@
             "stdout": true,
             "syslog": false,
             "format": "custom",
-            "custom_format": "%{message}"
+            "custom_format": "%{message}",
+            "@extra_comment": "here"
         },
         "telemetry/logstash": {
-            "enabled": false
+            "enabled": false,
+            "@extra_comment": "here"
         },
         "telemetry/gelf": {
             "address": "myGraylogInstance:12201",
-            "enable_tcp": false
+            "enable_tcp": false,
+            "@extra_comment": "here"
         },
         "telemetry/influx":{
             "address":"http://192.168.99.9:8086",
@@ -456,7 +530,8 @@
             "buffer_size":0,
             "db": "krakend",
             "username": "your-influxdb-user",
-            "password": "your-influxdb-password"
+            "password": "your-influxdb-password",
+            "@extra_comment": "here"
         },
         "telemetry/metrics": {
             "backend_disabled": false,
@@ -464,35 +539,42 @@
             "endpoint_disabled": false,
             "listen_address": ":8090",
             "proxy_disabled": false,
-            "router_disabled": false
+            "router_disabled": false,
+            "@extra_comment": "here"
         },
         "telemetry/opencensus": {
             "sample_rate": 100,
             "reporting_period": 2,
+            "@extra_comment": "here",
             "enabled_layers": {
                 "backend": false,
                 "pipe": true,
-                "router": false
+                "router": false,
+                "@extra_comment": "here"
             },
             "exporters": {
                 "logger": {
                     "spans": false,
-                    "stats": false
+                    "stats": false,
+                    "@extra_comment": "here"
                 },
                 "zipkin": {
                     "collector_url": "http://192.168.99.100:9411/api/v2/spans",
-                    "service_name": "krakend"
+                    "service_name": "krakend",
+                    "@extra_comment": "here"
                 },
                 "jaeger": {
                     "endpoint": "http://192.168.99.100:14268/api/traces",
-                    "service_name": "krakend"
+                    "service_name": "krakend",
+                    "@extra_comment": "here"
                 },
                 "influxdb": {
                     "address": "http://192.168.99.100:8086",
                     "db": "krakend",
                     "timeout": "1s",
                     "password": "kr4k3nd",
-                    "username": "krakend"
+                    "username": "krakend",
+                    "@extra_comment": "here"
                 },
                 "prometheus": {
                     "namespace": "krakend",
@@ -500,21 +582,24 @@
                     "tag_host": false,
                     "tag_method": false,
                     "tag_path": false,
-                    "tag_statuscode": false
+                    "tag_statuscode": false,
+                    "@extra_comment": "here"
                 },
                 "xray": {
                     "access_key_id": "dasdasdas",
                     "secret_access_key": "dadasdasd",
                     "region": "eu-west-1",
                     "use_env": false,
-                    "version": "latest"
+                    "version": "latest",
+                    "@extra_comment": "here"
                 },
                 "stackdriver": {
                     "default_labels": {
                         "env": "production"
                     },
                     "metrics_prefix": "krakend",
-                    "project_id": "1234"
+                    "project_id": "1234",
+                    "@extra_comment": "here"
                 },
                 "datadog": {
                     "disable_count_per_buckets": false,
@@ -527,7 +612,8 @@
                     "tags": [
                         "A"
                     ],
-                    "trace_address": "localhost:8126"
+                    "trace_address": "localhost:8126",
+                    "@extra_comment": "here"
                 },
                 "ocagent": {
                     "address": "localhost:55678",
@@ -537,7 +623,8 @@
                     },
                     "insecure": true,
                     "reconnection": "2s",
-                    "service_name": "krakend"
+                    "service_name": "krakend",
+                    "@extra_comment": "here"
                 }
             }
         },
@@ -549,7 +636,8 @@
             "token_keys": [
                 "jti"
             ],
-            "TTL": 1500
+            "TTL": 1500,
+            "@extra_comment": "here"
         }
     }
 }
