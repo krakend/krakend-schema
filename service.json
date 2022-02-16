@@ -28,6 +28,9 @@
             "default": 3,
             "enum": [3]
         },
+        "async_agent": {
+            "$ref": "async_agent.json"
+        },
         "name": {
             "$id": "#service/name",
             "title": "Name",

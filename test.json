@@ -43,6 +43,44 @@
         "folder": "/opt/krakend/plugins/",
         "pattern": ".so"
     },
+    "async_agent": [
+        {
+            "name": "cool-agent",
+            "connection": {
+                "max_retries": 10,
+                "backoff_strategy":"exponential-jitter",
+                "health_interval": "10s"
+            },
+            "consumer": {
+                "topic": "*",
+                "workers": 1,
+                "timeout": "150ms",
+                "max_rate": 0.5
+            },
+            "backend": [
+                {
+                    "host": [
+                        "http://127.0.0.1:8080"
+                    ],
+                    "url_pattern": "/__debug/"
+                }
+            ],
+            "extra_config": {
+                "async/amqp": {
+                    "name": "krakend",
+                    "host": "amqp://guest:guest@localhost:5672/",
+                    "exchange": "foo",
+                    "durable": true,
+                    "delete": false,
+                    "exclusive": false,
+                    "no_wait": true,
+                    "prefetch_count": 5,
+                    "auto_ack": false,
+                    "no_local": true
+                }
+            }
+        }
+    ],
     "endpoints": [
         {
             "endpoint": "/foo/{var}",
