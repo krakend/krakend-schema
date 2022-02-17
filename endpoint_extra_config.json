@@ -121,7 +121,7 @@
             "$ref": "auth/signer.json"
         },
         "security/bot-detector": {
-            "$ref": "service_extra_config.json#service_extra_config/security/bot-detector"
+            "$ref": "security/bot-detector.json"
         },
         "modifier/lua-proxy": {
             "$ref": "modifier/lua.json"
