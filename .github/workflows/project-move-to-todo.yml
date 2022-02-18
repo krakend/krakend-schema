@@ -1,0 +1,17 @@
+name: Move assigned pull requests into To do
+
+on:
+  pull_request:
+    types: [assigned]
+  issues:
+    types: [assigned]
+
+jobs:
+  automate-project-columns:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: alex-page/github-project-automation-plus@v0.8.1
+        with:
+          project: Documentation
+          column: To do
+          repo-token: ${{ secrets.GH_ACTIONS_ORGANIZATION_TOKEN }}
