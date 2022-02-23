@@ -9,5 +9,4 @@ jobs:
       - name: Validate any json file
         uses: cardinalby/schema-validator-action@v1
         with:
-          token: ${{ secrets.GH_ACTIONS_ORGANIZATION_TOKEN }}
           file: 'v*.json'
