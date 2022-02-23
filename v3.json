@@ -7,7 +7,7 @@
     "required": [
         "version"
     ],
-    "additionalPropertiesFAIL": false,
+    "additionalProperties": [false],
     "patternProperties": {
         "^[@$_#]": {}
       },
