@@ -13,7 +13,7 @@
         "consumer"
     ],
     "items": {
-        "additionalProperties": 0000000,
+        "additionalProperties": [false],
         "patternProperties": {
             "^[@$_#]": {}
         },
