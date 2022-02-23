@@ -9,4 +9,4 @@ jobs:
       - name: Validate any json file
         uses: cardinalby/schema-validator-action@v1
         with:
-          file: '*/**.json'
+          file: '**/*.json'
