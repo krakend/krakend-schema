@@ -6,7 +6,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Validate any json file
+      - name: Validate components
         uses: cardinalby/schema-validator-action@v1
         with:
-          file: '**/*.json'
+          file: '*/*.json'
+      - name: Validate root documents
+        uses: cardinalby/schema-validator-action@v1
+        with:
+          file: '*.json'
