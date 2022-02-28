@@ -64,15 +64,15 @@
                 "no-op"
             ]
         },
-        "querystring_params": {
-            "$id": "#endpoint/querystring_params",
+        "input_query_strings": {
+            "$id": "#endpoint/input_query_strings",
             "title": "Allowed Query String parameters",
             "description": "Defines the exact list of quey strings parameters that are allowed to reach the backend.\nBy default, KrakenD won't pass any query string to the backend.\n\nSee: https://www.krakend.io/docs/endpoints/parameter-forwarding/",
             "type": "array",
             "uniqueItems": true,
             "default": [],
             "items": {
-                "$id": "#endpoint/querystring_params/items",
+                "$id": "#endpoint/input_query_strings/items",
                 "type": "string",
                 "examples": [
                     "page",
@@ -81,15 +81,15 @@
                 ]
             }
         },
-        "headers_to_pass": {
-            "$id": "#endpoint/headers_to_pass",
+        "input_headers": {
+            "$id": "#endpoint/input_headers",
             "title": "Allowed Headers In",
             "description": "Defines the list of all headers allowed to reach the backend when passed.\nBy default, KrakenD won't pass any header from the client to the backend.\n\nSee: https://www.krakend.io/docs/endpoints/parameter-forwarding/",
             "type": "array",
             "uniqueItems": true,
             "default": [],
             "items": {
-                "$id": "#endpoint/headers_to_pass/items",
+                "$id": "#endpoint/input_headers/items",
                 "type": "string",
                 "examples": [
                     "User-Agent",
