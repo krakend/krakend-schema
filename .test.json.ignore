@@ -86,7 +86,7 @@
         {
             "@endpoint_comment": "here",
             "endpoint": "/cel/req-resp/{id}",
-            "headers_to_pass": ["X-Header"],
+            "input_headers": ["X-Header"],
             "backend": [
                 {
                     "@backend_comment": "here",
@@ -130,10 +130,10 @@
             "endpoint": "/foo/{var}",
             "method": "GET",
             "output_encoding": "json-collection",
-            "querystring_params": [
+            "input_query_strings": [
                 "*"
             ],
-            "headers_to_pass": [
+            "input_headers": [
                 "User-Agent"
             ],
             "concurrent_calls": 4,
@@ -625,6 +625,14 @@
                     "reconnection": "2s",
                     "service_name": "krakend",
                     "@extra_comment": "here"
+                },
+                "newrelic": {
+                    "service_name": "krakend-api-gateway",
+                    "api_key": "XXXX",
+                    "timeout": "15s",
+                    "spans_url": "https://trace-api.eu.newrelic.com/trace/v1",
+                    "metrics_url": "https://metric-api.eu.newrelic.com/metric/v1",
+                    "debug": false
                 }
             }
         },
