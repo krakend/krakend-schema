@@ -328,23 +328,6 @@
                     "debug": false,
                     "@extra_comment": "here"
                 },
-                "router": {
-                    "app_engine": false,
-                    "auto_options": false,
-                    "disable_handle_method_not_allowed": false,
-                    "disable_health": false,
-                    "disable_redirect_fixed_path": false,
-                    "disable_redirect_trailing_slash": false,
-                    "forwarded_by_client_ip": false,
-                    "health_path": "/__health",
-                    "logger_skip_paths": false,
-                    "max_multipart_memory": 1000,
-                    "remote_ip_headers": [],
-                    "remove_extra_slash": false,
-                    "return_error_msg": false,
-                    "trusted_proxies": [],
-                    "@extra_comment": "here"
-                },
                 "modifier/lua-endpoint": {
                     "allow_open_libs": true,
                     "live": true,
@@ -453,6 +436,23 @@
         }
     ],
     "extra_config": {
+        "router": {
+            "app_engine": false,
+            "auto_options": false,
+            "disable_handle_method_not_allowed": false,
+            "disable_health": false,
+            "disable_redirect_fixed_path": false,
+            "disable_redirect_trailing_slash": false,
+            "forwarded_by_client_ip": false,
+            "health_path": "/__health",
+            "logger_skip_paths": false,
+            "max_multipart_memory": 1000,
+            "remote_ip_headers": [],
+            "remove_extra_slash": false,
+            "return_error_msg": false,
+            "trusted_proxies": [],
+            "@extra_comment": "here"
+        },
         "security/bot-detector": {
             "allow": [
                 "MyAndroidClient/1.0"
