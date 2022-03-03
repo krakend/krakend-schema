@@ -39,9 +39,18 @@
         "qos/http-cache": {
             "type": "object",
             "title": "Backend Cache",
-            "maxProperties": 0,
             "description": "Enable in-memory caching for backend responses for as long as its Cache-Control header permits.\n\nSee: https://www.krakend.io/docs/backends/caching/",
-            "properties": {}
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[@$_#]": {}
+            },
+            "properties": {
+                "shared": {
+                    "type": "boolean",
+                    "title": "Shared cache",
+                    "description": "The `shared` cache makes that different backend definitions with this flag enabled can reuse the cache. When the `shared` flag is missing or set to false, the backend uses its own cache private context.\n\nSee: https://www.krakend.io/docs/backends/detailed-errors/"
+                }
+            }
         },
         "qos/circuit-breaker": {
             "$ref": "qos/circuit-breaker.json"
