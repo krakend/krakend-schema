@@ -8,6 +8,9 @@
         "^[@$_#]": {}
     },
     "properties": {
+        "plugin/req-resp-modifier": {
+            "$ref": "plugin/req-resp-modifier.json"
+        },
         "auth/client-credentials": {
             "$ref": "auth/client-credentials.json"
         },

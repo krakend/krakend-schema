@@ -49,7 +49,7 @@
             "name": "cool-agent",
             "connection": {
                 "max_retries": 10,
-                "backoff_strategy":"exponential-jitter",
+                "backoff_strategy": "exponential-jitter",
                 "health_interval": "10s"
             },
             "consumer": {
@@ -86,26 +86,33 @@
         {
             "@endpoint_comment": "here",
             "endpoint": "/cel/req-resp/{id}",
-            "input_headers": ["X-Header"],
+            "input_headers": [
+                "X-Header"
+            ],
             "backend": [
                 {
                     "@backend_comment": "here",
-                    "host": [ "http://127.0.0.1:8080" ],
+                    "host": [
+                        "http://127.0.0.1:8080"
+                    ],
                     "url_pattern": "/__debug/1/{id}",
                     "group": "backend1",
-                    "extra_config":{
+                    "extra_config": {
                         "validation/cel": [
                             {
                                 "@cel_comment": "here",
                                 "check_expr": "int(req_params.Id) % 3 == 0"
                             }
-                        ]                    }
+                        ]
+                    }
                 },
                 {
-                    "host": [ "http://127.0.0.1:8080" ],
+                    "host": [
+                        "http://127.0.0.1:8080"
+                    ],
                     "url_pattern": "/__debug/2/{id}",
                     "group": "backend2",
-                    "extra_config":{
+                    "extra_config": {
                         "validation/cel": [
                             {
                                 "check_expr": "int(req_params.Id) % 5 == 0"
@@ -114,7 +121,7 @@
                     }
                 }
             ],
-            "extra_config":{
+            "extra_config": {
                 "validation/cel": [
                     {
                         "@cel_comment": "here",
@@ -162,6 +169,11 @@
                     },
                     "is_collection": true,
                     "extra_config": {
+                        "plugin/req-resp-modifier": {
+                            "name": [
+                                "krakend-debugger"
+                            ]
+                        },
                         "backend/pubsub/publisher": {
                             "topic_url": "",
                             "@extra_comment": "here"
@@ -245,7 +257,7 @@
                             "@extra_comment": "here"
                         },
                         "qos/http-cache": {
-                            "shared":true,
+                            "shared": true,
                             "@extra_comment": "here"
                         },
                         "qos/circuit-breaker": {
@@ -431,6 +443,11 @@
                     ],
                     "kid": "sim2",
                     "@extra_comment": "here"
+                },
+                "plugin/req-resp-modifier": {
+                    "name": [
+                        "krakend-debugger"
+                    ]
                 }
             }
         }
@@ -527,10 +544,10 @@
             "enable_tcp": false,
             "@extra_comment": "here"
         },
-        "telemetry/influx":{
-            "address":"http://192.168.99.9:8086",
-            "ttl":"25s",
-            "buffer_size":0,
+        "telemetry/influx": {
+            "address": "http://192.168.99.9:8086",
+            "ttl": "25s",
+            "buffer_size": 0,
             "db": "krakend",
             "username": "your-influxdb-user",
             "password": "your-influxdb-password",
