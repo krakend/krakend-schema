@@ -462,7 +462,9 @@
             "disable_redirect_trailing_slash": false,
             "forwarded_by_client_ip": false,
             "health_path": "/__health",
-            "logger_skip_paths": false,
+            "logger_skip_paths": [
+                "/__health"
+            ],
             "max_multipart_memory": 1000,
             "remote_ip_headers": [],
             "remove_extra_slash": false,

@@ -79,7 +79,11 @@
         "logger_skip_paths": {
             "title": "Remove requests from logs",
             "description": "Defines the set of paths that are removed from the logging.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
-            "type": "boolean"
+            "type": "array",
+            "items": {
+                "title": "Paths",
+                "type": "string"
+            }
         }
 
     }
