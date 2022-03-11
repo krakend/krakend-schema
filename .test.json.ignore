@@ -677,6 +677,23 @@
                 }
             }
         },
+        "telemetry/instana": {
+            "AgentHost": "localhost",
+            "AgentPort": 46999,
+            "EnableAutoProfile": false,
+            "Service": "krakend",
+            "MaxBufferedSpans": 15,
+            "ForceTransmissionStartingAt": 10,
+            "LogLevel": 0,
+            "MaxBufferedProfiles": 0,
+            "IncludeProfilerFrames": false,
+            "Tracer": {
+                "CollectableHTTPHeaders": [],
+                "DropAllLogs": false,
+                "MaxLogsPerSpan": 0,
+                "Secrets": {}
+            }
+        },
         "auth/revoker": {
             "hash_name": "default",
             "N": 10000000,

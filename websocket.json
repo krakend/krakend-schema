@@ -29,13 +29,13 @@
         "connect_event": {
             "$id": "#websocket/input_headers",
             "title": "Connect event",
-            "description": "Notifies the connection event\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "description": "Notifies the connection event\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
             "type": "boolean"
         },
         "disconnect_event": {
             "$id": "#websocket/input_headers",
             "title": "Allowed Headers In",
-            "description": "Notifies the disconnection event\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "description": "Notifies the disconnection event\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
             "type": "boolean"
         }
 

@@ -130,6 +130,9 @@
         },
         "telemetry/opencensus": {
             "$ref": "telemetry/opencensus.json"
+        },
+        "telemetry/instana": {
+            "$ref": "telemetry/instana.json"
         }
     }
 }
