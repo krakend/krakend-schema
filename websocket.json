@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/websocket.json",
+    "title": "Schema definition for Websockets",
+    "description": "Enterprise only. Enables websocket communication.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+      },
+    "properties": {
+        "input_headers": {
+            "$id": "#websocket/input_headers",
+            "title": "Allowed Headers In",
+            "description": "Defines the list of all headers allowed to reach the backend when passed.\nBy default, KrakenD won't pass any header from the client to the backend.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "type": "array",
+            "uniqueItems": true,
+            "default": [],
+            "items": {
+                "$id": "#websocket/input_headers/items",
+                "type": "string",
+                "examples": [
+                    "User-Agent",
+                    "Accept",
+                    "*"
+                ]
+            }
+        },
+        "connect_event": {
+            "$id": "#websocket/input_headers",
+            "title": "Connect event",
+            "description": "Notifies the connection event\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "type": "boolean"
+        },
+        "disconnect_event": {
+            "$id": "#websocket/input_headers",
+            "title": "Allowed Headers In",
+            "description": "Notifies the disconnection event\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "type": "boolean"
+        }
+
+    }
+}

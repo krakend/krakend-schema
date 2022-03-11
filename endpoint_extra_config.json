@@ -136,6 +136,9 @@
         },
         "validation/cel": {
             "$ref": "validation/cel.json"
+        },
+        "websocket": {
+            "$ref": "websocket.json"
         }
     }
 }

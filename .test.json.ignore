@@ -84,6 +84,25 @@
     ],
     "endpoints": [
         {
+            "endpoint": "/ws/{room}",
+            "input_query_strings":[ "*" ],
+            "input_headers":[ "*" ],
+            "backend": [
+              {
+                "url_pattern": "/ws",
+                "disable_host_sanitize": true,
+                "host": [ "ws://localhost:8081" ]
+              }
+            ],
+            "extra_config":{
+              "websocket": {
+                  "input_headers":["Cookie", "Authorization"],
+                  "connect_event": true,
+                  "disconnect_event": true
+              }
+            }
+          },
+          {
             "@endpoint_comment": "here",
             "endpoint": "/cel/req-resp/{id}",
             "input_headers": [
