@@ -204,6 +204,10 @@
                                 "krakend-debugger"
                             ]
                         },
+                        "plugin/http-client": {
+                            "name": "krakend-static-live",
+                            "path": "/var/log/application/"
+                        },
                         "backend/pubsub/publisher": {
                             "topic_url": "",
                             "@extra_comment": "here"

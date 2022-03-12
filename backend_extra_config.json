@@ -11,6 +11,9 @@
         "plugin/req-resp-modifier": {
             "$ref": "plugin/req-resp-modifier.json"
         },
+        "plugin/http-client": {
+            "$ref": "plugin/http-client.json"
+        },
         "auth/client-credentials": {
             "$ref": "auth/client-credentials.json"
         },
