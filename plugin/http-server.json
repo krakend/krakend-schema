@@ -17,6 +17,12 @@
         },
         "krakend-jwk-aggregator": {
             "$ref": "krakend-jwk-aggregator.json"
+        },
+        "krakend-static-live": {
+            "$ref": "krakend-static-live.json"
+        },
+        "krakend-basic-auth": {
+            "$ref": "krakend-basic-auth.json"
         }
     }
 }

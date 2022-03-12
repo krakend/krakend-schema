@@ -83,26 +83,35 @@
         }
     ],
     "endpoints": [
-       {
+        {
             "endpoint": "/ws/{room}",
-            "input_query_strings":[ "*" ],
-            "input_headers":[ "*" ],
-            "backend": [
-              {
-                "url_pattern": "/ws",
-                "disable_host_sanitize": true,
-                "host": [ "ws://localhost:8081" ]
-              }
+            "input_query_strings": [
+                "*"
             ],
-            "extra_config":{
-              "websocket": {
-                  "input_headers":["Cookie", "Authorization"],
-                  "connect_event": true,
-                  "disconnect_event": true
-              }
+            "input_headers": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "url_pattern": "/ws",
+                    "disable_host_sanitize": true,
+                    "host": [
+                        "ws://localhost:8081"
+                    ]
+                }
+            ],
+            "extra_config": {
+                "websocket": {
+                    "input_headers": [
+                        "Cookie",
+                        "Authorization"
+                    ],
+                    "connect_event": true,
+                    "disconnect_event": true
+                }
             }
-          },
-          {
+        },
+        {
             "@endpoint_comment": "here",
             "endpoint": "/cel/req-resp/{id}",
             "input_headers": [
@@ -144,13 +153,17 @@
                 "auth/api-keys": {
                     "@comment": "here",
                     "roles": [
-                      "admin"
+                        "admin"
                     ]
                 },
                 "documentation/openapi": {
                     "description": "Very long description of what this endpoint does",
                     "summary": "Get my favourite foo",
-                    "tags": ["foo", "bar", "baz"]
+                    "tags": [
+                        "foo",
+                        "bar",
+                        "baz"
+                    ]
                 },
                 "validation/cel": [
                     {
@@ -731,32 +744,56 @@
             "contact_url": "https://your.company/developers",
             "license_name": "MIT",
             "license_url": "https://opensource.org/licenses/MIT",
-            "tags": ["B2B", "Restricted"]
+            "tags": [
+                "B2B",
+                "Restricted"
+            ]
         },
         "auth/api-keys": {
             "keys": [
-              {
-                "key": "4d2c61e1-34c4-e96c-9456-15bd983c5019",
-                "roles": ["role1", "role2"],
-                "@description": "ACME Inc."
-              },
-              {
-                "key": "58427514-be32-0b52-b7c6-d01fada30497",
-                "roles": ["role1","role3"],
-                "@description": "Administrators Inc."
-              }
+                {
+                    "key": "4d2c61e1-34c4-e96c-9456-15bd983c5019",
+                    "roles": [
+                        "role1",
+                        "role2"
+                    ],
+                    "@description": "ACME Inc."
+                },
+                {
+                    "key": "58427514-be32-0b52-b7c6-d01fada30497",
+                    "roles": [
+                        "role1",
+                        "role3"
+                    ],
+                    "@description": "Administrators Inc."
+                }
             ]
-          },
-          "plugin/http-server": {
-              "name": ["a-plugin"],
-              "a_plugin_conf": {},
-              "krakend-jwk-aggregator": {
+        },
+        "plugin/http-server": {
+            "name": [
+                "a-plugin"
+            ],
+            "a_plugin_conf": {},
+            "krakend-jwk-aggregator": {
                 "origins": [
                     "https://jwk1.tld/jwk.json",
                     "http://foo.bar/public_keys"
                 ],
                 "port": 9876
-              }
-          }
+            },
+            "krakend-static-live": {
+                "prefix": "/media/assets",
+                "path": "./../../",
+                "@comment": "static om"
+            },
+            "krakend-basic-auth": {
+                "endpoints": ["/checkout"],
+                "users": {
+                    "admin": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ...",
+                    "user2": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ..."
+                },
+                "htpasswd_path": "/path/to/.htpasswd"
+            }
+        }
     }
 }
