@@ -23,6 +23,9 @@
         },
         "krakend-basic-auth": {
             "$ref": "krakend-basic-auth.json"
+        },
+        "krakend-geoip": {
+            "$ref": "krakend-geoip.json"
         }
     }
 }

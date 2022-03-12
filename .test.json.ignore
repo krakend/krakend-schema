@@ -793,6 +793,9 @@
                     "user2": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ..."
                 },
                 "htpasswd_path": "/path/to/.htpasswd"
+            },
+            "krakend-geoip": {
+                "citydb_path": "path/to/GeoIP2-City.mmdb"
             }
         }
     }
