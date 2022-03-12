@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/auth/api-keys.json",
+    "title": "API-key Authentication",
+    "description": "Enterprise only. Enables a Role-Based Access Control (RBAC) mechanism by reading the `Authorization` header of incoming requests.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+    "type": "object",
+    "required": [
+        "keys"
+    ],
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
+    "properties": {
+        "keys": {
+            "$id": "#auth/api-keys/keys",
+            "title": "API Keys",
+            "description": "A list of objects defining each API Key.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "patternProperties": {
+                    "^[@$_#]": {}
+                },
+                "properties": {
+                    "key": {
+                        "title": "API Key",
+                        "description": "The secret key used by the client to access the resources. Don't have a key? Execute in the terminal `uuidgen`\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+                        "type": "string"
+                    },
+                    "roles": {
+                        "type": "array",
+                        "title": "Roles",
+                        "description": "All the roles this user has. See roles as all the identifying labels that belong to this client.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

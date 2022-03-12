@@ -142,6 +142,20 @@
         },
         "documentation/openapi": {
             "$ref": "documentation/openapi.json"
+        },
+        "auth/api-keys": {
+            "type": "object",
+            "title": "API-key validation",
+            "description": "Enterprise only. Validates that users of this endpoint pass a valid API-key containing one of the declared roles.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[@$_#]": {}
+            },
+            "properties": {
+                "roles": {
+                    "type": "array"
+                }
+            }
         }
     }
 }

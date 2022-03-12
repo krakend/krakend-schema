@@ -136,6 +136,9 @@
         },
         "documentation/openapi": {
             "$ref": "documentation/openapi.json"
+        },
+        "auth/api-keys": {
+            "$ref": "auth/api-keys.json"
         }
     }
 }

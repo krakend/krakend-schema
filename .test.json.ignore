@@ -141,6 +141,12 @@
                 }
             ],
             "extra_config": {
+                "auth/api-keys": {
+                    "@comment": "here",
+                    "roles": [
+                      "admin"
+                    ]
+                },
                 "documentation/openapi": {
                     "description": "Very long description of what this endpoint does",
                     "summary": "Get my favourite foo",
@@ -722,6 +728,20 @@
             "license_name": "MIT",
             "license_url": "https://opensource.org/licenses/MIT",
             "tags": ["B2B", "Restricted"]
-        }
+        },
+        "auth/api-keys": {
+            "keys": [
+              {
+                "key": "4d2c61e1-34c4-e96c-9456-15bd983c5019",
+                "roles": ["role1", "role2"],
+                "@description": "ACME Inc."
+              },
+              {
+                "key": "58427514-be32-0b52-b7c6-d01fada30497",
+                "roles": ["role1","role3"],
+                "@description": "Administrators Inc."
+              }
+            ]
+          }
     }
 }
