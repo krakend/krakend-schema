@@ -133,6 +133,9 @@
         },
         "telemetry/instana": {
             "$ref": "telemetry/instana.json"
+        },
+        "documentation/openapi": {
+            "$ref": "documentation/openapi.json"
         }
     }
 }

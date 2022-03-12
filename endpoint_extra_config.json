@@ -139,6 +139,9 @@
         },
         "websocket": {
             "$ref": "websocket.json"
+        },
+        "documentation/openapi": {
+            "$ref": "documentation/openapi.json"
         }
     }
 }

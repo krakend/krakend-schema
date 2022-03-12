@@ -1,0 +1,95 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/documentation/openapi.json",
+    "title": "Generate documentation using OpenAPI",
+    "description": "Enterprise only. Generates OpenAPI documentation automatically through `krakend generate openapi` command.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
+    "properties": {
+        "description": {
+            "$id": "#documentation/openapi/description",
+            "title": "API Description",
+            "description": "Description of the endpoint or API in CommonMark or HTML.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "type": "string",
+            "examples": ["This is a sample server. You can find out more about at [http://blah](http://blah.blah.com)"]
+        },
+        "summary": {
+            "$id": "#documentation/openapi/summary",
+            "title": "Summary",
+            "description": " A short summary for the endpoint.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "type": "string"
+        },
+        "version": {
+            "$id": "#documentation/openapi/version",
+            "title": "Version",
+            "description": "See: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "type": "string",
+            "examples": ["1.0"]
+        },
+        "host": {
+            "$id": "#documentation/openapi/host",
+            "title": "Host",
+            "description": "See: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "type": "string",
+            "examples": ["my.api.com"]
+        },
+        "base_path": {
+            "$id": "#documentation/openapi/base_path",
+            "title": "Base path",
+            "description": "See: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "type": "string",
+            "examples": ["/v1"]
+        },
+        "terms_of_service": {
+            "$id": "#documentation/openapi/terms_of_service",
+            "title": "Terms of Service",
+            "description": "See: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "type": "string",
+            "examples": ["/v1"]
+        },
+        "contact_name": {
+            "$id": "#documentation/openapi/contact_name",
+            "title": "Contact name",
+            "description": "See: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "type": "string",
+            "examples": ["/v1"]
+        },
+        "contact_url": {
+            "$id": "#documentation/openapi/contact_url",
+            "title": "Contact URL",
+            "description": "See: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "type": "string",
+            "examples": ["/v1"]
+        },
+        "contact_email": {
+            "$id": "#documentation/openapi/contact_email",
+            "title": "Contact email",
+            "description": "See: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "type": "string",
+            "examples": ["/v1"]
+        },
+        "license_name": {
+            "$id": "#documentation/openapi/license_name",
+            "title": "License name",
+            "description": "See: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "type": "string",
+            "examples": ["/v1"]
+        },
+        "license_url": {
+            "$id": "#documentation/openapi/license_url",
+            "title": "License URL",
+            "description": "See: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "type": "string",
+            "examples": ["/v1"]
+        },
+        "tags": {
+            "$id": "#documentation/openapi/tags",
+            "title": "Tags",
+            "description": "See: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "type": "array"
+        }
+    }
+}

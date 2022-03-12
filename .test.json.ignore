@@ -83,7 +83,7 @@
         }
     ],
     "endpoints": [
-        {
+       {
             "endpoint": "/ws/{room}",
             "input_query_strings":[ "*" ],
             "input_headers":[ "*" ],
@@ -141,6 +141,11 @@
                 }
             ],
             "extra_config": {
+                "documentation/openapi": {
+                    "description": "Very long description of what this endpoint does",
+                    "summary": "Get my favourite foo",
+                    "tags": ["foo", "bar", "baz"]
+                },
                 "validation/cel": [
                     {
                         "@cel_comment": "here",
@@ -704,6 +709,19 @@
             ],
             "TTL": 1500,
             "@extra_comment": "here"
+        },
+        "documentation/openapi": {
+            "description": "This is a sample server. You can find out more about at [http://blah](http://blah.blah.com)",
+            "version": "1.0.0",
+            "host": "my.api.com",
+            "base_path": "/v1",
+            "terms_of_service": "http://url.to/tos",
+            "contact_name": "The wonderful API department",
+            "contact_email": "contact@example.com",
+            "contact_url": "https://your.company/developers",
+            "license_name": "MIT",
+            "license_url": "https://opensource.org/licenses/MIT",
+            "tags": ["B2B", "Restricted"]
         }
     }
 }
