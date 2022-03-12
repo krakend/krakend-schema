@@ -722,6 +722,16 @@
                 "Secrets": {}
             }
         },
+        "telemetry/ganalytics": {
+            "buffer_size": 0,
+            "tags": {
+                "cd1": "my custom dimension"
+            },
+            "timeout": "250ms",
+            "track_id": "UA-1234567",
+            "url": "https://www.google-analytics.com/batch",
+            "workers": 0
+        },
         "auth/revoker": {
             "hash_name": "default",
             "N": 10000000,
