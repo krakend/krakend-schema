@@ -1,0 +1,61 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/plugin/krakend-geoip.json",
+    "title": "Enterpirse only. The global rate limit functionality enables a Redis database store to centralize all KrakenD node counters. Instead of having each KrakenD node count its hits, the counters are global and stored in the database.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
+    "required": [
+        "Host",
+        "Tokenizer",
+        "Burst",
+        "Rate",
+        "Period"
+    ],
+    "properties": {
+        "Host": {
+            "title": "Redis host",
+            "description": "The URL to the Redis instance that stores the counters.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
+            "type": "string",
+            "examples": [
+                "redis"
+            ]
+        },
+        "Tokenizer": {
+            "title": "Tokenizer",
+            "description": "One of the preselected strategies to rate-limit users.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
+            "type": "string",
+            "enum": [
+                "jwt",
+                "ip",
+                "url",
+                "path",
+                "header",
+                "param",
+                "cookie"
+            ]
+        },
+        "TokenizerField": {
+            "title": "Tokenizer field",
+            "description": "The field used to set a custom field for the tokenizer (e.g., extracting the token from a custom header other than Authorization or using a claim from a JWT other than the jti).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
+            "type": "string"
+        },
+        "Burst": {
+            "title": "Burst",
+            "description": "How many requests a client can make above the rate specified during a peak.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
+            "type": "integer"
+        },
+        "Rate": {
+            "title": "Rate",
+            "description": "Number of allowed requests during the observed period.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
+            "type": "integer"
+        },
+        "Period": {
+            "title": "Burst",
+            "description": "How many requests a client can make above the rate specified during a peak.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
+            "$ref": "../timeunits.json#/$defs/timeunit"
+        }
+    }
+}

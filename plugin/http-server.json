@@ -26,6 +26,9 @@
         },
         "krakend-geoip": {
             "$ref": "krakend-geoip.json"
+        },
+        "redis-ratelimit": {
+            "$ref": "redis-ratelimit.json"
         }
     }
 }

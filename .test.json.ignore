@@ -787,7 +787,9 @@
                 "@comment": "static om"
             },
             "krakend-basic-auth": {
-                "endpoints": ["/checkout"],
+                "endpoints": [
+                    "/checkout"
+                ],
                 "users": {
                     "admin": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ...",
                     "user2": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ..."
@@ -796,6 +798,14 @@
             },
             "krakend-geoip": {
                 "citydb_path": "path/to/GeoIP2-City.mmdb"
+            },
+            "redis-ratelimit": {
+                "Burst": 0,
+                "Host": "redis",
+                "Period": "3s",
+                "Rate": 0,
+                "Tokenizer": "cookie",
+                "TokenizerField": "aaa"
             }
         }
     }
