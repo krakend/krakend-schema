@@ -742,6 +742,17 @@
                 "@description": "Administrators Inc."
               }
             ]
+          },
+          "plugin/http-server": {
+              "name": ["a-plugin"],
+              "a_plugin_conf": {},
+              "krakend-jwk-aggregator": {
+                "origins": [
+                    "https://jwk1.tld/jwk.json",
+                    "http://foo.bar/public_keys"
+                ],
+                "port": 9876
+              }
           }
     }
 }

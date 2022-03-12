@@ -11,6 +11,9 @@
         "router": {
             "$ref": "router.json"
         },
+        "plugin/http-server": {
+            "$ref": "plugin/http-server.json"
+        },
         "auth/revoker": {
             "$ref": "auth/revoker.json"
         },
