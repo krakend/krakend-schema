@@ -40,7 +40,7 @@
             "$ref": "wildcard.json"
         },
         "krakend-ipfilter": {
-
+            "$ref": "krakend-ipfilter.json"
         }
 
     }

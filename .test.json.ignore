@@ -215,7 +215,22 @@
                         "plugin/req-resp-modifier": {
                             "name": [
                                 "krakend-debugger"
-                            ]
+                            ],
+                            "krakend-ipfilter": {
+                                "allow": false,
+                                "CIDR": [
+                                    "192.168.0.0/24",
+                                    "172.17.2.56/32"
+                                ],
+                                "client_ip_headers": [
+                                    "X-Forwarded-For",
+                                    "X-Real-IP",
+                                    "X-Appengine-Remote-Addr"
+                                ],
+                                "trusted_proxies": [
+                                    "10.0.0.0/16"
+                                ]
+                            }
                         },
                         "plugin/http-client": {
                             "name": "krakend-static-live",
@@ -784,6 +799,21 @@
                 "a-plugin"
             ],
             "a_plugin_conf": {},
+            "krakend-ipfilter": {
+                "allow": false,
+                "CIDR": [
+                    "192.168.0.0/24",
+                    "172.17.2.56/32"
+                ],
+                "client_ip_headers": [
+                    "X-Forwarded-For",
+                    "X-Real-IP",
+                    "X-Appengine-Remote-Addr"
+                ],
+                "trusted_proxies": [
+                    "10.0.0.0/16"
+                ]
+            },
             "krakend-jwk-aggregator": {
                 "origins": [
                     "https://jwk1.tld/jwk.json",
