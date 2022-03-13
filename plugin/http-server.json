@@ -37,7 +37,7 @@
             "$ref": "virtualhost.json"
         },
         "krakend-wildcard": {
-
+            "$ref": "wildcard.json"
         },
         "krakend-ipfilter": {
 

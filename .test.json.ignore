@@ -834,6 +834,14 @@
                     "host-a.tld",
                     "host-b.tld"
                 ]
+            },
+            "krakend-wildcard": {
+                "endpoints": {
+                    "/__wildcard/foo": [
+                        "/foo",
+                        "/aliasfoo"
+                    ]
+                }
             }
         }
     }
