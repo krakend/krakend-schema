@@ -81,7 +81,7 @@
         "prefetch_size": {
             "$id": "#async/amqp/prefetch_size",
             "title": "Prefetch size",
-            "description": "The number of bytes you want to use to prefetch messages..\n\nSee: https://www.krakend.io/docs/async/amqp/",
+            "description": "The number of bytes you want to use to prefetch messages.\n\nSee: https://www.krakend.io/docs/async/amqp/",
             "type": "integer",
             "default": 1024
         },

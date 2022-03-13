@@ -34,7 +34,7 @@
             "$ref": "url-rewrite.json"
         },
         "virtualhost": {
-
+            "$ref": "virtualhost.json"
         },
         "krakend-wildcard": {
 

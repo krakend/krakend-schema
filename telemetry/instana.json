@@ -30,7 +30,7 @@
         "Service": {
             "$id": "#telemetry/opencensus/Service",
             "title": "Service",
-            "description": "The global service name that will be used to identify the program in the Instana backend. The service name is set to the name of current executable by default..\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/instana/",
+            "description": "The global service name that will be used to identify the program in the Instana backend. The service name is set to the name of current executable by default.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/instana/",
             "type": "string"
         },
         "MaxBufferedSpans": {

@@ -828,6 +828,12 @@
                 "Rate": 0,
                 "Tokenizer": "cookie",
                 "TokenizerField": "aaa"
+            },
+            "virtualhost": {
+                "hosts": [
+                    "host-a.tld",
+                    "host-b.tld"
+                ]
             }
         }
     }

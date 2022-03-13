@@ -78,7 +78,7 @@
         "prefetch_size": {
             "$id": "#backend/amqp/consumer/prefetch_size",
             "title": "Prefetch size",
-            "description": "The number of bytes you want to use to prefetch messages..\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
+            "description": "The number of bytes you want to use to prefetch messages.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
             "type": "integer",
             "default": 1024
         },
