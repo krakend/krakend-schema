@@ -791,6 +791,18 @@
                 ],
                 "port": 9876
             },
+            "url-rewrite": {
+                "literal": {
+                    "/hi-there": "/hello",
+                    "/whatsup": "/hello"
+                },
+                "regexp": [
+                    [
+                        "/hi-there/([.+)/bar",
+                        "/hello/${1}"
+                    ]
+                ]
+            },
             "krakend-static-live": {
                 "prefix": "/media/assets",
                 "path": "./../../",

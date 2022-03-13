@@ -29,6 +29,19 @@
         },
         "redis-ratelimit": {
             "$ref": "redis-ratelimit.json"
+        },
+        "url-rewrite": {
+            "$ref": "url-rewrite.json"
+        },
+        "virtualhost": {
+
+        },
+        "krakend-wildcard": {
+
+        },
+        "krakend-ipfilter": {
+
         }
+
     }
 }
