@@ -20,6 +20,15 @@
             "default": 3,
             "enum": [3]
         },
+        "host": {
+            "$id": "#service/version",
+            "title": "Default host",
+            "description": "The default host list for all backends if they specify none.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
         "sequential_start": {
             "$id": "#service/sequential_start",
             "title": "Sequential start",
