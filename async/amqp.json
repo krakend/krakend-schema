@@ -11,10 +11,7 @@
     "required": [
         "name",
         "host",
-        "exchange",
-        "durable",
-        "delete",
-        "no_wait"
+        "exchange"
     ],
     "properties": {
         "host": {

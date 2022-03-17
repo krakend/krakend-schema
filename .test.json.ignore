@@ -59,6 +59,7 @@
                 "timeout": "150ms",
                 "max_rate": 0.5
             },
+            "encoding": "json",
             "backend": [
                 {
                     "host": [

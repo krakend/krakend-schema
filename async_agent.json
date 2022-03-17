@@ -10,7 +10,9 @@
     },
     "required": [
         "name",
-        "consumer"
+        "consumer",
+        "backend",
+        "extra_config"
     ],
     "items": {
         "additionalProperties": false,
@@ -25,15 +27,31 @@
                 "type": "string",
                 "default": "my-agent"
             },
+            "encoding": {
+                "$id": "#backend/encoding",
+                "title": "Backend Encoding",
+                "description": "Informs KrakenD how to parse the responses of your services.\n\nSee: https://www.krakend.io/docs/backends/supported-encodings/",
+                "type": "string",
+                "default": "json",
+                "enum": [
+                    "json",
+                    "safejson",
+                    "xml",
+                    "rss",
+                    "string",
+                    "no-op"
+                ]
+            },
             "connection": {
                 "$id": "#async_agent/connection",
                 "title": "Connection",
                 "description": "A key defining all the connection settings between the agent and your messaging system.\n\nSee: https://www.krakend.io/docs/async/agent/",
                 "type": "object",
                 "default": "my-agent",
-                "required": [
-                    "health_interval"
-                ],
+                "additionalProperties": false,
+                "patternProperties": {
+                    "^[@$_#]": {}
+                },
                 "properties": {
                     "max_retries": {
                         "title": "Max retries",
@@ -102,13 +120,14 @@
             },
             "extra_config": {
                 "description": "Define the driver that connects to your queue or PubSub system. You can also add other middlewares to modify the request (message) or the response, apply logic or any other endpoint middleware.\n\nSee: https://www.krakend.io/docs/async/agent/",
-                "required": ["async/amqp"],
+                "required": [
+                    "async/amqp"
+                ],
                 "properties": {
                     "async/amqp": {
                         "$ref": "async/amqp.json"
                     }
                 }
-
             }
         }
     }
