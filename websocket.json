@@ -7,7 +7,7 @@
     "additionalProperties": false,
     "patternProperties": {
         "^[@$_#]": {}
-      },
+    },
     "properties": {
         "input_headers": {
             "$id": "#websocket/input_headers",
@@ -37,7 +37,68 @@
             "title": "Allowed Headers In",
             "description": "Notifies the disconnection event\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
             "type": "boolean"
+        },
+        "read_buffer_size": {
+            "$id": "#websocket/read_buffer_size",
+            "title": "Read buffer size",
+            "description": ".\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "type": "integer",
+            "default": 4096
+        },
+        "write_buffer_size": {
+            "title": "Write buffer size",
+            "description": ".\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "type": "integer",
+            "default": 4096
+        },
+        "message_buffer_size": {
+            "title": "Message buffer size",
+            "description": ".\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "type": "integer",
+            "default": 4096
+        },
+        "max_message_size": {
+            "title": "Maximum message size",
+            "description": ".\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "type": "integer",
+            "default": 3200000
+        },
+        "write_wait": {
+            "title": "Write timeout",
+            "description": ".\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "$ref": "./timeunits.json#/$defs/timeunit",
+            "default": "10s"
+        },
+        "pong_wait": {
+            "title": "Pong timeout",
+            "description": ".\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "$ref": "./timeunits.json#/$defs/timeunit",
+            "default": "60s"
+        },
+        "ping_period": {
+            "title": "Ping frequency",
+            "description": ".\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "$ref": "./timeunits.json#/$defs/timeunit",
+            "default": "54s"
+        },
+        "max_retries": {
+            "title": "Max retries",
+            "description": ".\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "type": "integer",
+            "default": 0
+        },
+        "backoff_strategy": {
+            "title": "Backoff strategy",
+            "description": "When the connection to your event source gets interrupted for whatever reason, KrakenD keeps trying to reconnect until it succeeds or until it reaches the max_retries. The backoff strategy defines the delay in seconds in between consecutive failed retries. Defaults to 'fallback'\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "type": "string",
+            "enum": [
+                "linear",
+                "linear-jitter",
+                "exponential",
+                "exponential-jitter",
+                "fallback"
+            ],
+            "default": "fallback"
         }
-
     }
 }
