@@ -84,10 +84,12 @@
                         "type": "string",
                         "enum": [
                             "GET",
+                            "HEAD",
                             "POST",
                             "PUT",
+                            "PATCH",
                             "DELETE",
-                            "PATCH"
+                            "OPTIONS"
                         ]
                     }
                 },
