@@ -33,7 +33,7 @@
                 "/foo/{var}",
                 "/foo/{var1}/{var2}"
             ],
-            "pattern": "^/[a-zA-Z-_0-9.{}/]+$"
+            "pattern": "^/[a-zA-Z-_0-9.{}/]*$"
         },
         "method": {
             "$id": "#endpoint/method",

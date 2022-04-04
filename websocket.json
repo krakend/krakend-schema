@@ -81,6 +81,12 @@
             "$ref": "./timeunits.json#/$defs/timeunit",
             "default": "54s"
         },
+        "return_error_details": {
+            "title": "Return error details",
+            "description": "Provides an error `{'error':'reason here'}` to the client when KrakenD was unable to send the message to the backend.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "type": "boolean",
+            "default": false
+        },
         "max_retries": {
             "title": "Max retries",
             "description": "The maximum number of times you will allow KrakenD to retry reconnecting to a broken messaging system. Use a value `<= 0` for unlimited retries.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
