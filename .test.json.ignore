@@ -534,6 +534,7 @@
             "app_engine": false,
             "auto_options": false,
             "disable_handle_method_not_allowed": false,
+            "disable_access_log": true,
             "disable_health": false,
             "disable_redirect_fixed_path": false,
             "disable_redirect_trailing_slash": false,

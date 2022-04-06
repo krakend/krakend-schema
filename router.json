@@ -15,6 +15,11 @@
             "description": "When true you don't have any exposed health endpoint. You can still use a TCP checker or build an endpoint yourself.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
             "type": "boolean"
         },
+        "disable_access_log": {
+            "title": "Disable Access Log",
+            "description": "Sstops registering access requests to KrakenD and leaving any logs out from the output.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+            "type": "boolean"
+        },
         "health_path": {
             "title": "Health endpoint path",
             "description": "The path where you'd like to expose the health endpoint. The default value is /__health.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
