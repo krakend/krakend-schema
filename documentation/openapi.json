@@ -90,6 +90,13 @@
             "title": "Tags",
             "description": "See: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "array"
+        },
+        "schemes": {
+            "$id": "#documentation/openapi/schemes",
+            "title": "Supported schemes",
+            "description": "See: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "type": "array",
+            "examples": [["https","http"]]
         }
     }
 }

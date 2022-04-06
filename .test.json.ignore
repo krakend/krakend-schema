@@ -7,7 +7,9 @@
     "version": 3,
     "name": "KrakenD configuration at MyCompany",
     "port": 8080,
-    "host": ["http://localhost:8080"],
+    "host": [
+        "http://localhost:8080"
+    ],
     "sequential_start": false,
     "timeout": "2s",
     "output_encoding": "json",
@@ -87,8 +89,12 @@
     "endpoints": [
         {
             "endpoint": "/ws/{room}",
-            "input_query_strings": ["*"],
-            "input_headers": ["*"],
+            "input_query_strings": [
+                "*"
+            ],
+            "input_headers": [
+                "*"
+            ],
             "backend": [
                 {
                     "url_pattern": "/ws",
@@ -781,6 +787,10 @@
             "tags": [
                 "B2B",
                 "Restricted"
+            ],
+            "schemes": [
+                "http",
+                "https"
             ]
         },
         "auth/api-keys": {
