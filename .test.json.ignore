@@ -494,7 +494,7 @@
                     ],
                     "jwk_local_ca": "./ca",
                     "propagate_claims": [
-                        "c1"
+                        ["sub", "x-user"]
                     ],
                     "key_identify_strategy": "kid",
                     "operation_debug": true,

@@ -237,7 +237,10 @@
             "type": "array",
             "description": "Enables passing claims in the backend's request header.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
             "items": {
-                "type": "string"
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
             }
         },
         "key_identify_strategy": {
