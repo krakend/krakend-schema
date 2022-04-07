@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/plugin/krakend-basic-auth.json",
-    "title": "Enterpirse only. The Basic Authentication plugin protects the access to selected endpoints using basic username and password credentials.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/",
+    "title": "Enterprise only. The Basic Authentication plugin protects the access to selected endpoints using basic username and password credentials.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/",
     "type": "object",
     "additionalProperties": false,
     "patternProperties": {
@@ -14,11 +14,11 @@
     "properties": {
         "endpoints": {
             "title": "Endpoints",
-            "description": "An array with all the endpoints protected with basic authentication. The endpoints values must match with the declaration of endpoints in your configuration, including any {placeholders} in the path.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/",
+            "description": "An array with all the endpoints protected with basic authentication. Use `*` for all endpoints. The endpoints values must match with the declaration of endpoints in your configuration, including any {placeholders} in the path.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/",
             "type": "array",
             "examples": [
-                "/user/{id}",
-                "/checkout"
+                ["*"],
+                ["/user/{id}","/checkout"]
             ]
         },
         "htpasswd_path": {

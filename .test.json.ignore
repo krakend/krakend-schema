@@ -860,7 +860,7 @@
             },
             "krakend-basic-auth": {
                 "endpoints": [
-                    "/checkout"
+                    "*"
                 ],
                 "users": {
                     "admin": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ...",
