@@ -32,7 +32,7 @@
         "sequential_start": {
             "$id": "#service/sequential_start",
             "title": "Sequential start",
-            "description": "A sequential start registers all endpoints and async agents in order, allowing you to have the starting logs in sequential order. A non-sequential start is much faster, but logs are harder to follow. Do not use if you have thousands of endpoints. Defaults to false.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
+            "description": "A sequential start registers all async agents in order, allowing you to have the starting logs in sequential order. A non-sequential start is much faster, but logs are harder to follow. Defaults to false.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
             "type": "boolean",
             "default": false
         },

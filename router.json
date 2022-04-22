@@ -17,7 +17,7 @@
         },
         "disable_access_log": {
             "title": "Disable Access Log",
-            "description": "Sstops registering access requests to KrakenD and leaving any logs out from the output.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+            "description": "Stops registering access requests to KrakenD and leaving any logs out from the output.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
             "type": "boolean"
         },
         "health_path": {
@@ -49,6 +49,11 @@
         "disable_handle_method_not_allowed": {
             "title": "Disable method not allowed",
             "description": "Whether to checks if another method is allowed for the current route, if the current request can not be routed. If this is the case, the request is answered with Method Not Allowed and HTTP status code 405. If no other Method is allowed, the request is a 404.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+            "type": "boolean"
+        },
+        "disable_path_decoding": {
+            "title": "Disable method not allowed",
+            "description": "Disables automatic validation of the url params looking for url encoded ones.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
             "type": "boolean"
         },
         "auto_options": {
