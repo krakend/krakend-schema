@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/plugin/krakend-basic-auth.json",
+    "$id": "https://www.krakend.io/schema/plugin/basic-auth.json",
     "title": "Enterprise only. The Basic Authentication plugin protects the access to selected endpoints using basic username and password credentials.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/",
     "type": "object",
     "additionalProperties": false,

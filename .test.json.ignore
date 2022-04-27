@@ -229,7 +229,7 @@
                             "name": [
                                 "krakend-debugger"
                             ],
-                            "krakend-ipfilter": {
+                            "ip-filter": {
                                 "allow": false,
                                 "CIDR": [
                                     "192.168.0.0/24",
@@ -246,7 +246,7 @@
                             }
                         },
                         "plugin/http-client": {
-                            "name": "krakend-static-live",
+                            "name": "static-filesystem",
                             "path": "/var/log/application/"
                         },
                         "backend/pubsub/publisher": {
@@ -819,7 +819,7 @@
                 "a-plugin"
             ],
             "a_plugin_conf": {},
-            "krakend-ipfilter": {
+            "ip-filter": {
                 "allow": false,
                 "CIDR": [
                     "192.168.0.0/24",
@@ -834,7 +834,7 @@
                     "10.0.0.0/16"
                 ]
             },
-            "krakend-jwk-aggregator": {
+            "jwk-aggregator": {
                 "origins": [
                     "https://jwk1.tld/jwk.json",
                     "http://foo.bar/public_keys"
@@ -853,12 +853,12 @@
                     ]
                 ]
             },
-            "krakend-static-live": {
+            "static-filesystem": {
                 "prefix": "/media/assets",
                 "path": "./../../",
                 "@comment": "static om"
             },
-            "krakend-basic-auth": {
+            "basic-auth": {
                 "endpoints": [
                     "*"
                 ],
@@ -868,7 +868,7 @@
                 },
                 "htpasswd_path": "/path/to/.htpasswd"
             },
-            "krakend-geoip": {
+            "geoip": {
                 "citydb_path": "path/to/GeoIP2-City.mmdb"
             },
             "redis-ratelimit": {
@@ -885,7 +885,7 @@
                     "host-b.tld"
                 ]
             },
-            "krakend-wildcard": {
+            "wildcard": {
                 "endpoints": {
                     "/__wildcard/foo": [
                         "/foo",

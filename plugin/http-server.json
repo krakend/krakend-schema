@@ -15,17 +15,17 @@
                 "myplugin"
             ]
         },
-        "krakend-jwk-aggregator": {
-            "$ref": "krakend-jwk-aggregator.json"
+        "jwk-aggregator": {
+            "$ref": "jwk-aggregator.json"
         },
-        "krakend-static-live": {
-            "$ref": "krakend-static-live.json"
+        "static-filesystem": {
+            "$ref": "static-filesystem.json"
         },
-        "krakend-basic-auth": {
-            "$ref": "krakend-basic-auth.json"
+        "basic-auth": {
+            "$ref": "basic-auth.json"
         },
-        "krakend-geoip": {
-            "$ref": "krakend-geoip.json"
+        "geoip": {
+            "$ref": "geoip.json"
         },
         "redis-ratelimit": {
             "$ref": "redis-ratelimit.json"
@@ -36,11 +36,11 @@
         "virtualhost": {
             "$ref": "virtualhost.json"
         },
-        "krakend-wildcard": {
+        "wildcard": {
             "$ref": "wildcard.json"
         },
-        "krakend-ipfilter": {
-            "$ref": "krakend-ipfilter.json"
+        "ip-filter": {
+            "$ref": "ip-filter.json"
         }
 
     }

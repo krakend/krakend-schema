@@ -15,8 +15,8 @@
                 "myplugin"
             ]
         },
-        "krakend-ipfilter": {
-            "$ref": "krakend-ipfilter.json"
+        "ip-filter": {
+            "$ref": "ip-filter.json"
         }
     }
 }
