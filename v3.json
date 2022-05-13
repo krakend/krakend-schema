@@ -333,8 +333,7 @@
                         "/opt/krakend/plugins/",
                         "./plugins/"
                     ],
-                    "default": "/opt/krakend/plugins/",
-                    "pattern": "^.*/$"
+                    "default": "/opt/krakend/plugins/"
                 }
             }
         },
