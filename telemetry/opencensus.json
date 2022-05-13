@@ -150,6 +150,12 @@
                             "examples": [
                                 "krakend"
                             ]
+                        },
+                        "buffer_max_count": {
+                            "$id": "#telemetry/opencensus/exporters/jaeger/buffer_max_count",
+                            "title": "Buffer max count",
+                            "description": "Total number of traces to buffer in memory\n\nSee: https://www.krakend.io/docs/telemetry/jaeger/",
+                            "type": "integer"
                         }
                     }
                 },
