@@ -16,7 +16,7 @@ In most modern editors, **there is nothing you need to install** as they have bu
 To use this schema add the `$schema` attribute in your configuration files. There is no need to clone this repo unless you'd like to submit a pull request:
 
     {
-        "$schema": "http://www.krakend.io/schema/v3.json",
+        "$schema": "https://www.krakend.io/schema/v3.json",
         "version": 3,
         "endpoints": [
             ...

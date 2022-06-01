@@ -17,7 +17,7 @@
         "url_pattern": {
             "$id": "#backend/url_pattern",
             "title": "URL Pattern",
-            "description": "The path inside your service (no protocol, no host, no method). E.g: /users\n\nSee: https://www.krakend.io/docs/backends/overview/",
+            "description": "The path inside your service (no protocol, no host, no method). E.g: /users\n\nSee: https://www.krakend.io/docs/backends/",
             "type": "string",
             "examples": [
                 "/users",
@@ -42,7 +42,7 @@
         "sd": {
             "$id": "#backend/sd",
             "title": "Service Discovery",
-            "description": "Tells KrakenD how to detect and locate services automatically on your network.\n\nSee: https://www.krakend.io/docs/backends/overview/",
+            "description": "Tells KrakenD how to detect and locate services automatically on your network.\n\nSee: https://www.krakend.io/docs/backends/",
             "type": "string",
             "default": "static",
             "enum": [
@@ -53,7 +53,7 @@
         "method": {
             "$id": "#backend/method",
             "title": "Method",
-            "description": "The method sent to this backend. \n\nSee: https://www.krakend.io/docs/backends/overview/",
+            "description": "The method sent to this backend. \n\nSee: https://www.krakend.io/docs/backends/",
             "type": "string",
             "enum": [
                 "GET",

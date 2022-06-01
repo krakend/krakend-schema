@@ -25,7 +25,7 @@
         "endpoint": {
             "$id": "#endpoint/endpoint",
             "title": "Endpoint",
-            "description": "The resource URL you want to expose. Must start with a slash.\n\nSee: https://www.krakend.io/docs/endpoints/creating-endpoints/",
+            "description": "The resource URL you want to expose. Must start with a slash.\n\nSee: https://www.krakend.io/docs/endpoints/",
             "type": "string",
             "default": "/foo/{var}",
             "examples": [
@@ -38,7 +38,7 @@
         "method": {
             "$id": "#endpoint/method",
             "title": "Method",
-            "description": "The method supported by this endpoint. Create multiple endpoint entries if you need different methods.\n\nSee: https://www.krakend.io/docs/endpoints/creating-endpoints/",
+            "description": "The method supported by this endpoint. Create multiple endpoint entries if you need different methods.\n\nSee: https://www.krakend.io/docs/endpoints/",
             "type": "string",
             "enum": [
                 "GET",
@@ -110,7 +110,7 @@
         "timeout": {
             "$id": "#endpoint/timeout",
             "title": "Timeout",
-            "description": "\n\nSee: https://www.krakend.io/docs/endpoints/creating-endpoints/",
+            "description": "\n\nSee: https://www.krakend.io/docs/endpoints/",
             "type": "string",
             "$ref": "timeunits.json#/$defs/timeunit",
             "examples": [
