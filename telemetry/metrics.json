@@ -9,7 +9,6 @@
         "^[@$_#]": {}
     },
     "required": [
-        "collection_time",
         "listen_address"
     ],
     "properties": {
