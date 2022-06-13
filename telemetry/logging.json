@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/telemetry/logging.json",
     "title": "Improved logging",
-    "description": "Enables the extended logging capabilities.\n\nSee: https://www.krakend.io/docs/logging/extended-logging/",
+    "description": "Enables the extended logging capabilities.\n\nSee: https://www.krakend.io/docs/logging/",
     "type": "object",
     "additionalProperties": false,
     "patternProperties": {
@@ -15,7 +15,7 @@
         "level": {
             "$id": "#level",
             "title": "Log Level",
-            "description": "Define the severity you would like to see in the logs. Avoid levels above INFO in production.\n\nSee: https://www.krakend.io/docs/logging/extended-logging/",
+            "description": "Define the severity you would like to see in the logs. Avoid levels above INFO in production.\n\nSee: https://www.krakend.io/docs/logging/",
             "type": "string",
             "default": "ERROR",
             "enum": [
@@ -29,28 +29,28 @@
         "prefix": {
             "$id": "#prefix",
             "title": "Prefix",
-            "description": "Adds the defined string at the beginning of every logged line, so you can quickly filter messages with external tools later on.\n\nSee: https://www.krakend.io/docs/logging/extended-logging/",
+            "description": "Adds the defined string at the beginning of every logged line, so you can quickly filter messages with external tools later on.\n\nSee: https://www.krakend.io/docs/logging/",
             "type": "string",
             "default": "[KRAKEND]"
         },
         "syslog": {
             "$id": "#syslog",
             "title": "Logs to syslog",
-            "description": "Set to true to send logs to syslog.\n\nSee: https://www.krakend.io/docs/logging/extended-logging/",
+            "description": "Set to true to send logs to syslog.\n\nSee: https://www.krakend.io/docs/logging/",
             "type": "boolean",
             "default": true
         },
         "stdout": {
             "$id": "#stdout",
             "title": "Logs to stdout",
-            "description": "Set to true to send logs to stdout.\n\nSee: https://www.krakend.io/docs/logging/extended-logging/",
+            "description": "Set to true to send logs to stdout.\n\nSee: https://www.krakend.io/docs/logging/",
             "type": "boolean",
             "default": true
         },
         "format": {
             "$id": "#format",
             "title": "Log format",
-            "description": "Specify the format of the logs: default, logstash, or custom.\nThe custom format needs an additional key \"custom_format\".\nThe \"logstash\" format needs the \"telemetry/logstash\" component added too.\n\nSee: https://www.krakend.io/docs/logging/extended-logging/",
+            "description": "Specify the format of the logs: default, logstash, or custom.\nThe custom format needs an additional key \"custom_format\".\nThe \"logstash\" format needs the \"telemetry/logstash\" component added too.\n\nSee: https://www.krakend.io/docs/logging/",
             "type": "string",
             "default": "default",
             "examples": [
@@ -62,7 +62,7 @@
         "custom_format": {
             "$id": "#custom_format",
             "title": "Custom format",
-            "description": "When the format is set to \"custom\", set the pattern describing the new format.\n\nSee: https://www.krakend.io/docs/logging/extended-logging/",
+            "description": "When the format is set to \"custom\", set the pattern describing the new format.\n\nSee: https://www.krakend.io/docs/logging/",
             "type": "string",
             "default": "%{message}"
         }

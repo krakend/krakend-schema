@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/async_agent.json",
     "title": "Async Agents",
-    "description": "Async agents are routines listening to queues or PubSub systems that react to new events and push data to your backends. Through async agents, you can start a lot of consumers to process your events autonomously.\n\nSee: https://www.krakend.io/docs/async/agent/",
+    "description": "Async agents are routines listening to queues or PubSub systems that react to new events and push data to your backends. Through async agents, you can start a lot of consumers to process your events autonomously.\n\nSee: https://www.krakend.io/docs/async/",
     "type": "array",
     "additionalProperties": false,
     "patternProperties": {
@@ -23,7 +23,7 @@
             "name": {
                 "$id": "#async_agent/name",
                 "title": "Name",
-                "description": "A unique name for this agent. KrakenD shows it in the health endpoint and logs and metrics. KrakenD does not check collision names, so make sure each agent has a different name.\n\nSee: https://www.krakend.io/docs/async/agent/",
+                "description": "A unique name for this agent. KrakenD shows it in the health endpoint and logs and metrics. KrakenD does not check collision names, so make sure each agent has a different name.\n\nSee: https://www.krakend.io/docs/async/",
                 "type": "string",
                 "default": "my-agent"
             },
@@ -45,7 +45,7 @@
             "connection": {
                 "$id": "#async_agent/connection",
                 "title": "Connection",
-                "description": "A key defining all the connection settings between the agent and your messaging system.\n\nSee: https://www.krakend.io/docs/async/agent/",
+                "description": "A key defining all the connection settings between the agent and your messaging system.\n\nSee: https://www.krakend.io/docs/async/",
                 "type": "object",
                 "default": "my-agent",
                 "additionalProperties": false,
@@ -55,18 +55,18 @@
                 "properties": {
                     "max_retries": {
                         "title": "Max retries",
-                        "description": "The maximum number of times you will allow KrakenD to retry reconnecting to a broken messaging system. Use 0 for unlimited retries.\n\nSee: https://www.krakend.io/docs/async/agent/",
+                        "description": "The maximum number of times you will allow KrakenD to retry reconnecting to a broken messaging system. Use 0 for unlimited retries.\n\nSee: https://www.krakend.io/docs/async/",
                         "type": "integer",
                         "default": 0
                     },
                     "health_interval": {
                         "title": "Health interval",
-                        "description": "The time between pings checking that the agent is connected to the queue and alive. Regardless of the health interval, if an agent fails, KrakenD will restart it again immediately as defined by max_retriesand backoff_strategy. Defaults to 1s.\n\nSee: https://www.krakend.io/docs/async/agent/",
+                        "description": "The time between pings checking that the agent is connected to the queue and alive. Regardless of the health interval, if an agent fails, KrakenD will restart it again immediately as defined by max_retriesand backoff_strategy. Defaults to 1s.\n\nSee: https://www.krakend.io/docs/async/",
                         "$ref": "timeunits.json#/$defs/timeunit"
                     },
                     "backoff_strategy": {
                         "title": "Backoff strategy",
-                        "description": "When the connection to your event source gets interrupted for whatever reason, KrakenD keeps trying to reconnect until it succeeds or until it reaches the max_retries. The backoff strategy defines the delay in seconds in between consecutive failed retries. Defaults to 'fallback'\n\nSee: https://www.krakend.io/docs/async/agent/",
+                        "description": "When the connection to your event source gets interrupted for whatever reason, KrakenD keeps trying to reconnect until it succeeds or until it reaches the max_retries. The backoff strategy defines the delay in seconds in between consecutive failed retries. Defaults to 'fallback'\n\nSee: https://www.krakend.io/docs/async/",
                         "type": "string",
                         "enum": [
                             "linear",
@@ -82,30 +82,30 @@
             "consumer": {
                 "$id": "#async_agent/consumer",
                 "title": "Consumer",
-                "description": "Defines all the settings for each agent consuming messages.\n\nSee: https://www.krakend.io/docs/async/agent/",
+                "description": "Defines all the settings for each agent consuming messages.\n\nSee: https://www.krakend.io/docs/async/",
                 "required": [
                     "topic"
                 ],
                 "properties": {
                     "timeout": {
                         "title": "Timeout",
-                        "description": "The maximum time the agent will wait to process an event sent to the backend. If the backend fails to process it, the message is reinserted for later consumption. Defaults to the timeout in the root level, or to 2s if no value is declared.\n\nSee: https://www.krakend.io/docs/async/agent/",
+                        "description": "The maximum time the agent will wait to process an event sent to the backend. If the backend fails to process it, the message is reinserted for later consumption. Defaults to the timeout in the root level, or to 2s if no value is declared.\n\nSee: https://www.krakend.io/docs/async/",
                         "$ref": "timeunits.json#/$defs/timeunit"
                     },
                     "topic": {
                         "title": "Topic",
-                        "description": "The topic name you want to consume. The syntax depends on the driver. Examples for AMQP: *, mytopic, lazy.#, *, foo.*\n\nSee: https://www.krakend.io/docs/async/agent/",
+                        "description": "The topic name you want to consume. The syntax depends on the driver. Examples for AMQP: *, mytopic, lazy.#, *, foo.*\n\nSee: https://www.krakend.io/docs/async/",
                         "type": "string"
                     },
                     "workers": {
                         "title": "Workers",
-                        "description": "The number of workers (consuming processes) you want to start simultaneously for this agent. Defaults to 1.\n\nSee: https://www.krakend.io/docs/async/agent/",
+                        "description": "The number of workers (consuming processes) you want to start simultaneously for this agent. Defaults to 1.\n\nSee: https://www.krakend.io/docs/async/",
                         "type": "integer",
                         "default": 1
                     },
                     "max_rate": {
                         "title": "Max Rate",
-                        "description": "The maximum number of messages you allow each worker to consume per second. Use 0 or -1 for unlimited speed.\n\nSee: https://www.krakend.io/docs/async/agent/",
+                        "description": "The maximum number of messages you allow each worker to consume per second. Use 0 or -1 for unlimited speed.\n\nSee: https://www.krakend.io/docs/async/",
                         "type": "number",
                         "default": 0
                     }
@@ -119,7 +119,7 @@
                 }
             },
             "extra_config": {
-                "description": "Define the driver that connects to your queue or PubSub system. You can also add other middlewares to modify the request (message) or the response, apply logic or any other endpoint middleware.\n\nSee: https://www.krakend.io/docs/async/agent/",
+                "description": "Define the driver that connects to your queue or PubSub system. You can also add other middlewares to modify the request (message) or the response, apply logic or any other endpoint middleware.\n\nSee: https://www.krakend.io/docs/async/",
                 "required": [
                     "async/amqp"
                 ],
