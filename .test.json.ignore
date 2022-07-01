@@ -727,13 +727,15 @@
                     "service_name": "krakend",
                     "@extra_comment": "here"
                 },
-                "newrelic": {
-                    "service_name": "krakend-api-gateway",
-                    "api_key": "XXXX",
-                    "timeout": "15s",
-                    "spans_url": "https://trace-api.eu.newrelic.com/trace/v1",
-                    "metrics_url": "https://metric-api.eu.newrelic.com/metric/v1",
-                    "debug": false
+                "extra_config": {
+                    "newrelic": {
+                        "service_name": "krakend-api-gateway",
+                        "api_key": "XXXX",
+                        "timeout": "15s",
+                        "spans_url": "https://trace-api.eu.newrelic.com/trace/v1",
+                        "metrics_url": "https://metric-api.eu.newrelic.com/metric/v1",
+                        "debug": false
+                    }
                 }
             }
         },
