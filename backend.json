@@ -11,9 +11,6 @@
         "^[@$_#]": {}
       },
     "properties": {
-        "timeout": {
-            "$ref": "timeunits.json#/$defs/timeunit"
-        },
         "url_pattern": {
             "$id": "#backend/url_pattern",
             "title": "URL Pattern",
