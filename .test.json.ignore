@@ -353,10 +353,18 @@
                                 {
                                     "type": "move",
                                     "args": [
-                                        "a.*.b1.*.c",
-                                        "a.*.b1.*.d"
-                                    ],
-                                    "@extra_comment": "here"
+                                        "collection",
+                                        "coins"
+                                    ]
+                                },
+                                {
+                                    "type": "del",
+                                    "args": [
+                                        "coins.*.ath_change_percentage",
+                                        "coins.*.ath_date",
+                                        "coins.*.atl",
+                                        "coins.*.atl_change_percentage"
+                                    ]
                                 }
                             ],
                             "shadow": true

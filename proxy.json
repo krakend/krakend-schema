@@ -57,8 +57,7 @@
                         "title": "Args",
                         "description": "The arguments passed to the operation.\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
                         "type": "array",
-                        "default": [],
-                        "maxItems": 2
+                        "default": []
                     }
                 }
             }
