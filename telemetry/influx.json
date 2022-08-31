@@ -10,8 +10,7 @@
     },
     "required": [
         "address",
-        "ttl",
-        "buffer_size"
+        "ttl"
     ],
     "properties": {
         "address": {
