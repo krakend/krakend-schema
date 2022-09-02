@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/modifier/jmespath.json",
+    "title": "JWT validator",
+    "description": "Advanced manipulation with JMESpath, a JSON query language.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/jmespath/",
+    "type": ["object", "string"],
+    "minItems": 1,
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
+    "properties": {
+        "expr": {
+            "title": "Expression",
+            "description": "The JMESpath expression you want to apply to the response.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/jmespath/",
+            "type": "string"
+        }
+    }
+}
