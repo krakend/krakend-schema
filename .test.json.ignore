@@ -163,6 +163,7 @@
                 }
             ],
             "extra_config": {
+                "modifier/jmespath":{"expr":"a.b.c[0].d[1][0]"},
                 "auth/api-keys": {
                     "@comment": "here",
                     "roles": [
@@ -390,6 +391,7 @@
                 }
             ],
             "extra_config": {
+                "modifier/jmespath":"a.b.c[0].d[1][0]",
                 "validation/json-schema": {
                     "type": "object",
                     "properties": {
