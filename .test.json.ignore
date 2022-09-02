@@ -621,6 +621,7 @@
             "syslog": false,
             "format": "custom",
             "custom_format": "%{message}",
+            "syslog_facility": "local3",
             "@extra_comment": "here"
         },
         "telemetry/logstash": {

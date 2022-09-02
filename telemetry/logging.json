@@ -40,6 +40,23 @@
             "type": "boolean",
             "default": true
         },
+        "syslog_facility": {
+            "$id": "#syslog",
+            "title": "Syslog facility",
+            "description": "Local facility to send the messages.\n\nSee: https://www.krakend.io/docs/logging/",
+            "type": "string",
+            "default": "local3",
+            "enum": [
+                "local0",
+                "local1",
+                "local2",
+                "local3",
+                "local4",
+                "local5",
+                "local6",
+                "local7"
+            ]
+        },
         "stdout": {
             "$id": "#stdout",
             "title": "Logs to stdout",
