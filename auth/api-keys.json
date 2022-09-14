@@ -12,6 +12,22 @@
         "^[@$_#]": {}
     },
     "properties": {
+        "strategy": {
+            "$id": "#auth/api-keys/strategy",
+            "title": "Strategy",
+            "description": "Strategy to identify the API key.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+            "type": "string",
+            "enum": [
+                "header",
+                "query_string"
+            ]
+        },
+        "identifier": {
+            "$id": "#auth/api-keys/identifier",
+            "title": "Identifier",
+            "description": "The header name or the query string name containing the API key.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+            "type": "string"
+        },
         "keys": {
             "$id": "#auth/api-keys/keys",
             "title": "API Keys",
