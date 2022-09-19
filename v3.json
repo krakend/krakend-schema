@@ -119,6 +119,13 @@
             "$ref": "timeunits.json#/$defs/timeunit"
         },
 
+        "allow_insecure_connections": {
+            "$id": "#service/allow_insecure_connections",
+            "title": "Allow insecure connections",
+            "description": "By default, KrakenD verifies every SSL connection. This option allows you to connect to backends considered insecure, for instance when you are using **self-signed certificates**\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
+            "type": "boolean",
+            "default": false
+        },
         "dialer_timeout": {
             "$id": "#service/dialer_timeout",
             "title": "Dialer Timeout",
