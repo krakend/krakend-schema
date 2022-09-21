@@ -94,6 +94,23 @@
                 "title": "Paths",
                 "type": "string"
             }
+        },
+        "error_body": {
+            "title": "Custom error body",
+            "description": "Sets custom error bodies in JSON format",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[@$_#]": {}
+            },
+            "properties": {
+                "404": {
+                    "type": "object"
+                },
+                "405": {
+                    "type": "object"
+                }
+            }
         }
 
     }

@@ -564,6 +564,16 @@
             "remove_extra_slash": false,
             "return_error_msg": false,
             "trusted_proxies": [],
+            "error_body": {
+                "404": {
+                  "msg": "Unknown endpoint",
+                  "status": 404
+                },
+                "405": {
+                  "oh-my-god": "What on earth are you requesting?"
+                },
+                "@extra_comment": "here"
+            },
             "@extra_comment": "here"
         },
         "security/bot-detector": {
