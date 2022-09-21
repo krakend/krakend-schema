@@ -12,43 +12,7 @@
             "$ref": "plugin/req-resp-modifier.json"
         },
         "qos/ratelimit/router": {
-            "$id": "#endpoint_extra_config/qos/ratelimit/router",
-            "title": "Router Rate-limiting",
-            "type": "object",
-            "properties": {
-                "max_rate": {
-                    "$id": "#endpoint_extra_config/qos/ratelimit/router/max_rate",
-                    "title": "Max rate",
-                    "description": "Sets the number of maximum requests the endpoint can handle per second. The absence of max_rate in the configuration or 0 is the equivalent to no limitation.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
-                    "type": "integer"
-                },
-                "client_max_rate": {
-                    "$id": "#endpoint_extra_config/qos/ratelimit/router/client_max_rate",
-                    "title": "Client max rate",
-                    "description": "Number of requests per second this endpoint will accept for each user (user quota). The client is defined by the 'strategy' field. The client_max_rate keeps a counter for every client and endpoint.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
-                    "type": "integer"
-                },
-                "strategy": {
-                    "$id": "#endpoint_extra_config/qos/ratelimit/router/strategy",
-                    "title": "Strategy",
-                    "description": "The strategy you will use to set client counters. One of ip or header. Only to be used in combination with client_max_rate.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
-                    "type": "string",
-                    "enum": [
-                        "ip",
-                        "header"
-                    ],
-                    "default": "header"
-                },
-                "key": {
-                    "$id": "#endpoint_extra_config/qos/ratelimit/router/key",
-                    "title": "Key",
-                    "description": "The header key containing the unique user identification or IP\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
-                    "type": "string",
-                    "examples": [
-                        "X-TOKEN"
-                    ]
-                }
-            }
+            "$ref": "qos/ratelimit/router.json"
         },
         "proxy": {
             "$id": "#endpoint_extra_config/proxy",

@@ -9,8 +9,7 @@
         "^[@$_#]": {}
     },
     "required": [
-        "max_rate",
-        "capacity"
+        "max_rate"
     ],
     "properties": {
         "max_rate": {
@@ -26,8 +25,7 @@
             "$id": "#qos/ratelimit/proxy/capacity",
             "title": "Capacity",
             "description": "The capacity according to the token bucket algorithm with a bucket capacity == tokens added per second so KrakenD is able to allow some bursting on the request rates. Recommended value is capacity==max_rate\n\nSee: https://www.krakend.io/docs/backends/rate-limit/",
-            "type": "integer",
-            "default": 1
+            "type": "integer"
         }
     }
 }

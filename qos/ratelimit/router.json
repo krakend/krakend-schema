@@ -1,0 +1,62 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/qos/ratelimit/router.json",
+    "title": "Router Rate-limiting",
+    "description": "Restrict the rate of requests users make to KrakenD endpoints.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
+    "anyOf": [
+    {
+        "required": [
+            "max_rate"
+        ]
+    },
+    {
+        "required": [
+            "client_max_rate"
+        ]
+    }],
+    "properties": {
+        "max_rate": {
+            "title": "Max rate",
+            "description": "Number of tokens added to the bucket per second. Remaining tokens are the requests per second this endpoint will accept for all aggregated users. The absence of max_rate in the configuration or 0 is the equivalent to no limitation.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
+            "type": "number"
+        },
+        "client_max_rate": {
+            "title": "Client max rate",
+            "description": "Number of tokens added to the bucket per second. Remaining tokens are the requests per second this endpoint will accept for each user (user quota). The client is defined by the 'strategy' field. The client_max_rate keeps a counter for every client and endpoint.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
+            "type": "number"
+        },
+        "capacity": {
+            "title": "Capacity",
+            "description": "Number of tokens you can store in the bucket. Traduces into maximum concurrent requests this endpoint will accept for all users.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
+            "type": "integer"
+        },
+        "client_capacity": {
+            "title": "Client capacity",
+            "description": "Number of tokens you can store in the bucket. Traduces into maximum concurrent requests this endpoint will accept for the connected user. The client is defined by the 'strategy' field. The client_max_rate keeps a counter for every client and endpoint.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
+            "type": "integer"
+        },
+        "strategy": {
+            "title": "Strategy",
+            "description": "The strategy you will use to set client counters. One of ip or header. Only to be used in combination with client_max_rate.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
+            "type": "string",
+            "enum": [
+                "ip",
+                "header"
+            ],
+            "default": "header"
+        },
+        "key": {
+            "title": "Key",
+            "description": "The header key containing the unique user identification or IP\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
+            "type": "string",
+            "examples": [
+                "X-TOKEN"
+            ]
+        }
+    }
+}

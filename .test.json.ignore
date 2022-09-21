@@ -448,7 +448,9 @@
                     "@extra_comment": "here"
                 },
                 "qos/ratelimit/router": {
-                    "client_max_rate": 10,
+                    "client_max_rate": 10.2,
+                    "capacity": 20,
+                    "client_capacity": 50,
                     "key": "X-TOKEN",
                     "max_rate": 100,
                     "strategy": "header",
