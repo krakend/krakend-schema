@@ -21,7 +21,7 @@
             "enum": [3]
         },
         "host": {
-            "$id": "#service/version",
+            "$id": "#service/host",
             "title": "Default host",
             "description": "The default host list for all backends if they specify none.",
             "type": "array",

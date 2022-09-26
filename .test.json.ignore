@@ -706,7 +706,7 @@
                     "default_labels": {
                         "env": "production"
                     },
-                    "metrics_prefix": "krakend",
+                    "metric_prefix": "krakend",
                     "project_id": "1234",
                     "@extra_comment": "here"
                 },
