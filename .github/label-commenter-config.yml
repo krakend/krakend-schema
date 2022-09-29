@@ -1,7 +1,7 @@
 comment:
-  footer: "\
-    Thanks\n---\n\n\
-    > This is an automated comment. Responding to the bot or mentioning it won't have any effect"
+  footer:  |
+    ---
+    > This is an automated comment. Responding to the bot or mentioning it won't have any effect
 
 labels:
   - name: invalid
