@@ -1,5 +1,7 @@
-on: [push]
-name: Default actions
+on:
+  schedule:
+    - cron: '30 20 * * *'
+name: Issue and PR hygiene
 jobs:
   stale:
     uses: krakendio/.github/.github/workflows/stale.yml@main
