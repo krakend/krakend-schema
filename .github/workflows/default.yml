@@ -3,3 +3,5 @@ name: Default actions
 jobs:
   stale:
     uses: krakendio/.github/.github/workflows/stale.yml@main
+  lock-threads:
+    uses: krakendio/.github/.github/workflows/lock-threads.yml@main
