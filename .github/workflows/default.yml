@@ -2,4 +2,4 @@ on: [push]
 name: Default actions
 jobs:
   stale:
-    uses: krakendio/.github/.github/workflows/stale.yaml@main
+    uses: krakendio/.github/.github/workflows/stale.yml@main
