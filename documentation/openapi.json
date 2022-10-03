@@ -97,6 +97,13 @@
             "description": "See: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "array",
             "examples": [["https","http"]]
+        },
+        "audience": {
+            "$id": "#documentation/openapi/audience",
+            "title": "Audience",
+            "description": "The list of audiences that will consume this endpoint. These values **do not define the gateway logic** in any way. They are a way to group endpoints and filter them out when generating the OpenAPI documentation.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "type": "array",
+            "examples": [["gold","silver"]]
         }
     }
 }
