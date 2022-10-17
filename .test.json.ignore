@@ -181,10 +181,9 @@
                         "gold",
                         "silver"
                     ],
-                    "example":
-                        {
-                            "response": "ok"
-                        }
+                    "example": {
+                        "response": "ok"
+                    }
                 },
                 "validation/cel": [
                     {
@@ -867,6 +866,8 @@
             ]
         },
         "auth/api-keys": {
+            "strategy": "header",
+            "identifier": "Authorization",
             "keys": [
                 {
                     "key": "4d2c61e1-34c4-e96c-9456-15bd983c5019",
@@ -929,10 +930,10 @@
                 "prefix": "/media/assets",
                 "path": "./../../",
                 "@comment": "static om",
-               "skip": [
-                "/media/ignore/this/directory",
-                "/media/file.json"
-               ]
+                "skip": [
+                    "/media/ignore/this/directory",
+                    "/media/file.json"
+                ]
             },
             "basic-auth": {
                 "endpoints": [
