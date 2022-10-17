@@ -928,7 +928,11 @@
             "static-filesystem": {
                 "prefix": "/media/assets",
                 "path": "./../../",
-                "@comment": "static om"
+                "@comment": "static om",
+               "skip": [
+                "/media/ignore/this/directory",
+                "/media/file.json"
+               ]
             },
             "basic-auth": {
                 "endpoints": [

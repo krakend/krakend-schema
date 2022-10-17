@@ -23,6 +23,15 @@
             "description": "The path in the filesystem containing the static files. Relative to the working dir or absolute.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
             "type": "string",
             "examples": ["./static/"]
+        },
+        "skip": {
+            "title": "Skip paths",
+            "description": "An array with all the prefix URLs that despite they could match with the prefix, you don’t want to treat them as static content and pass them to the router.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
+            "type": "array",
+            "examples": [[
+                "/media/ignore/this/directory",
+                "/media/file.json"
+            ]]
         }
     }
 }
