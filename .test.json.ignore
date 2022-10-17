@@ -244,6 +244,19 @@
                                     "10.0.0.0/16"
                                 ]
                             },
+                            "content-replacer": {
+                                "data.credit_card": {
+                                    "@comment": "Ridiculous card masking. Take 4 digits and remove the rest. Credit card is inside a data object.",
+                                    "find": "(^\\d{4})(.*)",
+                                    "replace": "${1}-XXXX",
+                                    "regexp": true
+                                },
+                                "message": {
+                                    "@comment": "Replace '6 items left' with '6' on the message field",
+                                    "find": " items left",
+                                    "replace": ""
+                                }
+                            },
                             "response-schema-validator": {
                                 "schema": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",

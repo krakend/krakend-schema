@@ -1,0 +1,63 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/plugin/response-schema-validator.json",
+    "title": "Enterprise only. The response schema validator plugin adds a schema validation before the gateway returns the response to the end-user or before it’s merged in the endpoint with the rest of the backends.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
+    "required": ["schema"],
+    "properties": {
+        "schema": {
+            "title": "JSON Schema",
+            "description": "Write your JSON schema directly in this field, with any number of fields or validations you need.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
+            "type": "object"
+        },
+        "error": {
+            "title": "The error definition",
+            "description": "The error definition, containing body and status.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
+            "type": "object",
+            "examples": [
+                {
+                    "body": "We couldn't process you request, try again later.",
+                    "status": 401
+                }
+            ],
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[@$_#]": {}
+            },
+            "properties": {
+                "body": {
+                    "title": "Error body",
+                    "description": "The error message you want to show when the validation fails. Set it to an empty string \"\" to show the JSON-schema validation error.",
+                    "type": "string",
+                    "default": ""
+                },
+                "status": {
+                    "title": "Error code",
+                    "description": "The HTTP status code you want to set back in the response. Defaults to 500.",
+                    "type": "integer",
+                    "default": 500
+                }
+            }
+        },
+        "trusted_proxies": {
+            "title": "Trusted proxies",
+            "description": "A custom list of all the recognized machines/balancers that proxy the client to your application. This list is used to avoid spoofing when trying to get the real IP of the client.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
+            "type": "array",
+            "examples": [
+                [
+                    "10.0.0.0/16"
+                ]
+            ]
+        },
+        "allow": {
+            "title": "Allow or deny mode",
+            "description": "When true, only the matching IPs are able to access the content. When false, all matching IPs are discarded.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
+            "type": "boolean",
+            "default": false
+        }
+    }
+}
