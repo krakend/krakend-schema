@@ -176,7 +176,15 @@
                         "foo",
                         "bar",
                         "baz"
-                    ]
+                    ],
+                    "audience": [
+                        "gold",
+                        "silver"
+                    ],
+                    "example":
+                        {
+                            "response": "ok"
+                        }
                 },
                 "validation/cel": [
                     {

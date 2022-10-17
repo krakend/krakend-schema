@@ -104,6 +104,12 @@
             "description": "The list of audiences that will consume this endpoint. These values **do not define the gateway logic** in any way. They are a way to group endpoints and filter them out when generating the OpenAPI documentation.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "array",
             "examples": [["gold","silver"]]
+        },
+        "example": {
+            "$id": "#documentation/openapi/example",
+            "title": "Example",
+            "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types regardless except when using the string output encoding.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "type": ["object", "string"]
         }
     }
 }
