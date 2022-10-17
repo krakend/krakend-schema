@@ -17,6 +17,9 @@
         },
         "ip-filter": {
             "$ref": "ip-filter.json"
+        },
+        "response-schema-validator": {
+            "$ref": "response-schema-validator.json"
         }
     }
 }

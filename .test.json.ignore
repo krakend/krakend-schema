@@ -243,6 +243,43 @@
                                 "trusted_proxies": [
                                     "10.0.0.0/16"
                                 ]
+                            },
+                            "response-schema-validator": {
+                                "schema": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "type": "object",
+                                    "properties": {
+                                        "user": {
+                                            "type": "object",
+                                            "properties": {
+                                                "username": {
+                                                    "type": "string"
+                                                },
+                                                "user_id": {
+                                                    "type": "number"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "registered",
+                                                        "banned"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "username",
+                                                "user_id"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "user"
+                                    ]
+                                },
+                                "error": {
+                                    "body": "We couldn't process you request, try again later.",
+                                    "status": 401
+                                }
                             }
                         },
                         "plugin/http-client": {
@@ -502,7 +539,10 @@
                     ],
                     "jwk_local_ca": "./ca",
                     "propagate_claims": [
-                        ["sub", "x-user"]
+                        [
+                            "sub",
+                            "x-user"
+                        ]
                     ],
                     "key_identify_strategy": "kid",
                     "operation_debug": true,
