@@ -618,6 +618,13 @@
             "trusted_proxies": [],
             "@extra_comment": "here"
         },
+        "qos/ratelimit/service": {
+            "client_max_rate": 10,
+            "key": "X-TOKEN",
+            "max_rate": 100,
+            "strategy": "header",
+            "@extra_comment": "here"
+        },
         "security/bot-detector": {
             "allow": [
                 "MyAndroidClient/1.0"

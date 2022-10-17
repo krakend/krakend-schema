@@ -147,6 +147,11 @@
         },
         "auth/api-keys": {
             "$ref": "auth/api-keys.json"
+        },
+        "qos/ratelimit/service": {
+            "$ref": "qos/ratelimit/router.json",
+            "title": "Service Rate-limiting",
+            "description": "Enterprise Only. The service rate limit feature allows you to set the maximum requests per second a user or group of users can do to KrakenD and works analogously to the endpoint rate limit.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/"
         }
     }
 }
