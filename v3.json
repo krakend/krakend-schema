@@ -78,6 +78,7 @@
             "default": "json",
             "enum": [
                 "json",
+                "fast-json",
                 "json-collection",
                 "xml",
                 "negotiate",

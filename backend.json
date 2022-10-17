@@ -30,6 +30,7 @@
             "enum": [
                 "json",
                 "safejson",
+                "fast-json",
                 "xml",
                 "rss",
                 "string",
