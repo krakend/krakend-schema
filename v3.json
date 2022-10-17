@@ -203,6 +203,13 @@
             "type": "boolean",
             "default": true
         },
+        "allow_insecure_connections": {
+            "$id": "#service/allow_insecure_connections",
+            "title": "Allow insecure connections",
+            "description": "By default, KrakenD verifies every SSL connection. This option allows you to connect to backends considered insecure, for instance when you are using **self-signed certificates**",
+            "type": "boolean",
+            "default": false
+        },
         "tls": {
             "$id": "#service/tls",
             "title": "TLS",

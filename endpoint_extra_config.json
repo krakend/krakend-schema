@@ -22,10 +22,22 @@
                     "description": "Sets the number of maximum requests the endpoint can handle per second. The absence of max_rate in the configuration or 0 is the equivalent to no limitation.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
                     "type": "integer"
                 },
+                "capacity": {
+                    "$id": "#endpoint_extra_config/qos/ratelimit/router/capacity",
+                    "title": "Capacity",
+                    "description": "Number of tokens you can store in the Token Bucket. Traduces into maximum concurrent requests this endpoint will accept for all users.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
+                    "type": "integer"
+                },
                 "client_max_rate": {
                     "$id": "#endpoint_extra_config/qos/ratelimit/router/client_max_rate",
                     "title": "Client max rate",
                     "description": "Number of requests per second this endpoint will accept for each user (user quota). The client is defined by the 'strategy' field. The client_max_rate keeps a counter for every client and endpoint.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
+                    "type": "integer"
+                },
+                "client_capacity": {
+                    "$id": "#endpoint_extra_config/qos/ratelimit/router/client_capacity",
+                    "title": "Client capacity",
+                    "description": "Number of tokens you can store in the Token Bucket for each individual user. Traduces into maximum concurrent requests this endpoint will accept for the connected user. The client is defined by the strategy field. The client_max_rate keeps a counter for every client and endpoint.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
                     "type": "integer"
                 },
                 "strategy": {
