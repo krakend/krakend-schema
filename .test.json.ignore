@@ -615,6 +615,10 @@
         }
     ],
     "extra_config": {
+        "telemetry/newrelic": {
+            "license": "XXXX",
+            "debug": true
+        },
         "router": {
             "app_engine": false,
             "auto_options": false,
@@ -819,16 +823,6 @@
                     "reconnection": "2s",
                     "service_name": "krakend",
                     "@extra_comment": "here"
-                },
-                "extra_config": {
-                    "newrelic": {
-                        "service_name": "krakend-api-gateway",
-                        "api_key": "XXXX",
-                        "timeout": "15s",
-                        "spans_url": "https://trace-api.eu.newrelic.com/trace/v1",
-                        "metrics_url": "https://metric-api.eu.newrelic.com/metric/v1",
-                        "debug": false
-                    }
                 }
             }
         },

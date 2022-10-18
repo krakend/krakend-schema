@@ -142,6 +142,9 @@
         "telemetry/ganalytics": {
             "$ref": "telemetry/ganalytics.json"
         },
+        "telemetry/newrelic": {
+            "$ref": "telemetry/newrelic.json"
+        },
         "documentation/openapi": {
             "$ref": "documentation/openapi.json"
         },
