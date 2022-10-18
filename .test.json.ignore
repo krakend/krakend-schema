@@ -704,6 +704,7 @@
             "stdout": true,
             "syslog": false,
             "format": "custom",
+            "syslog_facility": "local3",
             "custom_format": "%{message}",
             "@extra_comment": "here"
         },
