@@ -73,19 +73,20 @@
         "enable_mtls": {
             "$id": "#service/tls/enable_mtls",
             "title": "Enable Mutual Authentication",
-            "description": "Whether to enable or not Mutual Authentication. When mTLS is enabled, all KrakenD endpoints require clients to provide a known client-side X.509 authentication certificate. KrakenD relies on the system’s CA to validate certificates.\n\nSee: https://www.krakend.io/docs/authorization/mutual-authentication/",
+            "description": "Whether to enable or not Mutual Authentication. When mTLS is enabled, **all KrakenD endpoints** require clients to provide a known client-side X.509 authentication certificate. KrakenD relies on the system’s CA to validate certificates.\n\nSee: https://www.krakend.io/docs/authorization/mutual-authentication/",
             "type": "boolean",
             "default": false
         },
         "curve_preferences": {
             "$id": "#service/tls/curve_preferences",
             "title": "Curve identifiers",
-            "description": "The list of all the identifiers for the curve preferences.\n(use 23 for CurveP256, 24 for CurveP384 or 25 for CurveP521)\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
+            "description": "The list of all the identifiers for the curve preferences. Use `23` for CurveP256, `24` for CurveP384 or `25` for CurveP521.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
             "type": "array",
             "uniqueItems": true,
             "default": [
                 23,24,25
-            ]
+            ],
+            "enum": [23,24,25]
         },
         "prefer_server_cipher_suites": {
             "$id": "#service/tls/prefer_server_cipher_suites",
