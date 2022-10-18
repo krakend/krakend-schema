@@ -8,17 +8,17 @@
     "patternProperties": {
         "^[@$_#]": {}
     },
-    "required": [
-        "name",
-        "consumer",
-        "backend",
-        "extra_config"
-    ],
     "items": {
         "additionalProperties": false,
         "patternProperties": {
             "^[@$_#]": {}
         },
+        "required": [
+            "name",
+            "consumer",
+            "backend",
+            "extra_config"
+        ],
         "properties": {
             "name": {
                 "$id": "#async_agent/name",

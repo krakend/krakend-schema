@@ -1,7 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/backend.json",
-    "title": "Schema definition for backends",
+    "title": "Backends",
+    "description": "A backend object is an array of all the services that an endpoint connects to. It defines the list of hostnames that connects to and the URL to send or receive the data.",
     "type": "object",
     "required": [
         "url_pattern"
