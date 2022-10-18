@@ -65,6 +65,23 @@
             "description": "When the format is set to \"custom\", set the pattern describing the new format.\n\nSee: https://www.krakend.io/docs/logging/",
             "type": "string",
             "default": "%{message}"
+        },
+        "syslog_facility": {
+            "$id": "#syslog_facility",
+            "title": "Syslog facility",
+            "description": "When using syslog, the facility tells KrakenD where to send the messages as set by the locals of the syslog standard.\n\nSee: https://www.krakend.io/docs/logging/",
+            "type": "string",
+            "default": "local3",
+            "enum": [
+                "local0",
+                "local1",
+                "local2",
+                "local3",
+                "local4",
+                "local5",
+                "local6",
+                "local7"
+            ]
         }
     }
 }
