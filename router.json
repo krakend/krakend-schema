@@ -10,10 +10,6 @@
         "^[@$_#]": {}
     },
     "properties": {
-        "additionalProperties": false,
-        "patternProperties": {
-            "^[@$_#]": {}
-        },
         "error_body": {
             "title": "Custom error body",
             "description": "Sets custom error bodies for 404 and 405 errors.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
