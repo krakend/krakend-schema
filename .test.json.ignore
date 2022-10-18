@@ -26,6 +26,14 @@
     "response_header_timeout": "10s",
     "expect_continue_timeout": "0s",
     "disable_rest": false,
+    "allow_insecure_connections": false,
+    "ca_certs": [
+        "ca.pem"
+    ],
+    "cache_ttl": "300s",
+    "disable_system_ca_pool": false,
+    "idle_timeout": "10s",
+    "read_header_timeout": "10s",
     "tls": {
         "public_key": "./cert.pem",
         "private_key": "./certs/key.pem",
@@ -105,6 +113,15 @@
                 }
             ],
             "extra_config": {
+                "plugin/req-resp-modifier": {
+                    "content-replacer": {
+                        "key.a": {
+                            "find": "",
+                            "regexp": false,
+                            "replace": ""
+                        }
+                    }
+                },
                 "websocket": {
                     "input_headers": [
                         "Cookie",
