@@ -620,6 +620,15 @@
             "debug": true
         },
         "router": {
+            "error_body": {
+                "404": {
+                    "msg": "Unknown endpoint",
+                    "status": 404
+                },
+                "405": {
+                    "oh-my-god": "What on earth are you requesting?"
+                }
+            },
             "app_engine": false,
             "auto_options": false,
             "disable_handle_method_not_allowed": false,
@@ -866,7 +875,7 @@
             "revoke_server_ping_url": "http://localhost:8081/instances",
             "revoke_server_ping_interval": "30s",
             "revoke_server_api_key": "639ee23f-f4c5-40c4-855c-912bf01fae87",
-            "revoke_server_max_workers":5
+            "revoke_server_max_workers": 5
         },
         "documentation/openapi": {
             "description": "This is a sample server. You can find out more about at [http://blah](http://blah.blah.com)",

@@ -10,6 +10,31 @@
         "^[@$_#]": {}
     },
     "properties": {
+        "additionalProperties": false,
+        "patternProperties": {
+            "^[@$_#]": {}
+        },
+        "error_body": {
+            "title": "Custom error body",
+            "description": "Sets custom error bodies for 404 and 405 errors.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+            "type": "object",
+            "additionalProperties": false,
+                "patternProperties": {
+                    "^[@$_#]": {}
+                },
+            "properties": {
+                "404": {
+                    "title": "404 errors",
+                    "description": "Write any JSON object structure you would like to return to users",
+                    "type": "object"
+                },
+                "405": {
+                    "title": "405 errors",
+                    "description": "Write any JSON object structure you would like to return to users",
+                    "type": "object"
+                }
+            }
+        },
         "disable_health": {
             "title": "Disable Health",
             "description": "When true you don't have any exposed health endpoint. You can still use a TCP checker or build an endpoint yourself.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
@@ -95,6 +120,5 @@
                 "type": "string"
             }
         }
-
     }
 }
