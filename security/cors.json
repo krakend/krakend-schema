@@ -8,10 +8,6 @@
     "patternProperties": {
         "^[@$_#]": {}
     },
-    "required": [
-        "allow_methods",
-        "allow_origins"
-    ],
     "properties": {
         "allow_methods": {
             "$id": "#security/cors/allow_methods",
@@ -38,18 +34,19 @@
         "allow_origins": {
             "$id": "#security/cors/allow_origins",
             "title": "Allowed origins",
-            "description": "An array with all the origins allowed, examples of values are https://example.com, or * (any origin).\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+            "description": "An array with all the origins allowed, examples of values are `https://example.com`, or `*` (any origin).\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
             "type": "array",
             "default": ["*"]
         },
         "allow_headers": {
             "$id": "#security/cors/allow_headers",
             "title": "Allowed headers",
-            "description": "An array with the headers allowed. Missing headers in this list won’t be accepted.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+            "description": "An array with the headers allowed, but `Origin`is always appended to the list. Requests with headers not in this list are rejected.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
             "type": "array",
             "example": [
             "Accept-Language"
-          ]
+            ],
+            "default": []
         },
         "expose_headers": {
             "$id": "#security/cors/expose_headers",
@@ -64,8 +61,10 @@
         "max_age": {
             "$id": "#security/cors/max_age",
             "title": "Max Age",
-            "description": "For how long the response can be cached.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
-            "$ref": "../timeunits.json#/$defs/timeunit"
+            "description": "For how long the response can be cached. For zero values the `Access-Control-Max-Age` header is not set. The value needs to specify its units, valid time units are: `ns`, `us`, (or `µs`), `ms`, `s`, `m`, `h` E.g., `12h` for 12 hours.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+            "type": "string",
+            "$ref": "../timeunits.json#/$defs/timeunit",
+            "default": "0h"
         },
 
         "allow_credentials": {
@@ -73,12 +72,12 @@
             "title": "Allow credentials",
             "description": "When requests can include user credentials like cookies, HTTP authentication or client side SSL certificates.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
             "type": "boolean",
-            "default": true
+            "default": false
         },
         "debug": {
             "$id": "#security/cors/debug",
             "title": "Development flag",
-            "description": "Show debugging information in the logger, to be used only during development (defaults to false).\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+            "description": "Show debugging information in the logger, **use it only during development**.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
             "type": "boolean",
             "default": false
         }
