@@ -86,7 +86,10 @@
             "default": [
                 23,24,25
             ],
-            "enum": [23,24,25]
+            "items": {
+                "enum": [23,24,25]
+            }
+
         },
         "prefer_server_cipher_suites": {
             "$id": "#service/tls/prefer_server_cipher_suites",

@@ -538,6 +538,23 @@
                     "allowed_hosts": [
                         "ABC"
                     ],
+                    "browser_xss_filter": true,
+                    "content_security_policy": "default-src 'self';",
+                    "content_type_nosniff": true,
+                    "custom_frame_options_value": "ALLOW-FROM https://example.com",
+                    "frame_deny": true,
+                    "host_proxy_headers": [
+                        "X-Forwarded-Hosts"
+                    ],"hpkp_public_key": "pin-sha256=\"base64==\"; max-age=expireTime [; includeSubDomains][; report-uri=\"reportURI\"]",
+                    "is_development": true,
+                    "referrer_policy": "same-origin",
+                    "ssl_host": "ssl.host.domain",
+                    "ssl_proxy_headers": {
+                        "X-Forwarded-Proto": "https"
+                    },
+                    "ssl_redirect": true,
+                    "sts_include_subdomains": true,
+                    "sts_seconds": 300,
                     "@extra_comment": "here"
                 },
                 "security/bot-detector": {

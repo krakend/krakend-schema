@@ -19,7 +19,7 @@
         "ssl_proxy_headers": {
             "$id": "#security/http/ssl_proxy_headers",
             "title": "SSL Proxy Headers",
-            "description": "Header keys with associated values that would indicate a valid https request. Useful when using Nginx, e.g: \"X-Forwarded-Proto\": \"https\"\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+            "description": "Header keys with associated values that would indicate a valid https request. Useful when using Nginx, e.g: `\"X-Forwarded-Proto\": \"https\"`\n\nSee: https://www.krakend.io/docs/service-settings/security/",
             "type": "object",
             "examples": [
                 {
@@ -32,9 +32,9 @@
             "title": "SSL Host",
             "description": "A set of header keys that may hold a proxied hostname value for the request.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
             "type": "array",
-            "default": [
+            "examples": [[
                 "X-Forwarded-Hosts"
-            ]
+            ]]
         },
         "referrer_policy": {
             "$id": "#security/http/referrer_policy",
@@ -63,23 +63,23 @@
         "sts_seconds": {
             "$id": "#security/http/sts_seconds",
             "title": "HTTP Strict Transport Security (HSTS) seconds",
-            "description": "Enable this policy by setting the max-age of the Strict-Transport-Security header. Setting to 0 disables HSTS. Use the sts_seconds setting.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+            "description": "Enable this policy by setting the `max-age` of the `Strict-Transport-Security` header. Setting to `0` disables HSTS.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
             "type": "integer",
-            "default": 300
+            "default": 0
         },
         "sts_include_subdomains": {
             "$id": "#security/http/sts_include_subdomains",
             "title": "Strict-Transport-Security include_subdomains",
             "description": "Set to true when you want the `includeSubdomains` be appended to the Strict-Transport-Security header.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
             "type": "boolean",
-            "default": true
+            "default": false
         },
         "frame_deny": {
             "$id": "#security/http/frame_deny",
             "title": "Clickjacking protection",
             "description": "Set to true to enable clickjacking protection, together with `custom_frame_options_value`.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
             "type": "boolean",
-            "default": true
+            "default": false
         },
         "custom_frame_options_value": {
             "$id": "#security/http/custom_frame_options_value",
@@ -88,7 +88,8 @@
             "type": "string",
             "examples": [
                 "ALLOW-FROM https://example.com"
-            ]
+            ],
+            "default": ""
         },
         "hpkp_public_key": {
             "$id": "#security/http/hpkp_public_key",
@@ -97,20 +98,21 @@
             "type": "string",
             "examples": [
                 "pin-sha256=\"base64==\"; max-age=expireTime [; includeSubDomains][; report-uri=\"reportURI\"]"
-            ]
+            ],
+            "default": ""
         },
         "content_type_nosniff": {
             "$id": "#security/http/content_type_nosniff",
             "title": "Nosniff",
             "description": "Enabling this feature will prevent the user's browser from interpreting files as something else than declared by the content type in the HTTP headers.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
             "type": "boolean",
-            "default": true
+            "default": false
         },
         "browser_xss_filter": {
             "$id": "#security/http/browser_xss_filter",
             "title": "This feature enables the Cross-site scripting (XSS) filter in the user's browser.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
             "type": "boolean",
-            "default": true
+            "default": false
         },
         "content_security_policy": {
             "$id": "#security/http/content_security_policy",
@@ -119,14 +121,15 @@
             "type": "string",
             "examples": [
                 "default-src 'self';"
-            ]
+            ],
+            "default": ""
         },
         "is_development": {
             "$id": "#security/http/is_development",
             "title": "Development flag",
             "description": "This will cause the AllowedHosts, SSLRedirect, and STSSeconds/STSIncludeSubdomains options to be ignored during development. When deploying to production, be sure to set this to false.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
             "type": "boolean",
-            "default": true
+            "default": false
         }
     }
 }
