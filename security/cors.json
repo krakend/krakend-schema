@@ -61,7 +61,7 @@
         "max_age": {
             "$id": "#security/cors/max_age",
             "title": "Max Age",
-            "description": "For how long the response can be cached. For zero values the `Access-Control-Max-Age` header is not set. The value needs to specify its units, valid time units are: `ns`, `us`, (or `µs`), `ms`, `s`, `m`, `h` E.g., `12h` for 12 hours.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+            "description": "For how long the response can be cached. For zero values the `Access-Control-Max-Age` header is not set.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
             "type": "string",
             "$ref": "../timeunits.json#/$defs/timeunit",
             "default": "0h"

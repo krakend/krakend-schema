@@ -33,7 +33,7 @@
         "sequential_start": {
             "$id": "#service/sequential_start",
             "title": "Sequential start",
-            "description": "A sequential start registers all async agents in order, allowing you to have the starting logs in sequential order. A non-sequential start is much faster, but logs are harder to follow. Defaults to false.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
+            "description": "A sequential start registers all async agents in order, allowing you to have the starting logs in sequential order. A non-sequential start is much faster, but logs are harder to follow.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
             "type": "boolean",
             "default": false
         },
@@ -67,9 +67,9 @@
         "cache_ttl": {
             "$id": "#service/cache_ttl",
             "title": "Cache TTL",
-            "description": "The default time you will allow external proxies to cache this content. It's added in the Cache-Control header.",
+            "description": "Sets a default `Cache-Control: public, max-age=%d` header to all endpoints where `%d` is the conversion to seconds of any duration you write, indicating for how long the client (or CDN) can cache the content of the request. You can override this value per endpoint. Notice that KrakenD does not cache the content with this parameter, but tells the client how to do it. Defaults to `0s` (no cache). **For KrakenD cache, see [backend caching](/docs/backends/caching/)**.",
             "type": "string",
-            "default": "300s",
+            "default": "0s",
             "$ref": "timeunits.json#/$defs/timeunit"
         },
         "output_encoding": {
@@ -91,7 +91,7 @@
         "read_timeout": {
             "$id": "#service/read_timeout",
             "title": "HTTP read timeout",
-            "description": "Advanced HTTP Server settings: Maximum duration for reading the entire HTTP request, including the body.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
+            "description": "Is the maximum duration for reading the entire request, including the body. Because `read_timeout` does not let Handlers make per-request decisions on each request body's acceptable deadline or upload rate, most users will prefer to use `read_header_timeout`. It is valid to use them both.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
             "type": "string",
             "default": "0s",
             "$ref": "timeunits.json#/$defs/timeunit"
@@ -99,7 +99,7 @@
         "read_header_timeout": {
             "$id": "#service/read_header_timeout",
             "title": "HTTP Idle timeout",
-            "description": "Advanced HTTP Server settings: Amount of time allowed to read request headers.  The value needs to specify its units, valid time units are: `ns`, `us`, (or `µs`), `ms`, `s`, `m`, `h` E.g., `50ms` for 50 milliseconds.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
+            "description": "The amount of time allowed to read request headers. The connection's read deadline is reset after reading the headers and the Handler can decide what is considered too slow for the body.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
             "type": "string",
             "default": "0s",
             "$ref": "timeunits.json#/$defs/timeunit"
@@ -107,7 +107,7 @@
         "write_timeout": {
             "$id": "#service/write_timeout",
             "title": "HTTP write timeout",
-            "description": "Advanced HTTP Server settings: Maximum duration before timing out writes of the response.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
+            "description": "Maximum duration before timing out writes of the response.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
             "type": "string",
             "default": "0s",
             "$ref": "timeunits.json#/$defs/timeunit"
@@ -115,7 +115,7 @@
         "idle_timeout": {
             "$id": "#service/idle_timeout",
             "title": "HTTP Idle timeout",
-            "description": "Advanced HTTP Server settings: Maximum amount of time to wait for the next request when keep-alives are enabled.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
+            "description": "The maximum amount of time to wait for the next request when keep-alives are enabled. If `idle_timeout` is zero, the value of `read_timeout` is used. If both are zero, there is no timeout.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
             "type": "string",
             "default": "0s",
             "$ref": "timeunits.json#/$defs/timeunit"
@@ -183,7 +183,7 @@
         "response_header_timeout": {
             "$id": "#service/response_header_timeout",
             "title": "Response header timeout",
-            "description": "If non-zero, specifies the amount of time to wait for a server's response headers after fully writing the request (including its body, if any). This time does not include the time to read the response body. The value needs to specify its units, valid time units are: `ns`, `us`, (or `µs`), `ms`, `s`, `m`, `h` E.g., `50ms` for 50 milliseconds.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
+            "description": "If non-zero, specifies the amount of time to wait for a server's response headers after fully writing the request (including its body, if any). This time does not include the time to read the response body.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
             "type": "string",
             "default": "0s",
             "$ref": "timeunits.json#/$defs/timeunit"
@@ -191,7 +191,7 @@
         "expect_continue_timeout": {
             "$id": "#service/expect_continue_timeout",
             "title": "Expect_continue_timeout",
-            "description": "If non-zero, specifies the amount of time to wait for a server's first response headers after fully writing the request headers if the request has an `Expect: 100-continue` header. Zero means no timeout and causes the body to be sent immediately, without waiting for the server to approve. This time does not include the time to send the request header. The value needs to specify its units, valid time units are: `ns`, `us`, (or `µs`), `ms`, `s`, `m`, `h` E.g., `50ms` for 50 milliseconds\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
+            "description": "If non-zero, specifies the amount of time to wait for a server's first response headers after fully writing the request headers if the request has an `Expect: 100-continue` header. Zero means no timeout and causes the body to be sent immediately, without waiting for the server to approve. This time does not include the time to send the request header.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
             "type": "string",
             "default": "0s",
             "$ref": "timeunits.json#/$defs/timeunit"
@@ -219,13 +219,15 @@
                 [
                     "ca.pem"
                 ]
-            ]
+            ],
+            "default": []
         },
         "disable_system_ca_pool": {
             "$id": "#service/disable_system_ca_pool",
             "title": "Disable system's CA",
             "description": "Make that any certificate in the system's CA is not recognized by KrakenD. The only certificates loaded will be the ones in the `ca_certs` list when true.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
         },
         "tls": {
             "$ref": "tls.json"
