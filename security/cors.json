@@ -12,7 +12,7 @@
         "allow_methods": {
             "$id": "#security/cors/allow_methods",
             "title": "Allowed methods",
-            "description": "An array with all the HTTP methods allowed, in uppercase.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+            "description": "An array with all the HTTP methods allowed, in uppercase. Possible values are `GET`, `HEAD`,`POST`,`PUT`,`PATCH`,`DELETE`, or `OPTIONS`\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
             "type": "array",
             "default":  [
                 "GET",

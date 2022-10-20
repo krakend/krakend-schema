@@ -9,7 +9,7 @@
     "items":{
         "$id": "#root/validation/cel/items",
         "title": "Items",
-        "type": "object",
+        "type": "array",
         "required": [
             "check_expr"
         ],
