@@ -210,25 +210,6 @@
             "type": "boolean",
             "default": false
         },
-        "ca_certs": {
-            "$id": "#service/ca_certs",
-            "title": "CA certificates",
-            "description": "An array with all the CA certificates you would like to load to KrakenD, in addition to the certificates present in the system's CA.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
-            "type": "array",
-            "examples": [
-                [
-                    "ca.pem"
-                ]
-            ],
-            "default": []
-        },
-        "disable_system_ca_pool": {
-            "$id": "#service/disable_system_ca_pool",
-            "title": "Disable system's CA",
-            "description": "Make that any certificate in the system's CA is not recognized by KrakenD. The only certificates loaded will be the ones in the `ca_certs` list when true.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
-            "type": "boolean",
-            "default": false
-        },
         "tls": {
             "$ref": "tls.json"
         },
