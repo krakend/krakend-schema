@@ -21,7 +21,7 @@
             "check_expr": {
                 "$id": "#validation/cel/items/check_expr",
                 "title": "Check expression",
-                "description": "The expression that evaluates as a boolean, you can write any conditional. If all stacked conditions are true the request continues, false, it fails to retrieve data from the token, the request, or the response.\n\nSee: https://www.krakend.io/docs/endpoints/common-expression-language-cel/",
+                "description": "The expression that evaluates as a boolean, you can write here any conditional. If the result of the expression is `true`, the execution continues. See in the docs how to use additional variables to retrieve data from requests, responses, and tokens.\n\nSee: https://www.krakend.io/docs/endpoints/common-expression-language-cel/",
                 "type": "string",
                 "examples": [
                     "int(req_params.Id) % 3 == 0"

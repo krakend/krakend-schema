@@ -15,7 +15,7 @@
         "url_pattern": {
             "$id": "#backend/url_pattern",
             "title": "URL Pattern",
-            "description": "The path inside your service (no protocol, no host, no method). E.g: /users\n\nSee: https://www.krakend.io/docs/backends/",
+            "description": "The path inside the service (no protocol, no host, no method). E.g: `/users`. Some functionalities under `extra_config` might drop the requirement of declaring a valid `url_pattern`, but they are exceptions. The URL must be RESTful, if it is not (e.g.: `/url.{some_variable}.json`), then see how to [disable RESTful checking](#disable-restful-checking).\n\nSee: https://www.krakend.io/docs/backends/",
             "type": "string",
             "examples": [
                 "/users",
@@ -25,7 +25,7 @@
         "encoding": {
             "$id": "#backend/encoding",
             "title": "Backend Encoding",
-            "description": "Informs KrakenD how to parse the responses of your services.\n\nSee: https://www.krakend.io/docs/backends/supported-encodings/",
+            "description": "Defines your [needed encoding](/docs/backends/supported-encodings/) to set how to parse the response. Defaults to the value of its endpoint's `encoding`, or to `json` if not defined anywhere else.\n\nSee: https://www.krakend.io/docs/backends/supported-encodings/",
             "type": "string",
             "default": "json",
             "enum": [
@@ -41,7 +41,7 @@
         "sd": {
             "$id": "#backend/sd",
             "title": "Service Discovery",
-            "description": "Tells KrakenD how to detect and locate services automatically on your network.\n\nSee: https://www.krakend.io/docs/backends/",
+            "description": "The [Service Discovery](/docs/backends/service-discovery/) system to resolve your backend services. Defaults to `static` (no external Service Discovery). Use `dns` to use DNS SRV records.\n\nSee: https://www.krakend.io/docs/backends/",
             "type": "string",
             "default": "static",
             "enum": [
@@ -52,7 +52,7 @@
         "method": {
             "$id": "#backend/method",
             "title": "Method",
-            "description": "The method sent to this backend. \n\nSee: https://www.krakend.io/docs/backends/",
+            "description": "The method sent to this backend in **uppercase**. The method does not need to match the endpoint's method. When the value is omitted, it uses the same endpoint's method.\n\nSee: https://www.krakend.io/docs/backends/",
             "type": "string",
             "enum": [
                 "GET",
@@ -65,21 +65,22 @@
         },
         "extra_config": {
             "type": "object",
+            "title": "Backend Extra configuration",
+            "description": "When there is additional configuration related to a specific component or middleware (like a circuit breaker, rate limit, etc.), it is declared under this section.",
             "$ref": "backend_extra_config.json"
         },
         "disable_host_sanitize": {
             "$id": "#backend/disable_host_sanitize",
             "title": "Disable host sanitize",
-            "description": "Set to true when the address string doesn't need to be checked for the protocol. This is the case of sd=dns",
+            "description": "Set it to `true` when the host doesn't need to be checked for an HTTP protocol. This is the case of `sd=dns` or when using other protocols like `amqp://`, `nats://`, `kafka://`, etc. When set to true, and the protocol is not HTTP, KrakenD fails with an `invalid host` error.",
             "type": "boolean",
-            "default": true
+            "default": false
         },
         "host": {
             "$id": "#backend/host",
             "title": "Host array",
-            "description": "An array with all the available hosts to load balance requests using the format protocol://host:port.\nExample: [\"https://api.service.com\"]\n\nIf you are in a platform where hosts are already balanced write a single name in the array with the service name/balancer address.",
-            "type": "array",
-            "default": []
+            "description": "An array with all the available hosts to **load balance** requests, including the schema (when possible) `schema://host:port`. E.g.: ` https://my.users-ms.com`. If you are in a platform where hosts or services are balanced (e.g., a K8S service), write a single entry in the array with the service name/balancer address. Defaults to the `host` declaration at the configuration's root level, and the service fails starting when there is none.",
+            "type": "array"
         },
         "target": {
             "$id": "#backend/target",
@@ -95,17 +96,15 @@
         "deny": {
             "$id": "#backend/deny",
             "title": "Deny (data manipulation)",
-            "description": "The deny list filter can be read as the don't show this filter. KrakenD will remove from the backend response all matching fields (case-sensitive) defined in the list, and the ones that do not match are returned. Use the deny list to exclude some fields in the response.\n\nSee: https://www.krakend.io/docs/backends/data-manipulation/",
+            "description": "**Don't return the fields in the list**. All matching fields (case-sensitive) defined in the list, are removed from the response. Use a dot `.` separator to definr nested attributes, e.g.: `a.b` removes `{\"a\":{\"b\": true}}`.\n\nSee: https://www.krakend.io/docs/backends/data-manipulation/",
             "type": "array",
-            "default": [],
             "uniqueItems": true
         },
         "allow": {
             "$id": "#backend/allow",
             "title": "Allow (data manipulation)",
-            "description": "The deny list filter can be read as the don't show this filter. KrakenD will remove from the backend response all matching fields (case-sensitive) defined in the list, and the ones that do not match are returned. Use the deny list to exclude some fields in the response.\n\nSee: https://www.krakend.io/docs/backends/data-manipulation/",
+            "description": "**Only return the fields in the list**. Only the matching fields (case-sensitive) are returned in the final response. Use a dot `.` separator to define nested attributes, e.g.: `a.b` removes `{\"a\":{\"b\": true}}` \n\nSee: https://www.krakend.io/docs/backends/data-manipulation/",
             "type": "array",
-            "default": [],
             "uniqueItems": true,
             "examples": [
                 "token",
