@@ -15,7 +15,7 @@
         "sample_rate": {
             "$id": "#telemetry/opencensus/sample_rate",
             "title": "Sample rate",
-            "description": "A number between 0 (no requests at all) and 100 (all requests) representing the percentage of sampled requests you want to send to the exporter.\n\nSee: https://www.krakend.io/docs/telemetry/opencensus/",
+            "description": "A number between 0 (no requests at all) and 100 (all requests) representing the percentage of sampled requests you want to send to the exporter. If you are processing a huge amount of traffic you might want to sample only a part of what's going on.\n\nSee: https://www.krakend.io/docs/telemetry/opencensus/",
             "type": "integer",
             "minimum": 0,
             "maximum": 100,
@@ -25,35 +25,40 @@
             "$id": "#telemetry/opencensus/reporting_period",
             "title": "Reporting period",
             "description": "The number of seconds passing between reports\n\nSee: https://www.krakend.io/docs/telemetry/opencensus/",
-            "type": "integer",
-            "default": 1
+            "type": "integer"
         },
         "enabled_layers": {
             "additionalProperties": false,
             "patternProperties": {
                 "^[@$_#]": {}
             },
+            "title": "Enabled Layers",
+            "description": "Lets you specify what data you want to export. All layers are enabled by default: ",
             "properties": {
                 "backend": {
                     "title": "Report backend",
                     "description": "Reports the activity between KrakenD and your services",
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": true
                 },
                 "router": {
                     "title": "Report router",
                     "description": "Reports the activity between end-users and KrakenD",
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": true
                 },
                 "pipe": {
                     "title": "Report pipe",
-                    "description": "Reports the activity at the beginning of the proxy layer. It gives a more detailed view of the internals of the pipe between end-users and KrakenD.",
-                    "type": "boolean"
+                    "description": "Reports the activity at the beginning of the proxy layer. It gives a more detailed view of the internals of the pipe between end-users and KrakenD, having into account merging of different backends.",
+                    "type": "boolean",
+                    "default": true
                 }
             }
         },
         "exporters": {
             "$id": "#telemetry/opencensus/exporters",
             "title": "Exporters",
+            "description": "The exporter(s) you would like to enable. See each exporter configuration in its own section.",
             "type": "object",
             "minProperties": 1,
             "additionalProperties": false,
@@ -178,7 +183,6 @@
                             "title": "Address",
                             "description": "The URL (including port) where your InfluxDB is installed.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
                             "type": "string",
-                            "default": "http://influxdb:8086",
                             "examples": [
                                 "http://192.168.99.100:8086"
                             ]
@@ -188,7 +192,6 @@
                             "title": "DB name",
                             "description": "The database name\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
                             "type": "string",
-                            "default": "krakend",
                             "examples": [
                                 "krakend"
                             ]
@@ -196,19 +199,18 @@
                         "timeout": {
                             "$id": "#telemetry/opencensus/exporters/influxdb/timeout",
                             "title": "Timeout",
-                            "description": "\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
-                            "default": "1s",
+                            "description": "The maximum time you will wait for InfluxDB to respond.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
                             "examples": [
                                 "2s"
                             ],
-                            "$ref": "../timeunits.json#/$defs/timeunit"
+                            "$ref": "../timeunits.json#/$defs/timeunit",
+                            "type": "string"
                         },
                         "username": {
                             "$id": "#telemetry/opencensus/exporters/influxdb/username",
                             "title": "Username",
                             "description": "The influxdb username to access the database\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
                             "type": "string",
-                            "default": "krakend",
                             "examples": [
                                 "krakend"
                             ]
@@ -218,7 +220,6 @@
                             "title": "Password",
                             "description": "The password to access the database\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
                             "type": "string",
-                            "default": "kr4k3nd",
                             "examples": [
                                 "kr4k3nd"
                             ]
@@ -288,7 +289,7 @@
                 "xray": {
                     "$id": "#telemetry/opencensus/exporters/xray",
                     "title": "AWS X-ray",
-                    "description": "AWS X-Ray is a service offered by Amazon that provides an end-to-end view of requests as they travel through your application, and shows a map of your application’s underlying components.",
+                    "description": "AWS X-Ray is a service offered by Amazon that provides an end-to-end view of requests as they travel through your application, and shows a map of your application's underlying components.",
                     "type": "object",
                     "required": [
                         "region",

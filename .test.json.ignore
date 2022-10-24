@@ -180,6 +180,11 @@
                 }
             ],
             "extra_config": {
+                "auth/validator": {
+                    "@comment": "The validator can match 2 different schemas, with local path and with jwk_url",
+                    "jwk_local_path": "./jwk.txt",
+                    "alg": "EdDSA"
+                },
                 "auth/api-keys": {
                     "@comment": "here",
                     "roles": [
@@ -545,7 +550,8 @@
                     "frame_deny": true,
                     "host_proxy_headers": [
                         "X-Forwarded-Hosts"
-                    ],"hpkp_public_key": "pin-sha256=\"base64==\"; max-age=expireTime [; includeSubDomains][; report-uri=\"reportURI\"]",
+                    ],
+                    "hpkp_public_key": "pin-sha256=\"base64==\"; max-age=expireTime [; includeSubDomains][; report-uri=\"reportURI\"]",
                     "is_development": true,
                     "referrer_policy": "same-origin",
                     "ssl_host": "ssl.host.domain",
@@ -566,7 +572,6 @@
                 "auth/validator": {
                     "alg": "EdDSA",
                     "jwk_url": "http://KEYCLOAK:8080/auth/realms/master/protocol/openid-connect/certs",
-                    "jwk_local_path": "./jwk.txt",
                     "secret_url": "awskms://keyID",
                     "cypher_key": "",
                     "cache": true,
