@@ -19,29 +19,26 @@
         "N": {
             "$id": "#auth/revoker/N",
             "title": "Bot detector",
-            "description": "The maximum number of elements that you want to keep in memory (you can keep millions at a very low cost).\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
+            "description": "The maximum `N`umber of elements you want to keep in the bloom filter. Tens of millions work fine on machines with low resources.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
             "type": "integer",
             "examples": [
                 10000000
-            ],
-            "default": 10000000
+            ]
         },
         "P": {
             "$id": "#auth/revoker/P",
             "title": "Probability",
-            "description": "The probability of returning a false positive. E.g: 0.0000001\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
+            "description": "The `P`robability of returning a false positive. E.g.,`1e-7` for one false positive every 10 million different tokens. The values `N` and `P` determine the size of the resulting bloom filter to fulfill your expectations. E.g: 0.0000001\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
             "type": "number",
             "examples": [
                 0.0000001
-            ],
-            "default": 0.0000001
+            ]
         },
         "hash_name": {
             "$id": "#auth/revoker/hash_name",
             "title": "Hash function name",
-            "description": "The hash name used. Possible values are  'optimal' (recommended) or 'default'.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
+            "description": "Either `optimal` (recommended) or `default`. The `optimal` consumes less CPU but has less entropy when generating the hash, although the loss is negligible.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
             "type": "string",
-            "default": "optimal",
             "enum": [
                 "optimal",
                 "default"
@@ -50,21 +47,19 @@
         "TTL": {
             "$id": "#auth/revoker/TTL",
             "title": "Time To Live",
-            "description": "The lifespan of the JWT you are generating, in seconds. The value must match the expiration you are setting in the backend.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
-            "type": "integer",
-            "default": 1500
+            "description": "The lifespan of the JWT you are generating in seconds. The value must match the expiration you are setting in the identity provider when creating the tokens.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
+            "type": "integer"
         },
         "port": {
             "$id": "#auth/revoker/port",
             "title": "Port",
-            "description": "The port number exposed (has to be free) for the RPC service to communicate with the bloomfilter.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
-            "type": "integer",
-            "default": 1234
+            "description": "The port number exposed on each KrakenD instance for the RPC service to interact with the bloomfilter. This port is allocated only to the clients (running KrakenDs).\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
+            "type": "integer"
         },
         "token_keys": {
             "$id": "#auth/revoker/token_keys",
             "title": "Token keys",
-            "description": "The list with all the fields in your JWT payload that need watching. These fields establish the criteria to revoke accesses in the future.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
+            "description": "The list with all the claims in your JWT payload that need watching. These fields establish the criteria to revoke accesses in the future. The Revoker does not use this value, only the clients.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
             "type": "array",
             "examples": [
                 "jti"
@@ -104,6 +99,13 @@
             "examples": [
                 "639ee23f-f4c5-40c4-855c-912bf01fae87"
             ]
+        },
+        "revoke_server_max_retries": {
+            "$id": "#auth/revoker/revoke_server_max_retries",
+            "title": "Revoke Server Max Retries",
+            "description": "Maximum number of retries after a connection fails. When the value is less than zero it is changed automatically to zero.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/revoke-server/",
+            "type": "integer",
+            "default": 0
         }
     }
 }
