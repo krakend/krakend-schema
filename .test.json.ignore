@@ -27,11 +27,7 @@
     "expect_continue_timeout": "0s",
     "disable_rest": false,
     "allow_insecure_connections": false,
-    "ca_certs": [
-        "ca.pem"
-    ],
     "cache_ttl": "300s",
-    "disable_system_ca_pool": false,
     "idle_timeout": "10s",
     "read_header_timeout": "10s",
     "tls": {
@@ -49,6 +45,10 @@
         "prefer_server_cipher_suites": false,
         "cipher_suites": [
             4865
+        ],
+        "disable_system_ca_pool": false,
+        "ca_certs": [
+            "ca.pem"
         ]
     },
     "plugin": {
