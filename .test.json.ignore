@@ -818,7 +818,6 @@
                     "access_key_id": "dasdasdas",
                     "secret_access_key": "dadasdasd",
                     "region": "eu-west-1",
-                    "use_env": false,
                     "version": "latest",
                     "@extra_comment": "here"
                 },
