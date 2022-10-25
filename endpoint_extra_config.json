@@ -95,6 +95,25 @@
         "modifier/lua-endpoint": {
             "$ref": "modifier/lua.json"
         },
+        "modifier/jmespath": {
+            "title": " JMESPath: Response manipulation with query language",
+            "description": "The JMESPath query language allows you to select, slice, filter, map, project, flatten, sort, and all sorts of operations on data.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/jmespath/",
+            "type": "object",
+            "required": [
+                "expr"
+            ],
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[@$_#]": {}
+            },
+            "properties": {
+                "expr": {
+                    "title": "Expression",
+                    "description": "The JMESPath expression you want to apply to this endpoint.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/jmespath/",
+                    "type": "string"
+                }
+            }
+        },
         "validation/json-schema": {
             "title": "Validating the body with the JSON Schema",
             "description": "apply automatic validations using the JSON Schema vocabulary before the content passes to the backends. The json schema component allows you to define validation rules on the body, type definition, or even validate the fields' values.\n\nSee: https://www.krakend.io/docs/endpoints/json-schema/",
@@ -119,7 +138,17 @@
             },
             "properties": {
                 "roles": {
-                    "type": "array"
+                    "type": "array",
+                    "title": "",
+                    "description": "The list of roles allowed to access the endpoint. Values must match (case sensitive) definitions in the `keys` section at the service level of `auth/api-keys`. API Keys not having the right role, or unauthenticated requests, will receive a `401 Unauthorized`.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "client_max_rate": {
+                    "type": "number",
+                    "title": "Max rate",
+                    "description": "If you want to limit the endpoint usage to this specific user at a number of requests per second. Exceeding the number of requests per second will give the client a `429 Too Many Requests` HTTP status code.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/"
                 }
             }
         }

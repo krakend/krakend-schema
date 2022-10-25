@@ -13,7 +13,7 @@
     "properties": {
         "citydb_path": {
             "title": "CityDB path",
-            "description": "The path in the filesystem containing the database. Relative to the working dir or absolute path.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/geoip/",
+            "description": "The path in the filesystem containing the database in GeoIP2 Binary (`.mmdb`) format. Relative to the working dir or absolute path.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/geoip/",
             "type": "string",
             "examples":["path/to/GeoIP2-City.mmdb"]
         }
