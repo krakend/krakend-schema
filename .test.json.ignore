@@ -12,7 +12,7 @@
     ],
     "sequential_start": false,
     "timeout": "2s",
-    "output_encoding": "json",
+    "output_encoding": "fast-json",
     "read_timeout": "10s",
     "write_timeout": "10s",
     "dialer_timeout": "10s",

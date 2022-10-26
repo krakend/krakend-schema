@@ -57,6 +57,7 @@
             "enum": [
                 "json",
                 "json-collection",
+                "fast-json",
                 "xml",
                 "negotiate",
                 "string",
