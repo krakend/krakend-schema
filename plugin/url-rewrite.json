@@ -22,7 +22,7 @@
     "properties": {
         "literal": {
             "title": "Literal match",
-            "description": "A map with the exact desired url and its mapping to an endpoint. If the endpoint has {placeholders} you need to write them, but the literal value {placeholders} is passed.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/url-rewrite/",
+            "description": "A map with the exact desired url and its mapping to an endpoint. If the endpoint has `{placeholders}` you need to write them, but the literal value `{placeholders}` is passed.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/url-rewrite/",
             "type": "object",
             "examples": [
                 {
@@ -33,7 +33,7 @@
         },
         "regexp": {
             "title": "Regexp match",
-            "description": "A list of lists, containing the reglar expression that defines the URL to be rewritten, and its endpoint destination. You can use the capturing groups with the syntax ${1}, ${2}, etc.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/url-rewrite/",
+            "description": "A list of lists, containing the regular expression that defines the URL to be rewritten, and its endpoint destination. You can use the capturing groups with the syntax `${1}`, `${2}`, etc.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/url-rewrite/",
             "type": "array",
             "items": {
                 "type": "array"

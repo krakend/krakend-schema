@@ -15,8 +15,8 @@
             "type": "object"
         },
         "error": {
-            "title": "The error definition",
-            "description": "The error definition, containing body and status.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
+            "title": "Error definition",
+            "description": "In case the validation fails, the error definition containing body and status.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
             "type": "object",
             "examples": [
                 {
@@ -31,33 +31,17 @@
             "properties": {
                 "body": {
                     "title": "Error body",
-                    "description": "The error message you want to show when the validation fails. Set it to an empty string \"\" to show the JSON-schema validation error.",
+                    "description": "The error message you want to show when the validation fails. Set it to an empty string `\"\"` to show the JSON-schema validation error.",
                     "type": "string",
                     "default": ""
                 },
                 "status": {
                     "title": "Error code",
-                    "description": "The HTTP status code you want to set back in the response. Defaults to 500.",
+                    "description": "The HTTP status code you want to set back in the response.",
                     "type": "integer",
                     "default": 500
                 }
             }
-        },
-        "trusted_proxies": {
-            "title": "Trusted proxies",
-            "description": "A custom list of all the recognized machines/balancers that proxy the client to your application. This list is used to avoid spoofing when trying to get the real IP of the client.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
-            "type": "array",
-            "examples": [
-                [
-                    "10.0.0.0/16"
-                ]
-            ]
-        },
-        "allow": {
-            "title": "Allow or deny mode",
-            "description": "When true, only the matching IPs are able to access the content. When false, all matching IPs are discarded.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
-            "type": "boolean",
-            "default": false
         }
     }
 }
