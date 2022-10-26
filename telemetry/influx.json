@@ -17,8 +17,7 @@
             "$id": "#telemetry/influx/address",
             "title": "Address",
             "description": "The complete url of the influxdb including the port if different from defaults in http/https.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb-native/",
-            "type": "string",
-            "default": 1
+            "type": "string"
         },
         "ttl": {
             "$id": "#telemetry/influx/ttl",
@@ -29,14 +28,14 @@
         "buffer_size": {
             "$id": "#telemetry/influx/buffer_size",
             "title": "Points in buffer",
-            "description": "Use 0 to send events immediately or set the number of points that should be sent together.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb-native/",
+            "description": "How many points you want to store in a memory buffer before pushing them to InfluxDB. Use `0` to send events immediately or set the number of points that should be sent together.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb-native/",
             "type": "integer",
             "minimum": 0
         },
         "db": {
             "$id": "#telemetry/influx/db",
             "title": "DB name",
-            "description": "Name of the database, defaults to krakend.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb-native/",
+            "description": "Name of the InfluxDB database.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb-native/",
             "type": "string",
             "default": "krakend"
         },
@@ -44,15 +43,13 @@
             "$id": "#telemetry/influx/username",
             "title": "Username",
             "description": "Username to authenticate to InfluxDB.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb-native/",
-            "type": "string",
-            "default": "krakend"
+            "type": "string"
         },
         "password": {
             "$id": "#telemetry/influx/password",
             "title": "Password",
             "description": "Password to authenticate to InfluxDB.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb-native/",
-            "type": "string",
-            "default": "krakend"
+            "type": "string"
         }
     }
 }

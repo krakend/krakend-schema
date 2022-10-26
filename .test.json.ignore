@@ -26,6 +26,10 @@
     "response_header_timeout": "10s",
     "expect_continue_timeout": "0s",
     "disable_rest": false,
+    "allow_insecure_connections": false,
+    "cache_ttl": "300s",
+    "idle_timeout": "10s",
+    "read_header_timeout": "10s",
     "tls": {
         "public_key": "./cert.pem",
         "private_key": "./certs/key.pem",
@@ -41,6 +45,10 @@
         "prefer_server_cipher_suites": false,
         "cipher_suites": [
             4865
+        ],
+        "disable_system_ca_pool": false,
+        "ca_certs": [
+            "ca.pem"
         ]
     },
     "plugin": {
@@ -105,6 +113,15 @@
                 }
             ],
             "extra_config": {
+                "plugin/req-resp-modifier": {
+                    "content-replacer": {
+                        "key.a": {
+                            "find": "",
+                            "regexp": false,
+                            "replace": ""
+                        }
+                    }
+                },
                 "websocket": {
                     "input_headers": [
                         "Cookie",
@@ -163,6 +180,11 @@
                 }
             ],
             "extra_config": {
+                "auth/validator": {
+                    "@comment": "The validator can match 2 different schemas, with local path and with jwk_url",
+                    "jwk_local_path": "./jwk.txt",
+                    "alg": "EdDSA"
+                },
                 "auth/api-keys": {
                     "@comment": "here",
                     "roles": [
@@ -176,7 +198,14 @@
                         "foo",
                         "bar",
                         "baz"
-                    ]
+                    ],
+                    "audience": [
+                        "gold",
+                        "silver"
+                    ],
+                    "example": {
+                        "response": "ok"
+                    }
                 },
                 "validation/cel": [
                     {
@@ -186,7 +215,11 @@
                     {
                         "check_expr": "int(req_params.Id) % 2 == 0"
                     }
-                ]
+                ],
+                "modifier/jmespath": {
+                    "expr": "students[?age > `18` ].name"
+                }
+
             }
         },
         {
@@ -243,6 +276,56 @@
                                 "trusted_proxies": [
                                     "10.0.0.0/16"
                                 ]
+                            },
+                            "content-replacer": {
+                                "data.credit_card": {
+                                    "@comment": "Ridiculous card masking. Take 4 digits and remove the rest. Credit card is inside a data object.",
+                                    "find": "(^\\d{4})(.*)",
+                                    "replace": "${1}-XXXX",
+                                    "regexp": true
+                                },
+                                "message": {
+                                    "@comment": "Replace '6 items left' with '6' on the message field",
+                                    "find": " items left",
+                                    "replace": ""
+                                }
+                            },
+                            "response-schema-validator": {
+                                "schema": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "type": "object",
+                                    "properties": {
+                                        "user": {
+                                            "type": "object",
+                                            "properties": {
+                                                "username": {
+                                                    "type": "string"
+                                                },
+                                                "user_id": {
+                                                    "type": "number"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "registered",
+                                                        "banned"
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "username",
+                                                "user_id"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "user"
+                                    ]
+                                },
+                                "error": {
+                                    "body": "We couldn't process you request, try again later.",
+                                    "status": 401
+                                }
                             }
                         },
                         "plugin/http-client": {
@@ -464,6 +547,24 @@
                     "allowed_hosts": [
                         "ABC"
                     ],
+                    "browser_xss_filter": true,
+                    "content_security_policy": "default-src 'self';",
+                    "content_type_nosniff": true,
+                    "custom_frame_options_value": "ALLOW-FROM https://example.com",
+                    "frame_deny": true,
+                    "host_proxy_headers": [
+                        "X-Forwarded-Hosts"
+                    ],
+                    "hpkp_public_key": "pin-sha256=\"base64==\"; max-age=expireTime [; includeSubDomains][; report-uri=\"reportURI\"]",
+                    "is_development": true,
+                    "referrer_policy": "same-origin",
+                    "ssl_host": "ssl.host.domain",
+                    "ssl_proxy_headers": {
+                        "X-Forwarded-Proto": "https"
+                    },
+                    "ssl_redirect": true,
+                    "sts_include_subdomains": true,
+                    "sts_seconds": 300,
                     "@extra_comment": "here"
                 },
                 "security/bot-detector": {
@@ -475,7 +576,6 @@
                 "auth/validator": {
                     "alg": "EdDSA",
                     "jwk_url": "http://KEYCLOAK:8080/auth/realms/master/protocol/openid-connect/certs",
-                    "jwk_local_path": "./jwk.txt",
                     "secret_url": "awskms://keyID",
                     "cypher_key": "",
                     "cache": true,
@@ -502,7 +602,10 @@
                     ],
                     "jwk_local_ca": "./ca",
                     "propagate_claims": [
-                        ["sub", "x-user"]
+                        [
+                            "sub",
+                            "x-user"
+                        ]
                     ],
                     "key_identify_strategy": "kid",
                     "operation_debug": true,
@@ -538,7 +641,20 @@
         }
     ],
     "extra_config": {
+        "telemetry/newrelic": {
+            "license": "XXXX",
+            "debug": true
+        },
         "router": {
+            "error_body": {
+                "404": {
+                    "msg": "Unknown endpoint",
+                    "status": 404
+                },
+                "405": {
+                    "oh-my-god": "What on earth are you requesting?"
+                }
+            },
             "app_engine": false,
             "auto_options": false,
             "disable_handle_method_not_allowed": false,
@@ -556,6 +672,13 @@
             "remove_extra_slash": false,
             "return_error_msg": false,
             "trusted_proxies": [],
+            "@extra_comment": "here"
+        },
+        "qos/ratelimit/service": {
+            "client_max_rate": 10,
+            "key": "X-TOKEN",
+            "max_rate": 100,
+            "strategy": "header",
             "@extra_comment": "here"
         },
         "security/bot-detector": {
@@ -699,7 +822,6 @@
                     "access_key_id": "dasdasdas",
                     "secret_access_key": "dadasdasd",
                     "region": "eu-west-1",
-                    "use_env": false,
                     "version": "latest",
                     "@extra_comment": "here"
                 },
@@ -735,16 +857,6 @@
                     "reconnection": "2s",
                     "service_name": "krakend",
                     "@extra_comment": "here"
-                },
-                "extra_config": {
-                    "newrelic": {
-                        "service_name": "krakend-api-gateway",
-                        "api_key": "XXXX",
-                        "timeout": "15s",
-                        "spans_url": "https://trace-api.eu.newrelic.com/trace/v1",
-                        "metrics_url": "https://metric-api.eu.newrelic.com/metric/v1",
-                        "debug": false
-                    }
                 }
             }
         },
@@ -784,7 +896,11 @@
                 "jti"
             ],
             "TTL": 1500,
-            "@extra_comment": "here"
+            "@extra_comment": "here",
+            "revoke_server_ping_url": "http://localhost:8081/instances",
+            "revoke_server_ping_interval": "30s",
+            "revoke_server_api_key": "639ee23f-f4c5-40c4-855c-912bf01fae87",
+            "revoke_server_max_workers": 5
         },
         "documentation/openapi": {
             "description": "This is a sample server. You can find out more about at [http://blah](http://blah.blah.com)",
@@ -807,6 +923,8 @@
             ]
         },
         "auth/api-keys": {
+            "strategy": "header",
+            "identifier": "Authorization",
             "keys": [
                 {
                     "key": "4d2c61e1-34c4-e96c-9456-15bd983c5019",
@@ -868,7 +986,11 @@
             "static-filesystem": {
                 "prefix": "/media/assets",
                 "path": "./../../",
-                "@comment": "static om"
+                "@comment": "static om",
+                "skip": [
+                    "/media/ignore/this/directory",
+                    "/media/file.json"
+                ]
             },
             "basic-auth": {
                 "endpoints": [

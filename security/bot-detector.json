@@ -48,9 +48,8 @@
             "description": "Size of the LRU cache that helps speed the bot detection. The size is the mumber of users agents that you want to keep in memory.\n\nSee: https://www.krakend.io/docs/throttling/botdetector/",
             "type": "integer",
             "examples": [
-                100
-            ],
-            "default": 500
+                1000
+            ]
         }
     }
 }

@@ -16,9 +16,8 @@
         "url": {
             "$id": "#telemetry/ganalytics/url",
             "title": "Reporting URL",
-            "description": "The reporting URL where KrakenD sends the batches. Unless you need a custom backend endpoint, use https://www.google-analytics.com/batch.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/google-analytics/",
-            "type": "string",
-            "default": "https://www.google-analytics.com/batch"
+            "description": " The reporting URL where KrakenD sends the batches. Unless you need a custom backend endpoint, use `https://www.google-analytics.com/batch`.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/google-analytics/",
+            "type": "string"
         },
         "track_id": {
             "$id": "#telemetry/ganalytics/track_id",
@@ -30,8 +29,9 @@
         "workers": {
             "$id": "#telemetry/ganalytics/workers",
             "title": "Number of workers",
-            "description": "The number of internal workers that send the reports in batch. Defaults to 2.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/google-analytics/",
-            "type": "integer"
+            "description": "The number of internal workers that send the reports in batch.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/google-analytics/",
+            "type": "integer",
+            "default": 2
         },
         "buffer_size": {
             "$id": "#telemetry/ganalytics/buffer_size",
@@ -42,12 +42,15 @@
         "tags": {
             "$id": "#telemetry/ganalytics/tags",
             "title": "Tags",
-            "description": "The list of tags you want to include when sending reports. These tags are static.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/google-analytics/",
+            "description": "An object with key-values describing the tags you want to include when sending reports and their values. These tags are static.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/google-analytics/",
             "type": "object"
         },
         "timeout": {
             "$id": "#telemetry/ganalytics/timeout",
             "title": "Timeout",
+            "description": "The time you will wait for the internal buffer to be avaiable before discarding a report.",
+            "type": "string",
+            "default": "100ms",
             "$ref": "../timeunits.json#/$defs/timeunit"
         }
 

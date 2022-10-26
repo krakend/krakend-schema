@@ -17,10 +17,11 @@
     "properties": {
         "Host": {
             "title": "Redis host",
-            "description": "The URL to the Redis instance that stores the counters.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
+            "description": "The URL to the Redis instance that stores the counters using the format `host:port`.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
             "type": "string",
             "examples": [
-                "redis"
+                "redis",
+                "redis:6379"
             ]
         },
         "Tokenizer": {
@@ -53,8 +54,9 @@
             "type": "integer"
         },
         "Period": {
-            "title": "Burst",
-            "description": "How many requests a client can make above the rate specified during a peak.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
+            "title": "Period",
+            "description": "How many requests a client can make above the rate specified during a peak. Usually in seconds, minutes, or hours. E.g., use `120s` or `2m` for two minutes\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
+            "type": "string",
             "$ref": "../timeunits.json#/$defs/timeunit"
         }
     }
