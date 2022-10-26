@@ -71,6 +71,9 @@
             "type": "boolean"
         },
         "Tracer": {
+            "type": "object",
+            "title": "Tracer",
+            "description": "Tracer-specific configuration used by all tracers",
             "additionalProperties": false,
             "patternProperties": {
                 "^[@$_#]": {}
@@ -88,12 +91,12 @@
                 },
                 "Secrets": {
                     "title": "Secrets",
-                    "description": "A secrets matcher used to filter out sensitive data from HTTP requests, database connection strings, etc. By default tracer does not filter any values.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/instana/",
+                    "description": "A secrets matcher used to filter out sensitive data from HTTP requests, database connection strings, etc. By default tracer does not filter any values. [More info on secrets](https://www.instana.com/docs/setup_and_manage/host_agent/configuration/#secrets)\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/instana/",
                     "type": "object"
                 },
                 "CollectableHTTPHeaders": {
                     "title": "Collectable HTTP headers",
-                    "description": "Case-insensitive list of HTTP headers to be collected from HTTP requests and sent to the agent.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/instana/",
+                    "description": "Case-insensitive list of [HTTP headers to be collected](https://www.instana.com/docs/setup_and_manage/host_agent/configuration/#capture-custom-http-headers) from HTTP requests and sent to the agent.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/instana/",
                     "type": "array"
                 }
             }

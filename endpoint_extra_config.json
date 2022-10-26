@@ -12,7 +12,9 @@
             "$ref": "plugin/req-resp-modifier.json"
         },
         "qos/ratelimit/router": {
-            "$ref": "qos/ratelimit/router.json"
+            "$ref": "qos/ratelimit/router.json",
+            "title": "Router Rate-limiting",
+            "description": "The router rate limit feature allows you to set a number of maximum requests per second a KrakenD endpoint will accept.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/"
         },
         "proxy": {
             "$id": "#endpoint_extra_config/proxy",
@@ -95,6 +97,23 @@
         },
         "modifier/jmespath": {
             "$ref": "modifier/jmespath.json"
+            "title": " JMESPath: Response manipulation with query language",
+            "description": "The JMESPath query language allows you to select, slice, filter, map, project, flatten, sort, and all sorts of operations on data.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/jmespath/",
+            "type": "object",
+            "required": [
+                "expr"
+            ],
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[@$_#]": {}
+            },
+            "properties": {
+                "expr": {
+                    "title": "Expression",
+                    "description": "The JMESPath expression you want to apply to this endpoint.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/jmespath/",
+                    "type": "string"
+                }
+            }
         },
         "validation/json-schema": {
             "title": "Validating the body with the JSON Schema",
@@ -120,7 +139,17 @@
             },
             "properties": {
                 "roles": {
-                    "type": "array"
+                    "type": "array",
+                    "title": "",
+                    "description": "The list of roles allowed to access the endpoint. Values must match (case sensitive) definitions in the `keys` section at the service level of `auth/api-keys`. API Keys not having the right role, or unauthenticated requests, will receive a `401 Unauthorized`.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "client_max_rate": {
+                    "type": "number",
+                    "title": "Max rate",
+                    "description": "If you want to limit the endpoint usage to this specific user at a number of requests per second. Exceeding the number of requests per second will give the client a `429 Too Many Requests` HTTP status code.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/"
                 }
             }
         }

@@ -16,16 +16,14 @@
         "address": {
             "$id": "#telemetry/gelf/address",
             "title": "Address",
-            "description": "The address (including the port) of your Graylog cluster (or any other service that receives GELF inputs).\n\nSee: https://www.krakend.io/docs/logging/graylog-gelf/",
-            "type": "string",
-            "default": "myGraylogInstance:12201"
+            "description": "The address (including the port) of your Graylog cluster (or any other service that receives GELF inputs). E.g., `myGraylogInstance:12201`\n\nSee: https://www.krakend.io/docs/logging/graylog-gelf/",
+            "type": "string"
         },
         "enable_tcp": {
             "$id": "#telemetry/gelf/enable_tcp",
             "title": "Enable TCP",
-            "description": "Set to false (recommended) to use UDP, or true to use TCP. When using TCP performance might be affected.\n\nSee: https://www.krakend.io/docs/logging/graylog-gelf/",
-            "type": "boolean",
-            "default": false
+            "description": "Set to false (recommended) to use UDP, or true to use TCP. TCP performance is worst than UDP under heavy load.\n\nSee: https://www.krakend.io/docs/logging/graylog-gelf/",
+            "type": "boolean"
         }
     }
 }

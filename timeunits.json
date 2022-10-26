@@ -6,8 +6,8 @@
         "timeunit": {
             "type": "string",
             "pattern": "^[0-9]+(ns|ms|us|µs|s|m|h)$",
-            "title": "Time",
-            "description": "The amount of time you want to assign to this property followed by its unit (e.g.: `2s`, `200ms`,)"
+            "title": "Duration",
+            "description": "The amount of time you want to assign followed by its unit (e.g.: `2s`, `200ms`). Valid time units are: ns, us, (or µs), ms, s, m, h."
         }
     }
 }

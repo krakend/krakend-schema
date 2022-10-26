@@ -14,7 +14,7 @@
     "properties": {
         "endpoints": {
             "title": "Endpoints",
-            "description": "An array with all the endpoints protected with basic authentication. Use `*` for all endpoints. The endpoints values must match with the declaration of endpoints in your configuration, including any {placeholders} in the path.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/",
+            "description": "An array to restrict which endpoints are protected with basic authentication. The `endpoints` values must match with the declaration of endpoints in your configuration, including any `{placeholders}` in the path. Use `[\"*\"]` or delete this property to protect all endpoints.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/",
             "type": "array",
             "examples": [
                 ["*"],
@@ -23,7 +23,7 @@
         },
         "htpasswd_path": {
             "title": "Path to htpasswd file",
-            "description": "Absolute Path to the htpasswd filename (recommended) or relative ./ to the workdir (less secure).\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/",
+            "description": "Absolute Path to the `htpasswd` filename (recommended) or relative `./` to the workdir (less secure).\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/",
             "type": "string",
             "examples": [
                 "/path/to/.htpasswd"
@@ -31,7 +31,7 @@
         },
         "users": {
             "title": "Additional users",
-            "description": "Map with additional users to the htpasswd file can be declared directly inside the configuration. The content of both places will be merged (and will overwrite users already defined in the htpasswd file).\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/",
+            "description": "**Additional** users to the `htpasswd` file can be declared directly inside the configuration. The content of both places will be merged (and this list will overwrite users already defined in the htpasswd file).\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/",
             "type": "object",
             "examples": [{
                 "admin": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ...",

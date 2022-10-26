@@ -14,7 +14,7 @@
     "properties": {
         "prefix": {
             "title": "Prefix",
-            "description": "The beginning of all URLs that are resolved using this plugin. All matching URLs won’t be passed to the router. Make sure you are not overwriting valid endpoints.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
+            "description": "This is the beginning (prefix) of all URLs that are resolved using this plugin. All matching URLs won't be passed to the router, meaning that they are not considered endpoints. Make sure you are not overwriting valid endpoints. When the `prefix` is `/`, then **all traffic is served as static** and you must declare a prefix under `skip` (e.g.: `/api`) to match endpoints.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
             "type": "string",
             "examples": [
                 "/media/assets"
@@ -22,7 +22,7 @@
         },
         "path": {
             "title": "Path",
-            "description": "The path in the filesystem containing the static files. Relative to the working dir or absolute.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
+            "description": "The folder in the filesystem containing the static files. Relative to the working dir where KrakenD config is (e.g.: `./assets`) or absolute (e.g.: `/var/www/assets`).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
             "type": "string",
             "examples": [
                 "./static/"

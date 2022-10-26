@@ -13,7 +13,7 @@
     "properties": {
         "hosts": {
             "title": "Virtualhosts",
-            "description": "All recognized virtual hosts by KrakenD must be listed here. The values declared here must match the content of the Host header when passed by the client.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/virtual-hosts/",
+            "description": "All recognized virtual hosts by KrakenD must be listed here. The values declared here must match the content of the `Host` header when passed by the client.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/virtual-hosts/",
             "type": "array",
             "examples": [
                 [

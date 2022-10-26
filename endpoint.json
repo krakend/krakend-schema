@@ -25,9 +25,8 @@
         "endpoint": {
             "$id": "#endpoint/endpoint",
             "title": "Endpoint",
-            "description": "The resource URL you want to expose. Must start with a slash.\n\nSee: https://www.krakend.io/docs/endpoints/",
+            "description": "The exact string resource URL you want to expose. You can use `{placeholders}` to use variables when needed. URLs do not support colons `:` in their definition. Endpoints should start with slash `/`. Example: `/foo/{var}`.\n\nSee: https://www.krakend.io/docs/endpoints/",
             "type": "string",
-            "default": "/foo/{var}",
             "examples": [
                 "/new-endpoint",
                 "/foo/{var}",
@@ -52,7 +51,7 @@
         "output_encoding": {
             "$id": "#endpoint/output_encoding",
             "title": "Output encoding",
-            "description": "The gateway can work with several content types, even allowing your clients to choose how to consume the content.\n\nSee: https://www.krakend.io//docs/endpoints/content-types/",
+            "description": "The gateway can work with several content types, even allowing your clients to choose how to consume the content. See the [supported encodings](/docs/endpoints/content-types/)",
             "type": "string",
             "default": "json",
             "enum": [
@@ -84,7 +83,7 @@
         "input_headers": {
             "$id": "#endpoint/input_headers",
             "title": "Allowed Headers In",
-            "description": "Defines the list of all headers allowed to reach the backend when passed.\nBy default, KrakenD won't pass any header from the client to the backend.\n\nSee: https://www.krakend.io/docs/endpoints/parameter-forwarding/",
+            "description": "Defines the list of all headers allowed to reach the backend when passed.\nBy default, KrakenD won't pass any header from the client to the backend. See [headers forwarding](/docs/endpoints/parameter-forwarding/#headers-forwarding)",
             "type": "array",
             "uniqueItems": true,
             "default": [],
@@ -110,21 +109,25 @@
         "timeout": {
             "$id": "#endpoint/timeout",
             "title": "Timeout",
-            "description": "\n\nSee: https://www.krakend.io/docs/endpoints/",
+            "description": "The duration you write in the timeout represents the **whole duration of the pipe**, so it counts the time all your backends take to respond and the processing of all the components involved in the endpoint (the request, fetching data, manipulation, etc.). Usually specified in seconds (`s`) or milliseconds (`ms`. e.g.: `2000ms` or `2s`). If you don't set any timeout, the timeout is taken from the entry in the service level, or to the system's default",
             "type": "string",
             "$ref": "timeunits.json#/$defs/timeunit",
             "examples": [
                 "2s",
                 "1500ms"
-            ]
+            ],
+            "default": "2s"
         },
         "cache_ttl": {
             "$id": "#endpoint/cache_ttl",
             "title": "Cache TTL",
+            "description": "Sets or overrides the cache headers to inform for how long the client or CDN can cache the request to this endpoint. Related: [caching backend responses](/docs/backends/caching/).",
             "$ref": "timeunits.json#/$defs/timeunit"
         },
         "backend": {
             "type": "array",
+            "title": "Backend",
+            "description": "List of all the [backend objects](/docs/backends/) queried for this endpoint",
             "items": {
                 "type": "object",
                 "$ref": "backend.json"
@@ -132,6 +135,8 @@
         },
         "extra_config": {
             "type": "object",
+            "title": "Extra configuration",
+            "description": "Configuration entries for additional components that are executed within this endpoint, during the request, response or merge operations.",
             "$ref": "endpoint_extra_config.json"
         }
 

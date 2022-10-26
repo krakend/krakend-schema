@@ -15,18 +15,16 @@
         "strategy": {
             "$id": "#auth/api-keys/strategy",
             "title": "Strategy",
-            "description": "Strategy to identify the API key.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+            "description": "One of header or query_string. Specifies where to expect the user API key, whether inside a header or as part of the query string. Defaults to header.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
             "type": "string",
-            "enum": [
-                "header",
-                "query_string"
-            ]
+            "enum": ["header","query_string"]
         },
         "identifier": {
             "$id": "#auth/api-keys/identifier",
             "title": "Identifier",
-            "description": "The header name or the query string name containing the API key.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
-            "type": "string"
+            "description": "The header name or the query string name that contains the API key. Defaults to `key` when using the `query_string` strategy and to Authorization when using `header`.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+            "type": "string",
+            "examples": ["Authorization"]
         },
         "keys": {
             "$id": "#auth/api-keys/keys",
@@ -42,7 +40,7 @@
                 "properties": {
                     "key": {
                         "title": "API Key",
-                        "description": "The secret key used by the client to access the resources. Don't have a key? Execute in the terminal `uuidgen`\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+                        "description": "The secret key used by the client to access the resources. Don't have a key? Execute in a terminal `uuidgen` to generate a random one.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
                         "type": "string"
                     },
                     "roles": {

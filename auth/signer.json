@@ -18,9 +18,8 @@
         "alg": {
             "$id": "#auth/signer/alg",
             "title": "Algorithm",
-            "description": "The hashing algorithm used by the token issuer.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+            "description": "The hashing algorithm used by the issuer. Usually `RS256`. The algorithm you choose directly affects the CPU consumption.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
             "type": "string",
-            "default": "RS256",
             "enum": [
                 "EdDSA",
                 "HS256",
@@ -55,7 +54,7 @@
         "kid": {
             "$id": "#auth/signer/kid",
             "title": "Kid",
-            "description": "The key ID purpose is to match a specific key, as the jwk_url might contain several keys\n\nSee: https://www.krakend.io/docs/enterprise/authorization/jwt-validation/",
+            "description": "The key ID purpose is to match a specific key, as the jwk_url might contain several keys.\n\nSee: https://www.krakend.io/docs/enterprise/authorization/jwt-validation/",
             "type": "string",
             "examples": [
                 "sim2"
@@ -64,7 +63,7 @@
         "keys_to_sign": {
             "$id": "#auth/signer/keys_to_sign",
             "title": "Keys to sign",
-            "description": "List of all the specific keys that need signing (e.g., refresh_token and access_token).\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
+            "description": "List of all the specific keys that need signing (e.g., `refresh_token` and `access_token`).\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
             "type": "array",
             "examples": [
                 "access_token",
@@ -74,8 +73,9 @@
         "full": {
             "$id": "#auth/signer/full",
             "title": "Full format",
-            "description": "Use JSON format instead of the compact form JWT is giving.\n\nSee: https://www.krakend.io/docs/enterprise/authorization/jwt-validation/",
-            "type": "boolean"
+            "description": "Use JSON format instead of the compact form JWT provides.\n\nSee: https://www.krakend.io/docs/enterprise/authorization/jwt-validation/",
+            "type": "boolean",
+            "default": false
         },
         "disable_jwk_security": {
             "$id": "#auth/signer/disable_jwk_security",
@@ -87,6 +87,7 @@
         "cipher_suites": {
             "$id": "#auth/signer/cipher_suites",
             "title": "Cipher suites",
+            "description": "Override the default cipher suites (see [JWT validation](/docs/authorization/jwt-validation/)). Unless you have a legacy JWK, **you don't need to set this value**.",
             "type": "array",
             "default": [
                 49199,

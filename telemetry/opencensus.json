@@ -15,7 +15,7 @@
         "sample_rate": {
             "$id": "#telemetry/opencensus/sample_rate",
             "title": "Sample rate",
-            "description": "A number between 0 (no requests at all) and 100 (all requests) representing the percentage of sampled requests you want to send to the exporter.\n\nSee: https://www.krakend.io/docs/telemetry/opencensus/",
+            "description": "A number between 0 (no requests at all) and 100 (all requests) representing the percentage of sampled requests you want to send to the exporter. If you are processing a huge amount of traffic you might want to sample only a part of what's going on.\n\nSee: https://www.krakend.io/docs/telemetry/opencensus/",
             "type": "integer",
             "minimum": 0,
             "maximum": 100,
@@ -25,35 +25,40 @@
             "$id": "#telemetry/opencensus/reporting_period",
             "title": "Reporting period",
             "description": "The number of seconds passing between reports\n\nSee: https://www.krakend.io/docs/telemetry/opencensus/",
-            "type": "integer",
-            "default": 1
+            "type": "integer"
         },
         "enabled_layers": {
             "additionalProperties": false,
             "patternProperties": {
                 "^[@$_#]": {}
             },
+            "title": "Enabled Layers",
+            "description": "Lets you specify what data you want to export. All layers are enabled by default: ",
             "properties": {
                 "backend": {
                     "title": "Report backend",
                     "description": "Reports the activity between KrakenD and your services",
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": true
                 },
                 "router": {
                     "title": "Report router",
                     "description": "Reports the activity between end-users and KrakenD",
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": true
                 },
                 "pipe": {
                     "title": "Report pipe",
-                    "description": "Reports the activity at the beginning of the proxy layer. It gives a more detailed view of the internals of the pipe between end-users and KrakenD.",
-                    "type": "boolean"
+                    "description": "Reports the activity at the beginning of the proxy layer. It gives a more detailed view of the internals of the pipe between end-users and KrakenD, having into account merging of different backends.",
+                    "type": "boolean",
+                    "default": true
                 }
             }
         },
         "exporters": {
             "$id": "#telemetry/opencensus/exporters",
             "title": "Exporters",
+            "description": "The exporter(s) you would like to enable. See each exporter configuration in its own section.",
             "type": "object",
             "minProperties": 1,
             "additionalProperties": false,
@@ -74,12 +79,14 @@
                         "stats": {
                             "title": "Stats",
                             "description": "Whether to log the statistics or not",
-                            "type": "boolean"
+                            "type": "boolean",
+                            "default": false
                         },
                         "spans": {
                             "title": "Spans",
                             "description": "Whether to log the spans or not",
-                            "type": "boolean"
+                            "type": "boolean",
+                            "default": false
                         }
                     }
                 },
@@ -99,9 +106,8 @@
                         "collector_url": {
                             "$id": "#telemetry/opencensus/exporters/zipkin/collector_url",
                             "title": "Collector URL",
-                            "description": "The URL (including port and path) where your Zipkin is accepting the spans\n\nSee: https://www.krakend.io/docs/telemetry/zipkin/",
+                            "description": "The URL (including port and path) where your Zipkin is accepting the spans, e.g., `http://zipkin:9411/api/v2/spans`\n\nSee: https://www.krakend.io/docs/telemetry/zipkin/",
                             "type": "string",
-                            "default": "http://zipkin:9411/api/v2/spans",
                             "examples": [
                                 "http://192.168.99.100:9411/api/v2/spans"
                             ]
@@ -111,7 +117,6 @@
                             "title": "Service name",
                             "description": "The service name registered in Zipkin.\n\nSee: https://www.krakend.io/docs/telemetry/zipkin/",
                             "type": "string",
-                            "default": "krakend",
                             "examples": [
                                 "krakend"
                             ]
@@ -134,9 +139,8 @@
                         "endpoint": {
                             "$id": "#telemetry/opencensus/exporters/jaeger/endpoint",
                             "title": "Endpoint",
-                            "description": "The URL (including port) where your Jaeger is\n\nSee: https://www.krakend.io/docs/telemetry/jaeger/",
+                            "description": "The full URL including port indicating where your Jaeger is, e.g., `http://jaeger:14268/api/traces`\n\nSee: https://www.krakend.io/docs/telemetry/jaeger/",
                             "type": "string",
-                            "default": "http://jaeger:14268/api/traces",
                             "examples": [
                                 "http://192.168.99.100:14268/api/traces"
                             ]
@@ -146,7 +150,6 @@
                             "title": "Service name",
                             "description": "The service name registered in Jaeger\n\nSee: https://www.krakend.io/docs/telemetry/jaeger/",
                             "type": "string",
-                            "default": "krakend",
                             "examples": [
                                 "krakend"
                             ]
@@ -178,7 +181,6 @@
                             "title": "Address",
                             "description": "The URL (including port) where your InfluxDB is installed.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
                             "type": "string",
-                            "default": "http://influxdb:8086",
                             "examples": [
                                 "http://192.168.99.100:8086"
                             ]
@@ -188,7 +190,6 @@
                             "title": "DB name",
                             "description": "The database name\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
                             "type": "string",
-                            "default": "krakend",
                             "examples": [
                                 "krakend"
                             ]
@@ -196,19 +197,18 @@
                         "timeout": {
                             "$id": "#telemetry/opencensus/exporters/influxdb/timeout",
                             "title": "Timeout",
-                            "description": "\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
-                            "default": "1s",
+                            "description": "The maximum time you will wait for InfluxDB to respond.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
                             "examples": [
                                 "2s"
                             ],
-                            "$ref": "../timeunits.json#/$defs/timeunit"
+                            "$ref": "../timeunits.json#/$defs/timeunit",
+                            "type": "string"
                         },
                         "username": {
                             "$id": "#telemetry/opencensus/exporters/influxdb/username",
                             "title": "Username",
                             "description": "The influxdb username to access the database\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
                             "type": "string",
-                            "default": "krakend",
                             "examples": [
                                 "krakend"
                             ]
@@ -218,7 +218,6 @@
                             "title": "Password",
                             "description": "The password to access the database\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
                             "type": "string",
-                            "default": "kr4k3nd",
                             "examples": [
                                 "kr4k3nd"
                             ]
@@ -245,29 +244,27 @@
                             "type": "integer",
                             "examples": [
                                 9091
-                            ],
-                            "default": 9091
+                            ]
                         },
                         "namespace": {
                             "$id": "#telemetry/opencensus/exporters/prometheus/namespace",
                             "title": "Namespace",
                             "description": "Sets the domain the metric belongs to.\n\nSee: https://www.krakend.io/docs/telemetry/prometheus/",
-                            "type": "string",
-                            "default": "krakend"
+                            "type": "string"
                         },
                         "tag_host": {
                             "$id": "#telemetry/opencensus/exporters/prometheus/tag_host",
                             "title": "Tag host",
                             "description": "Whether to send the host as a metric or not.\n\nSee: https://www.krakend.io/docs/telemetry/prometheus/",
                             "type": "boolean",
-                            "default": true
+                            "default": false
                         },
                         "tag_path": {
                             "$id": "#telemetry/opencensus/exporters/prometheus/tag_path",
                             "title": "Tag path",
                             "description": "Whether to send the path as a metric or not.\n\nSee: https://www.krakend.io/docs/telemetry/prometheus/",
                             "type": "boolean",
-                            "default": true
+                            "default": false
                         },
                         "tag_method": {
                             "$id": "#telemetry/opencensus/exporters/prometheus/tag_method",
@@ -281,18 +278,35 @@
                             "title": "Tag status code",
                             "description": "Whether to send the status code as a metric or not.\n\nSee: https://www.krakend.io/docs/telemetry/prometheus/",
                             "type": "boolean",
-                            "default": true
+                            "default": false
                         }
                     }
                 },
                 "xray": {
                     "$id": "#telemetry/opencensus/exporters/xray",
                     "title": "AWS X-ray",
-                    "description": "AWS X-Ray is a service offered by Amazon that provides an end-to-end view of requests as they travel through your application, and shows a map of your application’s underlying components.",
+                    "description": "AWS X-Ray is a service offered by Amazon that provides an end-to-end view of requests as they travel through your application, and shows a map of your application's underlying components.",
                     "type": "object",
                     "required": [
                         "region",
                         "version"
+                    ],
+                    "oneOf": [
+                        {
+                            "required": [
+                                "region",
+                                "version",
+                                "access_key_id",
+                                "secret_access_key"
+                            ]
+                        },
+                        {
+                            "required": [
+                                "region",
+                                "version",
+                                "use_env"
+                            ]
+                        }
                     ],
                     "additionalProperties": false,
                     "patternProperties": {
@@ -302,9 +316,8 @@
                         "region": {
                             "$id": "#telemetry/opencensus/exporters/xray/region",
                             "title": "Region",
-                            "description": "The AWS geographical region.\n\nSee: https://www.krakend.io/docs/telemetry/xray/",
+                            "description": "The AWS geographical region, e.g, `us-east-1`.\n\nSee: https://www.krakend.io/docs/telemetry/xray/",
                             "type": "string",
-                            "default": "us-east-1",
                             "examples": [
                                 "eu-west-1"
                             ]
@@ -314,7 +327,7 @@
                             "title": "Version",
                             "description": "The version of the AWS X-Ray service to use.\n\nSee: https://www.krakend.io/docs/telemetry/xray/",
                             "type": "string",
-                            "default": "latest"
+                            "default": "KrakenD-opencensus"
                         },
                         "use_env": {
                             "$id": "#telemetry/opencensus/exporters/xray/use_env",
@@ -325,14 +338,14 @@
                         },
                         "access_key_id": {
                             "$id": "#telemetry/opencensus/exporters/xray/access_key_id",
-                            "description": " Your access key ID provided by Amazon. Needed when use_env is unset or set to false.\n\nSee: https://www.krakend.io/docs/telemetry/xray/",
+                            "description": " Your access key ID provided by Amazon. Needed when `use_env` is unset or set to false.\n\nSee: https://www.krakend.io/docs/telemetry/xray/",
                             "title": "AWS access key id",
                             "type": "string"
                         },
                         "secret_access_key": {
                             "$id": "#telemetry/opencensus/exporters/xray/secret_access_key",
                             "title": "AWS secret access key",
-                            "description": "Your secret access key provided by Amazon. Needed when use_env is unset or set to false.\n\nSee: https://www.krakend.io",
+                            "description": "Your secret access key provided by Amazon. Needed when `use_env` is unset or set to false.\n\nSee: https://www.krakend.io",
                             "type": "string"
                         }
                     }
@@ -353,7 +366,7 @@
                         "project_id": {
                             "$id": "#telemetry/opencensus/exporters/stackdriver/project_id",
                             "title": "Project_id",
-                            "description": "The identifier of your Google Cloud project.\n\nSee: https://www.krakend.io/docs/telemetry/stackdriver/",
+                            "description": "The identifier of your Google Cloud project. The `project_id` **is not the project name**. You can omit this value from the configuration if you have an application credential file for Google.\n\nSee: https://www.krakend.io/docs/telemetry/stackdriver/",
                             "type": "string",
                             "default": "",
                             "examples": [
@@ -361,12 +374,11 @@
                             ],
                             "pattern": "^.*$"
                         },
-                        "metrics_prefix": {
-                            "$id": "#telemetry/opencensus/exporters/stackdriver/metrics_prefix",
-                            "title": "Metrics_prefix",
+                        "metric_prefix": {
+                            "$id": "#telemetry/opencensus/exporters/stackdriver/metric_prefix",
+                            "title": "Metric_prefix",
                             "description": "A prefix that you can add to all your metrics for better organization.\n\nSee: https://www.krakend.io/docs/telemetry/stackdriver/",
-                            "type": "string",
-                            "default": "krakend"
+                            "type": "string"
                         },
                         "default_labels": {
                             "$id": "#telemetry/opencensus/exporters/stackdriver/default_labels",
@@ -404,8 +416,7 @@
                             "$id": "#telemetry/opencensus/exporters/datadog/namespace",
                             "title": "Namespace",
                             "description": "The namespace to which metric keys are appended.\n\nSee: https://www.krakend.io/docs/telemetry/datadog/",
-                            "type": "string",
-                            "default": "krakend"
+                            "type": "string"
                         },
                         "service": {
                             "$id": "#telemetry/opencensus/exporters/datadog/service",
@@ -419,27 +430,25 @@
                         "trace_address": {
                             "$id": "#telemetry/opencensus/exporters/datadog/trace_address",
                             "title": "Trace address",
-                            "description": "Specifies the host[:port] address of the Datadog Trace Agent. It defaults to localhost:8126.\n\nSee: https://www.krakend.io/docs/telemetry/datadog/",
+                            "description": "Specifies the host[:port] address of the Datadog Trace Agent.\n\nSee: https://www.krakend.io/docs/telemetry/datadog/",
                             "type": "string",
                             "default": "localhost:8126"
                         },
                         "stats_address": {
                             "$id": "#telemetry/opencensus/exporters/datadog/stats_address",
                             "title": "Stats address",
-                            "description": "Specifies the host[:port] address for DogStatsD. It defaults to localhost:8125. To enable ingestion using Unix Domain Socket (UDS) mount your UDS path and reference it in the stats_address using a path like unix:///var/run/datadog/dsd.socket.\n\nSee: https://www.krakend.io/docs/telemetry/datadog/",
+                            "description": "Specifies the host[:port] address for DogStatsD. To enable ingestion using Unix Domain Socket (UDS) mount your UDS path and reference it in the stats_address using a path like `unix:///var/run/datadog/dsd.socket`.\n\nSee: https://www.krakend.io/docs/telemetry/datadog/",
                             "type": "string",
-                            "default": "",
                             "examples": [
                                 "localhost:8125"
                             ],
-                            "pattern": "^.*$"
+                            "default": "localhost:8125"
                         },
                         "tags": {
                             "$id": "#telemetry/opencensus/exporters/datadog/tags",
                             "description": "Specifies a set of global tags to attach to each metric.\n\nSee: https://www.krakend.io/docs/telemetry/datadog/",
                             "title": "Tags",
-                            "type": "array",
-                            "default": []
+                            "type": "array"
                         },
                         "global_tags": {
                             "$id": "#telemetry/opencensus/exporters/datadog/global_tags",
@@ -456,7 +465,8 @@
                             "$id": "#telemetry/opencensus/exporters/datadog/disable_count_per_buckets",
                             "title": "Disable count per buckets",
                             "description": "Specifies whether to emit count_per_bucket metrics.\n\nSee: https://www.krakend.io/docs/telemetry/datadog/",
-                            "type": "boolean"
+                            "type": "boolean",
+                            "default": false
                         }
                     }
                 },
@@ -490,15 +500,15 @@
                         "service_name": {
                             "$id": "#telemetry/opencensus/exporters/ocagent/service_name",
                             "title": "Service name",
-                            "description": "An identifier of your service.\n\nSee: https://www.krakend.io/docs/telemetry/ocagent/",
-                            "type": "string",
-                            "default": "krakend"
+                            "description": "An identifier of your service, e.g, `krakend`.\n\nSee: https://www.krakend.io/docs/telemetry/ocagent/",
+                            "type": "string"
                         },
                         "reconnection": {
                             "$id": "#telemetry/opencensus/exporters/ocagent/reconnection",
                             "title": "Reconnection",
                             "description": "The reconnection time\n\nSee: https://www.krakend.io/docs/telemetry/ocagent/",
                             "default": "2s",
+                            "type": "string",
                             "$ref": "../timeunits.json#/$defs/timeunit"
                         },
                         "insecure": {
@@ -506,7 +516,7 @@
                             "title": "Insecure",
                             "description": "Whether the connection can be established in plain (insecure) or not.\n\nSee: https://www.krakend.io/docs/telemetry/ocagent/",
                             "type": "boolean",
-                            "default": true
+                            "default": false
                         },
                         "enable_compression": {
                             "$id": "#telemetry/opencensus/exporters/ocagent/enable_compression",
@@ -518,82 +528,13 @@
                         "headers": {
                             "$id": "#telemetry/opencensus/exporters/ocagent/headers",
                             "title": "Headers",
-                            "description": "List of keys and values for the headers sent:\n\nSee: https://www.krakend.io/docs/telemetry/ocagent/",
+                            "description": "List of keys and values for the headers sent. Keys and values must be of type string.\n\nSee: https://www.krakend.io/docs/telemetry/ocagent/",
                             "type": "object",
                             "examples": [
                                 {
                                     "header1": "value1"
                                 }
                             ]
-                        }
-                    }
-                },
-                "extra_config": {
-                    "title": "Additional Opencensus extra configuration",
-                    "description": "Exporting metrics, logs, and events to the OpenCensus Agent.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/newrelic/",
-                    "additionalProperties": false,
-                    "patternProperties": {
-                        "^[@$_#]": {}
-                    },
-                    "properties": {
-                        "newrelic": {
-                            "$id": "#telemetry/opencensus/exporters/newrelic",
-                            "title": "Ocagent",
-                            "description": "Exporting metrics, logs, and events to the OpenCensus Agent.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/newrelic/",
-                            "type": "object",
-                            "required": [
-                                "service_name",
-                                "api_key",
-                                "timeout"
-                            ],
-                            "additionalProperties": false,
-                            "patternProperties": {
-                                "^[@$_#]": {}
-                            },
-                            "properties": {
-                                "service_name": {
-                                    "$id": "#telemetry/opencensus/exporters/newrelic/service_name",
-                                    "title": "Service name",
-                                    "description": "An identifier of your service.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/newrelic/",
-                                    "type": "string",
-                                    "default": "KrakenD"
-                                },
-                                "api_key": {
-                                    "$id": "#telemetry/opencensus/exporters/newrelic/api_key",
-                                    "title": "API Key",
-                                    "description": "The API key provided by New Relic to push data into your account.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/newrelic/",
-                                    "type": "string",
-                                    "default": "XXXXX"
-                                },
-                                "timeout": {
-                                    "$id": "#telemetry/opencensus/exporters/newrelic/timeout",
-                                    "title": "Timeout",
-                                    "description": "he maximum time KrakenD will wait before canceling a report batch to New Relic when not responding. Defaults to `15s`\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/newrelic/",
-                                    "default": "15s",
-                                    "$ref": "../timeunits.json#/$defs/timeunit"
-                                },
-                                "spans_url": {
-                                    "$id": "#telemetry/opencensus/exporters/newrelic/spans_url",
-                                    "title": "Traces URL",
-                                    "description": "New Relic might use different endpoints to report traces from its customers depending on the location of their accounts. When this field is not declared, the `spans_url` defaults to `https://trace-api.newrelic.com/trace/v1` (US accounts).\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/newrelic/",
-                                    "type": "string",
-                                    "default": "https://trace-api.eu.newrelic.com/trace/v1"
-                                },
-                                "metrics_url": {
-                                    "$id": "#telemetry/opencensus/exporters/newrelic/metrics_url",
-                                    "title": "Metrics URL",
-                                    "description": "New Relic might use different endpoints to report metrics from its customers depending on the location of their accounts. When this field is not declared, the `metrics_url` defaults to  `https://metric-api.newrelic.com/metric/v1` (US accounts).\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/newrelic/",
-                                    "type": "string",
-                                    "default": "https://metric-api.eu.newrelic.com/metric/v1"
-                                },
-                                "debug": {
-                                    "$id": "#telemetry/opencensus/exporters/newrelic/insecure",
-                                    "title": "Debug enabled",
-                                    "description": "Set to `true` when setting New Relic for the first time, and you want to see the logs of the exporter activity.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/newrelic/",
-                                    "type": "boolean",
-                                    "default": false
-                                }
-                            }
                         }
                     }
                 }
