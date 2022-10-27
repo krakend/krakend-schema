@@ -20,6 +20,10 @@
             "$id": "#endpoint_extra_config/proxy",
             "title": "Proxy",
             "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[@$_#]": {}
+            },
             "properties": {
                 "combiner": {
                     "$id": "#endpoint_extra_config/proxy/combiner",
@@ -71,6 +75,13 @@
                             ]
                         }
                     }
+                },
+                "flatmap_filter": {
+                    "$id": "#proxy/flatmap_filter",
+                    "title": "Flatmap (Array manipulation)",
+                    "description": "The list of operations to **execute sequentially** (top down). Every operation is defined with an object containing two properties:\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
+                    "type": "array",
+                    "$ref": "proxy/flatmap.json"
                 }
             }
         },

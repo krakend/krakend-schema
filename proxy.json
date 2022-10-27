@@ -18,49 +18,9 @@
         "flatmap_filter": {
             "$id": "#proxy/flatmap_filter",
             "title": "Flatmap (Array manipulation)",
-            "description": "Allows you to manipulate collections (or arrays, or lists).\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
+            "description": "The list of operations to **execute sequentially** (top down). Every operation is defined with an object containing two properties:\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
             "type": "array",
-            "default": [],
-            "examples": [
-                {
-                    "type": "move",
-                    "args": [
-                        "a.*.b1.*.c",
-                        "a.*.b1.*.d"
-                    ]
-                }
-            ],
-            "items": {
-                "$id": "#proxy/flatmap_filter/items",
-                "title": "Flatmap operation",
-                "type": "object",
-                "required": [
-                    "type",
-                    "args"
-                ],
-                "additionalProperties": false,
-                "patternProperties": {
-                    "^[@$_#]": {}
-                },
-                "properties": {
-                    "type": {
-                        "title": "Type",
-                        "description": "The types of operations are defined as follows.\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
-                        "type": "string",
-                        "enum": [
-                            "move",
-                            "del",
-                            "append"
-                        ]
-                    },
-                    "args": {
-                        "title": "Args",
-                        "description": "The arguments passed to the operation.\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
-                        "type": "array",
-                        "default": []
-                    }
-                }
-            }
+            "$ref": "proxy/flatmap.json"
         }
     }
 }

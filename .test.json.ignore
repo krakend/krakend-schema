@@ -541,6 +541,24 @@
                         "strategy": "always",
                         "@extra_comment": "here"
                     },
+                    "flatmap_filter": [
+                        {
+                            "type": "move",
+                            "args": [
+                                "collection",
+                                "coins"
+                            ]
+                        },
+                        {
+                            "type": "del",
+                            "args": [
+                                "coins.*.ath_change_percentage",
+                                "coins.*.ath_date",
+                                "coins.*.atl",
+                                "coins.*.atl_change_percentage"
+                            ]
+                        }
+                    ],
                     "@extra_comment": "here"
                 },
                 "security/http": {
