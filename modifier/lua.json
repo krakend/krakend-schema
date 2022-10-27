@@ -12,11 +12,8 @@
     "properties": {
         "sources": {
             "title": "Sources",
-            "description": "An array with all the Lua files that will be processed.\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
-            "type": "array",
-            "default": [
-                "file1.lua"
-            ]
+            "description": "An array with all the Lua files that will be processed. If no path is provided (e.g., `myfile.lua`) the file loads from the working directory (same place you loaded the configuration, usually `/etc/krakend`)\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
+            "type": "array"
         },
         "md5": {
             "title": "MD5 Checksum",
@@ -36,7 +33,7 @@
         },
         "live": {
             "title": "Live reload",
-            "description": "For security and efficiency, the Lua script is loaded once into memory and not reloaded even if the file contents change. Set this flag to `true` if you want to modify the Lua script while KrakenD is running and apply the changes (mostly during development to avoid the snippet being cached).\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
+            "description": "For security and efficiency, the Lua script is loaded once into memory and not reloaded even if the file contents change. Set this flag to `true` if you want to modify the Lua script while KrakenD is running and apply the changes live (mostly during development to avoid the snippet being cached).\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
             "type": "boolean",
             "default": false
         },

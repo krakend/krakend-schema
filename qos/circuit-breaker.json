@@ -18,8 +18,7 @@
             "$id": "#qos/circuit-breaker/interval",
             "title": "Interval",
             "description": "Time window where the errors count, in seconds.\n\nSee: https://www.krakend.io/docs/backends/circuit-breaker/",
-            "type": "integer",
-            "default": 60
+            "type": "integer"
         },
         "name": {
             "$id": "#qos/circuit-breaker/name",
@@ -34,22 +33,20 @@
             "$id": "#qos/circuit-breaker/timeout",
             "title": "Timeout",
             "description": "For how many seconds the circuit breaker will wait before testing again if the backend is healthy.\n\nSee: https://www.krakend.io/docs/backends/circuit-breaker/",
-            "type": "integer",
-            "default": 10
+            "type": "integer"
         },
         "max_errors": {
             "$id": "#qos/circuit-breaker/max_errors",
             "title": "Max Errors",
-            "description": "\n\nSee: https://www.krakend.io/docs/backends/circuit-breaker/",
-            "type": "integer",
-            "default": 10
+            "description": "The consecutive number of errors within the `interval` window to consider the backend unhealthy. An error is any response without a success (20x) status code or no response.\n\nSee: https://www.krakend.io/docs/backends/circuit-breaker/",
+            "type": "integer"
         },
         "log_status_change": {
             "$id": "#qos/circuit-breaker/log_status_change",
             "title": "Log status change",
             "description": "Whether to log the changes of state of this circuit breaker or not.\n\nSee: https://www.krakend.io/docs/backends/circuit-breaker/",
             "type": "boolean",
-            "default": true
+            "default": false
         }
     }
 }
