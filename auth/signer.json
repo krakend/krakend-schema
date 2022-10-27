@@ -68,6 +68,26 @@
                 "./jwk.txt"
             ]
         },
+        "secret_url": {
+            "$id": "#auth/validator/secret_url",
+            "title": "Secret's URL",
+            "description": "An URL with a custom scheme using one of the supported providers (e.g.: `awskms://keyID`) ([see providers](/docs/authorization/jwt-validation/#accepted-providers-for-encrypting-payloads)).\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+            "type": "string",
+            "pattern": "(base64key|awskms|azurekeyvault|gcpkms|hashivault)://(.*)",
+            "examples": [
+                "base64key://smGbjm71Nxd1Ig5FS0wj9SlbzAIrnolCz9bQQ6uAhl4=",
+                "awskms://keyID",
+                "azurekeyvault://keyID",
+                "gcpkms://projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEY_RING]/cryptoKeys/[KEY]",
+                "hashivault://keyID"
+            ]
+        },
+        "cypher_key": {
+            "$id": "#auth/validator/cypher_key",
+            "title": "Cypher key",
+            "description": "The cyphering key.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+            "type": "string"
+        },
         "jwk_local_ca": {
             "$id": "#auth/signer/jwk_local_ca",
             "title": "Local CA",

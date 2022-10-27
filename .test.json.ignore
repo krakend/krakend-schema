@@ -643,11 +643,13 @@
                     "full": false,
                     "jwk_fingerprints": [],
                     "jwk_local_ca": "",
-                    "jwk_url": "http://your-backend/jwk/symmetric.json",
                     "keys_to_sign": [
                         "access_token"
                     ],
                     "kid": "sim2",
+                    "cypher_key": "",
+                    "jwk_local_path": "./jwk.txt",
+                    "secret_url": "awskms://keyID",
                     "@extra_comment": "here"
                 },
                 "plugin/req-resp-modifier": {
