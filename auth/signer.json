@@ -10,9 +10,23 @@
     },
     "required": [
         "alg",
-        "jwk_url",
         "kid",
         "keys_to_sign"
+    ],
+    "oneOf": [
+        {
+            "required": [
+                "alg",
+                "jwk_local_path",
+                "disable_jwk_security"
+            ]
+        },
+        {
+            "required": [
+                "alg",
+                "jwk_url"
+            ]
+        }
     ],
     "properties": {
         "alg": {
@@ -43,6 +57,15 @@
             "type": "string",
             "examples": [
                 "http://your-backend/jwk/symmetric.json"
+            ]
+        },
+        "jwk_local_path": {
+            "$id": "#auth/validator/jwk_local_path",
+            "title": "JWK local path",
+            "description": "Local path to the JWK public keys, has preference over `jwk_url`. Instead of pointing to an external URL (with `jwk_url`), public keys are kept locally, in a plain JWK file (security alert!), or encrypted. When encrypted, also add `secret_url` and `cypher_key`.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+            "type": "string",
+            "examples": [
+                "./jwk.txt"
             ]
         },
         "jwk_local_ca": {
@@ -80,7 +103,7 @@
         "disable_jwk_security": {
             "$id": "#auth/signer/disable_jwk_security",
             "title": "Disable_jwk_security",
-            "description": "When true, disables security of the JWK client and allows insecure connections (plain HTTP) to download the keys. Not recommended for production.\n\nSee: https://www.krakend.io/docs/enterprise/authorization/jwt-validation/",
+            "description": "Disables HTTP security of the JWK client and allows insecure connections (plain HTTP) to download the keys. The flag should be `false` when you use HTTPS, and `true` when using plain HTTP or loading the key from a local file.\n\nSee: https://www.krakend.io/docs/enterprise/authorization/jwt-validation/",
             "type": "boolean",
             "default": false
         },
