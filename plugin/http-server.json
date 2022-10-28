@@ -4,6 +4,7 @@
     "title": "HTTP Server plugins.\n\nSee: https://www.krakend.io/docs/extending/http-server-plugins/",
     "type": "object",
     "additionalProperties": true,
+    "required": ["name"],
     "properties": {
         "name": {
             "$id": "#plugin/http-server",
