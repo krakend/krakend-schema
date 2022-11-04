@@ -126,6 +126,13 @@
                 "title": "Paths",
                 "type": "string"
             }
+        },
+        "obfuscate_version_header": {
+            "title": "Obfuscate version header",
+            "description": "Removes the version of KrakenD used in the X-KrakenD-version headers.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+            "type": "boolean",
+            "default": false
+
         }
     }
 }

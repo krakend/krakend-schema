@@ -666,6 +666,8 @@
             "debug": true
         },
         "router": {
+            "disable_path_decoding": false,
+            "obfuscate_version_header": false,
             "error_body": {
                 "404": {
                     "msg": "Unknown endpoint",
