@@ -13,9 +13,7 @@
             "examples": [
                 "no-redirect",
                 "http-logger",
-                "static-filesystem",
-                "response-schema-validator",
-                "content-replacer"
+                "static-filesystem"
             ]
         }
     }
