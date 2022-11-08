@@ -30,6 +30,13 @@
                 "type": "string"
             }
         },
+        "debug_endpoint": {
+            "$id": "#service/debug_endpoint",
+            "title": "Debug endpoint",
+            "description": "Enables the `/__debug/` endpoint for this configuration. You can safely enable it in production.",
+            "type": "boolean",
+            "default": false
+        },
         "sequential_start": {
             "$id": "#service/sequential_start",
             "title": "Sequential start",
