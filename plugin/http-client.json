@@ -8,10 +8,14 @@
         "name": {
             "$id": "#plugin/http-client",
             "title": "Plugin name",
-            "description": "The name of the plugin.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
+            "description": "The name of the plugin to load. Only one plugin is supported per backend.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
             "type": "string",
             "examples": [
-                "myplugin"
+                "no-redirect",
+                "http-logger",
+                "static-filesystem",
+                "response-schema-validator",
+                "content-replacer"
             ]
         }
     }
