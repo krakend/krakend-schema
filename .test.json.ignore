@@ -436,7 +436,7 @@
                         },
                         "qos/ratelimit/proxy": {
                             "capacity": 1,
-                            "max_rate": 1,
+                            "max_rate": 1.1,
                             "@extra_comment": "here"
                         },
                         "proxy": {
@@ -533,9 +533,9 @@
                     "@extra_comment": "here"
                 },
                 "qos/ratelimit/router": {
-                    "client_max_rate": 10,
+                    "client_max_rate": 10.2,
                     "key": "X-TOKEN",
-                    "max_rate": 100,
+                    "max_rate": 100.5,
                     "strategy": "header",
                     "@extra_comment": "here"
                 },
