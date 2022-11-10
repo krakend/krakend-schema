@@ -96,6 +96,14 @@
     ],
     "endpoints": [
         {
+            "endpoint": "/fhir/unrestful${translate}",
+            "backend": [
+                {
+                    "url_pattern": "/user/{translate}"
+                }
+            ]
+        },
+        {
             "endpoint": "/ws/{room}",
             "input_query_strings": [
                 "*"
