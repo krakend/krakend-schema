@@ -49,16 +49,13 @@
     },
     "if": {
         "properties": {
-            "strategy": {
-                "enum": [
-                    "header"
-                ]
+            "client_max_rate": {
             }
         }
     },
     "then": {
         "required": [
-            "key"
+            "strategy"
         ]
     }
 }

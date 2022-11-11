@@ -536,7 +536,7 @@
                     "client_max_rate": 10.2,
                     "key": "X-TOKEN",
                     "max_rate": 100.5,
-                    "strategy": "header",
+                    "strategy": "ip",
                     "@extra_comment": "here"
                 },
                 "proxy": {
