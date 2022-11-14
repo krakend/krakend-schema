@@ -217,7 +217,7 @@
         "cache": {
             "$id": "#auth/validator/cache",
             "title": "Cache",
-            "description": "Set this value to `true` to store the required keys (from the JWK descriptor) in memory for the next `cache_duration` period and avoid hammering the key server, as recommended for performance.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+            "description": "Set this value to `true` (recommended) to stop downloading keys on every request and store them in memory for the next `cache_duration` period and avoid hammering the key server, as recommended for performance. Do not use this flag when using `jwk_local_ca`.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
             "type": "boolean",
             "default": false
         },
