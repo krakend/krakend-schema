@@ -123,7 +123,7 @@
         "audience": {
             "$id": "#auth/validator/audience",
             "title": "Audience",
-            "description": "Reject tokens that do not contain an audience from the list.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+            "description": "Reject tokens that do not contain ALL audiences declared in the list.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
             "type": "array",
             "items": {
                 "type": "string"
