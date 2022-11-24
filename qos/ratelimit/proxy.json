@@ -16,7 +16,7 @@
         "max_rate": {
             "$id": "#qos/ratelimit/proxy/max_rate",
             "title": "Max rate",
-            "description": "Maximum requests per second you want to accept in this backend.\n\nSee: https://www.krakend.io/docs/backends/rate-limit/",
+            "description": "Maximum requests per second you want to accept in this backend. Use decimals for per-hour and per-minute strategies.\n\nSee: https://www.krakend.io/docs/backends/rate-limit/",
             "type": "number",
             "examples": [
                 0.5
