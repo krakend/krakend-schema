@@ -19,7 +19,7 @@
             "type": "integer",
             "minimum": 0,
             "maximum": 100,
-            "default": 100
+            "default": 0
         },
         "reporting_period": {
             "$id": "#telemetry/opencensus/reporting_period",
@@ -33,25 +33,25 @@
                 "^[@$_#]": {}
             },
             "title": "Enabled Layers",
-            "description": "Lets you specify what data you want to export. All layers are enabled by default: ",
+            "description": "Lets you specify what data you want to export. All layers are enabled by default unless you declare this section.",
             "properties": {
                 "backend": {
                     "title": "Report backend",
                     "description": "Reports the activity between KrakenD and your services",
                     "type": "boolean",
-                    "default": true
+                    "default": false
                 },
                 "router": {
                     "title": "Report router",
                     "description": "Reports the activity between end-users and KrakenD",
                     "type": "boolean",
-                    "default": true
+                    "default": false
                 },
                 "pipe": {
                     "title": "Report pipe",
                     "description": "Reports the activity at the beginning of the proxy layer. It gives a more detailed view of the internals of the pipe between end-users and KrakenD, having into account merging of different backends.",
                     "type": "boolean",
-                    "default": true
+                    "default": false
                 }
             }
         },
