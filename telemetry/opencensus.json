@@ -15,7 +15,7 @@
         "sample_rate": {
             "$id": "#telemetry/opencensus/sample_rate",
             "title": "Sample rate",
-            "description": "A number between 0 (no requests at all) and 100 (all requests) representing the percentage of sampled requests you want to send to the exporter. If you are processing a huge amount of traffic you might want to sample only a part of what's going on.\n\nSee: https://www.krakend.io/docs/telemetry/opencensus/",
+            "description": "A number between 0 (no requests at all) and 100 (all requests) representing the percentage of sampled requests you want to send to the exporter. **Sampling the 100% of the requests is generally discouraged** when the relationship between traffic and dedicated resources is sparse.\n\nSee: https://www.krakend.io/docs/telemetry/opencensus/",
             "type": "integer",
             "minimum": 0,
             "maximum": 100,
@@ -24,8 +24,9 @@
         "reporting_period": {
             "$id": "#telemetry/opencensus/reporting_period",
             "title": "Reporting period",
-            "description": "The number of seconds passing between reports\n\nSee: https://www.krakend.io/docs/telemetry/opencensus/",
-            "type": "integer"
+            "description": "The number of seconds passing between reports. If duration is less than or equal to zero, it enables the default behavior of each exporter.\n\nSee: https://www.krakend.io/docs/telemetry/opencensus/",
+            "type": "integer",
+            "default": 0
         },
         "enabled_layers": {
             "additionalProperties": false,
