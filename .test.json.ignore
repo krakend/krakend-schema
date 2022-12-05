@@ -227,7 +227,6 @@
                 "modifier/jmespath": {
                     "expr": "students[?age > `18` ].name"
                 }
-
             }
         },
         {
@@ -1057,6 +1056,9 @@
                     ]
                 }
             }
+        },
+        "modifier/lua-endpoint": {
+            "pre": "print('Lua service!'); local c = ctx.load(); c:headers('X-from-lua', '1234');"
         }
     }
 }
