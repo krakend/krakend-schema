@@ -668,6 +668,13 @@
         }
     ],
     "extra_config": {
+        "security/policies": {
+            "jwt": {
+                "policies": [
+                    "has(JWT.user_id)"
+                ]
+            }
+        },
         "telemetry/newrelic": {
             "license": "XXXX",
             "debug": true
