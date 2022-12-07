@@ -478,11 +478,7 @@
                     "type": "object",
                     "required": [
                         "address",
-                        "service_name",
-                        "reconnection",
-                        "insecure",
-                        "enable_compression",
-                        "headers"
+                        "service_name"
                     ],
                     "additionalProperties": false,
                     "patternProperties": {
