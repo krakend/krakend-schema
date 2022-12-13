@@ -71,16 +71,30 @@
             "$ref": "backend/graphql.json"
         },
         "backend/http": {
-            "required": [
-                "return_error_details"
-            ],
             "properties": {
                 "return_error_details": {
                     "type": "string",
                     "title": "Return error details",
                     "description": "Returns to the client details of a failing request.\n\nSee: https://www.krakend.io/docs/backends/detailed-errors/"
+                },
+                "return_error_code": {
+                    "type": "boolean",
+                    "title": "Return error code",
+                    "description": "Returns the HTTP status code of the backend (when there is only one). The headers are not returned.\n\nSee: https://www.krakend.io/docs/backends/detailed-errors/"
                 }
-            }
+            },
+            "oneOf": [
+                {
+                    "required": [
+                        "return_error_details"
+                    ]
+                },
+                {
+                    "required": [
+                        "return_error_code"
+                    ]
+                }
+            ]
         },
         "validation/cel": {
             "$ref": "validation/cel.json"

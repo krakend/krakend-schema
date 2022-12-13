@@ -75,7 +75,13 @@
                     "host": [
                         "http://127.0.0.1:8080"
                     ],
-                    "url_pattern": "/__debug/"
+                    "url_pattern": "/__debug/",
+                    "extra_config": {
+                        "backend/http": {
+                            "return_error_code": true,
+                            "@extra_comment": "here"
+                        }
+                    }
                 }
             ],
             "extra_config": {
