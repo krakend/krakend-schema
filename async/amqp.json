@@ -17,19 +17,19 @@
         "host": {
             "$id": "#async/amqp/host",
             "title": "Host",
-            "description": "The connection string, ends in slash.\n\nSee: https://www.krakend.io/docs/async/amqp/",
+            "description": "The connection string, ends in slash. E.g: `amqp://user:password@host:5672/`.\n\nSee: https://www.krakend.io/docs/async/amqp/",
             "type": "string"
         },
         "name": {
             "$id": "#async/amqp/name",
             "title": "Name",
-            "description": "Queue name.\n\nSee: https://www.krakend.io/docs/async/amqp/",
+            "description": "The queue name.\n\nSee: https://www.krakend.io/docs/async/amqp/",
             "type": "string"
         },
         "exchange": {
             "$id": "#async/amqp/exchange",
             "title": "Exchange",
-            "description": "The exchange name (must have a topic type if already exists).\n\nSee: https://www.krakend.io/docs/async/amqp/",
+            "description": "The entity name where messages are retrieved (it will be created, or it must have a **topic** type if already exists).\n\nSee: https://www.krakend.io/docs/async/amqp/",
             "type": "string",
             "examples": [
                 "some-exchange"
@@ -38,9 +38,9 @@
         "durable": {
             "$id": "#async/amqp/durable",
             "title": "Durable",
-            "description": "true is recommended, but depends on the use case. Durable queues will survive server restarts and remain when there are no remaining consumers or bindings.\n\nSee: https://www.krakend.io/docs/async/amqp/",
+            "description": "Durable queues will survive server restarts and remain when there are no remaining consumers or bindings. Most of the times `true` is recommended, but depends on the use case.\n\nSee: https://www.krakend.io/docs/async/amqp/",
             "type": "boolean",
-            "default": true
+            "default": false
         },
         "delete": {
             "$id": "#async/amqp/delete",
@@ -80,7 +80,7 @@
             "title": "Prefetch size",
             "description": "The number of bytes you want to use to prefetch messages.\n\nSee: https://www.krakend.io/docs/async/amqp/",
             "type": "integer",
-            "default": 1024
+            "default": 0
         },
         "auto_ack": {
             "$id": "#async/amqp/auto_ack",

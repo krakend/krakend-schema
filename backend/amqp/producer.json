@@ -35,7 +35,7 @@
         "routing_key": {
             "$id": "#backend/amqp/consumer/routing_key",
             "title": "Routing key",
-            "description": "The routing key you will use to send messages.\n\nSee: https://www.krakend.io/docs/backends/amqp-producer/",
+            "description": "The routing key you will use to send messages, case sensitive.\n\nSee: https://www.krakend.io/docs/backends/amqp-producer/",
             "type": "string",
             "default": "#"
         },

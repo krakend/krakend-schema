@@ -24,7 +24,7 @@
         "max_retries": {
             "$id": "#backend_extra_config/backend/lambda/max_retries",
             "title": "Max retries",
-            "description": "Maximum times you want to execute the function until you have a successful response. The default 0 or -1 defer the max retry setting to the service specific configuration.\n\nSee: https://www.krakend.io/docs/backends/",
+            "description": "Maximum times you want to execute the function until you have a successful response. The value -1 defers the max retry setting to the service specific configuration.\n\nSee: https://www.krakend.io/docs/backends/",
             "type": "integer",
             "default": 0
         },
