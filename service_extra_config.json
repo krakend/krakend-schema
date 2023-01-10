@@ -130,6 +130,9 @@
         "telemetry/influx": {
             "$ref": "telemetry/influx.json"
         },
+        "github_com/letgoapp/krakend-influx": {
+            "$ref": "telemetry/influx.json"
+        },
         "telemetry/metrics": {
             "$ref": "telemetry/metrics.json"
         },
