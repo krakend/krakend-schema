@@ -24,7 +24,7 @@
     "properties": {
         "type": {
             "title": "Query type",
-            "description": "The type of query you are declaring.\n\nSee: https://www.krakend.io/docs/backends/graphql/",
+            "description": "The type of query you are declaring, `query` (read), or `mutation` (write).\n\nSee: https://www.krakend.io/docs/backends/graphql/",
             "enum": [
                 "query",
                 "mutation"
@@ -33,7 +33,7 @@
         },
         "query": {
             "title": "Query",
-            "description": "An inline GraphQL query you want to send to the server. Use this attribute for simple and inline queries, use query_path instead for larger queries. Use escaping when needed.\n\nSee: https://www.krakend.io/docs/backends/graphql/",
+            "description": "An inline GraphQL query you want to send to the server. Use this attribute for simple and inline queries, use `query_path` instead for larger queries. Use escaping when needed.\n\nSee: https://www.krakend.io/docs/backends/graphql/",
             "type": "string",
             "examples": [
                 "{ \n find_follower(func: uid(\"0x3\")) {\n name \n }\n }"
@@ -49,7 +49,7 @@
         },
         "variables": {
             "title": "Variables",
-            "description": "A dictionary defining all the variables sent to the GraphQL server. You can use {placeholders} to inject parameters from the endpoint URL.\n\nSee: https://www.krakend.io/docs/backends/graphql/",
+            "description": "A dictionary defining all the variables sent to the GraphQL server. You can use `{placeholders}` to inject parameters from the endpoint URL.\n\nSee: https://www.krakend.io/docs/backends/graphql/",
             "type": "object"
         },
         "operationName": {
