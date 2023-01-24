@@ -203,7 +203,8 @@
                     "@comment": "here",
                     "roles": [
                         "admin"
-                    ]
+                    ],
+                    "client_max_rate": 0.3
                 },
                 "documentation/openapi": {
                     "description": "Very long description of what this endpoint does",
