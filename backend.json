@@ -79,7 +79,7 @@
         "host": {
             "$id": "#backend/host",
             "title": "Host array",
-            "description": "An array with all the available hosts to **load balance** requests, including the schema (when possible) `schema://host:port`. E.g.: ` https://my.users-ms.com`. If you are in a platform where hosts or services are balanced (e.g., a K8S service), write a single entry in the array with the service name/balancer address. Defaults to the `host` declaration at the configuration's root level, and the service fails starting when there is none.",
+            "description": "An array with all the available hosts to [load balance](/docs/throttling/load-balancing/#balancing-egress-traffic-to-upstream) requests, including the schema (when possible) `schema://host:port`. E.g.: ` https://my.users-ms.com`. If you are in a platform where hosts or services are balanced (e.g., a K8S service), write a single entry in the array with the service name/balancer address. Defaults to the `host` declaration at the configuration's root level, and the service fails starting when there is none.",
             "type": "array"
         },
         "target": {
