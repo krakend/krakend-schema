@@ -3,10 +3,17 @@
     "$id": "https://www.krakend.io/schema/tls.json",
     "title": "TLS/SSL",
     "description": "Enabling TLS for HTTPS and HTTP/2.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
-    "type": "object",
-    "required": [
-        "public_key",
-        "private_key"
+    "anyOf": [
+        {
+            "type": "object",
+            "required": [
+                "public_key",
+                "private_key"
+            ]
+        },
+        {
+            "type": "null"
+        }
     ],
     "additionalProperties": false,
     "patternProperties": {
