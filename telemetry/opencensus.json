@@ -128,19 +128,38 @@
                     "$id": "#telemetry/opencensus/exporters/jaeger",
                     "title": "Jaeger",
                     "type": "object",
-                    "required": [
-                        "endpoint",
-                        "service_name"
+                    "oneOf": [
+                        {
+                            "required": [
+                                "endpoint",
+                                "service_name"
+                            ]
+                        },
+                        {
+                            "required": [
+                                "agent_endpoint",
+                                "service_name"
+                            ]
+                        }
                     ],
                     "additionalProperties": false,
                     "patternProperties": {
                         "^[@$_#]": {}
                     },
                     "properties": {
+                        "agent_endpoint": {
+                            "$id": "#telemetry/opencensus/exporters/jaeger/agent_endpoint",
+                            "title": "Agent Endpoint",
+                            "description": "The address where the Jaeger Agent is (Thrift over UDP), e.g., `jaeger:6831`\n\nSee: https://www.krakend.io/docs/telemetry/jaeger/",
+                            "type": "string",
+                            "examples": [
+                                "http://192.168.99.100:14268/api/traces"
+                            ]
+                        },
                         "endpoint": {
                             "$id": "#telemetry/opencensus/exporters/jaeger/endpoint",
-                            "title": "Endpoint",
-                            "description": "The full URL including port indicating where your Jaeger is, e.g., `http://jaeger:14268/api/traces`\n\nSee: https://www.krakend.io/docs/telemetry/jaeger/",
+                            "title": "Collector Endpoint",
+                            "description": "The full URL including port indicating where your Jaeger Collector is (Thrift over HTTP/S), e.g., `http://jaeger:14268/api/traces`\n\nSee: https://www.krakend.io/docs/telemetry/jaeger/",
                             "type": "string",
                             "examples": [
                                 "http://192.168.99.100:14268/api/traces"
