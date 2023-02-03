@@ -50,6 +50,13 @@
             "examples": [
                 1000
             ]
+        },
+        "empty_user_agent_is_bot" : {
+            "$id": "#security/bot-detector/empty_user_agent_is_bot",
+            "title": "Empty user agent is a bot?",
+            "description": "Whether to consider an empty user-agent a bot (and reject it) or not. \n\nSee: https://www.krakend.io/docs/throttling/botdetector/",
+            "type": "boolean",
+            "default": false
         }
     }
 }

@@ -70,7 +70,7 @@
                 "logger": {
                     "$id": "#telemetry/opencensus/exporters/logger",
                     "title": "Logger",
-                    "description": "Opencensus can export data to the system logger as another exporter.\n\nSee: https://www.krakend.io/docs/telemetry/logger/",
+                    "description": "Opencensus can export data to the system logger as another exporter. Recommended to use `telemetry/logging` instead.\n\nSee: https://www.krakend.io/docs/telemetry/logger/",
                     "type": "object",
                     "additionalProperties": false,
                     "patternProperties": {
@@ -93,6 +93,7 @@
                 },
                 "zipkin": {
                     "$id": "#telemetry/opencensus/exporters/zipkin",
+                    "description": "Export telemetry data to a Zipkin collector",
                     "title": "Zipkin",
                     "type": "object",
                     "required": [
@@ -127,20 +128,40 @@
                 "jaeger": {
                     "$id": "#telemetry/opencensus/exporters/jaeger",
                     "title": "Jaeger",
+                    "description": "Submit spans to a Jaeger Collector (HTTP) with `endpoint` or to a Jaeger Agent (UDP) with `agent_endpoint`. \n\nSee https://www.krakend.io/docs/telemetry/jaeger/",
                     "type": "object",
-                    "required": [
-                        "endpoint",
-                        "service_name"
+                    "oneOf": [
+                        {
+                            "required": [
+                                "endpoint",
+                                "service_name"
+                            ]
+                        },
+                        {
+                            "required": [
+                                "agent_endpoint",
+                                "service_name"
+                            ]
+                        }
                     ],
                     "additionalProperties": false,
                     "patternProperties": {
                         "^[@$_#]": {}
                     },
                     "properties": {
+                        "agent_endpoint": {
+                            "$id": "#telemetry/opencensus/exporters/jaeger/agent_endpoint",
+                            "title": "Agent Endpoint",
+                            "description": "The address where the Jaeger Agent is (Thrift over UDP), e.g., `jaeger:6831`\n\nSee: https://www.krakend.io/docs/telemetry/jaeger/",
+                            "type": "string",
+                            "examples": [
+                                "http://192.168.99.100:14268/api/traces"
+                            ]
+                        },
                         "endpoint": {
                             "$id": "#telemetry/opencensus/exporters/jaeger/endpoint",
-                            "title": "Endpoint",
-                            "description": "The full URL including port indicating where your Jaeger is, e.g., `http://jaeger:14268/api/traces`\n\nSee: https://www.krakend.io/docs/telemetry/jaeger/",
+                            "title": "Collector Endpoint",
+                            "description": "The full URL including port indicating where your Jaeger Collector is (Thrift over HTTP/S), e.g., `http://jaeger:14268/api/traces`\n\nSee: https://www.krakend.io/docs/telemetry/jaeger/",
                             "type": "string",
                             "examples": [
                                 "http://192.168.99.100:14268/api/traces"
@@ -354,6 +375,7 @@
                 "stackdriver": {
                     "$id": "#telemetry/opencensus/exporters/stackdriver",
                     "title": "Stackdriver",
+                    "description": "Export metrics and traces to Google Cloud",
                     "type": "object",
                     "required": [
                         "project_id",
