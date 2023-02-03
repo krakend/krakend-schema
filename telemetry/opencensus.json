@@ -70,7 +70,7 @@
                 "logger": {
                     "$id": "#telemetry/opencensus/exporters/logger",
                     "title": "Logger",
-                    "description": "Opencensus can export data to the system logger as another exporter.\n\nSee: https://www.krakend.io/docs/telemetry/logger/",
+                    "description": "Opencensus can export data to the system logger as another exporter. Recommended to use `telemetry/logging` instead.\n\nSee: https://www.krakend.io/docs/telemetry/logger/",
                     "type": "object",
                     "additionalProperties": false,
                     "patternProperties": {
@@ -93,6 +93,7 @@
                 },
                 "zipkin": {
                     "$id": "#telemetry/opencensus/exporters/zipkin",
+                    "description": "Export telemetry data to a Zipkin collector",
                     "title": "Zipkin",
                     "type": "object",
                     "required": [
@@ -127,6 +128,7 @@
                 "jaeger": {
                     "$id": "#telemetry/opencensus/exporters/jaeger",
                     "title": "Jaeger",
+                    "description": "Submit spans to a Jaeger Collector (HTTP) with `endpoint` or to a Jaeger Agent (UDP) with `agent_endpoint`. \n\nSee https://www.krakend.io/docs/telemetry/jaeger/",
                     "type": "object",
                     "oneOf": [
                         {
@@ -373,6 +375,7 @@
                 "stackdriver": {
                     "$id": "#telemetry/opencensus/exporters/stackdriver",
                     "title": "Stackdriver",
+                    "description": "Export metrics and traces to Google Cloud",
                     "type": "object",
                     "required": [
                         "project_id",
