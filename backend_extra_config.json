@@ -42,6 +42,9 @@
             "description": "Transform requests and responses through a simple DSL definition in the configuration file.\n\nSee: https://www.krakend.io/docs/backends/martian/",
             "properties": {}
         },
+        "modifier/jmespath": {
+            "$ref": "modifier/jmespath.json"
+        },
         "qos/http-cache": {
             "type": "object",
             "title": "Backend Cache",

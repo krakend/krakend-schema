@@ -14,7 +14,9 @@
             "title": "API Description",
             "description": "Description in [CommonMark](http://commonmark.org/help/) or HTML.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "string",
-            "examples": ["This is a sample server. You can find out more about at [http://blah](http://blah.blah.com)"]
+            "examples": [
+                "This is a sample server. You can find out more about at [http://blah](http://blah.blah.com)"
+            ]
         },
         "summary": {
             "$id": "#documentation/openapi/summary",
@@ -27,63 +29,81 @@
             "title": "Version",
             "description": "The version numbering you want to apply to this release of API., e.g.: `1.0`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "string",
-            "examples": ["1.0"]
+            "examples": [
+                "1.0"
+            ]
         },
         "host": {
             "$id": "#documentation/openapi/host",
             "title": "Host",
             "description": "The hostname where you will publish your API.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "string",
-            "examples": ["my.api.com"]
+            "examples": [
+                "my.api.com"
+            ]
         },
         "base_path": {
             "$id": "#documentation/openapi/base_path",
             "title": "Base path",
             "description": "A starting path that is appended to any endpoint.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "string",
-            "examples": ["/v1"]
+            "examples": [
+                "/v1"
+            ]
         },
         "terms_of_service": {
             "$id": "#documentation/openapi/terms_of_service",
             "title": "Terms of Service",
             "description": "The URL to the terms of service for using this API.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "string",
-            "examples": ["/v1"]
+            "examples": [
+                "/v1"
+            ]
         },
         "contact_name": {
             "$id": "#documentation/openapi/contact_name",
             "title": "Contact name",
             "description": "Contact name.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "string",
-            "examples": ["/v1"]
+            "examples": [
+                "/v1"
+            ]
         },
         "contact_url": {
             "$id": "#documentation/openapi/contact_url",
             "title": "Contact URL",
             "description": "Contact URL that users of your API can read.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "string",
-            "examples": ["/v1"]
+            "examples": [
+                "/v1"
+            ]
         },
         "contact_email": {
             "$id": "#documentation/openapi/contact_email",
             "title": "Contact email",
             "description": "Email where users of your API can write to.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "string",
-            "examples": ["/v1"]
+            "examples": [
+                "/v1"
+            ]
         },
         "license_name": {
             "$id": "#documentation/openapi/license_name",
             "title": "License name",
             "description": "The license name (e.g.: Apache License)\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "string",
-            "examples": ["/v1"]
+            "examples": [
+                "/v1"
+            ]
         },
         "license_url": {
             "$id": "#documentation/openapi/license_url",
             "title": "License URL",
             "description": "The URL where the license is hosted\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "string",
-            "examples": ["/v1"]
+            "examples": [
+                "/v1"
+            ]
         },
         "tags": {
             "$id": "#documentation/openapi/tags",

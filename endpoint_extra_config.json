@@ -107,23 +107,7 @@
             "$ref": "modifier/lua.json"
         },
         "modifier/jmespath": {
-            "title": " JMESPath: Response manipulation with query language",
-            "description": "The JMESPath query language allows you to select, slice, filter, map, project, flatten, sort, and all sorts of operations on data.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/jmespath/",
-            "type": "object",
-            "required": [
-                "expr"
-            ],
-            "additionalProperties": false,
-            "patternProperties": {
-                "^[@$_#]": {}
-            },
-            "properties": {
-                "expr": {
-                    "title": "Expression",
-                    "description": "The JMESPath expression you want to apply to this endpoint.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/jmespath/",
-                    "type": "string"
-                }
-            }
+            "$ref": "modifier/jmespath.json"
         },
         "validation/json-schema": {
             "title": "Validating the body with the JSON Schema",
