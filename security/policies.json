@@ -30,7 +30,13 @@
             "title": "Request policies",
             "description": "All the policies applied in the request context.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
             "type": "object",
-            "required": ["policies"],
+            "required": [
+                "policies"
+            ],
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[@$_#]": {}
+            },
             "properties": {
                 "policies": {
                     "title": "Policies",
@@ -46,13 +52,8 @@
                     "properties": {
                         "body": {
                             "title": "Error body",
-                            "description": "Leave an empty string to return the validation error, or write a string or object with the error response body.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
-                            "anyOf": [{
-                                "type": "object"
-                            },
-                            {
-                                "type": "string"
-                            }],
+                            "description": "Leave an empty string to return the validation error, or write a string with the error response body. You can add escaped JSON, XML, etc in the string and add a Content-Type.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+                            "type": "string",
                             "default": ""
                         },
                         "status": {
@@ -60,6 +61,12 @@
                             "description": "The HTTP status code you want to return when the validation fails.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
                             "type": "integer",
                             "default": 500
+                        },
+                        "content_type": {
+                            "title": "Content-Type",
+                            "description": "The Content-Type header you'd like to send with the error response. When unset, uses `text/plain` by default.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+                            "type": "string",
+                            "default": "text/plain"
                         }
                     }
                 }
@@ -69,7 +76,13 @@
             "title": "Response policies",
             "description": "All the policies applied in the response context.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
             "type": "object",
-            "required": ["policies"],
+            "required": [
+                "policies"
+            ],
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[@$_#]": {}
+            },
             "properties": {
                 "policies": {
                     "title": "Policies",
@@ -85,13 +98,8 @@
                     "properties": {
                         "body": {
                             "title": "Error body",
-                            "description": "Leave an empty string to return the validation error, or write a string or object with the error response body.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
-                            "anyOf": [{
-                                "type": "object"
-                            },
-                            {
-                                "type": "string"
-                            }],
+                            "description": "Leave an empty string to return the validation error, or write a string with the error response body. You can add escaped JSON, XML, etc in the string and add a Content-Type.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+                            "type": "string",
                             "default": ""
                         },
                         "status": {
@@ -106,9 +114,15 @@
         },
         "jwt": {
             "title": "JWT policies",
-            "description": "All the policies applied in the JWT context (token validation).\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+            "description": "All the policies applied in the JWT context (token validation). Any policy failing will generate a `401 Unauthorized` error. Works in `endpoint` context only.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
             "type": "object",
-            "required": ["policies"],
+            "required": [
+                "policies"
+            ],
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[@$_#]": {}
+            },
             "properties": {
                 "policies": {
                     "title": "Policies",
@@ -117,28 +131,6 @@
                     "items": {
                         "type": "string",
                         "title": "The policy you want to evaluate"
-                    }
-                },
-                "error": {
-                    "type": "object",
-                    "properties": {
-                        "body": {
-                            "title": "Error body",
-                            "description": "Leave an empty string to return the validation error, or write a string or object with the error response body.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
-                            "anyOf": [{
-                                "type": "object"
-                            },
-                            {
-                                "type": "string"
-                            }],
-                            "default": ""
-                        },
-                        "status": {
-                            "title": "HTTP status code",
-                            "description": "The HTTP status code you want to return when the validation fails.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
-                            "type": "integer",
-                            "default": 500
-                        }
                     }
                 }
             }

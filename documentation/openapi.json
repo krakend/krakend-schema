@@ -116,21 +116,87 @@
             "title": "Supported schemes",
             "description": "The list of schemes supported by the API, e.g. `http` or `https`\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "array",
-            "examples": [["https","http"]],
-            "default": ["http"]
+            "examples": [
+                [
+                    "https",
+                    "http"
+                ]
+            ],
+            "default": [
+                "http"
+            ]
         },
         "audience": {
             "$id": "#documentation/openapi/audience",
             "title": "Audience",
             "description": "The list of audiences that will consume this endpoint. These values **do not define the gateway logic** in any way. They are a way to group endpoints and filter them out when generating the OpenAPI documentation. Use `*` to indicate an endpoint will be present in any audience generated.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "array",
-            "examples": [["gold","silver", "*"]]
+            "examples": [
+                [
+                    "gold",
+                    "silver",
+                    "*"
+                ]
+            ]
         },
         "example": {
             "$id": "#documentation/openapi/example",
             "title": "Example",
-            "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-            "type": ["object", "string"]
+            "description": "**Deprecated in OAS3** (use `response_definition` instead). A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "type": [
+                "object",
+                "string"
+            ]
+        },
+        "response_definition": {
+            "$id": "#documentation/openapi/error_definition",
+            "title": "Definition of errors (OAS3 only)",
+            "description": "Describes the errors for non-successful requests. Each key is the definition of the status code, represented by a string. E.g., `404`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "type": [
+                "object"
+            ],
+            "examples": [
+                {
+                    "404": {
+                        "@comment": "Some comment",
+                         "description": "Page not found",
+                         "example_schema": "eyJpdGVtcyI6eyJhbGxPZiI6W3sicHJvcGVydGllcyI6eyJ2ZXJzaW9uIjp7InR5cGUiOiJzdHJpbmcifX0sInJlcXVpcmVkIjpbInZlcnNpb24iXSwidHlwZSI6Im9iamVjdCJ9LHsicHJvcGVydGllcyI6eyJkaXJlY3RvcmllcyI6eyJpdGVtcyI6eyJ0eXBlIjoic3RyaW5nIiwieC1nby10eXBlIjoiRGlyZWN0b3J5SUQifSwidHlwZSI6ImFycmF5In19LCJyZXF1aXJlZCI6WyJkaXJlY3RvcmllcyJdLCJ0eXBlIjoib2JqZWN0In1dfSwidHlwZSI6ImFycmF5In0",
+                         "content_type": "application/json"
+                       }
+                }
+            ],
+            "additionalProperties": false,
+            "patternProperties":{
+                "^[0-9]+$": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "patternProperties": {
+                        "^[@$_#]": {}
+                    },
+                    "properties": {
+                        "description": {
+                            "type": ["string"],
+                            "title": "Description",
+                            "description": "The description of this error code, e.g., `Page not found`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/"
+                        },
+                        "example_schema": {
+                            "type": ["string"],
+                            "pattern": "^[a-zA-Z0-9+/]+$",
+                            "description": "A JSON schema that describes the error format encoded as a base64 string. Use either example or example_schema, but not both."
+                        },
+                        "example": {
+                            "type": ["string","object"],
+                            "title": "Content Type",
+                            "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/"
+                        },
+                        "content_type": {
+                            "type": "string",
+                            "title": "Content Type",
+                            "description": "The content type returned by this error, e.g., `application/json`"
+                        }
+                    }
+                }
+            }
         }
     }
 }
