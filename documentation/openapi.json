@@ -151,7 +151,7 @@
         "response_definition": {
             "$id": "#documentation/openapi/error_definition",
             "title": "Definition of errors (OAS3 only)",
-            "description": "Describes the errors for non-successful requests. Each key is the definition of the status code, represented by a string. E.g., `404`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "description": "Describes the different status codes returned by this endpoint. Each key is the definition of the status code, represented by a string. E.g., `200` (success), `500` (internal error), etc.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": [
                 "object"
             ],
@@ -185,7 +185,7 @@
                             "description": "A JSON schema that describes the error format encoded as a base64 string. Use either example or example_schema, but not both."
                         },
                         "example": {
-                            "type": ["string","object"],
+                            "type": ["string","object","array","boolean","integer","null","number"],
                             "title": "Content Type",
                             "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/"
                         },
