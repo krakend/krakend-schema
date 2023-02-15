@@ -80,6 +80,16 @@
                         "backend/http": {
                             "return_error_code": true,
                             "@extra_comment": "here"
+                        },
+                        "backend/soap": {
+                            "path": "./path/to.xml",
+                            "content_type": "application/xml",
+                            "debug": false
+                        },
+                        "modifier/body-generator": {
+                            "content_type": "application/json",
+                            "debug": false,
+                            "template": "abcdef"
                         }
                     }
                 }
