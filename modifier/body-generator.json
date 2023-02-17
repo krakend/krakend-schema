@@ -44,7 +44,7 @@
         },
         "debug": {
             "title": "Enable debug",
-            "description": "When `true`, shows useful information in the logs with `DEBUG` level about the input received and the body generated. Do not enable in production.\n\nSee: https://www.krakend.io/docs/backends/body-generator/",
+            "description": "When `true`, shows useful information in the logs with `DEBUG` level about the input received and the body generated. Do not enable in production. Debug logs are multiline and designed fore developer readibility, not machine processing.\n\nSee: https://www.krakend.io/docs/backends/body-generator/",
             "type": "boolean",
             "default": false
         }

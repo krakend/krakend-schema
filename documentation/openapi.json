@@ -12,7 +12,7 @@
         "description": {
             "$id": "#documentation/openapi/description",
             "title": "API Description",
-            "description": "Description in [CommonMark](http://commonmark.org/help/) or HTML.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "description": "A verbose explanation. [CommonMark](http://commonmark.org/help/) syntax MAY be used for rich text representation.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "string",
             "examples": [
                 "This is a sample server. You can find out more about at [http://blah](http://blah.blah.com)"
@@ -21,7 +21,7 @@
         "summary": {
             "$id": "#documentation/openapi/summary",
             "title": "Summary",
-            "description": "A short summary for the endpoint.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "description": "A short summary for the endpoint. Use the description field for the longest explanation.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "string"
         },
         "version": {
@@ -173,6 +173,7 @@
                     "patternProperties": {
                         "^[@$_#]": {}
                     },
+                    "required": ["content_type"],
                     "properties": {
                         "description": {
                             "type": ["string"],
@@ -182,7 +183,7 @@
                         "example_schema": {
                             "type": ["string"],
                             "pattern": "^[a-zA-Z0-9+/]+$",
-                            "description": "A JSON schema that describes the error format encoded as a base64 string. Use either example or example_schema, but not both."
+                            "description": "A JSON schema that describes the response format for the selected status code, encoded as a base64 string. Use either example or example_schema, but not both."
                         },
                         "example": {
                             "type": ["string","object","array","boolean","integer","null","number"],
