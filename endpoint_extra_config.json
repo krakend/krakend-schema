@@ -97,6 +97,9 @@
         "auth/signer": {
             "$ref": "auth/signer.json"
         },
+        "auth/basic": {
+            "$ref": "auth/basic.json"
+        },
         "security/bot-detector": {
             "$ref": "security/bot-detector.json"
         },

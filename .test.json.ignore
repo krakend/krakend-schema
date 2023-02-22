@@ -137,6 +137,14 @@
                 }
             ],
             "extra_config": {
+                "auth/basic": {
+                    "@comment": "Override",
+                    "htpasswd_path": "/path/to/.htpasswd",
+                    "users": {
+                        "admin": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ...",
+                        "user2": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ..."
+                    }
+                },
                 "plugin/req-resp-modifier": {
                     "content-replacer": {
                         "key.a": {
@@ -699,6 +707,13 @@
         }
     ],
     "extra_config": {
+        "auth/basic": {
+            "htpasswd_path": "/path/to/.htpasswd",
+            "users": {
+                "admin": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ...",
+                "user2": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ..."
+            }
+        },
         "security/policies": {
             "jwt": {
                 "policies": [
