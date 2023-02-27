@@ -91,6 +91,9 @@
         "security/cors": {
             "$ref": "security/cors.json"
         },
+        "security/policies": {
+            "$ref": "security/policies.json"
+        },
         "auth/validator": {
             "$ref": "auth/validator.json"
         },

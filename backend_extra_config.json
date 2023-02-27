@@ -107,6 +107,9 @@
         },
         "validation/cel": {
             "$ref": "validation/cel.json"
+        },
+        "security/policies": {
+            "$ref": "security/policies.json"
         }
     }
 }

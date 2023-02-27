@@ -129,6 +129,18 @@
             ],
             "backend": [
                 {
+                    "extra_config": {
+                        "security/policies": {
+                            "resp": {
+                                "policies": [],
+                                "error": {
+                                    "body": "",
+                                    "content_type": "text/plain",
+                                    "status": 500
+                                }
+                            }
+                        }
+                    },
                     "url_pattern": "/ws",
                     "disable_host_sanitize": true,
                     "host": [
@@ -137,6 +149,29 @@
                 }
             ],
             "extra_config": {
+                "security/policies": {
+                    "jwt": {
+                        "policies": [
+                            "has(JWT.user_id)"
+                        ]
+                    },
+                    "req": {
+                        "policies": [],
+                        "error": {
+                            "body": "",
+                            "content_type": "text/plain",
+                            "status": 500
+                        }
+                    },
+                    "resp": {
+                        "policies": [],
+                        "error": {
+                            "body": "",
+                            "content_type": "text/plain",
+                            "status": 500
+                        }
+                    }
+                },
                 "auth/basic": {
                     "@comment": "Override",
                     "htpasswd_path": "/path/to/.htpasswd",
@@ -712,29 +747,6 @@
             "users": {
                 "admin": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ...",
                 "user2": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ..."
-            }
-        },
-        "security/policies": {
-            "jwt": {
-                "policies": [
-                    "has(JWT.user_id)"
-                ]
-            },
-            "req": {
-                "policies": [],
-                "error": {
-                    "body": "",
-                    "content_type": "text/plain",
-                    "status": 500
-                }
-            },
-            "resp": {
-                "policies": [],
-                "error": {
-                    "body": "",
-                    "content_type": "text/plain",
-                    "status": 500
-                }
             }
         },
         "telemetry/newrelic": {
