@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/security/policy.json",
+    "$id": "https://www.krakend.io/schema/security/policies.json",
     "title": "Securiy Policies",
     "description": "The policies engine allows you to write custom sets of policies that are validated during requests, responses, or token validation.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
     "type": "object",
@@ -52,7 +52,7 @@
                     "properties": {
                         "body": {
                             "title": "Error body",
-                            "description": "Leave an empty string to return the validation error, or write a string with the error response body. You can add escaped JSON, XML, etc in the string and add a Content-Type.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+                            "description": "Leave an empty string to use the validation error, or write a string with the error response body. This error is NOT returned in the response, but in the application logs, unless you enable `return_detailed_errors` in the `router` section. You can add escaped JSON, XML, etc in the string and add a Content-Type.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
                             "type": "string",
                             "default": ""
                         },
@@ -98,7 +98,7 @@
                     "properties": {
                         "body": {
                             "title": "Error body",
-                            "description": "Leave an empty string to return the validation error, or write a string with the error response body. You can add escaped JSON, XML, etc in the string and add a Content-Type.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+                            "description": "Leave an empty string to use the validation error, or write a string with the error response body. This error is NOT returned in the response, but in the application logs, unless you enable `return_detailed_errors` in the `router` section. You can add escaped JSON, XML, etc in the string and add a Content-Type.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
                             "type": "string",
                             "default": ""
                         },
