@@ -80,6 +80,16 @@
                         "backend/http": {
                             "return_error_code": true,
                             "@extra_comment": "here"
+                        },
+                        "backend/soap": {
+                            "path": "./path/to.xml",
+                            "content_type": "application/xml",
+                            "debug": false
+                        },
+                        "modifier/body-generator": {
+                            "content_type": "application/json",
+                            "debug": false,
+                            "template": "abcdef"
                         }
                     }
                 }
@@ -127,6 +137,14 @@
                 }
             ],
             "extra_config": {
+                "auth/basic": {
+                    "@comment": "Override",
+                    "htpasswd_path": "/path/to/.htpasswd",
+                    "users": {
+                        "admin": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ...",
+                        "user2": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ..."
+                    }
+                },
                 "plugin/req-resp-modifier": {
                     "content-replacer": {
                         "key.a": {
@@ -175,7 +193,10 @@
                                 "@cel_comment": "here",
                                 "check_expr": "int(req_params.Id) % 3 == 0"
                             }
-                        ]
+                        ],
+                        "modifier/jmespath": {
+                            "expr": "students[?age > `18` ].name"
+                        }
                     }
                 },
                 {
@@ -220,6 +241,17 @@
                     ],
                     "example": {
                         "response": "ok"
+                    },
+                    "response_definition": {
+                        "404": {
+                            "@comment": "Some comment",
+                            "description": "Page not found",
+                            "example_schema": "eyJpdGVtcyI6eyJhbGxPZiI6W3sicHJvcGVydGllcyI6eyJ2ZXJzaW9uIjp7InR5cGUiOiJzdHJpbmcifX0sInJlcXVpcmVkIjpbInZlcnNpb24iXSwidHlwZSI6Im9iamVjdCJ9LHsicHJvcGVydGllcyI6eyJkaXJlY3RvcmllcyI6eyJpdGVtcyI6eyJ0eXBlIjoic3RyaW5nIiwieC1nby10eXBlIjoiRGlyZWN0b3J5SUQifSwidHlwZSI6ImFycmF5In19LCJyZXF1aXJlZCI6WyJkaXJlY3RvcmllcyJdLCJ0eXBlIjoib2JqZWN0In1dfSwidHlwZSI6ImFycmF5In0",
+                            "content_type": "application/json",
+                            "example": {
+                                "foo": "bar"
+                            }
+                        }
                     }
                 },
                 "validation/cel": [
@@ -675,6 +707,36 @@
         }
     ],
     "extra_config": {
+        "auth/basic": {
+            "htpasswd_path": "/path/to/.htpasswd",
+            "users": {
+                "admin": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ...",
+                "user2": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ..."
+            }
+        },
+        "security/policies": {
+            "jwt": {
+                "policies": [
+                    "has(JWT.user_id)"
+                ]
+            },
+            "req": {
+                "policies": [],
+                "error": {
+                    "body": "",
+                    "content_type": "text/plain",
+                    "status": 500
+                }
+            },
+            "resp": {
+                "policies": [],
+                "error": {
+                    "body": "",
+                    "content_type": "text/plain",
+                    "status": 500
+                }
+            }
+        },
         "telemetry/newrelic": {
             "license": "XXXX",
             "debug": true

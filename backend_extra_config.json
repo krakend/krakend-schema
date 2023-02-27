@@ -32,6 +32,12 @@
         "backend/lambda": {
             "$ref": "backend/lambda.json"
         },
+        "backend/soap": {
+            "$ref": "backend/soap.json"
+        },
+        "modifier/body-generator": {
+            "$ref": "modifier/body-generator.json"
+        },
         "modifier/lua-backend": {
             "$ref": "modifier/lua.json"
         },
@@ -41,6 +47,9 @@
             "minProperties": 1,
             "description": "Transform requests and responses through a simple DSL definition in the configuration file.\n\nSee: https://www.krakend.io/docs/backends/martian/",
             "properties": {}
+        },
+        "modifier/jmespath": {
+            "$ref": "modifier/jmespath.json"
         },
         "qos/http-cache": {
             "type": "object",

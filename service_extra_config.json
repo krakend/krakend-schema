@@ -17,6 +17,12 @@
         "auth/revoker": {
             "$ref": "auth/revoker.json"
         },
+        "auth/basic": {
+            "$ref": "auth/basic.json"
+        },
+        "security/policies": {
+            "$ref": "security/policies.json"
+        },
         "security/bot-detector": {
             "$ref": "security/bot-detector.json"
         },
