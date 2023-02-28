@@ -53,7 +53,7 @@
             "$id": "#service/tls/min_version",
             "type": "string",
             "title": "Minimum TLS version",
-            "description": "Minimum TLS version supported.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
+            "description": "Minimum TLS version supported. When specifiying very old and insecure versions under TLS12 you must provide the `ciphers_list`.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
             "enum": [
                 "SSL3.0",
                 "TLS10",
@@ -61,7 +61,7 @@
                 "TLS12",
                 "TLS13"
             ],
-            "default": "TLS12"
+            "default": "TLS13"
         },
         "max_version": {
             "$id": "#service/tls/max_version",
@@ -75,7 +75,7 @@
                 "TLS12",
                 "TLS13"
             ],
-            "default": "TLS12"
+            "default": "TLS13"
         },
         "enable_mtls": {
             "$id": "#service/tls/enable_mtls",
@@ -101,16 +101,21 @@
         "prefer_server_cipher_suites": {
             "$id": "#service/tls/prefer_server_cipher_suites",
             "title": "Prefer server cipher suites",
-            "description": "Enforces the use of one of the cipher suites offered by the server, instead of going with the suite proposed by the client.\n\nSee: https://www.krakend.io/docs/authorization/mutual-authentication/",
+            "description": "Enforces the use of TLS versions and cipher suites configured, and blocks all traffic not in the range.\n\nSee: https://www.krakend.io/docs/authorization/mutual-authentication/",
             "type": "boolean",
             "default": false
         },
         "cipher_suites": {
             "$id": "#service/tls/cipher_suites",
             "title": "Cipher Suites",
-            "description": "The list of cipher suites\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
+            "description": "The list of cipher suites as defined in the documentation.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
             "type": "array",
-            "uniqueItems": true
+            "uniqueItems": true,
+            "default": [
+                4865,
+                4866,
+                4867
+            ]
         },
         "ca_certs": {
             "$id": "#service/tls/ca_certs",
@@ -127,7 +132,7 @@
         "disable_system_ca_pool": {
             "$id": "#service/tls/disable_system_ca_pool",
             "title": "Disable system's CA",
-            "description": "Make that any certificate in the system's CA is not recognized by KrakenD. The only certificates loaded will be the ones in the `ca_certs` list when true.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
+            "description": "Ignore any certificate in the system's CA. The only certificates loaded will be the ones in the `ca_certs` list when true.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
             "type": "boolean",
             "default": false
         }
