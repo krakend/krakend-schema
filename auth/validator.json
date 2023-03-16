@@ -251,6 +251,8 @@
             "description": "Enables passing claims in the backend's request header. You can pass nested claims using the dot `.` operator. E.g.: `realm_access.roles`.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
             "items": {
                 "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
                 "items": {
                     "type": "string"
                 }
