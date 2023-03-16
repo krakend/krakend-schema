@@ -430,7 +430,6 @@
                             "no_local": false,
                             "no_wait": false,
                             "prefetch_count": 10,
-                            "prefetch_size": 1024,
                             "routing_key": [
                                 "#"
                             ],
@@ -444,8 +443,6 @@
                             "no_wait": true,
                             "no_local": false,
                             "routing_key": "#",
-                            "prefetch_count": 10,
-                            "prefetch_size": 1024,
                             "mandatory": false,
                             "immediate": false,
                             "@extra_comment": "here"
