@@ -739,7 +739,7 @@
         }
     ],
     "extra_config": {
-        "auth/jwk-client": {
+        "auth/jose": {
             "shared_cache_duration": 5,
             "@comment": 1
         },
