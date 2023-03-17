@@ -224,7 +224,7 @@
         "cache_duration": {
             "$id": "#auth/validator/cache_duration",
             "title": "Cache duration",
-            "description": "The cache duration when the `cache` is enabled. Value in seconds, defaults to 15 minutes.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+            "description": "The cache duration in seconds when the `cache` is enabled. 15 minutes when unset.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
             "type": "integer",
             "default": 900
         },
