@@ -120,7 +120,7 @@
         },
         "jwt": {
             "title": "JWT policies",
-            "description": "All the policies applied in the JWT context (token validation). Any policy failing will generate a `401 Unauthorized` error. Works in `endpoint` context only.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+            "description": "All the policies applied in the JWT context (token validation). **You must configure `auth/validator`** for the policies to run, otherwise they will be skipped. Any policy failing will generate a `401 Unauthorized` error. Works in `endpoint` context only.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
             "type": "object",
             "required": [
                 "policies"

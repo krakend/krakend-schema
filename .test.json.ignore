@@ -739,6 +739,10 @@
         }
     ],
     "extra_config": {
+        "auth/jwk-client": {
+            "shared_cache_duration": 5,
+            "@comment": 1
+        },
         "auth/basic": {
             "htpasswd_path": "/path/to/.htpasswd",
             "users": {
