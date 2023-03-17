@@ -157,8 +157,8 @@
         "auth/api-keys": {
             "$ref": "auth/api-keys.json"
         },
-        "auth/jwk-client": {
-            "$ref": "auth/jwk-client.json"
+        "auth/jose": {
+            "$ref": "auth/jose.json"
         },
         "qos/ratelimit/service": {
             "$ref": "qos/ratelimit/router.json",
