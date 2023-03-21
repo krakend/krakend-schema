@@ -37,6 +37,13 @@
             "type": "boolean",
             "default": false
         },
+        "echo_endpoint": {
+            "$id": "#service/echo_endpoint",
+            "title": "Echo endpoint",
+            "description": "Enables the `/__echo/` endpoint for this configuration, that returns information about the incoming request. When using /__echo as a backend you can check the actual headers and content a backend receives after all the zero-trust filtering.",
+            "type": "boolean",
+            "default": false
+        },
         "sequential_start": {
             "$id": "#service/sequential_start",
             "title": "Sequential start",
