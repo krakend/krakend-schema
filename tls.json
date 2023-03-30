@@ -120,7 +120,7 @@
         "ca_certs": {
             "$id": "#service/tls/ca_certs",
             "title": "CA certificates",
-            "description": "An array with all the CA certificates you would like to load to KrakenD **when using mTLS**, in addition to the certificates present in the system's CA.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
+            "description": "An array with all the CA certificates you would like to load to KrakenD **when using mTLS**, in addition to the certificates present in the system's CA. Each certificate in the list is a relative or absolute path to the PEM file. If you have a format other than PEM, you must convert the certificate to PEM using a conversion tool. See also `disable_system_ca_pool` to avoid system's CA.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
             "type": "array",
             "examples": [
                 [
