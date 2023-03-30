@@ -100,8 +100,9 @@
         },
         "prefer_server_cipher_suites": {
             "$id": "#service/tls/prefer_server_cipher_suites",
+            "deprecated": true,
             "title": "Prefer server cipher suites",
-            "description": "Enforces the use of TLS versions and cipher suites configured, and blocks all traffic not in the range.\n\nSee: https://www.krakend.io/docs/authorization/mutual-authentication/",
+            "description": "This legacy field has no longer effect. Servers now select the best mutually supported cipher suite based on logic that takes into account inferred client hardware, server hardware, and security.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
             "type": "boolean",
             "default": false
         },
@@ -119,8 +120,8 @@
         },
         "ca_certs": {
             "$id": "#service/tls/ca_certs",
-            "title": "CA certificates",
-            "description": "An array with all the CA certificates you would like to load to KrakenD **when using mTLS**, in addition to the certificates present in the system's CA. Each certificate in the list is a relative or absolute path to the PEM file. If you have a format other than PEM, you must convert the certificate to PEM using a conversion tool. See also `disable_system_ca_pool` to avoid system's CA.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
+            "title": "CA certificates (for mTLS)",
+            "description": "An array with all the CA certificates you would like to load to KrakenD **when using mTLS**, in addition to the certificates present in the system's CA. Each certificate in the list is a relative or absolute path to the PEM file. If you have a format other than PEM, you must convert the certificate to PEM using a conversion tool. See also `disable_system_ca_pool` to avoid system's CA.\n\nSee: https://www.krakend.io/docs/authorization/mutual-authentication/",
             "type": "array",
             "examples": [
                 [

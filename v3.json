@@ -220,9 +220,15 @@
         "allow_insecure_connections": {
             "$id": "#service/allow_insecure_connections",
             "title": "Allow insecure connections",
-            "description": "By default, KrakenD verifies every SSL connection. This option allows you to connect to backends considered insecure, for instance when you are using **self-signed certificates**",
+            "description": "This property has been moved to `tls_client` > `allow_insecure_connections`, it will still work but you should [move it](/docs/service-settings/tls/#tls-client-settings) before it's deleted.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
             "type": "boolean",
+            "deprecated": true,
             "default": false
+        },
+        "tls_client": {
+            "title": "TLS Client settings",
+            "description": "Allows to set specific transport settings when using TLS in your upstream services. See [TLS Client](/docs/service-settings/tls/) for more settings",
+            "$ref": "tls_client.json"
         },
         "tls": {
             "$ref": "tls.json"
