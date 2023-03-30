@@ -132,6 +132,12 @@
             "description": "**Enterprise only**. All the output to the end user on the Enterprise Edition uses gzip when accepted by the client. Use this flag to remove gzip compression.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
             "type": "boolean",
             "default": false
+        },
+        "use_h2c": {
+            "title": "Enable h2c",
+            "description": "Enable the support for HTTP/2 with no TLS (clear text). This option is less secure and less performant, use with caution.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+            "type": "boolean",
+            "default": false
         }
     }
 }
