@@ -30,6 +30,25 @@
     "cache_ttl": "300s",
     "idle_timeout": "10s",
     "read_header_timeout": "10s",
+    "tls_client": {
+        "allow_insecure_connections": false,
+        "cipher_suites": [
+            4865,
+            4866,
+            4867
+        ],
+        "ca_certs": [
+            "ca.pem"
+        ],
+        "curve_preferences": [
+            23,
+            24,
+            25
+        ],
+        "disable_system_ca_pool": false,
+        "max_version": "TLS13",
+        "min_version": "TLS12"
+    },
     "tls": {
         "public_key": "./cert.pem",
         "private_key": "./certs/key.pem",
