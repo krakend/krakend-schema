@@ -132,7 +132,8 @@
             "items": {
                 "type": "object",
                 "$ref": "backend.json"
-            }
+            },
+            "minItems": 1
         },
         "extra_config": {
             "type": "object",
