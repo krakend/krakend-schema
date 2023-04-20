@@ -11,9 +11,6 @@
     "required": [
         "name",
         "exchange",
-        "durable",
-        "delete",
-        "no_wait",
         "routing_key"
     ],
     "properties": {
@@ -72,14 +69,7 @@
             "title": "Prefetch count",
             "description": "The number of messages you want to prefetch prior to consume them.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
             "type": "integer",
-            "default": 10
-        },
-        "prefetch_size": {
-            "$id": "#backend/amqp/consumer/prefetch_size",
-            "title": "Prefetch size",
-            "description": "The number of bytes you want to use to prefetch messages.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
-            "type": "integer",
-            "default": 1024
+            "default": 0
         },
         "auto_ack": {
             "$id": "#backend/amqp/consumer/auto_ack",
@@ -87,6 +77,25 @@
             "description": "When KrakenD retrieves the messages, regardless of the success or failure of the operation, it marks them as `ACK`nowledge.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
             "type": "boolean",
             "default": false
+        },
+        "max_retries": {
+            "title": "Max retries",
+            "description": "The maximum number of times you will allow KrakenD to retry reconnecting to a broken messaging system. During startup KrakenD will wait for a maximum of 3 retries before starting to use this policy. Use 0 for unlimited retries.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
+            "type": "integer",
+            "default": 0
+        },
+        "backoff_strategy": {
+            "title": "Backoff strategy",
+            "description": "When the connection to your event source gets interrupted for whatever reason, KrakenD keeps trying to reconnect until it succeeds or until it reaches the `max_retries`. The backoff strategy defines the delay in seconds in between consecutive failed retries.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
+            "type": "string",
+            "enum": [
+                "linear",
+                "linear-jitter",
+                "exponential",
+                "exponential-jitter",
+                "fallback"
+            ],
+            "default": "fallback"
         }
     }
 }
