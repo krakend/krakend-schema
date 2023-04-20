@@ -122,7 +122,7 @@
         "cache_ttl": {
             "$id": "#endpoint/cache_ttl",
             "title": "Cache TTL",
-            "description": "Sets or overrides the cache headers to inform for how long the client or CDN can cache the request to this endpoint. Related: [caching backend responses](/docs/backends/caching/).",
+            "description": "Sets or overrides the cache headers to inform for how long the client or CDN can cache the request to this endpoint. Setting this value to a zero-value will use the `cache_ttl` of the service if any. Related: [caching backend responses](/docs/backends/caching/).",
             "$ref": "timeunits.json#/$defs/timeunit"
         },
         "backend": {
