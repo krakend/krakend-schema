@@ -157,7 +157,7 @@
         "auth/api-keys": {
             "$ref": "auth/api-keys.json"
         },
-        "auth/jose": {
+        "auth/validator": {
             "$ref": "auth/jose.json"
         },
         "qos/ratelimit/service": {
