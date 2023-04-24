@@ -758,7 +758,7 @@
         }
     ],
     "extra_config": {
-        "auth/jose": {
+        "auth/validator": {
             "shared_cache_duration": 5,
             "@comment": 1
         },
