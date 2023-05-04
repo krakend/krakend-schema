@@ -1,0 +1,59 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/backend/grpc.json",
+    "title": "gRPC backend connection",
+    "description": "Enterprise only. Handles the communication with a backend using gRPC, after having defined the protocol buffer definitions.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
+    "properties": {
+        "client_tls": {
+            "title": "Enable TLS client options",
+            "description": "Enables specific TLS connection options when using the gRPC service. Supports all options under [TLS client settings](https://www.krakend.io/docs/service-settings/tls/#tls-client-settings).\n\nSee: https://www.krakend.io/docs/backends/grpc/",
+            "$ref": "../tls_client.json"
+        },
+        "response_naming_convention": {
+            "title": "Naming convention used to represent the returned data",
+            "description": "Defines the naming convention used to format the data. By default, the gateway uses `snake_case` which makes use of the standard `encoding/json` package, while when you choose `camelCase` the `protobuf/encoding` deserialization is used instead.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
+            "type": "string",
+            "enum": ["camelCase", "snake_case"],
+            "default": "snake_case"
+        },
+        "output_enum_as_string": {
+            "title": "Output enum types as string",
+            "description": "Enum types are returned as numeric values (flag set to `false`). Set this flag to `true` to return the string representation of the enum value. For instance, an enum representing allergies, such as `['NUTS', 'MILK', ' SOY', 'WHEAT']` would return a value `SOY` when this flag is `true`, or `2` when `false`.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
+            "type": "boolean",
+            "default": false
+        },
+        "output_timestamp_as_string": {
+            "title": "Output timestamps types as string",
+            "description": "Well-known Timestamp types (`google.protobuf.Timestamp`) are returned as a struct containing sub-objects with `seconds` and `nanos` fields (flag set to `false`). Setting this flag to `true` transforms the timestamps into a string representation in RFC3999 format.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
+            "type": "boolean",
+            "default": false
+        },
+        "output_duration_as_string": {
+            "title": "Output duration types as string",
+            "description": "Well-known Duration types (`google.protobuf.Duration`) are returned as a struct containing sub-objects with `seconds` and `nanos` fields (flag set to `false`). Setting this flag to `true` transforms the timestamps into a string representation, for instance `24h` or `5s`.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
+            "type": "boolean",
+            "default": false
+        },
+        "input_query_strings_mapping": {
+            "title": "Mapping of query string parameters",
+            "description": "A dictionary that converts the user input into a different field during the backend request.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
+            "type": "object",
+            "examples": [
+                {
+                    "lat": "where.latitude",
+                    "lon": "where.longitude"
+                }
+            ],
+            "additionalProperties": true,
+            "items": {
+                "type": "string"
+            }
+        }
+
+    }
+}

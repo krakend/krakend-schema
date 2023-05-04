@@ -49,6 +49,9 @@
         "max_version": "TLS13",
         "min_version": "TLS12"
     },
+    "grpc": {
+        "catalog": ["./grpc/definitions"]
+    },
     "tls": {
         "public_key": "./cert.pem",
         "private_key": "./certs/key.pem",
@@ -130,6 +133,34 @@
         }
     ],
     "endpoints": [
+        {
+            "@comment": "Feature: GRPC",
+            "endpoint": "/flights",
+            "input_query_strings": ["*"],
+            "backend": [
+            {
+                "host": ["localhost:4242"],
+                "disable_host_sanitize": true,
+                "url_pattern": "/flight_finder.Flights/FindFlight",
+                "extra_config": {
+                    "backend/grpc": {
+                        "client_tls": {
+                            "@comment": "Allow untrusted certificates in development stage",
+                            "allow_insecure_connections": true
+                        },
+                        "input_query_strings_mapping": {
+                            "lat": "where.latitude",
+                            "lon": "where.longitude"
+                        },
+                        "output_duration_as_string": false,
+                        "output_enum_as_string": false,
+                        "output_timestamp_as_string": false,
+                        "response_naming_convention": "snake_case"
+                    }
+                }
+            }
+            ]
+        },
         {
             "endpoint": "/fhir/unrestful${translate}",
             "backend": [
