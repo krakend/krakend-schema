@@ -35,7 +35,7 @@
         },
         "output_duration_as_string": {
             "title": "Output duration types as string",
-            "description": "Well-known Duration types (`google.protobuf.Duration`) are returned as a struct containing sub-objects with `seconds` and `nanos` fields (flag set to `false`). Setting this flag to `true` transforms the timestamps into a string representation, for instance `24h` or `5s`.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
+            "description": "Well-known Duration types (`google.protobuf.Duration`) are returned as a struct containing sub-objects with `seconds` and `nanos` fields (flag set to `false`). Setting this flag to `true` transforms the timestamps into a string representation in seconds.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
             "type": "boolean",
             "default": false
         },
