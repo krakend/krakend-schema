@@ -17,6 +17,9 @@
         "auth/client-credentials": {
             "$ref": "auth/client-credentials.json"
         },
+        "auth/ntlm": {
+            "$ref": "auth/ntlm.json"
+        },
         "backend/amqp/consumer": {
             "$ref": "backend/amqp/consumer.json"
         },

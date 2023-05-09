@@ -99,6 +99,10 @@
                     ],
                     "url_pattern": "/__debug/",
                     "extra_config": {
+                        "auth/ntlm": {
+                            "user": "user",
+                            "password": "pass"
+                        },
                         "backend/http": {
                             "return_error_code": true,
                             "@extra_comment": "here"
