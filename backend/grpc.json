@@ -29,13 +29,19 @@
         },
         "output_timestamp_as_string": {
             "title": "Output timestamps types as string",
-            "description": "Well-known Timestamp types (`google.protobuf.Timestamp`) are returned as a struct containing sub-objects with `seconds` and `nanos` fields (flag set to `false`). Setting this flag to `true` transforms the timestamps into a string representation in RFC3999 format.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
+            "description": "Well-known Timestamp types (`google.protobuf.Timestamp`) are returned as a struct containing fields with `seconds` and `nanos` fields (flag set to `false`). Setting this flag to `true` transforms the timestamps into a string representation in RFC3999 format.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
             "type": "boolean",
             "default": false
         },
         "output_duration_as_string": {
             "title": "Output duration types as string",
-            "description": "Well-known Duration types (`google.protobuf.Duration`) are returned as a struct containing sub-objects with `seconds` and `nanos` fields (flag set to `false`). Setting this flag to `true` transforms the timestamps into a string representation in seconds.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
+            "description": "Well-known Duration types (`google.protobuf.Duration`) are returned as a struct containing fields with `seconds` and `nanos` fields (flag set to `false`). Setting this flag to `true` transforms the timestamps into a string representation in seconds.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
+            "type": "boolean",
+            "default": false
+        },
+        "output_remove_unset_values": {
+            "title": "Output removes unset values",
+            "description": "When the response has missing fields from the definition, they are returned with default values. Setting this flag to `true` removes those fields from the response, while setting it to `false` or not setting it, returns all the fields in the definition.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
             "type": "boolean",
             "default": false
         },
