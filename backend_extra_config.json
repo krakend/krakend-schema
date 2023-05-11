@@ -20,6 +20,9 @@
         "auth/ntlm": {
             "$ref": "auth/ntlm.json"
         },
+        "auth/gcp": {
+            "$ref": "auth/gcp.json"
+        },
         "backend/amqp/consumer": {
             "$ref": "backend/amqp/consumer.json"
         },

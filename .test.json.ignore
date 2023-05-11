@@ -103,6 +103,13 @@
                             "user": "user",
                             "password": "pass"
                         },
+                        "auth/gcp": {
+                            "audience": "https://gcptest-76fewi6rca-uc.a.run.app",
+                            "credentials_file": "/etc/krakend/gcp.json",
+                            "custom_claims": {
+                                "a": 1
+                            }
+                        },
                         "backend/http": {
                             "return_error_code": true,
                             "@extra_comment": "here"
