@@ -45,7 +45,7 @@
             "type": "boolean",
             "default": false
         },
-        "input_query_strings_mapping": {
+        "input_mapping": {
             "title": "Mapping of query string parameters",
             "description": "A dictionary that converts the user input into a different field during the backend request.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
             "type": "object",
