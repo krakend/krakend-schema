@@ -159,7 +159,7 @@
                             "@comment": "Allow untrusted certificates in development stage",
                             "allow_insecure_connections": true
                         },
-                        "input_query_strings_mapping": {
+                        "input_mapping": {
                             "lat": "where.latitude",
                             "lon": "where.longitude"
                         },
