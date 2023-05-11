@@ -318,6 +318,8 @@
                 },
                 "auth/api-keys": {
                     "@comment": "here",
+                    "identifier": "x-some-key",
+                    "strategy": "header",
                     "roles": [
                         "admin"
                     ],

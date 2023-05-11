@@ -150,6 +150,18 @@
                     "type": "number",
                     "title": "Max rate",
                     "description": "If you want to limit the endpoint usage to this specific user at a number of requests per second. Exceeding the number of requests per second will give the client a `429 Too Many Requests` HTTP status code.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/"
+                },
+                "identifier": {
+                    "title": "Override Identifier",
+                    "description": "The header name or the query string name that contains the API key. By default uses any value declared in the `auth/api-keys` component in the service level.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+                    "type": "string"
+                },
+                "strategy": {
+                    "$id": "#auth/api-keys/strategy",
+                    "title": "Strategy",
+                    "description": "Specifies where to expect the user API key, whether inside a header or as part of the query string. When you change the strategy at the endpoint level, **you should also set the identifier**, otherwise you could have for instance, a query string strategy expecting to have a URL like `/foo?Authorization=YOUR-KEY`.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+                    "type": "string",
+                    "enum": ["header","query_string"]
                 }
             }
         }

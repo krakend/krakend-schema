@@ -15,14 +15,15 @@
         "strategy": {
             "$id": "#auth/api-keys/strategy",
             "title": "Strategy",
-            "description": "One of header or query_string. Specifies where to expect the user API key, whether inside a header or as part of the query string. Defaults to header.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+            "description": "Specifies where to expect the user API key, whether inside a header or as part of the query string. The strategy set here is used across all endpoints with API key authentication enabled, but they can override this entry individually.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
             "type": "string",
-            "enum": ["header","query_string"]
+            "enum": ["header","query_string"],
+            "default": "header"
         },
         "identifier": {
             "$id": "#auth/api-keys/identifier",
             "title": "Identifier",
-            "description": "The header name or the query string name that contains the API key. Defaults to `key` when using the `query_string` strategy and to Authorization when using `header`.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+            "description": "The header name or the query string name that contains the API key. Defaults to `key` when using the `query_string` strategy and to `Authorization` when using the `header` strategy. The identifier set here is used across all endpoints with API key authentication enabled, but they can override this entry individually.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
             "type": "string",
             "examples": ["Authorization"]
         },
