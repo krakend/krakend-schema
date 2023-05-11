@@ -815,7 +815,10 @@
         },
         "telemetry/newrelic": {
             "license": "XXXX",
-            "debug": true
+            "debug": true,
+            "headers_to_pass":[
+                "*"
+            ]
         },
         "router": {
             "disable_path_decoding": false,
