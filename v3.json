@@ -223,7 +223,7 @@
         "allow_insecure_connections": {
             "$id": "#service/allow_insecure_connections",
             "title": "Allow insecure connections",
-            "description": "This property has been moved to `client_tls` > `allow_insecure_connections`, it will still work but you should [move it](/docs/service-settings/tls/#tls-client-settings) before it's deleted.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
+            "description": "This property has been moved to `client_tls` > `allow_insecure_connections`, it will still work but you should [move it](/docs/service-settings/tls/#client-tls-settings) before it's deleted.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
             "type": "boolean",
             "deprecated": true,
             "default": false
