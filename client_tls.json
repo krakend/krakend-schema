@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/tls_client.json",
+    "$id": "https://www.krakend.io/schema/client_tls.json",
     "title": "TLS client settings",
     "description": "TLS options to connect to upstream services.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
     "additionalProperties": false,
@@ -9,14 +9,14 @@
     },
     "properties": {
         "allow_insecure_connections": {
-            "$id": "#tls_client/allow_insecure_connections",
+            "$id": "#client_tls/allow_insecure_connections",
             "title": "Allow insecure connections",
             "description": "By default, KrakenD verifies every SSL connection. This option allows you to connect to backends considered **insecure**, for instance when you are using self-signed certificates",
             "type": "boolean",
             "default": false
         },
         "ca_certs": {
-            "$id": "#tls_client/ca_certs",
+            "$id": "#client_tls/ca_certs",
             "title": "CA certificates",
             "description": "An array with all the CA certificates you would like to validate the server you are connecting to.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
             "type": "array",
@@ -28,14 +28,14 @@
             "default": []
         },
         "disable_system_ca_pool": {
-            "$id": "#tls_client/disable_system_ca_pool",
+            "$id": "#client_tls/disable_system_ca_pool",
             "title": "Disable system's CA",
             "description": "Ignore any certificate in the system's CA. The only certificates loaded will be the ones in the `ca_certs` list when true.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
             "type": "boolean",
             "default": false
         },
         "min_version": {
-            "$id": "tls_client/min_version",
+            "$id": "client_tls/min_version",
             "type": "string",
             "title": "Minimum TLS version",
             "description": "Minimum TLS version supported. When specifiying very old and insecure versions under TLS12 you must provide the `ciphers_list`.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
@@ -49,7 +49,7 @@
             "default": "TLS13"
         },
         "max_version": {
-            "$id": "tls_client/max_version",
+            "$id": "client_tls/max_version",
             "type": "string",
             "title": "Maximum TLS version",
             "description": "Maximum TLS version supported.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
@@ -63,7 +63,7 @@
             "default": "TLS13"
         },
         "curve_preferences": {
-            "$id": "tls_client/curve_preferences",
+            "$id": "client_tls/curve_preferences",
             "title": "Curve identifiers",
             "description": "The list of all the identifiers for the curve preferences. Use `23` for CurveP256, `24` for CurveP384 or `25` for CurveP521.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
             "type": "array",
@@ -77,7 +77,7 @@
 
         },
         "cipher_suites": {
-            "$id": "tls_client/cipher_suites",
+            "$id": "client_tls/cipher_suites",
             "title": "Cipher Suites",
             "description": "The list of cipher suites as defined in the documentation.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
             "type": "array",

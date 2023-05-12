@@ -12,7 +12,7 @@
         "client_tls": {
             "title": "Enable TLS client options",
             "description": "Enables specific TLS connection options when using the gRPC service. Supports all options under [TLS client settings](https://www.krakend.io/docs/service-settings/tls/#tls-client-settings).\n\nSee: https://www.krakend.io/docs/backends/grpc/",
-            "$ref": "../tls_client.json"
+            "$ref": "../client_tls.json"
         },
         "response_naming_convention": {
             "title": "Naming convention used to represent the returned data",

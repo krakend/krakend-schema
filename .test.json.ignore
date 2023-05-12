@@ -30,7 +30,7 @@
     "cache_ttl": "300s",
     "idle_timeout": "10s",
     "read_header_timeout": "10s",
-    "tls_client": {
+    "client_tls": {
         "allow_insecure_connections": false,
         "cipher_suites": [
             4865,
