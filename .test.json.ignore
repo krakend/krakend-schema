@@ -26,11 +26,10 @@
     "response_header_timeout": "10s",
     "expect_continue_timeout": "0s",
     "disable_rest": false,
-    "allow_insecure_connections": false,
     "cache_ttl": "300s",
     "idle_timeout": "10s",
     "read_header_timeout": "10s",
-    "tls_client": {
+    "client_tls": {
         "allow_insecure_connections": false,
         "cipher_suites": [
             4865,
@@ -49,6 +48,11 @@
         "max_version": "TLS13",
         "min_version": "TLS12"
     },
+    "grpc": {
+        "catalog": [
+            "./grpc/definitions"
+        ]
+    },
     "tls": {
         "public_key": "./cert.pem",
         "private_key": "./certs/key.pem",
@@ -61,7 +65,6 @@
             24,
             25
         ],
-        "prefer_server_cipher_suites": false,
         "cipher_suites": [
             4865
         ],
@@ -96,6 +99,17 @@
                     ],
                     "url_pattern": "/__debug/",
                     "extra_config": {
+                        "auth/ntlm": {
+                            "user": "user",
+                            "password": "pass"
+                        },
+                        "auth/gcp": {
+                            "audience": "https://gcptest-76fewi6rca-uc.a.run.app",
+                            "credentials_file": "/etc/krakend/gcp.json",
+                            "custom_claims": {
+                                "a": 1
+                            }
+                        },
                         "backend/http": {
                             "return_error_code": true,
                             "@extra_comment": "here"
@@ -130,6 +144,38 @@
         }
     ],
     "endpoints": [
+        {
+            "@comment": "Feature: GRPC",
+            "endpoint": "/flights",
+            "input_query_strings": [
+                "*"
+            ],
+            "backend": [
+                {
+                    "host": [
+                        "localhost:4242"
+                    ],
+                    "disable_host_sanitize": true,
+                    "url_pattern": "/flight_finder.Flights/FindFlight",
+                    "extra_config": {
+                        "backend/grpc": {
+                            "client_tls": {
+                                "@comment": "Allow untrusted certificates in development stage",
+                                "allow_insecure_connections": true
+                            },
+                            "input_mapping": {
+                                "lat": "where.latitude",
+                                "lon": "where.longitude"
+                            },
+                            "output_duration_as_string": false,
+                            "output_enum_as_string": false,
+                            "output_timestamp_as_string": false,
+                            "response_naming_convention": "snake_case"
+                        }
+                    }
+                }
+            ]
+        },
         {
             "endpoint": "/fhir/unrestful${translate}",
             "backend": [
@@ -276,6 +322,8 @@
                 },
                 "auth/api-keys": {
                     "@comment": "here",
+                    "identifier": "x-some-key",
+                    "strategy": "header",
                     "roles": [
                         "admin"
                     ],
@@ -300,7 +348,7 @@
                         "404": {
                             "@comment": "Some comment",
                             "description": "Page not found",
-                            "example_schema": "eyJpdGVtcyI6eyJhbGxPZiI6W3sicHJvcGVydGllcyI6eyJ2ZXJzaW9uIjp7InR5cGUiOiJzdHJpbmcifX0sInJlcXVpcmVkIjpbInZlcnNpb24iXSwidHlwZSI6Im9iamVjdCJ9LHsicHJvcGVydGllcyI6eyJkaXJlY3RvcmllcyI6eyJpdGVtcyI6eyJ0eXBlIjoic3RyaW5nIiwieC1nby10eXBlIjoiRGlyZWN0b3J5SUQifSwidHlwZSI6ImFycmF5In19LCJyZXF1aXJlZCI6WyJkaXJlY3RvcmllcyJdLCJ0eXBlIjoib2JqZWN0In1dfSwidHlwZSI6ImFycmF5In0",
+                            "example_schema": "eyJhbGxPZiI6W3sicHJvcGVydGllcyI6eyJ2ZXJzaW9uIjp7InR5cGUiOiJzdHJpbmcifX0sInJlcXVpcmVkIjpbInZlcnNpb24iXSwidHlwZSI6Im9iamVjdCJ9LHsicHJvcGVydGllcyI6eyJkaXJlY3RvcnkiOnsiYWxsT2YiOlt7InByb3BlcnRpZXMiOnsibWV0YWRhdGEiOnsidHlwZSI6Im9iamVjdCIsIngtZ28tdHlwZSI6IkRpcmVjdG9yeU1ldGFkYXRhIn0sIm5hbWUiOnsidHlwZSI6InN0cmluZyIsIngtb2FwaS1jb2RlZ2VuLWV4dHJhLXRhZ3MiOnsiYmluZGluZyI6InJlcXVpcmVkIn19fSwicmVxdWlyZWQiOlsibmFtZSJdLCJ0eXBlIjoib2JqZWN0In0seyJwcm9wZXJ0aWVzIjp7ImNyZWF0ZWRBdCI6eyJmb3JtYXQiOiJkYXRlLXRpbWUiLCJ0eXBlIjoic3RyaW5nIn0sImRlbGV0ZWRBdCI6eyJmb3JtYXQiOiJkYXRlLXRpbWUiLCJ0eXBlIjoic3RyaW5nIn0sImlkIjp7InR5cGUiOiJzdHJpbmciLCJ4LWdvLXR5cGUiOiJEaXJlY3RvcnlJRCJ9LCJwYXJlbnQiOnsib3B0aW9uYWwiOnRydWUsInR5cGUiOiJzdHJpbmciLCJ4LWdvLXR5cGUiOiJEaXJlY3RvcnlJRCJ9LCJ1cGRhdGVkQXQiOnsiZm9ybWF0IjoiZGF0ZS10aW1lIiwidHlwZSI6InN0cmluZyJ9fSwicmVxdWlyZWQiOlsiaWQiLCJjcmVhdGVkQXQiLCJ1cGRhdGVkQXQiXSwidHlwZSI6Im9iamVjdCJ9XX19LCJyZXF1aXJlZCI6WyJkaXJlY3RvcnkiXSwidHlwZSI6Im9iamVjdCJ9XX0=",
                             "content_type": "application/json",
                             "example": {
                                 "foo": "bar"
@@ -565,6 +613,23 @@
                         "backend/http": {
                             "return_error_details": "backend_alias",
                             "@extra_comment": "here"
+                        },
+                        "backend/http/client": {
+                            "@comment": "Enterprise only",
+                            "no_redirect": false,
+                            "client_tls": {
+                                "allow_insecure_connections": false,
+                                "ca_certs": [
+                                    "custom.pem"
+                                ],
+                                "disable_system_ca_pool": true,
+                                "cipher_suites": [
+                                    4865,
+                                    4866,
+                                    4867
+                                ]
+                            },
+                            "proxy_address": "http://troloro:9099"
                         }
                     }
                 }
@@ -771,7 +836,10 @@
         },
         "telemetry/newrelic": {
             "license": "XXXX",
-            "debug": true
+            "debug": true,
+            "headers_to_pass": [
+                "*"
+            ]
         },
         "router": {
             "disable_path_decoding": false,
@@ -1130,16 +1198,6 @@
                     "/media/ignore/this/directory",
                     "/media/file.json"
                 ]
-            },
-            "basic-auth": {
-                "endpoints": [
-                    "*"
-                ],
-                "users": {
-                    "admin": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ...",
-                    "user2": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ..."
-                },
-                "htpasswd_path": "/path/to/.htpasswd"
             },
             "geoip": {
                 "citydb_path": "path/to/GeoIP2-City.mmdb"

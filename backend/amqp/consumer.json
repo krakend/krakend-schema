@@ -48,7 +48,7 @@
         "delete": {
             "$id": "#backend/amqp/consumer/delete",
             "title": "Delete",
-            "description": "Setting to `false` is recommended to avoid deletions when the consumer is disconnected.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
+            "description": "When `true`, AMQP deletes the queue when there are no remaining connections. This option is **not recommended** in most of the scenarios. If for instance, the connectivity between KrakenD and AMQP is lost for whatever reason and it's the only client, AMQP will delete the queue no matter the number of messages there are inside, and when KrakenD gets the connection again the queue won't exist and future connections will recreate it again.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
             "type": "boolean",
             "default": false
         },
@@ -78,6 +78,13 @@
             "type": "boolean",
             "default": false
         },
+        "exclusive": {
+            "$id": "#backend/amqp/consumer/exclusive",
+            "title": "Exclusive",
+            "description": "When `true`, AMQP will allow **a single KrakenD instance** to access the queue. This option is **not recommended** in environments where the gateway needs high availability and you have several instances running.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
+            "type": "boolean",
+            "default": false
+        },
         "max_retries": {
             "title": "Max retries",
             "description": "The maximum number of times you will allow KrakenD to retry reconnecting to a broken messaging system. During startup KrakenD will wait for a maximum of 3 retries before starting to use this policy. Use 0 for unlimited retries.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
@@ -86,7 +93,7 @@
         },
         "backoff_strategy": {
             "title": "Backoff strategy",
-            "description": "When the connection to your event source gets interrupted for whatever reason, KrakenD keeps trying to reconnect until it succeeds or until it reaches the `max_retries`. The backoff strategy defines the delay in seconds in between consecutive failed retries.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
+            "description": "When the connection to your event source gets interrupted for whatever reason, KrakenD keeps trying to reconnect until it succeeds or until it reaches the `max_retries`. The backoff strategy defines the delay in seconds in between consecutive failed retries. [Check the meaning of each strategy](https://www.krakend.io/docs/async/#backoff-strategies).\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
             "type": "string",
             "enum": [
                 "linear",

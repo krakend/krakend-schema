@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/documentation/openapi.json",
     "title": "Generate documentation using OpenAPI",
-    "description": "Enterprise only. Generates OpenAPI documentation automatically through `krakend generate openapi` command.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+    "description": "Enterprise only. Generates OpenAPI documentation automatically through `krakend openapi export` command.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
     "type": "object",
     "additionalProperties": false,
     "patternProperties": {
@@ -182,7 +182,7 @@
                         },
                         "example_schema": {
                             "type": ["string"],
-                            "pattern": "^[a-zA-Z0-9+/]+$",
+                            "pattern": "^[a-zA-Z0-9+/=_-]+$",
                             "description": "A JSON schema that describes the response format for the selected status code, encoded as a base64 string. Use either example or example_schema, but not both."
                         },
                         "example": {

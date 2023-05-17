@@ -25,14 +25,14 @@
         "endpoint": {
             "$id": "#endpoint/endpoint",
             "title": "Endpoint",
-            "description": "The exact string resource URL you want to expose. You can use `{placeholders}` to use variables when needed. URLs do not support colons `:` in their definition. Endpoints should start with slash `/`. Example: `/foo/{var}`. If `{vars}` are placed in the middle words, like in `/var{iable}` you must set in the root level `disable_rest` strict checking.\n\nSee: https://www.krakend.io/docs/endpoints/",
+            "description": "The exact string resource URL you want to expose. You can use `{placeholders}` to use variables when needed. URLs do not support colons `:` in their definition. Endpoints should start with slash `/`. Example: `/foo/{var}`. If `{vars}` are placed in the middle words, like in `/var{iable}` you must set in the root level `disable_rest` strict checking. You can also add an ending `/*` in the path to enable [wildcards](/docs/enterprise/endpoints/wildcard/) (Enterprise only)\n\nSee: https://www.krakend.io/docs/endpoints/",
             "type": "string",
             "examples": [
                 "/new-endpoint",
                 "/foo/{var}",
                 "/foo/{var1}/{var2}"
             ],
-            "pattern": "^/[^:]*$"
+            "pattern": "^\\/[^:\\*\\?\\&\\%]*(\\/\\*)?$"
         },
         "method": {
             "$id": "#endpoint/method",
