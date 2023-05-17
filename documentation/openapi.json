@@ -182,7 +182,7 @@
                         },
                         "example_schema": {
                             "type": ["string"],
-                            "pattern": "^[a-zA-Z0-9+/]+$",
+                            "pattern": "^[a-zA-Z0-9+/=_-]+$",
                             "description": "A JSON schema that describes the response format for the selected status code, encoded as a base64 string. Use either example or example_schema, but not both."
                         },
                         "example": {

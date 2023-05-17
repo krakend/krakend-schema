@@ -14,6 +14,11 @@
     "oneOf": [
         {
             "required": [
+                "audience"
+            ]
+        },
+        {
+            "required": [
                 "audience",
                 "credentials_file"
             ]
@@ -29,7 +34,7 @@
         "audience": {
             "$id": "#auth/gcp/audience",
             "title": "Audience",
-            "description": "The audience in GCP looks like an URL, an contains the destination service you will ask a token for. Most of the times this URL will match exactly with the `host` entry.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
+            "description": "The audience in GCP looks like an URL, and contains the destination service you will ask a token for. Most of the times this URL will match exactly with the `host` entry.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
             "type": "string",
             "examples": [
                 "https://gcptest-76fewi6rca-uc.a.run.app"

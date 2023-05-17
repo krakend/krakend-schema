@@ -12,7 +12,7 @@
         "no_redirect": {
             "type": "boolean",
             "title": "No redirect",
-            "description": "Set `no_redirect` to true if you down't want KrakenD to follow redirects and let the consuming user to receive the `30x` status code.\n\nSee: https://www.krakend.io/docs/enterprise/backends/http-client/",
+            "description": "Set `no_redirect` to true if you don't want KrakenD to follow redirects and let the consuming user to receive the `30x` status code.\n\nSee: https://www.krakend.io/docs/enterprise/backends/http-client/",
             "default": false
         },
         "proxy_address": {

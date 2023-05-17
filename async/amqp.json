@@ -45,14 +45,14 @@
         "delete": {
             "$id": "#async/amqp/delete",
             "title": "Delete",
-            "description": "false is recommended to avoid deletions when the consumer is disconnected.\n\nSee: https://www.krakend.io/docs/async/amqp/",
+            "description": "When `true`, AMQP deletes the queue when there are no remaining connections. This option is **not recommended** in most of the scenarios. If for instance, the connectivity between KrakenD and AMQP is lost for whatever reason and it's the only client, AMQP will delete the queue no matter the number of messages there are inside, and when KrakenD gets the connection again the queue won't exist and future connections will recreate it again.\n\nSee: https://www.krakend.io/docs/async/amqp/",
             "type": "boolean",
             "default": false
         },
         "exclusive": {
             "$id": "#async/amqp/exclusive",
             "title": "Exclusive",
-            "description": "true if only this consumer can access the queue.\n\nSee: https://www.krakend.io/docs/async/amqp/",
+            "description": "When `true`, AMQP will allow **a single KrakenD client** to access the queue. This option is **not recommended** in environments where the gateway needs high availability and you have several instances running.\n\nSee: https://www.krakend.io/docs/async/amqp/",
             "type": "boolean",
             "default": false
         },
@@ -85,7 +85,7 @@
         "auto_ack": {
             "$id": "#async/amqp/auto_ack",
             "title": "Auto ACK",
-            "description": "When KrakenD retrieves the messages, regardless of the success or failure of the operation, it marks them as ACK. Defaults to false.\n\nSee: https://www.krakend.io/docs/async/amqp/",
+            "description": "When KrakenD retrieves the messages, regardless of the success or failure of the operation, it marks them as ACK. When auto ACK is not used, only successful backend responses do the ACK, and failing messages are requeued. Defaults to `false`.\n\nSee: https://www.krakend.io/docs/async/amqp/",
             "type": "boolean",
             "default": false
         }

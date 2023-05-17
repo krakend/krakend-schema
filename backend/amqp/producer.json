@@ -74,7 +74,7 @@
         "delete": {
             "$id": "#backend/amqp/consumer/delete",
             "title": "Delete",
-            "description": "false is recommended to avoid deletions when the consumer is disconnected.\n\nSee: https://www.krakend.io/docs/backends/amqp-producer/",
+            "description": "When `true`, AMQP deletes the queue when there are no remaining connections. This option is **not recommended** in most of the scenarios. If for instance, the connectivity between KrakenD and AMQP is lost for whatever reason and it's the only client, AMQP will delete the queue no matter the number of messages there are inside, and when KrakenD gets the connection again the queue won't exist and future connections will recreate it again.\n\nSee: https://www.krakend.io/docs/backends/amqp-producer/",
             "type": "boolean",
             "default": false
         },
@@ -101,6 +101,13 @@
             "$id": "#backend_extra_config/backend/amqp/producer/immediate",
             "title": "Immediate",
             "description": "A consumer must be connected to the queue when true.\n\nSee: https://www.krakend.io/docs/backends/amqp-producer/",
+            "type": "boolean",
+            "default": false
+        },
+        "exclusive": {
+            "$id": "#backend/amqp/producer/exclusive",
+            "title": "Exclusive",
+            "description": "When `true`, AMQP will allow **a single KrakenD instance** to access the queue. This option is **not recommended** in environments where the gateway needs high availability and you have several instances running.\n\nSee: https://www.krakend.io/docs/backends/amqp-producer/",
             "type": "boolean",
             "default": false
         },
