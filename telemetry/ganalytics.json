@@ -2,8 +2,9 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/telemetry/ganalytics.json",
     "title": "telemetry/ganalytics",
-    "description": "Enterprise only. Generate API Analytics from your API activity, using Google’s Analytics platform as the storage backend.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/google-analytics/",
+    "description": "DEPRECATED. Enterprise only. Generate API Analytics from your API activity, using Google’s Analytics platform as the storage backend.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/google-analytics/",
     "type": "object",
+    "deprecated": true,
     "additionalProperties": false,
     "patternProperties": {
         "^[@$_#]": {}
