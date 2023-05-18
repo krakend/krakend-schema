@@ -8,10 +8,7 @@
     "patternProperties": {
         "^[@$_#]": {}
     },
-    "required": [
-        "audience"
-    ],
-    "oneOf": [
+    "anyOf": [
         {
             "required": [
                 "audience"
