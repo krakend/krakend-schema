@@ -25,7 +25,7 @@
         "client_tls": {
             "title": "TLS Client settings",
             "description": "Allows to set specific transport settings when using TLS in your upstream services. See the global [Client TLS options](/docs/service-settings/tls/) for the list of all supported options.",
-            "$ref": "client_tls.json"
+            "$ref": "../client_tls.json"
         }
     }
 }
