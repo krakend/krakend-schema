@@ -48,11 +48,6 @@
         "max_version": "TLS13",
         "min_version": "TLS12"
     },
-    "grpc": {
-        "catalog": [
-            "./grpc/definitions"
-        ]
-    },
     "tls": {
         "public_key": "./cert.pem",
         "private_key": "./certs/key.pem",
@@ -823,6 +818,11 @@
         }
     ],
     "extra_config": {
+        "grpc": {
+            "catalog": [
+                "./grpc/definitions"
+            ]
+        },
         "auth/validator": {
             "shared_cache_duration": 5,
             "@comment": 1
@@ -1066,33 +1066,6 @@
                     "@extra_comment": "here"
                 }
             }
-        },
-        "telemetry/instana": {
-            "AgentHost": "localhost",
-            "AgentPort": 46999,
-            "EnableAutoProfile": false,
-            "Service": "krakend",
-            "MaxBufferedSpans": 15,
-            "ForceTransmissionStartingAt": 10,
-            "LogLevel": 0,
-            "MaxBufferedProfiles": 0,
-            "IncludeProfilerFrames": false,
-            "Tracer": {
-                "CollectableHTTPHeaders": [],
-                "DropAllLogs": false,
-                "MaxLogsPerSpan": 0,
-                "Secrets": {}
-            }
-        },
-        "telemetry/ganalytics": {
-            "buffer_size": 0,
-            "tags": {
-                "cd1": "my custom dimension"
-            },
-            "timeout": "250ms",
-            "track_id": "UA-1234567",
-            "url": "https://www.google-analytics.com/batch",
-            "workers": 0
         },
         "auth/revoker": {
             "hash_name": "default",

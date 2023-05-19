@@ -8,6 +8,9 @@
         "^[@$_#]": {}
     },
     "properties": {
+        "grpc": {
+            "$ref": "grpc.json"
+        },
         "router": {
             "$ref": "router.json"
         },

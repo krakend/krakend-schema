@@ -54,9 +54,6 @@
         "async_agent": {
             "$ref": "async_agent.json"
         },
-        "grpc": {
-            "$ref": "grpc.json"
-        },
         "name": {
             "$id": "#service/name",
             "title": "Name",
