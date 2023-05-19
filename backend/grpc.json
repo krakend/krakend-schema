@@ -53,8 +53,8 @@
             "default": false
         },
         "input_mapping": {
-            "title": "Mapping of query string parameters",
-            "description": "A dictionary that converts the user input into a different field during the backend request.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
+            "title": "Mapping of parameters",
+            "description": "A dictionary that converts query string parameters and parameters from `{placeholders}` into a different field during the backend request.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
             "type": "object",
             "examples": [
                 {
@@ -75,7 +75,7 @@
         },
         "disable_query_params": {
             "title": "Disable query parameters",
-            "description": "When `true`, it does not use URL parameters or query strings to fill the gRPC payload to send. If `use_request_body` is not set, or set to `false`, and this option is set to `true`, there will be no input used for the gRPC message to send. That is still a valid option, when we just want to send the message with its default values, or when the input for the gRPC calls is just the [empty message](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/empty.proto).\n\nSee: https://www.krakend.io/docs/backends/grpc/",
+            "description": "When `true`, it does not use URL parameters (`{placeholders}` in endpoints)  or query strings to fill the gRPC payload to send. If `use_request_body` is not set, or set to `false`, and this option is set to `true`, there will be no input used for the gRPC message to send. That is still a valid option, when we just want to send the message with its default values, or when the input for the gRPC calls is just the [empty message](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/empty.proto).\n\nSee: https://www.krakend.io/docs/backends/grpc/",
             "type": "boolean",
             "default": false
         }
