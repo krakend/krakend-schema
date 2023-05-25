@@ -54,7 +54,7 @@
         },
         "input_mapping": {
             "title": "Mapping of parameters",
-            "description": "A dictionary that converts query string parameters and parameters from `{placeholders}` into a different field during the backend request.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
+            "description": "A dictionary that converts query string parameters and parameters from `{placeholders}` into a different field during the backend request. When passing parameters using `{placeholder}` the parameter capitalizes the first letter, so you receive `Placeholder`.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
             "type": "object",
             "examples": [
                 {
