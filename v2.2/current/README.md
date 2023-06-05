@@ -1,8 +1,5 @@
 ## Schema validation for KrakenD configuration files
-This repository contains the source code used to publish KrakenD's configuration schema. The official KrakenD schema lives under `https://www.krakend.io/schema/krakend.json` for the latest version, and `https://www.krakend.io/schema/vX.x/krakend.json` for specific version (replace `X.x`)
-
-
-If you are looking to validate your endpoints' JSON schema, see [JSON-schema validation](https://www.krakend.io/docs/endpoints/json-schema/).
+This repository contains the source code used to publish KrakenD's configuration schema. The official KrakenD schema lives under `https://www.krakend.io/schema/v3.json`. If you are looking to validate your endpoints' JSON schema, see [JSON-schema validation](https://www.krakend.io/docs/endpoints/json-schema/).
 
 **You must use KrakenD v2.0 and higher.**
 
@@ -19,7 +16,7 @@ In most modern editors, **there is nothing you need to install** as they have bu
 To use this schema add the `$schema` attribute in your configuration files. There is no need to clone this repo unless you'd like to submit a pull request:
 
     {
-        "$schema": "https://www.krakend.io/schema/krakend.json",
+        "$schema": "https://www.krakend.io/schema/v3.json",
         "version": 3,
         "endpoints": [
             ...
@@ -28,7 +25,7 @@ To use this schema add the `$schema` attribute in your configuration files. Ther
 
 ![IDE Integration](https://www.krakend.io/images/documentation/krakend-ide-integration.png)
 
-You can also use sub-schemas if needed. The `krakend.json` file is the main schema that references other sub-schemas with the `$ref` attribute.
+You can also use sub-schemas if needed. The `v3.json` file is the main schema that references other sub-schemas with the `$ref` attribute.
 
 For more information visit [IDE integration](https://www.krakend.io/docs/enterprise/developer/ide-integration/)
 
