@@ -7,10 +7,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Validate components
-        uses: cardinalby/schema-validator-action@v1
+        uses: cardinalby/schema-validator-action@v3
         with:
-          file: '*/**.json'
+          file: '**/*.json'
       - name: Validate root documents
-        uses: cardinalby/schema-validator-action@v1
+        uses: cardinalby/schema-validator-action@v3
         with:
           file: '*.json'
