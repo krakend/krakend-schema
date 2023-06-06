@@ -9,7 +9,7 @@ jobs:
       - name: Validate components
         uses: cardinalby/schema-validator-action@v1
         with:
-          file: '*/*.json'
+          file: '**/*.json'
       - name: Validate root documents
         uses: cardinalby/schema-validator-action@v1
         with:

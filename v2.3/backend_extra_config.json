@@ -53,9 +53,8 @@
         "modifier/martian": {
             "type": "object",
             "title": "Martian modifiers",
-            "minProperties": 1,
-            "description": "Transform requests and responses through a simple DSL definition in the configuration file.\n\nSee: https://www.krakend.io/docs/backends/martian/",
-            "properties": {}
+            "$ref": "modifier/martian.json",
+            "description": "Transform requests and responses through a simple DSL definition in the configuration file.\n\nSee: https://www.krakend.io/docs/backends/martian/"
         },
         "modifier/jmespath": {
             "$ref": "modifier/jmespath.json"

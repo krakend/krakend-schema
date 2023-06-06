@@ -1,5 +1,5 @@
 {
-    "$schema": "./v3.json",
+    "$schema": "./krakend.json",
     "@comment": "This configuration is not valid from a functionality point of view, it's only used to test the schema.",
     "_comment": "Attribute not in schema, but ignored as it starts with _",
     "$comment": "Attribute not in schema, but ignored as it starts with $",
@@ -26,28 +26,10 @@
     "response_header_timeout": "10s",
     "expect_continue_timeout": "0s",
     "disable_rest": false,
+    "allow_insecure_connections": false,
     "cache_ttl": "300s",
     "idle_timeout": "10s",
     "read_header_timeout": "10s",
-    "client_tls": {
-        "allow_insecure_connections": false,
-        "cipher_suites": [
-            4865,
-            4866,
-            4867
-        ],
-        "ca_certs": [
-            "ca.pem"
-        ],
-        "curve_preferences": [
-            23,
-            24,
-            25
-        ],
-        "disable_system_ca_pool": false,
-        "max_version": "TLS13",
-        "min_version": "TLS12"
-    },
     "tls": {
         "public_key": "./cert.pem",
         "private_key": "./certs/key.pem",
@@ -60,6 +42,7 @@
             24,
             25
         ],
+        "prefer_server_cipher_suites": false,
         "cipher_suites": [
             4865
         ],
@@ -94,17 +77,6 @@
                     ],
                     "url_pattern": "/__debug/",
                     "extra_config": {
-                        "auth/ntlm": {
-                            "user": "user",
-                            "password": "pass"
-                        },
-                        "auth/gcp": {
-                            "audience": "https://gcptest-76fewi6rca-uc.a.run.app",
-                            "credentials_file": "/etc/krakend/gcp.json",
-                            "custom_claims": {
-                                "a": 1
-                            }
-                        },
                         "backend/http": {
                             "return_error_code": true,
                             "@extra_comment": "here"
@@ -139,38 +111,6 @@
         }
     ],
     "endpoints": [
-        {
-            "@comment": "Feature: GRPC",
-            "endpoint": "/flights",
-            "input_query_strings": [
-                "*"
-            ],
-            "backend": [
-                {
-                    "host": [
-                        "localhost:4242"
-                    ],
-                    "disable_host_sanitize": true,
-                    "url_pattern": "/flight_finder.Flights/FindFlight",
-                    "extra_config": {
-                        "backend/grpc": {
-                            "client_tls": {
-                                "@comment": "Allow untrusted certificates in development stage",
-                                "allow_insecure_connections": true
-                            },
-                            "input_mapping": {
-                                "lat": "where.latitude",
-                                "lon": "where.longitude"
-                            },
-                            "output_duration_as_string": false,
-                            "output_enum_as_string": false,
-                            "output_timestamp_as_string": false,
-                            "response_naming_convention": "snake_case"
-                        }
-                    }
-                }
-            ]
-        },
         {
             "endpoint": "/fhir/unrestful${translate}",
             "backend": [
@@ -317,8 +257,6 @@
                 },
                 "auth/api-keys": {
                     "@comment": "here",
-                    "identifier": "x-some-key",
-                    "strategy": "header",
                     "roles": [
                         "admin"
                     ],
@@ -343,7 +281,7 @@
                         "404": {
                             "@comment": "Some comment",
                             "description": "Page not found",
-                            "example_schema": "eyJhbGxPZiI6W3sicHJvcGVydGllcyI6eyJ2ZXJzaW9uIjp7InR5cGUiOiJzdHJpbmcifX0sInJlcXVpcmVkIjpbInZlcnNpb24iXSwidHlwZSI6Im9iamVjdCJ9LHsicHJvcGVydGllcyI6eyJkaXJlY3RvcnkiOnsiYWxsT2YiOlt7InByb3BlcnRpZXMiOnsibWV0YWRhdGEiOnsidHlwZSI6Im9iamVjdCIsIngtZ28tdHlwZSI6IkRpcmVjdG9yeU1ldGFkYXRhIn0sIm5hbWUiOnsidHlwZSI6InN0cmluZyIsIngtb2FwaS1jb2RlZ2VuLWV4dHJhLXRhZ3MiOnsiYmluZGluZyI6InJlcXVpcmVkIn19fSwicmVxdWlyZWQiOlsibmFtZSJdLCJ0eXBlIjoib2JqZWN0In0seyJwcm9wZXJ0aWVzIjp7ImNyZWF0ZWRBdCI6eyJmb3JtYXQiOiJkYXRlLXRpbWUiLCJ0eXBlIjoic3RyaW5nIn0sImRlbGV0ZWRBdCI6eyJmb3JtYXQiOiJkYXRlLXRpbWUiLCJ0eXBlIjoic3RyaW5nIn0sImlkIjp7InR5cGUiOiJzdHJpbmciLCJ4LWdvLXR5cGUiOiJEaXJlY3RvcnlJRCJ9LCJwYXJlbnQiOnsib3B0aW9uYWwiOnRydWUsInR5cGUiOiJzdHJpbmciLCJ4LWdvLXR5cGUiOiJEaXJlY3RvcnlJRCJ9LCJ1cGRhdGVkQXQiOnsiZm9ybWF0IjoiZGF0ZS10aW1lIiwidHlwZSI6InN0cmluZyJ9fSwicmVxdWlyZWQiOlsiaWQiLCJjcmVhdGVkQXQiLCJ1cGRhdGVkQXQiXSwidHlwZSI6Im9iamVjdCJ9XX19LCJyZXF1aXJlZCI6WyJkaXJlY3RvcnkiXSwidHlwZSI6Im9iamVjdCJ9XX0=",
+                            "example_schema": "eyJpdGVtcyI6eyJhbGxPZiI6W3sicHJvcGVydGllcyI6eyJ2ZXJzaW9uIjp7InR5cGUiOiJzdHJpbmcifX0sInJlcXVpcmVkIjpbInZlcnNpb24iXSwidHlwZSI6Im9iamVjdCJ9LHsicHJvcGVydGllcyI6eyJkaXJlY3RvcmllcyI6eyJpdGVtcyI6eyJ0eXBlIjoic3RyaW5nIiwieC1nby10eXBlIjoiRGlyZWN0b3J5SUQifSwidHlwZSI6ImFycmF5In19LCJyZXF1aXJlZCI6WyJkaXJlY3RvcmllcyJdLCJ0eXBlIjoib2JqZWN0In1dfSwidHlwZSI6ImFycmF5In0",
                             "content_type": "application/json",
                             "example": {
                                 "foo": "bar"
@@ -492,6 +430,7 @@
                             "no_local": false,
                             "no_wait": false,
                             "prefetch_count": 10,
+                            "prefetch_size": 1024,
                             "routing_key": [
                                 "#"
                             ],
@@ -505,6 +444,8 @@
                             "no_wait": true,
                             "no_local": false,
                             "routing_key": "#",
+                            "prefetch_count": 10,
+                            "prefetch_size": 1024,
                             "mandatory": false,
                             "immediate": false,
                             "@extra_comment": "here"
@@ -608,23 +549,6 @@
                         "backend/http": {
                             "return_error_details": "backend_alias",
                             "@extra_comment": "here"
-                        },
-                        "backend/http/client": {
-                            "@comment": "Enterprise only",
-                            "no_redirect": false,
-                            "client_tls": {
-                                "allow_insecure_connections": false,
-                                "ca_certs": [
-                                    "custom.pem"
-                                ],
-                                "disable_system_ca_pool": true,
-                                "cipher_suites": [
-                                    4865,
-                                    4866,
-                                    4867
-                                ]
-                            },
-                            "proxy_address": "http://troloro:9099"
                         }
                     }
                 }
@@ -818,15 +742,6 @@
         }
     ],
     "extra_config": {
-        "grpc": {
-            "catalog": [
-                "./grpc/definitions"
-            ]
-        },
-        "auth/validator": {
-            "shared_cache_duration": 5,
-            "@comment": 1
-        },
         "auth/basic": {
             "htpasswd_path": "/path/to/.htpasswd",
             "users": {
@@ -836,10 +751,7 @@
         },
         "telemetry/newrelic": {
             "license": "XXXX",
-            "debug": true,
-            "headers_to_pass": [
-                "*"
-            ]
+            "debug": true
         },
         "router": {
             "disable_path_decoding": false,
@@ -1067,6 +979,33 @@
                 }
             }
         },
+        "telemetry/instana": {
+            "AgentHost": "localhost",
+            "AgentPort": 46999,
+            "EnableAutoProfile": false,
+            "Service": "krakend",
+            "MaxBufferedSpans": 15,
+            "ForceTransmissionStartingAt": 10,
+            "LogLevel": 0,
+            "MaxBufferedProfiles": 0,
+            "IncludeProfilerFrames": false,
+            "Tracer": {
+                "CollectableHTTPHeaders": [],
+                "DropAllLogs": false,
+                "MaxLogsPerSpan": 0,
+                "Secrets": {}
+            }
+        },
+        "telemetry/ganalytics": {
+            "buffer_size": 0,
+            "tags": {
+                "cd1": "my custom dimension"
+            },
+            "timeout": "250ms",
+            "track_id": "UA-1234567",
+            "url": "https://www.google-analytics.com/batch",
+            "workers": 0
+        },
         "auth/revoker": {
             "hash_name": "default",
             "N": 10000000,
@@ -1171,6 +1110,16 @@
                     "/media/ignore/this/directory",
                     "/media/file.json"
                 ]
+            },
+            "basic-auth": {
+                "endpoints": [
+                    "*"
+                ],
+                "users": {
+                    "admin": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ...",
+                    "user2": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ..."
+                },
+                "htpasswd_path": "/path/to/.htpasswd"
             },
             "geoip": {
                 "citydb_path": "path/to/GeoIP2-City.mmdb"

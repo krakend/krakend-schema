@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/v3.json",
+    "$id": "https://www.krakend.io/schema/krakend.json",
     "title": "Schema validation of any KrakenD version using syntax version=3",
-    "$ref": "krakend.json"
+    "$ref": "v2.3/krakend.json"
 }

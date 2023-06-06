@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/qos/ratelimit/proxy.json",
+    "title": "Proxy ratelimit",
+    "description": "Restrict the rate of requests KrakenD makes to your backends.\n\nSee: https://www.krakend.io/docs/backends/rate-limit/",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
+    "required": [
+        "max_rate",
+        "capacity"
+    ],
+    "properties": {
+        "max_rate": {
+            "$id": "#qos/ratelimit/proxy/max_rate",
+            "title": "Max rate",
+            "description": "Maximum requests per second you want to accept in this backend. Use decimals for per-hour and per-minute strategies.\n\nSee: https://www.krakend.io/docs/backends/rate-limit/",
+            "type": "number",
+            "examples": [
+                0.5
+            ]
+        },
+        "capacity": {
+            "$id": "#qos/ratelimit/proxy/capacity",
+            "title": "Capacity",
+            "description": "The capacity according to the [token bucket algorithm](/docs/throttling/token-bucket/) with a `bucket capacity == tokens added per second` so KrakenD is able to allow some bursting on the request rates. Recommended value is `capacity == max_rate`.\n\nSee: https://www.krakend.io/docs/backends/rate-limit/",
+            "type": "integer",
+            "default": 1
+        }
+    }
+}
