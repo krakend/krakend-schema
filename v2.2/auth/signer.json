@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/auth/signer.json",
+    "$id": "https://www.krakend.io/schema/v2.2/auth/signer.json",
     "title": "JWT signer",
     "description": "creates a wrapper for your login endpoint that signs with your secret key the selected fields of the backend payload right before returning the content to the end-user.\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
     "type": "object",

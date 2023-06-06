@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/telemetry/logging.json",
+    "$id": "https://www.krakend.io/schema/v2.2/telemetry/logging.json",
     "title": "Improved logging",
     "description": "Enables the extended logging capabilities.\n\nSee: https://www.krakend.io/docs/logging/",
     "type": "object",

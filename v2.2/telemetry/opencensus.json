@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/telemetry/opencensus.json",
+    "$id": "https://www.krakend.io/schema/v2.2/telemetry/opencensus.json",
     "title": "Telemetry via Opencensus",
     "description": "Enables the extended logging capabilities.\n\nSee: https://www.krakend.io/docs/telemetry/opencensus/",
     "type": "object",

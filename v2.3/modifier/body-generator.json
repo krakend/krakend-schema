@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/modifier/body-generator.json",
+    "$id": "https://www.krakend.io/schema/v2.3/modifier/body-generator.json",
     "title": "Template-based body generator",
     "description": "Enterprise only. Crafts the body sent to the backend service using user input and other variables through a templating system.\n\nSee: https://www.krakend.io/backends/body-generator/",
     "type": "object",

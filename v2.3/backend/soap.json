@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/backend/soap.json",
+    "$id": "https://www.krakend.io/schema/v2.3/backend/soap.json",
     "title": "SOAP Template modifier",
     "description": "Enterprise only. Build and modify requests to communicate with SOAP services.\n\nSee: https://www.krakend.io/docs/backends/soap/",
     "type": "object",

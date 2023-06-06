@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/auth/gcp.json",
+    "$id": "https://www.krakend.io/schema/v2.3/auth/gcp.json",
     "title": "GCP Authentication",
     "description": "Enterprise only. Enables GCP authentication between KrakenD and Google Cloud service account.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
     "type": "object",

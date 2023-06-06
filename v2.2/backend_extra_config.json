@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/backend_extra_config.json",
+    "$id": "https://www.krakend.io/schema/v2.2/backend_extra_config.json",
     "title": "Extra configuration for backends",
     "type": "object",
     "additionalProperties": false,

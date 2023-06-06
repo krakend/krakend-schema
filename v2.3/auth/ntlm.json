@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/auth/ntlm.json",
+    "$id": "https://www.krakend.io/schema/v2.3/auth/ntlm.json",
     "title": "NTLM Authentication",
     "description": "Enterprise only. Enables NTLM authentication between KrakenD and a Microsoft server such as Dynamics.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/ntlm/",
     "type": "object",

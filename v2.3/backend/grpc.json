@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/backend/grpc.json",
+    "$id": "https://www.krakend.io/schema/v2.3/backend/grpc.json",
     "title": "gRPC backend connection",
     "description": "Enterprise only. Handles the communication with a backend using gRPC, after having defined the protocol buffer definitions.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
     "type": "object",

@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/auth/api-keys.json",
+    "$id": "https://www.krakend.io/schema/v2.2/auth/api-keys.json",
     "title": "API-key Authentication",
     "description": "Enterprise only. Enables a Role-Based Access Control (RBAC) mechanism by reading the `Authorization` header of incoming requests.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
     "type": "object",

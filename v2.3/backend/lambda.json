@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/backend/lambda.json",
+    "$id": "https://www.krakend.io/schema/v2.3/backend/lambda.json",
     "title": "AWS Lambda functions",
     "description": "Invoke Amazon Lambda functions on a KrakenD endpoint call.\n\nSee: https://www.krakend.io/docs/backends/lambda/",
     "type": "object",

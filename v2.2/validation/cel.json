@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/validation/cel.json",
+    "$id": "https://www.krakend.io/schema/v2.2/validation/cel.json",
     "title": "Common Expression Language (CEL) validations",
     "description": "The Common Expression Language (CEL) middleware enables expression evaluation, when an expression returns false, KrakenD does not return the content as the condition has failed. Otherwise, if all expressions returned true, the content is served.\n\nSee: https://www.krakend.io/docs/endpoints/common-expression-language-cel/",
     "type": "array",

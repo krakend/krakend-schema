@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/plugin/req-resp-modifier.json",
+    "$id": "https://www.krakend.io/schema/v2.3/plugin/req-resp-modifier.json",
     "title": "Request-Response modifier plugins",
     "type": "object",
     "additionalProperties": true,

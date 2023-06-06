@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/plugin/http-server.json",
+    "$id": "https://www.krakend.io/schema/v2.1/plugin/http-server.json",
     "title": "HTTP Server plugins.\n\nSee: https://www.krakend.io/docs/extending/http-server-plugins/",
     "type": "object",
     "additionalProperties": true,

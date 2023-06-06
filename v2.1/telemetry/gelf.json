@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/telemetry/gelf.json",
+    "$id": "https://www.krakend.io/schema/v2.1/telemetry/gelf.json",
     "title": "GELF",
     "description": "Send structured events in GELF format to your Graylog Cluster.\n\nSee: https://www.krakend.io/docs/logging/graylog-gelf/",
     "type": "object",

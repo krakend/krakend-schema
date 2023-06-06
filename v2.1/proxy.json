@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/proxy.json",
+    "$id": "https://www.krakend.io/schema/v2.1/proxy.json",
     "title": "Proxy option",
     "type": "object",
     "additionalProperties": false,

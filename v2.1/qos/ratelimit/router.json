@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/qos/ratelimit/router.json",
+    "$id": "https://www.krakend.io/schema/v2.1/qos/ratelimit/router.json",
     "type": "object",
     "anyOf": [
         {

@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/documentation/openapi.json",
+    "$id": "https://www.krakend.io/schema/v2.1/documentation/openapi.json",
     "title": "Generate documentation using OpenAPI",
     "description": "Enterprise only. Generates OpenAPI documentation automatically through `krakend generate openapi` command.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
     "type": "object",

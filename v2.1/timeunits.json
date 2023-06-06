@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/timeunits.json",
+    "$id": "https://www.krakend.io/schema/v2.1/timeunits.json",
     "title": "Time units / Duration patterns",
     "$defs": {
         "timeunit": {

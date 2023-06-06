@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/plugin/basic-auth.json",
+    "$id": "https://www.krakend.io/schema/v2.3/plugin/basic-auth.json",
     "title": "DEPRECATED. Please upgrade to basic auth middleware without plugin.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/#upgrade-from-plugin-based-basic-auth",
     "deprecated": true,
     "type": "object",

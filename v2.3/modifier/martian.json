@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/modifier/martian.json",
+    "$id": "https://www.krakend.io/schema/v2.3/modifier/martian.json",
     "title": "Martian modifiers",
     "description": "The Martian component allows you to modify requests and responses with static data through a simple DSL definition in the configuration file.\n\nSee: https://www.krakend.io/docs/endpoints/martian/",
     "type": "object",

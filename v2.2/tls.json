@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/tls.json",
+    "$id": "https://www.krakend.io/schema/v2.2/tls.json",
     "title": "TLS/SSL",
     "description": "Enabling TLS for HTTPS and HTTP/2.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
     "anyOf": [

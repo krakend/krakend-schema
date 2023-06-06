@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/websocket.json",
+    "$id": "https://www.krakend.io/schema/v2.2/websocket.json",
     "title": "Schema definition for Websockets",
     "description": "Enterprise only. Enables websocket communication.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
     "type": "object",

@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/backend/amqp/consumer.json",
+    "$id": "https://www.krakend.io/schema/v2.2/backend/amqp/consumer.json",
     "title": "AMQP Consumer",
     "description": "The AMQP component allows to send and receive messages to and from a queue through the API Gateway.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
     "type": "object",

@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/client_tls.json",
+    "$id": "https://www.krakend.io/schema/v2.3/client_tls.json",
     "title": "TLS client settings",
     "description": "TLS options to connect to upstream services.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
     "additionalProperties": false,

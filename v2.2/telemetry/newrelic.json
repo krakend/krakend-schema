@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/telemetry/newrelic.json",
+    "$id": "https://www.krakend.io/schema/v2.2/telemetry/newrelic.json",
     "title": "NewRelic exporter",
     "description": "The New Relic integration lets you push KrakenD metrics and distributed traces to your New Relic dashboard. It uses internally the official New Relic SDK and brings its features to your APM dashboard.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/newrelic/",
     "type": "object",

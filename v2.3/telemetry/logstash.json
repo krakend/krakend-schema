@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/telemetry/logstash.json",
+    "$id": "https://www.krakend.io/schema/v2.3/telemetry/logstash.json",
     "title": "Logstash",
     "description": "Enables logstash when the extra_config \"telemetry/logging\" is also present.\n\nSee: https://www.krakend.io/docs/logging/logstash/",
     "type": "object",
