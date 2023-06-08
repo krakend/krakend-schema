@@ -55,7 +55,7 @@
         },
         "Period": {
             "title": "Period",
-            "description": "How many requests a client can make above the rate specified during a peak. Usually in seconds, minutes, or hours. E.g., use `120s` or `2m` for two minutes\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
+            "description": "For how long the content lives in the cache. Usually in seconds, minutes, or hours. E.g., use `120s` or `2m` for two minutes\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
             "type": "string",
             "$ref": "../timeunits.json#/$defs/timeunit"
         }

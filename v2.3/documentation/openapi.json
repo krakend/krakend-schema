@@ -12,10 +12,10 @@
         "description": {
             "$id": "#documentation/openapi/description",
             "title": "API Description",
-            "description": "A verbose explanation. [CommonMark](http://commonmark.org/help/) syntax MAY be used for rich text representation.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "description": "An introductory, optionally verbose, explanation supporting [CommonMark](http://commonmark.org/help/) syntax. If you'd like to load an **external markdown file**, you can use flexible configuration, for instance `\"description\": {{include \"openapi/intro.md\" | toJson }}`\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "string",
             "examples": [
-                "This is a sample server. You can find out more about at [http://blah](http://blah.blah.com)"
+                "Hi there, I am [OpenAPI](https://www.krakend.io/docs/enterprise/endpoints/openapi/)"
             ]
         },
         "summary": {
