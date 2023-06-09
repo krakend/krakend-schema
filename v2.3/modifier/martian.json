@@ -493,11 +493,6 @@
                     "description": "The regular expression you want to check against the header value",
                     "type": "string",
                     "examples": [".*localhost.*", "^foo-[a-z]+$"]
-                },
-                "else": {
-                    "description": "The modifier you want to execute when the condition does not match",
-                    "type": "object",
-                    "$ref": "./martian.json"
                 }
             }
         },
