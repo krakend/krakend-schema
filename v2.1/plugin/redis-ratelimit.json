@@ -8,14 +8,14 @@
         "^[@$_#]": {}
     },
     "required": [
-        "Host",
-        "Tokenizer",
-        "Burst",
-        "Rate",
-        "Period"
+        "host",
+        "tokenizer",
+        "burst",
+        "rate",
+        "period"
     ],
     "properties": {
-        "Host": {
+        "host": {
             "title": "Redis host",
             "description": "The URL to the Redis instance that stores the counters using the format `host:port`.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
             "type": "string",
@@ -24,7 +24,7 @@
                 "redis:6379"
             ]
         },
-        "Tokenizer": {
+        "tokenizer": {
             "title": "Tokenizer",
             "description": "One of the preselected strategies to rate-limit users.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
             "type": "string",
@@ -38,24 +38,24 @@
                 "cookie"
             ]
         },
-        "TokenizerField": {
+        "tokenizer_field": {
             "title": "Tokenizer field",
             "description": "The field used to set a custom field for the tokenizer (e.g., extracting the token from a custom header other than Authorization or using a claim from a JWT other than the jti).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
             "type": "string"
         },
-        "Burst": {
+        "burst": {
             "title": "Burst",
             "description": "How many requests a client can make above the rate specified during a peak.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
             "type": "integer"
         },
-        "Rate": {
+        "rate": {
             "title": "Rate",
             "description": "Number of allowed requests during the observed period.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
             "type": "integer"
         },
-        "Period": {
+        "period": {
             "title": "Period",
-            "description": "How many requests a client can make above the rate specified during a peak. Usually in seconds, minutes, or hours. E.g., use `120s` or `2m` for two minutes\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
+            "description": "For how long the content lives in the cache. Usually in seconds, minutes, or hours. E.g., use `120s` or `2m` for two minutes\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
             "type": "string",
             "$ref": "../timeunits.json#/$defs/timeunit"
         }

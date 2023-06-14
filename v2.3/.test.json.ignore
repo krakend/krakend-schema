@@ -1794,12 +1794,12 @@
                 "citydb_path": "path/to/GeoIP2-City.mmdb"
             },
             "redis-ratelimit": {
-                "Burst": 0,
-                "Host": "redis",
-                "Period": "3s",
-                "Rate": 0,
-                "Tokenizer": "cookie",
-                "TokenizerField": "aaa"
+                "burst": 0,
+                "host": "redis",
+                "period": "3s",
+                "rate": 0,
+                "tokenizer": "cookie",
+                "tokenizer_field": "aaa"
             },
             "virtualhost": {
                 "hosts": [
