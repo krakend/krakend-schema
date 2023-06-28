@@ -92,6 +92,9 @@
                     "host": [
                         "http://127.0.0.1:8080"
                     ],
+                    "input_headers": [
+                      "Accept"
+                    ],
                     "url_pattern": "/__debug/",
                     "extra_config": {
                         "auth/ntlm": {
@@ -383,6 +386,7 @@
                     "url_pattern": "/foo/{var}",
                     "encoding": "json",
                     "sd": "static",
+                    "sd_scheme": "http",
                     "method": "GET",
                     "disable_host_sanitize": false,
                     "host": [
