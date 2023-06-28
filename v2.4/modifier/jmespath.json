@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/v2.4/modifier/body-generator.json",
+    "description": "The JMESPath query language allows you to select, slice, filter, map, project, flatten, sort, and all sorts of operations on data.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/jmespath/",
+    "title": " JMESPath: Response manipulation with query language",
+    "type": "object",
+    "required": [
+        "expr"
+    ],
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
+    "properties": {
+        "expr": {
+            "title": "Expression",
+            "description": "The JMESPath expression you want to apply to this endpoint.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/jmespath/",
+            "type": "string"
+        }
+    }
+}
