@@ -44,7 +44,7 @@
         "every": {
             "title": "Time window",
             "description": "Time period in which the maximum rates operate. For instance, if you set an `every` of `10m` and a `max_rate` of `5`, you are allowing 5 requests every ten minutes.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
-            "$ref": "timeunits.json#/$defs/timeunit",
+            "$ref": "../../timeunits.json#/$defs/timeunit",
             "type": "string",
             "default": "1s"
         },"key": {
