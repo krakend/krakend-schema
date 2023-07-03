@@ -25,7 +25,7 @@
     "idle_connection_timeout": "10s",
     "response_header_timeout": "10s",
     "expect_continue_timeout": "0s",
-    "disable_rest": false,
+    "disable_rest": true,
     "cache_ttl": "300s",
     "idle_timeout": "10s",
     "read_header_timeout": "10s",
@@ -51,7 +51,7 @@
     "tls": {
         "public_key": "./cert.pem",
         "private_key": "./certs/key.pem",
-        "disabled": false,
+        "disabled": true,
         "min_version": "TLS12",
         "max_version": "SSL3.0",
         "enable_mtls": false,
