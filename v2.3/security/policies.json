@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/v2.3/security/policies.json",
     "title": "Securiy Policies",
-    "description": "The policies engine allows you to write custom sets of policies that are validated during requests, responses, or token validation.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+    "description": "The policies engine allows you to write custom sets of policies that are validated during requests, responses, or token validation.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
     "type": "object",
     "additionalProperties": false,
     "patternProperties": {
@@ -28,7 +28,7 @@
     "properties": {
         "req": {
             "title": "Request policies",
-            "description": "All the policies applied in the request context.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+            "description": "All the policies applied in the request context.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
             "type": "object",
             "required": [
                 "policies"
@@ -40,7 +40,7 @@
             "properties": {
                 "policies": {
                     "title": "Policies",
-                    "description": "An array with all the policies to evaluate. Each policy is represented as a string\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+                    "description": "An array with all the policies to evaluate. Each policy is represented as a string\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
                     "type": "array",
                     "items": {
                         "type": "string",
@@ -52,19 +52,19 @@
                     "properties": {
                         "body": {
                             "title": "Error body",
-                            "description": "Leave an empty string to use the validation error, or write a string with the error response body. This error is NOT returned in the response, but in the application logs, unless you enable `return_detailed_errors` in the `router` section. You can add escaped JSON, XML, etc in the string and add a Content-Type.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+                            "description": "Leave an empty string to use the validation error, or write a string with the error response body. This error is NOT returned in the response, but in the application logs, unless you enable `return_detailed_errors` in the `router` section. You can add escaped JSON, XML, etc in the string and add a Content-Type.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
                             "type": "string",
                             "default": ""
                         },
                         "status": {
                             "title": "HTTP status code",
-                            "description": "The HTTP status code you want to return when the validation fails.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+                            "description": "The HTTP status code you want to return when the validation fails.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
                             "type": "integer",
                             "default": 500
                         },
                         "content_type": {
                             "title": "Content-Type",
-                            "description": "The Content-Type header you'd like to send with the error response. When unset, uses `text/plain` by default.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+                            "description": "The Content-Type header you'd like to send with the error response. When unset, uses `text/plain` by default.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
                             "type": "string",
                             "default": "text/plain"
                         }
@@ -74,7 +74,7 @@
         },
         "resp": {
             "title": "Response policies",
-            "description": "All the policies applied in the response context.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+            "description": "All the policies applied in the response context.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
             "type": "object",
             "required": [
                 "policies"
@@ -86,7 +86,7 @@
             "properties": {
                 "policies": {
                     "title": "Policies",
-                    "description": "An array with all the policies to evaluate. Each policy is represented as a string\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+                    "description": "An array with all the policies to evaluate. Each policy is represented as a string\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
                     "type": "array",
                     "items": {
                         "type": "string",
@@ -98,19 +98,19 @@
                     "properties": {
                         "body": {
                             "title": "Error body",
-                            "description": "Leave an empty string to use the validation error, or write a string with the error response body. This error is NOT returned in the response, but in the application logs, unless you enable `return_detailed_errors` in the `router` section. You can add escaped JSON, XML, etc in the string and add a Content-Type.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+                            "description": "Leave an empty string to use the validation error, or write a string with the error response body. This error is NOT returned in the response, but in the application logs, unless you enable `return_detailed_errors` in the `router` section. You can add escaped JSON, XML, etc in the string and add a Content-Type.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
                             "type": "string",
                             "default": ""
                         },
                         "content_type": {
                             "title": "Content-Type",
-                            "description": "The Content-Type header you'd like to send with the error response. When unset, uses `text/plain` by default.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+                            "description": "The Content-Type header you'd like to send with the error response. When unset, uses `text/plain` by default.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
                             "type": "string",
                             "default": "text/plain"
                         },
                         "status": {
                             "title": "HTTP status code",
-                            "description": "The HTTP status code you want to return when the validation fails.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+                            "description": "The HTTP status code you want to return when the validation fails.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
                             "type": "integer",
                             "default": 500
                         }
@@ -120,7 +120,7 @@
         },
         "jwt": {
             "title": "JWT policies",
-            "description": "All the policies applied in the JWT context (token validation). **You must configure `auth/validator`** for the policies to run, otherwise they will be skipped. Any policy failing will generate a `401 Unauthorized` error. Works in `endpoint` context only.\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+            "description": "All the policies applied in the JWT context (token validation). **You must configure `auth/validator`** for the policies to run, otherwise they will be skipped. Any policy failing will generate a `401 Unauthorized` error. Works in `endpoint` context only, this option is **not available under `backend`**.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
             "type": "object",
             "required": [
                 "policies"
@@ -132,7 +132,7 @@
             "properties": {
                 "policies": {
                     "title": "Policies",
-                    "description": "An array with all the policies to evaluate. Each policy is represented as a string\n\nSee: https://www.krakend.io/docs/service-settings/security-policies/",
+                    "description": "An array with all the policies to evaluate. Each policy is represented as a string\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
                     "type": "array",
                     "items": {
                         "type": "string",
