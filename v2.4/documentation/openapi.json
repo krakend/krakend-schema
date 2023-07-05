@@ -160,7 +160,9 @@
                     "404": {
                         "@comment": "Some comment",
                          "description": "Page not found",
-                         "example_schema": "eyJpdGVtcyI6eyJhbGxPZiI6W3sicHJvcGVydGllcyI6eyJ2ZXJzaW9uIjp7InR5cGUiOiJzdHJpbmcifX0sInJlcXVpcmVkIjpbInZlcnNpb24iXSwidHlwZSI6Im9iamVjdCJ9LHsicHJvcGVydGllcyI6eyJkaXJlY3RvcmllcyI6eyJpdGVtcyI6eyJ0eXBlIjoic3RyaW5nIiwieC1nby10eXBlIjoiRGlyZWN0b3J5SUQifSwidHlwZSI6ImFycmF5In19LCJyZXF1aXJlZCI6WyJkaXJlY3RvcmllcyJdLCJ0eXBlIjoib2JqZWN0In1dfSwidHlwZSI6ImFycmF5In0",
+                         "example": {
+                            "status": "KO"
+                          },
                          "content_type": "application/json"
                        }
                 }
