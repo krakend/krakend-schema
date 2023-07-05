@@ -1,0 +1,118 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Schema validation for End To End testing specs",
+    "type": "object",
+    "required": [
+        "in",
+        "out"
+    ],
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
+    "properties": {
+        "in": {
+            "title": "Input",
+            "description": "The parameters used to build the request to a running KrakenD with your configuration",
+            "type": "object",
+            "required": [
+                "url"
+            ],
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[@$_#]": {}
+            },
+            "properties": {
+                "method": {
+                    "title": "Method",
+                    "description": "The method sent in the request",
+                    "type": "string",
+                    "enum": [
+                        "GET",
+                        "POST",
+                        "PUT",
+                        "PATCH",
+                        "DELETE"
+                    ],
+                    "default": "GET"
+                },
+                "url": {
+                    "title": "URL",
+                    "description": "The full URL you want to use in the request, including schema, host, port, path and any additional query string parameters you might need.",
+                    "type": "string",
+                    "examples": [
+                        "http://localhost:8080/__debug/something"
+                    ]
+                },
+                "header": {
+                    "title": "Headers",
+                    "description": "An optional map of headers to include in the request",
+                    "type": "object",
+                    "examples": [
+                        {
+                            "User-Agent": "krakend e2e tool"
+                        }
+                    ]
+                }
+            }
+        },
+        "out": {
+            "title": "Output",
+            "description": "The expected response from the server",
+            "type": "object",
+            "required": [
+                "status_code"
+            ],
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[@$_#]": {}
+            },
+            "properties": {
+                "status_code": {
+                    "title": "Status code",
+                    "description": "The status code found in the server",
+                    "type": "integer",
+                    "examples": [
+                        200
+                    ]
+                },
+                "body": {
+                    "title": "Body",
+                    "description": "The expected returned body by the response as a string or JSON object. Remove this body field when you don’t want to check its contents, when the response does not have a body, or when you want to use the schema instead.",
+                    "type": [
+                        "string",
+                        "object"
+                    ],
+                    "examples": [
+                        "http://localhost:8080/__debug/something"
+                    ]
+                },
+                "header": {
+                    "title": "Headers",
+                    "description": "Any header included in the response. When the value is empty, you don't expect that header.",
+                    "type": "object",
+                    "examples": [
+                        {
+                            "content-type": [
+                                "application/json; charset=utf-8"
+                            ],
+                            "Cache-Control": [
+                                ""
+                            ],
+                            "X-Krakend-Completed": [
+                                "true"
+                            ]
+                        }
+                    ]
+                },
+                "schema": {
+                    "title": "JSON Schema",
+                    "description": "A JSON Schema object that validates the response. If the response matches the schema definition, the test passes.",
+                    "type": "object",
+                    "$ref": "http://json-schema.org/draft-07/schema#"
+                }
+            }
+        }
+    }
+}
