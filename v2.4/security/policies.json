@@ -145,18 +145,21 @@
             }
         },
         "disable_macros": {
+            "$id": "#security/policies/disable_macros",
             "title": "Disable advanced macros",
             "description": "Advanced macros can be disabled in those policies not needing them for a faster evaluation.",
             "type": "boolean",
             "default": false
         },
         "debug": {
+            "$id": "#security/policies/debug",
             "title": "Debug",
             "description": "When true, all the inputs and evaluation results are printed in the console.",
             "type": "boolean",
             "default": false
         },
         "auto_join_policies": {
+            "$id": "#security/policies/auto_join_policies",
             "title": "Auto-join policies",
             "description": "When true, all policies of the same type concatenate with an AND operation to evaluate a single expression. Performs faster, but its harder the debug.",
             "type": "boolean",

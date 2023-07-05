@@ -93,7 +93,7 @@
                         "http://127.0.0.1:8080"
                     ],
                     "input_headers": [
-                      "Accept"
+                        "Accept"
                     ],
                     "url_pattern": "/__debug/",
                     "extra_config": {
@@ -201,6 +201,15 @@
                                     "content_type": "text/plain",
                                     "status": 500
                                 }
+                            },
+                            "auto_join_policies": false,
+                            "debug": false,
+                            "disable_macros": false,
+                            "req": {
+                                "error": {
+                                    "body": ""
+                                },
+                                "policies": []
                             }
                         }
                     },
@@ -825,621 +834,625 @@
         {
             "endpoint": "/test/body.Modifier",
             "backend": [
-              {
-                "url_pattern": "/__debug/body.Modifier",
-                "extra_config": {
-                  "modifier/martian": {
-                    "body.Modifier": {
-                      "scope": [
-                        "request",
-                        "response"
-                      ],
-                      "@comment": "Send a {'msg':'you rock!'}",
-                      "body": "eyJtc2ciOiJ5b3Ugcm9jayEifQ=="
+                {
+                    "url_pattern": "/__debug/body.Modifier",
+                    "extra_config": {
+                        "modifier/martian": {
+                            "body.Modifier": {
+                                "scope": [
+                                    "request",
+                                    "response"
+                                ],
+                                "@comment": "Send a {'msg':'you rock!'}",
+                                "body": "eyJtc2ciOiJ5b3Ugcm9jayEifQ=="
+                            }
+                        }
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/cookie.Modifier",
             "input_headers": [
-              "X-Some"
+                "X-Some"
             ],
             "output_encoding": "no-op",
             "backend": [
-              {
-                "url_pattern": "/__echo/cookie.Modifier",
-                "encoding": "no-op",
-                "extra_config": {
-                  "modifier/martian": {
-                    "cookie.Modifier": {
-                      "scope": [
-                        "request",
-                        "response"
-                      ],
-                      "name": "AcceptCookies",
-                      "value": "yes",
-                      "path": "/some/path",
-                      "domain": "example.com",
-                      "expires": "2025-04-12T23:20:50.52Z",
-                      "secure": true,
-                      "httpOnly": false,
-                      "maxAge": 86400
+                {
+                    "url_pattern": "/__echo/cookie.Modifier",
+                    "encoding": "no-op",
+                    "extra_config": {
+                        "modifier/martian": {
+                            "cookie.Modifier": {
+                                "scope": [
+                                    "request",
+                                    "response"
+                                ],
+                                "name": "AcceptCookies",
+                                "value": "yes",
+                                "path": "/some/path",
+                                "domain": "example.com",
+                                "expires": "2025-04-12T23:20:50.52Z",
+                                "secure": true,
+                                "httpOnly": false,
+                                "maxAge": 86400
+                            }
+                        }
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/url.Modifier",
             "input_query_strings": [
-              "currency",
-              "amount"
+                "currency",
+                "amount"
             ],
             "backend": [
-              {
-                "host": [
-                  "https://does-not-exist"
-                ],
-                "url_pattern": "/neither",
-                "extra_config": {
-                  "modifier/martian": {
-                    "url.Modifier": {
-                      "scope": [
-                        "request"
-                      ],
-                      "scheme": "http",
-                      "host": "localhost:8080",
-                      "path": "/__echo/hello",
-                      "query": "flag=true"
+                {
+                    "host": [
+                        "https://does-not-exist"
+                    ],
+                    "url_pattern": "/neither",
+                    "extra_config": {
+                        "modifier/martian": {
+                            "url.Modifier": {
+                                "scope": [
+                                    "request"
+                                ],
+                                "scheme": "http",
+                                "host": "localhost:8080",
+                                "path": "/__echo/hello",
+                                "query": "flag=true"
+                            }
+                        }
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/querystring.Modifier",
             "input_query_strings": [
-              "currency",
-              "amount"
+                "currency",
+                "amount"
             ],
             "backend": [
-              {
-                "host": [
-                  "http://localhost:8080"
-                ],
-                "url_pattern": "/__echo/querystring.Modifier",
-                "extra_config": {
-                  "modifier/martian": {
-                    "querystring.Modifier": {
-                      "scope": [
-                        "request"
-                      ],
-                      "name": "amount",
-                      "value": "75"
+                {
+                    "host": [
+                        "http://localhost:8080"
+                    ],
+                    "url_pattern": "/__echo/querystring.Modifier",
+                    "extra_config": {
+                        "modifier/martian": {
+                            "querystring.Modifier": {
+                                "scope": [
+                                    "request"
+                                ],
+                                "name": "amount",
+                                "value": "75"
+                            }
+                        }
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/header.Copy",
             "input_headers": [
-              "X-Some"
+                "X-Some"
             ],
             "output_encoding": "no-op",
             "backend": [
-              {
-                "host": [
-                  "http://localhost:8080"
-                ],
-                "url_pattern": "/__echo/header.Copy",
-                "extra_config": {
-                  "modifier/martian": {
-                    "header.Copy": {
-                      "scope": [
-                        "request",
-                        "response"
-                      ],
-                      "from": "User-Agent",
-                      "to": "X-Browser"
+                {
+                    "host": [
+                        "http://localhost:8080"
+                    ],
+                    "url_pattern": "/__echo/header.Copy",
+                    "extra_config": {
+                        "modifier/martian": {
+                            "header.Copy": {
+                                "scope": [
+                                    "request",
+                                    "response"
+                                ],
+                                "from": "User-Agent",
+                                "to": "X-Browser"
+                            }
+                        }
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/header.Modifier",
             "output_encoding": "no-op",
             "backend": [
-              {
-                "host": [
-                  "http://localhost:8080"
-                ],
-                "url_pattern": "/__echo/header.Modifier",
-                "extra_config": {
-                  "modifier/martian": {
-                    "header.Modifier": {
-                      "scope": [
-                        "request",
-                        "response"
-                      ],
-                      "name": "User-Agent",
-                      "value": "Late-Night-Commander v2.3"
+                {
+                    "host": [
+                        "http://localhost:8080"
+                    ],
+                    "url_pattern": "/__echo/header.Modifier",
+                    "extra_config": {
+                        "modifier/martian": {
+                            "header.Modifier": {
+                                "scope": [
+                                    "request",
+                                    "response"
+                                ],
+                                "name": "User-Agent",
+                                "value": "Late-Night-Commander v2.3"
+                            }
+                        }
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/header.Id",
             "backend": [
-              {
-                "url_pattern": "/__echo/header.Id",
-                "extra_config": {
-                  "modifier/martian": {
-                    "header.Id": {
-                      "scope": [
-                        "request"
-                      ]
+                {
+                    "url_pattern": "/__echo/header.Id",
+                    "extra_config": {
+                        "modifier/martian": {
+                            "header.Id": {
+                                "scope": [
+                                    "request"
+                                ]
+                            }
+                        }
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/stash.Modifier",
             "output_encoding": "no-op",
             "input_query_strings": [
-              "amount",
-              "currency"
+                "amount",
+                "currency"
             ],
             "backend": [
-              {
-                "host": [
-                  "http://localhost:8080"
-                ],
-                "url_pattern": "/__echo/stash.Modifier",
-                "extra_config": {
-                  "modifier/martian": {
-                    "stash.Modifier": {
-                      "scope": [
-                        "request",
-                        "response"
-                      ],
-                      "headerName": "X-Stash"
+                {
+                    "host": [
+                        "http://localhost:8080"
+                    ],
+                    "url_pattern": "/__echo/stash.Modifier",
+                    "extra_config": {
+                        "modifier/martian": {
+                            "stash.Modifier": {
+                                "scope": [
+                                    "request",
+                                    "response"
+                                ],
+                                "headerName": "X-Stash"
+                            }
+                        }
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/header.Blacklist",
             "output_encoding": "no-op",
             "input_headers": [
-              "X-Some"
+                "X-Some"
             ],
             "backend": [
-              {
-                "host": [
-                  "http://localhost:8080"
-                ],
-                "url_pattern": "/__echo/header.Blacklist",
-                "extra_config": {
-                  "modifier/martian": {
-                    "header.Blacklist": {
-                      "scope": [
-                        "request",
-                        "response"
-                      ],
-                      "names": [
-                        "X-Some",
-                        "User-Agent",
-                        "X-Forwarded-Host",
-                        "X-Forwarded-For"
-                      ]
+                {
+                    "host": [
+                        "http://localhost:8080"
+                    ],
+                    "url_pattern": "/__echo/header.Blacklist",
+                    "extra_config": {
+                        "modifier/martian": {
+                            "header.Blacklist": {
+                                "scope": [
+                                    "request",
+                                    "response"
+                                ],
+                                "names": [
+                                    "X-Some",
+                                    "User-Agent",
+                                    "X-Forwarded-Host",
+                                    "X-Forwarded-For"
+                                ]
+                            }
+                        }
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/port.Modifier",
             "output_encoding": "no-op",
             "input_headers": [
-              "X-Some"
+                "X-Some"
             ],
             "backend": [
-              {
-                "host": [
-                  "http://localhost:1234"
-                ],
-                "url_pattern": "/__echo/port.Modifier",
-                "extra_config": {
-                  "modifier/martian": {
-                    "port.Modifier": {
-                      "scope": [
-                        "request"
-                      ],
-                      "port": 8080
+                {
+                    "host": [
+                        "http://localhost:1234"
+                    ],
+                    "url_pattern": "/__echo/port.Modifier",
+                    "extra_config": {
+                        "modifier/martian": {
+                            "port.Modifier": {
+                                "scope": [
+                                    "request"
+                                ],
+                                "port": 8080
+                            }
+                        }
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/port.Filter",
             "backend": [
-              {
-                "host": [
-                  "http://localhost:1234"
-                ],
-                "url_pattern": "/__echo/port.Filter",
-                "extra_config": {
-                  "modifier/martian": {
-                    "port.Filter": {
-                      "scope": [
-                        "request"
-                      ],
-                      "port": 1234,
-                      "modifier": {
-                        "port.Modifier": {
-                          "scope": [
-                            "request"
-                          ],
-                          "port": 8080
+                {
+                    "host": [
+                        "http://localhost:1234"
+                    ],
+                    "url_pattern": "/__echo/port.Filter",
+                    "extra_config": {
+                        "modifier/martian": {
+                            "port.Filter": {
+                                "scope": [
+                                    "request"
+                                ],
+                                "port": 1234,
+                                "modifier": {
+                                    "port.Modifier": {
+                                        "scope": [
+                                            "request"
+                                        ],
+                                        "port": 8080
+                                    }
+                                }
+                            }
                         }
-                      }
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/header.Append",
             "input_headers": [
-              "X-Some"
+                "X-Some"
             ],
             "output_encoding": "no-op",
             "backend": [
-              {
-                "url_pattern": "/__echo/header.Append",
-                "encoding": "no-op",
-                "extra_config": {
-                  "modifier/martian": {
-                    "header.Append": {
-                      "scope": [
-                        "request",
-                        "response"
-                      ],
-                      "name": "X-Some",
-                      "value": "I am"
+                {
+                    "url_pattern": "/__echo/header.Append",
+                    "encoding": "no-op",
+                    "extra_config": {
+                        "modifier/martian": {
+                            "header.Append": {
+                                "scope": [
+                                    "request",
+                                    "response"
+                                ],
+                                "name": "X-Some",
+                                "value": "I am"
+                            }
+                        }
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/cookie.Filter",
             "input_headers": [
-              "Cookie"
+                "Cookie"
             ],
             "backend": [
-              {
-                "url_pattern": "/__echo/cookie.Filter",
-                "allow": [
-                  "req_headers.Accepts-Marketing-Cookies"
-                ],
-                "extra_config": {
-                  "modifier/martian": {
-                    "cookie.Filter": {
-                      "scope": [
-                        "request"
-                      ],
-                      "name": "marketingCookies",
-                      "value": "yes",
-                      "modifier": {
-                        "header.Modifier": {
-                          "scope": [
-                            "request"
-                          ],
-                          "name": "Accepts-Marketing-Cookies",
-                          "value": "true"
+                {
+                    "url_pattern": "/__echo/cookie.Filter",
+                    "allow": [
+                        "req_headers.Accepts-Marketing-Cookies"
+                    ],
+                    "extra_config": {
+                        "modifier/martian": {
+                            "cookie.Filter": {
+                                "scope": [
+                                    "request"
+                                ],
+                                "name": "marketingCookies",
+                                "value": "yes",
+                                "modifier": {
+                                    "header.Modifier": {
+                                        "scope": [
+                                            "request"
+                                        ],
+                                        "name": "Accepts-Marketing-Cookies",
+                                        "value": "true"
+                                    }
+                                },
+                                "else": {
+                                    "header.Modifier": {
+                                        "scope": [
+                                            "request"
+                                        ],
+                                        "name": "Accepts-Marketing-Cookies",
+                                        "value": "false"
+                                    }
+                                }
+                            }
                         }
-                      },
-                      "else": {
-                        "header.Modifier": {
-                          "scope": [
-                            "request"
-                          ],
-                          "name": "Accepts-Marketing-Cookies",
-                          "value": "false"
-                        }
-                      }
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/url.Filter",
             "input_query_strings": [
-              "legacy"
+                "legacy"
             ],
             "backend": [
-              {
-                "url_pattern": "/__echo/url.Filter",
-                "allow": [
-                  "req_headers"
-                ],
-                "extra_config": {
-                  "modifier/martian": {
-                    "url.Filter": {
-                      "scope": [
-                        "request",
-                        "response"
-                      ],
-                      "query": "legacy=1",
-                      "host": "localhost:8080",
-                      "modifier": {
-                        "header.Modifier": {
-                          "scope": [
-                            "request"
-                          ],
-                          "name": "X-Legacy",
-                          "value": "true"
+                {
+                    "url_pattern": "/__echo/url.Filter",
+                    "allow": [
+                        "req_headers"
+                    ],
+                    "extra_config": {
+                        "modifier/martian": {
+                            "url.Filter": {
+                                "scope": [
+                                    "request",
+                                    "response"
+                                ],
+                                "query": "legacy=1",
+                                "host": "localhost:8080",
+                                "modifier": {
+                                    "header.Modifier": {
+                                        "scope": [
+                                            "request"
+                                        ],
+                                        "name": "X-Legacy",
+                                        "value": "true"
+                                    }
+                                },
+                                "else": {
+                                    "header.Modifier": {
+                                        "scope": [
+                                            "request"
+                                        ],
+                                        "name": "X-Legacy",
+                                        "value": "false"
+                                    }
+                                }
+                            }
                         }
-                      },
-                      "else": {
-                        "header.Modifier": {
-                          "scope": [
-                            "request"
-                          ],
-                          "name": "X-Legacy",
-                          "value": "false"
-                        }
-                      }
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/querystring.Filter",
             "input_query_strings": [
-              "param"
+                "param"
             ],
             "backend": [
-              {
-                "url_pattern": "/__echo/querystring.Filter",
-                "allow": [
-                  "req_headers"
-                ],
-                "extra_config": {
-                  "modifier/martian": {
-                    "querystring.Filter": {
-                      "scope": [
-                        "request"
-                      ],
-                      "name": "param",
-                      "value": "true",
-                      "modifier": {
-                        "header.Modifier": {
-                          "scope": [
-                            "request"
-                          ],
-                          "name": "X-Passed-Param",
-                          "value": "true"
+                {
+                    "url_pattern": "/__echo/querystring.Filter",
+                    "allow": [
+                        "req_headers"
+                    ],
+                    "extra_config": {
+                        "modifier/martian": {
+                            "querystring.Filter": {
+                                "scope": [
+                                    "request"
+                                ],
+                                "name": "param",
+                                "value": "true",
+                                "modifier": {
+                                    "header.Modifier": {
+                                        "scope": [
+                                            "request"
+                                        ],
+                                        "name": "X-Passed-Param",
+                                        "value": "true"
+                                    }
+                                }
+                            }
                         }
-                      }
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/header.Filter",
             "input_headers": [
-              "X-Tenant"
+                "X-Tenant"
             ],
             "backend": [
-              {
-                "url_pattern": "/__echo/header.Filter",
-                "allow": [
-                  "req_uri"
-                ],
-                "extra_config": {
-                  "modifier/martian": {
-                    "header.Filter": {
-                      "scope": [
-                        "request"
-                      ],
-                      "name": "X-Tenant",
-                      "value": "v1",
-                      "modifier": {
-                        "querystring.Modifier": {
-                          "scope": [
-                            "request"
-                          ],
-                          "name": "legacy",
-                          "value": "1"
+                {
+                    "url_pattern": "/__echo/header.Filter",
+                    "allow": [
+                        "req_uri"
+                    ],
+                    "extra_config": {
+                        "modifier/martian": {
+                            "header.Filter": {
+                                "scope": [
+                                    "request"
+                                ],
+                                "name": "X-Tenant",
+                                "value": "v1",
+                                "modifier": {
+                                    "querystring.Modifier": {
+                                        "scope": [
+                                            "request"
+                                        ],
+                                        "name": "legacy",
+                                        "value": "1"
+                                    }
+                                }
+                            }
                         }
-                      }
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/header.RegexFilter",
             "input_headers": [
-              "X-App-Version"
+                "X-App-Version"
             ],
             "backend": [
-              {
-                "url_pattern": "/__echo/header.RegexFilter",
-                "allow": [
-                  "req_uri"
-                ],
-                "extra_config": {
-                  "modifier/martian": {
-                    "header.RegexFilter": {
-                      "scope": [
-                        "request"
-                      ],
-                      "header": "X-App-Version",
-                      "regex": ".*-(alpha|beta|preview)$",
-                      "modifier": {
-                        "querystring.Modifier": {
-                          "scope": [
-                            "request"
-                          ],
-                          "name": "testing",
-                          "value": "1"
+                {
+                    "url_pattern": "/__echo/header.RegexFilter",
+                    "allow": [
+                        "req_uri"
+                    ],
+                    "extra_config": {
+                        "modifier/martian": {
+                            "header.RegexFilter": {
+                                "scope": [
+                                    "request"
+                                ],
+                                "header": "X-App-Version",
+                                "regex": ".*-(alpha|beta|preview)$",
+                                "modifier": {
+                                    "querystring.Modifier": {
+                                        "scope": [
+                                            "request"
+                                        ],
+                                        "name": "testing",
+                                        "value": "1"
+                                    }
+                                }
+                            }
                         }
-                      }
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/url.RegexFilter",
             "output_encoding": "no-op",
             "backend": [
-              {
-                "url_pattern": "/__echo/url.RegexFilter",
-                "encoding": "no-op",
-                "extra_config": {
-                  "modifier/martian": {
-                    "url.RegexFilter": {
-                      "scope": [
-                        "request"
-                      ],
-                      "regex": ".*localhost.*",
-                      "modifier": {
-                        "header.Modifier": {
-                          "scope": [
-                            "request"
-                          ],
-                          "name": "Is-Localhost",
-                          "value": "true"
+                {
+                    "url_pattern": "/__echo/url.RegexFilter",
+                    "encoding": "no-op",
+                    "extra_config": {
+                        "modifier/martian": {
+                            "url.RegexFilter": {
+                                "scope": [
+                                    "request"
+                                ],
+                                "regex": ".*localhost.*",
+                                "modifier": {
+                                    "header.Modifier": {
+                                        "scope": [
+                                            "request"
+                                        ],
+                                        "name": "Is-Localhost",
+                                        "value": "true"
+                                    }
+                                },
+                                "else": {
+                                    "header.Modifier": {
+                                        "scope": [
+                                            "request"
+                                        ],
+                                        "name": "Is-Localhost",
+                                        "value": "false"
+                                    }
+                                }
+                            }
                         }
-                      },
-                      "else": {
-                        "header.Modifier": {
-                          "scope": [
-                            "request"
-                          ],
-                          "name": "Is-Localhost",
-                          "value": "false"
-                        }
-                      }
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/fifo.Group",
             "output_encoding": "no-op",
             "backend": [
-              {
-                "url_pattern": "/__echo/fifo.Group",
-                "extra_config": {
-                  "modifier/martian": {
-                    "fifo.Group": {
-                      "scope": [
-                        "request",
-                        "response"
-                      ],
-                      "aggregateErrors": true,
-                      "modifiers": [
-                        {
-                          "body.Modifier": {
-                            "scope": [
-                              "request"
-                            ],
-                            "body": "eyJtc2ciOiJ5b3Ugcm9jayEifQ=="
-                          }
-                        },
-                        {
-                          "header.Modifier": {
-                            "scope": [
-                              "request",
-                              "response"
-                            ],
-                            "name": "X-Martian",
-                            "value": "true"
-                          }
+                {
+                    "url_pattern": "/__echo/fifo.Group",
+                    "extra_config": {
+                        "modifier/martian": {
+                            "fifo.Group": {
+                                "scope": [
+                                    "request",
+                                    "response"
+                                ],
+                                "aggregateErrors": true,
+                                "modifiers": [
+                                    {
+                                        "body.Modifier": {
+                                            "scope": [
+                                                "request"
+                                            ],
+                                            "body": "eyJtc2ciOiJ5b3Ugcm9jayEifQ=="
+                                        }
+                                    },
+                                    {
+                                        "header.Modifier": {
+                                            "scope": [
+                                                "request",
+                                                "response"
+                                            ],
+                                            "name": "X-Martian",
+                                            "value": "true"
+                                        }
+                                    }
+                                ]
+                            }
                         }
-                      ]
                     }
-                  }
                 }
-              }
             ]
-          },
-          {
+        },
+        {
             "endpoint": "/test/priority.Group",
             "output_encoding": "no-op",
             "backend": [
-              {
-                "url_pattern": "/__echo/priority.Group",
-                "extra_config": {
-                  "modifier/martian": {
-                    "priority.Group": {
-                      "scope": [
-                        "request",
-                        "response"
-                      ],
-                      "modifiers": [
-                        {
-                          "priority": 0,
-                          "modifier" : {
-                            "querystring.Modifier": {
-                              "scope": ["request"],
-                              "name": "first",
-                              "value": "0"
+                {
+                    "url_pattern": "/__echo/priority.Group",
+                    "extra_config": {
+                        "modifier/martian": {
+                            "priority.Group": {
+                                "scope": [
+                                    "request",
+                                    "response"
+                                ],
+                                "modifiers": [
+                                    {
+                                        "priority": 0,
+                                        "modifier": {
+                                            "querystring.Modifier": {
+                                                "scope": [
+                                                    "request"
+                                                ],
+                                                "name": "first",
+                                                "value": "0"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "priority": 100,
+                                        "modifier": {
+                                            "querystring.Modifier": {
+                                                "scope": [
+                                                    "request"
+                                                ],
+                                                "name": "last",
+                                                "value": "100"
+                                            }
+                                        }
+                                    }
+                                ]
                             }
-                          }
-                        },
-                        {
-                          "priority" : 100,
-                          "modifier" : {
-                            "querystring.Modifier": {
-                              "scope": ["request"],
-                              "name": "last",
-                              "value": "100"
-                            }
-                          }
                         }
-                      ]
                     }
-                  }
                 }
-              }
             ]
-          }
+        }
     ],
     "extra_config": {
         "grpc": {
