@@ -165,6 +165,9 @@
                                 "lat": "where.latitude",
                                 "lon": "where.longitude"
                             },
+                            "header_mapping": {
+                                "X-Tenant": "haha"
+                            },
                             "output_duration_as_string": false,
                             "output_enum_as_string": false,
                             "output_timestamp_as_string": false,
