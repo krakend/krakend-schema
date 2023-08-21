@@ -1461,6 +1461,12 @@
         }
     ],
     "extra_config": {
+        "server/virtualhost": {
+            "hosts": [
+                "host-a.tld",
+                "host-b.tld"
+            ]
+        },
         "server/static-filesystem": {
             "prefix": "/media/assets",
             "path": "./../../",
@@ -1826,12 +1832,6 @@
                 "rate": 0,
                 "tokenizer": "cookie",
                 "tokenizer_field": "aaa"
-            },
-            "virtualhost": {
-                "hosts": [
-                    "host-a.tld",
-                    "host-b.tld"
-                ]
             },
             "wildcard": {
                 "endpoints": {
