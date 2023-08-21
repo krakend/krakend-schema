@@ -156,6 +156,9 @@
                     "disable_host_sanitize": true,
                     "url_pattern": "/flight_finder.Flights/FindFlight",
                     "extra_config": {
+                        "backend/static-filesystem": {
+                            "path": "./static/"
+                        },
                         "backend/grpc": {
                             "client_tls": {
                                 "@comment": "Allow untrusted certificates in development stage",
@@ -1458,6 +1461,15 @@
         }
     ],
     "extra_config": {
+        "server/static-filesystem": {
+            "prefix": "/media/assets",
+            "path": "./../../",
+            "@comment": "static om",
+            "skip": [
+                "/media/ignore/this/directory",
+                "/media/file.json"
+            ]
+        },
         "grpc": {
             "catalog": [
                 "./grpc/definitions"
@@ -1802,15 +1814,6 @@
                         "/hi-there/([.+)/bar",
                         "/hello/${1}"
                     ]
-                ]
-            },
-            "static-filesystem": {
-                "prefix": "/media/assets",
-                "path": "./../../",
-                "@comment": "static om",
-                "skip": [
-                    "/media/ignore/this/directory",
-                    "/media/file.json"
                 ]
             },
             "geoip": {

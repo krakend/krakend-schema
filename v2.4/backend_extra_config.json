@@ -116,6 +116,9 @@
         "backend/http/client": {
             "$ref": "backend/http_client.json"
         },
+        "backend/static-filesystem": {
+            "$ref": "backend/static-filesystem.json"
+        },
         "validation/cel": {
             "$ref": "validation/cel.json"
         },

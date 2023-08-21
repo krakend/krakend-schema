@@ -124,6 +124,9 @@
         "security/http": {
             "$ref": "security/http.json"
         },
+        "server/static-filesystem": {
+            "$ref": "server/static-filesystem.json"
+        },
         "telemetry/logging": {
             "$ref": "telemetry/logging.json"
         },
