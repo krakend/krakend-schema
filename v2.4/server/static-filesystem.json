@@ -32,6 +32,11 @@
                 "/media/ignore/this/directory",
                 "/media/file.json"
             ]]
+        },
+        "directory_listing": {
+            "type": "boolean",
+            "description": "Whether to allow directory listings or not",
+            "default": false
         }
     }
 }

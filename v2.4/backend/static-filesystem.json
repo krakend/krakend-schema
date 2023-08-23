@@ -16,6 +16,11 @@
             "description": "The folder in the filesystem containing the static files. Relative to the working dir where KrakenD config is (e.g.: `./assets`) or absolute (e.g.: `/var/www/assets`).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
             "type": "string",
             "examples": ["./static/"]
+        },
+        "directory_listing": {
+            "type": "boolean",
+            "description": "Whether to allow directory listings or not",
+            "default": false
         }
     }
 }
