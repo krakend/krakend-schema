@@ -2,7 +2,8 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/v2.4/modifier/body-generator.json",
     "title": "Template-based body generator",
-    "description": "Enterprise only. Crafts the body sent to the backend service using user input and other variables through a templating system.\n\nSee: https://www.krakend.io/backends/body-generator/",
+    "description": "Enterprise only. Crafts the body/payload using a templating system.\n\nSee: https://www.krakend.io/backends/body-generator/",
+    "@comment": "This schema is used by modifier/request-body-generator and modifier/body-generator simultaneously",
     "type": "object",
     "minItems": 1,
     "additionalProperties": false,
@@ -20,7 +21,7 @@
     "properties": {
         "template": {
             "title": "Template",
-            "description": "An inline base64 encoded Go template with the body content you want to send to the backend service. This option is useful if you don't want to rely on external files and embed the template in the configuration.\n\nSee: https://www.krakend.io/docs/backends/body-generator/",
+            "description": "An inline base64 encoded Go template with the body you want to generate. This option is useful if you want to have the template embedded in the configuration instead of an external file.\n\nSee: https://www.krakend.io/docs/backends/body-generator/",
             "type": "string"
         },
         "path": {
@@ -28,12 +29,12 @@
             "description": "The path to the Go template file you want to use to craft the body.\n\nSee: https://www.krakend.io/docs/backends/body-generator/",
             "type": "string",
             "examples": [
-                "./path/to.xml"
+                "./path/to.tmpl"
             ]
         },
         "content_type": {
             "title": "Content-Type",
-            "description": "The `Content-Type` used in your template, and that will be sent to the backend service. This is not the content-type the end-user sent in the request.\n\nSee: https://www.krakend.io/docs/backends/body-generator/",
+            "description": "The `Content-Type` you are generating in the template, so it can be recognized by whoever is using it.\n\nSee: https://www.krakend.io/docs/backends/body-generator/",
             "type": "string",
             "examples": [
                 "application/json",

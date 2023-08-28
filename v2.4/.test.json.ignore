@@ -156,6 +156,9 @@
                     "disable_host_sanitize": true,
                     "url_pattern": "/flight_finder.Flights/FindFlight",
                     "extra_config": {
+                        "backend/static-filesystem": {
+                            "path": "./static/"
+                        },
                         "backend/grpc": {
                             "client_tls": {
                                 "@comment": "Allow untrusted certificates in development stage",
@@ -164,6 +167,9 @@
                             "input_mapping": {
                                 "lat": "where.latitude",
                                 "lon": "where.longitude"
+                            },
+                            "header_mapping": {
+                                "X-Tenant": "haha"
                             },
                             "output_duration_as_string": false,
                             "output_enum_as_string": false,
@@ -1455,6 +1461,21 @@
         }
     ],
     "extra_config": {
+        "server/virtualhost": {
+            "hosts": [
+                "host-a.tld",
+                "host-b.tld"
+            ]
+        },
+        "server/static-filesystem": {
+            "prefix": "/media/assets",
+            "path": "./../../",
+            "@comment": "static om",
+            "skip": [
+                "/media/ignore/this/directory",
+                "/media/file.json"
+            ]
+        },
         "grpc": {
             "catalog": [
                 "./grpc/definitions"
@@ -1801,15 +1822,6 @@
                     ]
                 ]
             },
-            "static-filesystem": {
-                "prefix": "/media/assets",
-                "path": "./../../",
-                "@comment": "static om",
-                "skip": [
-                    "/media/ignore/this/directory",
-                    "/media/file.json"
-                ]
-            },
             "geoip": {
                 "citydb_path": "path/to/GeoIP2-City.mmdb"
             },
@@ -1820,12 +1832,6 @@
                 "rate": 0,
                 "tokenizer": "cookie",
                 "tokenizer_field": "aaa"
-            },
-            "virtualhost": {
-                "hosts": [
-                    "host-a.tld",
-                    "host-b.tld"
-                ]
             },
             "wildcard": {
                 "endpoints": {

@@ -15,9 +15,9 @@
       "content-type": [
         "application/json; charset=utf-8"
       ],
-      "Cache-Control":
-        [""]
-      ,
+      "Cache-Control": [
+        ""
+      ],
       "X-Krakend-Completed": [
         "true"
       ]

@@ -62,9 +62,27 @@
                     "lon": "where.longitude"
                 }
             ],
-            "additionalProperties": true,
-            "items": {
-                "type": "string"
+            "additionalProperties": false,
+            "patternProperties": {
+                ".*": {
+                    "type": "string"
+                }
+            }
+        },
+        "header_mapping": {
+            "title": "Mapping of headers",
+            "description": "A dictionary that rename the received header (key) to a new header name (value). If the header starts with `grpc` they will be renamed to `in-grpc-*` as the word is reserved.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
+            "type": "object",
+            "examples": [
+                {
+                    "X-Tenant": "customerid"
+                }
+            ],
+            "additionalProperties": false,
+            "patternProperties": {
+                ".*": {
+                    "type": "string"
+                }
             }
         },
         "use_request_body": {

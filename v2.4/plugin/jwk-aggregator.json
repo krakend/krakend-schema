@@ -22,6 +22,11 @@
             "title": "Origins",
             "description": "The list of all JWK URLs recognized as valid Identity Providers by the gateway.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/multiple-identity-providers/",
             "type": "array"
+        },
+        "cache": {
+            "title": "Cache",
+            "description": "When `true`, it stores the response of the Identity provider for the time specified in its `Cache-Control` header.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/multiple-identity-providers/",
+            "type": "boolean"
         }
     }
 }
