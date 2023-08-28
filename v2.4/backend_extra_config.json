@@ -47,6 +47,9 @@
         "modifier/body-generator": {
             "$ref": "modifier/body-generator.json"
         },
+        "modifier/request-body-generator": {
+            "$ref": "modifier/body-generator.json"
+        },
         "modifier/lua-backend": {
             "$ref": "modifier/lua.json"
         },
