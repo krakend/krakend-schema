@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/v3.json",
-    "title": "DEPRECATED and frozen in KrakenD v2.3. Please use the scpeficic schema for the version you use. For instance https://www.krakend.io/schema/v2.4/krakend.json",
-    "$ref": "v2.3/krakend.json"
+    "title": "DEPRECATED. Please use the specific schema for the version you use. For instance https://www.krakend.io/schema/v2.4/krakend.json",
+    "$ref": "v2.4/krakend.json"
 }
