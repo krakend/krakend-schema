@@ -27,23 +27,22 @@
             }
         },
         "connect_event": {
-            "$id": "#websocket/input_headers",
-            "title": "Connect event",
-            "description": "Notifies in the log when there is the client connect event.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
-            "type": "boolean"
+            "title": "Notify connections",
+            "description": "Whether to send notification events to the backend or not when a user establishes a new Websockets connection.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "type": "boolean",
+            "default": false
         },
         "disconnect_event": {
-            "$id": "#websocket/input_headers",
-            "title": "Allowed Headers In",
-            "description": "Notifies in the log when there is a client disconnect event.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
-            "type": "boolean"
+            "title": "Notify disconnections",
+            "description": "Whether to send notification events to the backend or not when users disconnect from their Websockets connection.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "type": "boolean",
+            "default": false
         },
         "read_buffer_size": {
-            "$id": "#websocket/read_buffer_size",
             "title": "Read buffer size",
             "description": "Connections buffer network input and output to reduce the number of system calls when reading messages. You can set the maximum buffer size for reading in bytes.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
             "type": "integer",
-            "default": 4096
+            "default": 1024
         },
         "write_buffer_size": {
             "title": "Write buffer size",
@@ -53,13 +52,13 @@
         },
         "message_buffer_size": {
             "title": "Message buffer size",
-            "description": "Sets the maximum buffer size for messages (in bytes).\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "description": "Sets the maximum number of messages **each client** can have in the buffer waiting to be processed. As this is a per-client setting, you must forecast how many consumers of KrakenD websockets you will have. The default value may be too high (memory consumption) if you expect thousands of clients consuming simultaneously.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
             "type": "integer",
             "default": 256
         },
         "max_message_size": {
             "title": "Maximum message size",
-            "description": "Sets the maximum size of client messages (in bytes).\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "description": "Sets the maximum size of messages **in bytes** sent by or returned to the client. Messages larger than this value are discarded by KrakenD and the client disconnected.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
             "type": "integer",
             "default": 512
         },
