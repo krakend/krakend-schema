@@ -30,7 +30,7 @@
             }
         },
         "cookie.Modifier": {
-            "title": "Modifier",
+            "title": "Cookie Modifier",
             "description": "Adds a cookie to a request or a response. If you set cookies in a response, the cookies are only set to the client when you use no-op encoding.\n\nSee: https://www.krakend.io/docs/backends/martian/",
             "type": "object",
             "required": ["scope", "name", "value"],
@@ -258,7 +258,7 @@
             }
         },
         "port.Modifier": {
-            "title": "Blacklist headers",
+            "title": "Port Modifier",
             "description": "The port.Modifier alters the request URL and Host header to use the provided port.\n\nSee: https://www.krakend.io/docs/backends/martian/",
             "type": "object",
             "oneOf": [
