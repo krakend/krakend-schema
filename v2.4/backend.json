@@ -41,7 +41,7 @@
         "input_headers": {
             "$id": "#backend/input_headers",
             "title": "Allowed Headers In",
-            "description": "A second level of header filtering that defines the list of all headers allowed to reach this backend when different than the endpoint.\nBy default, all headers in the endpoint `header_inputs` reach the backend, unless otherwise specified here. An empty list `[]` is considered a zero-value and allows all headers to pass. Use `[\"\"]` to explicitly remove all headers. See [headers forwarding](/docs/endpoints/parameter-forwarding/#headers-forwarding)",
+            "description": "A second level of header filtering that defines the list of all headers allowed to reach this backend when different than the endpoint.\nBy default, all headers in the endpoint `input_headers` reach the backend, unless otherwise specified here. An empty list `[]` is considered a zero-value and allows all headers to pass. Use `[\"\"]` to explicitly remove all headers. See [headers forwarding](/docs/endpoints/parameter-forwarding/#headers-forwarding)",
             "type": "array",
             "uniqueItems": true,
             "default": [],
