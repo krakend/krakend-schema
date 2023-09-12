@@ -121,6 +121,11 @@
                             "content_type": "application/json",
                             "debug": false,
                             "template": "abcdef"
+                        },
+                        "modifier/response-body-generator": {
+                            "content_type": "application/json",
+                            "debug": false,
+                            "template": "abcdef"
                         }
                     }
                 }
@@ -283,6 +288,11 @@
                     "ping_period": "54s",
                     "max_retries": 0,
                     "backoff_strategy": "exponential"
+                },
+                "modifier/response-body-generator": {
+                    "content_type": "application/json",
+                    "debug": false,
+                    "template": "abcdef"
                 }
             }
         },
