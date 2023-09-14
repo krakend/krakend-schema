@@ -145,33 +145,10 @@
             "patternProperties": {
                 "^[@$_#]": {}
             },
-            "properties": {
-                "req": {
-                    "$ref": "./security/policies.json#security/policies/req",
-                    "title": "Request policies",
-                    "description": "All the policies applied in the request context.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/"
-                },
-                "resp": {
-                    "$ref": "./security/policies.json#security/policies/req",
-                    "title": "Response policies",
-                    "description": "All the policies applied in the response context.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/"
-                },
-                "disable_macros": {
-                    "$ref": "./security/policies.json#security/policies/disable_macros",
-                    "title": "Disable advanced macros",
-                    "description": "Advanced macros can be disabled in those policies not needing them for a faster evaluation."
-                },
-                "debug": {
-                    "$ref": "./security/policies.json#security/policies/debug",
-                    "title": "Debug",
-                    "description": "When true, all the inputs and evaluation results are printed in the console."
-                },
-                "auto_join_policies": {
-                    "$ref": "./security/policies.json#security/policies/auto_join_policies",
-                    "title": "Auto-join policies",
-                    "description": "When true, all policies of the same type concatenate with an AND operation to evaluate a single expression. Performs faster, but its harder the debug."
-                }
-            }
+            "not": {
+                "required": ["jwt"]
+            },
+            "$ref": "./security/policies.json"
         }
     }
 }
