@@ -88,7 +88,7 @@
         },
         "forwarded_by_client_ip": {
             "title": "Forwarded by client IP",
-            "description": "When set to true, client IP will be parsed from the request's headers. If no IP can be fetched, it falls back to the IP obtained from the request's remote address.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+            "description": "When set to true, the client IP will be parsed from the default request's headers, or the custom ones (`remote_ip_headers`). If the IP has passed through a **trusted proxy** (e.g.: a proxy, load balancer, or a third party application) it will be extracted. If no IP can be fetched, it falls back to the IP obtained from the request's remote address.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
             "type": "boolean",
             "default": false
         },
