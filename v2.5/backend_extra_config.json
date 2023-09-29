@@ -1,0 +1,154 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.krakend.io/schema/v2.5/backend_extra_config.json",
+    "title": "Extra configuration for backends",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[@$_#]": {}
+    },
+    "properties": {
+        "plugin/req-resp-modifier": {
+            "$ref": "plugin/req-resp-modifier.json"
+        },
+        "plugin/http-client": {
+            "$ref": "plugin/http-client.json"
+        },
+        "auth/client-credentials": {
+            "$ref": "auth/client-credentials.json"
+        },
+        "auth/ntlm": {
+            "$ref": "auth/ntlm.json"
+        },
+        "auth/gcp": {
+            "$ref": "auth/gcp.json"
+        },
+        "backend/amqp/consumer": {
+            "$ref": "backend/amqp/consumer.json"
+        },
+        "backend/amqp/producer": {
+            "$ref": "backend/amqp/producer.json"
+        },
+        "backend/grpc": {
+            "$ref": "backend/grpc.json"
+        },
+        "backend/pubsub/subscriber": {
+            "$ref": "backend/pubsub/subscriber.json"
+        },
+        "backend/pubsub/publisher": {
+            "$ref": "backend/pubsub/publisher.json"
+        },
+        "backend/lambda": {
+            "$ref": "backend/lambda.json"
+        },
+        "backend/soap": {
+            "$ref": "backend/soap.json"
+        },
+        "modifier/body-generator": {
+            "$ref": "modifier/body-generator.json"
+        },
+        "modifier/request-body-generator": {
+            "$ref": "modifier/body-generator.json"
+        },
+        "modifier/response-body-generator": {
+            "$ref": "modifier/body-generator.json"
+        },
+        "modifier/lua-backend": {
+            "$ref": "modifier/lua.json"
+        },
+        "modifier/martian": {
+            "type": "object",
+            "title": "Martian modifiers",
+            "$ref": "modifier/martian.json",
+            "description": "Transform requests and responses through a simple DSL definition in the configuration file.\n\nSee: https://www.krakend.io/docs/backends/martian/"
+        },
+        "modifier/jmespath": {
+            "$ref": "modifier/jmespath.json"
+        },
+        "qos/http-cache": {
+            "type": "object",
+            "title": "Backend Cache",
+            "description": "Enable in-memory caching for backend responses for as long as its Cache-Control header permits.\n\nSee: https://www.krakend.io/docs/backends/caching/",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[@$_#]": {}
+            },
+            "properties": {
+                "shared": {
+                    "type": "boolean",
+                    "title": "Shared cache",
+                    "description": "The `shared` cache makes that different backend definitions with this flag enabled can reuse the cache. When the `shared` flag is missing or set to false, the backend uses its own cache private context.\n\nSee: https://www.krakend.io/docs/backends/detailed-errors/"
+                }
+            }
+        },
+        "qos/circuit-breaker": {
+            "$ref": "qos/circuit-breaker.json"
+        },
+        "qos/ratelimit/proxy": {
+            "$ref": "qos/ratelimit/proxy.json"
+        },
+        "proxy": {
+            "$ref": "proxy.json"
+        },
+        "backend/graphql": {
+            "$ref": "backend/graphql.json"
+        },
+        "backend/http": {
+            "properties": {
+                "return_error_details": {
+                    "type": "string",
+                    "title": "Return error details",
+                    "description": "Returns to the client details of a failing request.\n\nSee: https://www.krakend.io/docs/backends/detailed-errors/"
+                },
+                "return_error_code": {
+                    "type": "boolean",
+                    "title": "Return error code",
+                    "description": "Returns the HTTP status code of the backend (when there is only one). The headers are not returned.\n\nSee: https://www.krakend.io/docs/backends/detailed-errors/"
+                }
+            },
+            "oneOf": [
+                {
+                    "required": [
+                        "return_error_details"
+                    ]
+                },
+                {
+                    "required": [
+                        "return_error_code"
+                    ]
+                }
+            ]
+        },
+        "backend/http/client": {
+            "$ref": "backend/http_client.json"
+        },
+        "backend/static-filesystem": {
+            "$ref": "backend/static-filesystem.json"
+        },
+        "validation/cel": {
+            "$ref": "validation/cel.json"
+        },
+        "security/policies": {
+            "anyOf": [
+                {
+                    "required": [
+                        "req"
+                    ]
+                },
+                {
+                    "required": [
+                        "resp"
+                    ]
+                }
+            ],
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[@$_#]": {}
+            },
+            "not": {
+                "required": ["jwt"]
+            },
+            "$ref": "./security/policies.json"
+        }
+    }
+}
