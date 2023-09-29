@@ -40,8 +40,8 @@
             "$id": "#backend/amqp/producer/static_routing_key",
             "title": "Static Routing key",
             "description": "Defines whether the routing key will have a static value or not.\n\nSee: https://www.krakend.io/docs/backends/amqp-producer/",
-            "type": "integer",
-            "default": "0"
+            "type": "boolean",
+            "default": false
         },
         "exp_key": {
             "$id": "#backend/amqp/consumer/exp_key",
