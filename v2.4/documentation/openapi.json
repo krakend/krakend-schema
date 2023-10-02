@@ -169,7 +169,7 @@
             ],
             "additionalProperties": false,
             "patternProperties":{
-                "^[0-9]+$": {
+                "default|^[0-9]+$": {
                     "type": "object",
                     "additionalProperties": false,
                     "patternProperties": {
