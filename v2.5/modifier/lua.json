@@ -17,10 +17,10 @@
         },
         "md5": {
             "title": "MD5 Checksum",
-            "description": "The md5sum is an extra security feature to make sure that once you have coded the Lua script, the MD5 of what is loaded into memory matches what you expect and has not been tampered by a malicious 3rd party.\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
+            "description": "The md5sum is an extra security feature to make sure that once you have coded the Lua script, the MD5 of what is loaded into memory matches what you expect and has not been tampered by a malicious 3rd party. The key of the object must match **exactly** the filename under sources, **including all the path**.\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
             "type": "object",
             "examples": [
-                { "file1.lua": "49ae50f58e35f4821ad4550e1a4d1de0"}
+                { "./path/to/file1.lua": "49ae50f58e35f4821ad4550e1a4d1de0"}
             ]
         },
         "pre": {
