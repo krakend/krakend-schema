@@ -18,14 +18,16 @@
         "capacity": {
             "$id": "#endpoint_extra_config/qos/ratelimit/router/capacity",
             "title": "Capacity",
-            "description": "Defines the credit (or tokens in the [Token Bucket](/docs/throttling/token-bucket/) jargon) you set to **all users together**. It defines the maximum number of requests you are willing to accept from all users at any given instant. The capacity is also known as **max burst**, because it defines the **size of the bucket** holding the remaining requests. The `max_rate` fills the bucket until its maximum capacity at the defined rate.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
-            "type": "integer"
+            "description": "Defines the maximum number of [tokens a bucket can hold](/docs/throttling/token-bucket/), or said otherwise, how many requests will you accept from **all users together** at **any given instant**. When the gateway starts, the bucket is full. As requests from users come, the remaining tokens in the bucket decrease. At the same time, the `max_rate` refills the bucket at the desired rate until its maximum capacity is reached. The default value for the `capacity` is the `max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `max_rate`.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
+            "type": "integer",
+            "default": 1
         },
         "client_capacity": {
             "$id": "#endpoint_extra_config/qos/ratelimit/router/client_capacity",
             "title": "Client capacity",
-            "description": "Defines the credit (or tokens in the [Token Bucket](/docs/throttling/token-bucket/) jargon) you set to **each individual user**. Similar to `capacity`, it defines the maximum number of requests you are willing to accept from that user at any given instant. The client is recognized using the `strategy` field (an IP address, a token, a header, etc.). The `client_max_rate` fills the client capacity at the desired rate over time, and keeps a counter for every client and endpoint.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
-            "type": "integer"
+            "description": "Defines the maximum number of [tokens a bucket can hold](/docs/throttling/token-bucket/), or said otherwise, how many requests will you accept from **each individual user** at **any given instant**. Works just as `capacity`, but instead of having one bucket for all users, keeps a counter for every connected client and endpoint, and refills from `client_max_rate` instead of `max_rate`. The client is recognized using the `strategy` field (an IP address, a token, a header, etc.). The default value for the `client_capacity` is the `client_max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `client_max_rate`.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
+            "type": "integer",
+            "default": 1
         },
         "max_rate": {
             "$id": "#endpoint_extra_config/qos/ratelimit/router/max_rate",
