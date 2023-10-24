@@ -73,10 +73,10 @@
         "listen_ip": {
             "$id": "#service/listen_ip",
             "title": "Listen IP",
-            "description": "The IP address that KrakenD listens to in IPv4, IPv6, or IPv4-mapped IPv6 formats. An empty string or no declaration at all means listening to all interfaces. When defined, requests to non-matching IPs won't be served even if they are in the same machine. The inclusion of `::` is meant for IPv6 format only (**this is not the port**). Examples of valid addresses are `192.0.2.1` (IPv4), `2001:db8::68` (IPv6), or `::ffff:192.0.2.1` (IPv4-mapped IPv6).",
+            "description": "The IP address that KrakenD listens to in IPv4, IPv6, or IPv4-mapped IPv6 formats. An empty string, or no declaration at all means listening on all interfaces. The inclusion of `::` is meant for IPv6 format only (**this is not the port**). Examples of valid addresses are `192.0.2.1` (IPv4), `2001:db8::68` (IPv6), or `::ffff:192.0.2.1` (IPv4-mapped IPv6).",
             "type": "string",
             "default": "",
-            "examples": ["172.12.1.1","0.0.0.0","::1","::1:127.0.0.1"]
+            "examples": ["172.12.1.1","::1","::1:127.0.0.1"]
         },
         "timeout": {
             "$id": "#service/timeout",
