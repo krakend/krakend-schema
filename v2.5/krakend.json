@@ -70,6 +70,14 @@
             "maximum": 65535,
             "default": 8080
         },
+        "listen_ip": {
+            "$id": "#service/listen_ip",
+            "title": "Listen IP",
+            "description": "The IP address that KrakenD listens to in IPv4, IPv6, or IPv4-mapped IPv6 formats. An empty string or no declaration at all means listening to all interfaces. When defined, requests to non-matching IPs won't be served even if they are in the same machine. The inclusion of `::` is meant for IPv6 format only (**this is not the port**). Examples of valid addresses are `192.0.2.1` (IPv4), `2001:db8::68` (IPv6), or `::ffff:192.0.2.1` (IPv4-mapped IPv6).",
+            "type": "string",
+            "default": "",
+            "examples": ["172.12.1.1","0.0.0.0","::1","::1:127.0.0.1"]
+        },
         "timeout": {
             "$id": "#service/timeout",
             "title": "Global timeout",
@@ -262,7 +270,7 @@
         "endpoints": {
             "type": "array",
             "title": "Endpoints",
-            "description": "Your API contract, a.k.a the list of all endpoints recognized by this gateway. The `/__health/`, `/__debug/`, and `/__stats/` endpoints are not controlled with this list.\n\nSee: https://www.krakend.io/docs/endpoints/",
+            "description": "Your API contract, or the list of all paths recognized by this gateway. The paths `/__health/`, `/__debug/`, `/__echo/`, `/__catchall`, and `/__stats/` are reserved by the system and you cannot declare them. Their existence depends on their respective settings.\n\nSee: https://www.krakend.io/docs/endpoints/",
             "items": {
                 "type": "object",
                 "$ref": "endpoint.json"
