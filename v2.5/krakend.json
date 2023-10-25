@@ -281,6 +281,12 @@
             "description": "The optional configuration that extends the core functionality of the gateway is specified here. The `extra_config` at this level enables service components, meaning that they apply globally to all endpoints or activity.",
             "type": "object",
             "$ref": "service_extra_config.json"
+        },
+        "use_h2c": {
+            "title": "Enable h2c",
+            "description": "Enable the support for HTTP/2 with no TLS (clear text). This option is less secure and less performant, use with caution.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+            "type": "boolean",
+            "default": false
         }
     }
 }

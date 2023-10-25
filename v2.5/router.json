@@ -134,8 +134,9 @@
             "default": false
         },
         "use_h2c": {
+            "deprecated": true,
             "title": "Enable h2c",
-            "description": "Enable the support for HTTP/2 with no TLS (clear text). This option is less secure and less performant, use with caution.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+            "description": "This flag has [moved to the root level](/docs/service-settings/http-server-settings/), and will be deleted from router in future versions.\n\nSee: https://www.krakend.io/docs/service-settings/",
             "type": "boolean",
             "default": false
         }
