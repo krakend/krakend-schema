@@ -46,7 +46,13 @@
         ],
         "disable_system_ca_pool": false,
         "max_version": "TLS13",
-        "min_version": "TLS12"
+        "min_version": "TLS12",
+        "client_certs": [
+            {
+                "certificate": "bart.crt",
+                "private_key": "bart.key"
+            }
+        ]
     },
     "tls": {
         "public_key": "./cert.pem",

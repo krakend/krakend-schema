@@ -69,12 +69,17 @@
             "type": "array",
             "uniqueItems": true,
             "default": [
-                23,24,25
+                23,
+                24,
+                25
             ],
             "items": {
-                "enum": [23,24,25]
+                "enum": [
+                    23,
+                    24,
+                    25
+                ]
             }
-
         },
         "cipher_suites": {
             "$id": "client_tls/cipher_suites",
@@ -87,6 +92,35 @@
                 4866,
                 4867
             ]
+        },
+        "client_certs": {
+            "$id": "client_tls/cipher_suites",
+            "title": "Cipher Suites",
+            "description": "The list of cipher suites as defined in the documentation.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "patternProperties": {
+                    "^[@$_#]": {}
+                },
+                "required": [
+                    "certificate",
+                    "private_key"
+                ],
+                "properties": {
+                    "certificate": {
+                        "type": "string",
+                        "title": "Certificate",
+                        "description": "The path to the certificate you will use for mTLS connections."
+                    },
+                    "private_key": {
+                        "type": "string",
+                        "title": "Private key",
+                        "description": "The path to the private key you will use for mTLS connections."
+                    }
+                }
+            }
         }
     }
 }
