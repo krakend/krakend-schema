@@ -88,7 +88,7 @@
         },
         "forwarded_by_client_ip": {
             "title": "Forwarded by client IP",
-            "description": "When set to true, the client IP will be parsed from the default request's headers, or the custom ones (`remote_ip_headers`). If the IP has passed through a **trusted proxy** (e.g.: a proxy, load balancer, or a third party application) it will be extracted. If no IP can be fetched, it falls back to the IP obtained from the request's remote address.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+            "description": "When set to true, the client IP will be parsed from the default request's headers, or the custom ones (`remote_ip_headers`). If the IP has passed through a **trusted proxy** (e.g.: a proxy, load balancer, or a third party application) it will be extracted. If no IP can be fetched, it falls back to the IP obtained from the request's remote address. When declared **you must** configure `trusted_proxies` too.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
             "type": "boolean",
             "default": false
         },
@@ -99,7 +99,7 @@
         },
         "trusted_proxies": {
             "title": "Trusted Proxies",
-            "description": "List of network origins (IPv4 addresses, IPv4 CIDRs, IPv6 addresses or IPv6 CIDRs) from which to trust request's headers that contain alternative client IP when `forwarded_by_client_ip` is `true`.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+            "description": "List of network origins (IPv4 addresses, IPv4 CIDRs, IPv6 addresses or IPv6 CIDRs) from which to trust request's headers that contain alternative client IP when `forwarded_by_client_ip` is `true`. When declared **you must** configure `forwarded_by_client_ip` set to `true`, and optionally `remote_ip_headers`.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
             "type": "array"
         },
         "app_engine": {
