@@ -175,13 +175,6 @@
             "title": "JWK Fingerprints",
             "description": "A list of fingerprints (the unique identifier of the certificate) for certificate pinning and avoid man in the middle attacks. Add fingerprints in base64 format.\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
             "type": "array"
-        },
-        "typ": {
-            "$id": "#auth/signer/typ",
-            "title": "Type",
-            "description": "Sets in the token's header section the type of token returned.\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
-            "type": "string",
-            "default": "JWT"
         }
     }
 }
