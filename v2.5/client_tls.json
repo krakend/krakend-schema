@@ -94,7 +94,7 @@
             ]
         },
         "client_certs": {
-            "$id": "client_tls/cipher_suites",
+            "$id": "client_tls/client_certs",
             "title": "Cipher Suites",
             "description": "The list of cipher suites as defined in the documentation.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
             "type": "array",
