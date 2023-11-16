@@ -32,5 +32,19 @@
         }
       }
     }
-  }
+  },
+  "next": [
+    {
+      "in": {
+        "method": "GET",
+        "url": "http://localhost:8080/test/rate-limit-stateless",
+        "header": {
+          "User-Agent": "krakend e2e tool"
+        }
+      },
+      "out": {
+        "status_code": 503
+      }
+    }
+  ]
 }
