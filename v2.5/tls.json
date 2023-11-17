@@ -23,7 +23,7 @@
         "public_key": {
             "$id": "#service/tls/public_key",
             "title": "Public key",
-            "description": "Absolute path to the public key, or relative to the current working directory.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
+            "description": "Absolute path to the public key, or relative to the current [working directory](/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
             "type": "string",
             "default": "./certs/cert.pem",
             "examples": [
@@ -34,7 +34,7 @@
         "private_key": {
             "$id": "#service/tls/private_key",
             "title": "Private key",
-            "description": "Absolute path to the private key, or relative to the current working directory.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
+            "description": "Absolute path to the private key, or relative to the current [working directory](/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
             "type": "string",
             "default": "./certs/key.pem",
             "examples": [

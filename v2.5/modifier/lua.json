@@ -12,7 +12,7 @@
     "properties": {
         "sources": {
             "title": "Sources",
-            "description": "An array with all the Lua files that will be processed. If no path is provided (e.g., `myfile.lua`) the file loads from the working directory (same place you loaded the configuration, usually `/etc/krakend`)\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
+            "description": "An array with all the Lua files that will be processed. If no path is provided (e.g., `myfile.lua`) the file loads from the [working directory](/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
             "type": "array"
         },
         "md5": {
