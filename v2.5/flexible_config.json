@@ -124,12 +124,19 @@
                         ".prop",
                         ".props"
                     ]
+                },
+                "undefined_vars": {
+                    "title": "Undefined variables behavior",
+                    "description": "How to treat access to unexisting variables in the templates. When the value is `error` the template will fail to compile, when `zero` it will set a zero-value (e.g, empty string), and when the value is `invalid` it will replace the content with the string `<no value>`.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
+                    "default": "error",
+                    "type": "string",
+                    "enum": ["error", "zero", "invalid"]
                 }
             }
         },
         "meta_key": {
             "title": "Metadata key",
-            "description": "The name of the variable you have available on templates containing the metadata tree of settings involved in the configuration. You can access to this variable with a starting dot, e.g., `{{ .meta }}`.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
+            "description": "The name of the variable you have available on templates containing the tree of files involved in the configuration (except partials). You can access to this variable with a starting dot, e.g., `{{ .meta }}`.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
             "type": "string",
             "default": "meta"
         },
