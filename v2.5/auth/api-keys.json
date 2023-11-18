@@ -20,6 +20,22 @@
             "enum": ["header","query_string"],
             "default": "header"
         },
+        "hash": {
+            "$id": "#auth/api-keys/hash",
+            "title": "Hash",
+            "description": "The hashing function used to store the value of the key. When you use `plain` the API key is written as it will passed by the user. The rest of the hashes require you to save the API key after applying the desired function.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+            "type": "string",
+            "default": "plain",
+            "enum": ["plain","fnv128","sha256","sha1"]
+        },
+        "salt": {
+            "$id": "#auth/api-keys/salt",
+            "title": "Salt",
+            "description": "A salt string for the desired hashing function. When provided, the API key is concatenated after the salt string and both hashed together.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+            "type": "string",
+            "default": "",
+            "examples": ["mySalt"]
+        },
         "identifier": {
             "$id": "#auth/api-keys/identifier",
             "title": "Identifier",
