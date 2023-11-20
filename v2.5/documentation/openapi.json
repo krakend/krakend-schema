@@ -9,6 +9,30 @@
         "^[@$_#]": {}
     },
     "properties": {
+        "components_schemas": {
+            "$id": "#documentation/openapi/components_schemas",
+            "type": "object",
+            "title": "Component Schemas",
+            "description": "The JSON Schemas you can reuse inside endpoint definitions using `ref`. You can either pass the JSON Schema object, or a bas64 string.",
+            "examples": [
+                {
+                  "Pet": {
+                    "type": "object",
+                    "required": [
+                      "id",
+                      "name"
+                    ]
+                  }
+                }
+              ],
+            "patternProperties":{
+                ".*": {
+                    "title": "JSON Schema",
+                    "description": "JSON Schema in base64 or as an object",
+                    "type":["string","object"]
+                }
+            }
+        },
         "description": {
             "$id": "#documentation/openapi/description",
             "title": "API Description",
@@ -149,7 +173,7 @@
             ]
         },
         "response_definition": {
-            "$id": "#documentation/openapi/error_definition",
+            "$id": "#documentation/openapi/response_definition",
             "title": "Definition of errors (OAS3 only)",
             "description": "Describes the different status codes returned by this endpoint. Each key is the definition of the status code, represented by a string. E.g., `200` (success), `500` (internal error), etc.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": [
@@ -177,6 +201,13 @@
                     },
                     "required": ["content_type"],
                     "properties": {
+                        "ref": {
+                            "type": "string",
+                            "title": "Reference",
+                            "description": "The relative reference to the `components/schema` OpenAPI definition that will be used as definition of the accepted request. Notice that the path `#/components/schemas/` is not needed.",
+                            "examples": ["your_schema_name"]
+
+                        },
                         "description": {
                             "type": ["string"],
                             "title": "Description",
@@ -198,6 +229,59 @@
                             "description": "The content type returned by this error, e.g., `application/json`"
                         }
                     }
+                }
+            }
+        },
+        "request_definition": {
+            "$id": "#documentation/openapi/request_definition",
+            "title": "Definition of a request (OAS3 only)",
+            "description": "Describes the request needed to consume the endpoint. If a JSON Schema validation exists, it takes precedence when generating the documentation. An example use case is when you need to document a `multipart/form-data` request body.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "type": [
+                "object"
+            ],
+            "examples": [
+                {
+
+                    "@comment": "Some comment",
+                     "description": "Page not found",
+                        "example": {
+                        "status": "KO"
+                        },
+                     "content_type": "application/json"
+                }
+            ],
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[@$_#]": {}
+            },
+            "required": ["content_type"],
+            "properties": {
+                "ref": {
+                    "type": "string",
+                    "title": "Reference",
+                    "description": "The relative reference to the `components/schema` OpenAPI definition that will be used as definition of the accepted request. Notice that the path `#/components/schemas/` is not needed.",
+                    "examples": ["your_schema_name"]
+
+                },
+                "description": {
+                    "type": ["string"],
+                    "title": "Description",
+                    "description": "The description of the payload this endpoint accepts.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/"
+                },
+                "example_schema": {
+                    "type": ["string"],
+                    "pattern": "^[a-zA-Z0-9+/=_-]+$",
+                    "description": "A JSON schema that describes the response format for the selected status code, encoded as a base64 string. Use either example or example_schema, but not both."
+                },
+                "example": {
+                    "type": ["string","object","array","boolean","integer","null","number"],
+                    "title": "Content Type",
+                    "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/"
+                },
+                "content_type": {
+                    "type": "string",
+                    "title": "Content Type",
+                    "description": "The content type returned by this error, e.g., `application/json`"
                 }
             }
         }

@@ -383,6 +383,14 @@
                                 "foo": "bar"
                             }
                         }
+                    },
+                    "request_definition": {
+                        "@comment": "Some comment",
+                        "description": "Page not found",
+                        "example": {
+                            "status": "KO"
+                        },
+                        "content_type": "application/json"
                     }
                 },
                 "validation/cel": [
@@ -1775,11 +1783,36 @@
             "schemes": [
                 "http",
                 "https"
-            ]
+            ],
+            "components_schemas": {
+                "Pet": "ewogICAgICAgICJ0eXBlIjogIm9iamVjdCIsCiAgICAgICAgInJlcXVpcmVkIjogWwogICAgICAgICAgImlkIiwKICAgICAgICAgICJuYW1lIgogICAgICAgIF0sCiAgICAgICAgInByb3BlcnRpZXMiOiB7CiAgICAgICAgICAiaWQiOiB7CiAgICAgICAgICAgICJ0eXBlIjogImludGVnZXIiLAogICAgICAgICAgICAiZm9ybWF0IjogImludDY0IgogICAgICAgICAgfSwKICAgICAgICAgICJuYW1lIjogewogICAgICAgICAgICAidHlwZSI6ICJzdHJpbmciCiAgICAgICAgICB9LAogICAgICAgICAgInRhZyI6IHsKICAgICAgICAgICAgInR5cGUiOiAic3RyaW5nIgogICAgICAgICAgfQogICAgICAgIH0KICAgICAgfQ==",
+                "Pot": {
+                    "type": "object",
+                    "required": [
+                      "id",
+                      "name"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "tag": {
+                        "type": "string"
+                      }
+                    }
+                  }
+
+            }
         },
         "auth/api-keys": {
             "strategy": "header",
             "identifier": "Authorization",
+            "hash": "plain",
+            "salt": "mySalt",
             "keys": [
                 {
                     "key": "4d2c61e1-34c4-e96c-9456-15bd983c5019",

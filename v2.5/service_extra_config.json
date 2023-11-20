@@ -154,6 +154,9 @@
         "telemetry/newrelic": {
             "$ref": "telemetry/newrelic.json"
         },
+        "telemetry/moesif": {
+            "$ref": "telemetry/moesif.json"
+        },
         "documentation/openapi": {
             "$ref": "documentation/openapi.json"
         },
