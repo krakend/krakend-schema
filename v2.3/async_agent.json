@@ -113,7 +113,7 @@
             "backend": {
                 "type": "array",
                 "title": "Backend definition",
-                "description": "The [backend definition](/docs/backends/) (as you might have in any endpoint) indicating where the event data is sent. It is a full backend object definition, with all its possible options, transformations, filters, validations, etc.",
+                "description": "The [backend definition](https://www.krakend.io/docs/backends/) (as you might have in any endpoint) indicating where the event data is sent. It is a full backend object definition, with all its possible options, transformations, filters, validations, etc.",
                 "items": {
                     "$ref": "backend.json"
                 }

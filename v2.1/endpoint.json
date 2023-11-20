@@ -51,7 +51,7 @@
         "output_encoding": {
             "$id": "#endpoint/output_encoding",
             "title": "Output encoding",
-            "description": "The gateway can work with several content types, even allowing your clients to choose how to consume the content. See the [supported encodings](/docs/endpoints/content-types/)",
+            "description": "The gateway can work with several content types, even allowing your clients to choose how to consume the content. See the [supported encodings](https://www.krakend.io/docs/endpoints/content-types/)",
             "type": "string",
             "default": "json",
             "enum": [
@@ -84,7 +84,7 @@
         "input_headers": {
             "$id": "#endpoint/input_headers",
             "title": "Allowed Headers In",
-            "description": "Defines the list of all headers allowed to reach the backend when passed.\nBy default, KrakenD won't pass any header from the client to the backend. See [headers forwarding](/docs/endpoints/parameter-forwarding/#headers-forwarding)",
+            "description": "Defines the list of all headers allowed to reach the backend when passed.\nBy default, KrakenD won't pass any header from the client to the backend. See [headers forwarding](https://www.krakend.io/docs/endpoints/parameter-forwarding/#headers-forwarding)",
             "type": "array",
             "uniqueItems": true,
             "default": [],
@@ -122,13 +122,13 @@
         "cache_ttl": {
             "$id": "#endpoint/cache_ttl",
             "title": "Cache TTL",
-            "description": "Sets or overrides the cache headers to inform for how long the client or CDN can cache the request to this endpoint. Related: [caching backend responses](/docs/backends/caching/).",
+            "description": "Sets or overrides the cache headers to inform for how long the client or CDN can cache the request to this endpoint. Related: [caching backend responses](https://www.krakend.io/docs/backends/caching/).",
             "$ref": "timeunits.json#/$defs/timeunit"
         },
         "backend": {
             "type": "array",
             "title": "Backend",
-            "description": "List of all the [backend objects](/docs/backends/) queried for this endpoint",
+            "description": "List of all the [backend objects](https://www.krakend.io/docs/backends/) queried for this endpoint",
             "items": {
                 "type": "object",
                 "$ref": "backend.json"

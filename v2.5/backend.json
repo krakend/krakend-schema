@@ -25,7 +25,7 @@
         "encoding": {
             "$id": "#backend/encoding",
             "title": "Backend Encoding",
-            "description": "Defines your [needed encoding](/docs/backends/supported-encodings/) to set how to parse the response. Defaults to the value of its endpoint's `encoding`, or to `json` if not defined anywhere else.\n\nSee: https://www.krakend.io/docs/backends/supported-encodings/",
+            "description": "Defines your [needed encoding](https://www.krakend.io/docs/backends/supported-encodings/) to set how to parse the response. Defaults to the value of its endpoint's `encoding`, or to `json` if not defined anywhere else.\n\nSee: https://www.krakend.io/docs/backends/supported-encodings/",
             "type": "string",
             "default": "json",
             "enum": [
@@ -41,7 +41,7 @@
         "input_headers": {
             "$id": "#backend/input_headers",
             "title": "Allowed Headers In",
-            "description": "A second level of header filtering that defines the list of all headers allowed to reach this backend when different than the endpoint.\nBy default, all headers in the endpoint `input_headers` reach the backend, unless otherwise specified here. An empty list `[]` is considered a zero-value and allows all headers to pass. Use `[\"\"]` to explicitly remove all headers. See [headers forwarding](/docs/endpoints/parameter-forwarding/#headers-forwarding)",
+            "description": "A second level of header filtering that defines the list of all headers allowed to reach this backend when different than the endpoint.\nBy default, all headers in the endpoint `input_headers` reach the backend, unless otherwise specified here. An empty list `[]` is considered a zero-value and allows all headers to pass. Use `[\"\"]` to explicitly remove all headers. See [headers forwarding](https://www.krakend.io/docs/endpoints/parameter-forwarding/#headers-forwarding)",
             "type": "array",
             "uniqueItems": true,
             "default": [],
@@ -58,7 +58,7 @@
         "input_query_strings": {
             "$id": "#backend/input_query_strings",
             "title": "Allowed Querystrings In",
-            "description": "A second level of query string filtering that defines the list of all query strings allowed to reach this backend when different than the endpoint.\nBy default, all query strings in the endpoint `input_query_strings` reach the backend, unless otherwise specified here. An empty list `[]` is considered a zero-value and allows all headers to pass. Use `[\"\"]` to explicitly remove all query strings. See [query strings forwarding](/docs/endpoints/parameter-forwarding//#query-string-forwarding)",
+            "description": "A second level of query string filtering that defines the list of all query strings allowed to reach this backend when different than the endpoint.\nBy default, all query strings in the endpoint `input_query_strings` reach the backend, unless otherwise specified here. An empty list `[]` is considered a zero-value and allows all headers to pass. Use `[\"\"]` to explicitly remove all query strings. See [query strings forwarding](https://www.krakend.io/docs/endpoints/parameter-forwarding//#query-string-forwarding)",
             "type": "array",
             "uniqueItems": true,
             "default": [],
@@ -75,7 +75,7 @@
         "sd": {
             "$id": "#backend/sd",
             "title": "Service Discovery",
-            "description": "The [Service Discovery](/docs/backends/service-discovery/) system to resolve your backend services. Defaults to `static` (no external Service Discovery). Use `dns` to use DNS SRV records.\n\nSee: https://www.krakend.io/docs/backends/",
+            "description": "The [Service Discovery](https://www.krakend.io/docs/backends/service-discovery/) system to resolve your backend services. Defaults to `static` (no external Service Discovery). Use `dns` to use DNS SRV records.\n\nSee: https://www.krakend.io/docs/backends/",
             "type": "string",
             "default": "static",
             "enum": [
@@ -86,7 +86,7 @@
         "sd_scheme": {
             "$id": "#backend/sd",
             "title": "Service Discovery Scheme",
-            "description": "The [Service Discovery](/docs/backends/service-discovery/) scheme to connect to your backend services.\n\nSee: https://www.krakend.io/docs/backends/",
+            "description": "The [Service Discovery](https://www.krakend.io/docs/backends/service-discovery/) scheme to connect to your backend services.\n\nSee: https://www.krakend.io/docs/backends/",
             "type": "string",
             "default": "http",
             "examples": [
@@ -124,7 +124,7 @@
         "host": {
             "$id": "#backend/host",
             "title": "Host array",
-            "description": "An array with all the available hosts to [load balance](/docs/throttling/load-balancing/#balancing-egress-traffic-to-upstream) requests, including the schema (when possible) `schema://host:port`. E.g.: ` https://my.users-ms.com`. If you are in a platform where hosts or services are balanced (e.g., a K8S service), write a single entry in the array with the service name/balancer address. Defaults to the `host` declaration at the configuration's root level, and the service fails starting when there is none.",
+            "description": "An array with all the available hosts to [load balance](https://www.krakend.io/docs/throttling/load-balancing/#balancing-egress-traffic-to-upstream) requests, including the schema (when possible) `schema://host:port`. E.g.: ` https://my.users-ms.com`. If you are in a platform where hosts or services are balanced (e.g., a K8S service), write a single entry in the array with the service name/balancer address. Defaults to the `host` declaration at the configuration's root level, and the service fails starting when there is none.",
             "type": "array"
         },
         "target": {

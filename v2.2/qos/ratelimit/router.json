@@ -30,7 +30,7 @@
         "client_max_rate": {
             "$id": "#endpoint_extra_config/qos/ratelimit/router/client_max_rate",
             "title": "Client max rate",
-            "description": "Number of tokens added per second to the [Token Bucket](/docs/throttling/token-bucket/) for each individual user (*user quota*). Use decimals for per-hour and per-minute strategies. The remaining tokens for a user are the requests per second a specific user can do. The client is defined by `strategy`. Instead of counting all the connections to the endpoint as the option above, the `client_max_rate` keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for **every single client**.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
+            "description": "Number of tokens added per second to the [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) for each individual user (*user quota*). Use decimals for per-hour and per-minute strategies. The remaining tokens for a user are the requests per second a specific user can do. The client is defined by `strategy`. Instead of counting all the connections to the endpoint as the option above, the `client_max_rate` keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for **every single client**.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
             "type": "number"
         },
         "client_capacity": {

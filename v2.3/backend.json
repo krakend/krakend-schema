@@ -25,7 +25,7 @@
         "encoding": {
             "$id": "#backend/encoding",
             "title": "Backend Encoding",
-            "description": "Defines your [needed encoding](/docs/backends/supported-encodings/) to set how to parse the response. Defaults to the value of its endpoint's `encoding`, or to `json` if not defined anywhere else.\n\nSee: https://www.krakend.io/docs/backends/supported-encodings/",
+            "description": "Defines your [needed encoding](https://www.krakend.io/docs/backends/supported-encodings/) to set how to parse the response. Defaults to the value of its endpoint's `encoding`, or to `json` if not defined anywhere else.\n\nSee: https://www.krakend.io/docs/backends/supported-encodings/",
             "type": "string",
             "default": "json",
             "enum": [
@@ -41,7 +41,7 @@
         "sd": {
             "$id": "#backend/sd",
             "title": "Service Discovery",
-            "description": "The [Service Discovery](/docs/backends/service-discovery/) system to resolve your backend services. Defaults to `static` (no external Service Discovery). Use `dns` to use DNS SRV records.\n\nSee: https://www.krakend.io/docs/backends/",
+            "description": "The [Service Discovery](https://www.krakend.io/docs/backends/service-discovery/) system to resolve your backend services. Defaults to `static` (no external Service Discovery). Use `dns` to use DNS SRV records.\n\nSee: https://www.krakend.io/docs/backends/",
             "type": "string",
             "default": "static",
             "enum": [
@@ -79,7 +79,7 @@
         "host": {
             "$id": "#backend/host",
             "title": "Host array",
-            "description": "An array with all the available hosts to [load balance](/docs/throttling/load-balancing/#balancing-egress-traffic-to-upstream) requests, including the schema (when possible) `schema://host:port`. E.g.: ` https://my.users-ms.com`. If you are in a platform where hosts or services are balanced (e.g., a K8S service), write a single entry in the array with the service name/balancer address. Defaults to the `host` declaration at the configuration's root level, and the service fails starting when there is none.",
+            "description": "An array with all the available hosts to [load balance](https://www.krakend.io/docs/throttling/load-balancing/#balancing-egress-traffic-to-upstream) requests, including the schema (when possible) `schema://host:port`. E.g.: ` https://my.users-ms.com`. If you are in a platform where hosts or services are balanced (e.g., a K8S service), write a single entry in the array with the service name/balancer address. Defaults to the `host` declaration at the configuration's root level, and the service fails starting when there is none.",
             "type": "array"
         },
         "target": {

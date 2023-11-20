@@ -25,7 +25,7 @@
         "endpoint": {
             "$id": "#endpoint/endpoint",
             "title": "Endpoint",
-            "description": "The exact string resource URL you want to expose. You can use `{placeholders}` to use variables when needed. URLs do not support colons `:` in their definition. Endpoints should start with slash `/`. Example: `/foo/{var}`. If `{vars}` are placed in the middle words, like in `/var{iable}` you must set in the root level `disable_rest` strict checking. You can also add an ending `/*` in the path to enable [wildcards](/docs/enterprise/endpoints/wildcard/) (Enterprise only)\n\nSee: https://www.krakend.io/docs/endpoints/",
+            "description": "The exact string resource URL you want to expose. You can use `{placeholders}` to use variables when needed. URLs do not support colons `:` in their definition. Endpoints should start with slash `/`. Example: `/foo/{var}`. If `{vars}` are placed in the middle words, like in `/var{iable}` you must set in the root level `disable_rest` strict checking. You can also add an ending `/*` in the path to enable [wildcards](https://www.krakend.io/docs/enterprise/endpoints/wildcard/) (Enterprise only)\n\nSee: https://www.krakend.io/docs/endpoints/",
             "type": "string",
             "examples": [
                 "/new-endpoint",
@@ -51,7 +51,7 @@
         "output_encoding": {
             "$id": "#endpoint/output_encoding",
             "title": "Output encoding",
-            "description": "The gateway can work with several content types, even allowing your clients to choose how to consume the content. See the [supported encodings](/docs/endpoints/content-types/)",
+            "description": "The gateway can work with several content types, even allowing your clients to choose how to consume the content. See the [supported encodings](https://www.krakend.io/docs/endpoints/content-types/)",
             "type": "string",
             "default": "json",
             "enum": [
@@ -67,7 +67,7 @@
         "input_query_strings": {
             "$id": "#endpoint/input_query_strings",
             "title": "Allowed Query String parameters",
-            "description": "Defines the exact list of quey strings parameters that are allowed to reach the backend.\nBy default, KrakenD won't pass any query string to the backend.\n\nSee: https://www.krakend.io/docs/endpoints/parameter-forwarding/",
+            "description": "Defines the exact list of quey strings parameters that are allowed to reach the backend. This list is **case-sensitive**.\nBy default, KrakenD won't pass any query string to the backend.\nA single star element `[\"*\"]` as value forwards everything to the backend (**it's safer to avoid this option**)\n\nSee: https://www.krakend.io/docs/endpoints/parameter-forwarding/",
             "type": "array",
             "uniqueItems": true,
             "default": [],
@@ -84,7 +84,7 @@
         "input_headers": {
             "$id": "#endpoint/input_headers",
             "title": "Allowed Headers In",
-            "description": "Defines the list of all headers allowed to reach the backend when passed.\nBy default, KrakenD won't pass any header from the client to the backend. See [headers forwarding](/docs/endpoints/parameter-forwarding/#headers-forwarding)",
+            "description": "Defines the list of all headers allowed to reach the backend when passed.\nBy default, KrakenD won't pass any header from the client to the backend. This list is **case-insensitive**. You can declare headers in lowercase, uppercase, or mixed.\nAn entry `[\"Cookie\"]` forwards all cookies, and a single star element `[\"*\"]` as value forwards everything to the backend (**it's safer to avoid this option**), including cookies. See [headers forwarding](https://www.krakend.io/docs/endpoints/parameter-forwarding/#headers-forwarding)",
             "type": "array",
             "uniqueItems": true,
             "default": [],
@@ -122,13 +122,13 @@
         "cache_ttl": {
             "$id": "#endpoint/cache_ttl",
             "title": "Cache TTL",
-            "description": "Sets or overrides the cache headers to inform for how long the client or CDN can cache the request to this endpoint. Setting this value to a zero-value will use the `cache_ttl` of the service if any. Related: [caching backend responses](/docs/backends/caching/).",
+            "description": "Sets or overrides the cache headers to inform for how long the client or CDN can cache the request to this endpoint. Setting this value to a zero-value will use the `cache_ttl` of the service if any. Related: [caching backend responses](https://www.krakend.io/docs/backends/caching/).",
             "$ref": "timeunits.json#/$defs/timeunit"
         },
         "backend": {
             "type": "array",
             "title": "Backend",
-            "description": "List of all the [backend objects](/docs/backends/) queried for this endpoint",
+            "description": "List of all the [backend objects](https://www.krakend.io/docs/backends/) queried for this endpoint",
             "items": {
                 "type": "object",
                 "$ref": "backend.json"

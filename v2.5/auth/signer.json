@@ -71,7 +71,7 @@
         "secret_url": {
             "$id": "#auth/validator/secret_url",
             "title": "Secret's URL",
-            "description": "An URL with a custom scheme using one of the supported providers (e.g.: `awskms://keyID`) ([see providers](/docs/authorization/jwt-validation/#accepted-providers-for-encrypting-payloads)).\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+            "description": "An URL with a custom scheme using one of the supported providers (e.g.: `awskms://keyID`) ([see providers](https://www.krakend.io/docs/authorization/jwt-validation/#accepted-providers-for-encrypting-payloads)).\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
             "type": "string",
             "pattern": "(base64key|awskms|azurekeyvault|gcpkms|hashivault)://(.*)",
             "examples": [
@@ -130,7 +130,7 @@
         "cipher_suites": {
             "$id": "#auth/signer/cipher_suites",
             "title": "Cipher suites",
-            "description": "Override the default cipher suites (see [JWT validation](/docs/authorization/jwt-validation/)). Unless you have a legacy JWK, **you don't need to set this value**.",
+            "description": "Override the default cipher suites (see [JWT validation](https://www.krakend.io/docs/authorization/jwt-validation/)). Unless you have a legacy JWK, **you don't need to set this value**.",
             "type": "array",
             "default": [
                 49199,

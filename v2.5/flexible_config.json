@@ -22,7 +22,7 @@
             "properties": {
                 "paths": {
                     "title": "Paths to partials dirs",
-                    "description": "The [relative](/docs/enterprise/configuration/working-directory/) or absolute paths to the partials directories, each entry is a different path. Contents are scanned **recursively**.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
+                    "description": "The [relative](https://www.krakend.io/docs/enterprise/configuration/working-directory/) or absolute paths to the partials directories, each entry is a different path. Contents are scanned **recursively**.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
                     "type": "array",
                     "default": [],
                     "examples": [
@@ -48,7 +48,7 @@
             "properties": {
                 "paths": {
                     "title": "Paths to templates dirs",
-                    "description": "The [relative](/docs/enterprise/configuration/working-directory/) or absolute paths to the templates directories, each entry is a different path. You might have multiple directories when you have templates shared across environments or projects, and then you have dedicated templates for the running environment. Defaults to not use any templates directory. Contents are scanned **recursively**.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
+                    "description": "The [relative](https://www.krakend.io/docs/enterprise/configuration/working-directory/) or absolute paths to the templates directories, each entry is a different path. You might have multiple directories when you have templates shared across environments or projects, and then you have dedicated templates for the running environment. Defaults to not use any templates directory. Contents are scanned **recursively**.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
                     "type": "array",
                     "default": [],
                     "examples": [
@@ -72,7 +72,7 @@
             "properties": {
                 "paths": {
                     "title": "Paths to settings dirs",
-                    "description": "The [relative](/docs/enterprise/configuration/working-directory/) or absolute paths to the settings directories, each entry is a different path. Contents are scanned **recursively**.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
+                    "description": "The [relative](https://www.krakend.io/docs/enterprise/configuration/working-directory/) or absolute paths to the settings directories, each entry is a different path. Contents are scanned **recursively**.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
                     "type": "array",
                     "default": [],
                     "examples": [

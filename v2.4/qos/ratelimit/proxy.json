@@ -25,7 +25,7 @@
         "capacity": {
             "$id": "#qos/ratelimit/proxy/capacity",
             "title": "Capacity",
-            "description": "The capacity according to the [token bucket algorithm](/docs/throttling/token-bucket/). Defines the maximum requests you can do in an instant (including the zero moment when you start the gateway), and can be larger or smaller than the `max_rate`. When unsure, use the same value of `max_rate`, so the maximum number of requests can be consumed at once.\n\nSee: https://www.krakend.io/docs/backends/rate-limit/",
+            "description": "The capacity according to the [token bucket algorithm](https://www.krakend.io/docs/throttling/token-bucket/). Defines the maximum requests you can do in an instant (including the zero moment when you start the gateway), and can be larger or smaller than the `max_rate`. When unsure, use the same value of `max_rate`, so the maximum number of requests can be consumed at once.\n\nSee: https://www.krakend.io/docs/backends/rate-limit/",
             "type": "integer",
             "default": 1
         },
