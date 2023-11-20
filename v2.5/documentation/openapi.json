@@ -201,6 +201,13 @@
                     },
                     "required": ["content_type"],
                     "properties": {
+                        "ref": {
+                            "type": "string",
+                            "title": "Reference",
+                            "description": "The relative reference to the `components/schema` OpenAPI definition that will be used as definition of the accepted request. Notice that the path `#/components/schemas/` is not needed.",
+                            "examples": ["your_schema_name"]
+
+                        },
                         "description": {
                             "type": ["string"],
                             "title": "Description",
@@ -252,8 +259,8 @@
                 "ref": {
                     "type": "string",
                     "title": "Reference",
-                    "description": "The relative reference to the `components/schema` OpenAPI definition that will be used as definition of the accepted request.",
-                    "examples": ["#/mydef"]
+                    "description": "The relative reference to the `components/schema` OpenAPI definition that will be used as definition of the accepted request. Notice that the path `#/components/schemas/` is not needed.",
+                    "examples": ["your_schema_name"]
 
                 },
                 "description": {
