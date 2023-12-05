@@ -2,10 +2,6 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Schema validation for Extended Flexible Configuration.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
     "type": "object",
-    "required": [
-        "in",
-        "out"
-    ],
     "additionalProperties": false,
     "patternProperties": {
         "^[@$_#]": {}
