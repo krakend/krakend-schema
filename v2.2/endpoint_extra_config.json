@@ -137,6 +137,7 @@
             "patternProperties": {
                 "^[@$_#]": {}
             },
+            "required": ["roles"],
             "properties": {
                 "roles": {
                     "type": "array",
