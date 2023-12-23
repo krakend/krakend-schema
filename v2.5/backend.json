@@ -58,7 +58,7 @@
         "input_query_strings": {
             "$id": "#backend/input_query_strings",
             "title": "Allowed Querystrings In",
-            "description": "A second level of query string filtering that defines the list of all query strings allowed to reach this backend when different than the endpoint.\nBy default, all query strings in the endpoint `input_query_strings` reach the backend, unless otherwise specified here. An empty list `[]` is considered a zero-value and allows all headers to pass. Use `[\"\"]` to explicitly remove all query strings. See [query strings forwarding](https://www.krakend.io/docs/endpoints/parameter-forwarding//#query-string-forwarding)",
+            "description": "A second level of query string filtering that defines the list of all query strings allowed to reach this backend when different than the endpoint.\nBy default, all query strings in the endpoint `input_query_strings` reach the backend, unless otherwise specified here. An empty list `[]` is considered a zero-value and allows all headers to pass. Use `[\"\"]` to explicitly remove all query strings. See [query strings forwarding](https://www.krakend.io/docs/endpoints/parameter-forwarding/#query-string-forwarding)",
             "type": "array",
             "uniqueItems": true,
             "default": [],
