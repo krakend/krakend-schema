@@ -23,6 +23,14 @@
         "^[@$_#]": {}
     },
     "properties": {
+        "auth_header_name": {
+            "$id": "#auth/validator/auth_header_name",
+            "title": "Authorization header",
+            "description": "Allows to parse the token from a custom header.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+            "type": "string",
+            "default": "Authorization",
+            "examples": ["X-Custom-Auth"]
+        },
         "alg": {
             "$id": "#auth/validator/alg",
             "title": "Algorithm",
@@ -88,7 +96,7 @@
         "scopes": {
             "$id": "#auth/validator/scopes",
             "title": "Scopes",
-            "description": "A list of scopes to validate. Make sure to use a list `[]` in the config, but when passing the token, the scopes should be separated by spaces, e.g.: `\"my_scopes\": \"resource1:action1 resource3:action7\"`.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+            "description": "A list of scopes to validate. The token, after decoding it, can have the scopes declared as a space-separated list, e.g.: `\"my_scopes\": \"resource1:action1 resource3:action7\"` or inside a list, e.g.: `\"my_scopes\": [\"resource1:action1\",\"resource3:action7\"]`.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
             "type": "array",
             "items": {
                 "type": "string"
