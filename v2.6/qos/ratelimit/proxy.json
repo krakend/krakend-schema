@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/v2.6/qos/ratelimit/proxy.json",
-    "title": "Proxy ratelimit",
+    "title": "Backend Ratelimit",
     "description": "Restrict the rate of requests KrakenD makes to your backends.\n\nSee: https://www.krakend.io/docs/backends/rate-limit/",
     "type": "object",
     "additionalProperties": false,

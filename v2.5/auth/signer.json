@@ -141,7 +141,7 @@
                 52393
             ],
             "items": {
-                "title": "Items",
+                "title": "Object in array",
                 "description": "\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
                 "type": "integer",
                 "enum": [

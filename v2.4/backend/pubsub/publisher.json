@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/v2.4/backend/pubsub/subscriber.json",
-    "title": "Pubsub subscriber",
+    "title": "Pubsub publisher",
     "description": "Publishes to a topic using the desired driver.\n\nSee: https://www.krakend.io/docs/backends/pubsub/",
     "type": "object",
     "additionalProperties": false,

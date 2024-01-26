@@ -85,7 +85,7 @@
                     "uniqueItems": true,
                     "items": {
                         "$id": "#service_extra_config/security/cors/allow_methods/items",
-                        "title": "Items",
+                        "title": "Object in array",
                         "description": "\n\nSee: https://www.krakend.io",
                         "type": "string",
                         "enum": [
@@ -150,6 +150,9 @@
         },
         "telemetry/opencensus": {
             "$ref": "telemetry/opencensus.json"
+        },
+        "telemetry/opentelemetry": {
+            "$ref": "telemetry/opentelemetry.json"
         },
         "telemetry/newrelic": {
             "$ref": "telemetry/newrelic.json"

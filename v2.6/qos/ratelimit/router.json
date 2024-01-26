@@ -2,6 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/v2.6/qos/ratelimit/router.json",
     "type": "object",
+    "title": "Endpoint ratelimit",
     "anyOf": [
         {
             "required": [

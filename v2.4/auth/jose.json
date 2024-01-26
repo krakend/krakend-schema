@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/v2.4/auth/jose.json",
-    "title": "Enables global configurations for the HTTP client responsible of downloading and caching the JWK URLs for token validation and signing.",
+    "description": "Enables global configurations for the HTTP client responsible of downloading and caching the JWK URLs for token validation and signing.",
     "type": "object",
     "required": [
         "shared_cache_duration"

@@ -1,7 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/v2.6/backend/graphql.json",
-    "title": "REST to GraphQL",
+    "title": "GraphQL",
+    "description": "Convert REST endpoints to GraphQL calls (adapter/transformer)",
     "type": "object",
     "additionalProperties": false,
     "patternProperties": {
