@@ -1550,7 +1550,7 @@
                 }
             },
             "skip_paths": [
-                ""
+                "/foo/{bar}"
             ]
         },
         "server/virtualhost": {
