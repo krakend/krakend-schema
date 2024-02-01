@@ -114,19 +114,19 @@
                                 },
                                 "round_trip": {
                                     "title": "Detailed Round Trip",
-                                    "description": "Whether you want to enable metrics for the actual HTTP request for the backend or not (manipulation not taken into account). This is the time your backend needs to produce a result.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                                    "description": "Whether you want to add trace attributes for the actual HTTP request for the backend or not (manipulation not taken into account). This is the time your backend needs to produce a result.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
                                     "type": "boolean",
                                     "default": false
                                 },
                                 "read_payload": {
                                     "title": "Detailed payload read",
-                                    "description": "Whether you want to enable metrics for the response reading payload or not (HTTP connection not taken into account).\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                                    "description": "Whether you want to add trace attributes for the response reading payload or not (HTTP connection not taken into account).\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
                                     "type": "boolean",
                                     "default": false
                                 },
                                 "detailed_connection": {
-                                    "title": "Detailed HTTP connection metrics",
-                                    "description": "Whether you want to enable detailed metrics for the HTTP connection phase or not. Includes times to connect, DNS querying, and the TLS handshake.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                                    "title": "Detailed HTTP connection",
+                                    "description": "Whether you want to add detailed trace attributes for the HTTP connection phase or not. Includes times to connect, DNS querying, and the TLS handshake.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
                                     "type": "boolean",
                                     "default": false
                                 },
@@ -235,12 +235,20 @@
                     "description": "Set here at least the settings for one Prometheus exporter. Each exporter will start a local port that offers metrics to be pulled from KrakenD.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
                     "minItems": 1,
                     "items": {
-                        "required": ["name"],
+                        "required": [
+                            "name"
+                        ],
                         "additionalProperties": false,
                         "patternProperties": {
                             "^[@$_#]": {}
                         },
                         "properties": {
+                            "disable_metrics": {
+                                "title": "Disable metrics",
+                                "description": "Leave this exporter declared but disabled (useful in development). It won't report any metrics when the flag is `true`.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                                "type": "boolean",
+                                "default": false
+                            },
                             "name": {
                                 "title": "Name",
                                 "description": "A unique name to identify this exporter.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
@@ -262,19 +270,19 @@
                             },
                             "port": {
                                 "title": "Port",
-                                "description": "The port where this exporter communicates.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                                "description": "The port in KrakenD where Prometheus will connect to.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
                                 "type": "integer",
                                 "minimum": 0,
                                 "maximum": 65535,
                                 "default": 9090
                             },
                             "process_metrics": {
-                                "title": "Process Metrics?",
-                                "description": "Whether this exporter must process metrics or not.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                                "title": "Process Metrics",
+                                "description": "Whether this exporter shows detailed metrics about the running process like CPU or memory usage or not.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
                                 "type": "boolean"
                             },
                             "go_metrics": {
-                                "title": "Go Metrics?",
+                                "title": "Go Metrics",
                                 "description": "Whether you want fine-grained details of Go language metrics or not.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
                                 "type": "boolean"
                             }
@@ -287,12 +295,27 @@
                     "description": "The list of OTLP exporters you want to use. Set at least one object to push metrics and traces to an external collector using OTLP.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
                     "minItems": 1,
                     "items": {
-                        "required": ["name", "host"],
+                        "required": [
+                            "name",
+                            "host"
+                        ],
                         "additionalProperties": false,
                         "patternProperties": {
                             "^[@$_#]": {}
                         },
                         "properties": {
+                            "disable_traces": {
+                                "title": "Disable traces",
+                                "description": "Disable traces in this exporter (leaving only metrics if any). It won't report any metrics when the flag is `true`.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                                "type": "boolean",
+                                "default": false
+                            },
+                            "disable_metrics": {
+                                "title": "Disable metrics",
+                                "description": "Disable metrics in this exporter (leaving only traces if any). It won't report any metrics when the flag is `true`.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                                "type": "boolean",
+                                "default": false
+                            },
                             "name": {
                                 "title": "Name",
                                 "description": "A unique name to identify this exporter.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
@@ -327,7 +350,7 @@
         },
         "skip_paths": {
             "title": "Skip Paths",
-            "description": "The paths you don't want to report. Use the literal value used in the `endpoint` definition, including any `{placeholders}`. In the `global` layer, this attribute works only on metrics, traces will be reported anyway because traces are initiated long before this setting.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+            "description": "The paths you don't want to report. Use the literal value used in the `endpoint` definition, including any `{placeholders}`. In the `global` layer, this attribute works only on metrics, because traces are initiated before there is an endpoint to match against.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
             "type": "array",
             "examples": [
                 "/foo/{bar}"
@@ -335,6 +358,21 @@
             "items": {
                 "type": "string"
             }
+        },
+        "metric_reporting_period": {
+            "title": "Reporting period",
+            "description": "How often you want to report and flush the metrics in seconds.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+            "type": "integer"
+        },
+        "trace_sample_rate": {
+            "title": "Trace sample rate",
+            "description": "The sample rate for traces defines the percentage of reported traces. This option is key to reduce the amount of data generated (and resource usage), while you still can debug and troubleshoot issues. For instance, a number of `0.25` will report a 25% of the traces seen in the system.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "examples": [
+                0.25
+            ]
         }
     }
 }

@@ -1487,6 +1487,8 @@
     "extra_config": {
         "telemetry/opentelemetry": {
             "service_name": "krakend_middle_service",
+            "metric_reporting_period": 0,
+            "trace_sample_rate": 0.25,
             "exporters": {
                 "prometheus": [
                     {
@@ -1494,7 +1496,8 @@
                         "port": 9092,
                         "listen_ip": "::1",
                         "process_metrics": false,
-                        "go_metrics": false
+                        "go_metrics": false,
+                        "disable_metrics": false
                     },
                     {
                         "name": "local_prometheus",
@@ -1508,7 +1511,9 @@
                         "name": "local_tempo",
                         "host": "localhost",
                         "port": 4317,
-                        "use_http": false
+                        "use_http": false,
+                        "disable_metrics": false,
+                        "disable_traces": false
                     }
                 ]
             },
