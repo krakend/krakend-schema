@@ -215,7 +215,7 @@
                         },
                         "example_schema": {
                             "type": ["string","object"],
-                            "description": "A JSON schema that describes the response format for the selected status code, directly as a JSON object, or encoded as a base64 string. Use either example or example_schema, but not both."
+                            "description": "A JSON schema that describes the response format for the endpoint, directly as a JSON object, or encoded as a base64 string. Use either example or example_schema, but not both."
                         },
                         "example": {
                             "type": ["string","object","array","boolean","integer","null","number"],
@@ -268,9 +268,8 @@
                     "description": "The description of the payload this endpoint accepts.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/"
                 },
                 "example_schema": {
-                    "type": ["string"],
-                    "pattern": "^[a-zA-Z0-9+/=_-]+$",
-                    "description": "A JSON schema that describes the response format for the selected status code, encoded as a base64 string. Use either example or example_schema, but not both."
+                    "type": ["string","object"],
+                    "description": "A JSON schema that describes the request format for the accepted payload in the endpoint. Use either example or example_schema, but not both."
                 },
                 "example": {
                     "type": ["string","object","array","boolean","integer","null","number"],
