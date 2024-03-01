@@ -360,6 +360,12 @@
                 },
                 "documentation/openapi": {
                     "description": "Very long description of what this endpoint does",
+                    "query_definition": [
+                        {
+                            "name": "page",
+                            "description": "The number of the page"
+                        }
+                    ],
                     "summary": "Get my favourite foo",
                     "tags": [
                         "foo",
@@ -1852,9 +1858,11 @@
             "contact_url": "https://your.company/developers",
             "license_name": "MIT",
             "license_url": "https://opensource.org/licenses/MIT",
-            "tags": [
-                "B2B",
-                "Restricted"
+            "tag_definition": [
+                {
+                    "name": "Tag1",
+                    "description": "Description of tag1"
+                }
             ],
             "schemes": [
                 "http",
