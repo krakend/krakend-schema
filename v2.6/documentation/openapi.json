@@ -176,7 +176,7 @@
             ]
         },
         "operation_id": {
-            "$id": "#documentation/openapi/example",
+            "$id": "#documentation/openapi/operation_id",
             "title": "Operation ID",
             "description": "A unique string identifying the operation identifier. Usually the method + the endpoint. If provided, these IDs must be unique among all operations described in your API.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "string",
@@ -190,6 +190,7 @@
             "description": "Sets a description for the tags classifiying endpoints when generating the OpenAPI spec.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "array",
             "items": {
+                "title": "Tags",
                 "type": "object",
                 "required": [
                     "name"
@@ -200,9 +201,13 @@
                 },
                 "properties": {
                     "name": {
+                        "title": "Tag name",
+                        "description": "The name of the tag. You will use this name in each endpoint.",
                         "type": "string"
                     },
                     "description": {
+                        "title": "Tag Description",
+                        "description": "Describe what this tag is grouping",
                         "type": "string"
                     }
                 }
@@ -222,6 +227,7 @@
             "description": "Sets a description for the query strings allowed in the endpoint. Make sure to include the same strings in the endpoint's `input_query_strings`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
             "type": "array",
             "items": {
+                "title": "Query strings",
                 "type": "object",
                 "required": [
                     "name"
@@ -232,9 +238,13 @@
                 },
                 "properties": {
                     "name": {
+                        "title": "Name",
+                        "description": "The name of the querystring, as declared in `input_query_strings`",
                         "type": "string"
                     },
                     "description": {
+                        "title": "Name",
+                        "description": "The description of the querystring",
                         "type": "string"
                     }
                 }
