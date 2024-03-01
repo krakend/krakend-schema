@@ -97,7 +97,7 @@
         "output_encoding": {
             "$id": "#service/output_encoding",
             "title": "Output Encoding",
-            "description": "The encoding used to display the content to the end-user.\n\nSee: https://www.krakend.io/docs/endpoints/content-types/",
+            "description": "The encoding used to display the content to the end-user. This setting is the default for all endpoints, unless they have another `output_encoding` overrinding this value.\n\nSee: https://www.krakend.io/docs/endpoints/content-types/",
             "type": "string",
             "default": "json",
             "enum": [

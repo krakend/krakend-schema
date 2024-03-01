@@ -1521,11 +1521,13 @@
                 "global": {
                     "disable_metrics": false,
                     "disable_traces": false,
-                    "disable_propagation": false
+                    "disable_propagation": false,
+                    "report_headers": true
                 },
                 "proxy": {
                     "disable_metrics": false,
-                    "disable_traces": false
+                    "disable_traces": false,
+                    "report_headers": true
                 },
                 "backend": {
                     "metrics": {
@@ -1533,10 +1535,10 @@
                         "round_trip": true,
                         "read_payload": true,
                         "detailed_connection": true,
-                        "static_attributes": [
+                        "static_attributes":[
                             {
                                 "key": "my_metric_attr",
-                                "value": "my_middle_metric"
+                                "value": "my_metric_val"
                             }
                         ]
                     },
@@ -1547,10 +1549,11 @@
                         "detailed_connection": true,
                         "static_attributes": [
                             {
-                                "key": "my_metric_attr",
-                                "value": "my_middle_metric"
+                                "key": "my_trace_attr",
+                                "value": "my_trace_val"
                             }
-                        ]
+                        ],
+                        "report_headers": true
                     }
                 }
             },

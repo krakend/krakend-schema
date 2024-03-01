@@ -94,7 +94,12 @@
                                         }
                                     },
                                     "examples": [
-                                        "my_tag"
+                                        [
+                                            {
+                                                "key": "my_metric_attr",
+                                                "value": "my_metric_val"
+                                            }
+                                        ]
                                     ]
                                 }
                             }
@@ -158,8 +163,19 @@
                                         }
                                     },
                                     "examples": [
-                                        "my_tag"
+                                        [
+                                            {
+                                                "key": "my_trace_attr",
+                                                "value": "my_trace_val"
+                                            }
+                                        ]
                                     ]
+                                },
+                                "report_headers": {
+                                    "title": "Report headers",
+                                    "description": "Whether you want to report the final headers that reached the backend.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                                    "type": "boolean",
+                                    "default": false
                                 }
                             }
                         }
@@ -191,6 +207,12 @@
                             "description": "Whether you want to ignore previous propagation headers to KrakenD. When the flag is set to `true`, spans from a previous layer will never be linked to the KrakenD trace.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
                             "type": "boolean",
                             "default": false
+                        },
+                        "report_headers": {
+                            "title": "Report headers",
+                            "description": "Whether you want to send all headers that the consumer passed in the request or not.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                            "type": "boolean",
+                            "default": false
                         }
                     }
                 },
@@ -212,6 +234,12 @@
                         "disable_traces": {
                             "title": "Disable proxy trace",
                             "description": "Whether you want to disable all traces happening in the proxy layer or not.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "report_headers": {
+                            "title": "Report headers",
+                            "description": "Whether you want to report all headers that passed from the request to the proxy layer (`input_headers` policy in the endpoint plus KrakenD's headers).\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
                             "type": "boolean",
                             "default": false
                         }
