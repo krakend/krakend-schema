@@ -14,7 +14,7 @@
     "properties": {
         "service_name": {
             "title": "Service Name",
-            "description": "A friendly name identifying metrics reported by this installation. When unset, it uses the `name` attribute in the root level.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+            "description": "A friendly name identifying metrics reported by this installation. When unset, it uses the `name` attribute in the root level of the configuration.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
             "type": "string"
         },
         "layers": {
@@ -24,7 +24,7 @@
             },
             "title": "Layers",
             "type": "object",
-            "description": "Lets you specify what data you want to export. All layers are enabled by default unless you declare this section.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+            "description": "A request and response flow passes through three different layers. This attribute lets you specify what data you want to export in each layer. All layers are enabled by default unless you declare this section.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
             "properties": {
                 "backend": {
                     "title": "Report backend activity",
@@ -249,7 +249,7 @@
         },
         "exporters": {
             "title": "Exporters",
-            "description": "The different kinds of exporters you are configuring.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+            "description": "The places where you will send telemetry data. You can declare multiple exporters even when they are of the same type. For instance, when you have a self-hosted Grafana and would like to migrate to its cloud version and check the double reporting during the transition. There are two families of exporters: `otlp` or `prometheus`.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
             "type": "object",
             "minProperties": 1,
             "additionalProperties": false,
@@ -378,14 +378,20 @@
         },
         "skip_paths": {
             "title": "Skip Paths",
-            "description": "The paths you don't want to report. Use the literal value used in the `endpoint` definition, including any `{placeholders}`. In the `global` layer, this attribute works only on metrics, because traces are initiated before there is an endpoint to match against.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+            "description": "The paths you don't want to report. Use the literal value used in the `endpoint` definition, including any `{placeholders}`. In the `global` layer, this attribute works only on metrics, because traces are initiated before there is an endpoint to match against. If you do not want any path skipped, just add an array with an empty string `[\"\"]`.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
             "type": "array",
             "examples": [
                 "/foo/{bar}"
             ],
             "items": {
                 "type": "string"
-            }
+            },
+            "default": [
+                "/__health",
+                "/__debug/",
+                "/__echo/",
+                "/__stats/"
+            ]
         },
         "metric_reporting_period": {
             "title": "Reporting period",
