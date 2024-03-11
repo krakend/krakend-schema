@@ -10,7 +10,7 @@
     "additionalProperties": false,
     "patternProperties": {
         "^[@$_#]": {}
-      },
+    },
     "properties": {
         "url_pattern": {
             "$id": "#backend/url_pattern",
@@ -49,9 +49,13 @@
                 "$id": "#backend/input_headers/items",
                 "type": "string",
                 "examples": [
-                    "User-Agent",
-                    "Accept",
-                    "*"
+                    [
+                        "*"
+                    ],
+                    [
+                        "User-Agent",
+                        "Accept"
+                    ]
                 ]
             }
         },
@@ -66,9 +70,13 @@
                 "$id": "#backend/input_headers/items",
                 "type": "string",
                 "examples": [
-                    "User-Agent",
-                    "Accept",
-                    "*"
+                    [
+                        "*"
+                    ],
+                    [
+                        "page",
+                        "limit"
+                    ]
                 ]
             }
         },
@@ -143,7 +151,14 @@
             "title": "Deny (data manipulation)",
             "description": "**Don't return the fields in the list**. All matching fields (case-sensitive) defined in the list, are removed from the response. Use a dot `.` separator to definr nested attributes, e.g.: `a.b` removes `{\"a\":{\"b\": true}}`.\n\nSee: https://www.krakend.io/docs/backends/data-manipulation/",
             "type": "array",
-            "uniqueItems": true
+            "uniqueItems": true,
+            "examples": [
+                [
+                    "token",
+                    "CVV",
+                    "password"
+                ]
+            ]
         },
         "allow": {
             "$id": "#backend/allow",
@@ -152,9 +167,10 @@
             "type": "array",
             "uniqueItems": true,
             "examples": [
-                "token",
-                "CVV",
-                "password"
+                [
+                    "user_id",
+                    "field1.subfield2"
+                ]
             ]
         },
         "group": {
@@ -170,7 +186,9 @@
             "description": "Mapping, or also known as renaming, let you change the name of the fields of the generated responses, so your composed response would be as close to your use case as possible without changing a line on any backend.\n\nSee: https://www.krakend.io/docs/backends/data-manipulation/",
             "type": "object",
             "examples": [
-                { "from": "to" }
+                {
+                    "from": "to"
+                }
             ]
         },
         "is_collection": {

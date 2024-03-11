@@ -2,5 +2,5 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/flexible_config.json",
     "title": "Schema validation for the latest version of Extended Flexible Configuration. Consider sticking to the specific version you are using.",
-    "$ref": "v2.5/flexible_config.json"
+    "$ref": "v2.6/flexible_config.json"
 }
