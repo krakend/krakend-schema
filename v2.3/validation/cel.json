@@ -8,7 +8,7 @@
     "minItems": 1,
     "items":{
         "$id": "#root/validation/cel/items",
-        "title": "Items",
+        "title": "Object in array",
         "type": "object",
         "required": [
             "check_expr"

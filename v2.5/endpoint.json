@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/v2.5/endpoint.json",
-    "title": "Schema definition for KrakenD endpoints",
+    "title": "Endpoint Object",
     "type": "object",
     "required": [
         "endpoint",
