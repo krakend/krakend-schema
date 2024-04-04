@@ -41,7 +41,8 @@
             "title": "Identifier",
             "description": "The header name or the query string name that contains the API key. Defaults to `key` when using the `query_string` strategy and to `Authorization` when using the `header` strategy. The identifier set here is used across all endpoints with API key authentication enabled, but they can override this entry individually.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
             "type": "string",
-            "examples": ["Authorization"]
+            "examples": ["Authorization", "X-Key"],
+            "default": "Authorization"
         },
         "keys": {
             "$id": "#auth/api-keys/keys",
@@ -71,6 +72,13 @@
                 }
             }
 
+        },
+        "propagate_role": {
+            "title": "Propagate role as header",
+            "description": "The name of a header that will propagate to the backend containing the matching role. The backend receives no header when the string is empty, or the attribute is not declared. Otherwise, the backend receives the declared header name containing **the first matching role of the user**. The header value will be  `ANY` when the endpoint does not require roles. For instance, if an API key has roles `[A, B]`, and the endpoint demands roles `[B, C]`, the backend will receive a header with the value `B`.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
+            "type": "string",
+            "examples": ["X-Krakend-Role"],
+            "default": ""
         }
     }
 }
