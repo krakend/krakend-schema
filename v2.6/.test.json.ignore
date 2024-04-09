@@ -347,7 +347,8 @@
                 "auth/validator": {
                     "@comment": "The validator can match 2 different schemas, with local path and with jwk_url",
                     "jwk_local_path": "./jwk.txt",
-                    "alg": "EdDSA"
+                    "alg": "EdDSA",
+                    "leeway": "1s"
                 },
                 "auth/api-keys": {
                     "@comment": "here",
