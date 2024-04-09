@@ -121,7 +121,7 @@
             "description": "Defines an expression expressed as [Security Policy](https://www.krakend.io/docs/enterprise/security-policies/) that avoids reporting to Moesif when the result of the evaluation is `true`.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
             "type": "string",
             "default": [],
-            "examples": ["req_method=='GET' || req_path.startsWith('/bar/')) && hasHeader('X-Something')"]
+            "examples": ["( req_method=='GET' || req_path.startsWith('/bar/')) && hasHeader('X-Something')"]
         },
         "identify_company": {
             "additionalProperties": false,

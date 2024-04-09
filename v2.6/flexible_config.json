@@ -146,6 +146,13 @@
             "type": "boolean",
             "title": "Debug",
             "description": "Whether to enable the debug mode or not. The debug shows the hierarchy of the settings tree in the console. You can also enable this flag during runtime passing an environment variable `FC_DEBUG=true`.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/"
+        },
+        "ref_key": {
+            "title": "$ref key",
+            "description": "Instead of using the keyword `$ref` to replace configuration blocks, use another keyword. This is useful when you want to use OpenAPI's `$ref` and Flexible Config's `$ref` together and avoid crossed behavior.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
+            "type": "string",
+            "default": "$ref",
+            "examples": ["$replace"]
         }
     }
 }
