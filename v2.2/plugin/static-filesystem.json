@@ -1,7 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/v2.2/plugin/static-filesystem.json",
-    "title": "Enterprise only. Allows you to fetch and serve static content in two different use cases. When the plugin is used as an http server handler, the static content is for your end-users, giving them CSS, JS, images, or JSON files, to name a few examples. On the other side, when the plugin is used as an http client executor, the KrakenD endpoints use static content as if it were a backend.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
+    "title": "Static Filesystem",
+    "description": "Enterprise only. Allows you to fetch and serve static content in two different use cases. When the plugin is used as an http server handler, the static content is for your end-users, giving them CSS, JS, images, or JSON files, to name a few examples. On the other side, when the plugin is used as an http client executor, the KrakenD endpoints use static content as if it were a backend.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
     "type": "object",
     "additionalProperties": false,
     "patternProperties": {

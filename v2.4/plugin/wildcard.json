@@ -1,7 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/v2.4/plugin/wildcard.json",
-    "title": "Enterprise only. Enables wildcard processing of requests without declaring all endpoint subresrouces.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/wildcard/",
+    "title": "Wildcard",
+    "description": "Enterprise only. Enables wildcard processing of requests without declaring all endpoint subresrouces.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/wildcard/",
     "type": "object",
     "additionalProperties": false,
     "patternProperties": {

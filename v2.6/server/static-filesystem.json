@@ -1,7 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/v2.6/server/static-filesystem.json",
-    "title": "Enterprise only. Allows you to fetch and serve static content by registering a static web server for a set of defined paths (the prefixes).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
+    "title": "Static Filesystem",
+    "description": "Enterprise only. Allows you to fetch and serve static content by registering a static web server for a set of defined paths (the prefixes).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
     "type": "object",
     "additionalProperties": false,
     "patternProperties": {
