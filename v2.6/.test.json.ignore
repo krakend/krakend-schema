@@ -1568,10 +1568,9 @@
             ]
         },
         "server/virtualhost": {
-            "hosts": [
-                "host-a.tld",
-                "host-b.tld"
-            ]
+            "aliased_hosts": {
+                "user_api": "users.svc.example.com:9000"
+            }
         },
         "server/static-filesystem": {
             "prefix": "/media/assets",
