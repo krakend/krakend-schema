@@ -17,6 +17,11 @@
             "description": "A friendly name identifying metrics reported by this installation. When unset, it uses the `name` attribute in the root level of the configuration.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
             "type": "string"
         },
+        "service_version": {
+            "title": "Service Version",
+            "description": "The version you are deploying, this can be useful for deployment tracking.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+            "type": "string"
+        },
         "layers": {
             "additionalProperties": false,
             "patternProperties": {
