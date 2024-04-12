@@ -55,6 +55,12 @@
             "type": "boolean",
             "default": false
         },
+        "max_payload": {
+            "title": "Maximum Payload",
+            "description": "**Requires Enterprise**. Limits the maximum number of bytes a user can send to the gateway. `0` means no limit. You can also set this value [per endpoint](/docs/enterprise/endpoints/maximum-request-size/).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+            "type": "integer",
+            "default": 0
+        },
         "disable_redirect_trailing_slash": {
             "title": "Disable redirect trailing slash",
             "description": "Disables automatic redirection if the current route can't be matched but a handler for the path with (without) the trailing slash exists.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
