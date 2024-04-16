@@ -1627,7 +1627,11 @@
                             }
                         ]
                     }
-                ]
+                ],
+                "opentelemetry": {
+                    "metrics_disabled": true,
+                    "traces_disabled": true
+                }
             }
         },
         "auth/validator": {

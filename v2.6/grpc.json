@@ -109,6 +109,29 @@
                             }
                         }
                     }
+                },
+                "opentelemetry": {
+                    "title": "OpenTelemetry settings",
+                    "description": "Overrides [OpenTelemetry settings](/docs/enterprise/telemetry/opentelemetry-layers-metrics/) for the gRPC server.",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "patternProperties": {
+                        "^[@$_#]": {}
+                    },
+                    "properties": {
+                        "disable_metrics": {
+                            "title": "Disable metrics",
+                            "description": "Whether you want to disable all metrics happening in the gRPC server.\n\nSee: https://www.krakend.io/docs/enterprise/grpc/server/",
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "disable_traces": {
+                            "title": "Disable trace",
+                            "description": "Whether you want to disable all traces happening in the gRPC server.\n\nSee: https://www.krakend.io/docs/enterprise/grpc/server/",
+                            "type": "boolean",
+                            "default": false
+                        }
+                    }
                 }
             }
         }
