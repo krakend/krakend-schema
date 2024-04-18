@@ -8,18 +8,44 @@
     "patternProperties": {
         "^[@$_#]": {}
     },
-    "required": [
-        "hosts"
+    "oneOf": [
+        {
+            "required": [
+                "hosts"
+            ]
+        },
+        {
+            "required": [
+                "aliased_hosts"
+            ]
+        }
     ],
     "properties": {
+        "aliased_hosts": {
+            "title": "Virtualhosts with alias",
+            "description": "A map of all recognized virtual hosts where the key is the alias and the value the host name, including the port if it's not 443 or 80. The values declared here must match the content of the `Host` header passed by the client. The alias must be an alphanumeric string.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/virtual-hosts/",
+            "type": "object",
+            "examples": [
+                {
+                    "user_api": "users.svc.example.com:9000"
+                }
+            ],
+            "properties": {
+                "[a-z0-9_]": {
+                    "title": "Virtualhost",
+                    "type": "string",
+                    "description": "The key of this map must compile with the regexp `a-z0-9_` and the host name is the string that matches the value sent by the user in the `Host` header."
+                }
+            }
+        },
         "hosts": {
             "title": "Virtualhosts",
             "description": "All recognized virtual hosts by KrakenD must be listed here. The values declared here must match the content of the `Host` header when passed by the client.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/virtual-hosts/",
             "type": "array",
             "examples": [
                 [
-                    "api-a.host.com",
-                    "api-b.host.com"
+                    "api-a.example.com",
+                    "api-b.example.com"
                 ]
             ],
             "items": {

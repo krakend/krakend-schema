@@ -1,7 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/v2.3/auth/revoker.json",
-    "title": "The API Gateway authorizes users that provide valid tokens according to your criteria, but at some point, you might want to change your mind and decide to revoke JWT tokens that are still valid.",
+    "title": "Revoke Server",
+    "description": "The API Gateway authorizes users that provide valid tokens according to your criteria, but at some point, you might want to change your mind and decide to revoke JWT tokens that are still valid.",
     "type": "object",
     "additionalProperties": false,
     "patternProperties": {
