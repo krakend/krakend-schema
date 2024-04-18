@@ -61,6 +61,12 @@
             "type": "integer",
             "default": 0
         },
+        "decompress_gzip": {
+            "title": "Decompress Gzip",
+            "description": "**Requires Enterprise**. Decompresses any Gzipped content before sending it to the backend when the `Content-Encoding` has `gzip` in the first position. You can also set this value [per endpoint](/docs/enterprise/endpoints/maximum-request-size/).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+            "type": "integer",
+            "default": 0
+        },
         "disable_redirect_trailing_slash": {
             "title": "Disable redirect trailing slash",
             "description": "Disables automatic redirection if the current route can't be matched but a handler for the path with (without) the trailing slash exists.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
