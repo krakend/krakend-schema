@@ -1568,6 +1568,16 @@
                 "/foo/{bar}"
             ]
         },
+        "telemetry/opentelemetry-security": {
+            "otlp": [
+                {
+                    "name": "newrelic",
+                    "headers": {
+                        "api-key": "YOUR_NEWRELIC_LICENSE_KEY"
+                    }
+                }
+            ]
+        },
         "server/virtualhost": {
             "aliased_hosts": {
                 "user_api": "users.svc.example.com:9000"
@@ -1630,8 +1640,8 @@
                     }
                 ],
                 "opentelemetry": {
-                    "metrics_disabled": true,
-                    "traces_disabled": true
+                    "disable_metrics": true,
+                    "disable_traces": true
                 }
             }
         },
