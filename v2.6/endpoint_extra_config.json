@@ -171,6 +171,9 @@
                     "enum": ["header","query_string"]
                 }
             }
+        },
+        "telemetry/opentelemetry": {
+            "$ref": "telemetry/opentelemetry-endpoint.json"
         }
     }
 }

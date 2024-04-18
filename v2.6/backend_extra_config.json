@@ -149,6 +149,10 @@
                 "required": ["jwt"]
             },
             "$ref": "./security/policies.json"
+        },
+
+        "telemetry/opentelemetry": {
+            "$ref": "telemetry/opentelemetry-backend.json"
         }
     }
 }

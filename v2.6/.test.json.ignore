@@ -228,6 +228,20 @@
                                 },
                                 "policies": []
                             }
+                        },
+                        "telemetry/opentelemetry": {
+                            "proxy": {
+                                "disable_metrics": true,
+                                "disable_traces": true
+                            },
+                            "backend": {
+                                "metrics": {
+                                    "disable_stage": true
+                                },
+                                "traces": {
+                                    "disable_stage": true
+                                }
+                            }
                         }
                     },
                     "url_pattern": "/ws",
@@ -238,6 +252,18 @@
                 }
             ],
             "extra_config": {
+                "telemetry/opentelemetry": {
+                    "proxy": {
+                        "disable_metrics": false,
+                        "disable_traces": false
+                    },
+                    "exporters_override": {
+                        "metric_reporting_period": 10,
+                        "trace_sample_rate": 1,
+                        "metric_exporters": ["local_prometheus"],
+                        "trace_exporters": ["debug_jaeger", "newrelic", "local_tempo" ]
+                    }
+                },
                 "security/policies": {
                     "jwt": {
                         "policies": [
