@@ -347,7 +347,8 @@
                 "auth/validator": {
                     "@comment": "The validator can match 2 different schemas, with local path and with jwk_url",
                     "jwk_local_path": "./jwk.txt",
-                    "alg": "EdDSA"
+                    "alg": "EdDSA",
+                    "leeway": "1s"
                 },
                 "auth/api-keys": {
                     "@comment": "here",
@@ -1541,7 +1542,7 @@
                         "round_trip": true,
                         "read_payload": true,
                         "detailed_connection": true,
-                        "static_attributes":[
+                        "static_attributes": [
                             {
                                 "key": "my_metric_attr",
                                 "value": "my_metric_val"
@@ -1943,6 +1944,7 @@
             "identifier": "Authorization",
             "hash": "plain",
             "salt": "mySalt",
+            "propagate_role": "X-Role",
             "keys": [
                 {
                     "key": "4d2c61e1-34c4-e96c-9456-15bd983c5019",

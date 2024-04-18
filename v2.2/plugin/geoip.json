@@ -1,7 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/v2.2/plugin/geoip.json",
-    "title": "Enterprise only. The GeoIP integration allows you load Maxmind's GeoIP2 City database (payment and free versions) and enrich all KrakenD calls to your backends with geo data.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/geoip/",
+    "title": "GeoIP",
+    "description": "Enterprise only. The GeoIP integration allows you load Maxmind's GeoIP2 City database (payment and free versions) and enrich all KrakenD calls to your backends with geo data.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/geoip/",
     "type": "object",
     "additionalProperties": false,
     "patternProperties": {

@@ -1,7 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.krakend.io/schema/v2.6/plugin/ip-filter.json",
-    "title": "Enterprise only. The IP filtering plugin allows you to restrict the traffic to your API gateway based on the IP address. It works in two different modes (allow or deny) where you define the list of IPs (CIDR blocks) that are authorized to use the API, or that are denied from using the API.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/ipfilter/",
+    "title": "IP filter",
+    "description": "Enterprise only. The IP filtering plugin allows you to restrict the traffic to your API gateway based on the IP address. It works in two different modes (allow or deny) where you define the list of IPs (CIDR blocks) that are authorized to use the API, or that are denied from using the API.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/ipfilter/",
     "type": "object",
     "additionalProperties": false,
     "patternProperties": {

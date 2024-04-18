@@ -278,6 +278,14 @@
                 "kid_x5t"
             ]
         },
+        "leeway": {
+            "title": "Leeway",
+            "description": "A margin of time where you will accept an already expired token. You should not accept expired tokens other than enabling two environments that are not perfectly synchronized and have minor clock drifts to accept each other differences. Any value specified here will be rounded to seconds, with a minimum of one second.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+            "type": "string",
+            "default": "1s",
+            "$ref": "../timeunits.json#/$defs/timeunit",
+            "examples": ["1m","1s"]
+        },
         "operation_debug": {
             "$id": "#auth/validator/operation_debug",
             "title": "Debug",

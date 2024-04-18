@@ -110,9 +110,18 @@
         "user_id_jwt_claim": {
             "$id": "#telemetry/moesif/user_id_jwt_claim",
             "title": "User ID JWT claim",
-            "description": "When using JWT tokens, it defines which claim contains the user ID. The field must be a string.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
+            "description": "When using JWT tokens, it defines which claim contains the user ID. The claim value you access must be of type string. You can access nested structured using the dot `.` separator. When using dots, literals with an exact match containing the dot are checked first.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
             "type": "string",
-            "default": "sub"
+            "default": "sub",
+            "examples": ["sub","user.id"]
+        },
+        "should_skip": {
+            "$id": "#telemetry/moesif/should_skip",
+            "title": "Should Skip",
+            "description": "Defines an expression expressed as [Security Policy](https://www.krakend.io/docs/enterprise/security-policies/) that avoids reporting to Moesif when the result of the evaluation is `true`.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
+            "type": "string",
+            "default": [],
+            "examples": ["( req_method=='GET' || req_path.startsWith('/bar/')) && hasHeader('X-Something')"]
         },
         "identify_company": {
             "additionalProperties": false,
@@ -121,7 +130,7 @@
             },
             "$id": "#telemetry/moesif/identify_company",
             "title": "Identify company",
-            "description": "It sets which strategy you want to use to identify the company. Identifying the company helps you efficiently govern your API. Choose the system you wish to apply (**declare only one property**).\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
+            "description": "It sets which strategy you want to use to identify the company. Identifying the company helps you efficiently govern your API. Choose the system you wish to apply (**declare only one property**). The claim value you access must be of type string. You can access nested structured using the dot `.` separator. When using dots, literals with an exact match containing the dot are checked first.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
             "type": "object",
             "maxProperties": 1,
             "properties": {
