@@ -246,6 +246,11 @@
                         "title": "Name",
                         "description": "The description of the querystring",
                         "type": "string"
+                    },
+                    "required": {
+                        "title": "Required",
+                        "description": "Set to `true` when this query string is required",
+                        "type": "boolean"
                     }
                 }
             },
