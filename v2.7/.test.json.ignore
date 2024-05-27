@@ -260,8 +260,14 @@
                     "exporters_override": {
                         "metric_reporting_period": 10,
                         "trace_sample_rate": 1,
-                        "metric_exporters": ["local_prometheus"],
-                        "trace_exporters": ["debug_jaeger", "newrelic", "local_tempo" ]
+                        "metric_exporters": [
+                            "local_prometheus"
+                        ],
+                        "trace_exporters": [
+                            "debug_jaeger",
+                            "newrelic",
+                            "local_tempo"
+                        ]
                     }
                 },
                 "security/policies": {
@@ -1555,12 +1561,36 @@
                     "disable_metrics": false,
                     "disable_traces": false,
                     "disable_propagation": false,
-                    "report_headers": true
+                    "report_headers": true,
+                    "metrics_static_attributes": [
+                        {
+                            "key": "my_metric_global_attr",
+                            "value": "my_metric_global_val"
+                        }
+                    ],
+                    "traces_static_attributes": [
+                        {
+                            "key": "my_trace_global_attr",
+                            "value": "my_trace_global_val"
+                        }
+                    ]
                 },
                 "proxy": {
                     "disable_metrics": false,
                     "disable_traces": false,
-                    "report_headers": true
+                    "report_headers": true,
+                    "metrics_static_attributes": [
+                        {
+                            "key": "my_metric_global_attr",
+                            "value": "my_metric_global_val"
+                        }
+                    ],
+                    "traces_static_attributes": [
+                        {
+                            "key": "my_trace_global_attr",
+                            "value": "my_trace_global_val"
+                        }
+                    ]
                 },
                 "backend": {
                     "metrics": {

@@ -218,6 +218,46 @@
                             "description": "Whether you want to send all headers that the consumer passed in the request or not.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
                             "type": "boolean",
                             "default": false
+                        },
+                        "metrics_static_attributes": {
+                            "title": "Static attributes",
+                            "description": "Static attributes you want to pass for metrics.",
+                            "type": "array",
+                            "items": {
+                                "additionalProperties": false,
+                                "properties": {
+                                    "key": {
+                                        "title": "Key",
+                                        "description": "The key of the static attribute you want to send",
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "title": "Value",
+                                        "description": "The value of the static attribute you want to send",
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "traces_static_attributes": {
+                            "title": "Static attributes",
+                            "description": "Static attributes you want to pass for traces.",
+                            "type": "array",
+                            "items": {
+                                "additionalProperties": false,
+                                "properties": {
+                                    "key": {
+                                        "title": "Key",
+                                        "description": "The key of the static attribute you want to send",
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "title": "Value",
+                                        "description": "The value of the static attribute you want to send",
+                                        "type": "string"
+                                    }
+                                }
+                            }
                         }
                     }
                 },
@@ -247,6 +287,46 @@
                             "description": "Whether you want to report all headers that passed from the request to the proxy layer (`input_headers` policy in the endpoint plus KrakenD's headers).\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
                             "type": "boolean",
                             "default": false
+                        },
+                        "metrics_static_attributes": {
+                            "title": "Static attributes",
+                            "description": "Static attributes you want to pass for metrics.",
+                            "type": "array",
+                            "items": {
+                                "additionalProperties": false,
+                                "properties": {
+                                    "key": {
+                                        "title": "Key",
+                                        "description": "The key of the static attribute you want to send",
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "title": "Value",
+                                        "description": "The value of the static attribute you want to send",
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "traces_static_attributes": {
+                            "title": "Static attributes",
+                            "description": "Static attributes you want to pass for traces.",
+                            "type": "array",
+                            "items": {
+                                "additionalProperties": false,
+                                "properties": {
+                                    "key": {
+                                        "title": "Key",
+                                        "description": "The key of the static attribute you want to send",
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "title": "Value",
+                                        "description": "The value of the static attribute you want to send",
+                                        "type": "string"
+                                    }
+                                }
+                            }
                         }
                     }
                 }
