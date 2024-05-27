@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/v2.6/telemetry/opentelemetry.json",
+    "$id": "https://www.krakend.io/schema/v2.7/telemetry/opentelemetry.json",
     "title": "OpenTelemetry",
     "description": "Enables metrics and traces using OpenTelemetry.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
     "type": "object",

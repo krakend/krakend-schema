@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/v2.6/websocket.json",
+    "$id": "https://www.krakend.io/schema/v2.7/websocket.json",
     "title": "Schema definition for Websockets",
     "description": "Enterprise only. Enables websocket communication.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
     "type": "object",
@@ -104,6 +104,18 @@
                 "fallback"
             ],
             "default": "fallback"
+        },
+        "enable_direct_communication": {
+            "title": "Direct Communication (no multiplexing)",
+            "description": "When the value is set to `true` the communication is set one to one, and disables multiplexing. One client to KrakenD opens one connection to the backend. This mode of operation is sub-optimal in comparison to multiplexing.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "type": "boolean",
+            "default": false
+        },
+        "timeout": {
+            "title": "Timeout",
+            "description": "Sets the read timeout for the backend. After a read has timed out, the websocket connection is terminated and KrakenD will try to reconnect according the `backoff_strategy`. Minimum accepted time is one minute. This flag only applies when you use ' enable_direct_communication`.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+            "$ref": "./timeunits.json#/$defs/timeunit",
+            "default": "5m"
         }
     }
 }
