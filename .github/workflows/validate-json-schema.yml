@@ -6,6 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: intelligence-ai/jsonschema@v0.2.0
+      - run: jsonschema fmt --check --verbose
+      - run: jsonschema lint --verbose
       - name: Validate components
         uses: cardinalby/schema-validator-action@v1
         with:
