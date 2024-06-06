@@ -1,5 +1,5 @@
 {
-    "$id": "#security/bot-detector",
+    "$id": "https://www.krakend.io/schema/v2.2/security/bot-detector.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Bot detector",
     "description": "The bot detector module checks incoming connections to the gateway to determine if a bot made them, helping you detect and reject bots carrying out scraping, content theft, and form spam.\n\nSee: https://www.krakend.io/docs/throttling/botdetector/",
