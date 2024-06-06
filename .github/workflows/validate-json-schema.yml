@@ -16,6 +16,7 @@ jobs:
           file: '*.json'
   validate_configurations_jsonschema:
     name: Validate schema using Intelligence-AI/jsonschema
+    runs-on: ubuntu-latest
     steps:
       - uses: intelligence-ai/jsonschema@v0.1.1
       - run: jsonschema fmt ./ --check
