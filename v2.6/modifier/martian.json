@@ -830,8 +830,5 @@
       }
     }
   },
-  "patternProperties": {
-    "^[@$_#]": {}
-  },
   "additionalProperties": false
 }
