@@ -24,9 +24,9 @@
     },
     "prefix": {
       "title": "Prefix",
-      "description": "This is the beginning (prefix) of all URLs that are resolved using this plugin. All matching URLs won't be passed to the router, meaning that they are not considered endpoints. Make sure you are not overwriting valid endpoints. When the `prefix` is `/`, then **all traffic is served as static** and you must declare a prefix under `skip` (e.g.: `/api`) to match endpoints.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
+      "description": "This is the beginning (prefix) of all URLs that are resolved using this plugin, the **prefix must end in slash** `/`. All matching URLs won't be considered endpoints and served as static assets. Make sure you are not overwriting valid endpoints. When the `prefix` is just `/`, then **all traffic is served as static** and you must declare a prefix under `skip` (e.g.: `/api/`) to match endpoints.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
       "examples": [
-        "/media/assets"
+        "/media/assets/"
       ],
       "type": "string"
     },
