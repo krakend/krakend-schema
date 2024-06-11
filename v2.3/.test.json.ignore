@@ -551,8 +551,7 @@
                                 ],
                                 "name": "X-Martian",
                                 "value": "true"
-                            },
-                            "@extra_comment": "here"
+                            }
                         },
                         "qos/http-cache": {
                             "shared": true,
