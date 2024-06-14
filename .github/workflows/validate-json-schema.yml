@@ -1,19 +1,16 @@
 on: [push]
-name: Validate JSON schema
+name: Validate JSON Schema
 jobs:
-  validate_configurations:
-    name: Validate all json files using their own $schema properties
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: intelligence-ai/jsonschema@v0.2.0
-      - run: jsonschema fmt --check --verbose
-      - run: jsonschema lint --verbose
-      - name: Validate components
-        uses: cardinalby/schema-validator-action@v1
-        with:
-          file: '**/*.json'
-      - name: Validate root documents
-        uses: cardinalby/schema-validator-action@v1
-        with:
-          file: '*.json'
+      - uses: intelligence-ai/jsonschema@v1.0.0
+      - name: Ensure JSON Schemas are formatted
+        run: jsonschema fmt --ignore test --check --verbose
+      - name: Lint JSON Schemas
+        run: jsonschema lint --ignore test --verbose
+      - name: Ensure JSON Schemas are valid with respect to their metaschemas
+        run: jsonschema metaschema --ignore test --verbose
+      - name: Run JSON Schema unit tests
+        run: jsonschema test ./test/v2.6 --resolve v2.6
