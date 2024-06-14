@@ -4,15 +4,15 @@
   "tests": [
     {
       "description": "the empty object is invalid",
-      "valid": false,
-      "data": {}
+      "data": {},
+      "valid": false
     },
     {
       "description": "example expression",
-      "valid": true,
       "data": {
         "expr": "students[?age > `18` ].name"
-      }
+      },
+      "valid": true
     }
   ]
 }

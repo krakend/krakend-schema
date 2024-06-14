@@ -1,6 +1,6 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://www.krakend.io/schema/e2e.json",
-    "title": "Schema validation for the latest version of KrakenD End to End testing. Consider sticking to the specific version you are using.",
-    "$ref": "v2.7/e2e.json"
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://www.krakend.io/schema/e2e.json",
+  "title": "Schema validation for the latest version of KrakenD End to End testing. Consider sticking to the specific version you are using.",
+  "$ref": "v2.7/e2e.json"
 }
