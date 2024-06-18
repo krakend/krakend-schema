@@ -105,7 +105,7 @@
       "type": "array",
       "uniqueItems": true,
       "items": {
-        "$id": "#backend/input_headers/items",
+        "$id": "#backend/input_query_strings/items",
         "examples": [
           [
             "*"
@@ -160,7 +160,7 @@
       ]
     },
     "sd_scheme": {
-      "$id": "#backend/sd",
+      "$id": "#backend/sd_scheme",
       "title": "Service Discovery Scheme",
       "description": "The [Service Discovery](https://www.krakend.io/docs/backends/service-discovery/) scheme to connect to your backend services.\n\nSee: https://www.krakend.io/docs/backends/",
       "examples": [
