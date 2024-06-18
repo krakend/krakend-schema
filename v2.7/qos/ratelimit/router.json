@@ -38,17 +38,19 @@
     },
     "every": {
       "title": "Time window",
-      "description": "Time period in which the maximum rates operate. For instance, if you set an `every` of `10m` and a `max_rate` of `5`, you are allowing 5 requests every ten minutes.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
+      "description": "Time period in which the maximum rates operate. For instance, if you set an `every` of `10m` and a rate of `5`, you are allowing 5 requests every ten minutes.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
       "default": "1s",
       "$ref": "../../timeunits.json#/$defs/timeunit",
       "type": "string"
     },
     "key": {
       "$id": "#endpoint_extra_config/qos/ratelimit/router/key",
-      "title": "Header key",
-      "description": "Available when using `client_max_rate` and you have set a `strategy` of `header`. It makes no sense in other contexts. Sets the header containing the user identification (e.g., `Authorization` on tokens) or IP (e.g.,`X-Original-Forwarded-For`). When the header contains a list of space-separated IPs, it will take the IP from the client that hit the first trusted proxy.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
+      "title": "Header or Param key",
+      "description": "Available when using `client_max_rate` and you have set a `strategy` equal to `header` or `param`. It makes no sense in other contexts. For `header` it is the header name containing the user identification (e.g., `Authorization` on tokens, or `X-Original-Forwarded-For` for IPs). When they contain a list of space-separated IPs, it will take the IP from the client that hit the first trusted proxy. For `param` it is the name of the placeholder used in the endpoint, like `id_user` for an endpoint `/user/{id_user}`.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
       "examples": [
-        "X-TOKEN"
+        "X-Tenant",
+        "Authorization",
+        "id_user"
       ],
       "type": "string"
     },
@@ -65,7 +67,8 @@
       "type": "string",
       "enum": [
         "ip",
-        "header"
+        "header",
+        "param"
       ]
     }
   }
