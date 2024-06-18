@@ -167,7 +167,6 @@
       "title": "Output Encoding",
       "description": "The encoding used to display the content to the end-user. This setting is the default for all endpoints, unless they have another `output_encoding` overrinding this value.\n\nSee: https://www.krakend.io/docs/endpoints/content-types/",
       "default": "json",
-      "type": "string",
       "enum": [
         "json",
         "fast-json",
@@ -273,10 +272,7 @@
       "$id": "#service/version",
       "title": "Version of this syntax",
       "description": "The syntax version tells KrakenD how to read this configuration. This is not the KrakenD version. Each KrakenD version is linked to a syntax version, and since KrakenD v2.0 the version must be `3`",
-      "type": "integer",
-      "enum": [
-        3
-      ]
+      "const": 3
     },
     "write_timeout": {
       "$id": "#service/write_timeout",

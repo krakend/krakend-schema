@@ -34,7 +34,6 @@
           "$id": "#auth/api-keys/strategy",
           "title": "Strategy",
           "description": "Specifies where to expect the user API key, whether inside a header or as part of the query string. When you change the strategy at the endpoint level, **you should also set the identifier**, otherwise you could have for instance, a query string strategy expecting to have a URL like `/foo?Authorization=YOUR-KEY`.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
-          "type": "string",
           "enum": [
             "header",
             "query_string"
@@ -124,7 +123,6 @@
               "$id": "#endpoint_extra_config/proxy/static/strategy",
               "title": "Strategy",
               "description": "One of the supported strategies\n\nSee: https://www.krakend.io/docs/endpoints/static-proxy/",
-              "type": "string",
               "enum": [
                 "always",
                 "success",

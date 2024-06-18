@@ -42,7 +42,6 @@
       "$id": "#auth/revoker/hash_name",
       "title": "Hash function name",
       "description": "Either `optimal` (recommended) or `default`. The `optimal` consumes less CPU but has less entropy when generating the hash, although the loss is negligible.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
-      "type": "string",
       "enum": [
         "optimal",
         "default"

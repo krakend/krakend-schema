@@ -30,7 +30,6 @@
             "title": "Backoff strategy",
             "description": "When the connection to your event source gets interrupted for whatever reason, KrakenD keeps trying to reconnect until it succeeds or until it reaches the `max_retries`. The backoff strategy defines the delay in seconds in between consecutive failed retries.\n\nSee: https://www.krakend.io/docs/async/",
             "default": "fallback",
-            "type": "string",
             "enum": [
               "linear",
               "linear-jitter",
@@ -94,7 +93,6 @@
         "title": "Backend Encoding",
         "description": "Informs KrakenD how to parse the responses of your services.\n\nSee: https://www.krakend.io/docs/backends/supported-encodings/",
         "default": "json",
-        "type": "string",
         "enum": [
           "json",
           "safejson",

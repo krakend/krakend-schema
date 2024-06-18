@@ -84,7 +84,6 @@
             "$id": "#service_extra_config/security/cors/allow_methods/items",
             "title": "Object in array",
             "description": "\n\nSee: https://www.krakend.io",
-            "type": "string",
             "enum": [
               "GET",
               "HEAD",

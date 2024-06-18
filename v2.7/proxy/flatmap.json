@@ -25,7 +25,6 @@
       "type": {
         "title": "Type",
         "description": "The types of operations are defined as follows.\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
-        "type": "string",
         "enum": [
           "move",
           "del",

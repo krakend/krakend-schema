@@ -13,7 +13,6 @@
       "title": "Hash",
       "description": "The hashing function used to store the value of the key. When you use `plain` the API key is written as it will passed by the user. The rest of the hashes require you to save the API key after applying the desired function.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
       "default": "plain",
-      "type": "string",
       "enum": [
         "plain",
         "fnv128",
@@ -84,7 +83,6 @@
       "title": "Strategy",
       "description": "Specifies where to expect the user API key, whether inside a header or as part of the query string. The strategy set here is used across all endpoints with API key authentication enabled, but they can override this entry individually.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
       "default": "header",
-      "type": "string",
       "enum": [
         "header",
         "query_string"

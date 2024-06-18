@@ -38,7 +38,6 @@
           "title": "Method",
           "description": "The method sent in the request",
           "default": "GET",
-          "type": "string",
           "enum": [
             "GET",
             "POST",
@@ -116,7 +115,6 @@
                 "title": "Method",
                 "description": "The method sent in the request",
                 "default": "GET",
-                "type": "string",
                 "enum": [
                   "GET",
                   "POST",

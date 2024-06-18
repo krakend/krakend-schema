@@ -124,7 +124,6 @@
           "title": "Undefined variables behavior",
           "description": "How to treat access to unexisting variables in the templates. When the value is `error` the template will fail to compile, when `zero` it will set a zero-value (e.g, empty string), and when the value is `invalid` it will replace the content with the string `<no value>`.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
           "default": "error",
-          "type": "string",
           "enum": [
             "error",
             "zero",
