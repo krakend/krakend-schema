@@ -1,11 +1,13 @@
 on: [push]
 name: Validate JSON Schema
+permissions:
+  contents: write
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: intelligence-ai/jsonschema@v1.0.0
+      - uses: intelligence-ai/jsonschema@v1.1.0
       - name: Ensure JSON Schemas are formatted
         run: jsonschema fmt --ignore test --check --verbose
       - name: Lint JSON Schemas
@@ -14,3 +16,13 @@ jobs:
         run: jsonschema metaschema --ignore test --verbose
       - name: Run JSON Schema unit tests
         run: jsonschema test ./test/v2.6 --resolve v2.6
+      - name: Create a unified bundle
+        run: jsonschema bundle v2.6/krakend.json --resolve v2.6 --without-id > out.json
+        # You cannot redirect the output of the out.jon file inside the folder where is resolving.
+      - name: Move bundle to version
+        run: mv out.json v2.6/bundle.json
+      - uses: EndBug/add-and-commit@v9
+        with:
+          # The arguments for the `git add` command (see the paragraph below for more info)
+          # Default: '.'
+          add: 'v2.6/bundle.json'

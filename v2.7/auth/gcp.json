@@ -63,7 +63,7 @@
       "type": "object"
     },
     "custom_claims": {
-      "$id": "#auth/gcp/credentials_json",
+      "$id": "#auth/gcp/custom_claims",
       "title": "Custom claims",
       "description": "Custom private claims that you can optionally add to an ID token.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
       "type": "object"
