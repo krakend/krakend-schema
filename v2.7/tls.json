@@ -85,7 +85,6 @@
       "title": "Maximum TLS version",
       "description": "Maximum TLS version supported.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
       "default": "TLS13",
-      "type": "string",
       "enum": [
         "SSL3.0",
         "TLS10",
@@ -99,7 +98,6 @@
       "title": "Minimum TLS version",
       "description": "Minimum TLS version supported. When specifiying very old and insecure versions under TLS12 you must provide the `ciphers_list`.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
       "default": "TLS13",
-      "type": "string",
       "enum": [
         "SSL3.0",
         "TLS10",

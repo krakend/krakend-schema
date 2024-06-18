@@ -40,7 +40,6 @@
     "tokenizer": {
       "title": "Tokenizer",
       "description": "One of the preselected strategies to rate-limit users.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
-      "type": "string",
       "enum": [
         "jwt",
         "ip",

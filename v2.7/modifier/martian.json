@@ -23,7 +23,6 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
           "enum": [
             [
               "request",
@@ -66,11 +65,8 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
-          "enum": [
-            [
-              "request"
-            ]
+          "const": [
+            "request"
           ]
         },
         "value": {
@@ -126,7 +122,6 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
           "enum": [
             [
               "request",
@@ -175,7 +170,6 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
           "enum": [
             [
               "request",
@@ -208,7 +202,6 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
           "enum": [
             [
               "request",
@@ -247,7 +240,6 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
           "enum": [
             [
               "request",
@@ -280,7 +272,6 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
           "enum": [
             [
               "request",
@@ -331,7 +322,6 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
           "enum": [
             [
               "request",
@@ -362,11 +352,8 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
-          "enum": [
-            [
-              "request"
-            ]
+          "const": [
+            "request"
           ]
         }
       }
@@ -388,7 +375,6 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
           "enum": [
             [
               "request",
@@ -443,7 +429,6 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
           "enum": [
             [
               "request",
@@ -486,11 +471,8 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
-          "enum": [
-            [
-              "request"
-            ]
+          "const": [
+            "request"
           ]
         }
       }
@@ -535,11 +517,8 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
-          "enum": [
-            [
-              "request"
-            ]
+          "const": [
+            "request"
           ]
         }
       }
@@ -576,7 +555,6 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
           "enum": [
             [
               "request",
@@ -623,7 +601,6 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
           "enum": [
             [
               "request",
@@ -664,11 +641,8 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
-          "enum": [
-            [
-              "request"
-            ]
+          "const": [
+            "request"
           ]
         },
         "value": {
@@ -693,7 +667,6 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
           "enum": [
             [
               "request",
@@ -760,7 +733,6 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
           "enum": [
             [
               "request",
@@ -818,11 +790,8 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
-          "enum": [
-            [
-              "request"
-            ]
+          "const": [
+            "request"
           ]
         }
       }
@@ -854,18 +823,12 @@
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",
-          "type": "array",
-          "enum": [
-            [
-              "request"
-            ]
+          "const": [
+            "request"
           ]
         }
       }
     }
-  },
-  "patternProperties": {
-    "^[@$_#]": {}
   },
   "additionalProperties": false
 }

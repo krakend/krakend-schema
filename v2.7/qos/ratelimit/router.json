@@ -64,7 +64,6 @@
       "$id": "#endpoint_extra_config/qos/ratelimit/router/strategy",
       "title": "Strategy",
       "description": "Available when using `client_max_rate`. Sets the strategy you will use to set client counters. Choose `ip` when the restrictions apply to the client's IP address, or set it to `header` when there is a header that identifies a user uniquely. That header must be defined with the `key` entry.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
-      "type": "string",
       "enum": [
         "ip",
         "header",

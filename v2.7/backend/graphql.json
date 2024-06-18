@@ -22,7 +22,6 @@
     "type": {
       "title": "Query type",
       "description": "The type of query you are declaring, `query` (read), or `mutation` (write).\n\nSee: https://www.krakend.io/docs/backends/graphql/",
-      "type": "string",
       "enum": [
         "query",
         "mutation"

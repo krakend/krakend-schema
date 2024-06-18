@@ -77,7 +77,6 @@
       "title": "Request naming convention",
       "description": "Defines the naming convention used to format the request. Applies to query strings and JSON field names. By default, the gateway uses `snake_case` which makes use of the standard `encoding/json` package, while when you choose `camelCase` the `protobuf/encoding` deserialization is used instead.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
       "default": "snake_case",
-      "type": "string",
       "enum": [
         "camelCase",
         "snake_case"
@@ -87,7 +86,6 @@
       "title": "Response naming convention",
       "description": "Defines the naming convention used to format the returned data. By default, the gateway uses `snake_case` which makes use of the standard `encoding/json` package, while when you choose `camelCase` the `protobuf/encoding` deserialization is used instead.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
       "default": "snake_case",
-      "type": "string",
       "enum": [
         "camelCase",
         "snake_case"

@@ -30,7 +30,6 @@
       "$id": "#level",
       "title": "Log Level",
       "description": "What type of **reporting level** do you expect from the application? Use the `DEBUG` level in the development stages but not in production. Possible values are from more verbose to least.\n\nSee: https://www.krakend.io/docs/logging/",
-      "type": "string",
       "enum": [
         "DEBUG",
         "INFO",
@@ -64,7 +63,6 @@
       "title": "Syslog facility",
       "description": "When using syslog, the facility tells KrakenD where to send the messages as set by the locals of the [syslog standard](https://www.rfc-editor.org/rfc/rfc5424.html).\n\nSee: https://www.krakend.io/docs/logging/",
       "default": "local3",
-      "type": "string",
       "enum": [
         "local0",
         "local1",

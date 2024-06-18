@@ -21,7 +21,6 @@
       "title": "Backoff strategy",
       "description": "When the connection to your event source gets interrupted for whatever reason, KrakenD keeps trying to reconnect until it succeeds or until it reaches the `max_retries`. The backoff strategy defines the delay in seconds in between consecutive failed retries. [Check the meaning of each strategy](https://www.krakend.io/docs/async/#backoff-strategies).\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
       "default": "fallback",
-      "type": "string",
       "enum": [
         "linear",
         "linear-jitter",

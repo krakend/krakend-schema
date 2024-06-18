@@ -47,7 +47,6 @@
       "title": "Backend Encoding",
       "description": "Defines your [needed encoding](https://www.krakend.io/docs/backends/supported-encodings/) to set how to parse the response. Defaults to the value of its endpoint's `encoding`, or to `json` if not defined anywhere else.\n\nSee: https://www.krakend.io/docs/backends/supported-encodings/",
       "default": "json",
-      "type": "string",
       "enum": [
         "json",
         "safejson",
@@ -142,7 +141,6 @@
       "title": "Method",
       "description": "The method sent to this backend in **uppercase**. The method does not need to match the endpoint's method. When the value is omitted, it uses the same endpoint's method.\n\nSee: https://www.krakend.io/docs/backends/",
       "default": "GET",
-      "type": "string",
       "enum": [
         "GET",
         "POST",
@@ -156,7 +154,6 @@
       "title": "Service Discovery",
       "description": "The [Service Discovery](https://www.krakend.io/docs/backends/service-discovery/) system to resolve your backend services. Defaults to `static` (no external Service Discovery). Use `dns` to use DNS SRV records.\n\nSee: https://www.krakend.io/docs/backends/",
       "default": "static",
-      "type": "string",
       "enum": [
         "static",
         "dns"

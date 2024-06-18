@@ -24,7 +24,6 @@
       "title": "Algorithm",
       "description": "The hashing algorithm used by the token issuer.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
       "default": "RS256",
-      "type": "string",
       "enum": [
         "EdDSA",
         "HS256",
@@ -95,7 +94,6 @@
       "items": {
         "title": "Object in array",
         "description": "\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-        "type": "integer",
         "enum": [
           5,
           10,
@@ -192,7 +190,6 @@
       "$id": "#auth/validator/key_identify_strategy",
       "title": "Key identify strategy",
       "description": "Allows strategies other than `kid` to load keys.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-      "type": "string",
       "enum": [
         "kid",
         "x5t",
@@ -275,7 +272,6 @@
       "title": "Scopes matcher",
       "description": "Defines if the user needs to have in its token at least one of the listed claims (`any`), or `all` of them.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
       "default": "any",
-      "type": "string",
       "enum": [
         "any",
         "all"

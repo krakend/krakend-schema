@@ -29,7 +29,6 @@
       "$id": "#auth/signer/alg",
       "title": "Algorithm",
       "description": "The hashing algorithm used by the issuer. Usually `RS256`. The algorithm you choose directly affects the CPU consumption.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-      "type": "string",
       "enum": [
         "EdDSA",
         "HS256",
@@ -62,7 +61,6 @@
       "items": {
         "title": "Object in array",
         "description": "\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-        "type": "integer",
         "enum": [
           5,
           10,

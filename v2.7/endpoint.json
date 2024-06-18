@@ -98,7 +98,6 @@
       "title": "Method",
       "description": "The method supported by this endpoint. Create multiple endpoint entries if you need different methods.\n\nSee: https://www.krakend.io/docs/endpoints/",
       "default": "GET",
-      "type": "string",
       "enum": [
         "GET",
         "POST",
@@ -112,7 +111,6 @@
       "title": "Output encoding",
       "description": "The gateway can work with several content types, even allowing your clients to choose how to consume the content. See the [supported encodings](https://www.krakend.io/docs/endpoints/content-types/)",
       "default": "json",
-      "type": "string",
       "enum": [
         "json",
         "json-collection",
