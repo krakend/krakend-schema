@@ -1,5 +1,7 @@
 on: [push]
 name: Validate JSON Schema
+permissions:
+  contents: write
 jobs:
   test:
     runs-on: ubuntu-latest
