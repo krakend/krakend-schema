@@ -15,14 +15,14 @@ jobs:
       - name: Ensure JSON Schemas are valid with respect to their metaschemas
         run: jsonschema metaschema --ignore test --verbose
       - name: Run JSON Schema unit tests
-        run: jsonschema test ./test/v2.6 --resolve v2.6
+        run: jsonschema test ./test/v2.7 --resolve v2.7
       - name: Create a unified bundle
-        run: jsonschema bundle v2.6/krakend.json --resolve v2.6 --without-id > out.json
+        run: jsonschema bundle v2.7/krakend.json --resolve v2.7 --without-id > out.json
         # You cannot redirect the output of the out.jon file inside the folder where is resolving.
       - name: Move bundle to version
-        run: mv out.json v2.6/bundle.json
+        run: mv out.json v2.7/bundle.json
       - uses: EndBug/add-and-commit@v9
         with:
           # The arguments for the `git add` command (see the paragraph below for more info)
           # Default: '.'
-          add: 'v2.6/bundle.json'
+          add: 'v2.7/bundle.json'
