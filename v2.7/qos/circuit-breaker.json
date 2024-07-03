@@ -26,7 +26,7 @@
     "max_errors": {
       "$id": "#qos/circuit-breaker/max_errors",
       "title": "Max Errors",
-      "description": "The **consecutive** number of errors within the `interval` window to consider the backend unhealthy. An error is any response without a success (20x) status code or no response.\n\nSee: https://www.krakend.io/docs/backends/circuit-breaker/",
+      "description": "The **CONSECUTIVE** (not total) number of errors within the `interval` window to consider the backend unhealthy. All HTTP status codes different than `20x` are considered an error, except for the `no-op` encoding that does not evaluate status codes and is limited to connectivity/networking, security and component errors. See the definition of error below.\n\nSee: https://www.krakend.io/docs/backends/circuit-breaker/",
       "type": "integer"
     },
     "name": {
