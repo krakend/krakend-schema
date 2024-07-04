@@ -4826,6 +4826,19 @@
           "default": 1,
           "type": "integer"
         },
+        "cleanup_period": {
+          "title": "Cleanup Period",
+          "description": "The cleanup period is how often the routine(s) in charge of optimizing the memory dedicated will go iterate all counters looking for outdated TTL and remove them. A low value keeps the memory slightly decreasing, but as a trade-off, it will increase the CPU dedicated to achieving this optimization. This is an advanced micro-optimization setting that should be used with caution.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
+          "default": "1m",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "cleanup_threads": {
+          "title": "Cleanup Threads",
+          "description": "These are the number of routines that search for and remove outdated rate limit counters. The more routine(s) you add, the faster the memory optimization is completed, but the more CPU it will consume. Generally speaking, a single thread is more than enough because the delete operation is very fast, even with a large number of counters. This is an advanced micro-optimization setting that you should use with caution.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
+          "default": 1,
+          "type": "integer"
+        },
         "client_capacity": {
           "title": "Client capacity",
           "description": "Defines the maximum number of [tokens a bucket can hold](https://www.krakend.io/docs/throttling/token-bucket/), or said otherwise, how many requests will you accept from **each individual user** at **any given instant**. Works just as `capacity`, but instead of having one bucket for all users, keeps a counter for every connected client and endpoint, and refills from `client_max_rate` instead of `max_rate`. The client is recognized using the `strategy` field (an IP address, a token, a header, etc.). The default value for the `client_capacity` is the `client_max_rate` value expressed in seconds or 1 for smaller fractions. When unsure, use the same number as `client_max_rate`.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
@@ -4858,6 +4871,12 @@
           "title": "Max rate",
           "description": "Sets the maximum number of requests all users can do in the given time frame. Internally uses the [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) algorithm. The absence of `max_rate` in the configuration or a `0` is the equivalent to no limitation. You can use decimals if needed.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
           "type": "number"
+        },
+        "num_shards": {
+          "title": "Num Shards",
+          "description": "All rate limit counters are stored in memory in groups (shards). All counters in the same shard share a mutex (which controls that one counter is modified at a time), and this helps with contention. Having, for instance, 2048 shards (default) and 1M users connected concurrently (same instant) means that each user will need to coordinate writes in their counter with an average of under 500 other users (1M/2048=489). Lowering the shards might increase contention and latency but free additional memory. This is an advanced micro-optimization setting that should be used with caution.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
+          "default": 2048,
+          "type": "integer"
         },
         "strategy": {
           "title": "Strategy",
@@ -7385,8 +7404,7 @@
         {
           "type": "object",
           "required": [
-            "public_key",
-            "private_key"
+            "keys"
           ]
         },
         {
@@ -7452,6 +7470,35 @@
           "default": false,
           "type": "boolean"
         },
+        "keys": {
+          "description": "An array with all the key pairs you want the TLS to work with. You can support multiple and unrelated domains in a single process.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "properties": {
+              "private_key": {
+                "title": "Private key",
+                "description": "Absolute path to the private key, or relative to the current [working directory](https://www.krakend.io/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
+                "examples": [
+                  "/path/to/key.pem",
+                  "./certs/key.pem"
+                ],
+                "default": "./certs/key.pem",
+                "type": "string"
+              },
+              "public_key": {
+                "title": "Public key",
+                "description": "Absolute path to the public key, or relative to the current [working directory](https://www.krakend.io/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
+                "examples": [
+                  "/path/to/cert.pem",
+                  "./certs/cert.pem"
+                ],
+                "default": "./certs/cert.pem",
+                "type": "string"
+              }
+            }
+          }
+        },
         "max_version": {
           "title": "Maximum TLS version",
           "description": "Maximum TLS version supported.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
@@ -7477,23 +7524,13 @@
           ]
         },
         "private_key": {
-          "title": "Private key",
-          "description": "Absolute path to the private key, or relative to the current [working directory](https://www.krakend.io/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
-          "examples": [
-            "/path/to/key.pem",
-            "./certs/key.pem"
-          ],
-          "default": "./certs/key.pem",
+          "description": "Declaration of the `private_key` under the `tls` object is now deprecated. Please move this attribute inside the `keys` array.",
+          "deprecated": true,
           "type": "string"
         },
         "public_key": {
-          "title": "Public key",
-          "description": "Absolute path to the public key, or relative to the current [working directory](https://www.krakend.io/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
-          "examples": [
-            "/path/to/cert.pem",
-            "./certs/cert.pem"
-          ],
-          "default": "./certs/cert.pem",
+          "description": "Declaration of the `public_key` under the `tls` object is now deprecated. Please move this attribute inside the `keys` array.",
+          "deprecated": true,
           "type": "string"
         }
       },

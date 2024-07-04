@@ -7,8 +7,7 @@
     {
       "type": "object",
       "required": [
-        "public_key",
-        "private_key"
+        "keys"
       ]
     },
     {
@@ -80,6 +79,37 @@
       "default": false,
       "type": "boolean"
     },
+    "keys": {
+      "description": "An array with all the key pairs you want the TLS to work with. You can support multiple and unrelated domains in a single process.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "properties": {
+          "private_key": {
+            "$id": "#service/tls/private_key",
+            "title": "Private key",
+            "description": "Absolute path to the private key, or relative to the current [working directory](https://www.krakend.io/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
+            "examples": [
+              "/path/to/key.pem",
+              "./certs/key.pem"
+            ],
+            "default": "./certs/key.pem",
+            "type": "string"
+          },
+          "public_key": {
+            "$id": "#service/tls/public_key",
+            "title": "Public key",
+            "description": "Absolute path to the public key, or relative to the current [working directory](https://www.krakend.io/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
+            "examples": [
+              "/path/to/cert.pem",
+              "./certs/cert.pem"
+            ],
+            "default": "./certs/cert.pem",
+            "type": "string"
+          }
+        }
+      }
+    },
     "max_version": {
       "$id": "#service/tls/max_version",
       "title": "Maximum TLS version",
@@ -107,25 +137,13 @@
       ]
     },
     "private_key": {
-      "$id": "#service/tls/private_key",
-      "title": "Private key",
-      "description": "Absolute path to the private key, or relative to the current [working directory](https://www.krakend.io/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
-      "examples": [
-        "/path/to/key.pem",
-        "./certs/key.pem"
-      ],
-      "default": "./certs/key.pem",
+      "description": "Declaration of the `private_key` under the `tls` object is now deprecated. Please move this attribute inside the `keys` array.",
+      "deprecated": true,
       "type": "string"
     },
     "public_key": {
-      "$id": "#service/tls/public_key",
-      "title": "Public key",
-      "description": "Absolute path to the public key, or relative to the current [working directory](https://www.krakend.io/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
-      "examples": [
-        "/path/to/cert.pem",
-        "./certs/cert.pem"
-      ],
-      "default": "./certs/cert.pem",
+      "description": "Declaration of the `public_key` under the `tls` object is now deprecated. Please move this attribute inside the `keys` array.",
+      "deprecated": true,
       "type": "string"
     }
   },

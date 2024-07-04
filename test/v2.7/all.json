@@ -60,8 +60,12 @@
                     ]
                 },
                 "tls": {
-                    "public_key": "./cert.pem",
-                    "private_key": "./certs/key.pem",
+                    "keys": [
+                        {
+                            "public_key": "./cert.pem",
+                            "private_key": "./certs/key.pem"
+                        }
+                    ],
                     "disabled": true,
                     "min_version": "TLS12",
                     "max_version": "SSL3.0",
@@ -775,7 +779,10 @@
                                 "max_rate": 100.5,
                                 "every": "10m",
                                 "strategy": "ip",
-                                "@extra_comment": "here"
+                                "@extra_comment": "here",
+                                "cleanup_threads": 2,
+                                "cleanup_period": "90s",
+                                "num_shards": 2
                             },
                             "proxy": {
                                 "combiner": "combiner_name",
