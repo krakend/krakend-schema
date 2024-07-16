@@ -75,6 +75,14 @@
       "default": false,
       "type": "boolean"
     },
+    "dns_cache_ttl": {
+      "$id": "#service/dns_cache_ttl",
+      "title": "DNS Cache TTL",
+      "description": "Sets the maximum time KrakenD can store the results of a query to the configured Service Discovery returning the available hosts list. For values under `1s` this setting is ignored.\n\nSee: https://www.krakend.io/docs/backends/service-discovery/",
+      "default": "30s",
+      "$ref": "timeunits.json#/$defs/timeunit",
+      "type": "string"
+    },
     "echo_endpoint": {
       "$id": "#service/echo_endpoint",
       "title": "Echo endpoint",

@@ -66,6 +66,13 @@
       "default": false,
       "type": "boolean"
     },
+    "dns_cache_ttl": {
+      "title": "DNS Cache TTL",
+      "description": "Sets the maximum time KrakenD can store the results of a query to the configured Service Discovery returning the available hosts list. For values under `1s` this setting is ignored.\n\nSee: https://www.krakend.io/docs/backends/service-discovery/",
+      "default": "30s",
+      "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1timeunits.json/$defs/timeunit",
+      "type": "string"
+    },
     "echo_endpoint": {
       "title": "Echo endpoint",
       "description": "Enables the `/__echo/` endpoint for this configuration, that returns information about the incoming request. When using /__echo as a backend you can check the actual headers and content a backend receives after all the zero-trust filtering.",

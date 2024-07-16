@@ -20,6 +20,7 @@
                 "output_encoding": "fast-json",
                 "read_timeout": "10s",
                 "write_timeout": "10s",
+                "dns_cache_ttl": "30s",
                 "dialer_timeout": "10s",
                 "dialer_keep_alive": "15s",
                 "dialer_fallback_delay": "300ms",
