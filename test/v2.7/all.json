@@ -885,6 +885,7 @@
                             },
                             "auth/signer": {
                                 "alg": "EdDSA",
+                                "leeway": "1s",
                                 "cipher_suites": [
                                     49199,
                                     49195,

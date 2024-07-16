@@ -28,7 +28,7 @@
     "alg": {
       "$id": "#auth/signer/alg",
       "title": "Algorithm",
-      "description": "The hashing algorithm used by the issuer. Usually `RS256`. The algorithm you choose directly affects the CPU consumption.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+      "description": "The hashing algorithm used by the issuer. Usually `RS256`. The algorithm you choose directly affects the CPU consumption.\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
       "enum": [
         "EdDSA",
         "HS256",
@@ -48,7 +48,7 @@
     "cipher_suites": {
       "$id": "#auth/signer/cipher_suites",
       "title": "Cipher suites",
-      "description": "Override the default cipher suites (see [JWT validation](https://www.krakend.io/docs/authorization/jwt-validation/)). Unless you have a legacy JWK, **you don't need to set this value**.",
+      "description": "Override the default cipher suites (see [JWT validation](https://www.krakend.io/docs/authorization/jwt-signing/)). Unless you have a legacy JWK, **you don't need to set this value**.",
       "default": [
         49199,
         49195,
@@ -60,7 +60,7 @@
       "type": "array",
       "items": {
         "title": "Object in array",
-        "description": "\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+        "description": "\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
         "enum": [
           5,
           10,
@@ -154,6 +154,17 @@
       "examples": [
         "sim2"
       ],
+      "type": "string"
+    },
+    "leeway": {
+      "title": "Leeway",
+      "description": "A margin of extra time where you will still accept the token after its expiration date. You should not accept expired tokens other than enabling two environments that are not perfectly synchronized and have minor clock drifts to accept each other differences. Any value specified here will be rounded to seconds, with a minimum of one second.\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
+      "examples": [
+        "1m",
+        "1s"
+      ],
+      "default": "1s",
+      "$ref": "../timeunits.json#/$defs/timeunit",
       "type": "string"
     },
     "secret_url": {
