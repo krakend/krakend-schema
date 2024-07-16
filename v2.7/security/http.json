@@ -12,6 +12,13 @@
       "default": [],
       "type": "array"
     },
+    "allowed_hosts_are_regex": {
+      "$id": "#security/http/allowed_hosts_are_regex",
+      "title": "Hosts are regexps",
+      "description": "Treat the allowed hosts list as regular expressions.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+      "default": false,
+      "type": "boolean"
+    },
     "browser_xss_filter": {
       "$id": "#security/http/browser_xss_filter",
       "title": "This feature enables the Cross-site scripting (XSS) filter in the user's browser.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
@@ -44,6 +51,13 @@
       ],
       "default": "",
       "type": "string"
+    },
+    "force_sts_header": {
+      "$id": "#security/http/force_sts_header",
+      "title": "Force STS header",
+      "description": "Force a STS Header even if using plain HTTP.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+      "default": false,
+      "type": "boolean"
     },
     "frame_deny": {
       "$id": "#security/http/frame_deny",

@@ -53,6 +53,13 @@
       ],
       "type": "array"
     },
+    "allow_private_network": {
+      "$id": "#security/cors/allow_private_network",
+      "title": "Allow private network",
+      "description": "Indicates whether to accept cross-origin requests over a private network.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+      "default": false,
+      "type": "boolean"
+    },
     "debug": {
       "$id": "#security/cors/debug",
       "title": "Development flag",
@@ -77,6 +84,30 @@
       "default": "0h",
       "$ref": "../timeunits.json#/$defs/timeunit",
       "type": "string"
+    },
+    "options_passthrough": {
+      "$id": "#security/cors/options_passthrough",
+      "title": "OPTIONS Passthrough",
+      "description": "Instructs preflight to let other potential next handlers to process the OPTIONS method. Turn this on if your application handles OPTIONS.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+      "default": false,
+      "type": "boolean"
+    },
+    "options_success_status": {
+      "$id": "#security/cors/options_success_status",
+      "title": "Success Status Codes",
+      "description": "An array with the HTTP status codes that are considered a success status code.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+      "examples": [
+        [
+          204
+        ]
+      ],
+      "default": [
+        200
+      ],
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
     }
   },
   "patternProperties": {

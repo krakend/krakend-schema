@@ -5174,6 +5174,12 @@
           ],
           "type": "array"
         },
+        "allow_private_network": {
+          "title": "Allow private network",
+          "description": "Indicates whether to accept cross-origin requests over a private network.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+          "default": false,
+          "type": "boolean"
+        },
         "debug": {
           "title": "Development flag",
           "description": "Show debugging information in the logger, **use it only during development**.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
@@ -5195,6 +5201,28 @@
           "default": "0h",
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1timeunits.json/$defs/timeunit",
           "type": "string"
+        },
+        "options_passthrough": {
+          "title": "OPTIONS Passthrough",
+          "description": "Instructs preflight to let other potential next handlers to process the OPTIONS method. Turn this on if your application handles OPTIONS.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+          "default": false,
+          "type": "boolean"
+        },
+        "options_success_status": {
+          "title": "Success Status Codes",
+          "description": "An array with the HTTP status codes that are considered a success status code.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
+          "examples": [
+            [
+              204
+            ]
+          ],
+          "default": [
+            200
+          ],
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
         }
       },
       "patternProperties": {
@@ -5213,6 +5241,12 @@
           "description": "When a request hits KrakenD, it will confirm if the value of the Host HTTP header is in the list. If so, it will further process the request. If the host is not in the allowed hosts list, KrakenD will simply reject the request.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
           "default": [],
           "type": "array"
+        },
+        "allowed_hosts_are_regex": {
+          "title": "Hosts are regexps",
+          "description": "Treat the allowed hosts list as regular expressions.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+          "default": false,
+          "type": "boolean"
         },
         "browser_xss_filter": {
           "title": "This feature enables the Cross-site scripting (XSS) filter in the user's browser.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
@@ -5242,6 +5276,12 @@
           ],
           "default": "",
           "type": "string"
+        },
+        "force_sts_header": {
+          "title": "Force STS header",
+          "description": "Force a STS Header even if using plain HTTP.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+          "default": false,
+          "type": "boolean"
         },
         "frame_deny": {
           "title": "Clickjacking protection",
