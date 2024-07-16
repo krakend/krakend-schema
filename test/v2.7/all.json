@@ -28,6 +28,7 @@
                 "disable_keep_alives": true,
                 "max_idle_connections": 0,
                 "max_idle_connections_per_host": 2,
+                "max_header_bytes": 10000000,
                 "idle_connection_timeout": "10s",
                 "response_header_timeout": "10s",
                 "expect_continue_timeout": "0s",
