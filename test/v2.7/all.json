@@ -1,6 +1,6 @@
 {
     "description": "Full JSON Schema test",
-    "schema": "https://www.krakend.io/schema/v2.7/krakend.json",
+    "target": "https://www.krakend.io/schema/v2.7/krakend.json",
     "tests": [
         {
             "description": "Full test-case",

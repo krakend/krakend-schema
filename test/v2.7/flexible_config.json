@@ -1,6 +1,6 @@
 {
   "description": "Flexible config test",
-  "schema": "https://www.krakend.io/schema/v2.7/flexible_config.json",
+  "target": "https://www.krakend.io/schema/v2.7/flexible_config.json",
   "tests": [
     {
       "description": "Full test-case",
