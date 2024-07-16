@@ -1,6 +1,6 @@
 {
   "description": "martian",
-  "schema": "https://www.krakend.io/schema/v2.7/modifier/martian.json",
+  "target": "https://www.krakend.io/schema/v2.7/modifier/martian.json",
   "tests": [
     {
       "description": "two modifiers without group are not possible",

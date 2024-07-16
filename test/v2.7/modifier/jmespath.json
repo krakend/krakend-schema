@@ -1,6 +1,6 @@
 {
   "description": "JMESPath",
-  "schema": "https://www.krakend.io/schema/v2.7/modifier/jmespath.json",
+  "target": "https://www.krakend.io/schema/v2.7/modifier/jmespath.json",
   "tests": [
     {
       "description": "the empty object is invalid",

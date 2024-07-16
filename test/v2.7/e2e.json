@@ -1,6 +1,6 @@
 {
   "description": "E2E test",
-  "schema": "https://www.krakend.io/schema/v2.7/e2e.json",
+  "target": "https://www.krakend.io/schema/v2.7/e2e.json",
   "tests": [
     {
       "description": "Full test-case",
