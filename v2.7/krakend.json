@@ -5212,9 +5212,9 @@
           "title": "Success Status Codes",
           "description": "The HTTP status code that is considered a success.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
           "examples": [
-            204
+            200
           ],
-          "default": 200,
+          "default": 204,
           "type": "integer"
         }
       },
