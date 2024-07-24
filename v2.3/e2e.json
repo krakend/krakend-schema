@@ -1,5 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://www.krakend.io/schema/v2.3/e2e.json",
   "title": "Schema validation for End To End testing specs",
   "type": "object",
   "required": [
