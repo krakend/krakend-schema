@@ -18,13 +18,13 @@
       ]
     },
     "connect_event": {
-      "$id": "#websocket/input_headers",
+      "$id": "#websocket/connect_event",
       "title": "Connect event",
       "description": "Notifies in the log when there is the client connect event.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
       "type": "boolean"
     },
     "disconnect_event": {
-      "$id": "#websocket/input_headers",
+      "$id": "#websocket/disconnect_event",
       "title": "Allowed Headers In",
       "description": "Notifies in the log when there is a client disconnect event.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
       "type": "boolean"

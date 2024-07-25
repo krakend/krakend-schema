@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://www.krakend.io/schema/v2.1/telemetry/opencensus.json",
+  "$id": "https://www.krakend.io/schema/v2.1/telemetry/instana.json",
   "title": "Telemetry via Instana by IBM",
   "description": "Enterprise only. Send metrics and traces to your Instana dashboard.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/instana/",
   "type": "object",
