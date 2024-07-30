@@ -1539,6 +1539,13 @@
                     }
                 ],
                 "extra_config": {
+                    "modifier/response-headers": {
+                        "add": {
+                            "X-Hello": [
+                            "World"
+                            ]
+                        }
+                    },
                     "telemetry/opentelemetry": {
                         "service_name": "krakend_middle_service",
                         "metric_reporting_period": 0,

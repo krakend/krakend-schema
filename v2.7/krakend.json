@@ -4173,6 +4173,59 @@
       },
       "additionalProperties": false
     },
+    "https://www.krakend.io/schema/v2.7/modifier/response-headers.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Response headers modifier",
+      "description": "Enterprise only. Allows you to transform response headers declaratively.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
+      "type": "object",
+      "minProperties": 1,
+      "properties": {
+        "add": {
+          "title": "Headers to add",
+          "description": ".\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
+          "type": "object",
+          "minProperties": 1,
+          "patternProperties": {
+            ".+": {
+              "type": "array",
+              "items": {
+                "description": "Header value you want to add",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "delete": {
+          "title": "Headers to delete",
+          "description": ".\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "description": "Header you want to delete",
+            "type": "string"
+          }
+        },
+        "replace": {
+          "title": "Headers to replace",
+          "description": ".\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
+          "type": "object",
+          "minProperties": 1,
+          "patternProperties": {
+            ".+": {
+              "type": "array",
+              "items": {
+                "description": "Header value you want to replace",
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
     "https://www.krakend.io/schema/v2.7/plugin/content-replacer.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Content Replacer",
@@ -5649,6 +5702,11 @@
         },
         "modifier/lua-endpoint": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1modifier~1lua.json"
+        },
+        "modifier/response-headers": {
+          "title": "Response Headers modifier",
+          "description": "Enterprise only. Allows you to transform response headers declaratively.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1modifier~1response-headers.json"
         },
         "plugin/http-server": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1plugin~1http-server.json"
