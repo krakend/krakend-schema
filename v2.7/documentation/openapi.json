@@ -223,16 +223,16 @@
     },
     "request_definition": {
       "$id": "#documentation/openapi/request_definition",
-      "title": "Definition of a request (OAS3 only)",
-      "description": "Describes the request needed to consume the endpoint. If a JSON Schema validation exists, it takes precedence when generating the documentation. An example use case is when you need to document a `multipart/form-data` request body.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "title": "Definition of a request",
+      "description": "Describes the payload needed to consume the endpoint. If a JSON Schema validation exists, it takes precedence when generating the documentation. An example use case is when you need to document a `multipart/form-data` request body.This property is an array because you can document requests with multiple content types.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
       "examples": [
         [
           {
-            "description": "Page not found",
-            "@comment": "Some comment",
+            "description": "Updates the user",
             "content_type": "application/json",
             "example": {
-              "status": "KO"
+              "first_name": "Mary",
+              "id_user": 33
             }
           }
         ]
@@ -252,7 +252,7 @@
           },
           "content_type": {
             "title": "Content Type",
-            "description": "The content type returned by this error, e.g., `application/json`",
+            "description": "The content type returned by this error, e.g., `application/json`. You cannot repeat this content type in another item.",
             "type": "string"
           },
           "example": {
