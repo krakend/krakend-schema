@@ -2473,6 +2473,12 @@
           ],
           "type": "string"
         },
+        "jwt_key": {
+          "title": "JWT key",
+          "description": "When generating an OpenAPI spec, the name of the JWT key used under components securitySchemes.",
+          "default": "KrakenD-JWT",
+          "type": "string"
+        },
         "license_name": {
           "title": "License name",
           "description": "The license name (e.g.: Apache License)\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
@@ -2496,6 +2502,42 @@
             "GET/foo"
           ],
           "type": "string"
+        },
+        "param_definition": {
+          "title": "Param definition",
+          "description": "Sets a description for the URL parameters (e.g.: `/foo/{param}`) required in the endpoint. Make sure to include to write the param exactly as in the endpoint definition.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "examples": [
+            [
+              {
+                "description": "The unique user ID",
+                "name": "id_user"
+              }
+            ]
+          ],
+          "type": "array",
+          "items": {
+            "title": "Parameters",
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "description": {
+                "title": "Name",
+                "description": "The description of the parameter",
+                "type": "string"
+              },
+              "name": {
+                "title": "Name",
+                "description": "The name of the parameter, as declared in `endpoint` without the curly braces `{}`",
+                "type": "string"
+              }
+            },
+            "patternProperties": {
+              "^[@$_#]": {}
+            },
+            "additionalProperties": false
+          }
         },
         "query_definition": {
           "title": "Query definition",
@@ -2542,67 +2584,69 @@
           "title": "Definition of a request (OAS3 only)",
           "description": "Describes the request needed to consume the endpoint. If a JSON Schema validation exists, it takes precedence when generating the documentation. An example use case is when you need to document a `multipart/form-data` request body.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [
-            {
-              "description": "Page not found",
-              "@comment": "Some comment",
-              "content_type": "application/json",
-              "example": {
-                "status": "KO"
+            [
+              {
+                "description": "Page not found",
+                "@comment": "Some comment",
+                "content_type": "application/json",
+                "example": {
+                  "status": "KO"
+                }
               }
-            }
+            ]
           ],
-          "type": [
-            "object"
-          ],
-          "required": [
-            "content_type"
-          ],
-          "properties": {
-            "description": {
-              "title": "Description",
-              "description": "The description of the payload this endpoint accepts.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-              "type": [
-                "string"
-              ]
+          "type": "array",
+          "items": {
+            "required": [
+              "content_type"
+            ],
+            "properties": {
+              "description": {
+                "title": "Description",
+                "description": "The description of the payload this endpoint accepts.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                "type": [
+                  "string"
+                ]
+              },
+              "content_type": {
+                "title": "Content Type",
+                "description": "The content type returned by this error, e.g., `application/json`",
+                "type": "string"
+              },
+              "example": {
+                "title": "Content Type",
+                "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                "type": [
+                  "string",
+                  "object",
+                  "array",
+                  "boolean",
+                  "integer",
+                  "null",
+                  "number"
+                ]
+              },
+              "example_schema": {
+                "description": "A JSON schema that describes the request format for the accepted payload in the endpoint. Use either example or example_schema, but not both.",
+                "type": [
+                  "string",
+                  "object"
+                ]
+              },
+              "ref": {
+                "title": "Reference",
+                "description": "The relative reference to the `components/schema` OpenAPI definition that will be used as definition of the accepted request. Notice that the path `#/components/schemas/` is not needed.",
+                "examples": [
+                  "your_schema_name"
+                ],
+                "type": "string"
+              }
             },
-            "content_type": {
-              "title": "Content Type",
-              "description": "The content type returned by this error, e.g., `application/json`",
-              "type": "string"
+            "patternProperties": {
+              "^[@$_#]": {}
             },
-            "example": {
-              "title": "Content Type",
-              "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-              "type": [
-                "string",
-                "object",
-                "array",
-                "boolean",
-                "integer",
-                "null",
-                "number"
-              ]
-            },
-            "example_schema": {
-              "description": "A JSON schema that describes the request format for the accepted payload in the endpoint. Use either example or example_schema, but not both.",
-              "type": [
-                "string",
-                "object"
-              ]
-            },
-            "ref": {
-              "title": "Reference",
-              "description": "The relative reference to the `components/schema` OpenAPI definition that will be used as definition of the accepted request. Notice that the path `#/components/schemas/` is not needed.",
-              "examples": [
-                "your_schema_name"
-              ],
-              "type": "string"
-            }
-          },
-          "patternProperties": {
-            "^[@$_#]": {}
-          },
-          "additionalProperties": false
+            "additionalProperties": false
+          }
         },
         "response_definition": {
           "title": "Definition of errors (OAS3 only)",
@@ -4182,11 +4226,12 @@
       "properties": {
         "add": {
           "title": "Headers to add",
-          "description": ".\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
+          "description": "The headers you want to add. Every key under `add` is the header name, and the values are declared in an array with all those you want to set. If the header didn't exist previously, it is created with the values you passed. If the header existed, then the new values are appended.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
           "type": "object",
           "minProperties": 1,
           "patternProperties": {
-            ".+": {
+            "(.+)": {
+              "description": "Header name you want to add",
               "type": "array",
               "items": {
                 "description": "Header value you want to add",
@@ -4197,7 +4242,13 @@
         },
         "delete": {
           "title": "Headers to delete",
-          "description": ".\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
+          "description": "The list of headers you want to delete. All headers listed will be missing in the response.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
+          "examples": [
+            [
+              "X-Krakend",
+              "X-Krakend-Completed"
+            ]
+          ],
           "type": "array",
           "minItems": 1,
           "items": {
@@ -4207,11 +4258,11 @@
         },
         "replace": {
           "title": "Headers to replace",
-          "description": ".\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
+          "description": "The headers you want to replace. The key used under `replace` is the header name, and the value an array with all the header values you want to set. The replacement overwrites any other value that could exist in this header.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
           "type": "object",
           "minProperties": 1,
           "patternProperties": {
-            ".+": {
+            "(.+)": {
               "type": "array",
               "items": {
                 "description": "Header value you want to replace",
