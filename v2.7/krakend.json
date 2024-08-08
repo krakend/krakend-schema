@@ -2251,6 +2251,12 @@
         },
         "validation/cel": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1validation~1cel.json"
+        },
+        "workflow": {
+          "title": "Workflow",
+          "description": "Enterprise only. A whole new endpoint that is executed within this backend context.",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1workflow.json",
+          "type": "object"
         }
       },
       "patternProperties": {
@@ -7843,6 +7849,186 @@
           "description": "Sets the maximum time KrakenD will wait until the write times out.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
           "default": "10s",
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1timeunits.json/$defs/timeunit"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.7/workflow.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Endpoint Object",
+      "default": {
+        "backend": [
+          {
+            "url_pattern": "/url"
+          }
+        ],
+        "endpoint": "/foo"
+      },
+      "type": "object",
+      "required": [
+        "endpoint",
+        "backend"
+      ],
+      "properties": {
+        "backend": {
+          "title": "Backend",
+          "description": "List of all the [backend objects](https://www.krakend.io/docs/backends/) queried for this endpoint",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1backend.json",
+            "type": "object"
+          }
+        },
+        "concurrent_calls": {
+          "title": "Concurrent calls",
+          "description": "The concurrent requests are an excellent technique to improve the response times and decrease error rates by requesting in parallel the same information multiple times. Yes, you make the same request to several backends instead of asking to just one. When the first backend returns the information, the remaining requests are canceled.\n\nSee: https://www.krakend.io/docs/endpoints/concurrent-requests/",
+          "default": 1,
+          "type": "integer",
+          "maximum": 5,
+          "minimum": 1
+        },
+        "endpoint": {
+          "title": "Endpoint",
+          "description": "The exact string resource URL you want to expose. You can use `{placeholders}` to use variables when needed. URLs do not support colons `:` in their definition. Endpoints should start with slash `/`. Example: `/foo/{var}`. If `{vars}` are placed in the middle words, like in `/var{iable}` you must set in the root level `disable_rest` strict checking. You can also add an ending `/*` in the path to enable [wildcards](https://www.krakend.io/docs/enterprise/endpoints/wildcard/) (Enterprise only)\n\nSee: https://www.krakend.io/docs/endpoints/",
+          "examples": [
+            "/new-endpoint",
+            "/foo/{var}",
+            "/foo/{var1}/{var2}"
+          ],
+          "type": "string",
+          "pattern": "^\\/[^\\*\\?\\&\\%]*(\\/\\*)?$"
+        },
+        "extra_config": {
+          "title": "Extra configuration",
+          "description": "Configuration entries for additional components that are executed within this endpoint, during the request, response or merge operations.",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1workflow_extra_config.json",
+          "type": "object"
+        },
+        "output_encoding": {
+          "title": "Output encoding",
+          "description": "The gateway can work with several content types, even allowing your clients to choose how to consume the content. See the [supported encodings](https://www.krakend.io/docs/endpoints/content-types/)",
+          "default": "json",
+          "enum": [
+            "json",
+            "json-collection",
+            "fast-json",
+            "xml",
+            "negotiate",
+            "string",
+            "no-op"
+          ]
+        },
+        "timeout": {
+          "title": "Timeout",
+          "description": "The duration you write in the timeout represents the **whole duration of the pipe**, so it counts the time all your backends take to respond and the processing of all the components involved in the endpoint (the request, fetching data, manipulation, etc.). Usually specified in seconds (`s`) or milliseconds (`ms`. e.g.: `2000ms` or `2s`). If you don't set any timeout, the timeout is taken from the entry in the service level, or to the system's default",
+          "examples": [
+            "2s",
+            "1500ms"
+          ],
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.7/workflow_extra_config.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Schema definition for extra_config of workflows",
+      "type": "object",
+      "properties": {
+        "modifier/jmespath": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1modifier~1jmespath.json"
+        },
+        "modifier/lua-proxy": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1modifier~1lua.json"
+        },
+        "modifier/request-body-generator": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1modifier~1body-generator.json"
+        },
+        "modifier/response-body-generator": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1modifier~1body-generator.json"
+        },
+        "plugin/req-resp-modifier": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1plugin~1req-resp-modifier.json"
+        },
+        "proxy": {
+          "title": "Proxy",
+          "type": "object",
+          "properties": {
+            "combiner": {
+              "title": "Custom combiner",
+              "description": "For custom builds of KrakenD only",
+              "examples": [
+                "combiner_name"
+              ],
+              "type": "string"
+            },
+            "flatmap_filter": {
+              "title": "Flatmap (Array manipulation)",
+              "description": "The list of operations to **execute sequentially** (top down). Every operation is defined with an object containing two properties:\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
+              "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1proxy~1flatmap.json",
+              "type": "array"
+            },
+            "sequential": {
+              "title": "Sequential proxy",
+              "description": "The sequential proxy allows you to chain backend requests, making calls dependent one of each other.\n\nSee: https://www.krakend.io/docs/endpoints/sequential-proxy/",
+              "default": true,
+              "type": "boolean"
+            },
+            "static": {
+              "title": "Static response",
+              "description": "The static proxy injects static data in the final response when the selected strategy matches.\n\nSee: https://www.krakend.io/docs/endpoints/static-proxy/",
+              "type": "object",
+              "required": [
+                "data",
+                "strategy"
+              ],
+              "properties": {
+                "data": {
+                  "title": "Data",
+                  "description": "The static data (as a JSON object) that you will return.\n\nSee: https://www.krakend.io/docs/endpoints/static-proxy/",
+                  "type": "object"
+                },
+                "strategy": {
+                  "title": "Strategy",
+                  "description": "One of the supported strategies\n\nSee: https://www.krakend.io/docs/endpoints/static-proxy/",
+                  "enum": [
+                    "always",
+                    "success",
+                    "complete",
+                    "errored",
+                    "incomplete"
+                  ]
+                }
+              },
+              "patternProperties": {
+                "^[@$_#]": {}
+              },
+              "additionalProperties": false
+            }
+          },
+          "patternProperties": {
+            "^[@$_#]": {}
+          },
+          "additionalProperties": false
+        },
+        "security/policies": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1security~1policies.json"
+        },
+        "validation/cel": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1validation~1cel.json"
+        },
+        "validation/json-schema": {
+          "title": "Validating the body with the JSON Schema",
+          "description": "apply automatic validations using the JSON Schema vocabulary before the content passes to the backends. The json schema component allows you to define validation rules on the body, type definition, or even validate the fields' values.\n\nSee: https://www.krakend.io/docs/endpoints/json-schema/",
+          "type": "object"
         }
       },
       "patternProperties": {

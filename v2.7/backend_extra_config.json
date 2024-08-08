@@ -150,6 +150,12 @@
     },
     "validation/cel": {
       "$ref": "validation/cel.json"
+    },
+    "workflow": {
+      "title": "Workflow",
+      "description": "Enterprise only. A whole new endpoint that is executed within this backend context.",
+      "$ref": "workflow.json",
+      "type": "object"
     }
   },
   "patternProperties": {
