@@ -5,87 +5,81 @@
         {
             "description": "Workflow test case",
             "data": {
-                "version": 3,
-                "endpoints": [
-                    {
-                        "endpoint": "/foo/{var1}/{var2}",
-                        "backend": [
-                            {
-                                "url_pattern": "/__debug/root",
-                                "group": "l0-0"
-                            },
-                            {
-                                "url_pattern": "/__workflow/l0-1/{input_headers.User-Agent}/{input_headers.Accept}",
-                                "group": "l0-1",
-                                "extra_config": {
-                                    "workflow": {
-                                        "name": "tupu",
-                                        "backend": [
-                                            {
-                                                "url_pattern": "/__debug/foo/{input_headers.User-Agent}",
-                                                "group": "l1-0"
-                                            },
-                                            {
-                                                "url_pattern": "/__workflow/l1-1/{input_headers.Accept}/{input_headers.Accept}",
-                                                "group": "l1-1",
+                "version": 3,          
+                "endpoints": [{
+                    "endpoint": "/foo/{var1}/{var2}",
+                    "backend": [{
+                        "url_pattern": "/__debug/root",
+                        "group": "l0-0"
+                    }, {
+                        "url_pattern": "/__workflow/l0-1/{input_headers.User-Agent}/{input_headers.Accept}/{var1}/{var2}",
+                        "group": "l0-1",
+                        "extra_config": {
+                            "workflow": {
+                                "endpoint": "/internal1/{var1}/{var2}",
+                                "backend": [{
+                                    "url_pattern": "/__debug/foo/{input_headers.User-Agent}/{var1}/{var2}",
+                                    "group": "l1-0"
+                                }, {
+                                    "url_pattern": "/__workflow/l1-1/{var1}/{var2}",
+                                    "group": "l1-1",
+                                    "extra_config": {
+                                        "workflow": {
+                                            "endpoint": "/internal2/{var1}/{var2}",
+                                            "ignore_errors": true,
+                                            "backend": [{
+                                                "url_pattern": "/__debug/foo/{input_headers.User-Agent}/{var1}/{var2}",
+                                                "group": "l2-0"
+                                            }, {
+                                                "url_pattern": "/__debug/bar/{var1}/{var2}",
+                                                "group": "l2-1",
                                                 "extra_config": {
                                                     "workflow": {
-                                                        "name": "supu",
-                                                        "backend": [
-                                                            {
-                                                                "url_pattern": "/__debug/foo/{input_headers.User-Agent}",
-                                                                "group": "l2-0"
-                                                            },
-                                                            {
-                                                                "url_pattern": "/__debug/bar/{input_headers.Accept}",
-                                                                "group": "l2-1",
-                                                                "extra_config": {
-                                                                    "workflow": {
-                                                                        "name": "supu/l2",
-                                                                        "backend": [
-                                                                            {
-                                                                                "url_pattern": "/__debug/foo/bar",
-                                                                                "group": "l2-1-0"
-                                                                            },
-                                                                            {
-                                                                                "url_pattern": "/__debug/bar/{input_headers.Accept}",
-                                                                                "group": "l2-1-1",
-                                                                                "extra_config": {
-                                                                                    "workflow": {
-                                                                                        "name": "internal/not/accessible/endpoint",
-                                                                                        "backend": [
-                                                                                            {
-                                                                                                "url_pattern": "/__debug/foo/bar",
-                                                                                                "group": "l2-1-1-0"
-                                                                                            },
-                                                                                            {
-                                                                                                "url_pattern": "/__debug/bar/{input_headers.Accept}",
-                                                                                                "group": "l2-1-1-1"
-                                                                                            }
-                                                                                        ]
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        ]
+                                                        "endpoint": "/internal3/{var1}/{var2}",
+                                                        "backend": [{
+                                                            "url_pattern": "/__debug/foo/bar",
+                                                            "group": "l2-1-0"
+                                                        }, {
+                                                            "url_pattern": "/__debug/bar/{var1}/{var2}",
+                                                            "group": "l2-1-1",
+                                                            "extra_config": {
+                                                                "workflow": {
+                                                                    "endpoint": "/internal4/{var1}/{var2}",
+                                                                    "backend": [{
+                                                                        "url_pattern": "/__debug/foo/bar/{input_headers.User-Agent}/{var1}/{var2}",
+                                                                        "group": "l2-1-1-0"
+                                                                    }, {
+                                                                        "url_pattern": "/__debug/bar/{input_headers.Accept}/{var1}/{var2}",
+                                                                        "group": "l2-1-1-1"
+                                                                    }],
+                                                                    "extra_config": {
+                                                                        "proxy": {
+                                                                            "sequential": true
+                                                                        }
                                                                     }
                                                                 }
                                                             }
-                                                        ]
+                                                        }]
                                                     }
                                                 }
-                                            }
-                                        ],
-                                        "extra_config": {
-                                            "proxy": {
-                                                "sequential": true
+                                            }],
+                                            "extra_config": {
+                                                "proxy": {
+                                                    "sequential": true
+                                                }
                                             }
                                         }
                                     }
+                                }],
+                                "extra_config": {
+                                    "proxy": {
+                                        "sequential": true
+                                    }
                                 }
                             }
-                        ]
-                    }
-                ]
+                        }
+                    }]
+                }]
             },
             "valid": true
         }

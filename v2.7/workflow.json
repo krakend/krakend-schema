@@ -4,7 +4,7 @@
   "title": "Workflow Object",
   "type": "object",
   "required": [
-    "name",
+    "endpoint",
     "backend"
   ],
   "properties": {
@@ -27,6 +27,15 @@
       "maximum": 5,
       "minimum": 1
     },
+    "endpoint": {
+      "$id": "#workflow/endpoint",
+      "title": "Workflow endpoint name",
+      "description": "An endpoint name for the workflow that will be used in logs. The name will be appended to the string `/__workflow/` in the logs, and although it does not receive traffic under this route, it is necessary when you want to pass URL `{params}` to the nested backends.\n\nSee: https://www.krakend.io/docs/endpoints/",
+      "examples": [
+        "/workflow-1/{param1}"
+      ],
+      "type": "string"
+    },
     "extra_config": {
       "title": "Extra configuration",
       "description": "Configuration entries for additional components that are executed within this endpoint, during the request, response or merge operations.",
@@ -38,15 +47,6 @@
       "title": "Ignore errors",
       "description": "Allow the workflow to continue with the rest of declared actions when there are errors (like security policies, network errors, etc). The default behavior of KrakenD is to abort an execution that has errors as soon as possible. If you use conditional backends and similar approaches, you might want to allow the gateway to go through all steps.\n\nSee: https://www.krakend.io/docs/endpoints/",
       "default": false
-    },
-    "name": {
-      "$id": "#workflow/name",
-      "title": "Workflow name",
-      "description": "An identifier for the workflow that will be used in logs. The name will be appended to the string `/__workflow/` in the logs.\n\nSee: https://www.krakend.io/docs/endpoints/",
-      "examples": [
-        "workflow-1"
-      ],
-      "type": "string"
     },
     "output_encoding": {
       "$id": "#workflow/output_encoding",
