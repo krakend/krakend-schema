@@ -21,28 +21,37 @@
       "items": {
         "type": "object",
         "properties": {
-          "tier_value_as": {
-            "title": "Tier value as",
-            "description": "Determines how to parse the value found in the tier header. When `literal` is used, the exact value of the header is compared against the tier name. When `policy` is used, the value is used to evaluate a policy. When `*` is used, all values will match. Make sure to put the `*` as the last tier; otherwise the rest will be ignored.\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",            
-            "default": "literal",
-            "enum": ["literal","policy","*"]
-          },
-          "tier_value": {
-            "title": "Tier value",
-            "description": "The tier value. When you use `literal`, it is the tier name. When you use `policy`, it is the expression you want to evaluate to determine if the user matches this tier or not (see security policies for syntax).\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",            
-            "default": "",
-            "type": ["string"],
-            "examples": ["gold","silver","value.matches('User-[a-Z]+')"]
-          },
-          "ratelimit":{
+          "ratelimit": {
             "title": "Ratelimit",
             "description": "The rate limit definition. This is an object with the same attributes the [service rate limit](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/) has.\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
             "$ref": "router.json",
             "type": "object"
+          },
+          "tier_value": {
+            "title": "Tier value",
+            "description": "The tier value. When you use `literal`, it is the tier name. When you use `policy`, it is the expression you want to evaluate to determine if the user matches this tier or not (see security policies for syntax).\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
+            "examples": [
+              "gold",
+              "silver",
+              "value.matches('User-[a-Z]+')"
+            ],
+            "default": "",
+            "type": [
+              "string"
+            ]
+          },
+          "tier_value_as": {
+            "title": "Tier value as",
+            "description": "Determines how to parse the value found in the tier header. When `literal` is used, the exact value of the header is compared against the tier name. When `policy` is used, the value is used to evaluate a policy. When `*` is used, all values will match. Make sure to put the `*` as the last tier; otherwise the rest will be ignored.\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
+            "default": "literal",
+            "enum": [
+              "literal",
+              "policy",
+              "*"
+            ]
           }
         }
       }
     }
-
   }
 }

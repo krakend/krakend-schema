@@ -27,6 +27,12 @@
       "maximum": 5,
       "minimum": 1
     },
+    "extra_config": {
+      "title": "Extra configuration",
+      "description": "Configuration entries for additional components that are executed within this endpoint, during the request, response or merge operations.",
+      "$ref": "workflow_extra_config.json",
+      "type": "object"
+    },
     "ignore_errors": {
       "$id": "#workflow/ignore_errors",
       "title": "Ignore errors",
@@ -41,12 +47,6 @@
         "workflow-1"
       ],
       "type": "string"
-    },
-    "extra_config": {
-      "title": "Extra configuration",
-      "description": "Configuration entries for additional components that are executed within this endpoint, during the request, response or merge operations.",
-      "$ref": "workflow_extra_config.json",
-      "type": "object"
     },
     "output_encoding": {
       "$id": "#workflow/output_encoding",

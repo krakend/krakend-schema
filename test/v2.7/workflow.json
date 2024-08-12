@@ -19,7 +19,7 @@
                                 "group": "l0-1",
                                 "extra_config": {
                                     "workflow": {
-                                        "endpoint": "/tupu",
+                                        "name": "tupu",
                                         "backend": [
                                             {
                                                 "url_pattern": "/__debug/foo/{input_headers.User-Agent}",
@@ -30,7 +30,7 @@
                                                 "group": "l1-1",
                                                 "extra_config": {
                                                     "workflow": {
-                                                        "endpoint": "/supu",
+                                                        "name": "supu",
                                                         "backend": [
                                                             {
                                                                 "url_pattern": "/__debug/foo/{input_headers.User-Agent}",
@@ -41,7 +41,7 @@
                                                                 "group": "l2-1",
                                                                 "extra_config": {
                                                                     "workflow": {
-                                                                        "endpoint": "/supu/l2",
+                                                                        "name": "supu/l2",
                                                                         "backend": [
                                                                             {
                                                                                 "url_pattern": "/__debug/foo/bar",
@@ -52,7 +52,7 @@
                                                                                 "group": "l2-1-1",
                                                                                 "extra_config": {
                                                                                     "workflow": {
-                                                                                        "endpoint": "/internal/not/accessible/endpoint",
+                                                                                        "name": "internal/not/accessible/endpoint",
                                                                                         "backend": [
                                                                                             {
                                                                                                 "url_pattern": "/__debug/foo/bar",
