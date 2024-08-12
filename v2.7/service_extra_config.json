@@ -28,6 +28,11 @@
     "modifier/lua-endpoint": {
       "$ref": "modifier/lua.json"
     },
+    "modifier/response-headers": {
+      "title": "Response Headers modifier",
+      "description": "Enterprise only. Allows you to transform response headers declaratively.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
+      "$ref": "modifier/response-headers.json"
+    },
     "plugin/http-server": {
       "$ref": "plugin/http-server.json"
     },
