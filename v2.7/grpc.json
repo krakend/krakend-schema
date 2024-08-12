@@ -1,7 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://www.krakend.io/schema/v2.7/grpc.json",
-  "title": "gRPC integration",
+  "title": "gRPC server",
+  "description": "Enterprise only. gRPC server integration",
   "type": "object",
   "required": [
     "catalog"
@@ -71,6 +72,23 @@
                         "$ref": "backend.json",
                         "type": "object"
                       }
+                    },
+                    "extra_config": {
+                      "title": "Extra configuration",
+                      "description": "Extra configuration for this method",
+                      "type": "object",
+                      "properties": {
+                        "auth/validator": {
+                          "title": "JWT validation",
+                          "description": "The JWT validation for this method. The configuration underneath is exactly as in the [JWT validator](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/)",
+                          "$ref": "auth/validator.json",
+                          "type": "object"
+                        }
+                      },
+                      "patternProperties": {
+                        "^[@$_#]": {}
+                      },
+                      "additionalProperties": false
                     },
                     "input_headers": {
                       "title": "Allowed Headers In",
