@@ -9,6 +9,14 @@
       "description": "Whether to enable the debug mode or not. The debug shows the hierarchy of the settings tree in the console. You can also enable this flag during runtime passing an environment variable `FC_DEBUG=true`.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
       "type": "boolean"
     },
+    "keys_naming_rules": {
+      "title": "Key naming",
+      "description": "Allows you to apply configuration inheritance using `freeform` keys, or alphanumeric characters (`strict`).\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
+      "enum": [
+        "strict",
+        "freeform"
+      ]
+    },
     "meta_key": {
       "title": "Metadata key",
       "description": "The name of the variable you have available on templates containing the tree of files involved in the configuration (except partials). You can access to this variable with a starting dot, e.g., `{{ .meta }}`.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",

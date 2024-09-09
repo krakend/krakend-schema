@@ -31,7 +31,8 @@
         "out": "result.json",
         "debug": true
       },
-      "valid": true
+      "valid": true,
+      "keys_naming_rules": "strict"
     }
   ]
 }
