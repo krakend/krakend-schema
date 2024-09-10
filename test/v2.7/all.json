@@ -182,6 +182,8 @@
                                         "path": "./static/"
                                     },
                                     "backend/grpc": {
+                                        "use_request_body": false,
+                                        "use_alternate_host_on_error": true,
                                         "client_tls": {
                                             "@comment": "Allow untrusted certificates in development stage",
                                             "allow_insecure_connections": true

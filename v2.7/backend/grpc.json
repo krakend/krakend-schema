@@ -91,6 +91,11 @@
         "snake_case"
       ]
     },
+    "use_alternate_host_on_error": {
+      "title": "Use alternate host on error",
+      "description": "When `true`, before sending a message to a host, it checks if the connection status is in a \"transient failure\" or \"failure\" state and tries to use a different host (from the service discovery or randomly from the list of hosts). If the connection is in a valid state, but an error happens when sending the gRPC message, it also tries to use a different host to retry sending the message. Depending on the host list, the retry attempts may go to the same host initially in a \"bad state\".\n\nSee: https://www.krakend.io/docs/backends/grpc/",
+      "type": "boolean"
+    },
     "use_request_body": {
       "title": "Use body",
       "description": "Enables the use of the sent body to fill the gRPC request. Take into account that when you set this flag to `true` a body is expected, and this body is **consumed** in the first backend. If the endpoint that uses this gRPC backend has additional backends (either gRPC or HTTP) that also expect to consume the payload, these requests might fail.\n\nSee: https://www.krakend.io/docs/backends/grpc/",
