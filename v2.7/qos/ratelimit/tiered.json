@@ -17,7 +17,7 @@
     "tiers": {
       "title": "Tiers",
       "description": "The list of all tier definitions and limits for each. Each item in the list is a tier object.\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
-      "type": "object",
+      "type": "array",
       "items": {
         "type": "object",
         "properties": {

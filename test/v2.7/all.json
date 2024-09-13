@@ -170,6 +170,58 @@
                         "input_query_strings": [
                             "*"
                         ],
+                        "extra_config": {
+                            "qos/ratelimit/tiered": {
+                                "tier_key": "X-Plan",
+                                "tiers": [
+                                    {
+                                        "tier_value": "admin",
+                                        "tier_value_as": "literal",
+                                        "ratelimit": {
+                                            "client_max_rate": 100,
+                                            "client_capacity": 100,
+                                            "every": "1m",
+                                            "max_rate": 10000,
+                                            "strategy": "header",
+                                            "key": "X-Account-Id"
+                                        }
+                                    },
+                                    {
+                                        "tier_value": "user",
+                                        "tier_value_as": "literal",
+                                        "ratelimit": {
+                                            "client_max_rate": 20,
+                                            "client_capacity": 20,
+                                            "every": "1m",
+                                            "max_rate": 10000,
+                                            "strategy": "header",
+                                            "key": "X-Account-Id"
+                                        }
+                                    },
+                                    {
+                                        "tier_value": "value.matches('Account-[a-Z]+')",
+                                        "tier_value_as": "policy",
+                                        "ratelimit": {
+                                            "client_max_rate": 20,
+                                            "client_capacity": 20,
+                                            "every": "1m",
+                                            "strategy": "header",
+                                            "client_key": "X-USER-ID"
+                                        }
+                                    },
+                                    {
+                                        "tier_value": "",
+                                        "tier_value_as": "*",
+                                        "ratelimit": {
+                                            "client_max_rate": 2,
+                                            "client_capacity": 2,
+                                            "every": "1m",
+                                            "strategy": "ip"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
                         "backend": [
                             {
                                 "host": [
@@ -1543,6 +1595,56 @@
                     }
                 ],
                 "extra_config": {
+                    "qos/ratelimit/tiered": {
+                        "tier_key": "X-Plan",
+                        "tiers": [
+                            {
+                                "tier_value": "admin",
+                                "tier_value_as": "literal",
+                                "ratelimit": {
+                                    "client_max_rate": 100,
+                                    "client_capacity": 100,
+                                    "every": "1m",
+                                    "max_rate": 10000,
+                                    "strategy": "header",
+                                    "key": "X-Account-Id"
+                                }
+                            },
+                            {
+                                "tier_value": "user",
+                                "tier_value_as": "literal",
+                                "ratelimit": {
+                                    "client_max_rate": 20,
+                                    "client_capacity": 20,
+                                    "every": "1m",
+                                    "max_rate": 10000,
+                                    "strategy": "header",
+                                    "key": "X-Account-Id"
+                                }
+                            },
+                            {
+                                "tier_value": "value.matches('Account-[a-Z]+')",
+                                "tier_value_as": "policy",
+                                "ratelimit": {
+                                    "client_max_rate": 20,
+                                    "client_capacity": 20,
+                                    "every": "1m",
+                                    "strategy": "header",
+                                    "client_key": "X-USER-ID"
+                                }
+                            },
+                            {
+                                "tier_value": "",
+                                "tier_value_as": "*",
+                                "ratelimit": {
+                                    "client_max_rate": 2,
+                                    "client_capacity": 2,
+                                    "every": "1m",
+                                    "strategy": "ip"
+                                }
+                            }
+                        ]
+                    },
                     "modifier/response-headers": {
                         "add": {
                             "X-Hello": [

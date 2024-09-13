@@ -3097,6 +3097,9 @@
           "description": "The router rate limit feature allows you to set a number of maximum requests per second a KrakenD endpoint will accept.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1qos~1ratelimit~1router.json"
         },
+        "qos/ratelimit/tiered": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1qos~1ratelimit~1tiered.json"
+        },
         "security/bot-detector": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1security~1bot-detector.json"
         },
@@ -5057,6 +5060,62 @@
         }
       }
     },
+    "https://www.krakend.io/schema/v2.7/qos/ratelimit/tiered.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Tiered Rate Limit",
+      "description": "Enterprise Only. Apply ratelimit based on tier match.",
+      "type": "object",
+      "required": [
+        "tier_key",
+        "tiers"
+      ],
+      "properties": {
+        "tier_key": {
+          "title": "Tier key",
+          "description": "The header name containing the tier name. The string you provide is case-insensitive. If you need to take the value from a place that is not a header (a token, an API key), you must use propagate functions in the components that convert values to internal headers.\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
+          "type": "string"
+        },
+        "tiers": {
+          "title": "Tiers",
+          "description": "The list of all tier definitions and limits for each. Each item in the list is a tier object.\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ratelimit": {
+                "title": "Ratelimit",
+                "description": "The rate limit definition. This is an object with the same attributes the [service rate limit](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/) has.\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
+                "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1qos~1ratelimit~1router.json",
+                "type": "object"
+              },
+              "tier_value": {
+                "title": "Tier value",
+                "description": "The tier value. When you use `literal`, it is the tier name. When you use `policy`, it is the expression you want to evaluate to determine if the user matches this tier or not (see security policies for syntax).\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
+                "examples": [
+                  "gold",
+                  "silver",
+                  "value.matches('User-[a-Z]+')"
+                ],
+                "default": "",
+                "type": [
+                  "string"
+                ]
+              },
+              "tier_value_as": {
+                "title": "Tier value as",
+                "description": "Determines how to parse the value found in the tier header. When `literal` is used, the exact value of the header is compared against the tier name. When `policy` is used, the value is used to evaluate a policy. When `*` is used, all values will match. Make sure to put the `*` as the last tier; otherwise the rest will be ignored.\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
+                "default": "literal",
+                "enum": [
+                  "literal",
+                  "policy",
+                  "*"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
     "https://www.krakend.io/schema/v2.7/router.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Router Options",
@@ -5806,6 +5865,9 @@
           "title": "Service Rate-limiting",
           "description": "Enterprise Only. The service rate limit feature allows you to set the maximum requests per second a user or group of users can do to KrakenD and works analogously to the endpoint rate limit.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/",
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1qos~1ratelimit~1router.json"
+        },
+        "qos/ratelimit/tiered": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1qos~1ratelimit~1tiered.json"
         },
         "router": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1router.json"
