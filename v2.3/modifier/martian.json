@@ -21,6 +21,15 @@
           "description": "The body you want to set, formatted in base64.",
           "type": "string"
         },
+        "contentType": {
+          "title": "Content Type",
+          "description": "The content-type representing the body you are setting",
+          "examples": [
+            "application/x-www-form-urlencoded",
+            "text/plain"
+          ],
+          "type": "string"
+        },
         "scope": {
           "title": "Scope",
           "description": "Scopes in which this modifier acts",

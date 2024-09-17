@@ -984,7 +984,8 @@
                                                 "response"
                                             ],
                                             "@comment": "Send a {'msg':'you rock!'}",
-                                            "body": "eyJtc2ciOiJ5b3Ugcm9jayEifQ=="
+                                            "body": "eyJtc2ciOiJ5b3Ugcm9jayEifQ==",
+                                            "contentType": "application/json"
                                         }
                                     }
                                 }
