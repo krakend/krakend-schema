@@ -37,8 +37,8 @@
     },
     "client_certs": {
       "$id": "client_tls/client_certs",
-      "title": "Cipher Suites",
-      "description": "The list of cipher suites as defined in the documentation.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
+      "title": "Client certificates",
+      "description": "The list of all client certificates available when fetching data from the upstream service.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
       "type": "array",
       "items": {
         "type": "object",

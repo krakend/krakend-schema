@@ -2314,8 +2314,8 @@
           "uniqueItems": true
         },
         "client_certs": {
-          "title": "Cipher Suites",
-          "description": "The list of cipher suites as defined in the documentation.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
+          "title": "Client certificates",
+          "description": "The list of client certificates as defined in the documentation.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
           "type": "array",
           "items": {
             "type": "object",
