@@ -5,6 +5,118 @@
   "description": "Enterprise only. Overrides metrics and traces declared by the OpenTelemetry service.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry-by-endpoint/",
   "type": "object",
   "properties": {
+    "layers": {
+      "title": "Layers",
+      "description": "A request and response flow passes through three different layers. This sections allows to add backend layer properties to a single backend.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+      "type": "object",
+      "properties": {
+        "backend": {
+          "title": "Report backend activity",
+          "description": "Reports the activity between KrakenD and each of your backend services. This is the more granular layer.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+          "type": "object",
+          "properties": {
+            "metrics": {
+              "type": "object",
+              "properties": {
+                "static_attributes": {
+                  "title": "Static attributes",
+                  "description": "A list of tags or labels you want to associate with these metrics.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                  "examples": [
+                    [
+                      {
+                        "key": "my_metric_attr",
+                        "value": "my_metric_val"
+                      }
+                    ]
+                  ],
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "key",
+                      "value"
+                    ],
+                    "properties": {
+                      "key": {
+                        "title": "Key",
+                        "description": "The key, tag, or label name you want to use.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                        "type": "string"
+                      },
+                      "value": {
+                        "title": "Value",
+                        "description": "The static value you want to assign to this key.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                        "type": "string"
+                      }
+                    },
+                    "patternProperties": {
+                      "^[@$_#]": {}
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "patternProperties": {
+                "^[@$_#]": {}
+              },
+              "additionalProperties": false
+            },
+            "traces": {
+              "type": "object",
+              "properties": {
+                "static_attributes": {
+                  "title": "Static attributes",
+                  "description": "A list of tags or labels you want to associate to these traces.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                  "examples": [
+                    [
+                      {
+                        "key": "my_trace_attr",
+                        "value": "my_trace_val"
+                      }
+                    ]
+                  ],
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "key",
+                      "value"
+                    ],
+                    "properties": {
+                      "key": {
+                        "title": "Key",
+                        "description": "The key, tag, or label name you want to use.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                        "type": "string"
+                      },
+                      "value": {
+                        "title": "Value",
+                        "description": "The static value you want to assign to this key.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                        "type": "string"
+                      }
+                    },
+                    "patternProperties": {
+                      "^[@$_#]": {}
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "patternProperties": {
+                "^[@$_#]": {}
+              },
+              "additionalProperties": false
+            }
+          },
+          "patternProperties": {
+            "^[@$_#]": {}
+          },
+          "additionalProperties": false
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
     "backend": {
       "title": "Report backend activity",
       "description": "Reports the activity between KrakenD and each of your backend services. This is the more granular layer.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
@@ -18,60 +130,6 @@
               "description": "Whether to turn off the metrics or not. Setting this to `true` means stop reporting any data.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
               "default": false,
               "type": "boolean"
-            },
-            "round_trip": {
-              "title": "Report backend round trip metrics",
-              "description": "Provide metrics about the round trip time for backend requests. Setting this to `true` means stop reporting any data.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-              "default": false,
-              "type": "boolean"
-            },
-            "read_payload": {
-              "title": "Report backend read payload time",
-              "description": "Provide metrics about how long it takes to read the response payload from the backend. Setting this to `true` means stop reporting any data.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-              "default": false,
-              "type": "boolean"
-            },
-            "detailed_connection": {
-              "title": "Report backend connection details timing",
-              "description": "Provide metrics about how long it takes to query the DNS and initiating a connection to the backend.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-              "default": false,
-              "type": "boolean"
-            },
-            "static_attributes": {
-              "title": "Static attributes",
-              "description": "A list of tags or labels you want to associate with these metrics.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-              "examples": [
-                [
-                  {
-                    "key": "my_metric_attr",
-                    "value": "my_metric_val"
-                  }
-                ]
-              ],
-              "type": "array",
-              "items": {
-                "type": "object",
-                "required": [
-                  "key",
-                  "value"
-                ],
-                "properties": {
-                  "key": {
-                    "title": "Key",
-                    "description": "The key, tag, or label name you want to use.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-                    "type": "string"
-                  },
-                  "value": {
-                    "title": "Value",
-                    "description": "The static value you want to assign to this key.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-                    "type": "string"
-                  }
-                },
-                "patternProperties": {
-                  "^[@$_#]": {}
-                },
-                "additionalProperties": false
-              }
             }
           },
           "patternProperties": {
@@ -87,66 +145,6 @@
               "description": "Whether to turn off the traces or not. Setting this to `true` means stop reporting any data.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
               "default": false,
               "type": "boolean"
-            },
-            "round_trip": {
-              "title": "Report backend round trip times",
-              "description": "Add attribute with the round trip time for the bakcend requests.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-              "default": false,
-              "type": "boolean"
-            },
-            "read_payload": {
-              "title": "Report backend read payload time",
-              "description": "Add span with how long it takes to read the response payload from the backend.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-              "default": false,
-              "type": "boolean"
-            },
-            "detailed_connection": {
-              "title": "Report backend connection details timing",
-              "description": "Add attribute with the time it takes to query the DNS and initiating a connection to the backend.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-              "default": false,
-              "type": "boolean"
-            },
-            "report_headers": {
-              "title": "Report headers",
-              "description": "Add attribute with the headers that are sent to the backend.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-              "default": false,
-              "type": "boolean"
-            },
-            "static_attributes": {
-              "title": "Static attributes",
-              "description": "A list of tags or labels you want to associate with the trace.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-              "examples": [
-                [
-                  {
-                    "key": "my_trace_attr",
-                    "value": "my_trace_val"
-                  }
-                ]
-              ],
-              "type": "array",
-              "items": {
-                "type": "object",
-                "required": [
-                  "key",
-                  "value"
-                ],
-                "properties": {
-                  "key": {
-                    "title": "Key",
-                    "description": "The key, tag, or label name you want to use.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-                    "type": "string"
-                  },
-                  "value": {
-                    "title": "Value",
-                    "description": "The static value you want to assign to this key.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-                    "type": "string"
-                  }
-                },
-                "patternProperties": {
-                  "^[@$_#]": {}
-                },
-                "additionalProperties": false
-              }
             }
           },
           "patternProperties": {
