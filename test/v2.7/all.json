@@ -247,6 +247,7 @@
                                         "header_mapping": {
                                             "X-Tenant": "haha"
                                         },
+                                        "read_buffer_size": -1,
                                         "output_duration_as_string": false,
                                         "output_enum_as_string": false,
                                         "output_timestamp_as_string": false,
