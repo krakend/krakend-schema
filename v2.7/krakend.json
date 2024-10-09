@@ -1492,11 +1492,12 @@
         },
         "sd": {
           "title": "Service Discovery",
-          "description": "The [Service Discovery](https://www.krakend.io/docs/backends/service-discovery/) system to resolve your backend services. Defaults to `static` (no external Service Discovery). Use `dns` to use DNS SRV records.\n\nSee: https://www.krakend.io/docs/backends/",
+          "description": "The [Service Discovery](https://www.krakend.io/docs/backends/service-discovery/) system to resolve your backend services. Defaults to `static` (no external Service Discovery). Use `dns` to use DNS SRV records. Use `dns-shared` to share the DNS resolution between backends using the same hosts.\n\nSee: https://www.krakend.io/docs/backends/",
           "default": "static",
           "enum": [
             "static",
-            "dns"
+            "dns",
+            "dns-shared"
           ]
         },
         "sd_scheme": {
@@ -1895,9 +1896,9 @@
           "title": "Read buffer size",
           "description": "Specifies the size of the client buffer reading the gRPC communication in bytes. If the value is unset, or `0`, it uses its default (32KB). Use a negative value to disable the buffer, and if you do there won't be memory pre-allocation to read. To determine the right number, calculate the average size of the responses the gRPC client will receive.\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
           "examples": [
-            "32768",
-            "8192",
-            "-1"
+            32768,
+            8192,
+            -1
           ],
           "type": "number"
         },
