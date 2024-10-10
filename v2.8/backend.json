@@ -156,11 +156,12 @@
     "sd": {
       "$id": "#backend/sd",
       "title": "Service Discovery",
-      "description": "The [Service Discovery](https://www.krakend.io/docs/backends/service-discovery/) system to resolve your backend services. Defaults to `static` (no external Service Discovery). Use `dns` to use DNS SRV records.\n\nSee: https://www.krakend.io/docs/backends/",
+      "description": "The [Service Discovery](https://www.krakend.io/docs/backends/service-discovery/) system to resolve your backend services. Defaults to `static` (no external Service Discovery). Use `dns` to use DNS SRV records. Use `dns-shared` to share the DNS resolution between backends using the same hosts.\n\nSee: https://www.krakend.io/docs/backends/",
       "default": "static",
       "enum": [
         "static",
-        "dns"
+        "dns",
+        "dns-shared"
       ]
     },
     "sd_scheme": {
