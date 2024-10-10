@@ -5,54 +5,6 @@
   "description": "Enterprise only. Overrides metrics and traces declared by the OpenTelemetry service.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry-by-endpoint/",
   "type": "object",
   "properties": {
-    "exporters_override": {
-      "title": "Exporters override",
-      "description": "Override exporter configuration for this endpoint",
-      "type": "object",
-      "properties": {
-        "metric_exporters": {
-          "title": "Metrics exporters",
-          "description": "Overrides the metrics exporters used in this endpoint",
-          "examples": [
-            [
-              "local_prometheus"
-            ]
-          ],
-          "type": "array"
-        },
-        "metric_reporting_period": {
-          "title": "Reporting period",
-          "description": "Override how often you want to report and flush the metrics in seconds.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry-by-endpoint/",
-          "type": "integer"
-        },
-        "trace_exporters": {
-          "title": "Trace exporters",
-          "description": "Overrides the trace exporters used in this endpoint",
-          "examples": [
-            [
-              "debug_jaeger",
-              "newrelic",
-              "local_tempo"
-            ]
-          ],
-          "type": "array"
-        },
-        "trace_sample_rate": {
-          "title": "Trace sample rate",
-          "description": "Overrides the sample rate for traces defines the percentage of reported traces. This option is key to reduce the amount of data generated (and resource usage), while you still can debug and troubleshoot issues. For instance, a number of `0.25` will report a 25% of the traces seen in the system.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry-by-endpoint/",
-          "examples": [
-            0.25
-          ],
-          "type": "number",
-          "maximum": 1,
-          "minimum": 0
-        }
-      },
-      "patternProperties": {
-        "^[@$_#]": {}
-      },
-      "additionalProperties": false
-    },
     "backend": {
       "title": "Report backend activity",
       "description": "Reports the activity between KrakenD and each of your backend services. This is the more granular layer.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
@@ -201,6 +153,54 @@
             "^[@$_#]": {}
           },
           "additionalProperties": false
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
+    "exporters_override": {
+      "title": "Exporters override",
+      "description": "Override exporter configuration for this endpoint",
+      "type": "object",
+      "properties": {
+        "metric_exporters": {
+          "title": "Metrics exporters",
+          "description": "Overrides the metrics exporters used in this endpoint",
+          "examples": [
+            [
+              "local_prometheus"
+            ]
+          ],
+          "type": "array"
+        },
+        "metric_reporting_period": {
+          "title": "Reporting period",
+          "description": "Override how often you want to report and flush the metrics in seconds.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry-by-endpoint/",
+          "type": "integer"
+        },
+        "trace_exporters": {
+          "title": "Trace exporters",
+          "description": "Overrides the trace exporters used in this endpoint",
+          "examples": [
+            [
+              "debug_jaeger",
+              "newrelic",
+              "local_tempo"
+            ]
+          ],
+          "type": "array"
+        },
+        "trace_sample_rate": {
+          "title": "Trace sample rate",
+          "description": "Overrides the sample rate for traces defines the percentage of reported traces. This option is key to reduce the amount of data generated (and resource usage), while you still can debug and troubleshoot issues. For instance, a number of `0.25` will report a 25% of the traces seen in the system.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry-by-endpoint/",
+          "examples": [
+            0.25
+          ],
+          "type": "number",
+          "maximum": 1,
+          "minimum": 0
         }
       },
       "patternProperties": {

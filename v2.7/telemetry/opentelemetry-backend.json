@@ -67,10 +67,10 @@
                     "type": "string"
                   }
                 },
+                "additionalproperties": false,
                 "patternproperties": {
                   "^[@$_#]": {}
-                },
-                "additionalproperties": false
+                }
               }
             }
           },
@@ -142,10 +142,10 @@
                     "type": "string"
                   }
                 },
+                "additionalproperties": false,
                 "patternproperties": {
                   "^[@$_#]": {}
-                },
-                "additionalproperties": false
+                }
               }
             }
           },
