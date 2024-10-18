@@ -296,16 +296,31 @@
                                         }
                                     },
                                     "telemetry/opentelemetry": {
-                                        "proxy": {
-                                            "disable_metrics": true,
-                                            "disable_traces": true
-                                        },
                                         "backend": {
                                             "metrics": {
-                                                "disable_stage": true
+                                                "detailed_connection": true,
+                                                "disable_stage": true,
+                                                "read_payload": true,
+                                                "round_trip": true,
+                                                "static_attributes": [
+                                                    {
+                                                        "key": "met_bckdef_key",
+                                                        "value": "met_bckdef_val"
+                                                    }
+                                                ]
                                             },
                                             "traces": {
-                                                "disable_stage": true
+                                                "detailed_connection": true,
+                                                "disable_stage": true,
+                                                "read_payload": true,
+                                                "round_trip": true,
+                                                "static_attributes": [
+                                                    {
+                                                        "key": "met_bckdef_key",
+                                                        "value": "met_bckdef_val"
+                                                    }
+                                                ],
+                                                "report_headers": true
                                             }
                                         }
                                     }
@@ -321,7 +336,19 @@
                             "telemetry/opentelemetry": {
                                 "proxy": {
                                     "disable_metrics": false,
-                                    "disable_traces": false
+                                    "disable_traces": false,
+                                    "metrics_static_attributes": [
+                                        {
+                                            "key": "met_endpointdef_key",
+                                            "value": "met_endpointdef_val"
+                                        }
+                                    ],
+                                    "traces_static_attributes": [
+                                        {
+                                            "key": "met_endpointdef_key",
+                                            "value": "met_dendpointdef_val"
+                                        }
+                                    ]
                                 },
                                 "exporters_override": {
                                     "metric_reporting_period": 10,
