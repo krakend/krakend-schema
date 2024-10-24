@@ -71,7 +71,7 @@
     "disable_rest": {
       "$id": "#service/disable_rest",
       "title": "Disable RESTful URLs",
-      "description": "Only RESTful URL patterns are valid to access backends. Set to true if your backends aren't RESTful, e.g.: `/url.{some_variable}.json`",
+      "description": "Endpoints require in its `endpoint` definition the usage of a RESTful pattern. If you require unrestful patterns, like `/file.{ext}` (instead of its RESTful counterpart `/file/{ext}`), then you must set this parameter to `true`.\nYou can use multiple variables if needed, but only one can be in an unrestful position, and when you do, it must be in the last position of the definition. E.g.: you can declare an endpoint `/file/{name}/base.{ext}` but you cannot do `/file.{ext}.json` because the variable `{ext}` is not in the last position of the definitino, and therefore the remaining path after `{ext}` is ignored by the router.",
       "default": false,
       "type": "boolean"
     },
