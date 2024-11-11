@@ -80,6 +80,12 @@
       "title": "Proxy",
       "type": "object",
       "properties": {
+        "max_payload": {
+          "title": "Maximum Payload",
+          "description": "Enterprise Only. Limits the maximum number of bytes a user can send to the endpoint. `0` means no limit. You can also set this value globally at the [service level](/docs/enterprise/service-settings/router-options/#max_payload).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+          "default": 0,
+          "type": "integer"
+        },
         "combiner": {
           "$id": "#endpoint_extra_config/proxy/combiner",
           "title": "Custom combiner",
