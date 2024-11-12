@@ -89,6 +89,12 @@
           ],
           "type": "string"
         },
+        "decompress_gzip": {
+          "title": "Decompress Gzip",
+          "description": "Enterprise Only. Decompresses any Gzipped content before sending it to the backend when the `Content-Encoding` has `gzip` in the first position. You can also set this value globally at the [service level](/docs/enterprise/service-settings/router-options/#max_payload).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+          "default": false,
+          "type": "boolean"
+        },
         "flatmap_filter": {
           "$id": "#proxy/flatmap_filter",
           "title": "Flatmap (Array manipulation)",
