@@ -3064,6 +3064,12 @@
               "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1proxy~1flatmap.json",
               "type": "array"
             },
+            "max_payload": {
+              "title": "Maximum Payload",
+              "description": "Enterprise Only. Limits the maximum number of bytes a user can send to the endpoint. `0` means no limit. You can also set this value globally at the [service level](/docs/enterprise/service-settings/router-options/#max_payload).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+              "default": 0,
+              "type": "integer"
+            },
             "sequential": {
               "title": "Sequential proxy",
               "description": "The sequential proxy allows you to chain backend requests, making calls dependent one of each other.\n\nSee: https://www.krakend.io/docs/endpoints/sequential-proxy/",
@@ -4853,12 +4859,6 @@
           "description": "The list of operations to **execute sequentially** (top down). Every operation is defined with an object containing two properties:\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.7~1proxy~1flatmap.json",
           "type": "array"
-        },
-        "max_payload": {
-          "title": "Maximum Payload",
-          "description": "Enterprise Only. Limits the maximum number of bytes a user can send to the endpoint. `0` means no limit. You can also set this value globally at the [service level](/docs/enterprise/service-settings/router-options/#max_payload).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
-          "default": 0,
-          "type": "integer"
         },
         "shadow": {
           "title": "Traffic shadowing or mirroring",
