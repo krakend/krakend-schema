@@ -4,24 +4,12 @@
   "title": "Proxy option",
   "type": "object",
   "properties": {
-    "decompress_gzip": {
-      "title": "Decompress Gzip",
-      "description": "Enterprise Only. Decompresses any Gzipped content before sending it to the backend when the `Content-Encoding` has `gzip` in the first position. You can also set this value globally at the [service level](/docs/enterprise/service-settings/router-options/#max_payload).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
-      "default": false,
-      "type": "boolean"
-    },
     "flatmap_filter": {
       "$id": "#proxy/flatmap_filter",
       "title": "Flatmap (Array manipulation)",
       "description": "The list of operations to **execute sequentially** (top down). Every operation is defined with an object containing two properties:\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
       "$ref": "proxy/flatmap.json",
       "type": "array"
-    },
-    "max_payload": {
-      "title": "Maximum Payload",
-      "description": "Enterprise Only. Limits the maximum number of bytes a user can send to the endpoint. `0` means no limit. You can also set this value globally at the [service level](/docs/enterprise/service-settings/router-options/#max_payload).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
-      "default": 0,
-      "type": "integer"
     },
     "shadow": {
       "$id": "#proxy/shadow",
