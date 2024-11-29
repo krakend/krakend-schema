@@ -29,7 +29,7 @@
     "level": {
       "$id": "#level",
       "title": "Log Level",
-      "description": "What type of **reporting level** do you expect from the application? Use the `DEBUG` level in the development stages but not in production. Possible values are from more verbose to least.\n\nSee: https://www.krakend.io/docs/logging/",
+      "description": "What type of **reporting level** do you expect from the application? The options below go from more verbose to least. Use the `DEBUG` level in the development stages but not in production. Some components can add extra verbosity while in DEBUG mode and send **multiline content**, which is not always suitable for automated log parsing.\n\nSee: https://www.krakend.io/docs/logging/",
       "enum": [
         "DEBUG",
         "INFO",
