@@ -1,0 +1,87 @@
+{
+    "description": "Backend object test",
+    "target": "https://www.krakend.io/schema/v2.8/backend.json",
+    "tests": [
+        {
+            "description": "Simple backend declaration with no host",
+            "data": {
+                "url_pattern": "/__debug/root"
+            },
+            "valid": true
+        },
+        {
+            "description": "Simple backend declaration with host",
+            "data": {
+                "url_pattern": "/__debug/root",
+                "host": [
+                    "amqp://blah"
+                ]
+            },
+            "valid": true
+        },
+        {
+            "description": "Simple backend declaration with empty string host",
+            "data": {
+                "url_pattern": "/__debug/root",
+                "host": [
+                    ""
+                ]
+            },
+            "valid": false
+        },
+        {
+            "description": "Simple backend declaration with no pattern",
+            "data": {
+                "host": [
+                    "http://foo"
+                ]
+            },
+            "valid": false
+        },
+        {
+            "description": "Backend declaration with a few components",
+            "data": {
+                "host": [
+                    "http://127.0.0.1:8080"
+                ],
+                "input_headers": [
+                    "Accept"
+                ],
+                "url_pattern": "/__debug/",
+                "extra_config": {
+                    "auth/ntlm": {
+                        "user": "user",
+                        "password": "pass"
+                    },
+                    "auth/gcp": {
+                        "audience": "https://gcptest-76fewi6rca-uc.a.run.app",
+                        "credentials_file": "/etc/krakend/gcp.json",
+                        "custom_claims": {
+                            "a": 1
+                        }
+                    },
+                    "backend/http": {
+                        "return_error_code": true,
+                        "@extra_comment": "here"
+                    },
+                    "backend/soap": {
+                        "path": "./path/to.xml",
+                        "content_type": "application/xml",
+                        "debug": false
+                    },
+                    "modifier/body-generator": {
+                        "content_type": "application/json",
+                        "debug": false,
+                        "template": "abcdef"
+                    },
+                    "modifier/response-body-generator": {
+                        "content_type": "application/json",
+                        "debug": false,
+                        "template": "abcdef"
+                    }
+                }
+            },
+            "valid": true
+        }
+    ]
+}

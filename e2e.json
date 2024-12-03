@@ -4,7 +4,7 @@
   "title": "Schema validation for the latest version of KrakenD End to End testing. Consider sticking to the specific version you are using.",
   "allOf": [
     {
-      "$ref": "v2.7/e2e.json"
+      "$ref": "v2.8/e2e.json"
     }
   ]
 }

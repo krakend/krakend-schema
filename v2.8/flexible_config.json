@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://www.krakend.io/schema/v2.6/flexible_config.json",
+  "$id": "https://www.krakend.io/schema/v2.8/flexible_config.json",
   "title": "Schema validation for Extended Flexible Configuration.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
   "type": "object",
   "properties": {
@@ -8,6 +8,14 @@
       "title": "Debug",
       "description": "Whether to enable the debug mode or not. The debug shows the hierarchy of the settings tree in the console. You can also enable this flag during runtime passing an environment variable `FC_DEBUG=true`.\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
       "type": "boolean"
+    },
+    "keys_naming_rules": {
+      "title": "Key naming",
+      "description": "Allows you to apply configuration inheritance using `freeform` keys, or alphanumeric characters (`strict`).\n\nSee: https://www.krakend.io/docs/enterprise/configuration/flexible-config/",
+      "enum": [
+        "strict",
+        "freeform"
+      ]
     },
     "meta_key": {
       "title": "Metadata key",

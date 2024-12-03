@@ -1,0 +1,43 @@
+{
+  "description": "response-headers",
+  "target": "https://www.krakend.io/schema/v2.8/modifier/response-headers.json",
+  "tests": [
+    {
+      "description": "happy case",
+      "data": {
+        "add": {
+          "X-Hello": [
+            "World"
+          ]
+        },
+        "replace": {
+          "Cache-Control": [
+            "no-store"
+          ],
+          "Vary": [
+            "foo",
+            "bar",
+            "foobar"
+          ]
+        },
+        "delete": [
+          "X-Krakend",
+          "X-Krakend-Completed"
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description":"empty modifiers are not valid",
+      "data": {
+        "add": {}
+      },
+      "valid": false
+    },
+    {
+      "description":"empty declaration is not allowed",
+      "data": {},
+      "valid": false
+    }
+  ]
+}
