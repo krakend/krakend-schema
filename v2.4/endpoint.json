@@ -114,6 +114,7 @@
       "enum": [
         "json",
         "json-collection",
+        "yaml",
         "fast-json",
         "xml",
         "negotiate",

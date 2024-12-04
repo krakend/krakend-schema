@@ -2947,6 +2947,7 @@
           "enum": [
             "json",
             "json-collection",
+            "yaml",
             "fast-json",
             "xml",
             "negotiate",
@@ -8350,6 +8351,7 @@
           "enum": [
             "json",
             "json-collection",
+            "yaml",
             "fast-json",
             "xml",
             "negotiate",
