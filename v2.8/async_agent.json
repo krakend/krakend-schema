@@ -5,6 +5,7 @@
   "description": "Async agents are routines listening to queues or PubSub systems that react to new events and push data to your backends. Through async agents, you can start a lot of consumers to process your events autonomously.\n\nSee: https://www.krakend.io/docs/async/",
   "type": "array",
   "items": {
+    "type": "object",
     "required": [
       "name",
       "consumer",
@@ -50,11 +51,7 @@
             "default": 0,
             "type": "integer"
           }
-        },
-        "patternProperties": {
-          "^[@$_#]": {}
-        },
-        "additionalProperties": false
+        }
       },
       "consumer": {
         "$id": "#async_agent/consumer",
@@ -126,9 +123,5 @@
       "^[@$_#]": {}
     },
     "additionalProperties": false
-  },
-  "patternProperties": {
-    "^[@$_#]": {}
-  },
-  "additionalProperties": false
+  }
 }

@@ -58,8 +58,7 @@
       "title": "Martian modifiers",
       "description": "Transform requests and responses through a simple DSL definition in the configuration file.\n\nSee: https://www.krakend.io/docs/backends/martian/",
       "type": "object",
-      "minProperties": 1,
-      "properties": {}
+      "minProperties": 1
     },
     "plugin/http-client": {
       "$ref": "plugin/http-client.json"

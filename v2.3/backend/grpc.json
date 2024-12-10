@@ -25,11 +25,7 @@
           "lon": "where.longitude"
         }
       ],
-      "type": "object",
-      "items": {
-        "type": "string"
-      },
-      "additionalProperties": true
+      "type": "object"
     },
     "output_duration_as_string": {
       "title": "Output duration types as string",

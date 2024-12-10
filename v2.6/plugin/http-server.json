@@ -41,6 +41,5 @@
     "wildcard": {
       "$ref": "wildcard.json"
     }
-  },
-  "additionalProperties": true
+  }
 }

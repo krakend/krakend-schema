@@ -246,9 +246,7 @@
           "description": {
             "title": "Description",
             "description": "The description of the payload this endpoint accepts.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-            "type": [
-              "string"
-            ]
+            "type": "string"
           },
           "content_type": {
             "title": "Content Type",
@@ -306,9 +304,7 @@
           }
         }
       ],
-      "type": [
-        "object"
-      ],
+      "type": "object",
       "patternProperties": {
         "default|^[0-9]+$": {
           "type": "object",
@@ -319,9 +315,7 @@
             "description": {
               "title": "Description",
               "description": "The description of this error code, e.g., `Page not found`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-              "type": [
-                "string"
-              ]
+              "type": "string"
             },
             "content_type": {
               "title": "Content Type",

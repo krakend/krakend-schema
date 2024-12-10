@@ -7,7 +7,7 @@ all: build test
 
 build:
 	eval ${BIN} fmt --ignore test
-	eval ${BIN} lint --ignore test
+	eval ${BIN} lint --fix --ignore test
 	eval ${BIN} metaschema --ignore test
 	eval ${BIN} bundle ${VERSION}/_root.json --resolve ${VERSION} --without-id > ${VERSION}/krakend.json
 	eval ${BIN} fmt ${VERSION}/krakend.json
