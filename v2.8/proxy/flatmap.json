@@ -34,7 +34,10 @@
       "args": {
         "title": "Args",
         "description": "The arguments passed to the operation.\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
-        "type": "array"
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
       }
     },
     "patternProperties": {

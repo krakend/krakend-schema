@@ -111,7 +111,10 @@
       "$id": "#auth/signer/jwk_fingerprints",
       "title": "JWK Fingerprints",
       "description": "A list of fingerprints (the unique identifier of the certificate) for certificate pinning and avoid man in the middle attacks. Add fingerprints in base64 format.\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "jwk_local_ca": {
       "$id": "#auth/signer/jwk_local_ca",
@@ -145,7 +148,10 @@
         "access_token",
         "refresh_token"
       ],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "kid": {
       "$id": "#auth/signer/kid",

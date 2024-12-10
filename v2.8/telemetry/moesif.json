@@ -165,7 +165,10 @@
           "Authorization"
         ]
       ],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "user_id_jwt_claim": {
       "$id": "#telemetry/moesif/user_id_jwt_claim",

@@ -77,7 +77,10 @@
           "$id": "#service_extra_config/security/cors/allow_headers",
           "title": "Allowed headers",
           "default": [],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "allow_methods": {
           "$id": "#service_extra_config/security/cors/allow_methods",
@@ -127,7 +130,10 @@
           "title": "Expose headers",
           "description": "Headers that are safe to expose to the API of a CORS API specification-\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
           "default": [],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "max_age": {
           "$id": "#service_extra_config/security/cors/max_age",

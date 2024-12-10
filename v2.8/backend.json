@@ -19,7 +19,10 @@
         ]
       ],
       "type": "array",
-      "uniqueItems": true
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
     },
     "deny": {
       "$id": "#backend/deny",
@@ -33,7 +36,10 @@
         ]
       ],
       "type": "array",
-      "uniqueItems": true
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
     },
     "disable_host_sanitize": {
       "$id": "#backend/disable_host_sanitize",

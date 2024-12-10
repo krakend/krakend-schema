@@ -10,7 +10,10 @@
       "title": "Allowed hosts",
       "description": "When a request hits KrakenD, it will confirm if the value of the Host HTTP header is in the list. If so, it will further process the request. If the host is not in the allowed hosts list, KrakenD will simply reject the request.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
       "default": [],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "allowed_hosts_are_regex": {
       "$id": "#security/http/allowed_hosts_are_regex",
@@ -75,7 +78,10 @@
           "X-Forwarded-Hosts"
         ]
       ],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "hpkp_public_key": {
       "$id": "#security/http/hpkp_public_key",

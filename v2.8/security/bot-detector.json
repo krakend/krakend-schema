@@ -15,7 +15,10 @@
         "Pingdom.com_bot_version_1.1"
       ],
       "default": [],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "cache_size": {
       "$id": "#security/bot-detector/cache_size",
@@ -34,7 +37,10 @@
         "facebookexternalhit/1.1"
       ],
       "default": [],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "empty_user_agent_is_bot": {
       "$id": "#security/bot-detector/empty_user_agent_is_bot",
@@ -52,7 +58,10 @@
         "(facebookexternalhit)/.*"
       ],
       "default": [],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "patternProperties": {
