@@ -80,6 +80,18 @@
       "default": true,
       "type": "boolean"
     },
+    "metadata": {
+      "$id": "#telemetry/moesif/metadata",
+      "title": "Metadata",
+      "description": "A free-form object that allows you to push custom metadata along with events. The custom metadata appears in Moesif under a key `krakend`, you can use nesting if needed.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
+      "examples": [
+        {
+          "instance_id": "1234abcd",
+          "region": "us-west-1"
+        }
+      ],
+      "type": "object"
+    },
     "request_body_masks": {
       "$id": "#telemetry/moesif/request_body_masks",
       "title": "Request body masks",
