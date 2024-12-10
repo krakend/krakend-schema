@@ -105,7 +105,10 @@
               "$id": "#telemetry/opencensus/exporters/datadog/tags",
               "title": "Tags",
               "description": "Specifies a set of global tags to attach to each metric.\n\nSee: https://www.krakend.io/docs/telemetry/datadog/",
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "trace_address": {
               "$id": "#telemetry/opencensus/exporters/datadog/trace_address",

@@ -122,7 +122,10 @@
     "remote_ip_headers": {
       "title": "Remote IP headers",
       "description": "List of headers used to obtain the client IP when `forwarded_by_client_ip` is set to `true` and the remote address is matched by at least one of the network origins of `trusted_proxies`.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "remove_extra_slash": {
       "title": "Remove extra slash",
@@ -139,7 +142,10 @@
     "trusted_proxies": {
       "title": "Trusted Proxies",
       "description": "List of network origins (IPv4 addresses, IPv4 CIDRs, IPv6 addresses or IPv6 CIDRs) from which to trust request's headers that contain alternative client IP when `forwarded_by_client_ip` is `true`. When declared **you must** configure `forwarded_by_client_ip` set to `true`, and optionally `remote_ip_headers`.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "use_h2c": {
       "title": "Enable h2c",

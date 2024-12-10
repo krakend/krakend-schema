@@ -18,6 +18,9 @@
       "description": "An array with the headers allowed, but `Origin`is always appended to the list. Requests with headers not in this list are rejected.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
       "default": [],
       "type": "array",
+      "items": {
+        "type": "string"
+      },
       "example": [
         "Accept-Language"
       ]
@@ -51,7 +54,10 @@
       "default": [
         "*"
       ],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "allow_private_network": {
       "$id": "#security/cors/allow_private_network",
@@ -75,7 +81,10 @@
         "Content-Length",
         "Content-Type"
       ],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "max_age": {
       "$id": "#security/cors/max_age",

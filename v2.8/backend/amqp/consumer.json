@@ -97,7 +97,10 @@
       "examples": [
         "#"
       ],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "patternProperties": {

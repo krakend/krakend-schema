@@ -18,7 +18,10 @@
           "172.17.2.56/32"
         ]
       ],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "allow": {
       "title": "Allow or deny mode",
@@ -36,7 +39,10 @@
           "X-Appengine-Remote-Addr"
         ]
       ],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "trusted_proxies": {
       "title": "Trusted proxies",
@@ -46,7 +52,10 @@
           "10.0.0.0/16"
         ]
       ],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "patternProperties": {

@@ -24,7 +24,10 @@
           "*"
         ]
       ],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "license": {
       "$id": "#telemetry/newrelic/url",

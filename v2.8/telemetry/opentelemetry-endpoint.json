@@ -173,7 +173,10 @@
               "local_prometheus"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "metric_reporting_period": {
           "title": "Reporting period",
@@ -190,7 +193,10 @@
               "local_tempo"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "trace_sample_rate": {
           "title": "Trace sample rate",

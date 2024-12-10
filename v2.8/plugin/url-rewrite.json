@@ -33,7 +33,10 @@
       "description": "A list of lists, containing the regular expression that defines the URL to be rewritten, and its endpoint destination. You can use the capturing groups with the syntax `${1}`, `${2}`, etc.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/url-rewrite/",
       "type": "array",
       "items": {
-        "type": "array"
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
       }
     }
   },

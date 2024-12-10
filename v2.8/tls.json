@@ -25,7 +25,10 @@
         ]
       ],
       "default": [],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "cipher_suites": {
       "$id": "#service/tls/cipher_suites",
@@ -37,7 +40,10 @@
         4867
       ],
       "type": "array",
-      "uniqueItems": true
+      "uniqueItems": true,
+      "items": {
+        "type": "integer"
+      }
     },
     "curve_preferences": {
       "$id": "#service/tls/curve_preferences",

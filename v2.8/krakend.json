@@ -880,7 +880,10 @@
           "examples": [
             "jti"
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "patternProperties": {
@@ -994,7 +997,10 @@
         "jwk_fingerprints": {
           "title": "JWK Fingerprints",
           "description": "A list of fingerprints (the unique identifier of the certificate) for certificate pinning and avoid man in the middle attacks. Add fingerprints in base64 format.\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "jwk_local_ca": {
           "title": "Local CA",
@@ -1024,7 +1030,10 @@
             "access_token",
             "refresh_token"
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "kid": {
           "title": "Kid",
@@ -1368,7 +1377,10 @@
             ]
           ],
           "type": "array",
-          "uniqueItems": true
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
         },
         "deny": {
           "title": "Deny (data manipulation)",
@@ -1381,7 +1393,10 @@
             ]
           ],
           "type": "array",
-          "uniqueItems": true
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
         },
         "disable_host_sanitize": {
           "title": "Disable host sanitize",
@@ -1623,7 +1638,10 @@
           "examples": [
             "#"
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "patternProperties": {
@@ -3069,7 +3087,10 @@
               "title": "Flatmap (Array manipulation)",
               "description": "The list of operations to **execute sequentially** (top down). Every operation is defined with an object containing two properties:\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
               "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1proxy~1flatmap.json",
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "max_payload": {
               "title": "Maximum Payload",
@@ -4459,7 +4480,10 @@
             "myplugin"
           ],
           "default": [],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "redis-ratelimit": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1plugin~1redis-ratelimit.json"
@@ -4498,7 +4522,10 @@
               "172.17.2.56/32"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "allow": {
           "title": "Allow or deny mode",
@@ -4516,7 +4543,10 @@
               "X-Appengine-Remote-Addr"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "trusted_proxies": {
           "title": "Trusted proxies",
@@ -4526,7 +4556,10 @@
               "10.0.0.0/16"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "patternProperties": {
@@ -4552,7 +4585,10 @@
         "origins": {
           "title": "Origins",
           "description": "The list of all JWK URLs recognized as valid Identity Providers by the gateway.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/multiple-identity-providers/",
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "port": {
           "title": "Port",
@@ -4648,7 +4684,10 @@
             "myplugin"
           ],
           "default": [],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "response-schema-validator": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1plugin~1response-schema-validator.json"
@@ -4741,7 +4780,10 @@
               "/media/file.json"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "patternProperties": {
@@ -4783,7 +4825,10 @@
           "description": "A list of lists, containing the regular expression that defines the URL to be rewritten, and its endpoint destination. You can use the capturing groups with the syntax `${1}`, `${2}`, etc.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/url-rewrite/",
           "type": "array",
           "items": {
-            "type": "array"
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -4907,7 +4952,10 @@
           "args": {
             "title": "Args",
             "description": "The arguments passed to the operation.\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
-            "type": "array"
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "patternProperties": {
@@ -5264,7 +5312,10 @@
         "remote_ip_headers": {
           "title": "Remote IP headers",
           "description": "List of headers used to obtain the client IP when `forwarded_by_client_ip` is set to `true` and the remote address is matched by at least one of the network origins of `trusted_proxies`.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "remove_extra_slash": {
           "title": "Remove extra slash",
@@ -5281,7 +5332,10 @@
         "trusted_proxies": {
           "title": "Trusted Proxies",
           "description": "List of network origins (IPv4 addresses, IPv4 CIDRs, IPv6 addresses or IPv6 CIDRs) from which to trust request's headers that contain alternative client IP when `forwarded_by_client_ip` is `true`. When declared **you must** configure `forwarded_by_client_ip` set to `true`, and optionally `remote_ip_headers`.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "use_h2c": {
           "title": "Enable h2c",
@@ -5311,7 +5365,10 @@
             "Pingdom.com_bot_version_1.1"
           ],
           "default": [],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "cache_size": {
           "title": "Cache size",
@@ -5328,7 +5385,10 @@
             "facebookexternalhit/1.1"
           ],
           "default": [],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "empty_user_agent_is_bot": {
           "title": "Empty user agent is a bot?",
@@ -5344,7 +5404,10 @@
             "(facebookexternalhit)/.*"
           ],
           "default": [],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "patternProperties": {
@@ -5369,6 +5432,9 @@
           "description": "An array with the headers allowed, but `Origin`is always appended to the list. Requests with headers not in this list are rejected.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
           "default": [],
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "example": [
             "Accept-Language"
           ]
@@ -5400,7 +5466,10 @@
           "default": [
             "*"
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "allow_private_network": {
           "title": "Allow private network",
@@ -5421,7 +5490,10 @@
             "Content-Length",
             "Content-Type"
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "max_age": {
           "title": "Max Age",
@@ -5461,7 +5533,10 @@
           "title": "Allowed hosts",
           "description": "When a request hits KrakenD, it will confirm if the value of the Host HTTP header is in the list. If so, it will further process the request. If the host is not in the allowed hosts list, KrakenD will simply reject the request.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
           "default": [],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "allowed_hosts_are_regex": {
           "title": "Hosts are regexps",
@@ -5518,7 +5593,10 @@
               "X-Forwarded-Hosts"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "hpkp_public_key": {
           "title": "HTTP Public Key Pinning (HPKP)",
@@ -5786,7 +5864,10 @@
               "/media/file.json"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "patternProperties": {
@@ -5924,7 +6005,10 @@
             "allow_headers": {
               "title": "Allowed headers",
               "default": [],
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "allow_methods": {
               "title": "Allowed methods",
@@ -5968,7 +6052,10 @@
               "title": "Expose headers",
               "description": "Headers that are safe to expose to the API of a CORS API specification-\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
               "default": [],
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "max_age": {
               "title": "Max age",
@@ -6429,7 +6516,10 @@
               "Authorization"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "user_id_jwt_claim": {
           "title": "User ID JWT claim",
@@ -6470,7 +6560,10 @@
               "*"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "license": {
           "title": "License key",
@@ -6581,7 +6674,10 @@
                 "tags": {
                   "title": "Tags",
                   "description": "Specifies a set of global tags to attach to each metric.\n\nSee: https://www.krakend.io/docs/telemetry/datadog/",
-                  "type": "array"
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "trace_address": {
                   "title": "Trace address",
@@ -7336,7 +7432,10 @@
                   "local_prometheus"
                 ]
               ],
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "metric_reporting_period": {
               "title": "Reporting period",
@@ -7353,7 +7452,10 @@
                   "local_tempo"
                 ]
               ],
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "trace_sample_rate": {
               "title": "Trace sample rate",
@@ -8035,7 +8137,10 @@
             ]
           ],
           "default": [],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "cipher_suites": {
           "title": "Cipher Suites",
@@ -8046,7 +8151,10 @@
             4867
           ],
           "type": "array",
-          "uniqueItems": true
+          "uniqueItems": true,
+          "items": {
+            "type": "integer"
+          }
         },
         "curve_preferences": {
           "title": "Curve identifiers",

@@ -35,7 +35,10 @@
           "/media/file.json"
         ]
       ],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "patternProperties": {

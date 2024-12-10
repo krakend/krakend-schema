@@ -17,7 +17,10 @@
     "origins": {
       "title": "Origins",
       "description": "The list of all JWK URLs recognized as valid Identity Providers by the gateway.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/multiple-identity-providers/",
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "port": {
       "title": "Port",
