@@ -25,7 +25,10 @@
           "*"
         ]
       ],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "base_path": {
       "$id": "#documentation/openapi/base_path",
@@ -246,9 +249,7 @@
           "description": {
             "title": "Description",
             "description": "The description of the payload this endpoint accepts.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-            "type": [
-              "string"
-            ]
+            "type": "string"
           },
           "content_type": {
             "title": "Content Type",
@@ -306,9 +307,7 @@
           }
         }
       ],
-      "type": [
-        "object"
-      ],
+      "type": "object",
       "patternProperties": {
         "default|^[0-9]+$": {
           "type": "object",
@@ -319,9 +318,7 @@
             "description": {
               "title": "Description",
               "description": "The description of this error code, e.g., `Page not found`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-              "type": [
-                "string"
-              ]
+              "type": "string"
             },
             "content_type": {
               "title": "Content Type",
@@ -378,7 +375,10 @@
       "default": [
         "http"
       ],
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "summary": {
       "$id": "#documentation/openapi/summary",
@@ -427,7 +427,10 @@
       "$id": "#documentation/openapi/tags",
       "title": "Tags",
       "description": "You can assign a list of tags to each API operation. If you declare tags in the `tag_definition` at the OpenAPI service level, they will have a description in the documentation. Tagged operations may be handled differently by tools and libraries. For example, Swagger UI uses tags to group the displayed operations.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "terms_of_service": {
       "$id": "#documentation/openapi/terms_of_service",

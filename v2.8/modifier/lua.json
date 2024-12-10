@@ -4,7 +4,6 @@
   "title": "Lua modifier",
   "description": "Scripting with Lua is an additional choice to extend your business logic, and is compatible with the rest of options such as CEL, Martian, or other Go plugins and middlewares.\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
   "type": "object",
-  "minItems": 1,
   "properties": {
     "allow_open_libs": {
       "title": "Open external libs",
@@ -53,7 +52,10 @@
     "sources": {
       "title": "Sources",
       "description": "An array with all the Lua files that will be processed. If no path is provided (e.g., `myfile.lua`) the file loads from the [working directory](https://www.krakend.io/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "patternProperties": {

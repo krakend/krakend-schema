@@ -36,9 +36,7 @@
               "value.matches('User-[a-Z]+')"
             ],
             "default": "",
-            "type": [
-              "string"
-            ]
+            "type": "string"
           },
           "tier_value_as": {
             "title": "Tier value as",

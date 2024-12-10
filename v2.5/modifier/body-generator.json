@@ -16,7 +16,6 @@
       ]
     }
   ],
-  "minItems": 1,
   "properties": {
     "content_type": {
       "title": "Content-Type",

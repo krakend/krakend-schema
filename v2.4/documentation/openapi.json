@@ -115,9 +115,7 @@
           }
         }
       ],
-      "type": [
-        "object"
-      ],
+      "type": "object",
       "patternProperties": {
         "default|^[0-9]+$": {
           "type": "object",
@@ -128,9 +126,7 @@
             "description": {
               "title": "Description",
               "description": "The description of this error code, e.g., `Page not found`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-              "type": [
-                "string"
-              ]
+              "type": "string"
             },
             "content_type": {
               "title": "Content Type",
@@ -152,9 +148,7 @@
             },
             "example_schema": {
               "description": "A JSON schema that describes the response format for the selected status code, encoded as a base64 string. Use either example or example_schema, but not both.",
-              "type": [
-                "string"
-              ],
+              "type": "string",
               "pattern": "^[a-zA-Z0-9+/=_-]+$"
             }
           },

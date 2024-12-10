@@ -24,8 +24,7 @@
       "type": "object",
       "patternProperties": {
         "(.*)": {
-          "type": "string",
-          "additionalProperties": false
+          "type": "string"
         }
       }
     }

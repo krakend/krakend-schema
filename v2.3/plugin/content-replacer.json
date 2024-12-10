@@ -5,7 +5,6 @@
   "description": "Enterprise only. The content replacer plugin allows you to modify the response of your services by doing literal replacements or more sophisticated replacements with regular expressions.\n\nSee: See: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
   "type": "object",
   "minProperties": 1,
-  "properties": {},
   "additionalProperties": {
     "type": "object",
     "required": [

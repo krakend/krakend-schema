@@ -358,6 +358,7 @@
       "description": "Async agents are routines listening to queues or PubSub systems that react to new events and push data to your backends. Through async agents, you can start a lot of consumers to process your events autonomously.\n\nSee: https://www.krakend.io/docs/async/",
       "type": "array",
       "items": {
+        "type": "object",
         "required": [
           "name",
           "consumer",
@@ -402,11 +403,7 @@
                 "default": 0,
                 "type": "integer"
               }
-            },
-            "patternProperties": {
-              "^[@$_#]": {}
-            },
-            "additionalProperties": false
+            }
           },
           "consumer": {
             "title": "Consumer",
@@ -475,11 +472,7 @@
           "^[@$_#]": {}
         },
         "additionalProperties": false
-      },
-      "patternProperties": {
-        "^[@$_#]": {}
-      },
-      "additionalProperties": false
+      }
     },
     "https://www.krakend.io/schema/v2.8/auth/api-keys.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -596,10 +589,10 @@
           "type": "object",
           "patternProperties": {
             "(.*)": {
-              "type": "string",
-              "additionalProperties": false
+              "type": "string"
             }
-          }
+          },
+          "additionalProperties": false
         }
       },
       "patternProperties": {
@@ -2084,7 +2077,6 @@
           ]
         }
       ],
-      "minItems": 1,
       "properties": {
         "content_type": {
           "title": "Content-Type",
@@ -2452,7 +2444,10 @@
               "*"
             ]
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "base_path": {
           "title": "Base path",
@@ -2659,9 +2654,7 @@
               "description": {
                 "title": "Description",
                 "description": "The description of the payload this endpoint accepts.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-                "type": [
-                  "string"
-                ]
+                "type": "string"
               },
               "content_type": {
                 "title": "Content Type",
@@ -2718,9 +2711,7 @@
               }
             }
           ],
-          "type": [
-            "object"
-          ],
+          "type": "object",
           "patternProperties": {
             "default|^[0-9]+$": {
               "type": "object",
@@ -2731,9 +2722,7 @@
                 "description": {
                   "title": "Description",
                   "description": "The description of this error code, e.g., `Page not found`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-                  "type": [
-                    "string"
-                  ]
+                  "type": "string"
                 },
                 "content_type": {
                   "title": "Content Type",
@@ -2789,7 +2778,10 @@
           "default": [
             "http"
           ],
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "summary": {
           "title": "Summary",
@@ -2835,7 +2827,10 @@
         "tags": {
           "title": "Tags",
           "description": "You can assign a list of tags to each API operation. If you declare tags in the `tag_definition` at the OpenAPI service level, they will have a description in the documentation. Tagged operations may be handled differently by tools and libraries. For example, Swagger UI uses tags to group the displayed operations.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "terms_of_service": {
           "title": "Terms of Service",
@@ -3354,7 +3349,6 @@
           ]
         }
       ],
-      "minItems": 1,
       "properties": {
         "content_type": {
           "title": "Content-Type",
@@ -3418,7 +3412,6 @@
       "title": "Lua modifier",
       "description": "Scripting with Lua is an additional choice to extend your business logic, and is compatible with the rest of options such as CEL, Martian, or other Go plugins and middlewares.\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
       "type": "object",
-      "minItems": 1,
       "properties": {
         "allow_open_libs": {
           "title": "Open external libs",
@@ -3467,7 +3460,10 @@
         "sources": {
           "title": "Sources",
           "description": "An array with all the Lua files that will be processed. If no path is provided (e.g., `myfile.lua`) the file loads from the [working directory](https://www.krakend.io/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "patternProperties": {
@@ -3480,7 +3476,6 @@
       "title": "Martian modifiers",
       "description": "The Martian component allows you to modify requests and responses with static data through a simple DSL definition in the configuration file.\n\nSee: https://www.krakend.io/docs/endpoints/martian/",
       "type": "object",
-      "minItems": 1,
       "maxProperties": 1,
       "properties": {
         "body.Modifier": {
@@ -4384,7 +4379,6 @@
       "description": "Enterprise only. The content replacer plugin allows you to modify the response of your services by doing literal replacements or more sophisticated replacements with regular expressions.\n\nSee: See: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
       "type": "object",
       "minProperties": 1,
-      "properties": {},
       "additionalProperties": {
         "type": "object",
         "required": [
@@ -4453,8 +4447,7 @@
           ],
           "type": "string"
         }
-      },
-      "additionalProperties": true
+      }
     },
     "https://www.krakend.io/schema/v2.8/plugin/http-server.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -4500,8 +4493,7 @@
         "wildcard": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1plugin~1wildcard.json"
         }
-      },
-      "additionalProperties": true
+      }
     },
     "https://www.krakend.io/schema/v2.8/plugin/ip-filter.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -4692,8 +4684,7 @@
         "response-schema-validator": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1plugin~1response-schema-validator.json"
         }
-      },
-      "additionalProperties": true
+      }
     },
     "https://www.krakend.io/schema/v2.8/plugin/response-schema-validator.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -5170,9 +5161,7 @@
                   "value.matches('User-[a-Z]+')"
                 ],
                 "default": "",
-                "type": [
-                  "string"
-                ]
+                "type": "string"
               },
               "tier_value_as": {
                 "title": "Tier value as",
@@ -5194,7 +5183,6 @@
       "title": "Router Options",
       "description": "The optional router configuration allows you to set global flags that change the way KrakenD processes the requests at the router layer.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
       "type": "object",
-      "minItems": 1,
       "properties": {
         "app_engine": {
           "title": "App Engine integration",

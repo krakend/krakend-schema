@@ -126,9 +126,5 @@
       "^[@$_#]": {}
     },
     "additionalProperties": false
-  },
-  "patternProperties": {
-    "^[@$_#]": {}
-  },
-  "additionalProperties": false
+  }
 }

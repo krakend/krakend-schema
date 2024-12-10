@@ -26,6 +26,5 @@
     "response-schema-validator": {
       "$ref": "response-schema-validator.json"
     }
-  },
-  "additionalProperties": true
+  }
 }

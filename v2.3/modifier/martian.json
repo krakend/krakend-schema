@@ -4,7 +4,6 @@
   "title": "Martian modifiers",
   "description": "The Martian component allows you to modify requests and responses with static data through a simple DSL definition in the configuration file.\n\nSee: https://www.krakend.io/docs/endpoints/martian/",
   "type": "object",
-  "minItems": 1,
   "maxProperties": 1,
   "properties": {
     "body.Modifier": {
