@@ -23,7 +23,10 @@
         "delete": [
           "X-Krakend",
           "X-Krakend-Completed"
-        ]
+        ],
+        "rename": {
+          "Header-A": "Header-A-Renamed"
+        }
       },
       "valid": true
     },

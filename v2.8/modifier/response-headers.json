@@ -9,6 +9,13 @@
     "add": {
       "title": "Headers to add",
       "description": "The headers you want to add. Every key under `add` is the header name, and the values are declared in an array with all those you want to set. If the header didn't exist previously, it is created with the values you passed. If the header existed, then the new values are appended.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
+      "examples": [
+        {
+          "X-Hello": [
+            "World"
+          ]
+        }
+      ],
       "type": "object",
       "minProperties": 1,
       "patternProperties": {
@@ -38,9 +45,38 @@
         "type": "string"
       }
     },
+    "rename": {
+      "title": "Headers to rename",
+      "description": "The headers you want to rename. The key used under `rename` is the original header name, and the value the new header name. This operation is destructive, meaning that if you rename to a header name that already existed it will be replaced with the new header and value.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
+      "examples": [
+        {
+          "Header-A": "Header-A-New-Name"
+        }
+      ],
+      "type": "object",
+      "minProperties": 1,
+      "patternProperties": {
+        "(.+)": {
+          "description": "Header you want to rename",
+          "type": "string"
+        }
+      }
+    },
     "replace": {
       "title": "Headers to replace",
       "description": "The headers you want to replace. The key used under `replace` is the header name, and the value an array with all the header values you want to set. The replacement overwrites any other value that could exist in this header.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
+      "examples": [
+        {
+          "Cache-Control": [
+            "no-store"
+          ],
+          "Vary": [
+            "foo",
+            "bar",
+            "foobar"
+          ]
+        }
+      ],
       "type": "object",
       "minProperties": 1,
       "patternProperties": {
