@@ -102,6 +102,96 @@
         "string"
       ]
     },
+    "header_definition": {
+      "$id": "#documentation/openapi/header_definition",
+      "title": "Header definition",
+      "description": "Sets a detailed description for the headers allowed in the endpoint. Make sure to include the same headers in the endpoint's `input_headers`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "examples": [
+        [
+          {
+            "description": "The type of content",
+            "name": "Content-Type"
+          }
+        ]
+      ],
+      "type": "array",
+      "items": {
+        "title": "Headers definition",
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "description": {
+            "title": "Name",
+            "description": "The description of the header",
+            "examples": [
+              "The Content-Type sets the encoding of the request"
+            ],
+            "type": "string"
+          },
+          "type": {
+            "title": "Type",
+            "description": "The type of data according to the OpenAPI spec",
+            "examples": [
+              "string"
+            ],
+            "default": "string",
+            "enum": [
+              "integer",
+              "string",
+              "bool",
+              "object",
+              "array",
+              "float",
+              "datetime"
+            ]
+          },
+          "enum": {
+            "title": "Enum",
+            "description": "The allowed values for this header",
+            "examples": [
+              [
+                "application/json",
+                "application/xml"
+              ]
+            ],
+            "type": "array",
+            "items": {
+              "type": [
+                "array",
+                "boolean",
+                "integer",
+                "number",
+                "object",
+                "string"
+              ]
+            }
+          },
+          "required": {
+            "title": "Required",
+            "description": "Set to `true` when this query string is required",
+            "default": false,
+            "type": "boolean"
+          },
+          "hide": {
+            "title": "Hide querystring",
+            "description": "Avoids this querystring from showing in the generated documentation",
+            "default": false,
+            "type": "boolean"
+          },
+          "name": {
+            "title": "Name",
+            "description": "The name of the querystring, as declared in `input_query_strings`",
+            "type": "string"
+          }
+        },
+        "patternProperties": {
+          "^[@$_#]": {}
+        },
+        "additionalProperties": false
+      }
+    },
     "host": {
       "$id": "#documentation/openapi/host",
       "title": "Host",
@@ -148,7 +238,7 @@
     "param_definition": {
       "$id": "#documentation/openapi/param_definition",
       "title": "Param definition",
-      "description": "Sets a description for the URL parameters (e.g.: `/foo/{param}`) required in the endpoint. Make sure to include to write the param exactly as in the endpoint definition.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "description": "Sets a detailed description for the URL parameters (e.g.: `/foo/{param}`) required in the endpoint. Make sure to include to write the param exactly as in the endpoint definition.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
       "examples": [
         [
           {
@@ -170,6 +260,56 @@
             "description": "The description of the parameter",
             "type": "string"
           },
+          "type": {
+            "title": "Type",
+            "description": "The type of data according to the OpenAPI spec",
+            "examples": [
+              "string"
+            ],
+            "default": "string",
+            "enum": [
+              "integer",
+              "string",
+              "bool",
+              "object",
+              "array",
+              "float",
+              "datetime"
+            ]
+          },
+          "enum": {
+            "title": "Enum",
+            "description": "The allowed values for this parameter",
+            "examples": [
+              [
+                "application/json",
+                "application/xml"
+              ]
+            ],
+            "type": "array",
+            "items": {
+              "type": [
+                "array",
+                "boolean",
+                "integer",
+                "number",
+                "object",
+                "string"
+              ]
+            }
+          },
+          "required": {
+            "title": "Required",
+            "description": "A path parameter is always mandatory on KrakenD, but you can still generate the OpenAPI documentation saying otherwise.",
+            "default": true,
+            "type": "boolean"
+          },
+          "hide": {
+            "title": "Hide param",
+            "description": "Avoids this param from showing in the generated documentation, although is still part of the endpoint definition.",
+            "default": false,
+            "type": "boolean"
+          },
           "name": {
             "title": "Name",
             "description": "The name of the parameter, as declared in `endpoint` without the curly braces `{}`",
@@ -185,7 +325,7 @@
     "query_definition": {
       "$id": "#documentation/openapi/query_definition",
       "title": "Query definition",
-      "description": "Sets a description for the query strings allowed in the endpoint. Make sure to include the same strings in the endpoint's `input_query_strings`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "description": "Sets a detailed description for the query strings allowed in the endpoint. Make sure to include the same strings in the endpoint's `input_query_strings`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
       "examples": [
         [
           {
@@ -207,9 +347,45 @@
             "description": "The description of the querystring",
             "type": "string"
           },
+          "type": {
+            "title": "Type",
+            "description": "The type of data according to the OpenAPI spec",
+            "default": "string",
+            "enum": [
+              "integer",
+              "string",
+              "bool",
+              "object",
+              "array",
+              "float",
+              "datetime"
+            ]
+          },
+          "enum": {
+            "title": "Enum",
+            "description": "The allowed values for this query definition",
+            "type": "array",
+            "items": {
+              "type": [
+                "array",
+                "boolean",
+                "integer",
+                "number",
+                "object",
+                "string"
+              ]
+            }
+          },
           "required": {
             "title": "Required",
             "description": "Set to `true` when this query string is required",
+            "default": true,
+            "type": "boolean"
+          },
+          "hide": {
+            "title": "Hide querystring",
+            "description": "Avoids this querystring from showing in the generated documentation",
+            "default": false,
             "type": "boolean"
           },
           "name": {
@@ -389,7 +565,7 @@
     "tag_definition": {
       "$id": "#documentation/openapi/tag_definition",
       "title": "Tag definition",
-      "description": "Sets a description for the tags classifiying endpoints when generating the OpenAPI spec.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "description": "Sets a detailed description for the tags classifiying endpoints when generating the OpenAPI spec.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
       "examples": [
         [
           {
