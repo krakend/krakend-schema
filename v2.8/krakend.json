@@ -5543,31 +5543,31 @@
       "properties": {
         "tier_key": {
           "title": "Tier key",
-          "description": "The header name containing the tier name. The string you provide is case-insensitive. If you need to take the value from a place that is not a header (a token, an API key), you must use propagate functions in the components that convert values to internal headers.\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
+          "description": "The header name containing the tier name. The string you provide is case-insensitive. If you need to take the value from a place that is not a header (a token, an API key), you must use propagate functions in the components that convert values to internal headers.\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
           "type": "string"
         },
         "tiers": {
           "title": "Tiers",
-          "description": "The list of all tier definitions and limits for each. Each item in the list is a tier object.\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
+          "description": "The list of all tier definitions and limits for each. Each item in the list is a tier object.\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "ratelimit": {
                 "title": "Ratelimit",
-                "description": "The rate limit definition. This is an object with the same attributes the [service rate limit](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/) has.\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
+                "description": "The rate limit definition. This is an object with the same attributes the [service rate limit](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/) has.\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
                 "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1qos~1ratelimit~1router.json",
                 "type": "object"
               },
               "redis_ratelimit": {
                 "title": "Redis Ratelimit",
-                "description": "The redis-backed rate limit definition.",
+                "description": "The stateful rate limit definition. This is an object with the same attributes the [stateful service rate limit](http://localhost:1313/docs/enterprise/throttling/global-rate-limit/) has.\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
                 "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1qos~1ratelimit~1redis.json",
                 "type": "object"
               },
               "tier_value": {
                 "title": "Tier value",
-                "description": "The tier value. When you use `literal`, it is the tier name. When you use `policy`, it is the expression you want to evaluate to determine if the user matches this tier or not (see security policies for syntax).\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
+                "description": "The tier value. When you use `literal`, it is the tier name. When you use `policy`, it is the expression you want to evaluate to determine if the user matches this tier or not (see security policies for syntax).\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
                 "examples": [
                   "gold",
                   "silver",
@@ -5578,7 +5578,7 @@
               },
               "tier_value_as": {
                 "title": "Tier value as",
-                "description": "Determines how to parse the value found in the tier header. When `literal` is used, the exact value of the header is compared against the tier name. When `policy` is used, the value is used to evaluate a policy. When `*` is used, all values will match. Make sure to put the `*` as the last tier; otherwise the rest will be ignored.\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
+                "description": "Determines how to parse the value found in the tier header. When `literal` is used, the exact value of the header is compared against the tier name. When `policy` is used, the value is used to evaluate a policy. When `*` is used, all values will match. Make sure to put the `*` as the last tier; otherwise the rest will be ignored.\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
                 "default": "literal",
                 "enum": [
                   "literal",
@@ -5664,7 +5664,7 @@
               },
               "max_retries": {
                 "title": "Max retries",
-                "description": "The maximum number of retries when the connection fails. Use `-1` to never retry (it might not be a good idea)",
+                "description": "The number of times you want to retry a Redis command using a different connection from the pool, applying a random delay between `min_retry_backoff` and `max_retry_backoff`. Use `-1` to never retry (it might not be a good idea)",
                 "default": 3,
                 "type": "integer"
               },
@@ -5692,7 +5692,7 @@
                 "description": "The connection pool name. This is an arbitrary name used to reference this connection in other parts of the configuration needing Redis.",
                 "examples": [
                   "shared_instance",
-                  "redis_for_ratelimit"
+                  "Redis_for_ratelimit"
                 ],
                 "type": "string"
               },
@@ -5743,7 +5743,7 @@
               },
               "pool_size": {
                 "title": "Pool size",
-                "description": "The pool size for this connection. When `0` it maps to its default 10",
+                "description": "The pool size defines the number of concurrent Redis commands that can be executed by this Redis pool. Take into account that this only saves the connection time to the server, but, Redis will still be a non-concurrent service. When `0` it maps to its default 10",
                 "default": 10,
                 "type": "integer"
               },
@@ -5755,7 +5755,7 @@
               },
               "tls": {
                 "title": "tls",
-                "description": "An object with any [client TLS configuration](/docs/enterprise/service-settings/tls/#client-tls-settings)    to this connection",
+                "description": "An object with any [client TLS configuration](/docs/enterprise/service-settings/tls/#client-tls-settings) to this connection",
                 "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1client_tls.json",
                 "type": "object"
               },
