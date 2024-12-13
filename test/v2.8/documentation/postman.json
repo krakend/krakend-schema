@@ -1,0 +1,39 @@
+{
+  "description": "Postman test",
+  "target": "https://www.krakend.io/schema/v2.8/documentation/postman.json",
+  "tests": [
+    {
+      "description": "Valid Postman collection at the service level",
+      "data": {
+        "name": "Postman doc",
+        "description": "This is a **sample** server. You can find out more about at [http://blah](http://blah.blah.com) webpage",
+        "version": "0.3.0",
+        "folder": [
+          {
+            "name": "/Users",
+            "description": "User endpoints. **in markdown**"
+          },
+          {
+            "name": "/Users/Assets",
+            "description": "User assets endpoints. **in markdown**"
+          },
+          {
+            "name": "/Books",
+            "description": "Books endpoints. **in markdown**"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Semantic versioning test valid",
+      "data": { "version": "0.3.0" },
+      "valid": true
+    },
+    {
+      "description": "Semantic versioning test invalid",
+      "data": { "version": "v0.3.0" },
+      "valid": false
+    }
+  ]
+}
