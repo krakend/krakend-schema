@@ -171,6 +171,17 @@
                             "*"
                         ],
                         "extra_config": {
+                            "qos/ratelimit/router/redis": {
+                                "connection_pool": "shared_instance",
+                                "on_failure_allow": false,
+                                "max_rate": 10,
+                                "capacity": 10,
+                                "client_max_rate": 10,
+                                "client_capacity": 10,
+                                "every": "1m",
+                                "strategy": "header",
+                                "key": "x-client-id"
+                            },
                             "documentation/postman": {
                                 "name": "Create book",
                                 "folder": "/Books",
@@ -189,6 +200,16 @@
                                             "max_rate": 10000,
                                             "strategy": "header",
                                             "key": "X-Account-Id"
+                                        },
+                                        "redis_ratelimit": {
+                                            "connection_pool": "shared_instance",
+                                            "on_failure_allow": true,
+                                            "client_max_rate": 10,
+                                            "client_capacity": 10,
+                                            "max_rate": 10000,
+                                            "every": "1s",
+                                            "strategy": "header",
+                                            "key": "X-Rate-Client-Id"
                                         }
                                     },
                                     {

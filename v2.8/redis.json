@@ -72,7 +72,7 @@
           },
           "max_retries": {
             "title": "Max retries",
-            "description": "The maximum number of retries when the connection fails. Use `-1` to never retry (it might not be a good idea)",
+            "description": "The number of times you want to retry a Redis command using a different connection from the pool, applying a random delay between `min_retry_backoff` and `max_retry_backoff`. Use `-1` to never retry (it might not be a good idea)",
             "default": 3,
             "type": "integer"
           },
@@ -100,7 +100,7 @@
             "description": "The connection pool name. This is an arbitrary name used to reference this connection in other parts of the configuration needing Redis.",
             "examples": [
               "shared_instance",
-              "redis_for_ratelimit"
+              "Redis_for_ratelimit"
             ],
             "type": "string"
           },
@@ -151,7 +151,7 @@
           },
           "pool_size": {
             "title": "Pool size",
-            "description": "The pool size for this connection. When `0` it maps to its default 10",
+            "description": "The pool size defines the number of concurrent Redis commands that can be executed by this Redis pool. Take into account that this only saves the connection time to the server, but, Redis will still be a non-concurrent service. When `0` it maps to its default 10",
             "default": 10,
             "type": "integer"
           },
@@ -163,7 +163,7 @@
           },
           "tls": {
             "title": "tls",
-            "description": "An object with any [client TLS configuration](/docs/enterprise/service-settings/tls/#client-tls-settings)    to this connection",
+            "description": "An object with any [client TLS configuration](/docs/enterprise/service-settings/tls/#client-tls-settings) to this connection",
             "$ref": "./client_tls.json",
             "type": "object"
           },

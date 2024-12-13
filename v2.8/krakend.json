@@ -3428,6 +3428,9 @@
           "description": "The router rate limit feature allows you to set a number of maximum requests per second a KrakenD endpoint will accept.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1qos~1ratelimit~1router.json"
         },
+        "qos/ratelimit/router/redis": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1qos~1ratelimit~1redis.json"
+        },
         "qos/ratelimit/tiered": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1qos~1ratelimit~1tiered.json"
         },
@@ -5554,6 +5557,12 @@
                 "title": "Ratelimit",
                 "description": "The rate limit definition. This is an object with the same attributes the [service rate limit](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/) has.\n\nSee: /docs/enterprise/service-settings/tiered-rate-limit/",
                 "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1qos~1ratelimit~1router.json",
+                "type": "object"
+              },
+              "redis_ratelimit": {
+                "title": "Redis Ratelimit",
+                "description": "The redis-backed rate limit definition.",
+                "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1qos~1ratelimit~1redis.json",
                 "type": "object"
               },
               "tier_value": {

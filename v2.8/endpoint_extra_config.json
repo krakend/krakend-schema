@@ -166,6 +166,9 @@
       "description": "The router rate limit feature allows you to set a number of maximum requests per second a KrakenD endpoint will accept.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
       "$ref": "qos/ratelimit/router.json"
     },
+    "qos/ratelimit/router/redis": {
+      "$ref": "qos/ratelimit/redis.json"
+    },
     "qos/ratelimit/tiered": {
       "$ref": "qos/ratelimit/tiered.json"
     },
