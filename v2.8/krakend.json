@@ -2855,6 +2855,114 @@
       },
       "additionalProperties": false
     },
+    "https://www.krakend.io/schema/v2.8/documentation/postman.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Generate documentation using Postman collections",
+      "description": "Enterprise only. Generates postman documentation automatically through `krakend postman export` command.\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
+      "type": "object",
+      "properties": {
+        "description": {
+          "title": "API Collection Description",
+          "description": "An introductory, optionally verbose, explanation supporting Markdown syntax. If you'd like to load an **external markdown file**, you can use flexible configuration, for instance `\"description\": {{include \"postman/intro.md\" | toJson }}`\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
+          "examples": [
+            "Hi there, I am a [postman collection](https://www.krakend.io/docs/enterprise/developer/postman/)"
+          ],
+          "type": "string"
+        },
+        "folder": {
+          "title": "Folder",
+          "description": "The folder definition where you will add endpoints",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "description": {
+                "title": "Folder description",
+                "description": "A description explaining the items inside this folder",
+                "examples": [
+                  "Books from post-apocalyptic dystopias to brilliant time-travel"
+                ]
+              },
+              "name": {
+                "title": "Folder name",
+                "description": "The folder name. This might look like the path in an operative system with a slash /, but is not strictly necessary. Usage of special chars is allowed.",
+                "examples": [
+                  "/Books",
+                  "/Books/Science Fiction/Dystopia",
+                  "/书籍/科幻小说",
+                  "/पुस्तकें/विज्ञान कथा",
+                  "/本/サイエンスフィクション"
+                ],
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "name": {
+          "title": "Collection Name",
+          "description": "The name of the Postman collection you are generating.\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
+          "examples": [
+            "KrakenD Config v1"
+          ],
+          "type": "string"
+        },
+        "version": {
+          "title": "Collection Version",
+          "description": "The version you assign to this Postman collection you are generating using **semantic versioning**.\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
+          "examples": [
+            "1.2.3",
+            "0.7.9"
+          ],
+          "type": "string",
+          "pattern": "^[0-9].[0-9].[0-9]+$"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.8/documentation/postman_endpoint.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Generate documentation using Postman collections",
+      "description": "Enterprise only. Generates postman documentation automatically through `krakend postman export` command.\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
+      "type": "object",
+      "properties": {
+        "description": {
+          "title": "Endpoint description",
+          "description": "An introductory, optionally verbose, explanation supporting Markdown syntax. If you'd like to load an **external markdown file**, you can use flexible configuration, for instance `\"description\": {{include \"postman/intro.md\" | toJson }}`\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
+          "examples": [
+            "Hi there, I am a [postman endpoint](https://www.krakend.io/docs/enterprise/developer/postman/)"
+          ],
+          "type": "string"
+        },
+        "folder": {
+          "title": "Folder",
+          "description": "The folder name where you want to put this endpoint. If you defined folders at the service level, use the same name to reuse their name and description",
+          "examples": [
+            "/Books"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "title": "Endpoint Name",
+          "description": "The name of the endpoint you are generating. If you don't set any name the last member path is used.\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
+          "examples": [
+            "List books",
+            "Create user"
+          ],
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
     "https://www.krakend.io/schema/v2.8/endpoint.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Endpoint Object",
@@ -3042,6 +3150,9 @@
         },
         "documentation/openapi": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1documentation~1openapi.json"
+        },
+        "documentation/postman": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1documentation~1postman_endpoint.json"
         },
         "modifier/jmespath": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1modifier~1jmespath.json"
@@ -4635,8 +4746,9 @@
     },
     "https://www.krakend.io/schema/v2.8/plugin/redis-ratelimit.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "Redis ratelimit",
+      "title": "DEPRECATED. Redis ratelimit",
       "description": "Enterprise only. The global rate limit functionality enables a Redis database store to centralize all KrakenD node counters. Instead of having each KrakenD node count its hits, the counters are global and stored in the database.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
+      "deprecated": true,
       "type": "object",
       "required": [
         "host",
@@ -5974,6 +6086,9 @@
         },
         "documentation/openapi": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1documentation~1openapi.json"
+        },
+        "documentation/postman": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1documentation~1postman.json"
         },
         "grpc": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1grpc.json"

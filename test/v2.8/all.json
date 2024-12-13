@@ -171,6 +171,11 @@
                             "*"
                         ],
                         "extra_config": {
+                            "documentation/postman": {
+                                "name": "Create book",
+                                "folder": "/Books",
+                                "description": "Books endpoint"
+                            },
                             "qos/ratelimit/tiered": {
                                 "tier_key": "X-Plan",
                                 "tiers": [
@@ -1624,6 +1629,25 @@
                     }
                 ],
                 "extra_config": {
+                    "documentation/postman": {
+                        "name": "Postman doc",
+                        "description": "This is a **sample** server. You can find out more about at [http://blah](http://blah.blah.com) webpage",
+                        "version": "0.3.0",
+                        "folder": [
+                            {
+                                "name": "/Users",
+                                "description": "User endpoints. **in markdown**"
+                            },
+                            {
+                                "name": "/Users/Assets",
+                                "description": "User assets endpoints. **in markdown**"
+                            },
+                            {
+                                "name": "/Books",
+                                "description": "Books endpoints. **in markdown**"
+                            }
+                        ]
+                    },
                     "qos/ratelimit/tiered": {
                         "tier_key": "X-Plan",
                         "tiers": [

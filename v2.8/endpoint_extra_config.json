@@ -57,6 +57,9 @@
     "documentation/openapi": {
       "$ref": "documentation/openapi.json"
     },
+    "documentation/postman": {
+      "$ref": "documentation/postman_endpoint.json"
+    },
     "modifier/jmespath": {
       "$ref": "modifier/jmespath.json"
     },

@@ -19,6 +19,9 @@
     "documentation/openapi": {
       "$ref": "documentation/openapi.json"
     },
+    "documentation/postman": {
+      "$ref": "documentation/postman.json"
+    },
     "grpc": {
       "$ref": "grpc.json"
     },
