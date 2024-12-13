@@ -1,8 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://www.krakend.io/schema/v2.8/plugin/redis-ratelimit.json",
-  "title": "Redis ratelimit",
+  "title": "DEPRECATED. Redis ratelimit",
   "description": "Enterprise only. The global rate limit functionality enables a Redis database store to centralize all KrakenD node counters. Instead of having each KrakenD node count its hits, the counters are global and stored in the database.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
+  "deprecated": true,
   "type": "object",
   "required": [
     "host",

@@ -1629,6 +1629,25 @@
                     }
                 ],
                 "extra_config": {
+                    "redis": {
+                        "connection_pools": [
+                            {
+                                "name": "shared_instance",
+                                "address": "redis:6379"
+                            }
+                        ]
+                    },
+                    "qos/ratelimit/service/redis": {
+                        "connection_pool": "shared_instance",
+                        "on_failure_allow": false,
+                        "max_rate": 10,
+                        "capacity": 10,
+                        "client_max_rate": 10,
+                        "client_capacity": 10,
+                        "every": "1m",
+                        "strategy": "header",
+                        "key": "x-client-id"
+                    },
                     "documentation/postman": {
                         "name": "Postman doc",
                         "description": "This is a **sample** server. You can find out more about at [http://blah](http://blah.blah.com) webpage",
