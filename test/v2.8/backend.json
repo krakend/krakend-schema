@@ -3,6 +3,14 @@
     "target": "https://www.krakend.io/schema/v2.8/backend.json",
     "tests": [
         {
+            "description": "Empty host",
+            "data": {
+                "host": [""],
+                "url_pattern": "/__debug/root"
+            },
+            "valid": false
+        },
+        {
             "description": "Simple backend declaration with no host",
             "data": {
                 "url_pattern": "/__debug/root"

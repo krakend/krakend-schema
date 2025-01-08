@@ -84,6 +84,7 @@
       "type": "array",
       "items": {
         "type": "string",
+        "pattern": ".+",
         "minLength": 1
       }
     },
