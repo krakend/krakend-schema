@@ -261,6 +261,7 @@
                                     },
                                     "backend/grpc": {
                                         "use_request_body": false,
+                                        "idle_conn_disconnect_time": "10m",
                                         "use_alternate_host_on_error": true,
                                         "client_tls": {
                                             "@comment": "Allow untrusted certificates in development stage",

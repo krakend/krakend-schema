@@ -32,6 +32,13 @@
       },
       "additionalProperties": false
     },
+    "idle_conn_disconnect_time": {
+      "title": "Request naming convention",
+      "description": "The maximum time a connection is kept without being used.\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
+      "default": "10m",
+      "$ref": "../timeunits.json#/$defs/timeunit",
+      "type": "string"
+    },
     "input_mapping": {
       "title": "Mapping of parameters",
       "description": "A dictionary that converts query string parameters and parameters from `{placeholders}` into a different field during the backend request. When passing parameters using `{placeholder}` the parameter capitalizes the first letter, so you receive `Placeholder`.\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
