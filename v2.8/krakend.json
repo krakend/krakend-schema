@@ -8085,6 +8085,56 @@
           },
           "additionalProperties": false
         },
+        "global": {
+          "title": "Replace global configuration",
+          "description": "Overrides the global configuration for this endpoint.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry-by-endpoint/",
+          "properties": {
+            "metrics_static_attributes": {
+              "title": "Static attributes",
+              "description": "Static attributes you want to pass for metrics. Overrides the `metrics_static_attributes` defined at the service level.",
+              "type": "array",
+              "items": {
+                "properties": {
+                  "key": {
+                    "title": "Key",
+                    "description": "The key of the static attribute you want to send",
+                    "type": "string"
+                  },
+                  "value": {
+                    "title": "Value",
+                    "description": "The value of the static attribute you want to send",
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "traces_static_attributes": {
+              "title": "Static attributes",
+              "description": "Static attributes you want to pass for traces.  Overrides the `traces_static_attributes` defined at the service level.",
+              "type": "array",
+              "items": {
+                "properties": {
+                  "key": {
+                    "title": "Key",
+                    "description": "The key of the static attribute you want to send",
+                    "type": "string"
+                  },
+                  "value": {
+                    "title": "Value",
+                    "description": "The value of the static attribute you want to send",
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "patternProperties": {
+            "^[@$_#]": {}
+          },
+          "additionalProperties": false
+        },
         "proxy": {
           "title": "Report proxy activity",
           "description": "Reports the activity at the beginning of the proxy layer, including spawning the required requests to multiple backends, merging, endpoint transformation and any other internals of the proxy between the request processing and the backend communication\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry-by-endpoint/",
@@ -8535,6 +8585,72 @@
                   "default": false,
                   "type": "boolean"
                 },
+                "histograms": {
+                  "title": "Histograms",
+                  "description": "Use an histogram bucket configuration different from the defaults to define the detail of histogram metrics (decrease or increase their size).\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                  "type": "object",
+                  "properties": {
+                    "size_buckets": {
+                      "title": "Size buckets",
+                      "description": "The size of the buckets in bytes you want to use for the histograms.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                      "default": [
+                        128,
+                        256,
+                        512,
+                        1024,
+                        4096,
+                        8192,
+                        16384,
+                        32768,
+                        65536,
+                        262144,
+                        524288,
+                        1048576,
+                        4194304,
+                        16777216,
+                        67108864
+                      ],
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      }
+                    },
+                    "time_buckets": {
+                      "title": "Time buckets",
+                      "description": "The duration of buckets in seconds you want to use for the histograms.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                      "default": [
+                        0.01,
+                        0.02,
+                        0.05,
+                        0.075,
+                        0.1,
+                        0.125,
+                        0.15,
+                        0.175,
+                        0.2,
+                        0.25,
+                        0.3,
+                        0.35,
+                        0.5,
+                        0.75,
+                        1.0,
+                        1.5,
+                        2.0,
+                        3.5,
+                        5.0,
+                        10.0
+                      ],
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "patternProperties": {
+                    "^[@$_#]": {}
+                  },
+                  "additionalProperties": false
+                },
                 "metrics_static_attributes": {
                   "title": "Static attributes",
                   "description": "Static attributes you want to pass for metrics.",
@@ -8560,6 +8676,14 @@
                   "description": "Whether you want to send all headers that the consumer passed in the request or not.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
                   "default": false,
                   "type": "boolean"
+                },
+                "semantic_convention": {
+                  "title": "Semantic convention naming",
+                  "description": "The semantic convention naming you want to use. The default is an empty string which uses the original naming convention prior to 1.27. For the semantic convention of 1.27 and higher, use `1.27`\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                  "enum": [
+                    "",
+                    "1.27"
+                  ]
                 },
                 "traces_static_attributes": {
                   "title": "Static attributes",

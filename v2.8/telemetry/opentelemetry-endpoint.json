@@ -214,6 +214,56 @@
       },
       "additionalProperties": false
     },
+    "global": {
+      "title": "Replace global configuration",
+      "description": "Overrides the global configuration for this endpoint.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry-by-endpoint/",
+      "properties": {
+        "metrics_static_attributes": {
+          "title": "Static attributes",
+          "description": "Static attributes you want to pass for metrics. Overrides the `metrics_static_attributes` defined at the service level.",
+          "type": "array",
+          "items": {
+            "properties": {
+              "key": {
+                "title": "Key",
+                "description": "The key of the static attribute you want to send",
+                "type": "string"
+              },
+              "value": {
+                "title": "Value",
+                "description": "The value of the static attribute you want to send",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "traces_static_attributes": {
+          "title": "Static attributes",
+          "description": "Static attributes you want to pass for traces.  Overrides the `traces_static_attributes` defined at the service level.",
+          "type": "array",
+          "items": {
+            "properties": {
+              "key": {
+                "title": "Key",
+                "description": "The key of the static attribute you want to send",
+                "type": "string"
+              },
+              "value": {
+                "title": "Value",
+                "description": "The value of the static attribute you want to send",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
     "proxy": {
       "title": "Report proxy activity",
       "description": "Reports the activity at the beginning of the proxy layer, including spawning the required requests to multiple backends, merging, endpoint transformation and any other internals of the proxy between the request processing and the backend communication\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry-by-endpoint/",
