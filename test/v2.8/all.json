@@ -1747,6 +1747,18 @@
                         }
                     },
                     "telemetry/opentelemetry": {
+                        "histograms": {
+                            "size_buckets": [
+                                16,
+                                32,
+                                1024
+                            ],
+                            "time_buckets": [
+                                0.1,
+                                1,
+                                10
+                            ]
+                        },
                         "service_name": "krakend_middle_service",
                         "metric_reporting_period": 0,
                         "trace_sample_rate": 0.25,

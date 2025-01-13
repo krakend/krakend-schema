@@ -137,6 +137,72 @@
       },
       "additionalProperties": false
     },
+    "histograms": {
+      "title": "Histograms",
+      "description": "Use an histogram bucket configuration different from the defaults to define the detail of histogram metrics (decrease or increase their size). You don't need to set this attribute unless you want full control of the histogram definition.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+      "type": "object",
+      "properties": {
+        "size_buckets": {
+          "title": "Size buckets",
+          "description": "The size of the buckets in bytes you want to use for the histograms.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+          "default": [
+            128,
+            256,
+            512,
+            1024,
+            4096,
+            8192,
+            16384,
+            32768,
+            65536,
+            262144,
+            524288,
+            1048576,
+            4194304,
+            16777216,
+            67108864
+          ],
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "time_buckets": {
+          "title": "Time buckets",
+          "description": "The duration of buckets in seconds you want to use for the histograms.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+          "default": [
+            0.01,
+            0.02,
+            0.05,
+            0.075,
+            0.1,
+            0.125,
+            0.15,
+            0.175,
+            0.2,
+            0.25,
+            0.3,
+            0.35,
+            0.5,
+            0.75,
+            1.0,
+            1.5,
+            2.0,
+            3.5,
+            5.0,
+            10.0
+          ],
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
     "layers": {
       "title": "Layers",
       "description": "A request and response flow passes through three different layers. This attribute lets you specify what data you want to export in each layer. All layers are enabled by default unless you declare this section.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
@@ -319,72 +385,6 @@
               "description": "Whether you want to disable all traces happening in the global layer or not.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
               "default": false,
               "type": "boolean"
-            },
-            "histograms": {
-              "title": "Histograms",
-              "description": "Use an histogram bucket configuration different from the defaults to define the detail of histogram metrics (decrease or increase their size). You don't need to set this attribute unless you want full control of the histogram definition.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-              "type": "object",
-              "properties": {
-                "size_buckets": {
-                  "title": "Size buckets",
-                  "description": "The size of the buckets in bytes you want to use for the histograms.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-                  "default": [
-                    128,
-                    256,
-                    512,
-                    1024,
-                    4096,
-                    8192,
-                    16384,
-                    32768,
-                    65536,
-                    262144,
-                    524288,
-                    1048576,
-                    4194304,
-                    16777216,
-                    67108864
-                  ],
-                  "type": "array",
-                  "items": {
-                    "type": "number"
-                  }
-                },
-                "time_buckets": {
-                  "title": "Time buckets",
-                  "description": "The duration of buckets in seconds you want to use for the histograms.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-                  "default": [
-                    0.01,
-                    0.02,
-                    0.05,
-                    0.075,
-                    0.1,
-                    0.125,
-                    0.15,
-                    0.175,
-                    0.2,
-                    0.25,
-                    0.3,
-                    0.35,
-                    0.5,
-                    0.75,
-                    1.0,
-                    1.5,
-                    2.0,
-                    3.5,
-                    5.0,
-                    10.0
-                  ],
-                  "type": "array",
-                  "items": {
-                    "type": "number"
-                  }
-                }
-              },
-              "patternProperties": {
-                "^[@$_#]": {}
-              },
-              "additionalProperties": false
             },
             "metrics_static_attributes": {
               "title": "Static attributes",
