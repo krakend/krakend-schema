@@ -8587,7 +8587,7 @@
                 },
                 "histograms": {
                   "title": "Histograms",
-                  "description": "Use an histogram bucket configuration different from the defaults to define the detail of histogram metrics (decrease or increase their size).\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                  "description": "Use an histogram bucket configuration different from the defaults to define the detail of histogram metrics (decrease or increase their size). You don't need to set this attribute unless you want full control of the histogram definition.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
                   "type": "object",
                   "properties": {
                     "size_buckets": {
