@@ -1,0 +1,68 @@
+{
+  "description": "martian",
+  "target": "https://www.krakend.io/schema/v2.9/modifier/martian.json",
+  "tests": [
+    {
+      "description": "two modifiers without group are not possible",
+      "data": {
+        "header.Blacklist": {
+          "scope": [
+            "response"
+          ],
+          "names": [
+            "Vary",
+            "Etag",
+            "Last-Modified",
+            "Expires"
+          ]
+        },
+        "header.Modifier": {
+          "scope": [
+            "response"
+          ],
+          "name": "Cache-Control",
+          "value": "max-age=600, public",
+          "@comment": "We will change the max-age policy before KrakenD checks the content for caching. Now content is cached 600 seconds."
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "two modifiers in a group are possible",
+      "data": {
+        "fifo.Group": {
+          "scope": [
+            "response"
+          ],
+          "aggregateErrors": true,
+          "modifiers": [
+            {
+              "header.Blacklist": {
+                "scope": [
+                  "response"
+                ],
+                "names": [
+                  "Vary",
+                  "Etag",
+                  "Last-Modified",
+                  "Expires"
+                ]
+              }
+            },
+            {
+              "header.Modifier": {
+                "scope": [
+                  "response"
+                ],
+                "name": "Cache-Control",
+                "value": "max-age=600, public",
+                "@comment": "We will change the max-age policy before KrakenD checks the content for caching. Now content is cached 600 seconds."
+              }
+            }
+          ]
+        }
+      },
+      "valid": true
+    }
+  ]
+}
