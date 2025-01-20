@@ -3549,7 +3549,7 @@
                 "properties": {
                   "methods": {
                     "title": "Methods",
-                    "description": "The gRPC methods available for this service (this is not related with HTTP methods despite using the same name).\n\nSee: https://www.krakend.io/docs/enterprise/grpc/server/",
+                    "description": "The gRPC methods available for this service. The `methods` entry is the gRPC equivalent of the HTTP `endpoints`, meaning that the `backend` object under `methods` can use the same configuration as HTTP, including all its `extra_config` parameters.\n\nSee: https://www.krakend.io/docs/enterprise/grpc/server/",
                     "type": "array",
                     "items": {
                       "type": "object",
