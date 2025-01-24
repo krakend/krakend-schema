@@ -445,7 +445,8 @@
                                 "pong_wait": "60s",
                                 "ping_period": "54s",
                                 "max_retries": 0,
-                                "backoff_strategy": "exponential"
+                                "backoff_strategy": "exponential",
+                                "disable_otel_metrics": true
                             },
                             "modifier/response-body-generator": {
                                 "content_type": "application/json",

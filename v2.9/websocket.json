@@ -23,6 +23,12 @@
       "default": false,
       "type": "boolean"
     },
+    "disable_otel_metrics": {
+      "title": "Disable OpenTelemetry metrics",
+      "description": "Disables the OpenTelemetry metrics for the websocket connections.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+      "default": false,
+      "type": "boolean"
+    },
     "disconnect_event": {
       "title": "Notify disconnections",
       "description": "Whether to send notification events to the backend or not when users disconnect from their Websockets connection.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
