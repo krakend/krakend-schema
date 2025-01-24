@@ -70,7 +70,7 @@
     },
     "output_remove_unset_values": {
       "title": "Output removes unset values",
-      "description": "When the response has missing fields from the definition, they are returned with default values. Setting this flag to `true` removes those fields from the response, while setting it to `false` or not setting it, returns all the fields in the definition.\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
+      "description": "This attribute defines what to do when a field that is declared in the definition does not exist in the backend response. When the flag is `true`, any fields in the definition that are not present in the backend response are removed before returning the content to the user. When the flag is `false` missing fields are returned but set with a zeroed-value depending on its type (zero, nil, false, etc).\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
       "default": false,
       "type": "boolean"
     },
