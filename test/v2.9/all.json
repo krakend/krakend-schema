@@ -446,7 +446,10 @@
                                 "ping_period": "54s",
                                 "max_retries": 0,
                                 "backoff_strategy": "exponential",
-                                "disable_otel_metrics": true
+                                "disable_otel_metrics": true,
+                                "subprotocols": [
+                                    "streamlit"
+                                ]
                             },
                             "modifier/response-body-generator": {
                                 "content_type": "application/json",

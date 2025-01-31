@@ -9140,6 +9140,19 @@
           "default": false,
           "type": "boolean"
         },
+        "subprotocols": {
+          "title": "Subprotocols",
+          "description": "The list of subprotocols that the client can use to connect to the websocket.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+          "default": [],
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "examples": [
+              "streamlit"
+            ],
+            "type": "string"
+          }
+        },
         "timeout": {
           "title": "Timeout",
           "description": "Sets the read timeout for the backend. After a read has timed out, the websocket connection is terminated and KrakenD will try to reconnect according the `backoff_strategy`. Minimum accepted time is one minute. This flag only applies when you use ' enable_direct_communication`.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
