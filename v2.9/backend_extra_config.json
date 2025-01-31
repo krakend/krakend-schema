@@ -104,12 +104,45 @@
     },
     "qos/http-cache": {
       "title": "Backend Cache",
-      "description": "Enable in-memory caching for backend responses for as long as its Cache-Control header permits.\n\nSee: https://www.krakend.io/docs/backends/caching/",
+      "description": "Enable in-memory caching for backend responses for as long as its `Cache-Control` header permits. Only safe methods are cached (GET or HEAD). The final backend URL and the `Vary` headers are used to create the caching key.\n\nSee: https://www.krakend.io/docs/backends/caching/",
       "type": "object",
+      "oneOf": [
+        {
+          "required": [
+            "max_size",
+            "max_items"
+          ]
+        },
+        {
+          "required": [
+            "shared"
+          ]
+        },
+        {
+          "maxProperties": 0
+        }
+      ],
       "properties": {
+        "max_items": {
+          "title": "Max items",
+          "description": "Enterprise only. To be released on open source on v2.10. The maximum number of items the LRU cache will store **for this cache bucket** before starting to do evictions. When `max_items` is declared, you must declare `max_size` as well.\n\nSee: https://www.krakend.io/docs/backends/caching/",
+          "examples": [],
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_size": {
+          "title": "Max size",
+          "description": "Enterprise only. To be released on open source on v2.10. The maximum number of bytes you allow the LRU cache to store **for this cache bucket** before starting to do evictions. This is not the total cache you allow to the system, but the number of bytes you reserve to this backend (or its `shared` neighbours). will store before starting to do evictions. When `max_size` is declared, you must declare `max_items` as well.\n\nSee: https://www.krakend.io/docs/backends/caching/",
+          "examples": [
+            104857600,
+            1048576
+          ],
+          "type": "integer",
+          "minimum": 1024
+        },
         "shared": {
           "title": "Shared cache",
-          "description": "The `shared` cache makes that different backend definitions with this flag enabled can reuse the cache. When the `shared` flag is missing or set to false, the backend uses its own cache private context.\n\nSee: https://www.krakend.io/docs/backends/detailed-errors/",
+          "description": "Allows different backend definitions with this flag set to true to reuse the store between them when the request is the same. Otherwise, each backend uses a private cache context that is not accessible by other endpoints. The cache definition is unique for every backend URL + `Vary` header combination.\n\nSee: https://www.krakend.io/docs/backends/caching/",
           "type": "boolean"
         }
       },
