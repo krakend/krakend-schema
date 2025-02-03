@@ -2335,6 +2335,9 @@
         "validation/cel": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1validation~1cel.json"
         },
+        "validation/response-json-schema": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1validation~1response-json-schema.json"
+        },
         "workflow": {
           "title": "Workflow",
           "description": "Enterprise only. A whole new endpoint that is executed within this backend context.",
@@ -3513,6 +3516,9 @@
           "title": "Validating the body with the JSON Schema",
           "description": "apply automatic validations using the JSON Schema vocabulary before the content passes to the backends. The json schema component allows you to define validation rules on the body, type definition, or even validate the fields' values.\n\nSee: https://www.krakend.io/docs/endpoints/json-schema/",
           "type": "object"
+        },
+        "validation/response-json-schema": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1validation~1response-json-schema.json"
         },
         "websocket": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1websocket.json"
@@ -9073,6 +9079,64 @@
         },
         "additionalProperties": false
       }
+    },
+    "https://www.krakend.io/schema/v2.9/validation/response-json-schema.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Response Schema Validator",
+      "description": "Enterprise only. The response schema validator adds a schema validation before the gateway returns the response to the end-user or before it’s merged in the endpoint with the rest of the backends.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
+      "type": "object",
+      "required": [
+        "schema"
+      ],
+      "properties": {
+        "error": {
+          "title": "Error definition",
+          "description": "In case the validation fails, the error definition containing body and status.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
+          "examples": [
+            {
+              "body": "We couldn't process you request, try again later.",
+              "status": 401
+            }
+          ],
+          "type": "object",
+          "properties": {
+            "body": {
+              "title": "Error body",
+              "description": "The error message you want to show when the validation fails. Set it to an empty string `\"\"` to show the JSON-schema validation error.",
+              "default": "",
+              "type": "string"
+            },
+            "content_type": {
+              "title": "Content-Type",
+              "description": "The Content-Type header you want to set back in the response when you are setting a custom `body`",
+              "examples": [
+                "application/json"
+              ],
+              "default": "text/plain",
+              "type": "string"
+            },
+            "status": {
+              "title": "Error code",
+              "description": "The HTTP status code you want to set back in the response.",
+              "default": 500,
+              "type": "integer"
+            }
+          },
+          "patternProperties": {
+            "^[@$_#]": {}
+          },
+          "additionalProperties": false
+        },
+        "schema": {
+          "title": "JSON Schema",
+          "description": "Write your JSON schema directly in this field, with any number of fields or validations you need.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
+          "type": "object"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
     },
     "https://www.krakend.io/schema/v2.9/websocket.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",

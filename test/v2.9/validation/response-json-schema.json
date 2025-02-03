@@ -1,0 +1,57 @@
+{
+    "description": "Backend object test",
+    "target": "https://www.krakend.io/schema/v2.9/validation/response-json-schema.json",
+    "tests": [
+        {
+            "description": "Missing schema",
+            "data": {
+                "error": {
+                    "body": "We couldn't process you request, try again later.",
+                    "status": 401
+                }
+            },
+            "valid": false
+        },
+        {
+            "description": "Valid schema",
+            "data": {
+                "schema": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": {
+                        "user": {
+                            "type": "object",
+                            "properties": {
+                                "username": {
+                                    "type": "string"
+                                },
+                                "user_id": {
+                                    "type": "number"
+                                },
+                                "status": {
+                                    "type": "string",
+                                    "enum": [
+                                        "registered",
+                                        "banned"
+                                    ]
+                                }
+                            },
+                            "required": [
+                                "username",
+                                "user_id"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "user"
+                    ]
+                },
+                "error": {
+                    "body": "We couldn't process you request, try again later.",
+                    "status": 401
+                }
+            },
+            "valid": true
+        }
+    ]
+}
