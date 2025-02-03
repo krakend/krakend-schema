@@ -3,6 +3,7 @@
   "$id": "https://www.krakend.io/schema/v2.9/plugin/response-schema-validator.json",
   "title": "Response Schema Validator",
   "description": "Enterprise only. The response schema validator plugin adds a schema validation before the gateway returns the response to the end-user or before it’s merged in the endpoint with the rest of the backends.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
+  "deprecated": true,
   "type": "object",
   "required": [
     "schema"

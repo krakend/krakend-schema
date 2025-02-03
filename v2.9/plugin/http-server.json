@@ -30,18 +30,22 @@
       }
     },
     "redis-ratelimit": {
+      "deprecated": true,
       "$ref": "redis-ratelimit.json"
     },
     "static-filesystem": {
+      "deprecated": true,
       "$ref": "static-filesystem.json"
     },
     "url-rewrite": {
       "$ref": "url-rewrite.json"
     },
     "virtualhost": {
+      "deprecated": true,
       "$ref": "virtualhost.json"
     },
     "wildcard": {
+      "deprecated": true,
       "$ref": "wildcard.json"
     }
   }
