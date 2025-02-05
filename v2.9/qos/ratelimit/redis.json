@@ -15,6 +15,18 @@
         "connection_pool",
         "client_max_rate"
       ]
+    },
+    {
+      "required": [
+        "connection_name",
+        "max_rate"
+      ]
+    },
+    {
+      "required": [
+        "connection_name",
+        "client_max_rate"
+      ]
     }
   ],
   "properties": {
@@ -35,9 +47,15 @@
       "description": "Number of tokens you add to the [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) for each individual user (*user quota*) in the time interval you want (`every`). The remaining tokens in the bucket are the requests a specific user can do. It keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for **every single client**.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/",
       "type": "number"
     },
+    "connection_name": {
+      "title": "Connection Name",
+      "description": "The connection pool name or cluster name that is used by this ratelimit. The value must match what you configured in the [Redis Connection Pool](/docs/enterprise/service-settings/redis-connection-pools/)",
+      "type": "string"
+    },
     "connection_pool": {
       "title": "Connection Pool Name",
       "description": "The connection pool name that is used by this ratelimit. The value must match what you configured in the [Redis Connection Pool](/docs/enterprise/service-settings/redis-connection-pools/)",
+      "deprecated": true,
       "type": "string"
     },
     "every": {
