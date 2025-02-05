@@ -75,6 +75,9 @@
     "modifier/response-body-generator": {
       "$ref": "modifier/body-generator.json"
     },
+    "modifier/response-values": {
+      "$ref": "modifier/response-values.json"
+    },
     "plugin/req-resp-modifier": {
       "$ref": "plugin/req-resp-modifier.json"
     },

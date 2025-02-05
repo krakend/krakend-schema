@@ -143,6 +143,15 @@
                                         "content_type": "application/json",
                                         "debug": false,
                                         "template": "abcdef"
+                                    },
+                                    "modifier/response-values": {
+                                        "modifiers": [
+                                            {
+                                                "upper": {
+                                                    "field": "surname"
+                                                }
+                                            }
+                                        ]
                                     }
                                 }
                             }
