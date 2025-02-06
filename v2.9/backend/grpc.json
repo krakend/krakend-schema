@@ -41,7 +41,7 @@
     },
     "input_assume_bytes": {
       "title": "Assume input are bytes",
-      "description": "When set to true, when the backend has to fill a bytes field for a grpc protobuf payload to send, first tries to decode the input data (the one coming from either a json body field, a query param or header string) from base64: if it succeeds it fills the field to send with that binary / bytes data. If the incoming field is not a valid urlbase64 decoded field (the one used in jsonpb), it will fill the binary field with the verbatim conversion of the incoming string to bytes. Standard base64 decoding is not attempted.",
+      "description": "When set to true, when the backend has to fill a bytes field for a grpc protobuf payload to send, first tries to decode the input data (the one coming from either a json body field, a query param or header string) from base64: if it succeeds it fills the field to send with that binary / bytes data. If the incoming field is not a valid base64 decoded field (the one used in jsonpb), it will fill the binary field with the verbatim conversion of the incoming string to bytes.",
       "default": false
     },
     "input_mapping": {
