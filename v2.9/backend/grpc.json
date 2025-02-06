@@ -39,6 +39,11 @@
       "$ref": "../timeunits.json#/$defs/timeunit",
       "type": "string"
     },
+    "input_assume_bytes": {
+      "title": "Assume input are bytes",
+      "description": "When set to true, when the backend has to fill a bytes field for a grpc protobuf payload to send, first tries to decode the input data (the one coming from either a json body field, a query param or header string) from base64: if it succeeds it fills the field to send with that binary / bytes data. If the incoming field is not a valid urlbase64 decoded field (the one used in jsonpb), it will fill the binary field with the verbatim conversion of the incoming string to bytes. Standard base64 decoding is not attempted.",
+      "default": false
+    },
     "input_mapping": {
       "title": "Mapping of parameters",
       "description": "A dictionary that converts query string parameters and parameters from `{placeholders}` into a different field during the backend request. When passing parameters using `{placeholder}` the parameter capitalizes the first letter, so you receive `Placeholder`.\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
