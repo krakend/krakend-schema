@@ -1,6 +1,6 @@
 {
-  "description": "response-values",
-  "target": "https://www.krakend.io/schema/v2.9/modifier/response-values.json",
+  "description": "response-body",
+  "target": "https://www.krakend.io/schema/v2.9/modifier/response-body.json",
   "tests": [
     {
       "description": "Operations declared but no actions",

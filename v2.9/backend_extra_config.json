@@ -87,11 +87,11 @@
     "modifier/request-body-generator": {
       "$ref": "modifier/body-generator.json"
     },
+    "modifier/response-body": {
+      "$ref": "modifier/response-body.json"
+    },
     "modifier/response-body-generator": {
       "$ref": "modifier/body-generator.json"
-    },
-    "modifier/response-values": {
-      "$ref": "modifier/response-values.json"
     },
     "plugin/http-client": {
       "$ref": "plugin/http-client.json"

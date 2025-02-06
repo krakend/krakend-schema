@@ -144,7 +144,7 @@
                                         "debug": false,
                                         "template": "abcdef"
                                     },
-                                    "modifier/response-values": {
+                                    "modifier/response-body": {
                                         "modifiers": [
                                             {
                                                 "upper": {
