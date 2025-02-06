@@ -143,6 +143,15 @@
                                         "content_type": "application/json",
                                         "debug": false,
                                         "template": "abcdef"
+                                    },
+                                    "modifier/response-body": {
+                                        "modifiers": [
+                                            {
+                                                "upper": {
+                                                    "field": "surname"
+                                                }
+                                            }
+                                        ]
                                     }
                                 }
                             }
@@ -446,7 +455,10 @@
                                 "ping_period": "54s",
                                 "max_retries": 0,
                                 "backoff_strategy": "exponential",
-                                "disable_otel_metrics": true
+                                "disable_otel_metrics": true,
+                                "subprotocols": [
+                                    "streamlit"
+                                ]
                             },
                             "modifier/response-body-generator": {
                                 "content_type": "application/json",
@@ -1662,6 +1674,12 @@
                             {
                                 "name": "shared_instance",
                                 "address": "redis:6379"
+                            }
+                        ],
+                        "clusters": [
+                            {
+                            "name": "shared_redis_cluster",
+                            "addresses": ["192.168.1.45:6379", "192.168.1.52:6379"]
                             }
                         ]
                     },

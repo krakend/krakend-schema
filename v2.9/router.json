@@ -145,13 +145,6 @@
       "items": {
         "type": "string"
       }
-    },
-    "use_h2c": {
-      "title": "Enable h2c",
-      "description": "This flag has [moved to the root level](https://www.krakend.io/docs/service-settings/http-server-settings/), and will be deleted from router in future versions.\n\nSee: https://www.krakend.io/docs/service-settings/",
-      "deprecated": true,
-      "default": false,
-      "type": "boolean"
     }
   },
   "patternProperties": {

@@ -141,16 +141,6 @@
         "TLS12",
         "TLS13"
       ]
-    },
-    "private_key": {
-      "description": "Declaration of the `private_key` under the `tls` object is now deprecated. Please move this attribute inside the `keys` array.",
-      "deprecated": true,
-      "type": "string"
-    },
-    "public_key": {
-      "description": "Declaration of the `public_key` under the `tls` object is now deprecated. Please move this attribute inside the `keys` array.",
-      "deprecated": true,
-      "type": "string"
     }
   },
   "patternProperties": {

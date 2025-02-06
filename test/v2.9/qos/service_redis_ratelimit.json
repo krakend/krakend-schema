@@ -11,7 +11,7 @@
             "description": "All options",
             "data": {
                 "@comment": "Hello",
-                "connection_pool": "shared_instance",
+                "connection_name": "shared_instance",
                 "on_failure_allow": false,
                 "max_rate": 10,
                 "capacity": 10,
@@ -26,7 +26,7 @@
         {
             "description": "Minimum options max_rate",
             "data": {
-                "connection_pool": "shared_instance",
+                "connection_name": "shared_instance",
                 "max_rate": 10
             },
             "valid": true
@@ -34,7 +34,7 @@
         {
             "description": "Minimum options client_max_rate",
             "data": {
-                "connection_pool": "shared_instance",
+                "connection_name": "shared_instance",
                 "client_max_rate": 10
             },
             "valid": true

@@ -1,0 +1,52 @@
+{
+  "description": "response-body",
+  "target": "https://www.krakend.io/schema/v2.9/modifier/response-body.json",
+  "tests": [
+    {
+      "description": "Operations declared but no actions",
+      "data": {
+        "modifiers": []
+      },
+      "valid": true
+    },
+    {
+      "description": "happy case",
+      "data": {
+        "modifiers": [
+          {
+            "regexp": {
+              "field": "data.credit_card",
+              "find": "(^\\d{4})(.*)",
+              "replace": "${1}-XXXX"
+            }
+          },
+          {
+            "literal": {
+              "field": "surname",
+              "find": " supu",
+              "replace": "tupu"
+            }
+          },
+          {
+            "upper": {
+              "@comment": "We want all surnames uppercased, like SMITH",
+              "field": "surname"
+            }
+          },
+          {
+            "lower": {
+              "field": "dawsesad"
+            }
+          },
+          {
+            "trim": {
+              "field": "surnaasdffdsdfsme",
+              "find": "A"
+            }
+          }
+        ]
+      },
+      "valid": true
+    }
+  ]
+}

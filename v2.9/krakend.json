@@ -2238,6 +2238,9 @@
         "modifier/request-body-generator": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1modifier~1body-generator.json"
         },
+        "modifier/response-body": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1modifier~1response-body.json"
+        },
         "modifier/response-body-generator": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1modifier~1body-generator.json"
         },
@@ -2255,12 +2258,45 @@
         },
         "qos/http-cache": {
           "title": "Backend Cache",
-          "description": "Enable in-memory caching for backend responses for as long as its Cache-Control header permits.\n\nSee: https://www.krakend.io/docs/backends/caching/",
+          "description": "Enable in-memory caching for backend responses for as long as its `Cache-Control` header permits. Only safe methods are cached (GET or HEAD). The final backend URL and the `Vary` headers are used to create the caching key.\n\nSee: https://www.krakend.io/docs/backends/caching/",
           "type": "object",
+          "oneOf": [
+            {
+              "required": [
+                "max_size",
+                "max_items"
+              ]
+            },
+            {
+              "required": [
+                "shared"
+              ]
+            },
+            {
+              "maxProperties": 0
+            }
+          ],
           "properties": {
+            "max_items": {
+              "title": "Max items",
+              "description": "Enterprise only. To be released on open source on v2.10. The maximum number of items the LRU cache will store **for this cache bucket** before starting to do evictions. When `max_items` is declared, you must declare `max_size` as well.\n\nSee: https://www.krakend.io/docs/backends/caching/",
+              "examples": [],
+              "type": "integer",
+              "minimum": 1
+            },
+            "max_size": {
+              "title": "Max size",
+              "description": "Enterprise only. To be released on open source on v2.10. The maximum number of bytes you allow the LRU cache to store **for this cache bucket** before starting to do evictions. This is not the total cache you allow to the system, but the number of bytes you reserve to this backend (or its `shared` neighbours). will store before starting to do evictions. When `max_size` is declared, you must declare `max_items` as well.\n\nSee: https://www.krakend.io/docs/backends/caching/",
+              "examples": [
+                104857600,
+                1048576
+              ],
+              "type": "integer",
+              "minimum": 1024
+            },
             "shared": {
               "title": "Shared cache",
-              "description": "The `shared` cache makes that different backend definitions with this flag enabled can reuse the cache. When the `shared` flag is missing or set to false, the backend uses its own cache private context.\n\nSee: https://www.krakend.io/docs/backends/detailed-errors/",
+              "description": "Allows different backend definitions with this flag set to true to reuse the store between them when the request is the same. Otherwise, each backend uses a private cache context that is not accessible by other endpoints. The cache definition is unique for every backend URL + `Vary` header combination.\n\nSee: https://www.krakend.io/docs/backends/caching/",
               "type": "boolean"
             }
           },
@@ -2301,6 +2337,9 @@
         },
         "validation/cel": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1validation~1cel.json"
+        },
+        "validation/response-json-schema": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1validation~1response-json-schema.json"
         },
         "workflow": {
           "title": "Workflow",
@@ -3349,6 +3388,9 @@
         "modifier/request-body-generator": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1modifier~1body-generator.json"
         },
+        "modifier/response-body": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1modifier~1response-body.json"
+        },
         "modifier/response-body-generator": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1modifier~1body-generator.json"
         },
@@ -3480,6 +3522,9 @@
           "title": "Validating the body with the JSON Schema",
           "description": "apply automatic validations using the JSON Schema vocabulary before the content passes to the backends. The json schema component allows you to define validation rules on the body, type definition, or even validate the fields' values.\n\nSee: https://www.krakend.io/docs/endpoints/json-schema/",
           "type": "object"
+        },
+        "validation/response-json-schema": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1validation~1response-json-schema.json"
         },
         "websocket": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1websocket.json"
@@ -4627,6 +4672,218 @@
       },
       "additionalProperties": false
     },
+    "https://www.krakend.io/schema/v2.9/modifier/response-body.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Response values modifier",
+      "description": "Enterprise only. The content replacer plugin allows you to modify the response of your services by doing literal replacements or more sophisticated replacements with regular expressions.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
+      "type": "object",
+      "properties": {
+        "modifiers": {
+          "title": "Operations",
+          "description": "A list of modifiers you would like to apply to specific fields. The modifiers are evaluated and applied in sequential order.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "object",
+            "maxProperties": 1,
+            "properties": {
+              "literal": {
+                "title": "Literal replacement",
+                "description": "A literal replacement of strings (case sensitive).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
+                "examples": [
+                  [
+                    {
+                      "field": "data.example",
+                      "find": "findme",
+                      "replace": "replaceme"
+                    }
+                  ]
+                ],
+                "required": [
+                  "field",
+                  "find",
+                  "replace"
+                ],
+                "properties": {
+                  "field": {
+                    "title": "Field to modify",
+                    "description": "The field you want to modify. The field supports dot notation to access nested objects (it does not work with nested arrays).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
+                    "examples": [
+                      "data.credit_card"
+                    ],
+                    "type": "string"
+                  },
+                  "find": {
+                    "title": "Find",
+                    "description": "The exact string you want to replace.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
+                    "type": "string"
+                  },
+                  "replace": {
+                    "title": "Replace",
+                    "description": "The replacement string you want to use for all matching results. \n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
+                    "type": "string"
+                  }
+                },
+                "patternProperties": {
+                  "^[@$_#]": {}
+                },
+                "additionalProperties": false
+              },
+              "lower": {
+                "title": "Lowercase",
+                "description": "Converts a given string to lowercase.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
+                "examples": [
+                  [
+                    {
+                      "field": "surname"
+                    }
+                  ]
+                ],
+                "required": [
+                  "field"
+                ],
+                "properties": {
+                  "field": {
+                    "title": "Field to modify",
+                    "description": "The field you want to modify. The field supports dot notation to access nested objects (it does not work with nested arrays).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
+                    "examples": [
+                      "user.surname"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "patternProperties": {
+                  "^[@$_#]": {}
+                },
+                "additionalProperties": false
+              },
+              "regexp": {
+                "title": "Regular expression modifier",
+                "description": "A list of regular expressions you would like to apply to specific fields. The expressions are evaluated and applied in sequential order.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
+                "examples": [
+                  [
+                    {
+                      "field": "data.credit_card",
+                      "find": "(^\\d{4})(.*)",
+                      "replace": "${1}-XXXX"
+                    }
+                  ]
+                ],
+                "required": [
+                  "field",
+                  "find",
+                  "replace"
+                ],
+                "properties": {
+                  "field": {
+                    "title": "Field to modify",
+                    "description": "The field you want to modify. The field supports dot notation to access nested objects (it does not work with nested arrays).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
+                    "examples": [
+                      "data.credit_card"
+                    ],
+                    "type": "string"
+                  },
+                  "find": {
+                    "title": "Find",
+                    "description": "The find expression or literal you want to use. The syntax of the regular expressions accepted is the same general syntax used by Perl, Python, and other languages. More precisely, it is the syntax accepted by RE2 and described at [https://golang.org/s/re2syntax](https://golang.org/s/re2syntax)\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
+                    "type": "string"
+                  },
+                  "replace": {
+                    "title": "Replace",
+                    "description": "The literal string or expression you want to use as a replacement. Use `$` signs to replace captured groups. \n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
+                    "examples": [
+                      "${1}-XXXX"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "patternProperties": {
+                  "^[@$_#]": {}
+                },
+                "additionalProperties": false
+              },
+              "trim": {
+                "title": "Trims by character",
+                "description": "Removes a specific set of characters from the beginning and the end of the string.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
+                "examples": [
+                  [
+                    {
+                      "field": "description",
+                      "find": "\n"
+                    }
+                  ]
+                ],
+                "required": [
+                  "field",
+                  "find"
+                ],
+                "properties": {
+                  "field": {
+                    "title": "Field to modify",
+                    "description": "The field you want to modify. The field supports dot notation to access nested objects (it does not work with nested arrays).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
+                    "examples": [
+                      "description"
+                    ],
+                    "type": "string"
+                  },
+                  "find": {
+                    "title": "Find",
+                    "description": "The sequence of characters you want to trim in the response.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
+                    "examples": [
+                      "\r\n",
+                      "\n",
+                      "\t",
+                      " "
+                    ],
+                    "type": "string"
+                  }
+                },
+                "patternProperties": {
+                  "^[@$_#]": {}
+                },
+                "additionalProperties": false
+              },
+              "upper": {
+                "title": "Uppercase",
+                "description": "Converts a given string to uppercase.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
+                "examples": [
+                  [
+                    {
+                      "field": "surname"
+                    }
+                  ]
+                ],
+                "required": [
+                  "field"
+                ],
+                "properties": {
+                  "field": {
+                    "title": "Field to modify",
+                    "description": "The field you want to modify. The field supports dot notation to access nested objects (it does not work with nested arrays).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
+                    "examples": [
+                      "user.surname"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "patternProperties": {
+                  "^[@$_#]": {}
+                },
+                "additionalProperties": false
+              }
+            },
+            "patternProperties": {
+              "^[@$_#]": {}
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
     "https://www.krakend.io/schema/v2.9/modifier/response-headers.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Response headers modifier",
@@ -4727,6 +4984,7 @@
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Content Replacer",
       "description": "Enterprise only. The content replacer plugin allows you to modify the response of your services by doing literal replacements or more sophisticated replacements with regular expressions.\n\nSee: See: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
+      "deprecated": true,
       "type": "object",
       "minProperties": 1,
       "additionalProperties": {
@@ -4829,18 +5087,22 @@
           }
         },
         "redis-ratelimit": {
+          "deprecated": true,
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1plugin~1redis-ratelimit.json"
         },
         "static-filesystem": {
+          "deprecated": true,
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1plugin~1static-filesystem.json"
         },
         "url-rewrite": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1plugin~1url-rewrite.json"
         },
         "virtualhost": {
+          "deprecated": true,
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1plugin~1virtualhost.json"
         },
         "wildcard": {
+          "deprecated": true,
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1plugin~1wildcard.json"
         }
       }
@@ -5041,6 +5303,7 @@
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Response Schema Validator",
       "description": "Enterprise only. The response schema validator plugin adds a schema validation before the gateway returns the response to the end-user or before it’s merged in the endpoint with the rest of the backends.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
+      "deprecated": true,
       "type": "object",
       "required": [
         "schema"
@@ -5405,6 +5668,18 @@
             "connection_pool",
             "client_max_rate"
           ]
+        },
+        {
+          "required": [
+            "connection_name",
+            "max_rate"
+          ]
+        },
+        {
+          "required": [
+            "connection_name",
+            "client_max_rate"
+          ]
         }
       ],
       "properties": {
@@ -5425,9 +5700,15 @@
           "description": "Number of tokens you add to the [Token Bucket](https://www.krakend.io/docs/throttling/token-bucket/) for each individual user (*user quota*) in the time interval you want (`every`). The remaining tokens in the bucket are the requests a specific user can do. It keeps a counter for every client and endpoint. Keep in mind that every KrakenD instance keeps its counters in memory for **every single client**.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/",
           "type": "number"
         },
+        "connection_name": {
+          "title": "Connection Name",
+          "description": "The connection pool name or cluster name that is used by this ratelimit. The value must match what you configured in the [Redis Connection Pool](/docs/enterprise/service-settings/redis-connection-pools/)",
+          "type": "string"
+        },
         "connection_pool": {
           "title": "Connection Pool Name",
           "description": "The connection pool name that is used by this ratelimit. The value must match what you configured in the [Redis Connection Pool](/docs/enterprise/service-settings/redis-connection-pools/)",
+          "deprecated": true,
           "type": "string"
         },
         "every": {
@@ -5621,6 +5902,185 @@
       "description": "Defines the Redis connection pools available to any functionality requiring Redis.\n\nSee: /docs/enterprise/throttling/global-rate-limit/",
       "type": "object",
       "properties": {
+        "clusters": {
+          "title": "Cluster definitions",
+          "description": "Defines all the clusters available to Redis functionality. The different components requiring Redis will access the pool based on its name",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "addresses"
+            ],
+            "properties": {
+              "addresses": {
+                "title": "Addresses",
+                "description": "The list of redis members that conform the cluster using the format `host:port`. All members must be WRITEABLE",
+                "examples": [
+                  [
+                    "192.168.1.45:6379",
+                    "192.168.1.52:6379"
+                  ]
+                ],
+                "type": "array",
+                "items": {
+                  "title": "Redis member",
+                  "description": "The address of a Redis member in the cluster",
+                  "type": "string"
+                }
+              },
+              "client_name": {
+                "title": "Client name",
+                "description": "You can set how this connection shows in Redis when listing all the connections `CONN LIST`",
+                "examples": [
+                  "krakend_pool"
+                ],
+                "type": "string"
+              },
+              "conn_max_idle_time": {
+                "title": "Connection Max Idle Time",
+                "description": "The maximum amount of time a connection may be idle. Should be less than server's timeout.Expired connections may be closed lazily before reuse. If <= 0, connections are not closed due to a connection's idle time.",
+                "default": "30m",
+                "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1timeunits.json/$defs/timeunit",
+                "type": "string"
+              },
+              "conn_max_life_time": {
+                "title": "conn_max_life_time",
+                "description": "The maximum amount of time a connection may be reused. When the attribute is not declared, the connection does not expire",
+                "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1timeunits.json/$defs/timeunit",
+                "type": "string"
+              },
+              "dial_timeout": {
+                "title": "Dial Timeout",
+                "description": "Dial timeout for establishing new connections",
+                "default": "5s",
+                "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1timeunits.json/$defs/timeunit",
+                "type": "string"
+              },
+              "max_active_conns": {
+                "title": "Max active conns",
+                "description": "Maximum number of connections allocated by the pool at a given time. When zero, there is no limit on the number of connections in the pool.",
+                "default": 0,
+                "type": "integer"
+              },
+              "max_idle_conns": {
+                "title": "Max idle conns",
+                "description": "Maximum number of idle connections. The value `0` means connections not closed",
+                "default": 0,
+                "type": "integer"
+              },
+              "max_redirects": {
+                "title": "Max redirects",
+                "description": "The maximum number of redirects to follow when requesting a key that is in another instance",
+                "default": 3,
+                "type": "integer"
+              },
+              "max_retries": {
+                "title": "Max retries",
+                "description": "The number of times you want to retry a Redis command using a different connection from the pool, applying a random delay between `min_retry_backoff` and `max_retry_backoff`. Use `-1` to never retry (it might not be a good idea)",
+                "default": 3,
+                "type": "integer"
+              },
+              "max_retry_backoff": {
+                "title": "Max retry backoff",
+                "description": "Every retry is executed increasing randomly starting at the `min_retry_backoff` until the `max_retry_backoff` is reached. This is the longest possible time.",
+                "default": "512ms",
+                "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1timeunits.json/$defs/timeunit",
+                "type": "string"
+              },
+              "min_idle_conns": {
+                "title": "min_idle_conns",
+                "description": "Minimum number of idle connections which is useful when establishing new connection is slow. `0` means connections are not closed.",
+                "default": 0,
+                "type": "integer"
+              },
+              "min_retry_backoff": {
+                "description": "Every retry is executed increasing randomly starting at the `min_retry_backoff` until the `max_retry_backoff` is reached. This is the shortest possible time.",
+                "default": "8ms",
+                "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1timeunits.json/$defs/timeunit",
+                "type": "string"
+              },
+              "name": {
+                "title": "Connection name",
+                "description": "The connection pool name. This is an arbitrary name used to reference this connection in other parts of the configuration needing Redis.",
+                "examples": [
+                  "shared_instance",
+                  "Redis_for_ratelimit"
+                ],
+                "type": "string"
+              },
+              "opentelemetry": {
+                "title": "OpenTelemetry",
+                "description": "The OpenTelemetry configuration establishing how to report Redis connection activity",
+                "type": "object",
+                "properties": {
+                  "disable_metrics": {
+                    "title": "Disable metrics",
+                    "description": "Disables any metrics of this Redis pool",
+                    "default": false,
+                    "type": "boolean"
+                  },
+                  "disable_traces": {
+                    "title": "Disable traces",
+                    "description": "Disables any traces of this Redis pool",
+                    "default": false,
+                    "type": "boolean"
+                  },
+                  "traces_static_attributes": {
+                    "title": "Static attributes",
+                    "description": "Static attributes you want to pass for traces.",
+                    "type": "array",
+                    "items": {
+                      "properties": {
+                        "key": {
+                          "title": "Key",
+                          "description": "The key of the static attribute you want to send",
+                          "type": "string"
+                        },
+                        "value": {
+                          "title": "Value",
+                          "description": "The value of the static attribute you want to send",
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              },
+              "password": {
+                "title": "password",
+                "description": "Sets the password to connect to Redis.",
+                "type": "string"
+              },
+              "pool_size": {
+                "title": "Pool size",
+                "description": "The pool size defines the number of concurrent Redis commands that can be executed by this Redis pool. Take into account that this only saves the connection time to the server, but, Redis will still be a non-concurrent service. When `0` it maps to its default 10",
+                "default": 10,
+                "type": "integer"
+              },
+              "pool_timeout": {
+                "title": "Pool timeout",
+                "description": "Amount of time the client waits for a connection if all connections are busy.",
+                "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1timeunits.json/$defs/timeunit",
+                "type": "string"
+              },
+              "tls": {
+                "title": "tls",
+                "description": "An object with any [client TLS configuration](/docs/enterprise/service-settings/tls/#client-tls-settings) to this connection",
+                "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.9~1client_tls.json",
+                "type": "object"
+              },
+              "user_name": {
+                "title": "Username",
+                "description": "The username to connect to Redis",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
         "connection_pools": {
           "title": "Connection Pools",
           "description": "Defines all the connetion pools available to Redis functionality. The different components requiring Redis will access the pool based on its name",
@@ -5944,13 +6404,6 @@
           "items": {
             "type": "string"
           }
-        },
-        "use_h2c": {
-          "title": "Enable h2c",
-          "description": "This flag has [moved to the root level](https://www.krakend.io/docs/service-settings/http-server-settings/), and will be deleted from router in future versions.\n\nSee: https://www.krakend.io/docs/service-settings/",
-          "deprecated": true,
-          "default": false,
-          "type": "boolean"
         }
       },
       "patternProperties": {
@@ -8996,16 +9449,6 @@
             "TLS12",
             "TLS13"
           ]
-        },
-        "private_key": {
-          "description": "Declaration of the `private_key` under the `tls` object is now deprecated. Please move this attribute inside the `keys` array.",
-          "deprecated": true,
-          "type": "string"
-        },
-        "public_key": {
-          "description": "Declaration of the `public_key` under the `tls` object is now deprecated. Please move this attribute inside the `keys` array.",
-          "deprecated": true,
-          "type": "string"
         }
       },
       "patternProperties": {
@@ -9040,6 +9483,64 @@
         },
         "additionalProperties": false
       }
+    },
+    "https://www.krakend.io/schema/v2.9/validation/response-json-schema.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Response Schema Validator",
+      "description": "Enterprise only. The response schema validator adds a schema validation before the gateway returns the response to the end-user or before it’s merged in the endpoint with the rest of the backends.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
+      "type": "object",
+      "required": [
+        "schema"
+      ],
+      "properties": {
+        "error": {
+          "title": "Error definition",
+          "description": "In case the validation fails, the error definition containing body and status.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
+          "examples": [
+            {
+              "body": "We couldn't process you request, try again later.",
+              "status": 401
+            }
+          ],
+          "type": "object",
+          "properties": {
+            "body": {
+              "title": "Error body",
+              "description": "The error message you want to show when the validation fails. Set it to an empty string `\"\"` to show the JSON-schema validation error.",
+              "default": "",
+              "type": "string"
+            },
+            "content_type": {
+              "title": "Content-Type",
+              "description": "The Content-Type header you want to set back in the response when you are setting a custom `body`",
+              "examples": [
+                "application/json"
+              ],
+              "default": "text/plain",
+              "type": "string"
+            },
+            "status": {
+              "title": "Error code",
+              "description": "The HTTP status code you want to set back in the response.",
+              "default": 500,
+              "type": "integer"
+            }
+          },
+          "patternProperties": {
+            "^[@$_#]": {}
+          },
+          "additionalProperties": false
+        },
+        "schema": {
+          "title": "JSON Schema",
+          "description": "Write your JSON schema directly in this field, with any number of fields or validations you need.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
+          "type": "object"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
     },
     "https://www.krakend.io/schema/v2.9/websocket.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -9085,16 +9586,17 @@
         },
         "input_headers": {
           "title": "Allowed Headers In",
-          "description": "Defines which input headers are allowed to pass to the backend. Notice that you need to declare the `input_headers` at the endpoint level too.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+          "description": "Defines which input headers are allowed to pass to the backend. You don't need to declare the `input_headers` at the endpoint. Use `*` to pass all headers (not recommended, use explicit values instead). There are a few headers that won't be propagated regardless of your configuration, which are: `Upgrade`, `Connection`, `Sec-Websocket-Extensions`, `Sec-Websocket-Version`, and `Sec-Websocket-Key`.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+          "examples": [
+            "Authorization",
+            "User-Agent",
+            "Accept",
+            "*"
+          ],
           "default": [],
           "type": "array",
           "uniqueItems": true,
           "items": {
-            "examples": [
-              "User-Agent",
-              "Accept",
-              "*"
-            ],
             "type": "string"
           }
         },
@@ -9139,6 +9641,21 @@
           "description": "Provides an error `{'error':'reason here'}` to the client when KrakenD was unable to send the message to the backend.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
           "default": false,
           "type": "boolean"
+        },
+        "subprotocols": {
+          "title": "Subprotocols",
+          "description": "The list of subprotocols that the client can use to connect to the websocket.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+          "examples": [
+            [
+              "streamlit"
+            ]
+          ],
+          "default": [],
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
         },
         "timeout": {
           "title": "Timeout",

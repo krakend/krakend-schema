@@ -44,17 +44,17 @@
     "input_headers": {
       "$id": "#websocket/input_headers",
       "title": "Allowed Headers In",
-      "description": "Defines which input headers are allowed to pass to the backend. Notice that you need to declare the `input_headers` at the endpoint level too.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+      "description": "Defines which input headers are allowed to pass to the backend. You don't need to declare the `input_headers` at the endpoint. Use `*` to pass all headers (not recommended, use explicit values instead). There are a few headers that won't be propagated regardless of your configuration, which are: `Upgrade`, `Connection`, `Sec-Websocket-Extensions`, `Sec-Websocket-Version`, and `Sec-Websocket-Key`.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+      "examples": [
+        "Authorization",
+        "User-Agent",
+        "Accept",
+        "*"
+      ],
       "default": [],
       "type": "array",
       "uniqueItems": true,
       "items": {
-        "$id": "#websocket/input_headers/items",
-        "examples": [
-          "User-Agent",
-          "Accept",
-          "*"
-        ],
         "type": "string"
       }
     },
@@ -99,6 +99,21 @@
       "description": "Provides an error `{'error':'reason here'}` to the client when KrakenD was unable to send the message to the backend.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
       "default": false,
       "type": "boolean"
+    },
+    "subprotocols": {
+      "title": "Subprotocols",
+      "description": "The list of subprotocols that the client can use to connect to the websocket.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
+      "examples": [
+        [
+          "streamlit"
+        ]
+      ],
+      "default": [],
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
     },
     "timeout": {
       "title": "Timeout",
