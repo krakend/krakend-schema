@@ -269,6 +269,7 @@
                                         "path": "./static/"
                                     },
                                     "backend/grpc": {
+                                        "input_assume_bytes": true,
                                         "use_request_body": false,
                                         "idle_conn_disconnect_time": "10m",
                                         "use_alternate_host_on_error": true,
