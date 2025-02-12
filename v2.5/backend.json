@@ -123,14 +123,18 @@
     "method": {
       "$id": "#backend/method",
       "title": "Method",
-      "description": "The method sent to this backend in **uppercase**. The method does not need to match the endpoint's method. When the value is omitted, it uses the same endpoint's method.\n\nSee: https://www.krakend.io/docs/backends/",
+      "description": "The method sent to this backend in **uppercase**. The method does not need to match the endpoint's method. When the value is omitted, it uses the same endpoint's method. Some special methods will require you to use no-op encoding (like HEAD or OPTIONS) when these return an empty body.\n\nSee: https://www.krakend.io/docs/backends/",
       "default": "GET",
       "enum": [
         "GET",
         "POST",
         "PUT",
         "PATCH",
-        "DELETE"
+        "DELETE",
+        "OPTIONS",
+        "HEAD",
+        "CONNECT",
+        "TRACE"
       ]
     },
     "sd": {

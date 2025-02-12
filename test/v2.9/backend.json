@@ -11,6 +11,14 @@
             "valid": false
         },
         {
+            "description": "Unusual methods",
+            "data": {
+                "method": "OPTIONS",
+                "url_pattern": "/__debug/root"
+            },
+            "valid": true
+        },
+        {
             "description": "Simple backend declaration with no host",
             "data": {
                 "url_pattern": "/__debug/root"
