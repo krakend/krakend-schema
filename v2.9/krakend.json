@@ -4700,14 +4700,13 @@
                 "title": "Literal replacement",
                 "description": "A literal replacement of strings (case sensitive).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
                 "examples": [
-                  [
-                    {
-                      "field": "data.example",
-                      "find": "findme",
-                      "replace": "replaceme"
-                    }
-                  ]
+                  {
+                    "field": "data.example",
+                    "find": "findme",
+                    "replace": "replaceme"
+                  }
                 ],
+                "type": "object",
                 "required": [
                   "field",
                   "find",
@@ -4742,12 +4741,11 @@
                 "title": "Lowercase",
                 "description": "Converts a given string to lowercase.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
                 "examples": [
-                  [
-                    {
-                      "field": "surname"
-                    }
-                  ]
+                  {
+                    "field": "surname"
+                  }
                 ],
+                "type": "object",
                 "required": [
                   "field"
                 ],
@@ -4770,14 +4768,13 @@
                 "title": "Regular expression modifier",
                 "description": "A list of regular expressions you would like to apply to specific fields. The expressions are evaluated and applied in sequential order.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
                 "examples": [
-                  [
-                    {
-                      "field": "data.credit_card",
-                      "find": "(^\\d{4})(.*)",
-                      "replace": "${1}-XXXX"
-                    }
-                  ]
+                  {
+                    "field": "data.credit_card",
+                    "find": "(^\\d{4})(.*)",
+                    "replace": "${1}-XXXX"
+                  }
                 ],
+                "type": "object",
                 "required": [
                   "field",
                   "find",
@@ -4815,13 +4812,12 @@
                 "title": "Trims by character",
                 "description": "Removes a specific set of characters from the beginning and the end of the string.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
                 "examples": [
-                  [
-                    {
-                      "field": "description",
-                      "find": "\n"
-                    }
-                  ]
+                  {
+                    "field": "description",
+                    "find": "\n"
+                  }
                 ],
+                "type": "object",
                 "required": [
                   "field",
                   "find"
@@ -4856,12 +4852,11 @@
                 "title": "Uppercase",
                 "description": "Converts a given string to uppercase.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
                 "examples": [
-                  [
-                    {
-                      "field": "surname"
-                    }
-                  ]
+                  {
+                    "field": "surname"
+                  }
                 ],
+                "type": "object",
                 "required": [
                   "field"
                 ],
