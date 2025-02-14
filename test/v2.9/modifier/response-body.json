@@ -47,6 +47,56 @@
         ]
       },
       "valid": true
+    },
+    {
+      "description": "incorrect array definition under regexp",
+      "valid": false,
+      "data": {
+        "modifiers": [
+          {
+            "regexp": [
+              {
+                "field": "credit_card.number",
+                "@comment": "Ridiculous card masking. Show last 4 digits and remove the rest. Credit card number is nested.",
+                "find": "^.*(\\d{4})",
+                "replace": "XXXX-${1}"
+              }
+            ]
+          },
+          {
+            "literal": [
+              {
+                "field": "surname",
+                "find": " supu",
+                "replace": "tupu"
+              }
+            ]
+          },
+          {
+            "upper": [
+              {
+                "@comment": "We want all surnames uppercased, like SMITH",
+                "field": "surname"
+              }
+            ]
+          },
+          {
+            "lower": [
+              {
+                "field": "dawsesad"
+              }
+            ]
+          },
+          {
+            "trim": [
+              {
+                "field": "trimmy",
+                "find": "A"
+              }
+            ]
+          }
+        ]
+      }
     }
   ]
 }
