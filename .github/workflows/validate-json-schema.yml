@@ -3,7 +3,7 @@ name: Validate JSON Schema
 permissions:
   contents: write
 jobs:
-  test:
+  test-schema:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -27,7 +27,7 @@ jobs:
           add: 'v2.9/krakend.json'
       - name: Notify JSON schema
         uses: slackapi/slack-github-action@v2.0.0
-        if: ${{ github.event.pull_request.base.ref == 'main' }} # check the target branch if it's master
+        if: ${{ github.head_ref == 'main' || github.ref_name == 'main' }} # check the target branch if it's main
         with:
           webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
           webhook-type: webhook-trigger
