@@ -25,3 +25,13 @@ jobs:
           # The arguments for the `git add` command (see the paragraph below for more info)
           # Default: '.'
           add: 'v2.9/krakend.json'
+      - name: Notify JSON schema
+        uses: slackapi/slack-github-action@v2.0.0
+        with:
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: webhook-trigger
+          payload: |
+            app: "${{ github.event.repository.name }}"
+            status: "${{ job.status }}"
+            env: "production"
+            msg: "${{ github.event.head_commit.message }} ${{ github.event.head_commit.url }}"
