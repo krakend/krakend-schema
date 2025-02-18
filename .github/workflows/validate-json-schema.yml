@@ -27,6 +27,7 @@ jobs:
           add: 'v2.9/krakend.json'
       - name: Notify JSON schema
         uses: slackapi/slack-github-action@v2.0.0
+        if: ${{ github.event.pull_request.base.ref == 'main' }} # check the target branch if it's master
         with:
           webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
           webhook-type: webhook-trigger
