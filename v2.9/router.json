@@ -56,7 +56,7 @@
     },
     "disable_redirect_trailing_slash": {
       "title": "Disable redirect trailing slash",
-      "description": "Disables automatic redirection if the current route can't be matched but a handler for the path with (without) the trailing slash exists.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+      "description": "Disables automatic redirection if the current route can't be matched but a handler for the path with (without) the trailing slash exists. Only works if `disable_redirect_fixed_path` is also set to true.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
       "type": "boolean"
     },
     "error_body": {
