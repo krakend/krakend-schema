@@ -36,3 +36,4 @@ jobs:
             status: "${{ job.status }}"
             env: "production"
             msg: "${{ github.event.head_commit.message }} ${{ github.event.head_commit.url }}"
+            link: "${{ github.event.pull_request.url || github.event.head_commit.url }}"
