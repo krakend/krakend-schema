@@ -279,7 +279,7 @@
     },
     "use_h2c": {
       "title": "Enable h2c",
-      "description": "Enable the support for HTTP/2 with no TLS (clear text). This option is less secure and less performant, use with caution.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+      "description": "Enable the support for HTTP/2 with no TLS. This option is only advised when you have a load balancer in front of KrakenD doing SSL termination, and you have no option to enable SSL communication between the balancer and KrakenD (no internal certificates available either). Otherwise, enabling this flag is less secure and less performant.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
       "default": false,
       "type": "boolean"
     },
