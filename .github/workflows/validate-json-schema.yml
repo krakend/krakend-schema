@@ -4,7 +4,7 @@ permissions:
   contents: write
 jobs:
   test-schema:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: sourcemeta/jsonschema@v7.1.1
