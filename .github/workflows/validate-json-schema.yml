@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: sourcemeta/jsonschema@v7.1.1
+      - uses: sourcemeta/jsonschema@v7.1.2
       - name: Ensure JSON Schemas are formatted
         run: jsonschema fmt --ignore test --check --verbose --extension .json
       - name: Lint JSON Schemas

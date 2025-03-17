@@ -241,7 +241,7 @@
                                             "client_capacity": 20,
                                             "every": "1m",
                                             "strategy": "header",
-                                            "client_key": "X-USER-ID"
+                                            "key": "X-USER-ID"
                                         }
                                     },
                                     {
@@ -1749,7 +1749,7 @@
                                     "client_capacity": 20,
                                     "every": "1m",
                                     "strategy": "header",
-                                    "client_key": "X-USER-ID"
+                                    "key": "X-USER-ID"
                                 }
                             },
                             {

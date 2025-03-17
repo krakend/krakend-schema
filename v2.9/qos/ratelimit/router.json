@@ -89,5 +89,9 @@
         "param"
       ]
     }
-  }
+  },
+  "patternProperties": {
+    "^[@$_#]": {}
+  },
+  "additionalProperties": false
 }
