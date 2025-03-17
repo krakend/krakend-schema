@@ -7,13 +7,13 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
-      - uses: sourcemeta/jsonschema@v4.3.2
+      - uses: sourcemeta/jsonschema@v7.1.1
       - name: Ensure JSON Schemas are formatted
-        run: jsonschema fmt --ignore test --check --verbose
+        run: jsonschema fmt --ignore test --check --verbose --extension .json
       - name: Lint JSON Schemas
-        run: jsonschema lint --fix --ignore test --verbose
+        run: jsonschema lint --fix --ignore test --verbose --extension .json
       - name: Ensure JSON Schemas are valid with respect to their metaschemas
-        run: jsonschema metaschema --ignore test --verbose
+        run: jsonschema metaschema --ignore test --verbose --extension .json
       - name: Run JSON Schema unit tests
         run: jsonschema test ./test/v2.9 --resolve v2.9
       - name: Create a unified bundle
