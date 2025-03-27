@@ -226,7 +226,7 @@
           },
           "db": {
             "title": "DB",
-            "description": "The database number tp select after connecting",
+            "description": "The database number to select after connecting",
             "default": 0,
             "type": "integer"
           },
