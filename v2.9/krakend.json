@@ -5884,7 +5884,7 @@
                 "examples": [
                   "gold",
                   "silver",
-                  "value.matches('User-[a-Z]+')"
+                  "value.matches('User-[a-zA-Z]+')"
                 ],
                 "default": "",
                 "type": "string"
