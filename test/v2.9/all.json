@@ -234,7 +234,7 @@
                                         }
                                     },
                                     {
-                                        "tier_value": "value.matches('Account-[a-Z]+')",
+                                        "tier_value": "value.matches('Account-[a-zA-Z]+')",
                                         "tier_value_as": "policy",
                                         "ratelimit": {
                                             "client_max_rate": 20,
@@ -1742,7 +1742,7 @@
                                 }
                             },
                             {
-                                "tier_value": "value.matches('Account-[a-Z]+')",
+                                "tier_value": "value.matches('Account-[a-zA-Z]+')",
                                 "tier_value_as": "policy",
                                 "ratelimit": {
                                     "client_max_rate": 20,
