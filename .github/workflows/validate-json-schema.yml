@@ -15,16 +15,16 @@ jobs:
       - name: Ensure JSON Schemas are valid with respect to their metaschemas
         run: jsonschema metaschema --ignore test --verbose --extension .json
       - name: Run JSON Schema unit tests
-        run: jsonschema test ./test/v2.9 --resolve v2.9
+        run: jsonschema test ./test/v2.10 --resolve v2.10
       - name: Create a unified bundle
-        run: jsonschema bundle v2.9/_root.json --resolve v2.9 --without-id > v2.9/krakend.json
+        run: jsonschema bundle v2.10/_root.json --resolve v2.10 --without-id > v2.10/krakend.json
       - name: Format bundle file
-        run: jsonschema fmt v2.9/krakend.json
+        run: jsonschema fmt v2.10/krakend.json
       - uses: EndBug/add-and-commit@v9
         with:
           # The arguments for the `git add` command (see the paragraph below for more info)
           # Default: '.'
-          add: 'v2.9/krakend.json'
+          add: 'v2.10/krakend.json'
       - name: Notify JSON schema
         uses: slackapi/slack-github-action@v2.0.0
         if: ${{ github.head_ref == 'main' || github.ref_name == 'main' }} # check the target branch if it's main
