@@ -537,6 +537,18 @@
       "description": "The version you are deploying, this can be useful for deployment tracking.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
       "type": "string"
     },
+    "deploy_env": {
+      "title": "Deploy Environment",
+      "description": "The environment you are deploying, this can be useful for deployment tracking. The string can have any value that makes sense to you to identify the running environment.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "development",
+        "testing",
+        "staging",
+        "production"
+      ]
+    },
     "skip_paths": {
       "title": "Skip Paths",
       "description": "The paths you don't want to report. Use the literal value used in the `endpoint` definition, including any `{placeholders}`. In the `global` layer, this attribute works only on metrics, because traces are initiated before there is an endpoint to match against. If you do not want any path skipped, just add an array with an empty string `[\"\"]`.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
