@@ -8780,6 +8780,12 @@
                   "host"
                 ],
                 "properties": {
+                  "custom_metric_reporting_period": {
+                    "title": "Custom metric reporting period",
+                    "description": "Whether you want to override the global `metric_reporting_period` attribute set for all exporters or not. Value in seconds. A missing attribute, or set to `0` means using whatever value was used in `metric_reporting_period` at the global level.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                    "default": 0,
+                    "type": "integer"
+                  },
                   "disable_metrics": {
                     "title": "Disable metrics",
                     "description": "Disable metrics in this exporter (leaving only traces if any). It won't report any metrics when the flag is `true`.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
@@ -8836,6 +8842,12 @@
                   "name"
                 ],
                 "properties": {
+                  "custom_metric_reporting_period": {
+                    "title": "Custom metric reporting period",
+                    "description": "Whether you want to override the global `metric_reporting_period` attribute set for all exporters or not. Value in seconds. A missing attribute, or set to `0` means using whatever value was used in `metric_reporting_period` at the global level.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                    "default": 0,
+                    "type": "integer"
+                  },
                   "disable_metrics": {
                     "title": "Disable metrics",
                     "description": "Leave this exporter declared but disabled (useful in development). It won't report any metrics when the flag is `true`.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",

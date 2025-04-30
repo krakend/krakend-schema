@@ -30,13 +30,15 @@
                             "listen_ip": "::1",
                             "process_metrics": false,
                             "go_metrics": false,
-                            "disable_metrics": false
+                            "disable_metrics": false,
+                            "custom_metric_reporting_period": 5
                         },
                         {
                             "name": "local_prometheus",
                             "port": 9093,
                             "process_metrics": true,
-                            "go_metrics": true
+                            "go_metrics": true,
+                            "custom_metric_reporting_period": 1
                         }
                     ],
                     "otlp": [
@@ -46,7 +48,8 @@
                             "port": 4317,
                             "use_http": false,
                             "disable_metrics": false,
-                            "disable_traces": false
+                            "disable_traces": false,
+                            "custom_metric_reporting_period": 1
                         }
                     ]
                 },
