@@ -1256,6 +1256,7 @@
           "enum": [
             "kid",
             "x5t",
+            "x5t#S256",
             "kid_x5t"
           ]
         },
@@ -8750,6 +8751,18 @@
         "exporters"
       ],
       "properties": {
+        "deploy_env": {
+          "title": "Deploy Environment",
+          "description": "The environment you are deploying, this can be useful for deployment tracking. The string can have any value that makes sense to you to identify the running environment.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+          "examples": [
+            "development",
+            "testing",
+            "staging",
+            "production"
+          ],
+          "default": "",
+          "type": "string"
+        },
         "exporters": {
           "title": "Exporters",
           "description": "The places where you will send telemetry data. You can declare multiple exporters even when they are of the same type. For instance, when you have a self-hosted Grafana and would like to migrate to its cloud version and check the double reporting during the transition. There are two families of exporters: `otlp` or `prometheus`.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
