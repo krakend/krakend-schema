@@ -3373,7 +3373,7 @@
             },
             "decompress_gzip": {
               "title": "Decompress Gzip",
-              "description": "Enterprise Only. Decompresses any Gzipped content before sending it to the backend when the `Content-Encoding` has `gzip` in the first position. You can also set this value globally at the [service level](/docs/enterprise/service-settings/router-options/#max_payload).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+              "description": "Enterprise Only. Decompresses any Gzipped content before sending it to the backend when the `Content-Encoding` has `gzip` in the first position. You can also set this value globally at the [service level](https://www.krakend.io/docs/enterprise/service-settings/router-options/#max_payload).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
               "default": false,
               "type": "boolean"
             },
@@ -3388,7 +3388,7 @@
             },
             "max_payload": {
               "title": "Maximum Payload",
-              "description": "Enterprise Only. Limits the maximum number of bytes a user can send to the endpoint. `0` means no limit. You can also set this value globally at the [service level](/docs/enterprise/service-settings/router-options/#max_payload).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+              "description": "Enterprise Only. Limits the maximum number of bytes a user can send to the endpoint. `0` means no limit. You can also set this value globally at the [service level](https://www.krakend.io/docs/enterprise/service-settings/router-options/#max_payload).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
               "default": 0,
               "type": "integer"
             },
@@ -3507,7 +3507,7 @@
           "properties": {
             "opentelemetry": {
               "title": "OpenTelemetry settings",
-              "description": "Overrides [OpenTelemetry settings](/docs/enterprise/telemetry/opentelemetry-layers-metrics/) for the gRPC server.",
+              "description": "Overrides [OpenTelemetry settings](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry-layers-metrics/) for the gRPC server.",
               "type": "object",
               "properties": {
                 "disable_metrics": {
@@ -5415,7 +5415,7 @@
         },
         "connection_pool": {
           "title": "Connection Pool Name",
-          "description": "The connection pool name that is used by this ratelimit. The value must match what you configured in the [Redis Connection Pool](/docs/enterprise/service-settings/redis-connection-pools/)",
+          "description": "The connection pool name that is used by this ratelimit. The value must match what you configured in the [Redis Connection Pool](https://www.krakend.io/docs/enterprise/service-settings/redis-connection-pools/)",
           "type": "string"
         },
         "every": {
@@ -5573,7 +5573,7 @@
               },
               "redis_ratelimit": {
                 "title": "Redis Ratelimit",
-                "description": "The stateful rate limit definition. This is an object with the same attributes the [stateful service rate limit](http://localhost:1313/docs/enterprise/throttling/global-rate-limit/) has.\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
+                "description": "The stateful rate limit definition. This is an object with the same attributes the [stateful service rate limit](https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/) has.\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
                 "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1qos~1ratelimit~1redis.json",
                 "type": "object"
               },
@@ -5767,7 +5767,7 @@
               },
               "tls": {
                 "title": "tls",
-                "description": "An object with any [client TLS configuration](/docs/enterprise/service-settings/tls/#client-tls-settings) to this connection",
+                "description": "An object with any [client TLS configuration](https://www.krakend.io/docs/enterprise/service-settings/tls/#client-tls-settings) to this connection",
                 "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.8~1client_tls.json",
                 "type": "object"
               },
@@ -5804,7 +5804,7 @@
         },
         "decompress_gzip": {
           "title": "Decompress Gzip",
-          "description": "Enterprise Only. Decompresses any Gzipped content before sending it to the backend when the `Content-Encoding` has `gzip` in the first position. You can also set this value [per endpoint](/docs/enterprise/endpoints/maximum-request-size/).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+          "description": "Enterprise Only. Decompresses any Gzipped content before sending it to the backend when the `Content-Encoding` has `gzip` in the first position. You can also set this value [per endpoint](https://www.krakend.io/docs/enterprise/endpoints/maximum-request-size/).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
           "default": 0,
           "type": "integer"
         },
@@ -5901,7 +5901,7 @@
         },
         "max_payload": {
           "title": "Maximum Payload",
-          "description": "Enterprise Only. Limits the maximum number of bytes a user can send to the gateway. `0` means no limit. You can also set this value [per endpoint](/docs/enterprise/endpoints/maximum-request-size/).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+          "description": "Enterprise Only. Limits the maximum number of bytes a user can send to the gateway. `0` means no limit. You can also set this value [per endpoint](https://www.krakend.io/docs/enterprise/endpoints/maximum-request-size/).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
           "default": 0,
           "type": "integer"
         },

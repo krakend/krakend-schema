@@ -37,7 +37,7 @@
     },
     "connection_pool": {
       "title": "Connection Pool Name",
-      "description": "The connection pool name that is used by this ratelimit. The value must match what you configured in the [Redis Connection Pool](/docs/enterprise/service-settings/redis-connection-pools/)",
+      "description": "The connection pool name that is used by this ratelimit. The value must match what you configured in the [Redis Connection Pool](https://www.krakend.io/docs/enterprise/service-settings/redis-connection-pools/)",
       "type": "string"
     },
     "every": {

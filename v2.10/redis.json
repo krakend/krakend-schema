@@ -171,7 +171,7 @@
           },
           "tls": {
             "title": "tls",
-            "description": "An object with any [client TLS configuration](/docs/enterprise/service-settings/tls/#client-tls-settings) to this connection",
+            "description": "An object with any [client TLS configuration](https://www.krakend.io/docs/enterprise/service-settings/tls/#client-tls-settings) to this connection",
             "$ref": "./client_tls.json",
             "type": "object"
           },
@@ -342,7 +342,7 @@
           },
           "tls": {
             "title": "tls",
-            "description": "An object with any [client TLS configuration](/docs/enterprise/service-settings/tls/#client-tls-settings) to this connection",
+            "description": "An object with any [client TLS configuration](https://www.krakend.io/docs/enterprise/service-settings/tls/#client-tls-settings) to this connection",
             "$ref": "./client_tls.json",
             "type": "object"
           },
