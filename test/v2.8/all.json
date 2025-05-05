@@ -201,7 +201,7 @@
                                             "strategy": "header",
                                             "key": "X-Account-Id"
                                         },
-                                        "redis_ratelimit": {
+                                        "ratelimit_redis": {
                                             "connection_pool": "shared_instance",
                                             "on_failure_allow": true,
                                             "client_max_rate": 10,
