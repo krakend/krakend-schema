@@ -27,9 +27,9 @@
             "$ref": "router.json",
             "type": "object"
           },
-          "redis_ratelimit": {
+          "ratelimit_redis": {
             "title": "Redis Ratelimit",
-            "description": "The stateful rate limit definition. This is an object with the same attributes the [stateful service rate limit](http://localhost:1313/docs/enterprise/throttling/global-rate-limit/) has.\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
+            "description": "The stateful rate limit definition. This is an object with the same attributes the [stateful service rate limit](https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/) has.\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
             "$ref": "redis.json",
             "type": "object"
           },

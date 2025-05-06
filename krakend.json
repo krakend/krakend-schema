@@ -4,7 +4,7 @@
   "title": "Schema validation for the latest version of KrakenD. Consider sticking to the specific version you are using.",
   "allOf": [
     {
-      "$ref": "v2.9/krakend.json"
+      "$ref": "v2.10/krakend.json"
     }
   ]
 }

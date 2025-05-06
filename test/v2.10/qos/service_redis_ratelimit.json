@@ -1,0 +1,43 @@
+{
+    "description": "Service Redis Rate limit",
+    "target": "https://www.krakend.io/schema/v2.10/qos/ratelimit/redis.json",
+    "tests": [
+        {
+            "description": "the empty object is invalid",
+            "data": {},
+            "valid": false
+        },
+        {
+            "description": "All options",
+            "data": {
+                "@comment": "Hello",
+                "connection_name": "shared_instance",
+                "on_failure_allow": false,
+                "max_rate": 10,
+                "capacity": 10,
+                "client_max_rate": 10,
+                "client_capacity": 10,
+                "every": "1m",
+                "strategy": "header",
+                "key": "x-client-id"
+            },
+            "valid": true
+        },
+        {
+            "description": "Minimum options max_rate",
+            "data": {
+                "connection_name": "shared_instance",
+                "max_rate": 10
+            },
+            "valid": true
+        },
+        {
+            "description": "Minimum options client_max_rate",
+            "data": {
+                "connection_name": "shared_instance",
+                "client_max_rate": 10
+            },
+            "valid": true
+        }
+    ]
+}

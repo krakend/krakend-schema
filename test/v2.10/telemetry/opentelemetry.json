@@ -1,0 +1,126 @@
+{
+    "description": "Backend object test",
+    "target": "https://www.krakend.io/schema/v2.10/telemetry/opentelemetry.json",
+    "tests": [
+        {
+            "description": "Missing schema",
+            "valid": true,
+            "data": {
+                "histograms": {
+                    "size_buckets": [
+                        16,
+                        32,
+                        1024
+                    ],
+                    "time_buckets": [
+                        0.1,
+                        1,
+                        10
+                    ]
+                },
+                "service_name": "krakend_middle_service",
+                "metric_reporting_period": 0,
+                "trace_sample_rate": 0.25,
+                "deploy_env": "test",
+                "exporters": {
+                    "prometheus": [
+                        {
+                            "name": "remote_prometheus",
+                            "port": 9092,
+                            "listen_ip": "::1",
+                            "process_metrics": false,
+                            "go_metrics": false,
+                            "disable_metrics": false,
+                            "custom_metric_reporting_period": 5
+                        },
+                        {
+                            "name": "local_prometheus",
+                            "port": 9093,
+                            "process_metrics": true,
+                            "go_metrics": true,
+                            "custom_metric_reporting_period": 1
+                        }
+                    ],
+                    "otlp": [
+                        {
+                            "name": "local_tempo",
+                            "host": "localhost",
+                            "port": 4317,
+                            "use_http": false,
+                            "disable_metrics": false,
+                            "disable_traces": false,
+                            "custom_metric_reporting_period": 1
+                        }
+                    ]
+                },
+                "layers": {
+                    "global": {
+                        "disable_metrics": false,
+                        "disable_traces": false,
+                        "disable_propagation": false,
+                        "report_headers": true,
+                        "metrics_static_attributes": [
+                            {
+                                "key": "my_metric_global_attr",
+                                "value": "my_metric_global_val"
+                            }
+                        ],
+                        "traces_static_attributes": [
+                            {
+                                "key": "my_trace_global_attr",
+                                "value": "my_trace_global_val"
+                            }
+                        ]
+                    },
+                    "proxy": {
+                        "disable_metrics": false,
+                        "disable_traces": false,
+                        "report_headers": true,
+                        "metrics_static_attributes": [
+                            {
+                                "key": "my_metric_global_attr",
+                                "value": "my_metric_global_val"
+                            }
+                        ],
+                        "traces_static_attributes": [
+                            {
+                                "key": "my_trace_global_attr",
+                                "value": "my_trace_global_val"
+                            }
+                        ]
+                    },
+                    "backend": {
+                        "metrics": {
+                            "disable_stage": false,
+                            "round_trip": true,
+                            "read_payload": true,
+                            "detailed_connection": true,
+                            "static_attributes": [
+                                {
+                                    "key": "my_metric_attr",
+                                    "value": "my_metric_val"
+                                }
+                            ]
+                        },
+                        "traces": {
+                            "disable_stage": false,
+                            "round_trip": true,
+                            "read_payload": true,
+                            "detailed_connection": true,
+                            "static_attributes": [
+                                {
+                                    "key": "my_trace_attr",
+                                    "value": "my_trace_val"
+                                }
+                            ],
+                            "report_headers": true
+                        }
+                    }
+                },
+                "skip_paths": [
+                    "/foo/{bar}"
+                ]
+            }
+        }
+    ]
+}
