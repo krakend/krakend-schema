@@ -27,7 +27,7 @@
       "properties": {
         "opentelemetry": {
           "title": "OpenTelemetry settings",
-          "description": "Overrides [OpenTelemetry settings](/docs/enterprise/telemetry/opentelemetry-layers-metrics/) for the gRPC server.",
+          "description": "Overrides [OpenTelemetry settings](https://www.krakend.io/docs/enterprise/telemetry/opentelemetry-layers-metrics/) for the gRPC server.",
           "type": "object",
           "properties": {
             "disable_metrics": {
