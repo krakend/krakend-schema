@@ -5,7 +5,7 @@
         {
             "description": "Workflow test case",
             "data": {
-                "version": 3,          
+                "version": 3,
                 "endpoints": [{
                     "endpoint": "/foo/{var1}/{var2}",
                     "backend": [{
@@ -54,7 +54,8 @@
                                                                     }],
                                                                     "extra_config": {
                                                                         "proxy": {
-                                                                            "sequential": true
+                                                                            "sequential": true,
+                                                                            "sequential_propagated_params": ["resp0_my_field"]
                                                                         }
                                                                     }
                                                                 }
@@ -65,7 +66,8 @@
                                             }],
                                             "extra_config": {
                                                 "proxy": {
-                                                    "sequential": true
+                                                    "sequential": true,
+                                                    "sequential_propagated_params": ["resp1_my_field"]
                                                 }
                                             }
                                         }
@@ -73,7 +75,8 @@
                                 }],
                                 "extra_config": {
                                     "proxy": {
-                                        "sequential": true
+                                        "sequential": true,
+                                        "sequential_propagated_params": ["resp1_my_field"]
                                     }
                                 }
                             }
