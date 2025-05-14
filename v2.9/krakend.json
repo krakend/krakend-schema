@@ -796,7 +796,7 @@
       ],
       "properties": {
         "N": {
-          "title": "Bot detector",
+          "title": "Number of elements",
           "description": "The maximum `N`umber of elements you want to keep in the bloom filter. Tens of millions work fine on machines with low resources.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
           "examples": [
             10000000

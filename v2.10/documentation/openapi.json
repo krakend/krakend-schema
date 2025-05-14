@@ -556,6 +556,74 @@
         "type": "string"
       }
     },
+    "servers": {
+      "$id": "#documentation/openapi/servers",
+      "title": "Servers",
+      "description": "The list of servers where the API is hosted. The server URL can be a relative path, e.g., `/v1` or an absolute path. The URL might contain `{variables}`, although these are only recognized by OpenAPI and to KrakenD they are just literal strings because it does not use them.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "examples": [
+        [
+          {
+            "url": "/v1"
+          }
+        ],
+        [
+          {
+            "url": "https://example.com:{port}",
+            "variables": {
+              "port": {
+                "default": "8443",
+                "enum": [
+                  "8443",
+                  "443"
+                ]
+              }
+            }
+          }
+        ]
+      ],
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "url"
+        ],
+        "properties": {
+          "description": {
+            "$id": "#documentation/openapi/servers/description",
+            "title": "Description",
+            "description": "A short description of the server URL.",
+            "type": "string"
+          },
+          "url": {
+            "$id": "#documentation/openapi/servers/url",
+            "title": "URL",
+            "description": "The URL of the server. This URL will be used as the base path for all endpoints.",
+            "type": [
+              "string",
+              "object"
+            ]
+          },
+          "variables": {
+            "$id": "#documentation/openapi/servers/variables",
+            "title": "Variables",
+            "description": "A [Server Variable Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#server-variable-object) according to the OpenAPI specification. The variable name is the key and the value is the default value for that variable.",
+            "type": "object",
+            "patternProperties": {
+              "^.*$": {
+                "type": [
+                  "string",
+                  "object"
+                ]
+              }
+            }
+          }
+        },
+        "patternProperties": {
+          "^[@$_#]": {}
+        },
+        "additionalProperties": false
+      }
+    },
     "summary": {
       "$id": "#documentation/openapi/summary",
       "title": "Summary",

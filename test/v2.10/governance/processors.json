@@ -1,0 +1,58 @@
+{
+    "description": "Service level quotas declaration",
+    "target": "https://www.krakend.io/schema/v2.10/governance/processors.json",
+    "tests": [
+        {
+            "description": "All options",
+            "data": {
+                "quotas": [
+                    {
+                        "name": "service",
+                        "connection_name": "quotas",
+                        "hash_keys": true,
+                        "on_failure_allow": false,
+                        "on_failure_max_retries": 2,
+                        "on_failure_backoff_strategy": "linear",
+                        "deny_queue_size": 10,
+                        "deny_queue_flush_interval": "2s",
+                        "deny_queue_flush_threshold": 5,
+                        "rejecter_cache": {
+                            "N": 10000000,
+                            "P": 1e-8,
+                            "hash_name": "optimal"
+                        },
+                        "rules": [
+                            {
+                                "name": "gold",
+                                "limits": [
+                                    {
+                                        "amount": 10,
+                                        "unit": "hour"
+                                    },
+                                    {
+                                        "amount": 250,
+                                        "unit": "day"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "silver",
+                                "limits": [
+                                    {
+                                        "amount": 5,
+                                        "unit": "hour"
+                                    },
+                                    {
+                                        "amount": 125,
+                                        "unit": "day"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "valid": true
+        }
+    ]
+}

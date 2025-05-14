@@ -22,6 +22,12 @@
     "documentation/postman": {
       "$ref": "documentation/postman.json"
     },
+    "governance/processors": {
+      "$ref": "governance/processors.json"
+    },
+    "governance/quota": {
+      "$ref": "governance/quota.json"
+    },
     "grpc": {
       "$ref": "grpc.json"
     },

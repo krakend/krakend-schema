@@ -69,6 +69,9 @@
     "backend/static-filesystem": {
       "$ref": "backend/static-filesystem.json"
     },
+    "governance/quota": {
+      "$ref": "governance/quota.json"
+    },
     "modifier/body-generator": {
       "$ref": "modifier/body-generator.json"
     },
