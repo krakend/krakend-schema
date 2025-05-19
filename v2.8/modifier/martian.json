@@ -364,6 +364,12 @@
           "const": [
             "request"
           ]
+        },
+        "header": {
+          "title": "Header",
+          "description": "The header name you want to use to save the ID. In the case the header is already set, the header is unmodified.",
+          "default": "X-Krakend-Id",
+          "type": "string"
         }
       }
     },
