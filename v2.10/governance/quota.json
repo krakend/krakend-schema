@@ -10,6 +10,11 @@
     "tiers"
   ],
   "properties": {
+    "disable_quota_headers": {
+      "description": "When set to `true`, the quota headers `X-Quota-Limit`, `X-Quota-Remaining`, and `Retry-After` will not be added to the response. This is useful when you want to hide the quota information from the client.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
+      "default": false,
+      "type": "boolean"
+    },
     "on_unmatched_tier_allow": {
       "description": "When a tier cannot be infered from the request, whether to allow the request to continue or not. In case a request does not match any of the tiers, the request will be rejected with a 400 error unless you set this to `true`.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
       "default": false,

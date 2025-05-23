@@ -1,5 +1,5 @@
 {
-    "description": "Service level quotas declaration",
+    "description": "Service level processors declaration",
     "target": "https://www.krakend.io/schema/v2.10/governance/processors.json",
     "tests": [
         {
