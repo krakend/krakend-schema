@@ -78,7 +78,7 @@
       }
     },
     "weight_key": {
-      "description": "Instead of incrementing the quota counter by one unit, use the value provided in a field or header with its dynamic value. For instance, an LLM can return how many tokens it consumed, and you can use that value to increment the quota counter. The value must be a parseable number, and the field or header must be present in the request. The `weight_key` is only used in the `endpoint` and `backend` scopes, and it is ignored in the service level.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
+      "description": "Instead of incrementing the quota counter by one unit, use the value provided in a field or header with its dynamic value. For instance, an LLM can return how many tokens it consumed, and you can use that value to increment the quota counter. The value must be a parseable number, and the field or header must be present in the backend response. The `weight_key` is only used in the `endpoint` and `backend` scopes, and it is ignored in the service level.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
       "type": "string"
     },
     "weight_strategy": {
