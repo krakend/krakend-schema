@@ -7173,6 +7173,7 @@
               "title": "Policies",
               "description": "An array with all the policies to evaluate. Each policy is represented as a string\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
               "type": "array",
+              "minItems": 1,
               "items": {
                 "title": "The policy you want to evaluate",
                 "type": "string"
@@ -7219,6 +7220,7 @@
               "title": "Policies",
               "description": "An array with all the policies to evaluate. Each policy is represented as a string\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
               "type": "array",
+              "minItems": 1,
               "items": {
                 "title": "The policy you want to evaluate",
                 "type": "string"
@@ -7265,6 +7267,7 @@
               "title": "Policies",
               "description": "An array with all the policies to evaluate. Each policy is represented as a string\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
               "type": "array",
+              "minItems": 1,
               "items": {
                 "title": "The policy you want to evaluate",
                 "type": "string"

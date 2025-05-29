@@ -349,7 +349,7 @@
                                 "extra_config": {
                                     "security/policies": {
                                         "resp": {
-                                            "policies": [],
+                                            "policies": ["true"],
                                             "error": {
                                                 "body": "",
                                                 "content_type": "text/plain",
@@ -363,7 +363,7 @@
                                             "error": {
                                                 "body": ""
                                             },
-                                            "policies": []
+                                            "policies": ["true"]
                                         }
                                     },
                                     "telemetry/opentelemetry": {
@@ -441,7 +441,7 @@
                                     ]
                                 },
                                 "req": {
-                                    "policies": [],
+                                    "policies": ["true"],
                                     "error": {
                                         "body": "",
                                         "content_type": "text/plain",
@@ -449,7 +449,7 @@
                                     }
                                 },
                                 "resp": {
-                                    "policies": [],
+                                    "policies": ["true"],
                                     "error": {
                                         "body": "",
                                         "content_type": "text/plain",
