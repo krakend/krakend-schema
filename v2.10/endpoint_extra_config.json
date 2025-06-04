@@ -60,6 +60,9 @@
     "documentation/postman": {
       "$ref": "documentation/postman_endpoint.json"
     },
+    "governance/quota": {
+      "$ref": "governance/quota.json"
+    },
     "modifier/jmespath": {
       "$ref": "modifier/jmespath.json"
     },

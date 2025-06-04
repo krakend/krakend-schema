@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://www.krakend.io/schema/v2.10/telemetry/logging.json",
-  "title": "Improved logging",
+  "title": "Logging",
   "description": "Enables the extended logging capabilities.\n\nSee: https://www.krakend.io/docs/logging/",
   "type": "object",
   "required": [
@@ -54,6 +54,13 @@
       ],
       "default": "-",
       "type": "string"
+    },
+    "backend": {
+      "$id": "#backend",
+      "title": "Backend log format",
+      "description": "Enterprise only. Add a specific [Backend Log](https://www.krakend.io/docs/enterprise/logging/#backend-log). Useful to see status codes, headers, and other information that come from your backends.\n\nSee: https://www.krakend.io/docs/enterprise/logging/",
+      "$ref": "backend_log.json",
+      "type": "object"
     },
     "custom_format": {
       "$id": "#custom_format",

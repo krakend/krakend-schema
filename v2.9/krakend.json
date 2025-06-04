@@ -796,7 +796,7 @@
       ],
       "properties": {
         "N": {
-          "title": "Bot detector",
+          "title": "Number of elements",
           "description": "The maximum `N`umber of elements you want to keep in the bloom filter. Tens of millions work fine on machines with low resources.\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
           "examples": [
             10000000
@@ -4202,6 +4202,12 @@
             "scope"
           ],
           "properties": {
+            "header": {
+              "title": "Header",
+              "description": "The header name you want to use to save the ID. In the case the header is already set, the header is unmodified.",
+              "default": "X-Krakend-Id",
+              "type": "string"
+            },
             "scope": {
               "title": "Scope",
               "description": "Scopes in which this modifier acts",

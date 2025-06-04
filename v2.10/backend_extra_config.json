@@ -69,6 +69,9 @@
     "backend/static-filesystem": {
       "$ref": "backend/static-filesystem.json"
     },
+    "governance/quota": {
+      "$ref": "governance/quota.json"
+    },
     "modifier/body-generator": {
       "$ref": "modifier/body-generator.json"
     },
@@ -175,6 +178,20 @@
         "required": [
           "jwt"
         ]
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
+    "telemetry/logging": {
+      "title": "Backend Log",
+      "description": "Enterprise only. Add a specific Backend Log. Useful to see status codes, headers, and other information that come from your backends.\n\nSee: https://www.krakend.io/docs/enterprise/logging/",
+      "type": "object",
+      "properties": {
+        "backend": {
+          "$ref": "telemetry/backend_log.json"
+        }
       },
       "patternProperties": {
         "^[@$_#]": {}

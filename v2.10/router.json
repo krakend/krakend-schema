@@ -23,7 +23,7 @@
     },
     "disable_access_log": {
       "title": "Disable Access Log",
-      "description": "Stops registering access requests to KrakenD and leaving any logs out from the output.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+      "description": "Stops registering access requests to KrakenD in the logs. You can still have a [Backend Log](https://www.krakend.io/docs/logging/#backend) if needed.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
       "default": false,
       "type": "boolean"
     },

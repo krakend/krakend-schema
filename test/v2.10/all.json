@@ -125,6 +125,19 @@
                                             "a": 1
                                         }
                                     },
+                                    "governance/quota": {
+                                        "quota_name": "public_plans",
+                                        "tier_key": "X-Level",
+                                        "tiers": [
+                                            {
+                                                "rule_name": "rule_gold",
+                                                "tier_value": "gold",
+                                                "tier_value_as": "literal",
+                                                "strategy": "header",
+                                                "key": "X-User-Id"
+                                            }
+                                        ]
+                                    },
                                     "backend/http": {
                                         "return_error_code": true,
                                         "@extra_comment": "here"
@@ -180,6 +193,27 @@
                             "*"
                         ],
                         "extra_config": {
+                            "governance/quota": {
+                                "quota_name": "public_plans",
+                                "on_unmatched_tier_allow": false,
+                                "weight_key": "credits_consumed",
+                                "weight_strategy": "body",
+                                "tier_key": "X-Level",
+                                "tiers": [
+                                    {
+                                        "rule_name": "rule_gold",
+                                        "tier_value": "gold",
+                                        "tier_value_as": "literal",
+                                        "strategy": "header",
+                                        "key": "X-User-Id"
+                                    },
+                                    {
+                                        "rule_name": "rule_bronze",
+                                        "tier_value_as": "*",
+                                        "strategy": "ip"
+                                    }
+                                ]
+                            },
                             "qos/ratelimit/router/redis": {
                                 "connection_pool": "shared_instance",
                                 "on_failure_allow": false,
@@ -315,7 +349,7 @@
                                 "extra_config": {
                                     "security/policies": {
                                         "resp": {
-                                            "policies": [],
+                                            "policies": ["true"],
                                             "error": {
                                                 "body": "",
                                                 "content_type": "text/plain",
@@ -329,7 +363,7 @@
                                             "error": {
                                                 "body": ""
                                             },
-                                            "policies": []
+                                            "policies": ["true"]
                                         }
                                     },
                                     "telemetry/opentelemetry": {
@@ -407,7 +441,7 @@
                                     ]
                                 },
                                 "req": {
-                                    "policies": [],
+                                    "policies": ["true"],
                                     "error": {
                                         "body": "",
                                         "content_type": "text/plain",
@@ -415,7 +449,7 @@
                                     }
                                 },
                                 "resp": {
-                                    "policies": [],
+                                    "policies": ["true"],
                                     "error": {
                                         "body": "",
                                         "content_type": "text/plain",
@@ -1694,6 +1728,70 @@
                         "every": "1m",
                         "strategy": "header",
                         "key": "x-client-id"
+                    },
+                    "governance/processors": {
+                        "quotas": [
+                            {
+                                "name": "public_plans",
+                                "connection_name": "shared_redis_pool",
+                                "hash_keys": true,
+                                "on_failure_allow": false,
+                                "rejecter_cache": {
+                                    "N": 10000000,
+                                    "P": 1e-8,
+                                    "hash_name": "optimal"
+                                },
+                                "rules": [
+                                    {
+                                        "name": "rule_gold",
+                                        "limits": [
+                                            {
+                                                "amount": 10,
+                                                "unit": "hour"
+                                            },
+                                            {
+                                                "amount": 200,
+                                                "unit": "day"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "rule_bronze",
+                                        "limits": [
+                                            {
+                                                "amount": 5,
+                                                "unit": "hour"
+                                            },
+                                            {
+                                                "amount": 100,
+                                                "unit": "day"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "governance/quota": {
+                        "quota_name": "public_plans",
+                        "on_unmatched_tier_allow": false,
+                        "weight_key": "credits_consumed",
+                        "weight_strategy": "body",
+                        "tier_key": "X-Level",
+                        "tiers": [
+                            {
+                                "rule_name": "rule_gold",
+                                "tier_value": "gold",
+                                "tier_value_as": "literal",
+                                "strategy": "header",
+                                "key": "X-User-Id"
+                            },
+                            {
+                                "rule_name": "rule_bronze",
+                                "tier_value_as": "*",
+                                "strategy": "ip"
+                            }
+                        ]
                     },
                     "documentation/postman": {
                         "name": "Postman doc",
