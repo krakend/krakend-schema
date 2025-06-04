@@ -384,7 +384,7 @@
       ],
       "properties": {
         "name": {
-          "description": "Value of the header you want to set",
+          "description": "Name of the header you want to set",
           "type": "string"
         },
         "scope": {
@@ -404,7 +404,7 @@
           ]
         },
         "value": {
-          "description": "Name of the header you want to set",
+          "description": "Value of the header you want to set",
           "type": "string"
         }
       }
