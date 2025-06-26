@@ -347,6 +347,15 @@
                         "backend": [
                             {
                                 "extra_config": {
+                                    "plugin/middleware":{
+                                        "name":["your-plugin-A","your-plugin-B"],
+                                        "your-plugin-A": {
+                                            "your-A-setting": true
+                                        },
+                                        "your-plugin-B": {
+                                            "your-B-setting": true
+                                        }
+                                    },
                                     "security/policies": {
                                         "resp": {
                                             "policies": ["true"],
@@ -404,6 +413,12 @@
                             }
                         ],
                         "extra_config": {
+                            "plugin/middleware":{
+                                "name":["your-plugin-A"],
+                                "your-plugin-A": {
+                                    "your-A-setting": true
+                                }
+                            },
                             "telemetry/opentelemetry": {
                                 "proxy": {
                                     "disable_metrics": false,

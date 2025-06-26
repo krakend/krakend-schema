@@ -81,6 +81,9 @@
     "modifier/response-body-generator": {
       "$ref": "modifier/body-generator.json"
     },
+    "plugin/middleware": {
+      "$ref": "plugin/middleware.json"
+    },
     "plugin/req-resp-modifier": {
       "$ref": "plugin/req-resp-modifier.json"
     },

@@ -99,6 +99,9 @@
     "plugin/http-client": {
       "$ref": "plugin/http-client.json"
     },
+    "plugin/middleware": {
+      "$ref": "plugin/middleware.json"
+    },
     "plugin/req-resp-modifier": {
       "$ref": "plugin/req-resp-modifier.json"
     },

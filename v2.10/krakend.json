@@ -2260,6 +2260,9 @@
         "plugin/http-client": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.10~1plugin~1http-client.json"
         },
+        "plugin/middleware": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.10~1plugin~1middleware.json"
+        },
         "plugin/req-resp-modifier": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.10~1plugin~1req-resp-modifier.json"
         },
@@ -3487,6 +3490,9 @@
         },
         "modifier/response-body-generator": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.10~1modifier~1body-generator.json"
+        },
+        "plugin/middleware": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.10~1plugin~1middleware.json"
         },
         "plugin/req-resp-modifier": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.10~1plugin~1req-resp-modifier.json"
@@ -5600,6 +5606,24 @@
         "^[@$_#]": {}
       },
       "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.10/plugin/middleware.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Enterprise Only. Middleware plugins.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "title": "Plugin name",
+          "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/middleware-plugins/",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
     },
     "https://www.krakend.io/schema/v2.10/plugin/redis-ratelimit.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
