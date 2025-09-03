@@ -894,7 +894,8 @@
                                                 4867
                                             ]
                                         },
-                                        "proxy_address": "http://troloro:9099"
+                                        "proxy_address": "http://troloro:9099",
+                                        "enable_redirect_post": true
                                     }
                                 }
                             }

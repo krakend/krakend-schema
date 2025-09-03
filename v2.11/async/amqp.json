@@ -10,13 +10,6 @@
     "exchange"
   ],
   "properties": {
-    "nack_discard": {
-      "$id": "#async/amqp/nack_discard",
-      "title": "NACK Discard",
-      "description": "When `true`, messages that cannot be processed are discarded instead of being sent back to the queue. This is useful for scenarios where you want to avoid reprocessing failed messages.\n\nSee: https://www.krakend.io/docs/async/amqp/",
-      "default": false,
-      "type": "boolean"
-    },
     "auto_ack": {
       "$id": "#async/amqp/auto_ack",
       "title": "Auto ACK",
@@ -59,6 +52,13 @@
       "title": "Host",
       "description": "The connection string, ends in slash. E.g: `amqp://user:password@host:5672/`.\n\nSee: https://www.krakend.io/docs/async/amqp/",
       "type": "string"
+    },
+    "nack_discard": {
+      "$id": "#async/amqp/nack_discard",
+      "title": "NACK Discard",
+      "description": "When `true`, messages that cannot be processed are discarded instead of being sent back to the queue. This is useful for scenarios where you want to avoid reprocessing failed messages.\n\nSee: https://www.krakend.io/docs/async/amqp/",
+      "default": false,
+      "type": "boolean"
     },
     "name": {
       "$id": "#async/amqp/name",

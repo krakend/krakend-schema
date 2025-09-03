@@ -64,6 +64,7 @@
                     "Accept"
                 ],
                 "url_pattern": "/__debug/",
+                "input_query_strings": ["test"],
                 "extra_config": {
                     "auth/ntlm": {
                         "user": "user",

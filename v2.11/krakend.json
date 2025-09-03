@@ -319,6 +319,12 @@
           "description": "The connection string, ends in slash. E.g: `amqp://user:password@host:5672/`.\n\nSee: https://www.krakend.io/docs/async/amqp/",
           "type": "string"
         },
+        "nack_discard": {
+          "title": "NACK Discard",
+          "description": "When `true`, messages that cannot be processed are discarded instead of being sent back to the queue. This is useful for scenarios where you want to avoid reprocessing failed messages.\n\nSee: https://www.krakend.io/docs/async/amqp/",
+          "default": false,
+          "type": "boolean"
+        },
         "name": {
           "title": "Name",
           "description": "The queue name.\n\nSee: https://www.krakend.io/docs/async/amqp/",
@@ -457,7 +463,7 @@
             "properties": {
               "async/amqp": {
                 "title": "Async Agent extra configuration",
-                "description": "See the configuration for async/amqp",
+                "description": "[See the configuration for async/amqp](https://www.krakend.io/docs/async/amqp/)",
                 "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.11~1async~1amqp.json"
               }
             }
@@ -1292,7 +1298,7 @@
         },
         "propagate_claims_preserve_array": {
           "title": "Preserve array structure",
-          "description": "When set to `true`, the JWT claims that are propagated to the backend will preserve their array structure. If set to `false`, arrays will be converted to comma-separated strings.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+          "description": "When set to `true`, the JWT claims that are propagated to the backend will preserve their array structure as multi-value headers, if applies. If set to `false`, arrays will be converted to comma-separated strings.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
           "default": false,
           "type": "boolean"
         },
@@ -1616,6 +1622,12 @@
           "description": "The maximum number of times you will allow KrakenD to retry reconnecting to a broken messaging system. During startup KrakenD will wait for a maximum of 3 retries before starting to use this policy. Use 0 for unlimited retries.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
           "default": 0,
           "type": "integer"
+        },
+        "nack_discard": {
+          "title": "NACK Discard",
+          "description": "When `true`, messages that cannot be processed are discarded instead of being sent back to the queue. This is useful for scenarios where you want to avoid reprocessing failed messages.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
+          "default": false,
+          "type": "boolean"
         },
         "name": {
           "title": "Name",
@@ -1983,6 +1995,12 @@
           "title": "TLS Client settings",
           "description": "Allows to set specific transport settings when using TLS in your upstream services. See the global [Client TLS options](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings) for the list of all supported options.",
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.11~1client_tls.json"
+        },
+        "enable_redirect_post": {
+          "title": "Enable redirect POST",
+          "description": "Post the original body to the final URL after a 307 or a 308 redirection.\n\nSee: https://www.krakend.io/docs/enterprise/backends/http-client/",
+          "default": false,
+          "type": "boolean"
         },
         "no_redirect": {
           "title": "No redirect",
@@ -6715,7 +6733,7 @@
         },
         "disable_gzip": {
           "title": "Disable gzip compression",
-          "description": "**Enterprise only**. All the output to the end user on the Enterprise Edition uses gzip when accepted by the client. Use this flag to remove gzip compression.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+          "description": "Enterprise only. All the output to the end user on the Enterprise Edition uses gzip when accepted by the client. Use this flag to remove gzip compression.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
           "default": false,
           "type": "boolean"
         },
@@ -7758,7 +7776,7 @@
       "properties": {
         "format": {
           "title": "Application log format",
-          "description": "Specify the format of the application logs: default, logstash, or custom.\nThe custom format needs an additional key \"custom_format\".\nThe \"logstash\" format needs the \"telemetry/logstash\" component added too.\n\nSee: https://www.krakend.io/docs/logging/",
+          "description": "Specify the format of the application logs: default, logstash, or custom.\nThe custom format needs an additional key \"custom_format\".\n\nSee: https://www.krakend.io/docs/logging/",
           "examples": [
             "default",
             "logstash",

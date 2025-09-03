@@ -10,13 +10,6 @@
     "routing_key"
   ],
   "properties": {
-    "nack_discard": {
-      "$id": "#backend/amqp/consumer/nack_discard",
-      "title": "NACK Discard",
-      "description": "When `true`, messages that cannot be processed are discarded instead of being sent back to the queue. This is useful for scenarios where you want to avoid reprocessing failed messages.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
-      "default": false,
-      "type": "boolean"
-    },
     "auto_ack": {
       "$id": "#backend/amqp/consumer/auto_ack",
       "title": "Auto ACK",
@@ -71,6 +64,13 @@
       "description": "The maximum number of times you will allow KrakenD to retry reconnecting to a broken messaging system. During startup KrakenD will wait for a maximum of 3 retries before starting to use this policy. Use 0 for unlimited retries.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
       "default": 0,
       "type": "integer"
+    },
+    "nack_discard": {
+      "$id": "#backend/amqp/consumer/nack_discard",
+      "title": "NACK Discard",
+      "description": "When `true`, messages that cannot be processed are discarded instead of being sent back to the queue. This is useful for scenarios where you want to avoid reprocessing failed messages.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
+      "default": false,
+      "type": "boolean"
     },
     "name": {
       "$id": "#backend/amqp/consumer/name",
