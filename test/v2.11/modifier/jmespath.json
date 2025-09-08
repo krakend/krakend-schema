@@ -1,0 +1,18 @@
+{
+  "description": "JMESPath",
+  "target": "https://www.krakend.io/schema/v2.11/modifier/jmespath.json",
+  "tests": [
+    {
+      "description": "the empty object is invalid",
+      "data": {},
+      "valid": false
+    },
+    {
+      "description": "example expression",
+      "data": {
+        "expr": "students[?age > `18` ].name"
+      },
+      "valid": true
+    }
+  ]
+}
