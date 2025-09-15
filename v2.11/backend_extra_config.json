@@ -19,6 +19,9 @@
     "backend/amqp/producer": {
       "$ref": "backend/amqp/producer.json"
     },
+    "backend/conditional": {
+      "$ref": "backend/conditional.json"
+    },
     "backend/graphql": {
       "$ref": "backend/graphql.json"
     },

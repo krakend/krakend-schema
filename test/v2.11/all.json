@@ -786,6 +786,11 @@
                                         "region": "",
                                         "@extra_comment": "here"
                                     },
+                                    "backend/conditional": {
+                                        "strategy": "header",
+                                        "name": "X-Ab-Test",
+                                        "value": "A"
+                                    },
                                     "auth/client-credentials": {
                                         "client_id": "ID1",
                                         "client_secret": "mys3cr3t",

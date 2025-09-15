@@ -1,0 +1,40 @@
+{
+  "description": "Conditional Routing test",
+  "target": "https://www.krakend.io/schema/v2.11/backend/conditional.json",
+  "tests": [
+    {
+      "description": "Valid header strategy",
+      "data": {
+        "strategy": "header",
+        "name": "X-Ab-Test",
+        "value": "A",
+        "@comment": "hey"
+      },
+      "valid": true
+    },
+    {
+      "description": "Invalid - Strategy missing",
+      "data": {
+        "name": "X-Ab-Test",
+        "value": "A",
+        "@comment": "hey"
+      },
+      "valid": false
+    },
+    {
+      "description": "Valid - fallback",
+      "data": {
+        "strategy": "fallback"
+      },
+      "valid": true
+    },
+    {
+      "description": "Valid - Policy",
+      "data": {
+        "strategy": "policy",
+        "value": "geoIP().RepresentedCountry.IsInEuropeanUnion"
+      },
+      "valid": true
+    }
+  ]
+}
