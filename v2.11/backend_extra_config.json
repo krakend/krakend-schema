@@ -4,6 +4,9 @@
   "title": "Extra configuration for backends",
   "type": "object",
   "properties": {
+    "ai/llm": {
+      "$ref": "ai/llm.json"
+    },
     "auth/client-credentials": {
       "$ref": "auth/client-credentials.json"
     },

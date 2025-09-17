@@ -1,0 +1,62 @@
+{
+  "description": "Conditional Routing test",
+  "target": "https://www.krakend.io/schema/v2.11/ai/llm.json",
+  "tests": [
+    {
+      "description": "Valid minimum configuration with one provider",
+      "data": {
+        "gemini": {
+          "credentials": "x",
+          "version": "v1beta",
+          "debug": false,
+          "variables": {
+            "candidates": 3
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Valid minimum configuration with one provider",
+      "data": {
+        "openai": {
+          "credentials": "xxx",
+          "version": "v1",
+          "debug": false,
+          "variables": {
+            "model": "model"
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Valid minimum configuration with one provider",
+      "data": {
+        "mistral": {
+          "credentials": "xxx",
+          "version": "v1",
+          "debug": false,
+          "variables": {
+            "model": "model"
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Valid minimum configuration with one provider",
+      "data": {
+        "anthropic": {
+          "credentials": "xxx",
+          "version": "v1",
+          "debug": false,
+          "variables": {
+            "model": "claude-opus-4-1-20250805"
+          }
+        }
+      },
+      "valid": true
+    }
+  ]
+}

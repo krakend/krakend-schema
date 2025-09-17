@@ -86,6 +86,16 @@
                         "content_type": "application/xml",
                         "debug": false
                     },
+                    "ai/llm": {
+                        "openai": {
+                            "credentials": "xxx",
+                            "version": "v1",
+                            "debug": false,
+                            "variables": {
+                                "model": "model"
+                            }
+                        }
+                    },
                     "modifier/body-generator": {
                         "content_type": "application/json",
                         "debug": false,
