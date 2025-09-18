@@ -7,16 +7,16 @@
   "maxProperties": 1,
   "properties": {
     "anthropic": {
-      "$ref": "anthropic_v1.json"
+      "$ref": "anthropic.json"
     },
     "gemini": {
-      "$ref": "gemini_v1beta.json"
+      "$ref": "gemini.json"
     },
     "mistral": {
-      "$ref": "mistral_v1.json"
+      "$ref": "mistral.json"
     },
     "openai": {
-      "$ref": "openai_v1.json"
+      "$ref": "openai.json"
     }
   },
   "patternProperties": {

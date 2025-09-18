@@ -88,11 +88,13 @@
                     },
                     "ai/llm": {
                         "openai": {
-                            "credentials": "xxx",
-                            "version": "v1",
-                            "debug": false,
-                            "variables": {
-                                "model": "model"
+                            "v1": {
+                                "credentials": "xxx",
+                                "version": "v1",
+                                "debug": false,
+                                "variables": {
+                                    "model": "model"
+                                }
                             }
                         }
                     },
