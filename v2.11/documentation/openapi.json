@@ -333,6 +333,21 @@
               ]
             }
           },
+          "format": {
+            "title": "Format",
+            "description": "The extending format for the previously defined type. If the type is `number` or `string` you can apply them one of the available formats. If you choose string formats for numbers or viceversa de linter does not check it.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+            "enum": [
+              "int32",
+              "int64",
+              "float",
+              "double",
+              "date",
+              "date-time",
+              "byte",
+              "uuid",
+              ""
+            ]
+          },
           "required": {
             "title": "Required",
             "description": "A path parameter is always mandatory on KrakenD, but you can still generate the OpenAPI documentation saying otherwise.",
