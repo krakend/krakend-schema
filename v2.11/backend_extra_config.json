@@ -7,6 +7,9 @@
     "ai/llm": {
       "$ref": "ai/llm.json"
     },
+    "auth/aws-sigv4": {
+      "$ref": "auth/aws-sigv4.json"
+    },
     "auth/client-credentials": {
       "$ref": "auth/client-credentials.json"
     },

@@ -77,6 +77,12 @@
                             "a": 1
                         }
                     },
+                    "auth/aws-sigv4": {
+                        "service": "execute-api",
+                        "region": "us-east-1",
+                        "assume_role_arn": "arn:aws:sts::{account ID}:assumed-role/{resource}",
+                        "sts_region": "us-west-1"
+                    },
                     "backend/http": {
                         "return_error_code": true,
                         "@extra_comment": "here"

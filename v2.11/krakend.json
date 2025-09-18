@@ -1008,6 +1008,55 @@
       },
       "additionalProperties": false
     },
+    "https://www.krakend.io/schema/v2.11/auth/aws-sigv4.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "aws-sigv4 Authentication",
+      "description": "Enterprise only. Enables AWS Sigv4 authentication between KrakenD and Google Cloud service account.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/aws-sigv4/",
+      "type": "object",
+      "required": [
+        "region",
+        "service",
+        "assume_role_arn"
+      ],
+      "properties": {
+        "assume_role_arn": {
+          "title": "Assume Role ARN",
+          "description": "The Amazon Resource Name (ARN) of the role to assume.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/aws-sigv4",
+          "examples": [
+            "arn:aws:sts::{account ID}:assumed-role/{resource}"
+          ],
+          "type": "string"
+        },
+        "region": {
+          "title": "Region",
+          "description": "The AWS region where the service is deployed.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/aws-sigv4/",
+          "examples": [
+            "us-east-1"
+          ],
+          "type": "string"
+        },
+        "service": {
+          "title": "Service",
+          "description": "The name of the service in AWS you'd like to sign the request.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/aws-sigv4/",
+          "examples": [
+            "dynamodb"
+          ],
+          "type": "string"
+        },
+        "sts_region": {
+          "title": "STS Region",
+          "description": "The AWS region where the STS service is deployed.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/aws-sigv4",
+          "examples": [
+            "us-west-1"
+          ],
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
     "https://www.krakend.io/schema/v2.11/auth/basic.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "description": "Enterprise only. The Basic Authentication component protects the access to selected endpoints using basic username and password credentials.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/",
@@ -2671,6 +2720,9 @@
         "ai/llm": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.11~1ai~1llm.json"
         },
+        "auth/aws-sigv4": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.11~1auth~1aws-sigv4.json"
+        },
         "auth/client-credentials": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.11~1auth~1client-credentials.json"
         },
@@ -3094,6 +3146,39 @@
           ],
           "type": "string"
         },
+        "cookie_name": {
+          "title": "Cookie name",
+          "description": "When generating an OpenAPI spec, the name of the cookie used under components securitySchemes.",
+          "default": "SESSIONID",
+          "type": "string"
+        },
+        "custom_security_schemes": {
+          "title": "Custom security schemes",
+          "description": "Allows you to add custom security schemes under `components/securitySchemes` in the generated OpenAPI spec. This is useful when you want to define your own security schemes, different from the built-in ones (e.g., `jwt`, `apikey`, `cookie`, etc.). When the property is in the service level you must declare the schema (e.g., `\"OAuth2Security\":{...}`), and when it is in the endpoint you should only write the object name with not properties inside, e.g, `{\"OAuth2Security\":{}`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "examples": [
+            {
+              "OAuth2Security": {
+                "description": "OAuth2 security scheme",
+                "type": "oauth2",
+                "flows": {
+                  "authorizationCode": {
+                    "authorizationUrl": "https://example.com/oauth/authorize",
+                    "scopes": {},
+                    "tokenUrl": "https://example.com/oauth/token"
+                  }
+                }
+              }
+            }
+          ],
+          "type": "object",
+          "patternProperties": {
+            "^.*$": {
+              "title": "Security Scheme",
+              "description": "A valid OpenAPI Security Scheme object.",
+              "type": "object"
+            }
+          }
+        },
         "example": {
           "title": "Example",
           "description": "**Deprecated in OAS3** (use `response_definition` instead). A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
@@ -3296,6 +3381,17 @@
                 "description": "A path parameter is always mandatory on KrakenD, but you can still generate the OpenAPI documentation saying otherwise.",
                 "default": true,
                 "type": "boolean"
+              },
+              "example": {
+                "title": "Example",
+                "description": "An example value for this parameter. This example is injected in the spec as is.",
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "array",
+                  "object"
+                ]
               },
               "hide": {
                 "title": "Hide param",
