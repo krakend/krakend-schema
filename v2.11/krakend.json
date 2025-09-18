@@ -3338,6 +3338,22 @@
                 "description": "The description of the parameter",
                 "type": "string"
               },
+              "examples": {
+                "title": "Examples",
+                "description": "Guess what? Multiple example values for this parameter.",
+                "type": "object",
+                "patternProperties": {
+                  "^.*$": {
+                    "type": [
+                      "string",
+                      "number",
+                      "boolean",
+                      "array",
+                      "object"
+                    ]
+                  }
+                }
+              },
               "type": {
                 "title": "Type",
                 "description": "The type of data according to the OpenAPI spec",
