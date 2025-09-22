@@ -271,6 +271,454 @@
   },
   "additionalProperties": false,
   "definitions": {
+    "https://www.krakend.io/schema/v2.11/ai/anthropic.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Anthropic integration",
+      "description": "Connect to Anthropic models easily by providing your API key and optional parameters.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+      "type": "object",
+      "maxProperties": 1,
+      "minProperties": 1,
+      "properties": {
+        "v1": {
+          "title": "Version v1",
+          "description": "All settings depend on  a specific version, as the vendor might change the API over time.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+          "type": "object",
+          "required": [
+            "credentials",
+            "variables"
+          ],
+          "properties": {
+            "credentials": {
+              "title": "API Key",
+              "description": "Your Anthropic API key. You can set it as an environment variable for better security.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+              "type": "string"
+            },
+            "debug": {
+              "title": "Debug Mode",
+              "description": "Enables the debug mode to log activity for troubleshooting. Do not set this value to true in production as it may log sensitive data.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+              "default": false,
+              "type": "boolean"
+            },
+            "input_template": {
+              "title": "Input Template",
+              "description": "A path to a custom [Go template](https://pkg.go.dev/text/template) that sets the payload format sent to Anthropic. You don't need to set this value unless you want to override the default template making use of all the `variables` listed in this configuration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+              "type": "string"
+            },
+            "output_template": {
+              "title": "Output Template",
+              "description": "A path to a custom [Go template](https://pkg.go.dev/text/template) that sets how the response from Anthropic is transformed before being sent to the client. The default template extracts the text from the first choice returned by Anthropic so in most cases you don't need to set a custom output template.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+              "type": "string"
+            },
+            "variables": {
+              "title": "Model Variables",
+              "description": "The variables specific to the Anthropic usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+              "type": "object",
+              "required": [
+                "model"
+              ],
+              "properties": {
+                "extra_payload": {
+                  "title": "Extra Payload",
+                  "description": "A map of additional payload attributes you want to use in your custom `input_template` (this payload is not used in the default template). The attributes set here are accessible in your custom template as `{{ .variables.extra_payload.yourchosenkey }}`. This option helps adding rare customization and future attributes.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+                  "type": "object"
+                },
+                "max_tokens": {
+                  "title": "Max Tokens",
+                  "description": "Maximum number of tokens that can be generated in the response. A token is approximately four characters. 100 tokens correspond to roughly 60-80 words.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+                  "default": 1024,
+                  "type": "integer"
+                },
+                "model": {
+                  "title": "Model Name",
+                  "description": "The name of the Anthropic model you want to use.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+                  "examples": [
+                    "claude-opus-4-1-20250805",
+                    "claude-sonnet-4-20250514",
+                    "claude-3-7-sonnet-latest",
+                    "claude-3-5-haiku-latest"
+                  ],
+                  "type": "string"
+                },
+                "stop_sequences": {
+                  "title": "Stop Sequences",
+                  "description": "An array of sequences where the model will stop generating further tokens if found. This can be useful to control the length and content of the output.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "temperature": {
+                  "title": "Temperature",
+                  "description": "The temperature is used for sampling during response generation, which occurs when topP and topK are applied. Temperature controls the degree of randomness in token selection. Lower temperatures are good for prompts that require a less open-ended or creative response, while higher temperatures can lead to more diverse or creative results.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+                  "type": "number",
+                  "maximum": 2,
+                  "minimum": 0
+                },
+                "top_k": {
+                  "title": "Top K",
+                  "description": "Top-K changes how the model selects tokens for output. A top-K of 1 means the next selected token is the most probable among all tokens in the model's vocabulary (also called greedy decoding), while a top-K of 3 means that the next token is selected from among the three most probable tokens by using temperature.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+                  "type": "integer"
+                },
+                "top_p": {
+                  "title": "Top P",
+                  "description": "Top-P changes how the model selects tokens for output. Tokens are selected from the most probable to least probable until the sum of their probabilities equals the top-P value. For example, if tokens A, B, and C have a probability of 0.3, 0.2, and 0.1 and the top-P value is 0.5, then the model will select either A or B as the next token by using temperature and excludes C as a candidate.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "patternProperties": {
+            "^[@$_#]": {}
+          },
+          "additionalProperties": false
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.11/ai/gemini.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Google Gemini integration",
+      "description": "Connect to Google Gemini models easily by providing your API key and optional parameters.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
+      "type": "object",
+      "maxProperties": 1,
+      "minProperties": 1,
+      "properties": {
+        "v1beta": {
+          "title": "Version v1",
+          "description": "All settings depend on  a specific version, as the vendor might change the API over time.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
+          "type": "object",
+          "required": [
+            "credentials"
+          ],
+          "properties": {
+            "credentials": {
+              "title": "API Key",
+              "description": "Your Google Gemini API key. You can set it as an environment variable for better security.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
+              "type": "string"
+            },
+            "debug": {
+              "title": "Debug Mode",
+              "description": "Enables the debug mode to log activity for troubleshooting. Do not set this value to true in production as it may log sensitive data.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
+              "default": false,
+              "type": "boolean"
+            },
+            "input_template": {
+              "title": "Input Template",
+              "description": "A path to a custom [Go template](https://pkg.go.dev/text/template) that sets the payload format sent to Google Gemini. You don't need to set this value unless you want to override the default template making use of all the `variables` listed in this configuration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
+              "type": "string"
+            },
+            "output_template": {
+              "title": "Output Template",
+              "description": "A path to a custom [Go template](https://pkg.go.dev/text/template) that sets how the response from Google Gemini is transformed before being sent to the client. The default template extracts the text from the first choice returned by Google Gemini so in most cases you don't need to set a custom output template.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
+              "type": "string"
+            },
+            "variables": {
+              "title": "Model Variables",
+              "description": "The variables specific to the Google Gemini usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
+              "type": "object",
+              "properties": {
+                "candidate_count": {
+                  "title": "Candidate Count",
+                  "description": "An integer value that specifies how many different completions (responses) the model should generate for a single input prompt. This can be useful for exploring multiple variations of the output.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
+                  "default": 1,
+                  "type": "integer"
+                },
+                "extra_payload": {
+                  "title": "Extra Payload",
+                  "description": "A map of additional payload attributes you want to use in your custom `input_template` (this payload is not used in the default template). The attributes set here are accessible in your custom template as `{{ .variables.extra_payload.yourchosenkey }}`. This option helps adding rare customization and future attributes.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
+                  "type": "object"
+                },
+                "max_output_tokens": {
+                  "title": "Max Tokens",
+                  "description": "Maximum number of tokens that can be generated in the response. A token is approximately four characters. 100 tokens correspond to roughly 60-80 words.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
+                  "type": "integer"
+                },
+                "stop_sequences": {
+                  "title": "Stop Sequences",
+                  "description": "An array of sequences where the model will stop generating further tokens if found. This can be useful to control the length and content of the output.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "temperature": {
+                  "title": "Temperature",
+                  "description": "The temperature is used for sampling during response generation, which occurs when topP and topK are applied. Temperature controls the degree of randomness in token selection. Lower temperatures are good for prompts that require a less open-ended or creative response, while higher temperatures can lead to more diverse or creative results.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
+                  "type": "number",
+                  "maximum": 2,
+                  "minimum": 0
+                },
+                "top_k": {
+                  "title": "Top K",
+                  "description": "Top-K changes how the model selects tokens for output. A top-K of 1 means the next selected token is the most probable among all tokens in the model's vocabulary (also called greedy decoding), while a top-K of 3 means that the next token is selected from among the three most probable tokens by using temperature.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
+                  "type": "integer"
+                },
+                "top_p": {
+                  "title": "Top P",
+                  "description": "Top-P changes how the model selects tokens for output. Tokens are selected from the most probable to least probable until the sum of their probabilities equals the top-P value. For example, if tokens A, B, and C have a probability of 0.3, 0.2, and 0.1 and the top-P value is 0.5, then the model will select either A or B as the next token by using temperature and excludes C as a candidate.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "patternProperties": {
+            "^[@$_#]": {}
+          },
+          "additionalProperties": false
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.11/ai/llm.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "AI LLM Connectors",
+      "description": "Ready-to-use LLM connectors available for major AI vendors.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+      "type": "object",
+      "maxProperties": 1,
+      "properties": {
+        "anthropic": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.11~1ai~1anthropic.json"
+        },
+        "gemini": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.11~1ai~1gemini.json"
+        },
+        "mistral": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.11~1ai~1mistral.json"
+        },
+        "openai": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.11~1ai~1openai.json"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.11/ai/mistral.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Mistral integration",
+      "description": "Connect to Mistral models easily by providing your API key and optional parameters.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+      "type": "object",
+      "maxProperties": 1,
+      "minProperties": 1,
+      "properties": {
+        "v1": {
+          "title": "Version v1",
+          "description": "All settings depend on  a specific version, as the vendor might change the API over time.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+          "required": [
+            "credentials",
+            "variables"
+          ],
+          "properties": {
+            "credentials": {
+              "title": "API Key",
+              "description": "Your Mistral API key. You can set it as an environment variable for better security.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+              "type": "string"
+            },
+            "debug": {
+              "title": "Debug Mode",
+              "description": "Enables the debug mode to log activity for troubleshooting. Do not set this value to true in production as it may log sensitive data.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+              "default": false,
+              "type": "boolean"
+            },
+            "input_template": {
+              "title": "Input Template",
+              "description": "A path to a custom [Go template](https://pkg.go.dev/text/template) that sets the payload format sent to Mistral. You don't need to set this value unless you want to override the default template making use of all the `variables` listed in this configuration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+              "type": "string"
+            },
+            "output_template": {
+              "title": "Output Template",
+              "description": "A path to a custom [Go template](https://pkg.go.dev/text/template) that sets how the response from Mistral is transformed before being sent to the client. The default template extracts the text from the first choice returned by Mistral so in most cases you don't need to set a custom output template.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+              "type": "string"
+            },
+            "variables": {
+              "title": "Model Variables",
+              "description": "The variables specific to the Mistral usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+              "type": "object",
+              "required": [
+                "model"
+              ],
+              "properties": {
+                "extra_payload": {
+                  "title": "Extra Payload",
+                  "description": "A map of additional payload attributes you want to use in your custom `input_template` (this payload is not used in the default template). The attributes set here are accessible in your custom template as `{{ .variables.extra_payload.yourchosenkey }}`. This option helps adding rare customization and future attributes.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+                  "type": "object"
+                },
+                "max_tokens": {
+                  "title": "Max Tokens",
+                  "description": "An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+                  "type": "integer"
+                },
+                "model": {
+                  "title": "Model Name",
+                  "description": "The name of the Mistral model you want to use. The value you provide is passed as is to Mistral and KrakenD does not prove if the model is currently accepted by the vendor. Check the available models on Mistral documentation.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+                  "examples": [
+                    "mistral-small-latest",
+                    "codestral-latest"
+                  ],
+                  "type": "string"
+                },
+                "n": {
+                  "title": "Number of Completions",
+                  "description": "An integer value that specifies how many different completions (responses) the model should generate for a single input prompt. This can be useful for exploring multiple variations of the output.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+                  "default": 1,
+                  "type": "integer"
+                },
+                "random_seed": {
+                  "title": "Random Seed",
+                  "description": "An integer value to seed the random number generator used by the model. Setting a specific seed can help produce reproducible results across different requests.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+                  "type": "integer"
+                },
+                "safe_prompt": {
+                  "title": "Safe Prompt",
+                  "description": "A boolean flag to enable or disable Mistral's safe prompt feature, which helps filter out inappropriate or harmful content from the model's responses. By default, this feature is enabled to ensure safer interactions.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+                  "default": false,
+                  "type": "boolean"
+                },
+                "stop": {
+                  "title": "Stop Sequences",
+                  "description": "An array of sequences where the model will stop generating further tokens if found. This can be useful to control the length and content of the output.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "temperature": {
+                  "title": "Temperature",
+                  "description": "What sampling temperature to use, recommended between 0.0 and 0.7. Higher values like 0.7 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. Change this or top_p but not both.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+                  "type": "number",
+                  "maximum": 2,
+                  "minimum": 0
+                },
+                "top_p": {
+                  "title": "Top P",
+                  "description": "A float value between 0 and 1 that controls the nucleus sampling for text generation. It represents the cumulative probability threshold for token selection, where only the most probable tokens that add up to this threshold are considered. A higher value (closer to 1) allows for more diverse outputs, while a lower value (closer to 0) makes the output more focused and deterministic. Change this or temperature but not both.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "patternProperties": {
+            "^[@$_#]": {}
+          },
+          "additionalProperties": false
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.11/ai/openai.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "OpenAI integration",
+      "description": "Connect to OpenAI's GPT models easily by providing your API key and optional parameters.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+      "type": "object",
+      "maxProperties": 1,
+      "minProperties": 1,
+      "properties": {
+        "v1": {
+          "title": "Version v1",
+          "description": "All settings depend on  a specific version, as the vendor might change the API over time.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
+          "required": [
+            "credentials",
+            "variables"
+          ],
+          "properties": {
+            "credentials": {
+              "title": "API Key",
+              "description": "Your OpenAI API key. You can set it as an environment variable for better security.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
+              "examples": [
+                "sk-xxxx"
+              ],
+              "type": "string"
+            },
+            "debug": {
+              "title": "Debug Mode",
+              "description": "Enables the debug mode to log activity for troubleshooting. Do not set this value to true in production as it may log sensitive data.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
+              "default": false,
+              "type": "boolean"
+            },
+            "input_template": {
+              "title": "Input Template",
+              "description": "A path to a custom [Go template](https://pkg.go.dev/text/template) that sets the payload format sent to OpenAI. You don't need to set this value unless you want to override the default template making use of all the `variables` listed in this configuration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
+              "type": "string"
+            },
+            "output_template": {
+              "title": "Output Template",
+              "description": "A path to a custom [Go template](https://pkg.go.dev/text/template) that sets how the response from OpenAI is transformed before being sent to the client. The default template extracts the text from the first choice returned by OpenAI so in most cases you don't need to set a custom output template.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
+              "type": "string"
+            },
+            "variables": {
+              "title": "Template Variables",
+              "description": "The variables specific to the OpenAI usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
+              "type": "object",
+              "required": [
+                "model"
+              ],
+              "properties": {
+                "extra_payload": {
+                  "title": "Extra Payload",
+                  "description": "A map of additional payload attributes you want to use in your custom `input_template` (this payload is not used in the default template). The attributes set here are accessible in your custom template as `{{ .variables.extra_payload.yourchosenkey }}`. This option helps adding rare customization and future attributes.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
+                  "type": "object"
+                },
+                "max_output_tokens": {
+                  "title": "Max Output Tokens",
+                  "description": "An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens. Setting this value to `0` does not set any limit.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
+                  "type": "integer"
+                },
+                "model": {
+                  "title": "Model Name",
+                  "description": "The name of the OpenAI model you want to use. The value you provide is passed as is to OpenAI and KrakenD does not prove if the model is currently accepted by the vendor. Check the available models on OpenAI documentation.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
+                  "examples": [
+                    "gpt-5-nano",
+                    "gpt-4"
+                  ],
+                  "type": "string"
+                },
+                "temperature": {
+                  "title": "Temperature",
+                  "description": "What sampling temperature to use, between `0` and `2`. Higher values like `0.8` will make the output more random, while lower values like `0.2` will make it more focused and deterministic.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
+                  "type": "number",
+                  "maximum": 2,
+                  "minimum": 0
+                },
+                "top_p": {
+                  "title": "Top P",
+                  "description": "The nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
+                  "type": "number",
+                  "maximum": 1,
+                  "minimum": 0
+                },
+                "truncation": {
+                  "title": "Truncation Strategy",
+                  "description": "The strategy to use when truncating messages to fit within the model's context length (, the model will truncate the response to fit the context window by dropping items from the beginning of the conversation.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
+                  "default": "disabled",
+                  "enum": [
+                    "auto",
+                    "disabled"
+                  ]
+                }
+              }
+            }
+          },
+          "patternProperties": {
+            "^[@$_#]": {}
+          },
+          "additionalProperties": false
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
     "https://www.krakend.io/schema/v2.11/async/amqp.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Async AMQP Driver",
@@ -563,6 +1011,55 @@
             "header",
             "query_string"
           ]
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.11/auth/aws-sigv4.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "aws-sigv4 Authentication",
+      "description": "Enterprise only. Enables AWS Sigv4 authentication between KrakenD and Google Cloud service account.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/aws-sigv4/",
+      "type": "object",
+      "required": [
+        "region",
+        "service",
+        "assume_role_arn"
+      ],
+      "properties": {
+        "assume_role_arn": {
+          "title": "Assume Role ARN",
+          "description": "The Amazon Resource Name (ARN) of the role to assume.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/aws-sigv4",
+          "examples": [
+            "arn:aws:sts::{account ID}:assumed-role/{resource}"
+          ],
+          "type": "string"
+        },
+        "region": {
+          "title": "Region",
+          "description": "The AWS region where the service is deployed.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/aws-sigv4/",
+          "examples": [
+            "us-east-1"
+          ],
+          "type": "string"
+        },
+        "service": {
+          "title": "Service",
+          "description": "The name of the service in AWS you'd like to sign the request.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/aws-sigv4/",
+          "examples": [
+            "dynamodb"
+          ],
+          "type": "string"
+        },
+        "sts_region": {
+          "title": "STS Region",
+          "description": "The AWS region where the STS service is deployed.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/aws-sigv4",
+          "examples": [
+            "us-west-1"
+          ],
+          "type": "string"
         }
       },
       "patternProperties": {
@@ -1791,6 +2288,47 @@
       },
       "additionalProperties": false
     },
+    "https://www.krakend.io/schema/v2.11/backend/conditional.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Conditional Routing",
+      "description": "Evaluates a rule to determine if the backend is callable or not, and skip to the next one in case it's not.\n\nSee: https://www.krakend.io/docs/enterprise/backends/conditional/",
+      "type": "object",
+      "required": [
+        "strategy"
+      ],
+      "properties": {
+        "name": {
+          "title": "Header Name",
+          "description": "Only used with the `header` strategy. It is the name of the header you want to use for the evaluation in the [canonical format of the MIME header](https://www.krakend.io/docs/endpoints/parameter-forwarding/#case-sensitive-and-case-insensitive-parameters). **Make sure to declare the header** in the `input_headers` list of the endpoint.\n\nSee: https://www.krakend.io/docs/enterprise/backends/conditional/",
+          "examples": [
+            "X-Test"
+          ],
+          "type": "string"
+        },
+        "strategy": {
+          "title": "Strategy",
+          "description": "Choose `header` when you want to check the value of a specific header, `policy` when you want to write a more complex logical expression, or `fallback` when the backend will execute when all the rest of conditional backends have failed to evaluate to true. Only one fallback can be defined per endpoint.\n\nSee: https://www.krakend.io/docs/enterprise/backends/conditional/",
+          "enum": [
+            "header",
+            "policy",
+            "fallback"
+          ]
+        },
+        "value": {
+          "title": "Value",
+          "description": "The value according to the strategy. With the `header` strategy, this is the literal value contained in the header (case sensitive). With the `policy` strategy, the [Security Policy expression](https://www.krakend.io/docs/enterprise/security-policies/policy-language/). When using policies you can access to the variables `req` and `req_params` (a previous backend response might be in the latter), and to [advanced macros](https://www.krakend.io/docs/enterprise/security-policies/advanced-policy-macros/). Access to headers require you to add the corresponding `input_headers` in the endpoint.\n\nSee: https://www.krakend.io/docs/enterprise/backends/conditional/",
+          "examples": [
+            "TestA",
+            "hasHeader('X-Test') && req_params.Resp0_message == '0 items left'"
+          ],
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
     "https://www.krakend.io/schema/v2.11/backend/graphql.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "GraphQL",
@@ -2189,6 +2727,12 @@
       "title": "Extra configuration for backends",
       "type": "object",
       "properties": {
+        "ai/llm": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.11~1ai~1llm.json"
+        },
+        "auth/aws-sigv4": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.11~1auth~1aws-sigv4.json"
+        },
         "auth/client-credentials": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.11~1auth~1client-credentials.json"
         },
@@ -2203,6 +2747,9 @@
         },
         "backend/amqp/producer": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.11~1backend~1amqp~1producer.json"
+        },
+        "backend/conditional": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.11~1backend~1conditional.json"
         },
         "backend/graphql": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.11~1backend~1graphql.json"
@@ -2609,6 +3156,39 @@
           ],
           "type": "string"
         },
+        "cookie_name": {
+          "title": "Cookie name",
+          "description": "When generating an OpenAPI spec, the name of the cookie used under components securitySchemes.",
+          "default": "SESSIONID",
+          "type": "string"
+        },
+        "custom_security_schemes": {
+          "title": "Custom security schemes",
+          "description": "Allows you to add custom security schemes under `components/securitySchemes` in the generated OpenAPI spec. This is useful when you want to define your own security schemes, different from the built-in ones (e.g., `jwt`, `apikey`, `cookie`, etc.). When the property is in the service level you must declare the schema (e.g., `\"OAuth2Security\":{...}`), and when it is in the endpoint you should only write the object name with not properties inside, e.g, `{\"OAuth2Security\":{}`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "examples": [
+            {
+              "OAuth2Security": {
+                "description": "OAuth2 security scheme",
+                "type": "oauth2",
+                "flows": {
+                  "authorizationCode": {
+                    "authorizationUrl": "https://example.com/oauth/authorize",
+                    "scopes": {},
+                    "tokenUrl": "https://example.com/oauth/token"
+                  }
+                }
+              }
+            }
+          ],
+          "type": "object",
+          "patternProperties": {
+            "^.*$": {
+              "title": "Security Scheme",
+              "description": "A valid OpenAPI Security Scheme object.",
+              "type": "object"
+            }
+          }
+        },
         "example": {
           "title": "Example",
           "description": "**Deprecated in OAS3** (use `response_definition` instead). A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
@@ -2768,6 +3348,22 @@
                 "description": "The description of the parameter",
                 "type": "string"
               },
+              "examples": {
+                "title": "Examples",
+                "description": "Guess what? Multiple example values for this parameter.",
+                "type": "object",
+                "patternProperties": {
+                  "^.*$": {
+                    "type": [
+                      "string",
+                      "number",
+                      "boolean",
+                      "array",
+                      "object"
+                    ]
+                  }
+                }
+              },
               "type": {
                 "title": "Type",
                 "description": "The type of data according to the OpenAPI spec",
@@ -2806,11 +3402,37 @@
                   ]
                 }
               },
+              "format": {
+                "title": "Format",
+                "description": "The extending format for the previously defined type. If the type is `number` or `string` you can apply them one of the available formats. If you choose string formats for numbers or viceversa de linter does not check it.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                "enum": [
+                  "int32",
+                  "int64",
+                  "float",
+                  "double",
+                  "date",
+                  "date-time",
+                  "byte",
+                  "uuid",
+                  ""
+                ]
+              },
               "required": {
                 "title": "Required",
                 "description": "A path parameter is always mandatory on KrakenD, but you can still generate the OpenAPI documentation saying otherwise.",
                 "default": true,
                 "type": "boolean"
+              },
+              "example": {
+                "title": "Example",
+                "description": "An example value for this parameter. This example is injected in the spec as is.",
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "array",
+                  "object"
+                ]
               },
               "hide": {
                 "title": "Hide param",
@@ -9586,6 +10208,20 @@
                       "description": "Whether you want to add trace attributes for the actual HTTP request for the backend or not (manipulation not taken into account). This is the time your backend needs to produce a result.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
                       "default": false,
                       "type": "boolean"
+                    },
+                    "skip_headers": {
+                      "title": "Skip headers",
+                      "description": "A list of headers you want to skip when reporting the headers that reached the backend. This is useful to avoid reporting sensitive data.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                      "examples": [
+                        [
+                          "X-Backend-Secret",
+                          "X-All-Secret"
+                        ]
+                      ],
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
                     },
                     "static_attributes": {
                       "title": "Static attributes",

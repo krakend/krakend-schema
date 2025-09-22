@@ -77,6 +77,12 @@
                             "a": 1
                         }
                     },
+                    "auth/aws-sigv4": {
+                        "service": "execute-api",
+                        "region": "us-east-1",
+                        "assume_role_arn": "arn:aws:sts::{account ID}:assumed-role/{resource}",
+                        "sts_region": "us-west-1"
+                    },
                     "backend/http": {
                         "return_error_code": true,
                         "@extra_comment": "here"
@@ -85,6 +91,17 @@
                         "path": "./path/to.xml",
                         "content_type": "application/xml",
                         "debug": false
+                    },
+                    "ai/llm": {
+                        "openai": {
+                            "v1": {
+                                "credentials": "xxx",
+                                "debug": false,
+                                "variables": {
+                                    "model": "model"
+                                }
+                            }
+                        }
                     },
                     "modifier/body-generator": {
                         "content_type": "application/json",
