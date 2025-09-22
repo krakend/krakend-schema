@@ -369,7 +369,11 @@
                 }
               }
             }
-          }
+          },
+          "patternProperties": {
+            "^[@$_#]": {}
+          },
+          "additionalProperties": false
         }
       },
       "patternProperties": {
@@ -390,8 +394,7 @@
           "description": "All settings depend on  a specific version, as the vendor might change the API over time.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
           "type": "object",
           "required": [
-            "credentials",
-            "version"
+            "credentials"
           ],
           "properties": {
             "credentials": {
@@ -463,7 +466,11 @@
                 }
               }
             }
-          }
+          },
+          "patternProperties": {
+            "^[@$_#]": {}
+          },
+          "additionalProperties": false
         }
       },
       "patternProperties": {
@@ -509,7 +516,6 @@
           "description": "All settings depend on  a specific version, as the vendor might change the API over time.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
           "required": [
             "credentials",
-            "version",
             "variables"
           ],
           "properties": {
@@ -600,7 +606,11 @@
                 }
               }
             }
-          }
+          },
+          "patternProperties": {
+            "^[@$_#]": {}
+          },
+          "additionalProperties": false
         }
       },
       "patternProperties": {
@@ -621,7 +631,6 @@
           "description": "All settings depend on  a specific version, as the vendor might change the API over time.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
           "required": [
             "credentials",
-            "version",
             "variables"
           ],
           "properties": {
@@ -701,7 +710,11 @@
                 }
               }
             }
-          }
+          },
+          "patternProperties": {
+            "^[@$_#]": {}
+          },
+          "additionalProperties": false
         }
       },
       "patternProperties": {
@@ -10198,6 +10211,20 @@
                       "description": "Whether you want to add trace attributes for the actual HTTP request for the backend or not (manipulation not taken into account). This is the time your backend needs to produce a result.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
                       "default": false,
                       "type": "boolean"
+                    },
+                    "skip_headers": {
+                      "title": "Skip headers",
+                      "description": "A list of headers you want to skip when reporting the headers that reached the backend. This is useful to avoid reporting sensitive data.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                      "examples": [
+                        [
+                          "X-Backend-Secret",
+                          "X-All-Secret"
+                        ]
+                      ],
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
                     },
                     "static_attributes": {
                       "title": "Static attributes",

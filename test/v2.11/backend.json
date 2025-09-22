@@ -96,7 +96,6 @@
                         "openai": {
                             "v1": {
                                 "credentials": "xxx",
-                                "version": "v1",
                                 "debug": false,
                                 "variables": {
                                     "model": "model"

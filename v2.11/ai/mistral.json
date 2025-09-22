@@ -12,7 +12,6 @@
       "description": "All settings depend on  a specific version, as the vendor might change the API over time.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
       "required": [
         "credentials",
-        "version",
         "variables"
       ],
       "properties": {
@@ -103,7 +102,11 @@
             }
           }
         }
-      }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
     }
   },
   "patternProperties": {

@@ -8,10 +8,11 @@
         "gemini": {
           "v1beta": {
             "credentials": "x",
-            "version": "v1beta",
             "debug": false,
             "variables": {
-              "candidates": 3
+              "candidates": 3,
+              "foo": "bar",
+              "baz": 123
             }
           }
         }
@@ -24,10 +25,11 @@
         "openai": {
           "v1": {
             "credentials": "xxx",
-            "version": "v1",
             "debug": false,
             "variables": {
-              "model": "model"
+              "model": "model",
+              "foo": "bar",
+              "baz": 123
             }
           }
         }
@@ -40,10 +42,11 @@
         "mistral": {
           "v1": {
             "credentials": "xxx",
-            "version": "v1",
             "debug": false,
             "variables": {
-              "model": "model"
+              "model": "model",
+              "foo": "bar",
+              "baz": 123
             }
           }
         }
@@ -56,15 +59,34 @@
         "anthropic": {
           "v1": {
             "credentials": "xxx",
-            "version": "v1",
             "debug": false,
             "variables": {
-              "model": "claude-opus-4-1-20250805"
+              "model": "claude-opus-4-1-20250805",
+              "foo": "bar",
+              "baz": 123
             }
           }
         }
       },
       "valid": true
+    },
+    {
+      "description": "Intruder field should not be allowed",
+      "data": {
+        "gemini": {
+          "v1beta": {
+            "credentials": "x",
+            "intruder": "field",
+            "debug": false,
+            "variables": {
+              "candidates": 3,
+              "foo": "bar",
+              "baz": 123
+            }
+          }
+        }
+      },
+      "valid": false
     }
   ]
 }

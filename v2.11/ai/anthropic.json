@@ -97,7 +97,11 @@
             }
           }
         }
-      }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
     }
   },
   "patternProperties": {
