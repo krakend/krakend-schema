@@ -900,7 +900,7 @@
                                             ]
                                         },
                                         "proxy_address": "http://troloro:9099",
-                                        "enable_redirect_post": true
+                                        "send_body_on_redirect": true
                                     }
                                 }
                             }
