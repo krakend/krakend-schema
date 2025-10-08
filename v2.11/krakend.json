@@ -3194,6 +3194,12 @@
             }
           }
         },
+        "disable_default_response_definitions": {
+          "title": "Disable default response definitions",
+          "description": "By default, KrakenD adds a `500` and a `200` response definition to each endpoint. Set this property to `true` if you want to avoid this behavior.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "default": false,
+          "type": "boolean"
+        },
         "example": {
           "title": "Example",
           "description": "**Deprecated in OAS3** (use `response_definition` instead). A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
