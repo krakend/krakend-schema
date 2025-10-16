@@ -4168,7 +4168,7 @@
             },
             "decompress_gzip": {
               "title": "Decompress Gzip",
-              "description": "Enterprise Only. Decompresses any Gzipped content before sending it to the backend when the `Content-Encoding` has `gzip` in the first position. You can also set this value globally at the [service level](https://www.krakend.io/docs/enterprise/service-settings/router-options/#max_payload).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+              "description": "Enterprise only. Decompresses any Gzipped content before sending it to the backend when the `Content-Encoding` has `gzip` in the first position. You can also set this value globally at the [service level](https://www.krakend.io/docs/enterprise/service-settings/router-options/#max_payload).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
               "default": false,
               "type": "boolean"
             },
@@ -4183,7 +4183,7 @@
             },
             "max_payload": {
               "title": "Maximum Payload",
-              "description": "Enterprise Only. Limits the maximum number of bytes a user can send to the endpoint. `0` means no limit. You can also set this value globally at the [service level](https://www.krakend.io/docs/enterprise/service-settings/router-options/#max_payload).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+              "description": "Enterprise only. Limits the maximum number of bytes a user can send to the endpoint. `0` means no limit. You can also set this value globally at the [service level](https://www.krakend.io/docs/enterprise/service-settings/router-options/#max_payload).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
               "default": 0,
               "type": "integer"
             },
@@ -6266,7 +6266,7 @@
     },
     "https://www.krakend.io/schema/v2.11/plugin/middleware.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "Enterprise Only. Middleware plugins.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
+      "title": "Enterprise only. Middleware plugins.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
       "type": "object",
       "required": [
         "name"
@@ -6728,7 +6728,7 @@
     },
     "https://www.krakend.io/schema/v2.11/qos/ratelimit/redis.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "description": "Enterprise Only. Redis-backed service ratelimit",
+      "description": "Enterprise only. Redis-backed service ratelimit",
       "type": "object",
       "anyOf": [
         {
@@ -6917,7 +6917,7 @@
     "https://www.krakend.io/schema/v2.11/qos/ratelimit/tiered.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Tiered Rate Limit",
-      "description": "Enterprise Only. Apply ratelimit based on tier match.",
+      "description": "Enterprise only. Apply ratelimit based on tier match.",
       "type": "object",
       "required": [
         "tier_key",
@@ -7354,7 +7354,7 @@
         },
         "decompress_gzip": {
           "title": "Decompress Gzip",
-          "description": "Enterprise Only. Decompresses any Gzipped content before sending it to the backend when the `Content-Encoding` has `gzip` in the first position. You can also set this value [per endpoint](https://www.krakend.io/docs/enterprise/endpoints/maximum-request-size/).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+          "description": "Enterprise only. Decompresses any Gzipped content before sending it to the backend when the `Content-Encoding` has `gzip` in the first position. You can also set this value [per endpoint](https://www.krakend.io/docs/enterprise/endpoints/maximum-request-size/).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
           "default": 0,
           "type": "integer"
         },
@@ -7451,7 +7451,7 @@
         },
         "max_payload": {
           "title": "Maximum Payload",
-          "description": "Enterprise Only. Limits the maximum number of bytes a user can send to the gateway. `0` means no limit. You can also set this value [per endpoint](https://www.krakend.io/docs/enterprise/endpoints/maximum-request-size/).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+          "description": "Enterprise only. Limits the maximum number of bytes a user can send to the gateway. `0` means no limit. You can also set this value [per endpoint](https://www.krakend.io/docs/enterprise/endpoints/maximum-request-size/).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
           "default": 0,
           "type": "integer"
         },
@@ -7556,8 +7556,8 @@
     },
     "https://www.krakend.io/schema/v2.11/security/cors.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "HTTP Security",
-      "description": "Security through HTTP headers, including HSTS, HPKP, MIME-Sniffing prevention, Clickjacking protection, and others.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+      "title": "CORS",
+      "description": "Define Cross-Origin Resource Sharing (CORS) configuration to send additional HTTP headers to tell browsers if they can use resources from a different origin.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/cors/",
       "type": "object",
       "properties": {
         "allow_credentials": {
@@ -7804,7 +7804,7 @@
     "https://www.krakend.io/schema/v2.11/security/policies.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Securiy Policies",
-      "description": "The policies engine allows you to write custom sets of policies that are validated during requests, responses, or token validation.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
+      "description": "Enterprise only. The policies engine allows you to write custom sets of policies that are validated during requests, responses, or token validation.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
       "type": "object",
       "anyOf": [
         {
@@ -8117,7 +8117,7 @@
         },
         "qos/ratelimit/service": {
           "title": "Service Rate-limiting",
-          "description": "Enterprise Only. The service rate limit feature allows you to set the maximum requests per second a user or group of users can do to KrakenD and works analogously to the endpoint rate limit.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/",
+          "description": "Enterprise only. The service rate limit feature allows you to set the maximum requests per second a user or group of users can do to KrakenD and works analogously to the endpoint rate limit.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/",
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.11~1qos~1ratelimit~1router.json"
         },
         "qos/ratelimit/service/redis": {

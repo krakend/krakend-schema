@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://www.krakend.io/schema/v2.12/governance/quota.json",
   "title": "Attachment of a quota",
-  "description": "Attach a quota to the endpoint, backend, or service. Needs a governance/processor namespace.",
+  "description": "Enterprise only. Attach a quota to the endpoint, backend, or service. Needs a governance/processor namespace.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
   "type": "object",
   "required": [
     "quota_name",

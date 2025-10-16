@@ -639,6 +639,28 @@
         }
       }
     },
+    "https://www.krakend.io/schema/v2.12/ai/mcp_endpoint.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "MCP endpoint",
+      "description": "Enterprise only. Declares the current endpoint as an MCP server entry point. \n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+      "type": "object",
+      "required": [
+        "server_name"
+      ],
+      "properties": {
+        "server_name": {
+          "title": "Server name",
+          "description": "The MCP server you want to attach to this endpoint, which serves as the entry point URL. The name used must match the name in the `ai/mcp` configuration in the root level.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+          "examples": [
+            "weather-tools"
+          ]
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": {}
+      },
+      "additionalProperties": false
+    },
     "https://www.krakend.io/schema/v2.12/ai/mistral.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Mistral integration",
@@ -4094,7 +4116,7 @@
       "properties": {
         "backend": {
           "title": "Backend",
-          "description": "List of all the [backend objects](https://www.krakend.io/docs/backends/) queried for this endpoint",
+          "description": "An array with all the backend services you want to use in this endpoint. See [the backend object](https://www.krakend.io/docs/backends/) documentation to know all the available options, they are omitted here for brevity.\n\nSee: https://www.krakend.io/docs/backends/",
           "type": "array",
           "minItems": 1,
           "items": {
@@ -4104,7 +4126,7 @@
         },
         "cache_ttl": {
           "title": "Cache TTL",
-          "description": "Sets or overrides the cache headers to inform for how long the client or CDN can cache the request to this endpoint. Setting this value to a zero-value will use the `cache_ttl` of the service if any. Related: [caching backend responses](https://www.krakend.io/docs/backends/caching/).",
+          "description": "Sets or overrides the cache headers to inform how long the client or CDN can cache the request to this endpoint. Setting this value to a zero-value will use the `cache_ttl` in the root of the configuration if any. This attribute **does not cache** content but tells others how to do it. For caching, see [Caching Backend Responses](https://www.krakend.io/docs/backends/caching/).",
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1timeunits.json/$defs/timeunit"
         },
         "concurrent_calls": {
@@ -4128,7 +4150,7 @@
         },
         "extra_config": {
           "title": "Extra configuration",
-          "description": "Configuration entries for additional components that are executed within this endpoint, during the request, response or merge operations.",
+          "description": "Besides the functionality ofered by the endpoint, you can load more functionalty into this endpoint by adding new entries under this extra configuration object. You will find across all documentation a lot of functionality that is designed to be placed here.",
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1endpoint_extra_config.json",
           "type": "object"
         },
@@ -4208,9 +4230,13 @@
     },
     "https://www.krakend.io/schema/v2.12/endpoint_extra_config.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "Schema definition for extra_config of endpoints",
+      "title": "Endpoint extra configuration",
       "type": "object",
       "properties": {
+        "ai/mcp": {
+          "description": "Enterprise only. Declares the endpoint as an [MCP server entrypoint](https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/)",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1ai~1mcp_endpoint.json"
+        },
         "auth/api-keys": {
           "title": "API-key validation",
           "description": "Enterprise only. Validates that users of this endpoint pass a valid API-key containing one of the declared roles.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
@@ -4252,49 +4278,78 @@
           "additionalProperties": false
         },
         "auth/basic": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1auth~1basic.json"
+          "description": "Enterprise only. Validates the access to the endpoint using [Basic Authentication](https://www.krakend.io/docs/enterprise/authentication/basic-authentication/).",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1auth~1basic.json",
+          "type": "object"
         },
         "auth/signer": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1auth~1signer.json"
+          "description": "A component that [cryptographically signs tokens](https://www.krakend.io/docs/authorization/jwt-signing/) generated by your legacy login system (without JWT signing) to be later validated by the `auth/validator` component.",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1auth~1signer.json",
+          "type": "object"
         },
         "auth/validator": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1auth~1validator.json"
+          "description": "Protect endpoints from public usage by [validating JWT tokens](https://www.krakend.io/docs/authorization/jwt-validation/) generated by any industry-standard OpenID Connect (OIDC) integration.",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1auth~1validator.json",
+          "type": "object"
         },
         "documentation/openapi": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1documentation~1openapi.json"
+          "description": "Enterprise only. Documents the endpoint so you can [automatically generate OpenAPI documentation](https://www.krakend.io/docs/enterprise/developer/openapi/) through `krakend openapi export` command.",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1documentation~1openapi.json",
+          "type": "object"
         },
         "documentation/postman": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1documentation~1postman_endpoint.json"
+          "description": "Enterprise only. Documents the endpoint so you can [generate postman documentation automatically](https://www.krakend.io/docs/enterprise/developer/postman/) through the `krakend postman export` command.",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1documentation~1postman_endpoint.json",
+          "type": "object"
         },
         "governance/quota": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1governance~1quota.json"
+          "description": "Enterprise only. [Attach a quota](https://www.krakend.io/docs/enterprise/governance/quota/) to the endpoint, backend, or service. The quota component allows you to limit the number of requests a user can do in a given time window.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1governance~1quota.json",
+          "type": "object"
         },
         "modifier/jmespath": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1modifier~1jmespath.json"
+          "description": "Enterprise only. The [JMESPath](https://www.krakend.io/docs/enterprise/endpoints/jmespath/) is a query language that allows you to select, slice, filter, map, project, flatten, sort, and all sorts of operations on data.",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1modifier~1jmespath.json",
+          "type": "object"
         },
         "modifier/lua-endpoint": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1modifier~1lua.json"
+          "description": "[Scripting with Lua](https://www.krakend.io/docs/endpoints/lua/) is an additional choice to extend your business logic, and is compatible with the rest of options such as CEL, Martian, or other Go plugins and middlewares.",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1modifier~1lua.json",
+          "type": "object"
         },
         "modifier/lua-proxy": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1modifier~1lua.json"
+          "description": "[Scripting with Lua](https://www.krakend.io/docs/endpoints/lua/) is an additional choice to extend your business logic, and is compatible with the rest of options such as CEL, Martian, or other Go plugins and middlewares.",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1modifier~1lua.json",
+          "type": "object"
         },
         "modifier/request-body-generator": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1modifier~1body-generator.json"
+          "description": "Enterprise only. Freely [transform the request body/payload](https://www.krakend.io/backends/body-generator/) you will send to your services using a templating system.",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1modifier~1body-generator.json",
+          "type": "object"
         },
         "modifier/response-body": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1modifier~1response-body.json"
+          "description": "An alias of `modifier/response-body-generator`",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1modifier~1response-body.json",
+          "type": "object"
         },
         "modifier/response-body-generator": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1modifier~1body-generator.json"
+          "description": "Enterprise only. Freely [transform the response body](https://www.krakend.io/docs/enterprise/backends/response-body-generator/) you get from your backends.",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1modifier~1body-generator.json",
+          "type": "object"
         },
         "plugin/middleware": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1plugin~1middleware.json"
+          "description": "Enterprise only. Inject your own [Go middleware plugins](https://www.krakend.io/docs/extending/injecting-plugins/)",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1plugin~1middleware.json",
+          "type": "object"
         },
         "plugin/req-resp-modifier": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1plugin~1req-resp-modifier.json"
+          "description": "Inject your own [Go request and response modifier plugins](https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/)",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1plugin~1req-resp-modifier.json",
+          "type": "object"
         },
         "proxy": {
           "title": "Proxy",
+          "description": "Fine tune different options for the proxy phase of the API request/response flow.",
           "type": "object",
           "properties": {
             "combiner": {
@@ -4307,7 +4362,7 @@
             },
             "decompress_gzip": {
               "title": "Decompress Gzip",
-              "description": "Enterprise Only. Decompresses any Gzipped content before sending it to the backend when the `Content-Encoding` has `gzip` in the first position. You can also set this value globally at the [service level](https://www.krakend.io/docs/enterprise/service-settings/router-options/#max_payload).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+              "description": "Enterprise only. Decompresses any Gzipped content before sending it to the backend when the `Content-Encoding` has `gzip` in the first position. You can also set this value globally at the [service level](https://www.krakend.io/docs/enterprise/service-settings/router-options/#max_payload).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
               "default": false,
               "type": "boolean"
             },
@@ -4322,7 +4377,7 @@
             },
             "max_payload": {
               "title": "Maximum Payload",
-              "description": "Enterprise Only. Limits the maximum number of bytes a user can send to the endpoint. `0` means no limit. You can also set this value globally at the [service level](https://www.krakend.io/docs/enterprise/service-settings/router-options/#max_payload).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+              "description": "Enterprise only. Limits the maximum number of bytes a user can send to the endpoint. `0` means no limit. You can also set this value globally at the [service level](https://www.krakend.io/docs/enterprise/service-settings/router-options/#max_payload).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
               "default": 0,
               "type": "integer"
             },
@@ -4391,43 +4446,64 @@
         },
         "qos/ratelimit/router": {
           "title": "Router Rate-limiting",
-          "description": "The router rate limit feature allows you to set a number of maximum requests per second a KrakenD endpoint will accept.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1qos~1ratelimit~1router.json"
+          "description": "The router rate limit feature allows you to set a [number of maximum requests per second a KrakenD endpoint will accept](https://www.krakend.io/docs/enterprise/endpoints/rate-limit/).\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1qos~1ratelimit~1router.json",
+          "type": "object"
         },
         "qos/ratelimit/router/redis": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1qos~1ratelimit~1redis.json"
+          "description": "Enterprise only. Stateful endpoint rate limit persisted on a [Redis database](https://www.krakend.io/docs/enterprise/throttling/endpoint-redis-rate-limit/)",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1qos~1ratelimit~1redis.json",
+          "type": "object"
         },
         "qos/ratelimit/tiered": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1qos~1ratelimit~1tiered.json"
+          "description": "Enterprise only. The [rate limit based on tiers](https://www.krakend.io/docs/enterprise/service-settings/tiered-rate-limit/) allows you to have multiple sets of rate limits that apply differently to users depending on their tier or sometimes called subscription plans.",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1qos~1ratelimit~1tiered.json",
+          "type": "object"
         },
         "security/bot-detector": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1security~1bot-detector.json"
+          "description": "The [bot detector](https://www.krakend.io/docs/throttling/botdetector/) module checks incoming connections to the gateway to determine if a bot made them, helping you detect and reject bots carrying out scraping, content theft, and form spam.",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1security~1bot-detector.json",
+          "type": "object"
         },
         "security/cors": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1security~1cors.json"
+          "description": "Define [Cross-Origin Resource Sharing (CORS)](https://www.krakend.io/docs/enterprise/service-settings/cors/) configuration to send additional HTTP headers to tell browsers if they can use resources from a different origin.",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1security~1cors.json",
+          "type": "object"
         },
         "security/http": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1security~1http.json"
+          "description": "[Security HTTP headers](https://www.krakend.io/docs/service-settings/security/), including HSTS, HPKP, MIME-Sniffing prevention, Clickjacking protection, and others.",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1security~1http.json",
+          "type": "object"
         },
         "security/policies": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1security~1policies.json"
+          "description": "Enterprise only. A [policies engine](https://www.krakend.io/docs/enterprise/security-policies/) that allows you to write custom sets of policies that are validated during requests, responses, or token validation.",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1security~1policies.json",
+          "type": "object"
         },
         "telemetry/opentelemetry": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1telemetry~1opentelemetry-endpoint.json"
+          "description": "Enables metrics and traces using [OpenTelemetry](https://www.krakend.io/docs/telemetry/opentelemetry/).",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1telemetry~1opentelemetry-endpoint.json",
+          "type": "object"
         },
         "validation/cel": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1validation~1cel.json"
+          "description": "The [Common Expression Language (CEL)](https://www.krakend.io/docs/endpoints/common-expression-language-cel/) middleware enables expression evaluation, when an expression returns false, KrakenD does not return the content as the condition has failed. Otherwise, if all expressions returned true, the content is served.",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1validation~1cel.json",
+          "type": "object"
         },
         "validation/json-schema": {
           "title": "Validating the body with the JSON Schema",
-          "description": "apply automatic validations using the JSON Schema vocabulary before the content passes to the backends. The json schema component allows you to define validation rules on the body, type definition, or even validate the fields' values.\n\nSee: https://www.krakend.io/docs/endpoints/json-schema/",
+          "description": "Apply [automatic validations using a JSON Schema](https://www.krakend.io/docs/endpoints/json-schema/) definition before the content passes to the backends. The json schema component allows you to define validation rules on the body, type definition, or even validate the fields' values.",
           "type": "object"
         },
         "validation/response-json-schema": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1validation~1response-json-schema.json"
+          "description": "Enterprise only. Applies a [JSON schema validation to the response](https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/) before is sent to the end-user or before it’s merged in the endpoint with the rest of the backends.",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1validation~1response-json-schema.json",
+          "type": "object"
         },
         "websocket": {
-          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1websocket.json"
+          "description": "Enterprise only. Enables [websocket communication](https://www.krakend.io/docs/enterprise/websockets/)",
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1websocket.json",
+          "type": "object"
         }
       },
       "patternProperties": {
@@ -4636,7 +4712,7 @@
     "https://www.krakend.io/schema/v2.12/governance/quota.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Attachment of a quota",
-      "description": "Attach a quota to the endpoint, backend, or service. Needs a governance/processor namespace.",
+      "description": "Enterprise only. Attach a quota to the endpoint, backend, or service. Needs a governance/processor namespace.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
       "type": "object",
       "required": [
         "quota_name",
@@ -4943,7 +5019,7 @@
     "https://www.krakend.io/schema/v2.12/modifier/jmespath.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": " JMESPath: Response manipulation with query language",
-      "description": "The JMESPath query language allows you to select, slice, filter, map, project, flatten, sort, and all sorts of operations on data.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/jmespath/",
+      "description": "Enterprise only. The JMESPath query language allows you to select, slice, filter, map, project, flatten, sort, and all sorts of operations on data.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/jmespath/",
       "type": "object",
       "required": [
         "expr"
@@ -6405,7 +6481,7 @@
     },
     "https://www.krakend.io/schema/v2.12/plugin/middleware.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "Enterprise Only. Middleware plugins.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
+      "title": "Enterprise only. Middleware plugins.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
       "type": "object",
       "required": [
         "name"
@@ -6867,7 +6943,7 @@
     },
     "https://www.krakend.io/schema/v2.12/qos/ratelimit/redis.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "description": "Enterprise Only. Redis-backed service ratelimit",
+      "description": "Enterprise only. Redis-backed service ratelimit",
       "type": "object",
       "anyOf": [
         {
@@ -7056,7 +7132,7 @@
     "https://www.krakend.io/schema/v2.12/qos/ratelimit/tiered.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Tiered Rate Limit",
-      "description": "Enterprise Only. Apply ratelimit based on tier match.",
+      "description": "Enterprise only. Apply ratelimit based on tier match.",
       "type": "object",
       "required": [
         "tier_key",
@@ -7493,7 +7569,7 @@
         },
         "decompress_gzip": {
           "title": "Decompress Gzip",
-          "description": "Enterprise Only. Decompresses any Gzipped content before sending it to the backend when the `Content-Encoding` has `gzip` in the first position. You can also set this value [per endpoint](https://www.krakend.io/docs/enterprise/endpoints/maximum-request-size/).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+          "description": "Enterprise only. Decompresses any Gzipped content before sending it to the backend when the `Content-Encoding` has `gzip` in the first position. You can also set this value [per endpoint](https://www.krakend.io/docs/enterprise/endpoints/maximum-request-size/).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
           "default": 0,
           "type": "integer"
         },
@@ -7590,7 +7666,7 @@
         },
         "max_payload": {
           "title": "Maximum Payload",
-          "description": "Enterprise Only. Limits the maximum number of bytes a user can send to the gateway. `0` means no limit. You can also set this value [per endpoint](https://www.krakend.io/docs/enterprise/endpoints/maximum-request-size/).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+          "description": "Enterprise only. Limits the maximum number of bytes a user can send to the gateway. `0` means no limit. You can also set this value [per endpoint](https://www.krakend.io/docs/enterprise/endpoints/maximum-request-size/).\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
           "default": 0,
           "type": "integer"
         },
@@ -7695,8 +7771,8 @@
     },
     "https://www.krakend.io/schema/v2.12/security/cors.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "HTTP Security",
-      "description": "Security through HTTP headers, including HSTS, HPKP, MIME-Sniffing prevention, Clickjacking protection, and others.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+      "title": "CORS",
+      "description": "Define Cross-Origin Resource Sharing (CORS) configuration to send additional HTTP headers to tell browsers if they can use resources from a different origin.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/cors/",
       "type": "object",
       "properties": {
         "allow_credentials": {
@@ -7943,7 +8019,7 @@
     "https://www.krakend.io/schema/v2.12/security/policies.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Securiy Policies",
-      "description": "The policies engine allows you to write custom sets of policies that are validated during requests, responses, or token validation.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
+      "description": "Enterprise only. The policies engine allows you to write custom sets of policies that are validated during requests, responses, or token validation.\n\nSee: https://www.krakend.io/docs/enterprise/security-policies/",
       "type": "object",
       "anyOf": [
         {
@@ -8259,7 +8335,7 @@
         },
         "qos/ratelimit/service": {
           "title": "Service Rate-limiting",
-          "description": "Enterprise Only. The service rate limit feature allows you to set the maximum requests per second a user or group of users can do to KrakenD and works analogously to the endpoint rate limit.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/",
+          "description": "Enterprise only. The service rate limit feature allows you to set the maximum requests per second a user or group of users can do to KrakenD and works analogously to the endpoint rate limit.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/",
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1qos~1ratelimit~1router.json"
         },
         "qos/ratelimit/service/redis": {

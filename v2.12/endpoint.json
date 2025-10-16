@@ -18,7 +18,7 @@
   "properties": {
     "backend": {
       "title": "Backend",
-      "description": "List of all the [backend objects](https://www.krakend.io/docs/backends/) queried for this endpoint",
+      "description": "An array with all the backend services you want to use in this endpoint. See [the backend object](https://www.krakend.io/docs/backends/) documentation to know all the available options, they are omitted here for brevity.\n\nSee: https://www.krakend.io/docs/backends/",
       "type": "array",
       "minItems": 1,
       "items": {
@@ -29,7 +29,7 @@
     "cache_ttl": {
       "$id": "#endpoint/cache_ttl",
       "title": "Cache TTL",
-      "description": "Sets or overrides the cache headers to inform for how long the client or CDN can cache the request to this endpoint. Setting this value to a zero-value will use the `cache_ttl` of the service if any. Related: [caching backend responses](https://www.krakend.io/docs/backends/caching/).",
+      "description": "Sets or overrides the cache headers to inform how long the client or CDN can cache the request to this endpoint. Setting this value to a zero-value will use the `cache_ttl` in the root of the configuration if any. This attribute **does not cache** content but tells others how to do it. For caching, see [Caching Backend Responses](https://www.krakend.io/docs/backends/caching/).",
       "$ref": "timeunits.json#/$defs/timeunit"
     },
     "concurrent_calls": {
