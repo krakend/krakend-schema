@@ -1,7 +1,7 @@
 .PHONY: all build test
 
-VERSION:="v2.11"
-PREVIOUS_VERSION="v2.10"
+VERSION:="v2.12"
+PREVIOUS_VERSION="v2.11"
 BIN:="docker run -it -v \"${PWD}:/workspace\" jsonschema"
 
 all: build test

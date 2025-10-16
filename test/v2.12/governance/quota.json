@@ -1,0 +1,33 @@
+{
+    "description": "Service level quotas declaration",
+    "target": "https://www.krakend.io/schema/v2.12/governance/quota.json",
+    "tests": [
+        {
+            "description": "All options",
+            "data": {
+                "quota_name": "public_plans",
+                "on_unmatched_tier_allow": false,
+                "weight_key": "credits_consumed",
+                "weight_strategy": "body",
+                "tier_key": "X-Level",
+                "disable_quota_headers": false,
+                "tiers": [
+                    {
+                        "rule_name": "rule_gold",
+                        "tier_value": "gold",
+                        "tier_value_as": "literal",
+                        "strategy": "header",
+                        "key": "X-User-Id"
+                    },
+                    {
+                        "comment": "Special case * that catches any requests not falling into one of the tiers above",
+                        "rule_name": "rule_bronze",
+                        "tier_value_as": "*",
+                        "strategy": "ip"
+                    }
+                ]
+            },
+            "valid": true
+        }
+    ]
+}

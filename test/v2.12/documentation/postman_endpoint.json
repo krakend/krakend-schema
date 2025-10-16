@@ -1,0 +1,22 @@
+{
+  "description": "Postman test",
+  "target": "https://www.krakend.io/schema/v2.12/documentation/postman_endpoint.json",
+  "tests": [
+    {
+      "description": "Valid Postman collection at the endpoint level",
+      "data": {
+        
+          "name": "List users",
+          "folder": "/Users",
+          "description": "Some description"
+      
+      },
+      "valid": true
+    },
+    {
+      "description": "Empty namespace is valid",
+      "data": { },
+      "valid": true
+    }
+  ]
+}
