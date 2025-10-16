@@ -348,8 +348,11 @@
                         "backend": [
                             {
                                 "extra_config": {
-                                    "plugin/middleware":{
-                                        "name":["your-plugin-A","your-plugin-B"],
+                                    "plugin/middleware": {
+                                        "name": [
+                                            "your-plugin-A",
+                                            "your-plugin-B"
+                                        ],
                                         "your-plugin-A": {
                                             "your-A-setting": true
                                         },
@@ -359,7 +362,9 @@
                                     },
                                     "security/policies": {
                                         "resp": {
-                                            "policies": ["true"],
+                                            "policies": [
+                                                "true"
+                                            ],
                                             "error": {
                                                 "body": "",
                                                 "content_type": "text/plain",
@@ -373,7 +378,9 @@
                                             "error": {
                                                 "body": ""
                                             },
-                                            "policies": ["true"]
+                                            "policies": [
+                                                "true"
+                                            ]
                                         }
                                     },
                                     "telemetry/opentelemetry": {
@@ -414,8 +421,10 @@
                             }
                         ],
                         "extra_config": {
-                            "plugin/middleware":{
-                                "name":["your-plugin-A"],
+                            "plugin/middleware": {
+                                "name": [
+                                    "your-plugin-A"
+                                ],
                                 "your-plugin-A": {
                                     "your-A-setting": true
                                 }
@@ -457,7 +466,9 @@
                                     ]
                                 },
                                 "req": {
-                                    "policies": ["true"],
+                                    "policies": [
+                                        "true"
+                                    ],
                                     "error": {
                                         "body": "",
                                         "content_type": "text/plain",
@@ -465,7 +476,9 @@
                                     }
                                 },
                                 "resp": {
-                                    "policies": ["true"],
+                                    "policies": [
+                                        "true"
+                                    ],
                                     "error": {
                                         "body": "",
                                         "content_type": "text/plain",
@@ -1728,6 +1741,72 @@
                     }
                 ],
                 "extra_config": {
+                    "ai/mcp": {
+                        "servers": [
+                            {
+                                "name": "story-tracker-tools",
+                                "title": "Story tracker tools",
+                                "version": "0.2.1",
+                                "tools": [
+                                    {
+                                        "name": "story-list",
+                                        "title": "Story list",
+                                        "description": "Get a list of open stories in tracker matching a search query",
+                                        "input_schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "query": {
+                                                    "type": "string",
+                                                    "pattern": "^[a-zA-Z0-9_-]+$",
+                                                    "description": "The search query to find relevant stories, never use a blank space here"
+                                                }
+                                            },
+                                            "required": [
+                                                "query"
+                                            ]
+                                        },
+                                        "output_schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "labels": {
+                                                    "type": "array"
+                                                }
+                                            },
+                                            "additionalProperties": false
+                                        },
+                                        "return_error_msg": true,
+                                        "workflow": {
+                                            "endpoint": "/__mcp/story-list/{query}",
+                                            "backend": [
+                                                {
+                                                    "method": "GET",
+                                                    "url_pattern": "/api/v3/search/stories?query={query}%20-is:archived%20-is:done&page_size=10",
+                                                    "host": [
+                                                        "https://api.app.shortcut.com"
+                                                    ],
+                                                    "extra_config": {
+                                                        "modifier/martian": {
+                                                            "header.Append": {
+                                                                "name": "Shortcut-Token",
+                                                                "value": "xxx",
+                                                                "scope": [
+                                                                    "request"
+                                                                ]
+                                                            }
+                                                        },
+                                                        "modifier/response-body-generator": {
+                                                            "content_type": "application/json",
+                                                            "path": "./stories.tmpl"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
                     "redis": {
                         "connection_pools": [
                             {
@@ -1737,8 +1816,11 @@
                         ],
                         "clusters": [
                             {
-                            "name": "shared_redis_cluster",
-                            "addresses": ["192.168.1.45:6379", "192.168.1.52:6379"]
+                                "name": "shared_redis_cluster",
+                                "addresses": [
+                                    "192.168.1.45:6379",
+                                    "192.168.1.52:6379"
+                                ]
                             }
                         ]
                     },

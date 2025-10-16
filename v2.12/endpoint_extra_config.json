@@ -1,9 +1,13 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://www.krakend.io/schema/v2.12/endpoint_extra_config.json",
-  "title": "Schema definition for extra_config of endpoints",
+  "title": "Endpoint extra configuration",
   "type": "object",
   "properties": {
+    "ai/mcp": {
+      "description": "Enterprise only. Declares this endpoint as an [MCP server entrypoint](https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/)",
+      "$ref": "ai/mcp_endpoint.json"
+    },
     "auth/api-keys": {
       "title": "API-key validation",
       "description": "Enterprise only. Validates that users of this endpoint pass a valid API-key containing one of the declared roles.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
@@ -46,6 +50,7 @@
       "additionalProperties": false
     },
     "auth/basic": {
+      "description": "Enterprise only. [Basic Authentication](https://www.krakend.io/docs/enterprise/authentication/basic-authentication/) to protect this endpoint.",
       "$ref": "auth/basic.json"
     },
     "auth/signer": {

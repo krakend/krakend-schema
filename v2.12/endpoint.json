@@ -55,7 +55,7 @@
     },
     "extra_config": {
       "title": "Extra configuration",
-      "description": "Configuration entries for additional components that are executed within this endpoint, during the request, response or merge operations.",
+      "description": "Besides the functionality ofered by the endpoint, you can load more functionalty into this endpoint by adding new entries under this extra configuration object. You will find across all documentation a lot of functionality that is designed to be placed here.",
       "$ref": "endpoint_extra_config.json",
       "type": "object"
     },

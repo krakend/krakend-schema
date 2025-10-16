@@ -153,7 +153,7 @@
     },
     "max_shutdown_wait_time": {
       "title": "Max shutdown wait time",
-      "description": "The gateway gracefully shuts down, waiting for all active connections to drain. Nevertheless, persistent connections or long timeouts might leave the shutting down process for a long time. Set the maximum time to wait for all the running requests to finish when shutting down the service. After this time, the service will kill any remaining ones. Defaults to `0s` (wait indefinetely).",
+      "description": "The gateway gracefully shuts down, waiting for all active connections to drain. Nevertheless, persistent connections or long timeouts may leave the shutdown process running for an extended period. Set the maximum time to wait for all the remaining requests to finish when shutting down the service. After this time, the service will force a shutdown. Defaults to `0s` (wait indefinitely). \n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
       "default": "0s",
       "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1timeunits.json/$defs/timeunit",
       "type": "string"
@@ -506,6 +506,138 @@
         "^[@$_#]": {}
       },
       "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.12/ai/mcp.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "MCP functionality",
+      "description": "MCP functionality.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+      "type": "object",
+      "required": [
+        "servers"
+      ],
+      "properties": {
+        "servers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "version",
+              "title"
+            ],
+            "properties": {
+              "title": {
+                "title": "MCP Server Title",
+                "description": "The description of the purpose of this MCP Server. Provide a meaningful description to help AI understand its use case.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                "examples": [
+                  "Story tracker tools"
+                ],
+                "type": "string"
+              },
+              "instructions": {
+                "title": "Instructions",
+                "description": "The instructions to be sent to the AI client to help use the server better.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                "type": "string"
+              },
+              "name": {
+                "title": "MCP Server Name",
+                "description": "A unique name for MCP server configuration. This name is an identifier used in the logs or when a title is not provided.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                "examples": [
+                  "open-stories-tickets"
+                ],
+                "type": "string"
+              },
+              "ping_period": {
+                "title": "Ping Period",
+                "description": "The ping period for the keep alive.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                "default": true,
+                "type": "boolean"
+              },
+              "stateless": {
+                "title": "Stateless",
+                "description": "A stateless server does not validate the Mcp-Session-Id header, and uses a temporary session with default initialization parameters. Any server->client request is rejected immediately as there's no way for the client to respond. Server->Client notifications may reach the client if they are made in the context of an incoming request\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                "default": false,
+                "type": "boolean"
+              },
+              "tools": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "name",
+                    "title",
+                    "description"
+                  ],
+                  "properties": {
+                    "title": {
+                      "title": "MCP Server Title",
+                      "description": "The description of the purpose of this MCP tool. Provide a meaningful description to help AI understand its use case.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                      "examples": [
+                        "Story list"
+                      ],
+                      "type": "string"
+                    },
+                    "description": {
+                      "title": "MCP Server Title",
+                      "description": "The description of the purpose of this MCP tool. Provide a meaningful description to help AI understand its use case.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                      "examples": [
+                        "Get a list of open stories in tracker matching a search query"
+                      ],
+                      "type": "string"
+                    },
+                    "input_schema": {
+                      "title": "Input JSON Schema",
+                      "description": "The input JSON schema to validate the input parameters sent by the AI client. The schema must be a valid [2020-12 draft JSON Schema](https://json-schema.org/understanding-json-schema/) object.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                      "type": "object"
+                    },
+                    "name": {
+                      "title": "MCP Tool Name",
+                      "description": "A unique name for MCP tool configuration. This name is an identifier used in the logs or when a title is not provided.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                      "examples": [
+                        "stories-list"
+                      ],
+                      "type": "string"
+                    },
+                    "output_schema": {
+                      "title": "Input JSON Schema",
+                      "description": "The input JSON schema to validate the output parameters sent back by the AI client. The schema must be a valid [2020-12 draft JSON Schema](https://json-schema.org/understanding-json-schema/) object.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                      "type": "object"
+                    },
+                    "return_error_msg": {
+                      "title": "Return error message",
+                      "description": "Set to true if you want the error message to be returned to the AI client. If set to false, the AI client will only receive a generic error message.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "workflow": {
+                      "title": "Workflow",
+                      "description": "Any workflow you want to execute in this tool, whether is connecting to a remote service, many, aggreggating, or any functionality supported by KrakenD. See the [Workflow syntax](https://www.krakend.io/docs/enterprise/endpoints/workflows/) ",
+                      "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1workflow.json",
+                      "type": "object"
+                    }
+                  },
+                  "patternProperties": {
+                    "^[@$_#]": {}
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "version": {
+                "title": "Title",
+                "description": "The version of the logic behind your MCP Server implementation. This version makes sense to your business and is not linked to anything else.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                "examples": [
+                  "0.2.1"
+                ],
+                "type": "string"
+              }
+            },
+            "patternProperties": {
+              "^[@$_#]": {}
+            },
+            "additionalProperties": false
+          }
+        }
+      }
     },
     "https://www.krakend.io/schema/v2.12/ai/mistral.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -8084,6 +8216,9 @@
       "title": "Schema definition for service extra_config",
       "type": "object",
       "properties": {
+        "ai/mcp": {
+          "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1ai~1mcp.json"
+        },
         "auth/api-keys": {
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1auth~1api-keys.json"
         },

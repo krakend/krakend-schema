@@ -4,6 +4,9 @@
   "title": "Schema definition for service extra_config",
   "type": "object",
   "properties": {
+    "ai/mcp": {
+      "$ref": "ai/mcp.json"
+    },
     "auth/api-keys": {
       "$ref": "auth/api-keys.json"
     },
