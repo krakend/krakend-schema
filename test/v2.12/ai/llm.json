@@ -1,0 +1,92 @@
+{
+  "description": "Conditional Routing test",
+  "target": "https://www.krakend.io/schema/v2.12/ai/llm.json",
+  "tests": [
+    {
+      "description": "Valid minimum configuration with one provider",
+      "data": {
+        "gemini": {
+          "v1beta": {
+            "credentials": "x",
+            "debug": false,
+            "variables": {
+              "candidates": 3,
+              "foo": "bar",
+              "baz": 123
+            }
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Valid minimum configuration with one provider",
+      "data": {
+        "openai": {
+          "v1": {
+            "credentials": "xxx",
+            "debug": false,
+            "variables": {
+              "model": "model",
+              "foo": "bar",
+              "baz": 123
+            }
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Valid minimum configuration with one provider",
+      "data": {
+        "mistral": {
+          "v1": {
+            "credentials": "xxx",
+            "debug": false,
+            "variables": {
+              "model": "model",
+              "foo": "bar",
+              "baz": 123
+            }
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Valid minimum configuration with one provider",
+      "data": {
+        "anthropic": {
+          "v1": {
+            "credentials": "xxx",
+            "debug": false,
+            "variables": {
+              "model": "claude-opus-4-1-20250805",
+              "foo": "bar",
+              "baz": 123
+            }
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Intruder field should not be allowed",
+      "data": {
+        "gemini": {
+          "v1beta": {
+            "credentials": "x",
+            "intruder": "field",
+            "debug": false,
+            "variables": {
+              "candidates": 3,
+              "foo": "bar",
+              "baz": 123
+            }
+          }
+        }
+      },
+      "valid": false
+    }
+  ]
+}

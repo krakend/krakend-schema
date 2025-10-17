@@ -1,0 +1,200 @@
+{
+  "description": "AI MCP test",
+  "target": "https://www.krakend.io/schema/v2.12/ai/mcp.json",
+  "tests": [
+    {
+      "description": "Typical MCP server configuration with several attributes",
+      "data": {
+        "servers": [
+          {
+            "name": "story-tracker-tools",
+            "title": "Story tracker tools",
+            "version": "0.2.1",
+            "instructions": "Detailed server instructions",
+            "json_response": false,
+            "stateless": false,
+            "tools": [
+              {
+                "name": "story-list",
+                "title": "Story list",
+                "description": "Get a list of open stories in tracker matching a search query",
+                "input_schema": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "pattern": "^[a-zA-Z0-9_-]+$",
+                      "description": "The search query to find relevant stories, never use a blank space here"
+                    }
+                  },
+                  "required": [
+                    "query"
+                  ]
+                },
+                "output_schema": {
+                  "type": "object",
+                  "properties": {
+                    "labels": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "color": {
+                            "type": "string",
+                            "pattern": "^#[0-9a-fA-F]{6}$",
+                            "description": "Hex color code"
+                          },
+                          "id": {
+                            "type": "integer"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "color",
+                          "id",
+                          "name"
+                        ],
+                        "additionalProperties": true
+                      }
+                    },
+                    "stories": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "app_url": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "label_ids": {
+                            "type": "array",
+                            "items": {
+                              "type": "integer"
+                            }
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "started": {
+                            "type": "string",
+                            "enum": [
+                              "true",
+                              "false"
+                            ]
+                          },
+                          "started_at": {
+                            "type": "string"
+                          },
+                          "story_type": {
+                            "type": "string",
+                            "enum": [
+                              "feature",
+                              "bug",
+                              "chore"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "app_url",
+                          "description",
+                          "label_ids",
+                          "name",
+                          "started",
+                          "started_at",
+                          "story_type"
+                        ],
+                        "additionalProperties": true
+                      }
+                    }
+                  },
+                  "required": [
+                    "labels",
+                    "stories"
+                  ],
+                  "additionalProperties": false
+                },
+                "return_error_msg": true,
+                "workflow": {
+                  "endpoint": "/__mcp/story-list/{query}",
+                  "backend": [
+                    {
+                      "method": "GET",
+                      "url_pattern": "/api/v3/search/stories?query={query}%20-is:archived%20-is:done&page_size=10",
+                      "host": [
+                        "https://api.app.shortcut.com"
+                      ],
+                      "extra_config": {
+                        "modifier/martian": {
+                          "header.Append": {
+                            "name": "Shortcut-Token",
+                            "value": "xxx",
+                            "scope": [
+                              "request"
+                            ]
+                          }
+                        },
+                        "modifier/response-body-generator": {
+                          "content_type": "application/json",
+                          "path": "./stories.tmpl"
+                        }
+                      }
+                    },
+                    {
+                      "method": "GET",
+                      "url_pattern": "/api/v3/labels",
+                      "host": [
+                        "https://api.app.shortcut.com"
+                      ],
+                      "is_collection": true,
+                      "extra_config": {
+                        "modifier/martian": {
+                          "header.Append": {
+                            "name": "Shortcut-Token",
+                            "value": "xxx",
+                            "scope": [
+                              "request"
+                            ]
+                          }
+                        },
+                        "modifier/response-body-generator": {
+                          "content_type": "application/json",
+                          "path": "./labels.tmpl"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Empty servers array",
+      "data": {
+        "servers": []
+      },
+      "valid": true
+    },
+    {
+      "description": "Minumu server config with no tools",
+      "data": {
+        "servers": [
+          {
+            "name": "story-tracker-tools",
+            "title": "Story tracker tools",
+            "version": "0.2.1"
+          }
+        ]
+      },
+      "valid": true
+    }
+  ]
+}

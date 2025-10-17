@@ -1,0 +1,18 @@
+{
+  "description": "AI MCP test",
+  "target": "https://www.krakend.io/schema/v2.12/ai/mcp_endpoint.json",
+  "tests": [
+    {
+      "description": "Typical MCP server attachment",
+      "data": {
+        "server_name": "stories-tracker"
+      },
+      "valid": true
+    },
+    {
+      "description": "Empty declaration",
+      "data": {},
+      "valid": false
+    }
+  ]
+}
