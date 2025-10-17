@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://www.krakend.io/schema/v2.3/security/cors.json",
   "title": "CORS",
-  "description": "Define Cross-Origin Resource Sharing (CORS) configuration to send additional HTTP headers to tell browsers if they can use resources from a different origin.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/cors/cors/",
+  "description": "Define Cross-Origin Resource Sharing (CORS) configuration to send additional HTTP headers to tell browsers if they can use resources from a different origin.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
   "type": "object",
   "properties": {
     "allow_credentials": {
