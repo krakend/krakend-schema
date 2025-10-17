@@ -10,9 +10,9 @@
   "properties": {
     "server_name": {
       "title": "Server name",
-      "description": "The MCP server you want to attach to this endpoint, which serves as the entry point URL. The name used must match the name in the `ai/mcp` configuration in the root level.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+      "description": "The MCP server you want to attach to this endpoint. When you add this namespace, the endpoint becomes the MCP server entry point URL. The name used must match the name in the `ai/mcp` configuration in the root level.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
       "examples": [
-        "weather-tools"
+        "stories-tracker"
       ]
     }
   },
