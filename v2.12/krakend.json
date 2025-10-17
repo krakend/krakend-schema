@@ -517,6 +517,7 @@
       ],
       "properties": {
         "servers": {
+          "description": "The array of MCP servers available for linking to endpoints. Each object represents a different MCP server. The entry is only the definition of the server. You must create an endpoint that serves as the entrypoint to each server.",
           "type": "array",
           "items": {
             "type": "object",
@@ -536,22 +537,30 @@
               },
               "instructions": {
                 "title": "Instructions",
-                "description": "The instructions to be sent to the AI client to help use the server better.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                "description": "The instructions are key for the AI client to understand how to use this server.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                "default": "",
                 "type": "string"
+              },
+              "json_response": {
+                "title": "JSON Response",
+                "description": "Set to true if you want the response to be in JSON format. If set to false, the response will be in SSE format (text/event-stream).\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                "default": false,
+                "type": "boolean"
               },
               "name": {
                 "title": "MCP Server Name",
                 "description": "A unique name for MCP server configuration. This name is an identifier used in the logs or when a title is not provided.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
                 "examples": [
-                  "open-stories-tickets"
+                  "stories-tracker"
                 ],
                 "type": "string"
               },
               "ping_period": {
                 "title": "Ping Period",
-                "description": "The ping period for the keep alive.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
-                "default": true,
-                "type": "boolean"
+                "description": "Krakend will ping all connected clients from time to time to determine if the session must be kept alive. This duration strings sets the ping period KrakenD will do to its connected clients. When you don't set a value, there is no ping process and KrakenD is unaware of disconnected clients, so it won't report live notifications.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                "default": "0s",
+                "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1timeunits.json/$defs/timeunit",
+                "type": "string"
               },
               "stateless": {
                 "title": "Stateless",
@@ -560,18 +569,20 @@
                 "type": "boolean"
               },
               "tools": {
+                "description": "The Model Context Protocol (MCP) allows servers to expose tools ([RFC](https://modelcontextprotocol.io/specification/2025-06-18/server/tools)) that can be invoked by language models. Tools enable models to interact with internal/external systems. Each tool is uniquely identified by a name and includes metadata describing its schema.",
                 "type": "array",
                 "items": {
                   "type": "object",
                   "required": [
                     "name",
                     "title",
-                    "description"
+                    "description",
+                    "workflow"
                   ],
                   "properties": {
                     "title": {
                       "title": "MCP Server Title",
-                      "description": "The description of the purpose of this MCP tool. Provide a meaningful description to help AI understand its use case.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                      "description": "The description of the purpose of this MCP tool. Provide a meaningful text to help AI understand its use case.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
                       "examples": [
                         "Story list"
                       ],
@@ -587,7 +598,7 @@
                     },
                     "input_schema": {
                       "title": "Input JSON Schema",
-                      "description": "The input JSON schema to validate the input parameters sent by the AI client. The schema must be a valid [2020-12 draft JSON Schema](https://json-schema.org/understanding-json-schema/) object.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                      "description": "The input JSON schema to validate the input parameters sent by the AI client. The schema is **essential** in most clients to understand how to pass parameters to the MCP server. The schema must be a valid [2020-12 draft JSON Schema](https://json-schema.org/understanding-json-schema/) object.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
                       "type": "object"
                     },
                     "name": {
@@ -600,7 +611,7 @@
                     },
                     "output_schema": {
                       "title": "Input JSON Schema",
-                      "description": "The input JSON schema to validate the output parameters sent back by the AI client. The schema must be a valid [2020-12 draft JSON Schema](https://json-schema.org/understanding-json-schema/) object.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                      "description": "The input JSON schema to validate the output parameters sent back to the AI client. The schema must be a valid [2020-12 draft JSON Schema](https://json-schema.org/understanding-json-schema/) object.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
                       "type": "object"
                     },
                     "return_error_msg": {
@@ -611,7 +622,7 @@
                     },
                     "workflow": {
                       "title": "Workflow",
-                      "description": "Any workflow you want to execute in this tool, whether is connecting to a remote service, many, aggreggating, or any functionality supported by KrakenD. See the [Workflow syntax](https://www.krakend.io/docs/enterprise/endpoints/workflows/) ",
+                      "description": "This is the action/pipeline performed by the tool. While you can add a single action to the tool, because actions can be chained and have complex logic, we have called this a workflow, whether is connecting to a single remote service, many, aggreggating, or any other functionality supported by KrakenD. See the [Workflow syntax](https://www.krakend.io/docs/enterprise/endpoints/workflows/) ",
                       "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1workflow.json",
                       "type": "object"
                     }
@@ -650,9 +661,9 @@
       "properties": {
         "server_name": {
           "title": "Server name",
-          "description": "The MCP server you want to attach to this endpoint, which serves as the entry point URL. The name used must match the name in the `ai/mcp` configuration in the root level.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+          "description": "The MCP server you want to attach to this endpoint. When you add this namespace, the endpoint becomes the MCP server entry point URL. The name used must match the name in the `ai/mcp` configuration in the root level.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
           "examples": [
-            "weather-tools"
+            "stories-tracker"
           ]
         }
       },
@@ -4139,7 +4150,7 @@
         },
         "endpoint": {
           "title": "Endpoint",
-          "description": "The path of the URL you want to expose. The path is **case-sensitive** and should start with a slash `/`. You can use `{placeholders}` to allow dynamic variables. For example: `/foo/{var}/baz`. You can also add an ending `/*` in the path to enable [wildcards](https://www.krakend.io/docs/enterprise/endpoints/wildcard/) (Enterprise only).\nThe router will try to automatically redirect calls to endpoints with an incorrect case or incorrect trailing slash to its correct version offering a `301`. There are no guarantees that it will succeed and the request might even fail completely while trying (and log an ugly error with a trace). The **safest option** is to [disable automatic redirections](https://www.krakend.io/docs/service-settings/router-options/) by setting to true the flags `disable_redirect_fixed_path` and `disable_redirect_trailing_slash` in the `router` options.\n**Limitations**: URLs do not support colons `:` in their definition. All `{vars}` are meant to be isolated in the path and not to be used to build words, like in `/file.{ext}` [See `disable_rest` for that usage](https://www.krakend.io/docs/service-settings/http-server-settings/#disable_rest).\n\nSee: https://www.krakend.io/docs/endpoints/",
+          "description": "The path of the URL you want to expose. The path is **case-sensitive** and should start with a slash `/`. You can use `{placeholders}` to allow dynamic variables. For example: `/foo/{var}/baz`. You can also add an ending `/*` in the path to enable [wildcards](https://www.krakend.io/docs/enterprise/endpoints/wildcard/). Enterprise only.\nThe router will try to automatically redirect calls to endpoints with an incorrect case or incorrect trailing slash to its correct version offering a `301`. There are no guarantees that it will succeed and the request might even fail completely while trying (and log an ugly error with a trace). The **safest option** is to [disable automatic redirections](https://www.krakend.io/docs/service-settings/router-options/) by setting to true the flags `disable_redirect_fixed_path` and `disable_redirect_trailing_slash` in the `router` options.\n**Limitations**: URLs do not support colons `:` in their definition. All `{vars}` are meant to be isolated in the path and not to be used to build words, like in `/file.{ext}` [See `disable_rest` for that usage](https://www.krakend.io/docs/service-settings/http-server-settings/#disable_rest).\n\nSee: https://www.krakend.io/docs/endpoints/",
           "examples": [
             "/new-endpoint",
             "/foo/{var}",

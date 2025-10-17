@@ -30,8 +30,14 @@
           "instructions": {
             "title": "Instructions",
             "description": "The instructions are key for the AI client to understand how to use this server.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
-            "type": "string",
-            "default": ""
+            "default": "",
+            "type": "string"
+          },
+          "json_response": {
+            "title": "JSON Response",
+            "description": "Set to true if you want the response to be in JSON format. If set to false, the response will be in SSE format (text/event-stream).\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+            "default": false,
+            "type": "boolean"
           },
           "name": {
             "title": "MCP Server Name",
@@ -45,8 +51,8 @@
             "title": "Ping Period",
             "description": "Krakend will ping all connected clients from time to time to determine if the session must be kept alive. This duration strings sets the ping period KrakenD will do to its connected clients. When you don't set a value, there is no ping process and KrakenD is unaware of disconnected clients, so it won't report live notifications.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
             "default": "0s",
-            "type": "string",
-            "$ref": "../timeunits.json#/$defs/timeunit"
+            "$ref": "../timeunits.json#/$defs/timeunit",
+            "type": "string"
           },
           "stateless": {
             "title": "Stateless",
@@ -54,12 +60,6 @@
             "default": false,
             "type": "boolean"
           },
-          "json_response": {
-                  "title": "JSON Response",
-                  "description": "Set to true if you want the response to be in JSON format. If set to false, the response will be in SSE format (text/event-stream).\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
-                  "default": false,
-                  "type": "boolean"
-                },
           "tools": {
             "description": "The Model Context Protocol (MCP) allows servers to expose tools ([RFC](https://modelcontextprotocol.io/specification/2025-06-18/server/tools)) that can be invoked by language models. Tools enable models to interact with internal/external systems. Each tool is uniquely identified by a name and includes metadata describing its schema.",
             "type": "array",
@@ -69,10 +69,9 @@
                 "name",
                 "title",
                 "description",
-          "workflow"
+                "workflow"
               ],
               "properties": {
-
                 "title": {
                   "title": "MCP Server Title",
                   "description": "The description of the purpose of this MCP tool. Provide a meaningful text to help AI understand its use case.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
