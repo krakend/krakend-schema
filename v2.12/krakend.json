@@ -596,6 +596,16 @@
                       ],
                       "type": "string"
                     },
+                    "type": {
+                      "title": "Media Type",
+                      "description": "The type of the response media.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                      "default": "text",
+                      "enum": [
+                        "text",
+                        "audio",
+                        "image"
+                      ]
+                    },
                     "input_schema": {
                       "title": "Input JSON Schema",
                       "description": "The input JSON schema to validate the input parameters sent by the AI client. The schema is **essential** in most clients to understand how to pass parameters to the MCP server. The schema must be a valid [2020-12 draft JSON Schema](https://json-schema.org/understanding-json-schema/) object.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
