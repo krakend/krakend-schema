@@ -17,6 +17,7 @@
               {
                 "name": "story-list",
                 "title": "Story list",
+                "input_headers": ["Flongin"],
                 "description": "Get a list of open stories in tracker matching a search query",
                 "input_schema": {
                   "type": "object",
