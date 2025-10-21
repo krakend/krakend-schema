@@ -596,6 +596,16 @@
                       ],
                       "type": "string"
                     },
+                    "type": {
+                      "title": "Media Type",
+                      "description": "The type of the response media.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                      "default": "text",
+                      "enum": [
+                        "text",
+                        "audio",
+                        "image"
+                      ]
+                    },
                     "input_headers": {
                       "title": "Allowed Headers In",
                       "description": "Defines the list of all headers allowed to reach the backend when passed.\nBy default, KrakenD won't pass any header from the client to the backend. This list is **case-insensitive**. You can declare headers in lowercase, uppercase, or mixed.\nAn entry `[\"Cookie\"]` forwards all cookies, and a single star element `[\"*\"]` as value forwards everything to the backend (**it's safer to avoid this option**), including cookies. See [headers forwarding](https://www.krakend.io/docs/endpoints/parameter-forwarding/#headers-forwarding)",
@@ -611,15 +621,6 @@
                         ],
                         "type": "string"
                       }
-                    "type": {
-                      "title": "Media Type",
-                      "description": "The type of the response media.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
-                      "default": "text",
-                      "enum": [
-                        "text",
-                        "audio",
-                        "image"
-                      ]
                     },
                     "input_schema": {
                       "title": "Input JSON Schema",
