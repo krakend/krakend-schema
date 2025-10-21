@@ -611,6 +611,15 @@
                         ],
                         "type": "string"
                       }
+                    "type": {
+                      "title": "Media Type",
+                      "description": "The type of the response media.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                      "default": "text",
+                      "enum": [
+                        "text",
+                        "audio",
+                        "image"
+                      ]
                     },
                     "input_schema": {
                       "title": "Input JSON Schema",
