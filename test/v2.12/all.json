@@ -853,6 +853,15 @@
                                         "timeout": 10,
                                         "@extra_comment": "here"
                                     },
+                                    "qos/circuit-breaker/http": {
+                                        "valid_status_codes": [200, 201, 404],
+                                        "interval": 60,
+                                        "log_status_change": true,
+                                        "max_errors": 10,
+                                        "name": "cb-backend-1",
+                                        "timeout": 10,
+                                        "@extra_comment": "here"
+                                    },
                                     "qos/ratelimit/proxy": {
                                         "capacity": 1,
                                         "max_rate": 1.1,
