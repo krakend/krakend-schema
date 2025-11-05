@@ -327,6 +327,7 @@
             "default": "string",
             "enum": [
               "integer",
+              "number",
               "string",
               "boolean",
               "object",
@@ -437,6 +438,7 @@
             "default": "string",
             "enum": [
               "integer",
+              "number",
               "string",
               "boolean",
               "object",
