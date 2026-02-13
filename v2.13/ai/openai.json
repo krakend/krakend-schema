@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.krakend.io/schema/v2.13/ai/openai.json",
   "title": "OpenAI integration",
-  "description": "Connect to OpenAI's GPT models easily by providing your API key and optional parameters.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+  "description": "Connect to OpenAI's GPT models easily by providing your API key and optional parameters.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
   "type": "object",
   "maxProperties": 1,
   "minProperties": 1,
