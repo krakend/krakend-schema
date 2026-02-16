@@ -123,7 +123,8 @@
                                         "credentials_file": "/etc/krakend/gcp.json",
                                         "custom_claims": {
                                             "a": 1
-                                        }
+                                        },
+                                        "s2s_auth_header": "X-Serverless-Authorization"
                                     },
                                     "governance/quota": {
                                         "quota_name": "public_plans",
