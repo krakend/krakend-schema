@@ -1686,7 +1686,7 @@
           "type": "string"
         },
         "tier_key": {
-          "description": "Header or param used to determine the tier. Use `tier_value` and `tier_value_as` on each tier to determine how to match the value.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
+          "description": "Header used to determine the tier. Use `tier_value` and `tier_value_as` on each tier to determine how to match the value.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
           "examples": [ "X-User-Tier", "X-User-ID" ],
           "type": "string"
         },
