@@ -925,7 +925,7 @@
         },
         "s2s_auth_header": {
           "title": "Service-to-service authentication header",
-          "description": "Enable and configure the header name to use in service-to-service authentication. This is useful to honor the original Authorization header in case it's needed by the backend (pe, CloudRun).\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
+          "description": "Enable and configure the header name to use in service-to-service authentication. This is useful to honor the original Authorization header in case it's needed by the backend (for example, CloudRun).\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
           "type": "string"
         }
       },
