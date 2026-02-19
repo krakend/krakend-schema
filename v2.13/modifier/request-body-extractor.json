@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v2.13/modifier/request-body-extractor.json",
+  "title": "Request Body Extractor",
+  "description": "Enterprise only. Extracts fields from the incoming request body and promotes them to request headers or query strings.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/",
+  "type": "object",
+  "required": [ "operations" ],
+  "properties": {
+    "operations": {
+      "title": "Operations",
+      "description": "A list of extraction operations to apply. Each operation extracts a value from the request body and writes it to a header or query string parameter. Operations are evaluated in sequential order.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/",
+      "type": "array",
+      "items": {
+        "title": "Operation",
+        "description": "Defines a single extraction rule that reads a field from the request body and writes it to a header or query string parameter.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/",
+        "type": "object",
+        "required": [
+          "type",
+          "strategy",
+          "expression",
+          "target",
+          "on_conflict"
+        ],
+        "properties": {
+          "type": {
+            "title": "Type",
+            "description": "The destination where the extracted value is written. Use `header` to inject the value as a request header, or `query_string` to inject it as a query string parameter.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/",
+            "enum": [ "header", "query_string" ]
+          },
+          "strategy": {
+            "title": "Strategy",
+            "description": "The strategy used to navigate the request body and extract the value. Use `dotnotation` for straightforward field access using period-separated field names (e.g., `user.id`). Use `jmespath` to evaluate a JMESPath expression for more complex selections involving arrays, filtering, or projections.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/",
+            "enum": [ "dotnotation", "jmespath" ]
+          },
+          "expression": {
+            "title": "Expression",
+            "description": "The expression that selects the value from the request body. When using the `dotnotation` strategy, use period-separated field names (e.g., `user.id`). When using `jmespath`, provide a valid JMESPath expression.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/",
+            "examples": [ "user.id", "auth.role_key", "data.items[0].name" ],
+            "type": "string"
+          },
+          "target": {
+            "title": "Target",
+            "description": "The name of the destination header or query string parameter where the extracted value is written.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/",
+            "examples": [ "Authorization", "uid", "X-Tenant-Id" ],
+            "type": "string"
+          },
+          "on_conflict": {
+            "title": "On Conflict",
+            "description": "Controls behaviour when the destination header or query string parameter already has a value. `skip` preserves the existing value and discards the extracted one. `replace` overwrites the existing value. `append` adds the extracted value alongside the existing one.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/",
+            "default": "replace",
+            "enum": [ "skip", "replace", "append" ]
+          }
+        },
+        "patternProperties": {
+          "^[@$_#]": true
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false
+}

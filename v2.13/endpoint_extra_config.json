@@ -88,6 +88,16 @@
       "$ref": "modifier/lua.json",
       "type": "object"
     },
+    "modifier/request-body-extractor": {
+      "description": "Enterprise only. [Extracts fields from the incoming request body](https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/) and promotes them to request headers or query strings. Runs in the proxy pipeline.",
+      "$ref": "modifier/request-body-extractor.json",
+      "type": "object"
+    },
+    "modifier/request-body-extractor/early": {
+      "description": "Enterprise only. [Extracts fields from the incoming request body](https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/) and promotes them to request headers or query strings. Runs at the HTTP handler level before authentication and all other handlers.",
+      "$ref": "modifier/request-body-extractor.json",
+      "type": "object"
+    },
     "modifier/request-body-generator": {
       "description": "Enterprise only. Freely [transform the request body/payload](https://www.krakend.io/backends/body-generator/) you will send to your services using a templating system.",
       "$ref": "modifier/body-generator.json",
