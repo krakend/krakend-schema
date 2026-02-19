@@ -5621,7 +5621,6 @@
               "on_conflict": {
                 "title": "On Conflict",
                 "description": "Controls behaviour when the destination header or query string parameter already has a value. `skip` preserves the existing value and discards the extracted one. `replace` overwrites the existing value. `append` adds the extracted value alongside the existing one.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/",
-                "default": "replace",
                 "enum": [ "skip", "replace", "append" ]
               }
             },
