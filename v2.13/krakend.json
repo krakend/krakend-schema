@@ -5205,6 +5205,19 @@
                 "title": "Name",
                 "description": "The name of the querystring, as declared in `input_query_strings`",
                 "type": "string"
+              },
+              "example": {
+                "title": "Example",
+                "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                "type": [
+                  "string",
+                  "object",
+                  "array",
+                  "boolean",
+                  "integer",
+                  "null",
+                  "number"
+                ]
               }
             },
             "patternProperties": {
@@ -5243,7 +5256,7 @@
                 "type": "string"
               },
               "example": {
-                "title": "Content Type",
+                "title": "Example",
                 "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
                 "type": [
                   "string",
@@ -5254,6 +5267,38 @@
                   "null",
                   "number"
                 ]
+              },
+              "examples": {
+                "title": "Examples",
+                "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                "examples": [
+                  {
+                    "Example 1": {
+                      "msg": "a message"
+                    }
+                  },
+                  {
+                    "Example 1": {
+                      "msg": "a message"
+                    },
+                    "Example 2": {
+                      "error": "an error message"
+                    }
+                  }
+                ],
+                "type": "object",
+                "additionalProperties": {
+                  "title": "Example",
+                  "type": [
+                    "string",
+                    "object",
+                    "array",
+                    "boolean",
+                    "integer",
+                    "null",
+                    "number"
+                  ]
+                }
               },
               "example_schema": {
                 "description": "A JSON schema that describes the request format for the accepted payload in the endpoint. Use either example or example_schema, but not both.",
@@ -5303,7 +5348,7 @@
                   "type": "string"
                 },
                 "example": {
-                  "title": "Content Type",
+                  "title": "Example",
                   "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
                   "type": [
                     "string",
@@ -5314,6 +5359,38 @@
                     "null",
                     "number"
                   ]
+                },
+                "examples": {
+                  "title": "Examples",
+                  "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                  "examples": [
+                    {
+                      "Example 1": {
+                        "msg": "a message"
+                      }
+                    },
+                    {
+                      "Example 1": {
+                        "msg": "a message"
+                      },
+                      "Example 2": {
+                        "error": "an error message"
+                      }
+                    }
+                  ],
+                  "type": "object",
+                  "additionalProperties": {
+                    "title": "Example",
+                    "type": [
+                      "string",
+                      "object",
+                      "array",
+                      "boolean",
+                      "integer",
+                      "null",
+                      "number"
+                    ]
+                  }
                 },
                 "example_schema": {
                   "description": "A JSON schema that describes the response format for the endpoint, directly as a JSON object, or encoded as a base64 string. Use either example or example_schema, but not both.",
