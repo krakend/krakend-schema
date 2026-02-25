@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v2.13/messaging/kafka/writer.json",
+  "title": "Kafka Writer",
+  "description": "Enterprise only. Defines how to write messages to a Kafka cluster",
+  "type": "object",
+  "properties": {
+    "connection": {
+      "title": "Connection details",
+      "description": "settings to stablish the connection to the kafka services",
+      "$ref": "./connection.json",
+      "type": "object"
+    },
+    "producer": {
+      "title": "Producer options",
+      "description": "details about how to write to a topic",
+      "$ref": "./producer.json",
+      "type": "object"
+    },
+    "topic": {
+      "title": "Topic",
+      "description": "the topics to write to",
+      "type": "string"
+    },
+    "key_meta": {
+      "title": "Key Meta Name",
+      "description": "the name of the header where the kafka message key value is written",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false
+}

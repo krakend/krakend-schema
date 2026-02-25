@@ -1577,6 +1577,259 @@
       },
       "additionalProperties": false
     },
+    "https://www.krakend.io/schema/v2.13/messaging/kafka/sasl.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Kafka SASL",
+      "description": "Enterprise only. SASL base authentication with broker: there are multiple SASL authentication methods but the current implementation is limited to plaintext (SASL/PLAIN) authentication",
+      "type": "object",
+      "properties": {
+        "mechanism": {
+          "title": "SASL  Mechanism",
+          "description": "The name of the enabled SASL mechanism. Possible values: OAUTHBEARER, PLAIN",
+          "default": "PLAIN",
+          "enum": [ "PLAIN", "OAUTHBEARER" ]
+        },
+        "azure_event_hub": {
+          "title": "Connect to Azure Event Hub",
+          "description": "Kafka > 1.x should use SASL V1, except on Azure EventHub which uses V0",
+          "default": false,
+          "type": "boolean"
+        },
+        "disable_hanshake": {
+          "title": "Disable Handshake",
+          "description": "Whether or not to send the Kafka SASL handshake first if enabled. You should only set this to false if you're using a non-Kafka SASL proxy",
+          "default": true,
+          "type": "boolean"
+        },
+        "auth_identity": {
+          "title": "Auth Identity",
+          "description": "Auth Identity is an (optional) authorization identity (authzid) to use for SASL/PLAIN authentication (if different from User) when an authenticated user is permitted to act as the presented alternative user. See RFC4616 for details",
+          "type": "string"
+        },
+        "user": {
+          "title": "User",
+          "description": "Authentication identity (authcid) to present for SASL/PLAIN or SASL/SCRAM authentication",
+          "type": "string"
+        },
+        "password": {
+          "title": "Password",
+          "description": "Password for SASL/PLAIN authentication",
+          "type": "string"
+        },
+        "scram_auth_id": {
+          "title": "SCRAM Auth ID",
+          "description": "authz id used for SASL/SCRAM authentication",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.13/messaging/kafka/connection.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Kafka Reader Connection",
+      "description": "Enterprise only. Defines how to connect to a Kafka cluster",
+      "type": "object",
+      "properties": {
+        "brokers": {
+          "title": "Brokers available to connect to",
+          "description": "",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "client_tls": {
+          "title": "TLS client options",
+          "description": "Enables specific TLS connection options when connecting to the Kafke brokers. Supports all options under [TLS client settings](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings).\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1client_tls.json"
+        },
+        "sasl": {
+          "title": "SASL Connection options",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1sasl.json"
+        },
+        "dial_timeout": {
+          "title": "Dial Timeout",
+          "description": "Dial timeout for establishing new connections",
+          "default": "30s",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "read_timeout": {
+          "title": "Read Timeout",
+          "description": "Maximum time allowed to read from broker",
+          "default": "30s",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "write_timeout": {
+          "title": "Write Timeout",
+          "description": "Maximum time allowed to read from broker",
+          "default": "30s",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "keep_alive": {
+          "title": "Keep Alive",
+          "description": "Time to maintain an idle connection open",
+          "default": "0s",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "client_id": {
+          "title": "Client ID",
+          "description": "A name to give to the client stablishing the connection",
+          "default": "KrakenD v[X].[Y].[Z]",
+          "type": "string"
+        },
+        "rack_id": {
+          "title": "Rack ID",
+          "description": "A name to identify the rack we are connecting from",
+          "default": "",
+          "type": "string"
+        },
+        "channel_buffer_size": {
+          "title": "Channel Buffer Size",
+          "description": "The number of events to buffer in internal and external channels. This permits the producer and consumer to continue processing some messages in the background while user code is working, greatly improving throughput",
+          "default": 256,
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.13/messaging/kafka/producer.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Kafka Producer Details",
+      "description": "Enterprise only. Defines details about how to write messages to a Kafka cluster",
+      "type": "object",
+      "properties": {
+        "max_message_bytes": {
+          "title": "Max Message Bytes",
+          "description": "maximum permitted size of a message. Should be  set equal to or smaller than the broker's `message.max.bytes`.",
+          "type": "number",
+          "minimum": 0
+        },
+        "required_acks": {
+          "title": "Required Acks",
+          "description": "level of acknowledgement reliability needed from the broker. Equivalent to the `request.required.acks` setting of the JVM producer. Can be a positibe number (as a string), or one of hte following values: `no_response` (no required acks), `wait_for_local` (waits for only the local commit to succeed before responding), `wait_for_all` (waits for all in-sync replicas to commit before responding).",
+          "default": "wait_for_local",
+          "type": "string"
+        },
+        "required_acks_timeout": {
+          "title": "Required Acks Timeout",
+          "description": "maximum duration the broker will wait the receipt of the number of `required_acks`. This is only relevant when `required_acks` is set to WaitForAll or a number > 1. Only supports millisecond resolution, nanoseconds will be truncated. Equivalent to the JVM producer's `request.timeout.ms` setting.",
+          "default": "10s",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "compression_codec": {
+          "title": "Compression Codec",
+          "description": "type of compression to use on messages (defaults to no compression). Similar to `compression.codec` setting of the JVM producer.",
+          "default": "none",
+          "enum": [ "none", "gzip", "snappy", "lz4", "zstd" ]
+        },
+        "compression_level": {
+          "title": "Compression Level",
+          "description": "level of compression to use on messages. The meaning depends on the actual compression type used and defaults to default compression level for the codec.",
+          "type": "string"
+        },
+        "partitioner": {
+          "title": "Partitioner",
+          "description": "Select behaviour for choosing the partition to send messages (similar to the `partitioner.class` setting for the JVM producer). The options are:\n- `sarama`: **DEPRECATED** uses a Partitioner which behaves as follows: If the message's key is nil then a random partition is chosen. Otherwise the `FNV-1a` hash of the encoded bytes of the message key is used, modulus the number of partitions. This ensures that messages with the same key always end up on the same partition.\n- `standard` is like `sarama` except that it handles absolute values in the same way as the reference Java implementation. `sarama` was supposed to do that but it had a mistake and now there are people depending on both behaviours. This will all go away on the next major version bump.\n- `random` uses a Partitioner which chooses a random partition each time.\n- `roundrobin` uses a Partitioner which walks through the available partitions one at a time.",
+          "default": "standard",
+          "enum": [ "sarama", "standard", "random", "roundrobin" ]
+        },
+        "idempotent": {
+          "title": "Idempotent",
+          "description": "if enabled, the producer will ensure that exactly one copy of each message is  written",
+          "default": false,
+          "type": "boolean"
+        },
+        "retry_max": {
+          "title": "Retry Max",
+          "description": "The total number of times to retry sending a message. Similar to the `message.send.max.retries` setting of the JVM producer.",
+          "default": 3,
+          "type": "number",
+          "minimum": 0
+        },
+        "retry_backoff": {
+          "title": "Retry Backoff",
+          "description": "How long to wait for the cluster to settle between retries (similar to the `retry.backoff.ms` setting of the JVM producer.",
+          "default": "100ms",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.13/messaging/kafka/writer.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Kafka Writer",
+      "description": "Enterprise only. Defines how to write messages to a Kafka cluster",
+      "type": "object",
+      "properties": {
+        "connection": {
+          "title": "Connection details",
+          "description": "settings to stablish the connection to the kafka services",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1connection.json",
+          "type": "object"
+        },
+        "producer": {
+          "title": "Producer options",
+          "description": "details about how to write to a topic",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1producer.json",
+          "type": "object"
+        },
+        "topic": {
+          "title": "Topic",
+          "description": "the topics to write to",
+          "type": "string"
+        },
+        "key_meta": {
+          "title": "Key Meta Name",
+          "description": "the name of the header where the kafka message key value is written",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.13/backend/pubsub/kafka/publisher.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "PubSub Kafka Publisher EE",
+      "description": "Enterprise only. Allows for fine grained control over a kafka publishing connection",
+      "type": "object",
+      "required": [ "writer" ],
+      "properties": {
+        "success_status_code": {
+          "title": "Success Status Code",
+          "description": "http status code to return for a successful write in the queue",
+          "type": "number",
+          "maximum": 201,
+          "minimum": 200
+        },
+        "writer": {
+          "title": "Writer",
+          "description": "Define how to write messages to a kafka topic",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1writer.json"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
     "https://www.krakend.io/schema/v2.13/backend/pubsub/subscriber.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "Pubsub subscriber",
@@ -1588,6 +1841,123 @@
           "title": "Subscription URL",
           "description": "Subscription URL according to the selected driver\n\nSee: https://www.krakend.io/docs/backends/pubsub/",
           "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.13/messaging/kafka/consumer.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Kafka Consumer Details",
+      "description": "Enterprise only. Defines details for reading messages from a Kafka cluster",
+      "type": "object",
+      "properties": {
+        "group_session_timeout": {
+          "description": "timeout used to detect consumer failures when using Kafka's group management facility. The consumer sends periodic heartbeats to indicate its liveness to the broker. If no heartbeats are received by the broker before the expiration of this session timeout, then the broker will remove this consumer from the group and initiate a rebalance. Note that the value must be in the allowable range as configured in the broker configuration by `group.min.session.timeout.ms` and `group.max.session.timeout.ms`",
+          "default": "10s",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "group_heartbeat_interval": {
+          "title": "Grup Heartbeat Interval",
+          "description": "the expected time between heartbeats to the consumer coordinator when using Kafka's group management facilities. Heartbeats are used to ensure that the consumer's session stays active and to facilitate rebalancing when new consumers join or leave the group. The value must be set lower than Consumer.Group.Session.Timeout, but typically should be set no higher than 1/3 of that value. It can be adjusted even lower to control the expected time for normal rebalances",
+          "default": "3s",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "group_rebalance_strategies": {
+          "title": "Group Rebalance Strategies",
+          "description": "the priority-ordered list of client-side consumer group balancing strategies that will be offered to the coordinator. The first strategy that all group members support will be chosen by the leader. Optionsare: range, roundrobin, and sticky",
+          "default": [ "range" ],
+          "type": "array",
+          "items": {
+            "enum": [ "range", "roundrobin", "sticky" ]
+          }
+        },
+        "group_rebalance_timeout": {
+          "title": "Group Rebalance Timeout",
+          "description": "the maximum allowed time for each worker to join the group once a rebalance has begun. This is basically a limit on the amount of time needed for all tasks to flush any pending data and commit offsets. If the timeout is exceeded, then the worker will be removed from the group, which will cause offset commit failures.",
+          "default": "60s",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "group_instance_id": {
+          "title": "Group Instance ID",
+          "description": "support KIP-345",
+          "type": "string"
+        },
+        "fetch_default": {
+          "title": "Fetch Default",
+          "description": "The default number of message bytes to fetch from the broker in each request (default 1MB). This should be larger than the majority of your messages, or else the consumer will spend a lot of time negotiating sizes and not actually consuming. Similar to the JVM's `fetch.message.max.bytes`",
+          "type": "number"
+        },
+        "isolation_level": {
+          "title": "Isolation Level",
+          "description": "supports 2 modes: `read_commited` to consume and return all messages in message channel, and `read_uncommited` to hide messages that are part of an aborted transaction",
+          "default": "read_commited",
+          "enum": [ "read_commited", "read_uncommited" ]
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.13/messaging/kafka/reader.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Kafka Reader",
+      "description": "Enterprise only. Defines how to read messages from a Kafka cluster",
+      "type": "object",
+      "properties": {
+        "connection": {
+          "title": "Connection details",
+          "description": "settings to stablish the connection to the kafka services",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1connection.json",
+          "type": "object"
+        },
+        "consumer": {
+          "title": "Consumer options",
+          "description": "details about how to read from the topic",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1consumer.json",
+          "type": "object"
+        },
+        "topics": {
+          "title": "Topics",
+          "description": "the list of topics to read from",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "group_id": {
+          "title": "Consumer Group ID",
+          "description": "the name of the consumer group to use",
+          "type": "string"
+        },
+        "key_meta": {
+          "title": "Key Meta Name",
+          "description": "the name of the header where the kafka message key value is written",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.13/backend/pubsub/kafka/subscriber.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "PubSub Kafka Subscriber EE",
+      "description": "Enterprise only. Allows for fine grained control over a kafka subcription connection",
+      "type": "object",
+      "required": [ "reader" ],
+      "properties": {
+        "reader": {
+          "title": "Reader",
+          "description": "Define how to read messages from a kafka topic",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1reader.json"
         }
       },
       "patternProperties": {
@@ -3719,6 +4089,12 @@
         "backend/pubsub/subscriber": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1pubsub~1subscriber.json"
         },
+        "backend/pubsub/publisher/kafka": {
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1pubsub~1kafka~1publisher.json"
+        },
+        "backend/pubsub/subscriber/kafka": {
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1pubsub~1kafka~1subscriber.json"
+        },
         "backend/soap": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1soap.json"
         },
@@ -4307,12 +4683,24 @@
           },
           "extra_config": {
             "description": "Defines the driver that connects to your queue or PubSub system. In addition, you can place other middlewares to modify the request (message) or the response, apply logic or any other endpoint middleware, but adding the driver is mandatory.\n\nSee: https://www.krakend.io/docs/async/",
-            "required": [ "async/amqp" ],
+            "oneOf": [
+              {
+                "required": [ "async/amqp" ]
+              },
+              {
+                "required": [ "async/kafka" ]
+              }
+            ],
             "properties": {
               "async/amqp": {
                 "title": "Async Agent extra configuration",
                 "description": "[See the configuration for async/amqp](https://www.krakend.io/docs/async/amqp/)",
                 "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1async~1amqp.json"
+              },
+              "async/kafka": {
+                "title": "Kafka driver",
+                "description": "config details to consume from kafka topics",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1reader.json"
               }
             }
           },

@@ -84,12 +84,24 @@
       },
       "extra_config": {
         "description": "Defines the driver that connects to your queue or PubSub system. In addition, you can place other middlewares to modify the request (message) or the response, apply logic or any other endpoint middleware, but adding the driver is mandatory.\n\nSee: https://www.krakend.io/docs/async/",
-        "required": [ "async/amqp" ],
+        "oneOf": [
+          {
+            "required": [ "async/amqp" ]
+          },
+          {
+            "required": [ "async/kafka" ]
+          }
+        ],
         "properties": {
           "async/amqp": {
             "title": "Async Agent extra configuration",
             "description": "[See the configuration for async/amqp](https://www.krakend.io/docs/async/amqp/)",
             "$ref": "async/amqp.json"
+          },
+          "async/kafka": {
+            "title": "Kafka driver",
+            "description": "config details to consume from kafka topics",
+            "$ref": "messaging/kafka/reader.json"
           }
         }
       },

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v2.13/backend/pubsub/kafka/subscriber.json",
+  "title": "PubSub Kafka Subscriber EE",
+  "description": "Enterprise only. Allows for fine grained control over a kafka subcription connection",
+  "type": "object",
+  "required": [ "reader" ],
+  "properties": {
+    "reader": {
+      "title": "Reader",
+      "description": "Define how to read messages from a kafka topic",
+      "$ref": "../../../messaging/kafka/reader.json"
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false
+}
