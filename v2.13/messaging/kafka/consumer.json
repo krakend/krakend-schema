@@ -47,7 +47,6 @@
     "isolation_level": {
       "title": "Isolation Level",
       "description": "Supports 2 modes: `read_commited` to consume and return all messages in message channel, and `read_uncommited` to hide messages that are part of an aborted transaction",
-      "type": "string",
       "default": "read_commited",
       "enum": [ "read_commited", "read_uncommited" ]
     }

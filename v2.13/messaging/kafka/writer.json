@@ -4,7 +4,7 @@
   "title": "Kafka Writer",
   "description": "Enterprise only. Defines how to write messages to a Kafka cluster",
   "type": "object",
-  "required": ["connection", "topic"],
+  "required": [ "connection", "topic" ],
   "properties": {
     "connection": {
       "title": "Connection details",

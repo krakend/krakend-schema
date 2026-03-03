@@ -4,10 +4,7 @@
   "title": "Kafka Reader",
   "description": "Enterprise only. Defines how to read messages from a Kafka cluster",
   "type": "object",
-  "required": [
-      "connection",
-      "topics"
-  ],
+  "required": [ "connection", "topics" ],
   "properties": {
     "connection": {
       "title": "Connection details",

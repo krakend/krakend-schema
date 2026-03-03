@@ -12,7 +12,7 @@
       "type": "number",
       "maximum": 201,
       "minimum": 200,
-      "deafult": 200
+      "x-deafult": 200
     },
     "writer": {
       "title": "Writer",

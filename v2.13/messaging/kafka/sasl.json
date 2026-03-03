@@ -9,7 +9,6 @@
       "title": "SASL Mechanism",
       "description": "Name of the enabled SASL mechanism",
       "default": "PLAIN",
-      "type": "string",
       "enum": [ "PLAIN", "OAUTHBEARER" ]
     },
     "azure_event_hub": {
