@@ -11,19 +11,19 @@
   "properties": {
     "connection": {
       "title": "Connection details",
-      "description": "settings to stablish the connection to the kafka services",
+      "description": "Settings to stablish the connection to the kafka services",
       "$ref": "./connection.json",
       "type": "object"
     },
     "consumer": {
       "title": "Consumer options",
-      "description": "details about how to read from the topic",
+      "description": "Details about how to read from the topic",
       "$ref": "./consumer.json",
       "type": "object"
     },
     "topics": {
       "title": "Topics",
-      "description": "the list of topics to read from",
+      "description": "List of topics to read from",
       "type": "array",
       "items": {
         "type": "string"
@@ -31,12 +31,12 @@
     },
     "group_id": {
       "title": "Consumer Group ID",
-      "description": "the name of the consumer group to use",
+      "description": "Name of the consumer group to use",
       "type": "string"
     },
     "key_meta": {
       "title": "Key Meta Name",
-      "description": "the name of the header where the kafka message key value is written",
+      "description": "Name of the header where the kafka message key value is written",
       "type": "string"
     }
   },

@@ -7,32 +7,32 @@
   "properties": {
     "max_message_bytes": {
       "title": "Max Message Bytes",
-      "description": "maximum permitted size of a message. Should be  set equal to or smaller than the broker's `message.max.bytes`.",
+      "description": "Maximum permitted size of a message. Should be  set equal to or smaller than the broker's `message.max.bytes`.",
       "type": "number",
       "minimum": 0
     },
     "required_acks": {
       "title": "Required Acks",
-      "description": "level of acknowledgement reliability needed from the broker. Equivalent to the `request.required.acks` setting of the JVM producer. Can be a positibe number (as a string), or one of hte following values: `no_response` (no required acks), `wait_for_local` (waits for only the local commit to succeed before responding), `wait_for_all` (waits for all in-sync replicas to commit before responding).",
+      "description": "Level of acknowledgement reliability needed from the broker. Equivalent to the `request.required.acks` setting of the JVM producer. Can be a positibe number (as a string), or one of hte following values: `no_response` (no required acks), `wait_for_local` (waits for only the local commit to succeed before responding), `wait_for_all` (waits for all in-sync replicas to commit before responding).",
       "default": "wait_for_local",
       "type": "string"
     },
     "required_acks_timeout": {
       "title": "Required Acks Timeout",
-      "description": "maximum duration the broker will wait the receipt of the number of `required_acks`. This is only relevant when `required_acks` is set to WaitForAll or a number > 1. Only supports millisecond resolution, nanoseconds will be truncated. Equivalent to the JVM producer's `request.timeout.ms` setting.",
+      "description": "Maximum duration the broker will wait the receipt of the number of `required_acks`. This is only relevant when `required_acks` is set to WaitForAll or a number > 1. Only supports millisecond resolution, nanoseconds will be truncated. Equivalent to the JVM producer's `request.timeout.ms` setting.",
       "default": "10s",
       "$ref": "../../timeunits.json#/$defs/timeunit",
       "type": "string"
     },
     "compression_codec": {
       "title": "Compression Codec",
-      "description": "type of compression to use on messages (defaults to no compression). Similar to `compression.codec` setting of the JVM producer.",
+      "description": "Type of compression to use on messages (defaults to no compression). Similar to `compression.codec` setting of the JVM producer.",
       "default": "none",
       "enum": [ "none", "gzip", "snappy", "lz4", "zstd" ]
     },
     "compression_level": {
       "title": "Compression Level",
-      "description": "level of compression to use on messages. The meaning depends on the actual compression type used and defaults to default compression level for the codec.",
+      "description": "Level of compression to use on messages. The meaning depends on the actual compression type used and defaults to default compression level for the codec.",
       "type": "string"
     },
     "partitioner": {
@@ -43,7 +43,7 @@
     },
     "idempotent": {
       "title": "Idempotent",
-      "description": "if enabled, the producer will ensure that exactly one copy of each message is  written",
+      "description": "If enabled, the producer will ensure that exactly one copy of each message is  written",
       "default": false,
       "type": "boolean"
     },

@@ -6,8 +6,8 @@
   "type": "object",
   "properties": {
     "mechanism": {
-      "title": "SASL  Mechanism",
-      "description": "The name of the enabled SASL mechanism",
+      "title": "SASL Mechanism",
+      "description": "Name of the enabled SASL mechanism",
       "default": "PLAIN",
       "type": "string",
       "enum": [ "PLAIN", "OAUTHBEARER" ]
@@ -41,7 +41,7 @@
     },
     "scram_auth_id": {
       "title": "SCRAM Auth ID",
-      "description": "authz id used for SASL/SCRAM authentication",
+      "description": "Authz id used for SASL/SCRAM authentication",
       "type": "string"
     }
   },
