@@ -1820,7 +1820,7 @@
         "success_status_code": {
           "title": "Success Status Code",
           "description": "HTTP status code to return for a successful write in the queue",
-          "x-deafult": 200,
+          "default": 200,
           "type": "number",
           "maximum": 201,
           "minimum": 200
