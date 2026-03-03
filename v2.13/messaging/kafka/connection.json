@@ -17,7 +17,8 @@
     "client_tls": {
       "title": "TLS client options",
       "description": "Enables specific TLS connection options when connecting to the Kafke brokers. Supports all options under [TLS client settings](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings).\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
-      "$ref": "../../client_tls.json"
+      "$ref": "../../client_tls.json",
+      "type": "object"
     },
     "sasl": {
       "title": "SASL Connection options",

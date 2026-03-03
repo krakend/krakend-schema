@@ -9,7 +9,8 @@
     "reader": {
       "title": "Reader",
       "description": "Define how to read messages from a kafka topic",
-      "$ref": "../../../messaging/kafka/reader.json"
+      "$ref": "../../../messaging/kafka/reader.json",
+      "type": "object"
     }
   },
   "patternProperties": {

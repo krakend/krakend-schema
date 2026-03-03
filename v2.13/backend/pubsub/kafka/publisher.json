@@ -9,15 +9,16 @@
     "success_status_code": {
       "title": "Success Status Code",
       "description": "HTTP status code to return for a successful write in the queue",
+      "x-deafult": 200,
       "type": "number",
       "maximum": 201,
-      "minimum": 200,
-      "x-deafult": 200
+      "minimum": 200
     },
     "writer": {
       "title": "Writer",
       "description": "Define how to write messages to a kafka topic",
-      "$ref": "../../../messaging/kafka/writer.json"
+      "$ref": "../../../messaging/kafka/writer.json",
+      "type": "object"
     }
   },
   "patternProperties": {

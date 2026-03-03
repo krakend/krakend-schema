@@ -1645,7 +1645,8 @@
         "client_tls": {
           "title": "TLS client options",
           "description": "Enables specific TLS connection options when connecting to the Kafke brokers. Supports all options under [TLS client settings](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings).\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1client_tls.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1client_tls.json",
+          "type": "object"
         },
         "sasl": {
           "title": "SASL Connection options",
@@ -1827,7 +1828,8 @@
         "writer": {
           "title": "Writer",
           "description": "Define how to write messages to a kafka topic",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1writer.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1writer.json",
+          "type": "object"
         }
       },
       "patternProperties": {
@@ -1963,7 +1965,8 @@
         "reader": {
           "title": "Reader",
           "description": "Define how to read messages from a kafka topic",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1reader.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1reader.json",
+          "type": "object"
         }
       },
       "patternProperties": {
