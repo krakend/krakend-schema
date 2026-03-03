@@ -4,6 +4,9 @@
   "title": "Kafka Reader Connection",
   "description": "Enterprise only. Defines how to connect to a Kafka cluster",
   "type": "object",
+  "required": [
+      "brokers",
+  ],
   "properties": {
     "brokers": {
       "title": "Brokers available to connect to",
@@ -19,7 +22,9 @@
       "$ref": "../../client_tls.json"
     },
     "sasl": {
+      "type": "object",
       "title": "SASL Connection options",
+      "description": "Enables to authenticate to the Kafka service using user and password",
       "$ref": "./sasl.json"
     },
     "dial_timeout": {

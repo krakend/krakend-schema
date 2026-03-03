@@ -8,10 +8,11 @@
   "properties": {
     "success_status_code": {
       "title": "Success Status Code",
-      "description": "http status code to return for a successful write in the queue",
+      "description": "HTTP status code to return for a successful write in the queue",
       "type": "number",
       "maximum": 201,
-      "minimum": 200
+      "minimum": 200,
+      "deafult": 200
     },
     "writer": {
       "title": "Writer",

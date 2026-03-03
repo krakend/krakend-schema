@@ -7,8 +7,9 @@
   "properties": {
     "mechanism": {
       "title": "SASL  Mechanism",
-      "description": "The name of the enabled SASL mechanism. Possible values: OAUTHBEARER, PLAIN",
+      "description": "The name of the enabled SASL mechanism",
       "default": "PLAIN",
+      "type": "string",
       "enum": [ "PLAIN", "OAUTHBEARER" ]
     },
     "azure_event_hub": {

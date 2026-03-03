@@ -20,7 +20,7 @@
     },
     "group_rebalance_strategies": {
       "title": "Group Rebalance Strategies",
-      "description": "the priority-ordered list of client-side consumer group balancing strategies that will be offered to the coordinator. The first strategy that all group members support will be chosen by the leader. Optionsare: range, roundrobin, and sticky",
+      "description": "the priority-ordered list of client-side consumer group balancing strategies that will be offered to the coordinator. The first strategy that all group members support will be chosen by the leader. Options are: `range`, `roundrobin`, and `sticky`",
       "default": [ "range" ],
       "type": "array",
       "items": {
@@ -47,6 +47,7 @@
     "isolation_level": {
       "title": "Isolation Level",
       "description": "supports 2 modes: `read_commited` to consume and return all messages in message channel, and `read_uncommited` to hide messages that are part of an aborted transaction",
+      "type": "string",
       "default": "read_commited",
       "enum": [ "read_commited", "read_uncommited" ]
     }
