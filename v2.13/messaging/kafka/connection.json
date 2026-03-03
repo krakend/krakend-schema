@@ -5,7 +5,7 @@
   "description": "Enterprise only. Defines how to connect to a Kafka cluster",
   "type": "object",
   "required": [
-      "brokers",
+      "brokers"
   ],
   "properties": {
     "brokers": {
