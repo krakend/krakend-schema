@@ -9666,6 +9666,17 @@
                   "default": false,
                   "type": "boolean"
                 },
+                "skip_headers": {
+                  "title": "Skip headers",
+                  "description": "A list of headers you want to skip when reporting the headers from the request. This is useful to avoid reporting sensitive data.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                  "examples": [
+                    [ "X-Request-Api-Key", "X-Signature" ]
+                  ],
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
                 "semantic_convention": {
                   "title": "Semantic convention naming",
                   "description": "The semantic convention naming you want to use. The default is an empty string which uses the original naming convention prior to 1.27. For the semantic convention of 1.27 and higher, use `1.27`\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
@@ -9739,6 +9750,17 @@
                   "description": "Whether you want to report all headers that passed from the request to the proxy layer (`input_headers` policy in the endpoint plus KrakenD's headers).\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
                   "default": false,
                   "type": "boolean"
+                },
+                "skip_headers": {
+                  "title": "Skip headers",
+                  "description": "A list of headers you want to skip when reporting headers passed to the proxy layer. This is useful to avoid reporting sensitive data.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
+                  "examples": [
+                    [ "X-Sensitive-Data", "X-Signature" ]
+                  ],
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "traces_static_attributes": {
                   "title": "Static attributes",
