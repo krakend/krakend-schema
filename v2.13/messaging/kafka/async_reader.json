@@ -12,16 +12,11 @@
       "$ref": "./cluster.json",
       "type": "object"
     },
-    "consumer": {
-      "title": "Consumer options",
-      "description": "Details about how to read from the topic",
-      "$ref": "./consumer.json",
+    "group": {
+      "title": "Consumer group options",
+      "description": "Details about the consumer croup",
+      "$ref": "./group.json",
       "type": "object"
-    },
-    "group_id": {
-      "title": "Consumer Group ID",
-      "description": "Name of the consumer group to use",
-      "type": "string"
     },
     "key_meta": {
       "title": "Key Meta Name",
