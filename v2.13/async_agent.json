@@ -101,7 +101,7 @@
           "async/kafka": {
             "title": "Kafka driver",
             "description": "config details to consume from kafka topics",
-            "$ref": "messaging/kafka/reader.json"
+            "$ref": "messaging/kafka/async_reader.json"
           }
         }
       },

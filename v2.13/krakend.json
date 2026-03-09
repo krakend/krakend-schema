@@ -4607,6 +4607,41 @@
       },
       "additionalProperties": false
     },
+    "https://www.krakend.io/schema/v2.13/messaging/kafka/async_reader.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Kafka Reader",
+      "description": "Enterprise only. Defines how to read messages from a Kafka cluster for an async agent",
+      "type": "object",
+      "required": [ "connection" ],
+      "properties": {
+        "connection": {
+          "title": "Connection details",
+          "description": "Settings to stablish the connection to the kafka services",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1connection.json",
+          "type": "object"
+        },
+        "consumer": {
+          "title": "Consumer options",
+          "description": "Details about how to read from the topic",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1consumer.json",
+          "type": "object"
+        },
+        "group_id": {
+          "title": "Consumer Group ID",
+          "description": "Name of the consumer group to use",
+          "type": "string"
+        },
+        "key_meta": {
+          "title": "Key Meta Name",
+          "description": "Name of the header where the kafka message key value is written",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
     "https://www.krakend.io/schema/v2.13/async_agent.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "Async Agents",
@@ -4709,7 +4744,7 @@
               "async/kafka": {
                 "title": "Kafka driver",
                 "description": "config details to consume from kafka topics",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1reader.json"
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1async_reader.json"
               }
             }
           },
