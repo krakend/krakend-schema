@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://www.krakend.io/schema/v2.13/messaging/kafka/connection.json",
-  "title": "Kafka Reader Connection",
+  "$id": "https://www.krakend.io/schema/v2.13/messaging/kafka/cluster.json",
+  "title": "Kafka Cluster Connection",
   "description": "Enterprise only. Defines how to connect to a Kafka cluster",
   "type": "object",
   "required": [ "brokers" ],

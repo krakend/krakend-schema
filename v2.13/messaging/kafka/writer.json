@@ -4,12 +4,12 @@
   "title": "Kafka Writer",
   "description": "Enterprise only. Defines how to write messages to a Kafka cluster",
   "type": "object",
-  "required": [ "connection", "topic" ],
+  "required": [ "cluster", "topic" ],
   "properties": {
-    "connection": {
-      "title": "Connection details",
-      "description": "Settings to establish the connection to the kafka service",
-      "$ref": "./connection.json",
+    "cluster": {
+      "title": "Cluster connection details",
+      "description": "Settings to establish the connection to the kafka cluster",
+      "$ref": "./cluster.json",
       "type": "object"
     },
     "producer": {

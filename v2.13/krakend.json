@@ -1627,9 +1627,9 @@
       },
       "additionalProperties": false
     },
-    "https://www.krakend.io/schema/v2.13/messaging/kafka/connection.json": {
+    "https://www.krakend.io/schema/v2.13/messaging/kafka/cluster.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
-      "title": "Kafka Reader Connection",
+      "title": "Kafka Cluster Connection",
       "description": "Enterprise only. Defines how to connect to a Kafka cluster",
       "type": "object",
       "required": [ "brokers" ],
@@ -1780,12 +1780,12 @@
       "title": "Kafka Writer",
       "description": "Enterprise only. Defines how to write messages to a Kafka cluster",
       "type": "object",
-      "required": [ "connection", "topic" ],
+      "required": [ "cluster", "topic" ],
       "properties": {
-        "connection": {
-          "title": "Connection details",
-          "description": "Settings to establish the connection to the kafka service",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1connection.json",
+        "cluster": {
+          "title": "Cluster connection details",
+          "description": "Settings to establish the connection to the kafka cluster",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1cluster.json",
           "type": "object"
         },
         "producer": {
@@ -1917,12 +1917,12 @@
       "title": "Kafka Reader",
       "description": "Enterprise only. Defines how to read messages from a Kafka cluster",
       "type": "object",
-      "required": [ "connection", "topics" ],
+      "required": [ "cluster", "topics" ],
       "properties": {
-        "connection": {
-          "title": "Connection details",
-          "description": "Settings to stablish the connection to the kafka services",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1connection.json",
+        "cluster": {
+          "title": "Cluster connection details",
+          "description": "Settings to stablish the connection to the kafka cluster",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1cluster.json",
           "type": "object"
         },
         "consumer": {
@@ -4612,12 +4612,12 @@
       "title": "Kafka Reader",
       "description": "Enterprise only. Defines how to read messages from a Kafka cluster for an async agent",
       "type": "object",
-      "required": [ "connection" ],
+      "required": [ "cluster" ],
       "properties": {
-        "connection": {
-          "title": "Connection details",
-          "description": "Settings to stablish the connection to the kafka services",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1connection.json",
+        "cluster": {
+          "title": "Cluster connection details",
+          "description": "Settings to stablish the connection to the kafka cluster",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1cluster.json",
           "type": "object"
         },
         "consumer": {

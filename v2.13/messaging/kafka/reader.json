@@ -4,12 +4,12 @@
   "title": "Kafka Reader",
   "description": "Enterprise only. Defines how to read messages from a Kafka cluster",
   "type": "object",
-  "required": [ "connection", "topics" ],
+  "required": [ "cluster", "topics" ],
   "properties": {
-    "connection": {
-      "title": "Connection details",
-      "description": "Settings to stablish the connection to the kafka services",
-      "$ref": "./connection.json",
+    "cluster": {
+      "title": "Cluster connection details",
+      "description": "Settings to stablish the connection to the kafka cluster",
+      "$ref": "./cluster.json",
       "type": "object"
     },
     "consumer": {
