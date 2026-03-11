@@ -42,7 +42,7 @@
     },
     "write_timeout": {
       "title": "Write Timeout",
-      "description": "Maximum time allowed to read from broker",
+      "description": "Maximum time allowed to write to broker",
       "default": "30s",
       "$ref": "../../timeunits.json#/$defs/timeunit",
       "type": "string"

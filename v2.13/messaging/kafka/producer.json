@@ -7,7 +7,7 @@
   "properties": {
     "max_message_bytes": {
       "title": "Max Message Bytes",
-      "description": "Maximum permitted size of a message. Should be  set equal to or smaller than the broker's `message.max.bytes`.",
+      "description": "Maximum permitted size of a message. Should be set equal to or smaller than the broker's `message.max.bytes`.",
       "type": "number",
       "minimum": 0
     },
@@ -43,7 +43,7 @@
     },
     "idempotent": {
       "title": "Idempotent",
-      "description": "If enabled, the producer will ensure that exactly one copy of each message is  written",
+      "description": "If enabled, the producer will ensure that exactly one copy of each message is written",
       "default": false,
       "type": "boolean"
     },
