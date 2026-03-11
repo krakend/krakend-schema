@@ -72,6 +72,20 @@
       "default": 256,
       "type": "number",
       "minimum": 0
+    },
+    "metadata_retry_backoff": {
+      "title": "Metadata Retry Backoff",
+      "description": "The time between attempts to reconnect when disconnected",
+      "default": "250ms",
+      "$ref": "../../timeunits.json#/$defs/timeunit",
+      "type": "string"
+    },
+    "metadata_retry_max": {
+      "title": "Metadata Maximum Retries",
+      "description": "When a disconnection happens, the client needs to refresh its metadata to know the current state of the kafka cluster (effectively the number of attempts to reconnect)",
+      "default": 3,
+      "type": "number",
+      "minimum": 0
     }
   },
   "patternProperties": {
