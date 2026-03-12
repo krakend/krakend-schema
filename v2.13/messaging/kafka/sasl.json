@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v2.13/messaging/kafka/sasl.json",
+  "title": "Kafka SASL",
+  "description": "Enterprise only. SASL base authentication with broker: there are multiple SASL authentication methods but the current implementation is limited to plaintext (SASL/PLAIN) authentication",
+  "type": "object",
+  "properties": {
+    "mechanism": {
+      "title": "SASL Mechanism",
+      "description": "Name of the enabled SASL mechanism",
+      "default": "PLAIN",
+      "enum": [ "PLAIN", "OAUTHBEARER" ]
+    },
+    "azure_event_hub": {
+      "title": "Connect to Azure Event Hub",
+      "description": "Kafka > 1.x should use SASL V1, except on Azure EventHub which uses V0",
+      "default": false,
+      "type": "boolean"
+    },
+    "disable_hanshake": {
+      "title": "Disable Handshake",
+      "description": "Whether or not to send the Kafka SASL handshake first if enabled. You should only set this to false if you're using a non-Kafka SASL proxy",
+      "default": true,
+      "type": "boolean"
+    },
+    "auth_identity": {
+      "title": "Auth Identity",
+      "description": "Auth Identity is an (optional) authorization identity (authzid) to use for SASL/PLAIN authentication (if different from User) when an authenticated user is permitted to act as the presented alternative user. See RFC4616 for details",
+      "type": "string"
+    },
+    "user": {
+      "title": "User",
+      "description": "Authentication identity (authcid) to present for SASL/PLAIN or SASL/SCRAM authentication",
+      "type": "string"
+    },
+    "password": {
+      "title": "Password",
+      "description": "Password for SASL/PLAIN authentication",
+      "type": "string"
+    },
+    "scram_auth_id": {
+      "title": "SCRAM Auth ID",
+      "description": "Authz id used for SASL/SCRAM authentication",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false
+}

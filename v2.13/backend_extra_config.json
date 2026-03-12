@@ -68,6 +68,12 @@
     "backend/pubsub/subscriber": {
       "$ref": "backend/pubsub/subscriber.json"
     },
+    "backend/pubsub/publisher/kafka": {
+      "$ref": "backend/pubsub/kafka/publisher.json"
+    },
+    "backend/pubsub/subscriber/kafka": {
+      "$ref": "backend/pubsub/kafka/subscriber.json"
+    },
     "backend/soap": {
       "$ref": "backend/soap.json"
     },
