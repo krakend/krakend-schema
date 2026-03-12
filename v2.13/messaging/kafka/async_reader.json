@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v2.13/messaging/kafka/async_reader.json",
+  "title": "Kafka Reader",
+  "description": "Enterprise only. Defines how to read messages from a Kafka cluster for an async agent",
+  "type": "object",
+  "required": [ "cluster" ],
+  "properties": {
+    "cluster": {
+      "title": "Cluster connection details",
+      "description": "Settings to stablish the connection to the kafka cluster",
+      "$ref": "./cluster.json",
+      "type": "object"
+    },
+    "group": {
+      "title": "Consumer group options",
+      "description": "Details about the consumer croup",
+      "$ref": "./group.json",
+      "type": "object"
+    },
+    "key_meta": {
+      "title": "Key Meta Name",
+      "description": "Name of the header where the kafka message key value is written",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false
+}

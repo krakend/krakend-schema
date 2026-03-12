@@ -123,7 +123,8 @@
                                         "credentials_file": "/etc/krakend/gcp.json",
                                         "custom_claims": {
                                             "a": 1
-                                        }
+                                        },
+                                        "s2s_auth_header": "X-Serverless-Authorization"
                                     },
                                     "governance/quota": {
                                         "quota_name": "public_plans",
@@ -594,7 +595,8 @@
                                 "query_definition": [
                                     {
                                         "name": "page",
-                                        "description": "The number of the page"
+                                        "description": "The number of the page",
+                                        "example": 1
                                     }
                                 ],
                                 "summary": "Get my favourite foo",
@@ -618,6 +620,12 @@
                                         "content_type": "application/json",
                                         "example": {
                                             "foo": "bar"
+                                        },
+                                        "examples": {
+                                            "foo": {
+                                                "foo": "bar"
+                                            },
+                                            "array": [1,2,3]
                                         }
                                     }
                                 },
@@ -628,7 +636,13 @@
                                         "example": {
                                             "status": "KO"
                                         },
-                                        "content_type": "application/json"
+                                        "content_type": "application/json",
+                                        "examples": {
+                                            "foo": {
+                                                "foo": "bar"
+                                            },
+                                            "array": [1,2,3]
+                                        }
                                     }
                                 ]
                             },

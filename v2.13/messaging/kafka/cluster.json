@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v2.13/messaging/kafka/cluster.json",
+  "title": "Kafka Cluster Connection",
+  "description": "Enterprise only. Defines how to connect to a Kafka cluster",
+  "type": "object",
+  "required": [ "brokers" ],
+  "properties": {
+    "brokers": {
+      "title": "Brokers available to connect to",
+      "description": "",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "client_tls": {
+      "title": "TLS client options",
+      "description": "Enables specific TLS connection options when connecting to the Kafke brokers. Supports all options under [TLS client settings](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings).\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
+      "$ref": "../../client_tls.json",
+      "type": "object"
+    },
+    "sasl": {
+      "title": "SASL Connection options",
+      "description": "Enables to authenticate to the Kafka service using user and password",
+      "$ref": "./sasl.json",
+      "type": "object"
+    },
+    "dial_timeout": {
+      "title": "Dial Timeout",
+      "description": "Dial timeout for establishing new connections",
+      "default": "30s",
+      "$ref": "../../timeunits.json#/$defs/timeunit",
+      "type": "string"
+    },
+    "read_timeout": {
+      "title": "Read Timeout",
+      "description": "Maximum time allowed to read from broker",
+      "default": "30s",
+      "$ref": "../../timeunits.json#/$defs/timeunit",
+      "type": "string"
+    },
+    "write_timeout": {
+      "title": "Write Timeout",
+      "description": "Maximum time allowed to write to broker",
+      "default": "30s",
+      "$ref": "../../timeunits.json#/$defs/timeunit",
+      "type": "string"
+    },
+    "keep_alive": {
+      "title": "Keep Alive",
+      "description": "Time to maintain an idle connection open",
+      "default": "0s",
+      "$ref": "../../timeunits.json#/$defs/timeunit",
+      "type": "string"
+    },
+    "client_id": {
+      "title": "Client ID",
+      "description": "A name to give to the client stablishing the connection",
+      "default": "KrakenD v[X].[Y].[Z]",
+      "type": "string"
+    },
+    "rack_id": {
+      "title": "Rack ID",
+      "description": "A name to identify the rack we are connecting from",
+      "default": "",
+      "type": "string"
+    },
+    "channel_buffer_size": {
+      "title": "Channel Buffer Size",
+      "description": "The number of events to buffer in internal and external channels. This permits the producer and consumer to continue processing some messages in the background while user code is working, greatly improving throughput",
+      "default": 256,
+      "type": "number",
+      "minimum": 0
+    },
+    "metadata_retry_backoff": {
+      "title": "Metadata Retry Backoff",
+      "description": "The time between attempts to reconnect when disconnected",
+      "default": "250ms",
+      "$ref": "../../timeunits.json#/$defs/timeunit",
+      "type": "string"
+    },
+    "metadata_retry_max": {
+      "title": "Metadata Maximum Retries",
+      "description": "When a disconnection happens, the client needs to refresh its metadata to know the current state of the kafka cluster (effectively the number of attempts to reconnect)",
+      "default": 3,
+      "type": "number",
+      "minimum": 0
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false
+}

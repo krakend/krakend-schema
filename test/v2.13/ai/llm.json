@@ -71,6 +71,35 @@
       "valid": true
     },
     {
+      "description": "Valid minimum configuration with one provider",
+      "data": {
+        "bedrock": {
+          "v1": {
+            "credentials": "xxx",
+            "debug": false,
+            "variables": {
+            }
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Bedrock does not allow model in variables",
+      "data": {
+        "bedrock": {
+          "v1": {
+            "credentials": "xxx",
+            "debug": false,
+            "variables": {
+              "model": "foo"
+            }
+          }
+        }
+      },
+      "valid": false
+    },
+    {
       "description": "Intruder field should not be allowed",
       "data": {
         "gemini": {

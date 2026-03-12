@@ -17,6 +17,9 @@
     },
     "openai": {
       "$ref": "openai.json"
+    },
+    "bedrock": {
+      "$ref": "bedrock.json"
     }
   },
   "patternProperties": {

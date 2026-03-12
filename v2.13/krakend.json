@@ -366,6 +366,98 @@
       },
       "additionalProperties": false
     },
+    "https://www.krakend.io/schema/v2.13/ai/bedrock.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Bedrock integration",
+      "description": "Connect to Bedrock models easily by providing your API key and optional parameters.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/",
+      "type": "object",
+      "maxProperties": 1,
+      "minProperties": 1,
+      "properties": {
+        "v1": {
+          "title": "Version v1",
+          "description": "All settings depend on  a specific version, as the vendor might change the API over time.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/",
+          "required": [ "credentials", "variables" ],
+          "properties": {
+            "credentials": {
+              "title": "API Key",
+              "description": "Your Bedrock API key. You can set it as an environment variable for better security.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/",
+              "type": "string"
+            },
+            "debug": {
+              "title": "Debug Mode",
+              "description": "Enables the debug mode to log activity for troubleshooting. Do not set this value to true in production as it may log sensitive data.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/",
+              "default": false,
+              "type": "boolean"
+            },
+            "input_template": {
+              "title": "Input Template",
+              "description": "A path to a custom [Go template](https://pkg.go.dev/text/template) that sets the payload format sent to Bedrock. You don't need to set this value unless you want to override the default template making use of all the `variables` listed in this configuration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/",
+              "type": "string"
+            },
+            "output_template": {
+              "title": "Output Template",
+              "description": "A path to a custom [Go template](https://pkg.go.dev/text/template) that sets how the response from Bedrock is transformed before being sent to the client. The default template extracts the text from the first choice returned by Bedrock so in most cases you don't need to set a custom output template.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/",
+              "type": "string"
+            },
+            "variables": {
+              "title": "Model Variables",
+              "description": "The variables specific to the Bedrock usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/",
+              "type": "object",
+              "properties": {
+                "extra_payload": {
+                  "title": "Extra Payload",
+                  "description": "A map of additional payload attributes you want to use in your custom `input_template` (this payload is not used in the default template). The attributes set here are accessible in your custom template as `{{ .variables.extra_payload.yourchosenkey }}`. This option helps adding rare customization and future attributes.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/",
+                  "type": "object"
+                },
+                "max_tokens": {
+                  "title": "Max Tokens",
+                  "description": "An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/",
+                  "type": "integer"
+                },
+                "stop_sequences": {
+                  "title": "Stop Sequences",
+                  "description": "An array of sequences where the model will stop generating further tokens if found. This can be useful to control the length and content of the output.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "temperature": {
+                  "title": "Temperature",
+                  "description": "What sampling temperature to use, recommended between 0.0 and 0.7. Higher values like 0.7 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. Change this or top_p but not both.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/",
+                  "type": "number",
+                  "maximum": 2,
+                  "minimum": 0
+                },
+                "top_k": {
+                  "title": "Top K",
+                  "description": "Top-K changes how the model selects tokens for output. A top-K of 1 means the next selected token is the most probable among all tokens in the model's vocabulary (also called greedy decoding), while a top-K of 3 means that the next token is selected from among the three most probable tokens by using temperature.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/",
+                  "type": "integer"
+                },
+                "top_p": {
+                  "title": "Top P",
+                  "description": "A float value between 0 and 1 that controls the nucleus sampling for text generation. It represents the cumulative probability threshold for token selection, where only the most probable tokens that add up to this threshold are considered. A higher value (closer to 1) allows for more diverse outputs, while a lower value (closer to 0) makes the output more focused and deterministic. Change this or temperature but not both.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/",
+                  "type": "number"
+                }
+              },
+              "patternProperties": {
+                "^[@$_#]": true
+              },
+              "additionalProperties": false
+            }
+          },
+          "patternProperties": {
+            "^[@$_#]": true
+          },
+          "additionalProperties": false
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
     "https://www.krakend.io/schema/v2.13/ai/gemini.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "Google Gemini integration",
@@ -571,7 +663,7 @@
     "https://www.krakend.io/schema/v2.13/ai/openai.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "OpenAI integration",
-      "description": "Connect to OpenAI's GPT models easily by providing your API key and optional parameters.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
+      "description": "Connect to OpenAI's GPT models easily by providing your API key and optional parameters.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
       "type": "object",
       "maxProperties": 1,
       "minProperties": 1,
@@ -677,6 +769,9 @@
         },
         "openai": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1ai~1openai.json"
+        },
+        "bedrock": {
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1ai~1bedrock.json"
         }
       },
       "patternProperties": {
@@ -827,6 +922,13 @@
           "title": "Custom claims",
           "description": "Custom private claims that you can optionally add to an ID token.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
           "type": "object"
+        },
+        "s2s_auth_header": {
+          "title": "Service-to-service authentication header",
+          "description": "The header name to use in service-to-service authentication. This is useful to honor the original Authorization header in case it's needed by the backend (for example, CloudRun).\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
+          "examples": [ "X-Serverless-Authorization" ],
+          "default": "",
+          "type": "string"
         }
       },
       "patternProperties": {
@@ -1475,6 +1577,280 @@
       },
       "additionalProperties": false
     },
+    "https://www.krakend.io/schema/v2.13/messaging/kafka/sasl.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Kafka SASL",
+      "description": "Enterprise only. SASL base authentication with broker: there are multiple SASL authentication methods but the current implementation is limited to plaintext (SASL/PLAIN) authentication",
+      "type": "object",
+      "properties": {
+        "mechanism": {
+          "title": "SASL Mechanism",
+          "description": "Name of the enabled SASL mechanism",
+          "default": "PLAIN",
+          "enum": [ "PLAIN", "OAUTHBEARER" ]
+        },
+        "azure_event_hub": {
+          "title": "Connect to Azure Event Hub",
+          "description": "Kafka > 1.x should use SASL V1, except on Azure EventHub which uses V0",
+          "default": false,
+          "type": "boolean"
+        },
+        "disable_hanshake": {
+          "title": "Disable Handshake",
+          "description": "Whether or not to send the Kafka SASL handshake first if enabled. You should only set this to false if you're using a non-Kafka SASL proxy",
+          "default": true,
+          "type": "boolean"
+        },
+        "auth_identity": {
+          "title": "Auth Identity",
+          "description": "Auth Identity is an (optional) authorization identity (authzid) to use for SASL/PLAIN authentication (if different from User) when an authenticated user is permitted to act as the presented alternative user. See RFC4616 for details",
+          "type": "string"
+        },
+        "user": {
+          "title": "User",
+          "description": "Authentication identity (authcid) to present for SASL/PLAIN or SASL/SCRAM authentication",
+          "type": "string"
+        },
+        "password": {
+          "title": "Password",
+          "description": "Password for SASL/PLAIN authentication",
+          "type": "string"
+        },
+        "scram_auth_id": {
+          "title": "SCRAM Auth ID",
+          "description": "Authz id used for SASL/SCRAM authentication",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.13/messaging/kafka/cluster.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Kafka Cluster Connection",
+      "description": "Enterprise only. Defines how to connect to a Kafka cluster",
+      "type": "object",
+      "required": [ "brokers" ],
+      "properties": {
+        "brokers": {
+          "title": "Brokers available to connect to",
+          "description": "",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "client_tls": {
+          "title": "TLS client options",
+          "description": "Enables specific TLS connection options when connecting to the Kafke brokers. Supports all options under [TLS client settings](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings).\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1client_tls.json",
+          "type": "object"
+        },
+        "sasl": {
+          "title": "SASL Connection options",
+          "description": "Enables to authenticate to the Kafka service using user and password",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1sasl.json",
+          "type": "object"
+        },
+        "dial_timeout": {
+          "title": "Dial Timeout",
+          "description": "Dial timeout for establishing new connections",
+          "default": "30s",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "read_timeout": {
+          "title": "Read Timeout",
+          "description": "Maximum time allowed to read from broker",
+          "default": "30s",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "write_timeout": {
+          "title": "Write Timeout",
+          "description": "Maximum time allowed to write to broker",
+          "default": "30s",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "keep_alive": {
+          "title": "Keep Alive",
+          "description": "Time to maintain an idle connection open",
+          "default": "0s",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "client_id": {
+          "title": "Client ID",
+          "description": "A name to give to the client stablishing the connection",
+          "default": "KrakenD v[X].[Y].[Z]",
+          "type": "string"
+        },
+        "rack_id": {
+          "title": "Rack ID",
+          "description": "A name to identify the rack we are connecting from",
+          "default": "",
+          "type": "string"
+        },
+        "channel_buffer_size": {
+          "title": "Channel Buffer Size",
+          "description": "The number of events to buffer in internal and external channels. This permits the producer and consumer to continue processing some messages in the background while user code is working, greatly improving throughput",
+          "default": 256,
+          "type": "number",
+          "minimum": 0
+        },
+        "metadata_retry_backoff": {
+          "title": "Metadata Retry Backoff",
+          "description": "The time between attempts to reconnect when disconnected",
+          "default": "250ms",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "metadata_retry_max": {
+          "title": "Metadata Maximum Retries",
+          "description": "When a disconnection happens, the client needs to refresh its metadata to know the current state of the kafka cluster (effectively the number of attempts to reconnect)",
+          "default": 3,
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.13/messaging/kafka/producer.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Kafka Producer Details",
+      "description": "Enterprise only. Defines details about how to write messages to a Kafka cluster",
+      "type": "object",
+      "properties": {
+        "max_message_bytes": {
+          "title": "Max Message Bytes",
+          "description": "Maximum permitted size of a message. Should be set equal to or smaller than the broker's `message.max.bytes`.",
+          "type": "number",
+          "minimum": 0
+        },
+        "required_acks": {
+          "title": "Required Acks",
+          "description": "Level of acknowledgement reliability needed from the broker. Equivalent to the `request.required.acks` setting of the JVM producer. Can be a positibe number (as a string), or one of hte following values: `no_response` (no required acks), `wait_for_local` (waits for only the local commit to succeed before responding), `wait_for_all` (waits for all in-sync replicas to commit before responding).",
+          "default": "wait_for_local",
+          "type": "string"
+        },
+        "required_acks_timeout": {
+          "title": "Required Acks Timeout",
+          "description": "Maximum duration the broker will wait the receipt of the number of `required_acks`. This is only relevant when `required_acks` is set to WaitForAll or a number > 1. Only supports millisecond resolution, nanoseconds will be truncated. Equivalent to the JVM producer's `request.timeout.ms` setting.",
+          "default": "10s",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "compression_codec": {
+          "title": "Compression Codec",
+          "description": "Type of compression to use on messages (defaults to no compression). Similar to `compression.codec` setting of the JVM producer.",
+          "default": "none",
+          "enum": [ "none", "gzip", "snappy", "lz4", "zstd" ]
+        },
+        "compression_level": {
+          "title": "Compression Level",
+          "description": "Level of compression to use on messages. The meaning depends on the actual compression type used and defaults to default compression level for the codec.",
+          "type": "string"
+        },
+        "partitioner": {
+          "title": "Partitioner",
+          "description": "Select behaviour for choosing the partition to send messages (similar to the `partitioner.class` setting for the JVM producer). The options are:\n- `sarama`: **DEPRECATED** uses a Partitioner which behaves as follows: If the message's key is nil then a random partition is chosen. Otherwise the `FNV-1a` hash of the encoded bytes of the message key is used, modulus the number of partitions. This ensures that messages with the same key always end up on the same partition.\n- `standard` is like `sarama` except that it handles absolute values in the same way as the reference Java implementation. `sarama` was supposed to do that but it had a mistake and now there are people depending on both behaviours. This will all go away on the next major version bump.\n- `random` uses a Partitioner which chooses a random partition each time.\n- `roundrobin` uses a Partitioner which walks through the available partitions one at a time.",
+          "default": "standard",
+          "enum": [ "sarama", "standard", "random", "roundrobin" ]
+        },
+        "idempotent": {
+          "title": "Idempotent",
+          "description": "If enabled, the producer will ensure that exactly one copy of each message is written",
+          "default": false,
+          "type": "boolean"
+        },
+        "retry_max": {
+          "title": "Retry Max",
+          "description": "The total number of times to retry sending a message. Similar to the `message.send.max.retries` setting of the JVM producer.",
+          "default": 3,
+          "type": "number",
+          "minimum": 0
+        },
+        "retry_backoff": {
+          "title": "Retry Backoff",
+          "description": "How long to wait for the cluster to settle between retries (similar to the `retry.backoff.ms` setting of the JVM producer.",
+          "default": "100ms",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.13/messaging/kafka/writer.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Kafka Writer",
+      "description": "Enterprise only. Defines how to write messages to a Kafka cluster",
+      "type": "object",
+      "required": [ "cluster", "topic" ],
+      "properties": {
+        "cluster": {
+          "title": "Cluster connection details",
+          "description": "Settings to establish the connection to the kafka cluster",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1cluster.json",
+          "type": "object"
+        },
+        "producer": {
+          "title": "Producer options",
+          "description": "Details about how to write to a topic",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1producer.json",
+          "type": "object"
+        },
+        "topic": {
+          "title": "Topic",
+          "description": "Topic to write to",
+          "type": "string"
+        },
+        "key_meta": {
+          "title": "Key Meta Name",
+          "description": "Name of the header where the kafka message key value is written",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.13/backend/pubsub/kafka/publisher.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "PubSub Kafka Publisher EE",
+      "description": "Enterprise only. Allows for fine grained control over a kafka publishing connection",
+      "type": "object",
+      "required": [ "writer" ],
+      "properties": {
+        "success_status_code": {
+          "title": "Success Status Code",
+          "description": "HTTP status code to return for a successful write in the queue",
+          "default": 200,
+          "type": "number",
+          "maximum": 201,
+          "minimum": 200
+        },
+        "writer": {
+          "title": "Writer",
+          "description": "Define how to write messages to a kafka topic",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1writer.json",
+          "type": "object"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
     "https://www.krakend.io/schema/v2.13/backend/pubsub/subscriber.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "Pubsub subscriber",
@@ -1486,6 +1862,125 @@
           "title": "Subscription URL",
           "description": "Subscription URL according to the selected driver\n\nSee: https://www.krakend.io/docs/backends/pubsub/",
           "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.13/messaging/kafka/group.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Kafka Consumer Details",
+      "description": "Enterprise only. Defines the detaisl for a Kafka consumer group.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Consumer Group ID",
+          "description": "Name of the consumer group to use",
+          "type": "string"
+        },
+        "session_timeout": {
+          "description": "Timeout used to detect consumer failures when using Kafka's group management facility. The consumer sends periodic heartbeats to indicate its liveness to the broker. If no heartbeats are received by the broker before the expiration of this session timeout, then the broker will remove this consumer from the group and initiate a rebalance. Note that the value must be in the allowable range as configured in the broker configuration by `group.min.session.timeout.ms` and `group.max.session.timeout.ms`",
+          "default": "10s",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "heartbeat_interval": {
+          "title": "Grup Heartbeat Interval",
+          "description": "Expected time between heartbeats to the consumer coordinator when using Kafka's group management facilities. Heartbeats are used to ensure that the consumer's session stays active and to facilitate rebalancing when new consumers join or leave the group. The value must be set lower than Consumer.Group.Session.Timeout, but typically should be set no higher than 1/3 of that value. It can be adjusted even lower to control the expected time for normal rebalances",
+          "default": "3s",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "rebalance_strategies": {
+          "title": "Group Rebalance Strategies",
+          "description": "Priority-ordered list of client-side consumer group balancing strategies that will be offered to the coordinator. The first strategy that all group members support will be chosen by the leader. Options are: `range`, `roundrobin`, and `sticky`",
+          "default": [ "range" ],
+          "type": "array",
+          "items": {
+            "enum": [ "range", "roundrobin", "sticky" ]
+          }
+        },
+        "rebalance_timeout": {
+          "title": "Group Rebalance Timeout",
+          "description": "Maximum allowed time for each worker to join the group once a rebalance has begun. This is basically a limit on the amount of time needed for all tasks to flush any pending data and commit offsets. If the timeout is exceeded, then the worker will be removed from the group, which will cause offset commit failures.",
+          "default": "60s",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        },
+        "instance_id": {
+          "title": "Group Instance ID",
+          "description": "Support KIP-345",
+          "type": "string"
+        },
+        "fetch_default": {
+          "title": "Fetch Default",
+          "description": "The default number of message bytes to fetch from the broker in each request (default 1MB). This should be larger than the majority of your messages, or else the consumer will spend a lot of time negotiating sizes and not actually consuming. Similar to the JVM's `fetch.message.max.bytes`",
+          "type": "number"
+        },
+        "isolation_level": {
+          "title": "Isolation Level",
+          "description": "Supports 2 modes: `read_commited` to consume and return all messages in message channel, and `read_uncommited` to hide messages that are part of an aborted transaction",
+          "default": "read_commited",
+          "enum": [ "read_commited", "read_uncommited" ]
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.13/messaging/kafka/reader.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Kafka Reader",
+      "description": "Enterprise only. Defines how to read messages from a Kafka cluster",
+      "type": "object",
+      "required": [ "cluster", "topics" ],
+      "properties": {
+        "cluster": {
+          "title": "Cluster connection details",
+          "description": "Settings to stablish the connection to the kafka cluster",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1cluster.json",
+          "type": "object"
+        },
+        "group": {
+          "title": "Consumer group options",
+          "description": "Details about the consumer croup",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1group.json",
+          "type": "object"
+        },
+        "topics": {
+          "title": "Topics",
+          "description": "List of topics to read from",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "key_meta": {
+          "title": "Key Meta Name",
+          "description": "Name of the header where the kafka message key value is written",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.13/backend/pubsub/kafka/subscriber.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "PubSub Kafka Subscriber EE",
+      "description": "Enterprise only. Allows for fine grained control over a kafka subcription connection",
+      "type": "object",
+      "required": [ "reader" ],
+      "properties": {
+        "reader": {
+          "title": "Reader",
+          "description": "Define how to read messages from a kafka topic",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1reader.json",
+          "type": "object"
         }
       },
       "patternProperties": {
@@ -1584,7 +2079,7 @@
           "type": "string"
         },
         "tier_key": {
-          "description": "Header or param used to determine the tier. Use `tier_value` and `tier_value_as` on each tier to determine how to match the value.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
+          "description": "Header used to determine the tier. Use `tier_value` and `tier_value_as` on each tier to determine how to match the value.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
           "examples": [ "X-User-Tier", "X-User-ID" ],
           "type": "string"
         },
@@ -3628,6 +4123,12 @@
         "backend/pubsub/subscriber": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1pubsub~1subscriber.json"
         },
+        "backend/pubsub/publisher/kafka": {
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1pubsub~1kafka~1publisher.json"
+        },
+        "backend/pubsub/subscriber/kafka": {
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1pubsub~1kafka~1subscriber.json"
+        },
         "backend/soap": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1soap.json"
         },
@@ -4131,6 +4632,36 @@
       },
       "additionalProperties": false
     },
+    "https://www.krakend.io/schema/v2.13/messaging/kafka/async_reader.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Kafka Reader",
+      "description": "Enterprise only. Defines how to read messages from a Kafka cluster for an async agent",
+      "type": "object",
+      "required": [ "cluster" ],
+      "properties": {
+        "cluster": {
+          "title": "Cluster connection details",
+          "description": "Settings to stablish the connection to the kafka cluster",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1cluster.json",
+          "type": "object"
+        },
+        "group": {
+          "title": "Consumer group options",
+          "description": "Details about the consumer croup",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1group.json",
+          "type": "object"
+        },
+        "key_meta": {
+          "title": "Key Meta Name",
+          "description": "Name of the header where the kafka message key value is written",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
     "https://www.krakend.io/schema/v2.13/async_agent.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "Async Agents",
@@ -4216,12 +4747,24 @@
           },
           "extra_config": {
             "description": "Defines the driver that connects to your queue or PubSub system. In addition, you can place other middlewares to modify the request (message) or the response, apply logic or any other endpoint middleware, but adding the driver is mandatory.\n\nSee: https://www.krakend.io/docs/async/",
-            "required": [ "async/amqp" ],
+            "oneOf": [
+              {
+                "required": [ "async/amqp" ]
+              },
+              {
+                "required": [ "async/kafka" ]
+              }
+            ],
             "properties": {
               "async/amqp": {
                 "title": "Async Agent extra configuration",
                 "description": "[See the configuration for async/amqp](https://www.krakend.io/docs/async/amqp/)",
                 "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1async~1amqp.json"
+              },
+              "async/kafka": {
+                "title": "Kafka driver",
+                "description": "config details to consume from kafka topics",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1async_reader.json"
               }
             }
           },
@@ -5114,6 +5657,19 @@
                 "title": "Name",
                 "description": "The name of the querystring, as declared in `input_query_strings`",
                 "type": "string"
+              },
+              "example": {
+                "title": "Example",
+                "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                "type": [
+                  "string",
+                  "object",
+                  "array",
+                  "boolean",
+                  "integer",
+                  "null",
+                  "number"
+                ]
               }
             },
             "patternProperties": {
@@ -5152,7 +5708,7 @@
                 "type": "string"
               },
               "example": {
-                "title": "Content Type",
+                "title": "Example",
                 "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
                 "type": [
                   "string",
@@ -5163,6 +5719,38 @@
                   "null",
                   "number"
                 ]
+              },
+              "examples": {
+                "title": "Examples",
+                "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                "examples": [
+                  {
+                    "Example 1": {
+                      "msg": "a message"
+                    }
+                  },
+                  {
+                    "Example 1": {
+                      "msg": "a message"
+                    },
+                    "Example 2": {
+                      "error": "an error message"
+                    }
+                  }
+                ],
+                "type": "object",
+                "additionalProperties": {
+                  "title": "Example",
+                  "type": [
+                    "string",
+                    "object",
+                    "array",
+                    "boolean",
+                    "integer",
+                    "null",
+                    "number"
+                  ]
+                }
               },
               "example_schema": {
                 "description": "A JSON schema that describes the request format for the accepted payload in the endpoint. Use either example or example_schema, but not both.",
@@ -5212,7 +5800,7 @@
                   "type": "string"
                 },
                 "example": {
-                  "title": "Content Type",
+                  "title": "Example",
                   "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
                   "type": [
                     "string",
@@ -5223,6 +5811,38 @@
                     "null",
                     "number"
                   ]
+                },
+                "examples": {
+                  "title": "Examples",
+                  "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                  "examples": [
+                    {
+                      "Example 1": {
+                        "msg": "a message"
+                      }
+                    },
+                    {
+                      "Example 1": {
+                        "msg": "a message"
+                      },
+                      "Example 2": {
+                        "error": "an error message"
+                      }
+                    }
+                  ],
+                  "type": "object",
+                  "additionalProperties": {
+                    "title": "Example",
+                    "type": [
+                      "string",
+                      "object",
+                      "array",
+                      "boolean",
+                      "integer",
+                      "null",
+                      "number"
+                    ]
+                  }
                 },
                 "example_schema": {
                   "description": "A JSON schema that describes the response format for the endpoint, directly as a JSON object, or encoded as a base64 string. Use either example or example_schema, but not both.",
@@ -5398,6 +6018,69 @@
           "description": "The name of the endpoint you are generating. If you don't set any name the last member path is used.\n\nSee: https://www.krakend.io/docs/enterprise/developer/postman/",
           "examples": [ "List books", "Create user" ],
           "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
+    "https://www.krakend.io/schema/v2.13/modifier/request-body-extractor.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Request Body Extractor",
+      "description": "Enterprise only. Extracts fields from the incoming request body and promotes them to request headers or query strings.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/",
+      "type": "object",
+      "required": [ "operations" ],
+      "properties": {
+        "operations": {
+          "title": "Operations",
+          "description": "A list of extraction operations to apply. Each operation extracts a value from the request body and writes it to a header or query string parameter. Operations are evaluated in sequential order.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/",
+          "type": "array",
+          "items": {
+            "title": "Operation",
+            "description": "Defines a single extraction rule that reads a field from the request body and writes it to a header or query string parameter.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/",
+            "type": "object",
+            "required": [
+              "type",
+              "strategy",
+              "expression",
+              "target",
+              "on_conflict"
+            ],
+            "properties": {
+              "type": {
+                "title": "Type",
+                "description": "The destination where the extracted value is written. Use `header` to inject the value as a request header, or `query_string` to inject it as a query string parameter.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/",
+                "enum": [ "header", "query_string" ]
+              },
+              "strategy": {
+                "title": "Strategy",
+                "description": "The strategy used to navigate the request body and extract the value. Use `dotnotation` for straightforward field access using period-separated field names (e.g., `user.id`). Use `jmespath` to evaluate a JMESPath expression for more complex selections involving arrays, filtering, or projections.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/",
+                "enum": [ "dotnotation", "jmespath" ]
+              },
+              "expression": {
+                "title": "Expression",
+                "description": "The expression that selects the value from the request body. When using the `dotnotation` strategy, use period-separated field names (e.g., `user.id`). When using `jmespath`, provide a valid JMESPath expression.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/",
+                "examples": [ "user.id", "auth.role_key", "data.items[0].name" ],
+                "type": "string"
+              },
+              "target": {
+                "title": "Target",
+                "description": "The name of the destination header or query string parameter where the extracted value is written.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/",
+                "examples": [ "Authorization", "uid", "X-Tenant-Id" ],
+                "type": "string"
+              },
+              "on_conflict": {
+                "title": "On Conflict",
+                "description": "Controls behaviour when the destination header or query string parameter already has a value. `skip` preserves the existing value and discards the extracted one. `replace` overwrites the existing value. `append` adds the extracted value alongside the existing one.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/",
+                "enum": [ "skip", "replace", "append" ]
+              }
+            },
+            "patternProperties": {
+              "^[@$_#]": true
+            },
+            "additionalProperties": false
+          }
         }
       },
       "patternProperties": {
@@ -6474,6 +7157,16 @@
         "modifier/lua-proxy": {
           "description": "[Scripting with Lua](https://www.krakend.io/docs/endpoints/lua/) is an additional choice to extend your business logic, and is compatible with the rest of options such as CEL, Martian, or other Go plugins and middlewares.",
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1lua.json",
+          "type": "object"
+        },
+        "modifier/request-body-extractor": {
+          "description": "Enterprise only. [Extracts fields from the incoming request body](https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/) and promotes them to request headers or query strings. Runs in the proxy pipeline.",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1request-body-extractor.json",
+          "type": "object"
+        },
+        "modifier/request-body-extractor/early": {
+          "description": "Enterprise only. [Extracts fields from the incoming request body](https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/) and promotes them to request headers or query strings. Runs at the HTTP handler level before authentication and all other handlers.",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1request-body-extractor.json",
           "type": "object"
         },
         "modifier/request-body-generator": {
@@ -9953,6 +10646,11 @@
         },
         "modifier/lua-endpoint": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1lua.json"
+        },
+        "modifier/request-body-extractor": {
+          "title": "Request Body Extractor",
+          "description": "Enterprise only. [Extracts fields from the incoming request body](https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/) and promotes them to request headers or query strings at the service level, applying to every incoming request.",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1request-body-extractor.json"
         },
         "modifier/response-headers": {
           "title": "Response Headers modifier",

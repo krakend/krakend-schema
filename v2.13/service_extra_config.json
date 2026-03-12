@@ -37,6 +37,11 @@
     "modifier/lua-endpoint": {
       "$ref": "modifier/lua.json"
     },
+    "modifier/request-body-extractor": {
+      "title": "Request Body Extractor",
+      "description": "Enterprise only. [Extracts fields from the incoming request body](https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/) and promotes them to request headers or query strings at the service level, applying to every incoming request.",
+      "$ref": "modifier/request-body-extractor.json"
+    },
     "modifier/response-headers": {
       "title": "Response Headers modifier",
       "description": "Enterprise only. Allows you to transform response headers declaratively.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
