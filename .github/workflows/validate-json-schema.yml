@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BIN: jsonschema
-      VERSION: v2.13
+      VERSION: v3.0
     steps:
       - uses: actions/checkout@v2
       - uses: sourcemeta/jsonschema@v14.6.0

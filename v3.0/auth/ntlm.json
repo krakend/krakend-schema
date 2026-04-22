@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v3.0/auth/ntlm.json",
+  "title": "NTLM Authentication",
+  "description": "Enterprise only. Enables NTLM authentication between KrakenD and a Microsoft server such as Dynamics.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/ntlm/",
+  "type": "object",
+  "required": [ "user", "password" ],
+  "properties": {
+    "password": {
+      "title": "Password",
+      "description": "The password you will use, in clear text.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/ntlm/",
+      "examples": [ "myp4ssw0rd" ],
+      "type": "string"
+    },
+    "user": {
+      "title": "User",
+      "description": "The username you will send as NTLM authentication user.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/ntlm/",
+      "examples": [ "krakendclient" ],
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false
+}

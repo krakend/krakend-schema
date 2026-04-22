@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v3.0/backend/pubsub/kafka/publisher.json",
+  "title": "PubSub Kafka Publisher EE",
+  "description": "Enterprise only. Allows for fine grained control over a kafka publishing connection",
+  "type": "object",
+  "required": [ "writer" ],
+  "properties": {
+    "success_status_code": {
+      "title": "Success Status Code",
+      "description": "HTTP status code to return for a successful write in the queue",
+      "default": 200,
+      "type": "number",
+      "maximum": 201,
+      "minimum": 200
+    },
+    "writer": {
+      "title": "Writer",
+      "description": "Define how to write messages to a kafka topic",
+      "$ref": "../../../messaging/kafka/writer.json",
+      "type": "object"
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false
+}

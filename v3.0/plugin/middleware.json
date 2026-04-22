@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v3.0/plugin/middleware.json",
+  "title": "Enterprise only. Middleware plugins.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
+  "type": "object",
+  "required": [ "name" ],
+  "properties": {
+    "name": {
+      "title": "Plugin name",
+      "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/middleware-plugins/",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

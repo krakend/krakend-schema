@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v3.0/telemetry/logstash.json",
+  "title": "Logstash",
+  "description": "Enables logstash when the extra_config \"telemetry/logging\" is also present.\n\nSee: https://www.krakend.io/docs/logging/logstash/",
+  "type": "object",
+  "required": [ "enabled" ],
+  "properties": {
+    "enabled": {
+      "title": "Enabled",
+      "default": true,
+      "type": "boolean"
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false
+}
