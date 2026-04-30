@@ -545,78 +545,159 @@
       "type": "object",
       "patternProperties": {
         "default|^[0-9]+$": {
-          "type": "object",
-          "properties": {
-            "description": {
-              "title": "Description",
-              "description": "The description of this error code, e.g., `Page not found`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-              "type": "string"
-            },
-            "content_type": {
-              "title": "Content Type",
-              "description": "The content type returned by this error, e.g., `application/json`",
-              "type": "string"
-            },
-            "example": {
-              "title": "Example",
-              "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-              "type": [
-                "string",
-                "object",
-                "array",
-                "boolean",
-                "integer",
-                "null",
-                "number"
-              ]
-            },
-            "examples": {
-              "title": "Examples",
-              "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-              "examples": [
-                {
-                  "Example 1": {
-                    "msg": "a message"
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "title": "Description",
+                  "description": "The description of this error code, e.g., `Page not found`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                  "type": "string"
+                },
+                "content_type": {
+                  "title": "Content Type",
+                  "description": "The content type returned by this error, e.g., `application/json`",
+                  "type": "string"
+                },
+                "example": {
+                  "title": "Example",
+                  "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                  "type": [
+                    "string",
+                    "object",
+                    "array",
+                    "boolean",
+                    "integer",
+                    "null",
+                    "number"
+                  ]
+                },
+                "examples": {
+                  "title": "Examples",
+                  "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                  "examples": [
+                    {
+                      "Example 1": {
+                        "msg": "a message"
+                      }
+                    },
+                    {
+                      "Example 1": {
+                        "msg": "a message"
+                      },
+                      "Example 2": {
+                        "error": "an error message"
+                      }
+                    }
+                  ],
+                  "type": "object",
+                  "additionalProperties": {
+                    "title": "Example",
+                    "type": [
+                      "string",
+                      "object",
+                      "array",
+                      "boolean",
+                      "integer",
+                      "null",
+                      "number"
+                    ]
                   }
                 },
-                {
-                  "Example 1": {
-                    "msg": "a message"
-                  },
-                  "Example 2": {
-                    "error": "an error message"
-                  }
+                "example_schema": {
+                  "description": "A JSON schema that describes the response format for the endpoint, directly as a JSON object, or encoded as a base64 string. Use either example or example_schema, but not both.",
+                  "type": [ "string", "object" ]
+                },
+                "ref": {
+                  "title": "Reference",
+                  "description": "The relative reference to the `components/schema` OpenAPI definition that will be used as definition of the accepted request. Notice that the path `#/components/schemas/` is not needed.",
+                  "examples": [ "your_schema_name" ],
+                  "type": "string"
                 }
-              ],
-              "type": "object",
-              "additionalProperties": {
-                "title": "Example",
-                "type": [
-                  "string",
-                  "object",
-                  "array",
-                  "boolean",
-                  "integer",
-                  "null",
-                  "number"
-                ]
+              },
+              "patternProperties": {
+                "^[@$_#]": true
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "title": "Description",
+                    "description": "The description of this error code, e.g., `Page not found`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                    "type": "string"
+                  },
+                  "content_type": {
+                    "title": "Content Type",
+                    "description": "The content type returned by this error, e.g., `application/json`",
+                    "type": "string"
+                  },
+                  "example": {
+                    "title": "Example",
+                    "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                    "type": [
+                      "string",
+                      "object",
+                      "array",
+                      "boolean",
+                      "integer",
+                      "null",
+                      "number"
+                    ]
+                  },
+                  "examples": {
+                    "title": "Examples",
+                    "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                    "examples": [
+                      {
+                        "Example 1": {
+                          "msg": "a message"
+                        }
+                      },
+                      {
+                        "Example 1": {
+                          "msg": "a message"
+                        },
+                        "Example 2": {
+                          "error": "an error message"
+                        }
+                      }
+                    ],
+                    "type": "object",
+                    "additionalProperties": {
+                      "title": "Example",
+                      "type": [
+                        "string",
+                        "object",
+                        "array",
+                        "boolean",
+                        "integer",
+                        "null",
+                        "number"
+                      ]
+                    }
+                  },
+                  "example_schema": {
+                    "description": "A JSON schema that describes the response format for the endpoint, directly as a JSON object, or encoded as a base64 string. Use either example or example_schema, but not both.",
+                    "type": [ "string", "object" ]
+                  },
+                  "ref": {
+                    "title": "Reference",
+                    "description": "The relative reference to the `components/schema` OpenAPI definition that will be used as definition of the accepted request. Notice that the path `#/components/schemas/` is not needed.",
+                    "examples": [ "your_schema_name" ],
+                    "type": "string"
+                  }
+                },
+                "patternProperties": {
+                  "^[@$_#]": true
+                },
+                "additionalProperties": false
               }
-            },
-            "example_schema": {
-              "description": "A JSON schema that describes the response format for the endpoint, directly as a JSON object, or encoded as a base64 string. Use either example or example_schema, but not both.",
-              "type": [ "string", "object" ]
-            },
-            "ref": {
-              "title": "Reference",
-              "description": "The relative reference to the `components/schema` OpenAPI definition that will be used as definition of the accepted request. Notice that the path `#/components/schemas/` is not needed.",
-              "examples": [ "your_schema_name" ],
-              "type": "string"
             }
-          },
-          "patternProperties": {
-            "^[@$_#]": true
-          },
-          "additionalProperties": false
+          ]
         }
       },
       "additionalProperties": false

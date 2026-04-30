@@ -5,19 +5,19 @@
   "required": [ "version" ],
   "properties": {
     "async_agent": {
-      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1async_agent.json"
+      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1async_agent.json"
     },
     "cache_ttl": {
       "title": "Cache TTL",
       "description": "Sets a default `Cache-Control: public, max-age=%d` header to all endpoints where `%d` is the conversion to seconds of any duration you write, indicating for how long the client (or CDN) can cache the content of the request. You can override this value per endpoint, but setting an endpoint to 0 will use the default value instead. Notice that KrakenD does not cache the content with this parameter, but tells the client how to do it. Defaults to `0s` (no cache). **For KrakenD cache, see [backend caching](https://www.krakend.io/docs/backends/caching/)**.",
       "default": "0s",
-      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
       "type": "string"
     },
     "client_tls": {
       "title": "TLS Client settings",
       "description": "Allows to set specific transport settings when using TLS in your upstream services. See [TLS Client](https://www.krakend.io/docs/service-settings/tls/) for more settings",
-      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1client_tls.json"
+      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1client_tls.json"
     },
     "debug_endpoint": {
       "title": "Debug endpoint",
@@ -29,21 +29,21 @@
       "title": "Dialer fallback delay",
       "description": "Specifies the length of time to wait before spawning a RFC 6555 Fast Fallback connection. If zero, a default delay of 300ms is used.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
       "default": "300ms",
-      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
       "type": "string"
     },
     "dialer_keep_alive": {
       "title": "Dialer keep alive",
       "description": "The interval between keep-alive probes for an active network connection. If zero, keep-alive probes are sent with a default value (currently 15 seconds), if supported by the protocol and operating system. Network protocols or operating systems that do not support keep-alives ignore this field. If negative, keep-alive probes are disabled.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
       "default": "15s",
-      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
       "type": "string"
     },
     "dialer_timeout": {
       "title": "Dialer Timeout",
       "description": "The timeout of the dial function for creating connections.The default is no timeout. With or without a timeout, the operating system may impose its own earlier timeout.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
       "default": "0s",
-      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
       "type": "string"
     },
     "disable_compression": {
@@ -68,7 +68,7 @@
       "title": "DNS Cache TTL",
       "description": "Sets the maximum time KrakenD can store the results of a query to the configured Service Discovery returning the available hosts list. For values under `1s` this setting is ignored.\n\nSee: https://www.krakend.io/docs/backends/service-discovery/",
       "default": "30s",
-      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
       "type": "string"
     },
     "echo_endpoint": {
@@ -82,7 +82,7 @@
       "description": "Your API contract, or the list of all paths recognized by this gateway. The paths `/__health/`, `/__debug/`, `/__echo/`, `/__catchall`, and `/__stats/` are reserved by the system and you cannot declare them. Their existence depends on their respective settings.\n\nSee: https://www.krakend.io/docs/endpoints/",
       "type": "array",
       "items": {
-        "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1endpoint.json",
+        "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1endpoint.json",
         "type": "object"
       }
     },
@@ -90,13 +90,13 @@
       "title": "Expect_continue_timeout",
       "description": "If non-zero, specifies the amount of time to wait for a server's first response headers after fully writing the request headers if the request has an `Expect: 100-continue` header. Zero means no timeout and causes the body to be sent immediately, without waiting for the server to approve. This time does not include the time to send the request header.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
       "default": "0s",
-      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
       "type": "string"
     },
     "extra_config": {
       "title": "Extra configuration",
       "description": "The optional configuration that extends the core functionality of the gateway is specified here. The `extra_config` at this level enables service components, meaning that they apply globally to all endpoints or activity.",
-      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1service_extra_config.json",
+      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1service_extra_config.json",
       "type": "object"
     },
     "host": {
@@ -111,14 +111,14 @@
       "title": "HTTP Idle timeout",
       "description": "The maximum number of idle (keep-alive) connections across all hosts. Zero means no limit.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
       "default": "0s",
-      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
       "type": "string"
     },
     "idle_timeout": {
       "title": "HTTP Idle timeout",
       "description": "The maximum amount of time to wait for the next request when keep-alives are enabled. If `idle_timeout` is zero, the value of `read_timeout` is used. If both are zero, there is no timeout.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
       "default": "0s",
-      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
       "type": "string"
     },
     "listen_ip": {
@@ -150,7 +150,7 @@
       "title": "Max shutdown wait time",
       "description": "The gateway gracefully shuts down, waiting for all active connections to drain. Nevertheless, persistent connections or long timeouts may leave the shutdown process running for an extended period. Set the maximum time to wait for all the remaining requests to finish when shutting down the service. After this time, the service will force a shutdown. Defaults to `0s` (wait indefinitely). \n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
       "default": "0s",
-      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
       "type": "string"
     },
     "name": {
@@ -207,21 +207,21 @@
       "title": "HTTP Idle timeout",
       "description": "The amount of time allowed to read request headers. The connection's read deadline is reset after reading the headers and the Handler can decide what is considered too slow for the body.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
       "default": "0s",
-      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
       "type": "string"
     },
     "read_timeout": {
       "title": "HTTP read timeout",
       "description": "Is the maximum duration for reading the entire request, including the body. Because `read_timeout` does not let Handlers make per-request decisions on each request body's acceptable deadline or upload rate, most users will prefer to use `read_header_timeout`. It is valid to use them both.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
       "default": "0s",
-      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
       "type": "string"
     },
     "response_header_timeout": {
       "title": "Response header timeout",
       "description": "If non-zero, specifies the amount of time to wait for a server's response headers after fully writing the request (including its body, if any). This time does not include the time to read the response body.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/",
       "default": "0s",
-      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
       "type": "string"
     },
     "sequential_start": {
@@ -234,11 +234,11 @@
       "title": "Global timeout",
       "description": "Defines a default timeout for all endpoints. Can be overriden per endpoint.\n\nSee: https://www.krakend.io/docs/service-settings/http-transport-settings/#global-timeout",
       "default": "2s",
-      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
       "type": "string"
     },
     "tls": {
-      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1tls.json"
+      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1tls.json"
     },
     "use_h2c": {
       "title": "Enable h2c",
@@ -255,7 +255,7 @@
       "title": "HTTP write timeout",
       "description": "Maximum duration before timing out writes of the response.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
       "default": "0s",
-      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
       "type": "string"
     }
   },
@@ -759,19 +759,19 @@
       "maxProperties": 1,
       "properties": {
         "anthropic": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1ai~1anthropic.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1anthropic.json"
         },
         "gemini": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1ai~1gemini.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1gemini.json"
         },
         "mistral": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1ai~1mistral.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1mistral.json"
         },
         "openai": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1ai~1openai.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1openai.json"
         },
         "bedrock": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1ai~1bedrock.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1bedrock.json"
         }
       },
       "patternProperties": {
@@ -1368,7 +1368,7 @@
         "client_tls": {
           "title": "Enable TLS client options",
           "description": "Enables specific TLS connection options when using the gRPC service. Supports all options under [TLS client settings](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings).\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1client_tls.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1client_tls.json"
         },
         "disable_query_params": {
           "title": "Disable query parameters",
@@ -1396,7 +1396,7 @@
           "title": "Request naming convention",
           "description": "The maximum time a connection is kept without being used.\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
           "default": "10m",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "input_assume_bytes": {
@@ -1495,7 +1495,7 @@
         "client_tls": {
           "title": "TLS Client settings",
           "description": "Allows to set specific transport settings when using TLS in your upstream services. See the global [Client TLS options](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings) for the list of all supported options.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1client_tls.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1client_tls.json"
         },
         "no_redirect": {
           "title": "No redirect",
@@ -1645,41 +1645,41 @@
         "client_tls": {
           "title": "TLS client options",
           "description": "Enables specific TLS connection options when connecting to the Kafke brokers. Supports all options under [TLS client settings](https://www.krakend.io/docs/service-settings/tls/#client-tls-settings).\n\nSee: https://www.krakend.io/docs/enterprise/backends/grpc/",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1client_tls.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1client_tls.json",
           "type": "object"
         },
         "sasl": {
           "title": "SASL Connection options",
           "description": "Enables to authenticate to the Kafka service using user and password",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1sasl.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1messaging~1kafka~1sasl.json",
           "type": "object"
         },
         "dial_timeout": {
           "title": "Dial Timeout",
           "description": "Dial timeout for establishing new connections",
           "default": "30s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "read_timeout": {
           "title": "Read Timeout",
           "description": "Maximum time allowed to read from broker",
           "default": "30s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "write_timeout": {
           "title": "Write Timeout",
           "description": "Maximum time allowed to write to broker",
           "default": "30s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "keep_alive": {
           "title": "Keep Alive",
           "description": "Time to maintain an idle connection open",
           "default": "0s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "client_id": {
@@ -1705,7 +1705,7 @@
           "title": "Metadata Retry Backoff",
           "description": "The time between attempts to reconnect when disconnected",
           "default": "250ms",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "metadata_retry_max": {
@@ -1743,7 +1743,7 @@
           "title": "Required Acks Timeout",
           "description": "Maximum duration the broker will wait the receipt of the number of `required_acks`. This is only relevant when `required_acks` is set to WaitForAll or a number > 1. Only supports millisecond resolution, nanoseconds will be truncated. Equivalent to the JVM producer's `request.timeout.ms` setting.",
           "default": "10s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "compression_codec": {
@@ -1780,7 +1780,7 @@
           "title": "Retry Backoff",
           "description": "How long to wait for the cluster to settle between retries (similar to the `retry.backoff.ms` setting of the JVM producer.",
           "default": "100ms",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         }
       },
@@ -1799,13 +1799,13 @@
         "cluster": {
           "title": "Cluster connection details",
           "description": "Settings to establish the connection to the kafka cluster",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1cluster.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1messaging~1kafka~1cluster.json",
           "type": "object"
         },
         "producer": {
           "title": "Producer options",
           "description": "Details about how to write to a topic",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1producer.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1messaging~1kafka~1producer.json",
           "type": "object"
         },
         "topic": {
@@ -1842,7 +1842,7 @@
         "writer": {
           "title": "Writer",
           "description": "Define how to write messages to a kafka topic",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1writer.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1messaging~1kafka~1writer.json",
           "type": "object"
         }
       },
@@ -1883,14 +1883,14 @@
         "session_timeout": {
           "description": "Timeout used to detect consumer failures when using Kafka's group management facility. The consumer sends periodic heartbeats to indicate its liveness to the broker. If no heartbeats are received by the broker before the expiration of this session timeout, then the broker will remove this consumer from the group and initiate a rebalance. Note that the value must be in the allowable range as configured in the broker configuration by `group.min.session.timeout.ms` and `group.max.session.timeout.ms`",
           "default": "10s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "heartbeat_interval": {
           "title": "Grup Heartbeat Interval",
           "description": "Expected time between heartbeats to the consumer coordinator when using Kafka's group management facilities. Heartbeats are used to ensure that the consumer's session stays active and to facilitate rebalancing when new consumers join or leave the group. The value must be set lower than Consumer.Group.Session.Timeout, but typically should be set no higher than 1/3 of that value. It can be adjusted even lower to control the expected time for normal rebalances",
           "default": "3s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "rebalance_strategies": {
@@ -1906,7 +1906,7 @@
           "title": "Group Rebalance Timeout",
           "description": "Maximum allowed time for each worker to join the group once a rebalance has begun. This is basically a limit on the amount of time needed for all tasks to flush any pending data and commit offsets. If the timeout is exceeded, then the worker will be removed from the group, which will cause offset commit failures.",
           "default": "60s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "instance_id": {
@@ -1941,13 +1941,13 @@
         "cluster": {
           "title": "Cluster connection details",
           "description": "Settings to stablish the connection to the kafka cluster",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1cluster.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1messaging~1kafka~1cluster.json",
           "type": "object"
         },
         "group": {
           "title": "Consumer group options",
           "description": "Details about the consumer croup",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1group.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1messaging~1kafka~1group.json",
           "type": "object"
         },
         "topics": {
@@ -1979,7 +1979,7 @@
         "reader": {
           "title": "Reader",
           "description": "Define how to read messages from a kafka topic",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1reader.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1messaging~1kafka~1reader.json",
           "type": "object"
         }
       },
@@ -2300,12 +2300,12 @@
           "properties": {
             "else": {
               "description": "The modifier you want to execute when the condition does not match",
-              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1martian.json",
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1martian.json",
               "type": "object"
             },
             "modifier": {
               "description": "The modifier you want to execute when the cookie name (and value if provided) matches",
-              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1martian.json",
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1martian.json",
               "type": "object"
             },
             "name": {
@@ -2392,7 +2392,7 @@
               "description": "The list of modifiers you want to execute in the declared order",
               "type": "array",
               "items": {
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1martian.json"
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1martian.json"
               }
             },
             "scope": {
@@ -2488,12 +2488,12 @@
           "properties": {
             "else": {
               "description": "The modifier you want to execute when the condition does not match",
-              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1martian.json",
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1martian.json",
               "type": "object"
             },
             "modifier": {
               "description": "The modifier you want to execute when the condition matches",
-              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1martian.json",
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1martian.json",
               "type": "object"
             },
             "name": {
@@ -2573,7 +2573,7 @@
             },
             "modifier": {
               "description": "The modifier you want to execute when the condition matches",
-              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1martian.json",
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1martian.json",
               "type": "object"
             },
             "regex": {
@@ -2600,12 +2600,12 @@
           "properties": {
             "else": {
               "description": "The modifier you want to execute when the condition does not match",
-              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1martian.json",
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1martian.json",
               "type": "object"
             },
             "modifier": {
               "description": "The modifier you want to execute when the condition matches",
-              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1martian.json",
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1martian.json",
               "type": "object"
             },
             "port": {
@@ -2668,7 +2668,7 @@
                 "properties": {
                   "modifier": {
                     "description": "The modifier definition you want to execute",
-                    "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1martian.json"
+                    "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1martian.json"
                   },
                   "priority": {
                     "description": "The assigned priority number",
@@ -2696,12 +2696,12 @@
           "properties": {
             "else": {
               "description": "The modifier you want to execute when the condition does not match",
-              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1martian.json",
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1martian.json",
               "type": "object"
             },
             "modifier": {
               "description": "The modifier you want to execute when the condition matches",
-              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1martian.json",
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1martian.json",
               "type": "object"
             },
             "name": {
@@ -2775,7 +2775,7 @@
           "properties": {
             "else": {
               "description": "The modifier you want to execute when the condition does not match",
-              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1martian.json",
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1martian.json",
               "type": "object"
             },
             "host": {
@@ -2785,7 +2785,7 @@
             },
             "modifier": {
               "description": "The modifier you want to execute when the condition matches",
-              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1martian.json",
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1martian.json",
               "type": "object"
             },
             "path": {
@@ -2855,12 +2855,12 @@
           "properties": {
             "else": {
               "description": "The modifier you want to execute when the condition does not match",
-              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1martian.json",
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1martian.json",
               "type": "object"
             },
             "modifier": {
               "description": "The modifier you want to execute when the condition matches",
-              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1martian.json",
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1martian.json",
               "type": "object"
             },
             "regex": {
@@ -3221,10 +3221,10 @@
       "type": "object",
       "properties": {
         "content-replacer": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1plugin~1content-replacer.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1content-replacer.json"
         },
         "ip-filter": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1plugin~1ip-filter.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1ip-filter.json"
         },
         "name": {
           "title": "Plugin name",
@@ -3239,7 +3239,7 @@
           }
         },
         "response-schema-validator": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1plugin~1response-schema-validator.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1response-schema-validator.json"
         }
       }
     },
@@ -3289,7 +3289,7 @@
         "flatmap_filter": {
           "title": "Flatmap (Array manipulation)",
           "description": "The list of operations to **execute sequentially** (top down). Every operation is defined with an object containing two properties:\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1proxy~1flatmap.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1proxy~1flatmap.json",
           "type": "array"
         },
         "shadow": {
@@ -3418,7 +3418,7 @@
           "title": "Time window",
           "description": "Time period in which the counter works. For instance, if you set an `every` of `10m` and a `max_rate` of `5`, you are allowing 5 requests every ten minutes.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
           "default": "1s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "max_rate": {
@@ -3883,19 +3883,19 @@
       "type": "object",
       "properties": {
         "modifier/jmespath": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1jmespath.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1jmespath.json"
         },
         "modifier/lua-proxy": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1lua.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1lua.json"
         },
         "modifier/request-body-generator": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1body-generator.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1body-generator.json"
         },
         "modifier/response-body-generator": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1body-generator.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1body-generator.json"
         },
         "plugin/req-resp-modifier": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1plugin~1req-resp-modifier.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1req-resp-modifier.json"
         },
         "proxy": {
           "title": "Proxy",
@@ -3910,7 +3910,7 @@
             "flatmap_filter": {
               "title": "Flatmap (Array manipulation)",
               "description": "The list of operations to **execute sequentially** (top down). Every operation is defined with an object containing two properties:\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
-              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1proxy~1flatmap.json",
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1proxy~1flatmap.json",
               "type": "array"
             },
             "sequential": {
@@ -3969,10 +3969,10 @@
           "additionalProperties": false
         },
         "security/policies": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1security~1policies.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1security~1policies.json"
         },
         "validation/cel": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1validation~1cel.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1validation~1cel.json"
         },
         "validation/json-schema": {
           "title": "Validating the body with the JSON Schema",
@@ -3997,7 +3997,7 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend.json",
+            "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1backend.json",
             "type": "object"
           }
         },
@@ -4018,7 +4018,7 @@
         "extra_config": {
           "title": "Extra configuration",
           "description": "Configuration entries for additional components that are executed within this endpoint, during the request, response or merge operations.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1workflow_extra_config.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1workflow_extra_config.json",
           "type": "object"
         },
         "ignore_errors": {
@@ -4045,7 +4045,7 @@
           "title": "Timeout",
           "description": "The duration you write in the timeout represents the **whole duration of the pipe**, so it counts the time all your backends take to respond and the processing of all the components involved in the endpoint (the request, fetching data, manipulation, etc.). By default the timeout is taken from the parent endpoint, if redefined **make sure that is smaller than the endpoint's**",
           "examples": [ "2s", "1500ms" ],
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         }
       },
@@ -4060,34 +4060,34 @@
       "type": "object",
       "properties": {
         "ai/llm": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1ai~1llm.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1llm.json"
         },
         "auth/aws-sigv4": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1auth~1aws-sigv4.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1auth~1aws-sigv4.json"
         },
         "auth/client-credentials": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1auth~1client-credentials.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1auth~1client-credentials.json"
         },
         "auth/gcp": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1auth~1gcp.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1auth~1gcp.json"
         },
         "auth/ntlm": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1auth~1ntlm.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1auth~1ntlm.json"
         },
         "backend/amqp/consumer": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1amqp~1consumer.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1backend~1amqp~1consumer.json"
         },
         "backend/amqp/producer": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1amqp~1producer.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1backend~1amqp~1producer.json"
         },
         "backend/conditional": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1conditional.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1backend~1conditional.json"
         },
         "backend/graphql": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1graphql.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1backend~1graphql.json"
         },
         "backend/grpc": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1grpc.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1backend~1grpc.json"
         },
         "backend/http": {
           "oneOf": [
@@ -4112,73 +4112,73 @@
           }
         },
         "backend/http/client": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1http_client.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1backend~1http_client.json"
         },
         "backend/lambda": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1lambda.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1backend~1lambda.json"
         },
         "backend/pubsub/publisher": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1pubsub~1publisher.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1backend~1pubsub~1publisher.json"
         },
         "backend/pubsub/subscriber": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1pubsub~1subscriber.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1backend~1pubsub~1subscriber.json"
         },
         "backend/pubsub/publisher/kafka": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1pubsub~1kafka~1publisher.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1backend~1pubsub~1kafka~1publisher.json"
         },
         "backend/pubsub/subscriber/kafka": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1pubsub~1kafka~1subscriber.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1backend~1pubsub~1kafka~1subscriber.json"
         },
         "backend/soap": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1soap.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1backend~1soap.json"
         },
         "backend/static-filesystem": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend~1static-filesystem.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1backend~1static-filesystem.json"
         },
         "governance/quota": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1governance~1quota.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1governance~1quota.json"
         },
         "modifier/body-generator": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1body-generator.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1body-generator.json"
         },
         "modifier/jmespath": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1jmespath.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1jmespath.json"
         },
         "modifier/lua-backend": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1lua.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1lua.json"
         },
         "modifier/martian": {
           "title": "Martian modifiers",
           "description": "Transform requests and responses through a simple DSL definition in the configuration file.\n\nSee: https://www.krakend.io/docs/backends/martian/",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1martian.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1martian.json",
           "type": "object"
         },
         "modifier/request-body-generator": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1body-generator.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1body-generator.json"
         },
         "modifier/response-body": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1response-body.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1response-body.json"
         },
         "modifier/response-body-generator": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1body-generator.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1body-generator.json"
         },
         "plugin/http-client": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1plugin~1http-client.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1http-client.json"
         },
         "plugin/middleware": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1plugin~1middleware.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1middleware.json"
         },
         "plugin/req-resp-modifier": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1plugin~1req-resp-modifier.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1req-resp-modifier.json"
         },
         "proxy": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1proxy.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1proxy.json"
         },
         "qos/circuit-breaker": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1qos~1circuit-breaker.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1qos~1circuit-breaker.json"
         },
         "qos/circuit-breaker/http": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1qos~1circuit-breaker-http.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1qos~1circuit-breaker-http.json"
         },
         "qos/http-cache": {
           "title": "Backend Cache",
@@ -4222,7 +4222,7 @@
           "additionalProperties": false
         },
         "qos/ratelimit/proxy": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1qos~1ratelimit~1proxy.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1qos~1ratelimit~1proxy.json"
         },
         "security/policies": {
           "title": "Securiy Policies",
@@ -4357,7 +4357,7 @@
           "type": "object",
           "properties": {
             "backend": {
-              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1telemetry~1backend_log.json"
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1telemetry~1backend_log.json"
             }
           },
           "patternProperties": {
@@ -4366,18 +4366,18 @@
           "additionalProperties": false
         },
         "telemetry/opentelemetry": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1telemetry~1opentelemetry-backend.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1telemetry~1opentelemetry-backend.json"
         },
         "validation/cel": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1validation~1cel.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1validation~1cel.json"
         },
         "validation/response-json-schema": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1validation~1response-json-schema.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1validation~1response-json-schema.json"
         },
         "workflow": {
           "title": "Workflow",
           "description": "Enterprise only. A whole new endpoint that is executed within this backend context.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1workflow.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1workflow.json",
           "type": "object"
         }
       },
@@ -4441,7 +4441,7 @@
         "extra_config": {
           "title": "Backend Extra configuration",
           "description": "When there is additional configuration related to a specific component or middleware (like a circuit breaker, rate limit, etc.), it is declared under this section.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend_extra_config.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1backend_extra_config.json",
           "type": "object"
         },
         "group": {
@@ -4642,13 +4642,13 @@
         "cluster": {
           "title": "Cluster connection details",
           "description": "Settings to stablish the connection to the kafka cluster",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1cluster.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1messaging~1kafka~1cluster.json",
           "type": "object"
         },
         "group": {
           "title": "Consumer group options",
           "description": "Details about the consumer croup",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1group.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1messaging~1kafka~1group.json",
           "type": "object"
         },
         "key_meta": {
@@ -4676,7 +4676,7 @@
             "description": "The [backend definition](https://www.krakend.io/docs/backends/) (as you might have in any endpoint) indicating where the event data is sent. It is a full backend object definition, with all its possible options, transformations, filters, validations, etc.",
             "type": "array",
             "items": {
-              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend.json"
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1backend.json"
             }
           },
           "connection": {
@@ -4700,7 +4700,7 @@
                 "title": "Health interval",
                 "description": "The time between pings checking that the agent is connected to the queue and alive. Regardless of the health interval, if an agent fails, KrakenD will restart it again immediately as defined by `max_retries`and `backoff_strategy`.\n\nSee: https://www.krakend.io/docs/async/",
                 "default": "1s",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit"
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit"
               },
               "max_retries": {
                 "title": "Max retries",
@@ -4724,7 +4724,7 @@
               "timeout": {
                 "title": "Timeout",
                 "description": "The maximum time the agent will wait to process an event sent to the backend. If the backend fails to process it, the message is reinserted for later consumption. Defaults to the timeout in the root level, or to `2s` if no value is declared.\n\nSee: https://www.krakend.io/docs/async/",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit"
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit"
               },
               "topic": {
                 "title": "Topic",
@@ -4759,12 +4759,12 @@
               "async/amqp": {
                 "title": "Async Agent extra configuration",
                 "description": "[See the configuration for async/amqp](https://www.krakend.io/docs/async/amqp/)",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1async~1amqp.json"
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1async~1amqp.json"
               },
               "async/kafka": {
                 "title": "Kafka driver",
                 "description": "config details to consume from kafka topics",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1messaging~1kafka~1async_reader.json"
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1messaging~1kafka~1async_reader.json"
               }
             }
           },
@@ -4965,7 +4965,7 @@
           "description": "A margin of extra time where you will still accept the token after its expiration date. You should not accept expired tokens other than enabling two environments that are not perfectly synchronized and have minor clock drifts to accept each other differences. Any value specified here will be rounded to seconds, with a minimum of one second.\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
           "examples": [ "1m", "1s" ],
           "default": "1s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "secret_url": {
@@ -5106,7 +5106,7 @@
           "title": "Failed JWK Key cooldown",
           "description": "When a request comes with a token declaring an unknown `kid` (or the key strategy you choose), and the JWK is in a remote destination, KrakenD downloads the JWK from the Identity Provider for its recognition. Suppose there is a network failure, or the key is not in the list (e.g., you rotated the keys without anticipation). In that case, you can tell the gateway not to contact the Identity Provider again during the time specified here. We recommend setting this value, even with a low time (e.g., `10s`), to prevent misconfigurations from hammering your Identity Providers. Any values under one second are ignored.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
           "examples": [ "1m", "10s", "1h" ],
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "issuer": {
@@ -5154,7 +5154,7 @@
           "description": "A margin of time where you will accept an already expired token. You should not accept expired tokens other than enabling two environments that are not perfectly synchronized and have minor clock drifts to accept each other differences. Any value specified here will be rounded to seconds, with a minimum of one second.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
           "examples": [ "1m", "1s" ],
           "default": "1s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "operation_debug": {
@@ -5787,78 +5787,159 @@
           "type": "object",
           "patternProperties": {
             "default|^[0-9]+$": {
-              "type": "object",
-              "properties": {
-                "description": {
-                  "title": "Description",
-                  "description": "The description of this error code, e.g., `Page not found`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-                  "type": "string"
-                },
-                "content_type": {
-                  "title": "Content Type",
-                  "description": "The content type returned by this error, e.g., `application/json`",
-                  "type": "string"
-                },
-                "example": {
-                  "title": "Example",
-                  "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-                  "type": [
-                    "string",
-                    "object",
-                    "array",
-                    "boolean",
-                    "integer",
-                    "null",
-                    "number"
-                  ]
-                },
-                "examples": {
-                  "title": "Examples",
-                  "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-                  "examples": [
-                    {
-                      "Example 1": {
-                        "msg": "a message"
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "title": "Description",
+                      "description": "The description of this error code, e.g., `Page not found`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                      "type": "string"
+                    },
+                    "content_type": {
+                      "title": "Content Type",
+                      "description": "The content type returned by this error, e.g., `application/json`",
+                      "type": "string"
+                    },
+                    "example": {
+                      "title": "Example",
+                      "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                      "type": [
+                        "string",
+                        "object",
+                        "array",
+                        "boolean",
+                        "integer",
+                        "null",
+                        "number"
+                      ]
+                    },
+                    "examples": {
+                      "title": "Examples",
+                      "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                      "examples": [
+                        {
+                          "Example 1": {
+                            "msg": "a message"
+                          }
+                        },
+                        {
+                          "Example 1": {
+                            "msg": "a message"
+                          },
+                          "Example 2": {
+                            "error": "an error message"
+                          }
+                        }
+                      ],
+                      "type": "object",
+                      "additionalProperties": {
+                        "title": "Example",
+                        "type": [
+                          "string",
+                          "object",
+                          "array",
+                          "boolean",
+                          "integer",
+                          "null",
+                          "number"
+                        ]
                       }
                     },
-                    {
-                      "Example 1": {
-                        "msg": "a message"
-                      },
-                      "Example 2": {
-                        "error": "an error message"
-                      }
+                    "example_schema": {
+                      "description": "A JSON schema that describes the response format for the endpoint, directly as a JSON object, or encoded as a base64 string. Use either example or example_schema, but not both.",
+                      "type": [ "string", "object" ]
+                    },
+                    "ref": {
+                      "title": "Reference",
+                      "description": "The relative reference to the `components/schema` OpenAPI definition that will be used as definition of the accepted request. Notice that the path `#/components/schemas/` is not needed.",
+                      "examples": [ "your_schema_name" ],
+                      "type": "string"
                     }
-                  ],
-                  "type": "object",
-                  "additionalProperties": {
-                    "title": "Example",
-                    "type": [
-                      "string",
-                      "object",
-                      "array",
-                      "boolean",
-                      "integer",
-                      "null",
-                      "number"
-                    ]
+                  },
+                  "patternProperties": {
+                    "^[@$_#]": true
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "description": {
+                        "title": "Description",
+                        "description": "The description of this error code, e.g., `Page not found`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                        "type": "string"
+                      },
+                      "content_type": {
+                        "title": "Content Type",
+                        "description": "The content type returned by this error, e.g., `application/json`",
+                        "type": "string"
+                      },
+                      "example": {
+                        "title": "Example",
+                        "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                        "type": [
+                          "string",
+                          "object",
+                          "array",
+                          "boolean",
+                          "integer",
+                          "null",
+                          "number"
+                        ]
+                      },
+                      "examples": {
+                        "title": "Examples",
+                        "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                        "examples": [
+                          {
+                            "Example 1": {
+                              "msg": "a message"
+                            }
+                          },
+                          {
+                            "Example 1": {
+                              "msg": "a message"
+                            },
+                            "Example 2": {
+                              "error": "an error message"
+                            }
+                          }
+                        ],
+                        "type": "object",
+                        "additionalProperties": {
+                          "title": "Example",
+                          "type": [
+                            "string",
+                            "object",
+                            "array",
+                            "boolean",
+                            "integer",
+                            "null",
+                            "number"
+                          ]
+                        }
+                      },
+                      "example_schema": {
+                        "description": "A JSON schema that describes the response format for the endpoint, directly as a JSON object, or encoded as a base64 string. Use either example or example_schema, but not both.",
+                        "type": [ "string", "object" ]
+                      },
+                      "ref": {
+                        "title": "Reference",
+                        "description": "The relative reference to the `components/schema` OpenAPI definition that will be used as definition of the accepted request. Notice that the path `#/components/schemas/` is not needed.",
+                        "examples": [ "your_schema_name" ],
+                        "type": "string"
+                      }
+                    },
+                    "patternProperties": {
+                      "^[@$_#]": true
+                    },
+                    "additionalProperties": false
                   }
-                },
-                "example_schema": {
-                  "description": "A JSON schema that describes the response format for the endpoint, directly as a JSON object, or encoded as a base64 string. Use either example or example_schema, but not both.",
-                  "type": [ "string", "object" ]
-                },
-                "ref": {
-                  "title": "Reference",
-                  "description": "The relative reference to the `components/schema` OpenAPI definition that will be used as definition of the accepted request. Notice that the path `#/components/schemas/` is not needed.",
-                  "examples": [ "your_schema_name" ],
-                  "type": "string"
                 }
-              },
-              "patternProperties": {
-                "^[@$_#]": true
-              },
-              "additionalProperties": false
+              ]
             }
           },
           "additionalProperties": false
@@ -6111,7 +6192,7 @@
           "title": "Cleanup Period",
           "description": "The cleanup period is how often the routine(s) in charge of optimizing the memory dedicated will go iterate all counters looking for outdated TTL and remove them. A low value keeps the memory slightly decreasing, but as a trade-off, it will increase the CPU dedicated to achieving this optimization. This is an advanced micro-optimization setting that should be used with caution.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
           "default": "1m",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "cleanup_threads": {
@@ -6135,7 +6216,7 @@
           "title": "Time window",
           "description": "Time period in which the maximum rates operate. For instance, if you set an `every` of `10m` and a rate of `5`, you are allowing 5 requests every ten minutes.\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
           "default": "1s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "key": {
@@ -6218,7 +6299,7 @@
           "title": "Time window",
           "description": "Time period in which the maximum rates operate. For instance, if you set an `every` of `10m` and a rate of `5`, you are allowing 5 requests every ten minutes.\n\nSee: https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/",
           "default": "1s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "key": {
@@ -6267,13 +6348,13 @@
               "ratelimit": {
                 "title": "Ratelimit",
                 "description": "The rate limit definition. This is an object with the same attributes the [service rate limit](https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/) has.\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1qos~1ratelimit~1router.json",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1qos~1ratelimit~1router.json",
                 "type": "object"
               },
               "ratelimit_redis": {
                 "title": "Redis Ratelimit",
                 "description": "The stateful rate limit definition. This is an object with the same attributes the [stateful service rate limit](https://www.krakend.io/docs/enterprise/throttling/global-rate-limit/) has.\n\nSee: https://www.krakend.io/docs/enterprise/docs/enterprise/service-settings/tiered-rate-limit/",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1qos~1ratelimit~1redis.json",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1qos~1ratelimit~1redis.json",
                 "type": "object"
               },
               "tier_value": {
@@ -6434,7 +6515,7 @@
           "title": "Max Age",
           "description": "For how long the response can be cached. For zero values the `Access-Control-Max-Age` header is not set.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
           "default": "0h",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "options_passthrough": {
@@ -7013,13 +7094,13 @@
           "title": "Ping frequency",
           "description": "Sets the time between pings checking the health of the system.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
           "default": "54s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit"
         },
         "pong_wait": {
           "title": "Pong timeout",
           "description": "Sets the maximum time KrakenD will until the pong times out.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
           "default": "60s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit"
         },
         "read_buffer_size": {
           "title": "Read buffer size",
@@ -7050,7 +7131,7 @@
           "title": "Timeout",
           "description": "Sets the read timeout for the backend. After a read has timed out, the websocket connection is terminated and KrakenD will try to reconnect according the `backoff_strategy`. Minimum accepted time is one minute. This flag only applies when you use ' enable_direct_communication`.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
           "default": "5m",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit"
         },
         "write_buffer_size": {
           "title": "Write buffer size",
@@ -7062,7 +7143,7 @@
           "title": "Write timeout",
           "description": "Sets the maximum time KrakenD will wait until the write times out.\n\nSee: https://www.krakend.io/docs/enterprise/websockets/",
           "default": "10s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit"
         }
       },
       "patternProperties": {
@@ -7077,7 +7158,7 @@
       "properties": {
         "ai/mcp": {
           "description": "Enterprise only. Declares the endpoint as an [MCP server entrypoint](https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/)",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1ai~1mcp_endpoint.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1mcp_endpoint.json"
         },
         "auth/api-keys": {
           "title": "API-key validation",
@@ -7116,82 +7197,82 @@
         },
         "auth/basic": {
           "description": "Enterprise only. Validates the access to the endpoint using [Basic Authentication](https://www.krakend.io/docs/enterprise/authentication/basic-authentication/).",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1auth~1basic.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1auth~1basic.json",
           "type": "object"
         },
         "auth/signer": {
           "description": "A component that [cryptographically signs tokens](https://www.krakend.io/docs/authorization/jwt-signing/) generated by your legacy login system (without JWT signing) to be later validated by the `auth/validator` component.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1auth~1signer.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1auth~1signer.json",
           "type": "object"
         },
         "auth/validator": {
           "description": "Protect endpoints from public usage by [validating JWT tokens](https://www.krakend.io/docs/authorization/jwt-validation/) generated by any industry-standard OpenID Connect (OIDC) integration.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1auth~1validator.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1auth~1validator.json",
           "type": "object"
         },
         "documentation/openapi": {
           "description": "Enterprise only. Documents the endpoint so you can [automatically generate OpenAPI documentation](https://www.krakend.io/docs/enterprise/developer/openapi/) through `krakend openapi export` command.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1documentation~1openapi.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1documentation~1openapi.json",
           "type": "object"
         },
         "documentation/postman": {
           "description": "Enterprise only. Documents the endpoint so you can [generate postman documentation automatically](https://www.krakend.io/docs/enterprise/developer/postman/) through the `krakend postman export` command.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1documentation~1postman_endpoint.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1documentation~1postman_endpoint.json",
           "type": "object"
         },
         "governance/quota": {
           "description": "Enterprise only. [Attach a quota](https://www.krakend.io/docs/enterprise/governance/quota/) to the endpoint, backend, or service. The quota component allows you to limit the number of requests a user can do in a given time window.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1governance~1quota.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1governance~1quota.json",
           "type": "object"
         },
         "modifier/jmespath": {
           "description": "Enterprise only. The [JMESPath](https://www.krakend.io/docs/enterprise/endpoints/jmespath/) is a query language that allows you to select, slice, filter, map, project, flatten, sort, and all sorts of operations on data.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1jmespath.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1jmespath.json",
           "type": "object"
         },
         "modifier/lua-endpoint": {
           "description": "[Scripting with Lua](https://www.krakend.io/docs/endpoints/lua/) is an additional choice to extend your business logic, and is compatible with the rest of options such as CEL, Martian, or other Go plugins and middlewares.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1lua.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1lua.json",
           "type": "object"
         },
         "modifier/lua-proxy": {
           "description": "[Scripting with Lua](https://www.krakend.io/docs/endpoints/lua/) is an additional choice to extend your business logic, and is compatible with the rest of options such as CEL, Martian, or other Go plugins and middlewares.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1lua.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1lua.json",
           "type": "object"
         },
         "modifier/request-body-extractor": {
           "description": "Enterprise only. [Extracts fields from the incoming request body](https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/) and promotes them to request headers or query strings. Runs in the proxy pipeline.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1request-body-extractor.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1request-body-extractor.json",
           "type": "object"
         },
         "modifier/request-body-extractor/early": {
           "description": "Enterprise only. [Extracts fields from the incoming request body](https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/) and promotes them to request headers or query strings. Runs at the HTTP handler level before authentication and all other handlers.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1request-body-extractor.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1request-body-extractor.json",
           "type": "object"
         },
         "modifier/request-body-generator": {
           "description": "Enterprise only. Freely [transform the request body/payload](https://www.krakend.io/backends/body-generator/) you will send to your services using a templating system.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1body-generator.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1body-generator.json",
           "type": "object"
         },
         "modifier/response-body": {
           "description": "An alias of `modifier/response-body-generator`",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1response-body.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1response-body.json",
           "type": "object"
         },
         "modifier/response-body-generator": {
           "description": "Enterprise only. Freely [transform the response body](https://www.krakend.io/docs/enterprise/backends/response-body-generator/) you get from your backends.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1body-generator.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1body-generator.json",
           "type": "object"
         },
         "plugin/middleware": {
           "description": "Enterprise only. Inject your own [Go middleware plugins](https://www.krakend.io/docs/extending/injecting-plugins/)",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1plugin~1middleware.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1middleware.json",
           "type": "object"
         },
         "plugin/req-resp-modifier": {
           "description": "Inject your own [Go request and response modifier plugins](https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/)",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1plugin~1req-resp-modifier.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1req-resp-modifier.json",
           "type": "object"
         },
         "proxy": {
@@ -7214,7 +7295,7 @@
             "flatmap_filter": {
               "title": "Flatmap (Array manipulation)",
               "description": "The list of operations to **execute sequentially** (top down). Every operation is defined with an object containing two properties:\n\nSee: https://www.krakend.io/docs/backends/flatmap/",
-              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1proxy~1flatmap.json",
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1proxy~1flatmap.json",
               "type": "array",
               "items": {
                 "type": "object"
@@ -7284,47 +7365,47 @@
         "qos/ratelimit/router": {
           "title": "Router Rate-limiting",
           "description": "The router rate limit feature allows you to set a [number of maximum requests per second a KrakenD endpoint will accept](https://www.krakend.io/docs/enterprise/endpoints/rate-limit/).\n\nSee: https://www.krakend.io/docs/endpoints/rate-limit/",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1qos~1ratelimit~1router.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1qos~1ratelimit~1router.json",
           "type": "object"
         },
         "qos/ratelimit/router/redis": {
           "description": "Enterprise only. Stateful endpoint rate limit persisted on a [Redis database](https://www.krakend.io/docs/enterprise/throttling/endpoint-redis-rate-limit/)",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1qos~1ratelimit~1redis.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1qos~1ratelimit~1redis.json",
           "type": "object"
         },
         "qos/ratelimit/tiered": {
           "description": "Enterprise only. The [rate limit based on tiers](https://www.krakend.io/docs/enterprise/service-settings/tiered-rate-limit/) allows you to have multiple sets of rate limits that apply differently to users depending on their tier or sometimes called subscription plans.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1qos~1ratelimit~1tiered.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1qos~1ratelimit~1tiered.json",
           "type": "object"
         },
         "security/bot-detector": {
           "description": "The [bot detector](https://www.krakend.io/docs/throttling/botdetector/) module checks incoming connections to the gateway to determine if a bot made them, helping you detect and reject bots carrying out scraping, content theft, and form spam.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1security~1bot-detector.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1security~1bot-detector.json",
           "type": "object"
         },
         "security/cors": {
           "description": "Define [Cross-Origin Resource Sharing (CORS)](https://www.krakend.io/docs/enterprise/service-settings/cors/) configuration to send additional HTTP headers to tell browsers if they can use resources from a different origin.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1security~1cors.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1security~1cors.json",
           "type": "object"
         },
         "security/http": {
           "description": "[Security HTTP headers](https://www.krakend.io/docs/service-settings/security/), including HSTS, HPKP, MIME-Sniffing prevention, Clickjacking protection, and others.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1security~1http.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1security~1http.json",
           "type": "object"
         },
         "security/policies": {
           "description": "Enterprise only. A [policies engine](https://www.krakend.io/docs/enterprise/security-policies/) that allows you to write custom sets of policies that are validated during requests, responses, or token validation.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1security~1policies.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1security~1policies.json",
           "type": "object"
         },
         "telemetry/opentelemetry": {
           "description": "Enables metrics and traces using [OpenTelemetry](https://www.krakend.io/docs/telemetry/opentelemetry/).",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1telemetry~1opentelemetry-endpoint.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1telemetry~1opentelemetry-endpoint.json",
           "type": "object"
         },
         "validation/cel": {
           "description": "The [Common Expression Language (CEL)](https://www.krakend.io/docs/endpoints/common-expression-language-cel/) middleware enables expression evaluation, when an expression returns false, KrakenD does not return the content as the condition has failed. Otherwise, if all expressions returned true, the content is served.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1validation~1cel.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1validation~1cel.json",
           "type": "array"
         },
         "validation/json-schema": {
@@ -7334,12 +7415,12 @@
         },
         "validation/response-json-schema": {
           "description": "Enterprise only. Applies a [JSON schema validation to the response](https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/) before is sent to the end-user or before it’s merged in the endpoint with the rest of the backends.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1validation~1response-json-schema.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1validation~1response-json-schema.json",
           "type": "object"
         },
         "websocket": {
           "description": "Enterprise only. Enables [websocket communication](https://www.krakend.io/docs/enterprise/websockets/)",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1websocket.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1websocket.json",
           "type": "object"
         }
       },
@@ -7368,14 +7449,14 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend.json",
+            "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1backend.json",
             "type": "object"
           }
         },
         "cache_ttl": {
           "title": "Cache TTL",
           "description": "Sets or overrides the cache headers to inform how long the client or CDN can cache the request to this endpoint. Setting this value to a zero-value will use the `cache_ttl` in the root of the configuration if any. This attribute **does not cache** content but tells others how to do it. For caching, see [Caching Backend Responses](https://www.krakend.io/docs/backends/caching/).",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit"
         },
         "concurrent_calls": {
           "title": "Concurrent calls",
@@ -7395,7 +7476,7 @@
         "extra_config": {
           "title": "Extra configuration",
           "description": "Besides the functionality ofered by the endpoint, you can load more functionalty into this endpoint by adding new entries under this extra configuration object. You will find across all documentation a lot of functionality that is designed to be placed here.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1endpoint_extra_config.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1endpoint_extra_config.json",
           "type": "object"
         },
         "input_headers": {
@@ -7446,7 +7527,7 @@
           "description": "The duration you write in the timeout represents the **whole duration of the pipe**, so it counts the time all your backends take to respond and the processing of all the components involved in the endpoint (the request, fetching data, manipulation, etc.). Usually specified in seconds (`s`) or milliseconds (`ms`. e.g.: `2000ms` or `2s`). If you don't set any timeout, the timeout is taken from the entry in the service level, or to the system's default",
           "examples": [ "2s", "1500ms" ],
           "default": "2s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         }
       },
@@ -7497,7 +7578,7 @@
                 "title": "Ping Period",
                 "description": "Krakend will ping all connected clients from time to time to determine if the session must be kept alive. This duration strings sets the ping period KrakenD will do to its connected clients. When you don't set a value, there is no ping process and KrakenD is unaware of disconnected clients, so it won't report live notifications.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
                 "default": "0s",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
                 "type": "string"
               },
               "stateless": {
@@ -7570,7 +7651,7 @@
                     "workflow": {
                       "title": "Workflow",
                       "description": "This is the action/pipeline performed by the tool. While you can add a single action to the tool, because actions can be chained and have complex logic, we have called this a workflow, whether is connecting to a single remote service, many, aggreggating, or any other functionality supported by KrakenD. See the [Workflow syntax](https://www.krakend.io/docs/enterprise/endpoints/workflows/)",
-                      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1workflow.json",
+                      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1workflow.json",
                       "type": "object"
                     }
                   },
@@ -7724,7 +7805,7 @@
           "title": "Revoke Server ping interval",
           "description": "Time the server and the client wait to verify they are alive with each other (health check). Defaults to `30s`. Do not lower this value a lot; otherwise, you will have a lot of internal traffic.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/revoke-server/",
           "examples": [ "30s" ],
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "revoke_server_ping_url": {
@@ -7853,7 +7934,7 @@
               "deny_queue_flush_interval": {
                 "description": "When you have a `rejecter_cache`, the time interval to write the events stored in the buffer in the bloom filter. This is the maximum time that can elapse before the events are written to the bloom filter.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
                 "default": "1s",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
                 "type": "string"
               },
               "deny_queue_flush_threshold": {
@@ -7909,7 +7990,7 @@
                   "cleanup_interval": {
                     "description": "The time interval to clean up the bloom filter. This is the maximum time that can elapse before the bloom filter is cleaned up.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
                     "default": "30m",
-                    "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+                    "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
                     "type": "string"
                   },
                   "hash_name": {
@@ -8064,7 +8145,7 @@
                           "type": "array",
                           "minItems": 1,
                           "items": {
-                            "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1backend.json",
+                            "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1backend.json",
                             "type": "object"
                           }
                         },
@@ -8076,7 +8157,7 @@
                             "auth/validator": {
                               "title": "JWT validation",
                               "description": "The JWT validation for this method. The configuration underneath is exactly as in the [JWT validator](https://www.krakend.io/docs/enterprise/authorization/jwt-validation/)",
-                              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1auth~1validator.json",
+                              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1auth~1validator.json",
                               "type": "object"
                             }
                           },
@@ -8304,7 +8385,7 @@
         "period": {
           "title": "Period",
           "description": "For how long the content lives in the cache. Usually in seconds, minutes, or hours. E.g., use `120s` or `2m` for two minutes\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/global-rate-limit/",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "rate": {
@@ -8462,13 +8543,13 @@
       "required": [ "name" ],
       "properties": {
         "geoip": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1plugin~1geoip.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1geoip.json"
         },
         "ip-filter": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1plugin~1ip-filter.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1ip-filter.json"
         },
         "jwk-aggregator": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1plugin~1jwk-aggregator.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1jwk-aggregator.json"
         },
         "name": {
           "title": "Plugin name",
@@ -8484,22 +8565,22 @@
         },
         "redis-ratelimit": {
           "deprecated": true,
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1plugin~1redis-ratelimit.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1redis-ratelimit.json"
         },
         "static-filesystem": {
           "deprecated": true,
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1plugin~1static-filesystem.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1static-filesystem.json"
         },
         "url-rewrite": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1plugin~1url-rewrite.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1url-rewrite.json"
         },
         "virtualhost": {
           "deprecated": true,
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1plugin~1virtualhost.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1virtualhost.json"
         },
         "wildcard": {
           "deprecated": true,
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1plugin~1wildcard.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1wildcard.json"
         }
       }
     },
@@ -8540,20 +8621,20 @@
                 "title": "Connection Max Idle Time",
                 "description": "The maximum amount of time a connection may be idle. Should be less than server's timeout.Expired connections may be closed lazily before reuse. If <= 0, connections are not closed due to a connection's idle time.",
                 "default": "30m",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
                 "type": "string"
               },
               "conn_max_life_time": {
                 "title": "conn_max_life_time",
                 "description": "The maximum amount of time a connection may be reused. When the attribute is not declared, the connection does not expire",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
                 "type": "string"
               },
               "dial_timeout": {
                 "title": "Dial Timeout",
                 "description": "Dial timeout for establishing new connections",
                 "default": "5s",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
                 "type": "string"
               },
               "max_active_conns": {
@@ -8584,7 +8665,7 @@
                 "title": "Max retry backoff",
                 "description": "Every retry is executed increasing randomly starting at the `min_retry_backoff` until the `max_retry_backoff` is reached. This is the longest possible time.",
                 "default": "512ms",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
                 "type": "string"
               },
               "min_idle_conns": {
@@ -8596,7 +8677,7 @@
               "min_retry_backoff": {
                 "description": "Every retry is executed increasing randomly starting at the `min_retry_backoff` until the `max_retry_backoff` is reached. This is the shortest possible time.",
                 "default": "8ms",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
                 "type": "string"
               },
               "name": {
@@ -8659,13 +8740,13 @@
               "pool_timeout": {
                 "title": "Pool timeout",
                 "description": "Amount of time the client waits for a connection if all connections are busy.",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
                 "type": "string"
               },
               "tls": {
                 "title": "tls",
                 "description": "An object with any [client TLS configuration](https://www.krakend.io/docs/enterprise/service-settings/tls/#client-tls-settings) to this connection",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1client_tls.json",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1client_tls.json",
                 "type": "object"
               },
               "user_name": {
@@ -8701,13 +8782,13 @@
                 "title": "Connection Max Idle Time",
                 "description": "The maximum amount of time a connection may be idle. Should be less than server's timeout.Expired connections may be closed lazily before reuse. If <= 0, connections are not closed due to a connection's idle time.",
                 "default": "30m",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
                 "type": "string"
               },
               "conn_max_life_time": {
                 "title": "conn_max_life_time",
                 "description": "The maximum amount of time a connection may be reused. When the attribute is not declared, the connection does not expire",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
                 "type": "string"
               },
               "db": {
@@ -8720,7 +8801,7 @@
                 "title": "Dial Timeout",
                 "description": "Dial timeout for establishing new connections",
                 "default": "5s",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
                 "type": "string"
               },
               "max_active_conns": {
@@ -8745,7 +8826,7 @@
                 "title": "Max retry backoff",
                 "description": "Every retry is executed increasing randomly starting at the `min_retry_backoff` until the `max_retry_backoff` is reached. This is the longest possible time.",
                 "default": "512ms",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
                 "type": "string"
               },
               "min_idle_conns": {
@@ -8757,7 +8838,7 @@
               "min_retry_backoff": {
                 "description": "Every retry is executed increasing randomly starting at the `min_retry_backoff` until the `max_retry_backoff` is reached. This is the shortest possible time.",
                 "default": "8ms",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
                 "type": "string"
               },
               "name": {
@@ -8820,13 +8901,13 @@
               "pool_timeout": {
                 "title": "Pool timeout",
                 "description": "Amount of time the client waits for a connection if all connections are busy.",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
                 "type": "string"
               },
               "tls": {
                 "title": "tls",
                 "description": "An object with any [client TLS configuration](https://www.krakend.io/docs/enterprise/service-settings/tls/#client-tls-settings) to this connection",
-                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1client_tls.json",
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1client_tls.json",
                 "type": "object"
               },
               "user_name": {
@@ -9141,7 +9222,7 @@
         "ttl": {
           "title": "TTL",
           "description": "TTL against Influx.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb-native/",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit"
         },
         "username": {
           "title": "Username",
@@ -9204,7 +9285,7 @@
         "backend": {
           "title": "Backend log format",
           "description": "Enterprise only. Add a specific [Backend Log](https://www.krakend.io/docs/enterprise/logging/#backend-log). Useful to see status codes, headers, and other information that come from your backends.\n\nSee: https://www.krakend.io/docs/enterprise/logging/",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1telemetry~1backend_log.json",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1telemetry~1backend_log.json",
           "type": "object"
         },
         "custom_format": {
@@ -9289,7 +9370,7 @@
           "title": "Collection time",
           "description": "The time window to consolidate collected metrics. Metrics are updated in their internal counters all the time, but the `/__stats/` endpoint, or the Influx reporter, won't see them updated until this window completes.\n\nSee: https://www.krakend.io/docs/telemetry/extended-metrics/",
           "default": "60s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
           "type": "string"
         },
         "endpoint_disabled": {
@@ -9654,7 +9735,7 @@
                   "title": "Timeout",
                   "description": "The maximum time you will wait for InfluxDB to respond.\n\nSee: https://www.krakend.io/docs/telemetry/influxdb/",
                   "examples": [ "2s" ],
-                  "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+                  "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
                   "type": "string"
                 },
                 "username": {
@@ -9772,7 +9853,7 @@
                   "title": "Reconnection",
                   "description": "The reconnection time\n\nSee: https://www.krakend.io/docs/telemetry/ocagent/",
                   "default": "2s",
-                  "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+                  "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
                   "type": "string"
                 },
                 "service_name": {
@@ -10615,70 +10696,70 @@
       "type": "object",
       "properties": {
         "ai/mcp": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1ai~1mcp.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1mcp.json"
         },
         "auth/api-keys": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1auth~1api-keys.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1auth~1api-keys.json"
         },
         "auth/basic": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1auth~1basic.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1auth~1basic.json"
         },
         "auth/revoker": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1auth~1revoker.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1auth~1revoker.json"
         },
         "auth/validator": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1auth~1jose.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1auth~1jose.json"
         },
         "documentation/openapi": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1documentation~1openapi.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1documentation~1openapi.json"
         },
         "documentation/postman": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1documentation~1postman.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1documentation~1postman.json"
         },
         "governance/processors": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1governance~1processors.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1governance~1processors.json"
         },
         "governance/quota": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1governance~1quota.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1governance~1quota.json"
         },
         "grpc": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1grpc.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1grpc.json"
         },
         "modifier/lua-endpoint": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1lua.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1lua.json"
         },
         "modifier/request-body-extractor": {
           "title": "Request Body Extractor",
           "description": "Enterprise only. [Extracts fields from the incoming request body](https://www.krakend.io/docs/enterprise/endpoints/request-body-extractor/) and promotes them to request headers or query strings at the service level, applying to every incoming request.",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1request-body-extractor.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1request-body-extractor.json"
         },
         "modifier/response-headers": {
           "title": "Response Headers modifier",
           "description": "Enterprise only. Allows you to transform response headers declaratively.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1modifier~1response-headers.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1response-headers.json"
         },
         "plugin/http-server": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1plugin~1http-server.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1http-server.json"
         },
         "qos/ratelimit/service": {
           "title": "Service Rate-limiting",
           "description": "Enterprise only. The service rate limit feature allows you to set the maximum requests per second a user or group of users can do to KrakenD and works analogously to the endpoint rate limit.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/service-rate-limit/",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1qos~1ratelimit~1router.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1qos~1ratelimit~1router.json"
         },
         "qos/ratelimit/service/redis": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1qos~1ratelimit~1redis.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1qos~1ratelimit~1redis.json"
         },
         "qos/ratelimit/tiered": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1qos~1ratelimit~1tiered.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1qos~1ratelimit~1tiered.json"
         },
         "redis": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1redis.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1redis.json"
         },
         "router": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1router.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1router.json"
         },
         "security/bot-detector": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1security~1bot-detector.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1security~1bot-detector.json"
         },
         "security/cors": {
           "title": "Cross Origin Resource Sharing",
@@ -10753,49 +10834,49 @@
               "title": "Max age",
               "description": "For how long the response can be cached.\n\nSee: https://www.krakend.io/docs/service-settings/cors/",
               "examples": [ "12h" ],
-              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1timeunits.json/$defs/timeunit",
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
               "type": "string"
             }
           }
         },
         "security/http": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1security~1http.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1security~1http.json"
         },
         "server/static-filesystem": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1server~1static-filesystem.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1server~1static-filesystem.json"
         },
         "server/virtualhost": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1server~1virtualhost.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1server~1virtualhost.json"
         },
         "telemetry/gelf": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1telemetry~1gelf.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1telemetry~1gelf.json"
         },
         "telemetry/influx": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1telemetry~1influx.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1telemetry~1influx.json"
         },
         "telemetry/logging": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1telemetry~1logging.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1telemetry~1logging.json"
         },
         "telemetry/logstash": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1telemetry~1logstash.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1telemetry~1logstash.json"
         },
         "telemetry/metrics": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1telemetry~1metrics.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1telemetry~1metrics.json"
         },
         "telemetry/moesif": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1telemetry~1moesif.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1telemetry~1moesif.json"
         },
         "telemetry/newrelic": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1telemetry~1newrelic.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1telemetry~1newrelic.json"
         },
         "telemetry/opencensus": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1telemetry~1opencensus.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1telemetry~1opencensus.json"
         },
         "telemetry/opentelemetry": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1telemetry~1opentelemetry.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1telemetry~1opentelemetry.json"
         },
         "telemetry/opentelemetry-security": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v2.13~1telemetry~1opentelemetry-security.json"
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1telemetry~1opentelemetry-security.json"
         }
       },
       "patternProperties": {
