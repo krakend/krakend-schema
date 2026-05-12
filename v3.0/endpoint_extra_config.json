@@ -157,7 +157,8 @@
         },
         "sequential": {
           "title": "Sequential proxy",
-          "description": "When set to true, instead of fetching all backend content in parallel, the calls are made in order (sequentially), allowing you to chain backend requests and making calls dependent one of each other. If any of the calls fail, the remaining ones are aborted.\n\nSee: https://www.krakend.io/docs/endpoints/sequential-proxy/",
+          "description": "Deprecated: use `strategy` instead. When set to true, instead of fetching all backend content in parallel, the calls are made in order (sequentially), allowing you to chain backend requests and making calls dependent one of each other. If any of the calls fail, the remaining ones are aborted. When `strategy` is set, this key is ignored\n\nSee: https://www.krakend.io/docs/endpoints/sequential-proxy/",
+          "deprecated": true,
           "default": false,
           "type": "boolean"
         },
@@ -203,6 +204,22 @@
             "^[@$_#]": true
           },
           "additionalProperties": false
+        },
+        "force_sandboxed_request": {
+          "title": "Force sandboxed request",
+          "description": "Ensures each backend pipe receives a deep copy of the request, useful for example when the backend has components such as Lua or plugins that modify the request headers",
+          "default": false,
+          "type": "boolean"
+        },
+        "strategy": {
+          "title": "Proxy strategy",
+          "description": "Chooses the strategy to use when there is more than 1 backend. Notice that `fallback` value is for Enterprise only.",
+          "default": false,
+          "enum": [
+            "parallel",
+            "sequential",
+            "fallback"
+          ]
         }
       },
       "patternProperties": {
