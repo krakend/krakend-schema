@@ -214,12 +214,8 @@
         "strategy": {
           "title": "Proxy strategy",
           "description": "Chooses the strategy to use when there is more than 1 backend. Notice that `fallback` value is for Enterprise only.",
-          "default": false,
-          "enum": [
-            "parallel",
-            "sequential",
-            "fallback"
-          ]
+          "default": "parallel",
+          "enum": [ "parallel", "sequential", "fallback" ]
         }
       },
       "patternProperties": {
