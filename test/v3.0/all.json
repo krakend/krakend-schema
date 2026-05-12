@@ -627,7 +627,39 @@
                                             },
                                             "array": [1,2,3]
                                         }
-                                    }
+                                    },
+                                    "200": [
+                                        {
+                                            "@comment": "Some comment",
+                                            "description": "200 json response",
+                                            "example_schema": "eyJhbGxPZiI6W3sicHJvcGVydGllcyI6eyJ2ZXJzaW9uIjp7InR5cGUiOiJzdHJpbmcifX0sInJlcXVpcmVkIjpbInZlcnNpb24iXSwidHlwZSI6Im9iamVjdCJ9LHsicHJvcGVydGllcyI6eyJkaXJlY3RvcnkiOnsiYWxsT2YiOlt7InByb3BlcnRpZXMiOnsibWV0YWRhdGEiOnsidHlwZSI6Im9iamVjdCIsIngtZ28tdHlwZSI6IkRpcmVjdG9yeU1ldGFkYXRhIn0sIm5hbWUiOnsidHlwZSI6InN0cmluZyIsIngtb2FwaS1jb2RlZ2VuLWV4dHJhLXRhZ3MiOnsiYmluZGluZyI6InJlcXVpcmVkIn19fSwicmVxdWlyZWQiOlsibmFtZSJdLCJ0eXBlIjoib2JqZWN0In0seyJwcm9wZXJ0aWVzIjp7ImNyZWF0ZWRBdCI6eyJmb3JtYXQiOiJkYXRlLXRpbWUiLCJ0eXBlIjoic3RyaW5nIn0sImRlbGV0ZWRBdCI6eyJmb3JtYXQiOiJkYXRlLXRpbWUiLCJ0eXBlIjoic3RyaW5nIn0sImlkIjp7InR5cGUiOiJzdHJpbmciLCJ4LWdvLXR5cGUiOiJEaXJlY3RvcnlJRCJ9LCJwYXJlbnQiOnsib3B0aW9uYWwiOnRydWUsInR5cGUiOiJzdHJpbmciLCJ4LWdvLXR5cGUiOiJEaXJlY3RvcnlJRCJ9LCJ1cGRhdGVkQXQiOnsiZm9ybWF0IjoiZGF0ZS10aW1lIiwidHlwZSI6InN0cmluZyJ9fSwicmVxdWlyZWQiOlsiaWQiLCJjcmVhdGVkQXQiLCJ1cGRhdGVkQXQiXSwidHlwZSI6Im9iamVjdCJ9XX19LCJyZXF1aXJlZCI6WyJkaXJlY3RvcnkiXSwidHlwZSI6Im9iamVjdCJ9XX0=",
+                                            "content_type": "application/json",
+                                            "example": {
+                                                "foo": "bar"
+                                            },
+                                            "examples": {
+                                                "foo": {
+                                                    "foo": "bar"
+                                                },
+                                                "array": [1,2,3]
+                                            }
+                                        },
+                                        {
+                                            "@comment": "Some comment",
+                                            "description": "200 xml response",
+                                            "example_schema": "eyJhbGxPZiI6W3sicHJvcGVydGllcyI6eyJ2ZXJzaW9uIjp7InR5cGUiOiJzdHJpbmcifX0sInJlcXVpcmVkIjpbInZlcnNpb24iXSwidHlwZSI6Im9iamVjdCJ9LHsicHJvcGVydGllcyI6eyJkaXJlY3RvcnkiOnsiYWxsT2YiOlt7InByb3BlcnRpZXMiOnsibWV0YWRhdGEiOnsidHlwZSI6Im9iamVjdCIsIngtZ28tdHlwZSI6IkRpcmVjdG9yeU1ldGFkYXRhIn0sIm5hbWUiOnsidHlwZSI6InN0cmluZyIsIngtb2FwaS1jb2RlZ2VuLWV4dHJhLXRhZ3MiOnsiYmluZGluZyI6InJlcXVpcmVkIn19fSwicmVxdWlyZWQiOlsibmFtZSJdLCJ0eXBlIjoib2JqZWN0In0seyJwcm9wZXJ0aWVzIjp7ImNyZWF0ZWRBdCI6eyJmb3JtYXQiOiJkYXRlLXRpbWUiLCJ0eXBlIjoic3RyaW5nIn0sImRlbGV0ZWRBdCI6eyJmb3JtYXQiOiJkYXRlLXRpbWUiLCJ0eXBlIjoic3RyaW5nIn0sImlkIjp7InR5cGUiOiJzdHJpbmciLCJ4LWdvLXR5cGUiOiJEaXJlY3RvcnlJRCJ9LCJwYXJlbnQiOnsib3B0aW9uYWwiOnRydWUsInR5cGUiOiJzdHJpbmciLCJ4LWdvLXR5cGUiOiJEaXJlY3RvcnlJRCJ9LCJ1cGRhdGVkQXQiOnsiZm9ybWF0IjoiZGF0ZS10aW1lIiwidHlwZSI6InN0cmluZyJ9fSwicmVxdWlyZWQiOlsiaWQiLCJjcmVhdGVkQXQiLCJ1cGRhdGVkQXQiXSwidHlwZSI6Im9iamVjdCJ9XX19LCJyZXF1aXJlZCI6WyJkaXJlY3RvcnkiXSwidHlwZSI6Im9iamVjdCJ9XX0=",
+                                            "content_type": "application/xml",
+                                            "example": {
+                                                "foo": "bar"
+                                            },
+                                            "examples": {
+                                                "foo": {
+                                                    "foo": "bar"
+                                                },
+                                                "array": [1,2,3]
+                                            }
+                                        }
+                                    ]
                                 },
                                 "request_definition": [
                                     {
