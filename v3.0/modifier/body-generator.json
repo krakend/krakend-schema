@@ -37,6 +37,11 @@
       "title": "Template",
       "description": "An inline base64 encoded Go template with the body you want to generate. This option is useful if you want to have the template embedded in the configuration instead of an external file.\n\nSee: https://www.krakend.io/docs/enterprise/backends/body-generator/",
       "type": "string"
+    },
+    "variables": {
+      "title": "Variables",
+      "description": "An object traversable with dots with any content you want to be available to the template.\n\nSee: https://www.krakend.io/docs/enterprise/backends/body-generator/",
+      "type": "object"
     }
   },
   "patternProperties": {
