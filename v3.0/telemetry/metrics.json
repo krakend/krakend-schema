@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.krakend.io/schema/v3.0/telemetry/metrics.json",
   "title": "Extended metrics",
-  "description": "Collects extended metrics to push to InfluxDB or expose them in the /__stats/ endpoint.\n\nSee: https://www.krakend.io/docs/telemetry/extended-metrics/",
+  "description": "Collects extended metrics to expose them in the /__stats/ endpoint.\n\nSee: https://www.krakend.io/docs/telemetry/extended-metrics/",
   "type": "object",
   "properties": {
     "backend_disabled": {
@@ -13,14 +13,14 @@
     },
     "collection_time": {
       "title": "Collection time",
-      "description": "The time window to consolidate collected metrics. Metrics are updated in their internal counters all the time, but the `/__stats/` endpoint, or the Influx reporter, won't see them updated until this window completes.\n\nSee: https://www.krakend.io/docs/telemetry/extended-metrics/",
+      "description": "The time window to consolidate collected metrics. Metrics are updated in their internal counters all the time, but the `/__stats/` endpoint won't see them updated until this window completes.\n\nSee: https://www.krakend.io/docs/telemetry/extended-metrics/",
       "default": "60s",
       "$ref": "../timeunits.json#/$defs/timeunit",
       "type": "string"
     },
     "endpoint_disabled": {
       "title": "Endpoint disabled",
-      "description": "When true do not publish the /__stats/ endpoint. Metrics won't be accessible via the endpoint but still collected (and you can send them to Influx for instance).\n\nSee: https://www.krakend.io/docs/telemetry/extended-metrics/",
+      "description": "When true do not publish the /__stats/ endpoint. Metrics won't be accessible via the endpoint but still collected.\n\nSee: https://www.krakend.io/docs/telemetry/extended-metrics/",
       "default": false,
       "type": "boolean"
     },

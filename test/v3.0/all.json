@@ -2352,15 +2352,6 @@
                         "enable_tcp": false,
                         "@extra_comment": "here"
                     },
-                    "telemetry/influx": {
-                        "address": "http://192.168.99.9:8086",
-                        "ttl": "25s",
-                        "buffer_size": 0,
-                        "db": "krakend",
-                        "username": "your-influxdb-user",
-                        "password": "your-influxdb-password",
-                        "@extra_comment": "here"
-                    },
                     "telemetry/metrics": {
                         "backend_disabled": false,
                         "collection_time": "60s",
