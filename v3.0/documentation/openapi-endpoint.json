@@ -26,28 +26,19 @@
     },
     "custom_security_schemes": {
       "title": "Custom security schemes",
-      "description": "Allows you to add custom security schemes under `components/securitySchemes` in the generated OpenAPI spec. This is useful when you want to define your own security schemes, different from the built-in ones (e.g., `jwt`, `apikey`, `cookie`, etc.). When the property is in the service level you must declare the schema (e.g., `\"OAuth2Security\":{...}`), and when it is in the endpoint you should only write the object name with not properties inside, e.g, `{\"OAuth2Security\":{}`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "description": "At the endpoint level, write only the object name with no properties inside, e.g, `{\"OAuth2Security\":{}`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
       "examples": [
         {
-          "OAuth2Security": {
-            "description": "OAuth2 security scheme",
-            "type": "oauth2",
-            "flows": {
-              "authorizationCode": {
-                "authorizationUrl": "https://example.com/oauth/authorize",
-                "scopes": {},
-                "tokenUrl": "https://example.com/oauth/token"
-              }
-            }
-          }
+          "OAuth2Security": {}
         }
       ],
       "type": "object",
       "patternProperties": {
         "^.*$": {
           "title": "Security Scheme",
-          "description": "A valid OpenAPI Security Scheme object.",
-          "type": "object"
+          "description": "An empty object referencing a security scheme defined at the service level.",
+          "type": "object",
+          "maxProperties": 0
         }
       }
     },
