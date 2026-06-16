@@ -2488,10 +2488,6 @@
                                 "description": "Description of tag1"
                             }
                         ],
-                        "schemes": [
-                            "http",
-                            "https"
-                        ],
                         "components_schemas": {
                             "Pet": "ewogICAgICAgICJ0eXBlIjogIm9iamVjdCIsCiAgICAgICAgInJlcXVpcmVkIjogWwogICAgICAgICAgImlkIiwKICAgICAgICAgICJuYW1lIgogICAgICAgIF0sCiAgICAgICAgInByb3BlcnRpZXMiOiB7CiAgICAgICAgICAiaWQiOiB7CiAgICAgICAgICAgICJ0eXBlIjogImludGVnZXIiLAogICAgICAgICAgICAiZm9ybWF0IjogImludDY0IgogICAgICAgICAgfSwKICAgICAgICAgICJuYW1lIjogewogICAgICAgICAgICAidHlwZSI6ICJzdHJpbmciCiAgICAgICAgICB9LAogICAgICAgICAgInRhZyI6IHsKICAgICAgICAgICAgInR5cGUiOiAic3RyaW5nIgogICAgICAgICAgfQogICAgICAgIH0KICAgICAgfQ==",
                             "Pot": {
