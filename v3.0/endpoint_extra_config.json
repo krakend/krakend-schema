@@ -60,7 +60,7 @@
     },
     "documentation/openapi": {
       "description": "Enterprise only. Documents the endpoint so you can [automatically generate OpenAPI documentation](https://www.krakend.io/docs/enterprise/developer/openapi/) through `krakend openapi export` command.",
-      "$ref": "documentation/openapi.json",
+      "$ref": "documentation/openapi-endpoint.json",
       "type": "object"
     },
     "documentation/postman": {
