@@ -160,9 +160,6 @@
     "telemetry/gelf": {
       "$ref": "telemetry/gelf.json"
     },
-    "telemetry/influx": {
-      "$ref": "telemetry/influx.json"
-    },
     "telemetry/logging": {
       "$ref": "telemetry/logging.json"
     },
