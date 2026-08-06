@@ -77,6 +77,41 @@
                   "default": "text",
                   "enum": [ "text", "audio", "image" ]
                 },
+                "annotations": {
+                  "title": "Tool Annotations",
+                  "description": "Optional behavioral hints about this tool, so AI clients can decide how to use it. These are hints only and are not guaranteed to be enforced.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                  "type": "object",
+                  "properties": {
+                    "destructive_hint": {
+                      "title": "Destructive Hint",
+                      "description": "Set to true if the tool may perform destructive updates, meaning it can delete or overwrite existing data. Only meaningful when `read_only_hint` is false.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "idempotent_hint": {
+                      "title": "Idempotent Hint",
+                      "description": "Set to true if calling the tool repeatedly with the same arguments has no additional effect beyond the first call. Only meaningful when `read_only_hint` is false.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "open_world_hint": {
+                      "title": "Open World Hint",
+                      "description": "Set to true if the tool interacts with an open, external world (for instance a public API or a web search) instead of a closed, well-known set of entities.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "read_only_hint": {
+                      "title": "Read Only Hint",
+                      "description": "Set to true if the tool does not modify its environment and only reads data.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                      "default": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "patternProperties": {
+                    "^[@$_#]": true
+                  },
+                  "additionalProperties": false
+                },
                 "input_headers": {
                   "title": "Allowed Headers In",
                   "description": "Defines the list of all headers allowed to reach the backend when passed.\nBy default, KrakenD won't pass any header from the client to the backend. This list is **case-insensitive**. You can declare headers in lowercase, uppercase, or mixed.\nAn entry `[\"Cookie\"]` forwards all cookies, and a single star element `[\"*\"]` as value forwards everything to the backend (**it's safer to avoid this option**), including cookies. See [headers forwarding](https://www.krakend.io/docs/endpoints/parameter-forwarding/#headers-forwarding)",
