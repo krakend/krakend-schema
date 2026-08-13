@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v3.0/ai/semantic-cache.json",
+  "title": "AI Semantic Cache",
+  "description": "Configuration for the AI Semantic Cache, including the embedding models used to generate vector representations of requests.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/semantic-cache/",
+  "type": "object",
+  "properties": {
+    "redis_connection": {
+      "description": "The name of the [Redis connection](https://www.krakend.io/docs/enterprise/service-settings/redis-connection-pools/) to use, it must exist under the `redis` namespace at the service level and written exactly as declared.",
+      "default": "default",
+      "type": "string"
+    },
+    "embedder": {
+      "description": "The name of the embedder to use, as defined in service extra_config",
+      "default": "default",
+      "type": "string"
+    },
+    "max_distance": {
+      "description": "The maximum cosine distance allowed when searching for semantically similar vectors. A value of 0 represents identical vectors; larger values allow greater differences.",
+      "type": "number"
+    },
+    "key_variants": {
+      "description": "Request fields used to create distinct cache entries. Requests with different values for these fields are stored and matched separately, even when their vectorized content is identical.",
+      "type": "array",
+      "items": {
+        "description": "A request field whose value is used to distinguish cache entries.",
+        "examples": [
+          "req_params.Ids",
+          "req_headers.x-user",
+          "req_query_string.user"
+        ],
+        "type": "string"
+      }
+    },
+    "req_content": {
+      "description": "The part of the request to vectorize. Use this to focus semantic matching on the content that can vary between requests. For example, if requests contain a large system prompt shared across calls, you can select only the user prompt to focus vector search on the variable content. If not specified, the entire request body is vectorized.",
+      "examples": [
+        "req_params.Ids",
+        "req_headers.x-user",
+        "req_query_string.user",
+        "req_body.content.prompt"
+      ],
+      "type": "string"
+    },
+    "ttl": {
+      "title": "Cache TTL",
+      "description": "The time-to-live (TTL) for cached entries.",
+      "default": "600s",
+      "$ref": "../timeunits.json#/$defs/timeunit",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false
+}
