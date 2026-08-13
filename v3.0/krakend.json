@@ -756,8 +756,28 @@
       "title": "AI LLM Connectors",
       "description": "Ready-to-use LLM connectors available for major AI vendors.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
       "type": "object",
-      "maxProperties": 1,
+      "oneOf": [
+        {
+          "required": [ "anthropic" ]
+        },
+        {
+          "required": [ "gemini" ]
+        },
+        {
+          "required": [ "mistral" ]
+        },
+        {
+          "required": [ "openai" ]
+        },
+        {
+          "required": [ "bedrock" ]
+        }
+      ],
+      "maxProperties": 2,
       "properties": {
+        "format": {
+          "enum": [ "anthropic", "openai" ]
+        },
         "anthropic": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1anthropic.json"
         },
@@ -7532,7 +7552,11 @@
             "xml",
             "negotiate",
             "string",
-            "no-op"
+            "no-op",
+            "streaming",
+            "sse",
+            "ndjson",
+            "eventstream"
           ]
         },
         "timeout": {
