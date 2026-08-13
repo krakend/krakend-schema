@@ -116,6 +116,46 @@
         }
       },
       "valid": false
+    },
+    {
+      "description": "Configuration with two provider",
+      "data": {
+        "bedrock": {
+          "v1": {
+            "credentials": "xxx",
+            "debug": false,
+            "variables": {
+            }
+          }
+        },
+        "mistral": {
+          "v1": {
+            "credentials": "xxx",
+            "debug": false,
+            "variables": {
+              "model": "model",
+              "foo": "bar",
+              "baz": 123
+            }
+          }
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "Valid Configuration with one provider and format",
+      "data": {
+        "format": "openai",
+        "bedrock": {
+          "v1": {
+            "credentials": "xxx",
+            "debug": false,
+            "variables": {
+            }
+          }
+        }
+      },
+      "valid": true
     }
   ]
 }
