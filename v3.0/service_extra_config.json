@@ -7,6 +7,9 @@
     "ai/mcp": {
       "$ref": "ai/mcp.json"
     },
+    "ai/semantic-cache": {
+      "$ref": "ai/semantic-cache-service.json"
+    },
     "auth/api-keys": {
       "$ref": "auth/api-keys.json"
     },

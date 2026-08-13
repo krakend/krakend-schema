@@ -779,6 +779,74 @@
       },
       "additionalProperties": false
     },
+    "https://www.krakend.io/schema/v3.0/timeunits.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Time units / Duration patterns",
+      "$defs": {
+        "timeunit": {
+          "title": "Duration",
+          "description": "The amount of time you want to assign followed by its unit (e.g.: `2s`, `200ms`). Valid time units are: ns, us, (or µs), ms, s, m, h.",
+          "type": "string",
+          "pattern": "^[0-9]+(ns|ms|us|µs|s|m|h)$"
+        }
+      }
+    },
+    "https://www.krakend.io/schema/v3.0/ai/semantic-cache.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "AI Semantic Cache",
+      "description": "Configuration for the AI Semantic Cache, including the embedding models used to generate vector representations of requests.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/semantic-cache/",
+      "type": "object",
+      "properties": {
+        "redis_connection": {
+          "description": "The name of the [Redis connection](https://www.krakend.io/docs/enterprise/service-settings/redis-connection-pools/) to use, it must exist under the `redis` namespace at the service level and written exactly as declared.",
+          "default": "default",
+          "type": "string"
+        },
+        "embedder": {
+          "description": "The name of the embedder to use, as defined in service extra_config",
+          "default": "default",
+          "type": "string"
+        },
+        "max_distance": {
+          "description": "The maximum cosine distance allowed when searching for semantically similar vectors. A value of 0 represents identical vectors; larger values allow greater differences.",
+          "type": "number"
+        },
+        "key_variants": {
+          "description": "Request fields used to create distinct cache entries. Requests with different values for these fields are stored and matched separately, even when their vectorized content is identical.",
+          "type": "array",
+          "items": {
+            "description": "A request field whose value is used to distinguish cache entries.",
+            "examples": [
+              "req_params.Ids",
+              "req_headers.x-user",
+              "req_query_string.user"
+            ],
+            "type": "string"
+          }
+        },
+        "req_content": {
+          "description": "The part of the request to vectorize. Use this to focus semantic matching on the content that can vary between requests. For example, if requests contain a large system prompt shared across calls, you can select only the user prompt to focus vector search on the variable content. If not specified, the entire request body is vectorized.",
+          "examples": [
+            "req_params.Ids",
+            "req_headers.x-user",
+            "req_query_string.user",
+            "req_body.content.prompt"
+          ],
+          "type": "string"
+        },
+        "ttl": {
+          "title": "Cache TTL",
+          "description": "The time-to-live (TTL) for cached entries.",
+          "default": "600s",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
     "https://www.krakend.io/schema/v3.0/auth/aws-sigv4.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "aws-sigv4 Authentication",
@@ -1346,18 +1414,6 @@
         "^[@$_#]": true
       },
       "additionalProperties": false
-    },
-    "https://www.krakend.io/schema/v3.0/timeunits.json": {
-      "$schema": "https://json-schema.org/draft/2019-09/schema",
-      "title": "Time units / Duration patterns",
-      "$defs": {
-        "timeunit": {
-          "title": "Duration",
-          "description": "The amount of time you want to assign followed by its unit (e.g.: `2s`, `200ms`). Valid time units are: ns, us, (or µs), ms, s, m, h.",
-          "type": "string",
-          "pattern": "^[0-9]+(ns|ms|us|µs|s|m|h)$"
-        }
-      }
     },
     "https://www.krakend.io/schema/v3.0/backend/grpc.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
@@ -4061,6 +4117,9 @@
       "properties": {
         "ai/llm": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1llm.json"
+        },
+        "ai/semantic-cache": {
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1semantic-cache.json"
         },
         "auth/aws-sigv4": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1auth~1aws-sigv4.json"
@@ -7160,6 +7219,9 @@
           "description": "Enterprise only. Declares the endpoint as an [MCP server entrypoint](https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/)",
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1mcp_endpoint.json"
         },
+        "ai/semantic-cache": {
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1semantic-cache.json"
+        },
         "auth/api-keys": {
           "title": "API-key validation",
           "description": "Enterprise only. Validates that users of this endpoint pass a valid API-key containing one of the declared roles.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
@@ -7679,6 +7741,47 @@
                 "description": "The version of the logic behind your MCP Server implementation. This version makes sense to your business and is not linked to anything else.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
                 "examples": [ "0.2.1" ],
                 "type": "string"
+              }
+            },
+            "patternProperties": {
+              "^[@$_#]": true
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    "https://www.krakend.io/schema/v3.0/ai/semantic-cache-service.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "AI Semantic Cache",
+      "description": "AI Semantic Cache.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/semantic-cache/",
+      "type": "object",
+      "properties": {
+        "embedders": {
+          "description": "A list of embedding models available for use by AI Semantic Cache endpoints. Each object defines an embedder configuration.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [ "name", "model_path", "vector_dimension" ],
+            "properties": {
+              "model_path": {
+                "title": "Model Path",
+                "description": "The path to the model files",
+                "examples": [
+                  "/etc/krakend/models/sentence-transformers_all-MiniLM-L6-v2"
+                ],
+                "type": "string"
+              },
+              "name": {
+                "title": "Embedder Name",
+                "description": "A unique name that identifies this embedder configuration. This name is referenced by the `ai/semantic-cache` endpoint configuration.",
+                "examples": [ "all-MiniLM" ],
+                "type": "string"
+              },
+              "vector_dimension": {
+                "title": "Vector Dimension",
+                "description": "The number of dimensions in the vector produced by the embedding model.",
+                "type": "integer"
               }
             },
             "patternProperties": {
@@ -10665,6 +10768,9 @@
       "properties": {
         "ai/mcp": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1mcp.json"
+        },
+        "ai/semantic-cache": {
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1semantic-cache-service.json"
         },
         "auth/api-keys": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1auth~1api-keys.json"

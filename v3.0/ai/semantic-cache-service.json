@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v3.0/ai/semantic-cache-service.json",
+  "title": "AI Semantic Cache",
+  "description": "AI Semantic Cache.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/semantic-cache/",
+  "type": "object",
+  "properties": {
+    "embedders": {
+      "description": "A list of embedding models available for use by AI Semantic Cache endpoints. Each object defines an embedder configuration.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [ "name", "model_path", "vector_dimension" ],
+        "properties": {
+          "model_path": {
+            "title": "Model Path",
+            "description": "The path to the model files",
+            "examples": [
+              "/etc/krakend/models/sentence-transformers_all-MiniLM-L6-v2"
+            ],
+            "type": "string"
+          },
+          "name": {
+            "title": "Embedder Name",
+            "description": "A unique name that identifies this embedder configuration. This name is referenced by the `ai/semantic-cache` endpoint configuration.",
+            "examples": [ "all-MiniLM" ],
+            "type": "string"
+          },
+          "vector_dimension": {
+            "title": "Vector Dimension",
+            "description": "The number of dimensions in the vector produced by the embedding model.",
+            "type": "integer"
+          }
+        },
+        "patternProperties": {
+          "^[@$_#]": true
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
