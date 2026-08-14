@@ -196,6 +196,133 @@
         ]
       },
       "valid": true
+    },
+    {
+      "description": "Tool with all the annotations hints set",
+      "data": {
+        "servers": [
+          {
+            "name": "story-tracker-tools",
+            "title": "Story tracker tools",
+            "version": "0.2.1",
+            "tools": [
+              {
+                "name": "story-list",
+                "title": "Story list",
+                "description": "Get a list of open stories in tracker matching a search query",
+                "annotations": {
+                  "open_world_hint": false,
+                  "idempotent_hint": false,
+                  "destructive_hint": false,
+                  "read_only_hint": false
+                },
+                "workflow": {
+                  "endpoint": "/__mcp/story-list",
+                  "backend": [
+                    {
+                      "url_pattern": "/api/v3/search/stories"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Tool with a partial annotations object",
+      "data": {
+        "servers": [
+          {
+            "name": "story-tracker-tools",
+            "title": "Story tracker tools",
+            "version": "0.2.1",
+            "tools": [
+              {
+                "name": "story-list",
+                "title": "Story list",
+                "description": "Get a list of open stories in tracker matching a search query",
+                "annotations": {
+                  "read_only_hint": true
+                },
+                "workflow": {
+                  "endpoint": "/__mcp/story-list",
+                  "backend": [
+                    {
+                      "url_pattern": "/api/v3/search/stories"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Tool with an unknown annotations hint",
+      "data": {
+        "servers": [
+          {
+            "name": "story-tracker-tools",
+            "title": "Story tracker tools",
+            "version": "0.2.1",
+            "tools": [
+              {
+                "name": "story-list",
+                "title": "Story list",
+                "description": "Get a list of open stories in tracker matching a search query",
+                "annotations": {
+                  "readonly_hint": true
+                },
+                "workflow": {
+                  "endpoint": "/__mcp/story-list",
+                  "backend": [
+                    {
+                      "url_pattern": "/api/v3/search/stories"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Tool with a non-boolean annotations hint",
+      "data": {
+        "servers": [
+          {
+            "name": "story-tracker-tools",
+            "title": "Story tracker tools",
+            "version": "0.2.1",
+            "tools": [
+              {
+                "name": "story-list",
+                "title": "Story list",
+                "description": "Get a list of open stories in tracker matching a search query",
+                "annotations": {
+                  "read_only_hint": "true"
+                },
+                "workflow": {
+                  "endpoint": "/__mcp/story-list",
+                  "backend": [
+                    {
+                      "url_pattern": "/api/v3/search/stories"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "valid": false
     }
   ]
 }
