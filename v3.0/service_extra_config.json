@@ -172,9 +172,6 @@
     "telemetry/newrelic": {
       "$ref": "telemetry/newrelic.json"
     },
-    "telemetry/opencensus": {
-      "$ref": "telemetry/opencensus.json"
-    },
     "telemetry/opentelemetry": {
       "$ref": "telemetry/opentelemetry.json"
     },
