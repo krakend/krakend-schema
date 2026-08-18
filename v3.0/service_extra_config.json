@@ -166,9 +166,6 @@
     "telemetry/logstash": {
       "$ref": "telemetry/logstash.json"
     },
-    "telemetry/metrics": {
-      "$ref": "telemetry/metrics.json"
-    },
     "telemetry/moesif": {
       "$ref": "telemetry/moesif.json"
     },

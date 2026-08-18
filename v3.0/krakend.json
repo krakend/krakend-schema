@@ -9322,56 +9322,6 @@
       },
       "additionalProperties": false
     },
-    "https://www.krakend.io/schema/v3.0/telemetry/metrics.json": {
-      "$schema": "https://json-schema.org/draft/2019-09/schema",
-      "title": "Extended metrics",
-      "description": "Collects extended metrics to expose them in the /__stats/ endpoint.\n\nSee: https://www.krakend.io/docs/telemetry/extended-metrics/",
-      "type": "object",
-      "properties": {
-        "backend_disabled": {
-          "title": "Backend disabled",
-          "description": "Skip any metrics happening in the backend layer. Disabling layers saves memory consumption but reduces visibility.\n\nSee: https://www.krakend.io/docs/telemetry/extended-metrics/",
-          "default": false,
-          "type": "boolean"
-        },
-        "collection_time": {
-          "title": "Collection time",
-          "description": "The time window to consolidate collected metrics. Metrics are updated in their internal counters all the time, but the `/__stats/` endpoint won't see them updated until this window completes.\n\nSee: https://www.krakend.io/docs/telemetry/extended-metrics/",
-          "default": "60s",
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
-          "type": "string"
-        },
-        "endpoint_disabled": {
-          "title": "Endpoint disabled",
-          "description": "When true do not publish the /__stats/ endpoint. Metrics won't be accessible via the endpoint but still collected.\n\nSee: https://www.krakend.io/docs/telemetry/extended-metrics/",
-          "default": false,
-          "type": "boolean"
-        },
-        "listen_address": {
-          "title": "Listen address",
-          "description": "Change the listening address where the metrics endpoint is exposed.\n\nSee: https://www.krakend.io/docs/telemetry/extended-metrics/",
-          "default": ":8090",
-          "type": "string",
-          "pattern": "^:[0-9]+$"
-        },
-        "proxy_disabled": {
-          "title": "Proxy disabled",
-          "description": "Skip any metrics happening in the proxy layer (traffic against your backends). Disabling layers saves memory consumption but reduces visibility.\n\nSee: https://www.krakend.io/docs/telemetry/extended-metrics/",
-          "default": false,
-          "type": "boolean"
-        },
-        "router_disabled": {
-          "title": "Router disabled",
-          "description": "Skip any metrics happening in the router layer (activity in KrakenD endpoints). Disabling layers saves memory consumption but reduces visibility.\n\nSee: https://www.krakend.io/docs/telemetry/extended-metrics/",
-          "default": false,
-          "type": "boolean"
-        }
-      },
-      "patternProperties": {
-        "^[@$_#]": true
-      },
-      "additionalProperties": false
-    },
     "https://www.krakend.io/schema/v3.0/telemetry/moesif.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "Moesif integration",
@@ -10824,9 +10774,6 @@
         },
         "telemetry/logstash": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1telemetry~1logstash.json"
-        },
-        "telemetry/metrics": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1telemetry~1metrics.json"
         },
         "telemetry/moesif": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1telemetry~1moesif.json"

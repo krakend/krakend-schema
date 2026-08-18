@@ -2352,15 +2352,6 @@
                         "enable_tcp": false,
                         "@extra_comment": "here"
                     },
-                    "telemetry/metrics": {
-                        "backend_disabled": false,
-                        "collection_time": "60s",
-                        "endpoint_disabled": false,
-                        "listen_address": ":8090",
-                        "proxy_disabled": false,
-                        "router_disabled": false,
-                        "@extra_comment": "here"
-                    },
                     "telemetry/opencensus": {
                         "sample_rate": 100,
                         "reporting_period": 2,
