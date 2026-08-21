@@ -1,7 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.krakend.io/schema/v3.0/plugin/http-server.json",
-  "title": "HTTP Server plugins.\n\nSee: https://www.krakend.io/docs/extending/http-server-plugins/",
+  "title": "HTTP Server plugins",
+  "description": "Enterprise only. Inject your own Go HTTP server plugins, executed in the router layer.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
   "type": "object",
   "required": [ "name" ],
   "properties": {
@@ -16,7 +17,7 @@
     },
     "name": {
       "title": "Plugin name",
-      "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/extending/http-server-plugins/",
+      "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
       "examples": [
         [ "myplugin" ]
       ],

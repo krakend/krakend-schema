@@ -176,7 +176,7 @@
     },
     "plugin": {
       "title": "Plugin",
-      "description": "Enables external plugins that are copied in a specific folder",
+      "description": "Enterprise only. Enables external plugins that are copied in a specific folder",
       "type": "object",
       "required": [ "pattern", "folder" ],
       "properties": {

@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.krakend.io/schema/v3.0/plugin/req-resp-modifier.json",
   "title": "Request-Response modifier plugins",
+  "description": "Enterprise only. Inject your own Go request and response modifier plugins.\n\nSee: https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/",
   "type": "object",
   "properties": {
     "content-replacer": {
@@ -12,7 +13,7 @@
     },
     "name": {
       "title": "Plugin name",
-      "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/extending/plugin-modifiers/",
+      "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/",
       "examples": [
         [ "myplugin" ]
       ],

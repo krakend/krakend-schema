@@ -4638,12 +4638,12 @@
     },
     "https://www.krakend.io/schema/v2.10/plugin/http-client.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "HTTP client plugins.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
+      "title": "HTTP client plugins.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
       "type": "object",
       "properties": {
         "name": {
           "title": "Plugin name",
-          "description": "The name of the plugin to load. Only one plugin is supported per backend.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
+          "description": "The name of the plugin to load. Only one plugin is supported per backend.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
           "examples": [ "no-redirect", "http-logger", "static-filesystem" ],
           "type": "string"
         }
@@ -4651,7 +4651,8 @@
     },
     "https://www.krakend.io/schema/v2.10/plugin/http-server.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "HTTP Server plugins.\n\nSee: https://www.krakend.io/docs/extending/http-server-plugins/",
+      "title": "HTTP Server plugins",
+      "description": "Enterprise only. HTTP Server plugins.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
       "type": "object",
       "required": [ "name" ],
       "properties": {
@@ -4666,7 +4667,7 @@
         },
         "name": {
           "title": "Plugin name",
-          "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/extending/http-server-plugins/",
+          "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
           "examples": [ "myplugin" ],
           "default": [],
           "type": "array",
@@ -4781,7 +4782,7 @@
     },
     "https://www.krakend.io/schema/v2.10/plugin/middleware.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "Enterprise only. Middleware plugins.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
+      "title": "Enterprise only. Middleware plugins.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
       "type": "object",
       "required": [ "name" ],
       "properties": {
@@ -4854,7 +4855,7 @@
         },
         "name": {
           "title": "Plugin name",
-          "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/extending/plugin-modifiers/",
+          "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/",
           "examples": [ "myplugin" ],
           "default": [],
           "type": "array",

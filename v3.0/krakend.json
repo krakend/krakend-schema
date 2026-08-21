@@ -175,7 +175,7 @@
     },
     "plugin": {
       "title": "Plugin",
-      "description": "Enables external plugins that are copied in a specific folder",
+      "description": "Enterprise only. Enables external plugins that are copied in a specific folder",
       "type": "object",
       "required": [ "pattern", "folder" ],
       "properties": {
@@ -3054,12 +3054,13 @@
     },
     "https://www.krakend.io/schema/v3.0/plugin/http-client.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
-      "title": "HTTP client plugins.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
+      "title": "HTTP client plugins",
+      "description": "Enterprise only. Inject your own Go HTTP client plugin, replacing the client KrakenD uses to call this backend.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-client-plugins/",
       "type": "object",
       "properties": {
         "name": {
           "title": "Plugin name",
-          "description": "The name of the plugin to load. Only one plugin is supported per backend.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
+          "description": "The name of the plugin to load. Only one plugin is supported per backend.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
           "examples": [ "no-redirect", "http-logger", "static-filesystem" ],
           "type": "string"
         }
@@ -3067,7 +3068,8 @@
     },
     "https://www.krakend.io/schema/v3.0/plugin/middleware.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
-      "title": "Enterprise only. Middleware plugins.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
+      "title": "Middleware plugins",
+      "description": "Enterprise only. Inject your own Go middleware plugins in the proxy layer.\n\nSee: https://www.krakend.io/docs/enterprise/extending/middleware-plugins/",
       "type": "object",
       "required": [ "name" ],
       "properties": {
@@ -3218,6 +3220,7 @@
     "https://www.krakend.io/schema/v3.0/plugin/req-resp-modifier.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "Request-Response modifier plugins",
+      "description": "Enterprise only. Inject your own Go request and response modifier plugins.\n\nSee: https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/",
       "type": "object",
       "properties": {
         "content-replacer": {
@@ -3228,7 +3231,7 @@
         },
         "name": {
           "title": "Plugin name",
-          "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/extending/plugin-modifiers/",
+          "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/",
           "examples": [
             [ "myplugin" ]
           ],
@@ -7266,12 +7269,12 @@
           "type": "object"
         },
         "plugin/middleware": {
-          "description": "Enterprise only. Inject your own [Go middleware plugins](https://www.krakend.io/docs/extending/injecting-plugins/)",
+          "description": "Enterprise only. Inject your own [Go middleware plugins](https://www.krakend.io/docs/enterprise/extending/injecting-plugins/)",
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1middleware.json",
           "type": "object"
         },
         "plugin/req-resp-modifier": {
-          "description": "Inject your own [Go request and response modifier plugins](https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/)",
+          "description": "Enterprise only. Inject your own [Go request and response modifier plugins](https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/)",
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1req-resp-modifier.json",
           "type": "object"
         },
@@ -8551,7 +8554,8 @@
     },
     "https://www.krakend.io/schema/v3.0/plugin/http-server.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
-      "title": "HTTP Server plugins.\n\nSee: https://www.krakend.io/docs/extending/http-server-plugins/",
+      "title": "HTTP Server plugins",
+      "description": "Enterprise only. Inject your own Go HTTP server plugins, executed in the router layer.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
       "type": "object",
       "required": [ "name" ],
       "properties": {
@@ -8566,7 +8570,7 @@
         },
         "name": {
           "title": "Plugin name",
-          "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/extending/http-server-plugins/",
+          "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
           "examples": [
             [ "myplugin" ]
           ],

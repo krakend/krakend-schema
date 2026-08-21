@@ -114,12 +114,12 @@
       "type": "object"
     },
     "plugin/middleware": {
-      "description": "Enterprise only. Inject your own [Go middleware plugins](https://www.krakend.io/docs/extending/injecting-plugins/)",
+      "description": "Enterprise only. Inject your own [Go middleware plugins](https://www.krakend.io/docs/enterprise/extending/injecting-plugins/)",
       "$ref": "plugin/middleware.json",
       "type": "object"
     },
     "plugin/req-resp-modifier": {
-      "description": "Inject your own [Go request and response modifier plugins](https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/)",
+      "description": "Enterprise only. Inject your own [Go request and response modifier plugins](https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/)",
       "$ref": "plugin/req-resp-modifier.json",
       "type": "object"
     },

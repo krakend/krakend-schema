@@ -1,12 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.krakend.io/schema/v3.0/plugin/http-client.json",
-  "title": "HTTP client plugins.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
+  "title": "HTTP client plugins",
+  "description": "Enterprise only. Inject your own Go HTTP client plugin, replacing the client KrakenD uses to call this backend.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-client-plugins/",
   "type": "object",
   "properties": {
     "name": {
       "title": "Plugin name",
-      "description": "The name of the plugin to load. Only one plugin is supported per backend.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
+      "description": "The name of the plugin to load. Only one plugin is supported per backend.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
       "examples": [ "no-redirect", "http-logger", "static-filesystem" ],
       "type": "string"
     }

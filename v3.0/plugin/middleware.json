@@ -1,7 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.krakend.io/schema/v3.0/plugin/middleware.json",
-  "title": "Enterprise only. Middleware plugins.\n\nSee: https://www.krakend.io/docs/extending/injecting-plugins/",
+  "title": "Middleware plugins",
+  "description": "Enterprise only. Inject your own Go middleware plugins in the proxy layer.\n\nSee: https://www.krakend.io/docs/enterprise/extending/middleware-plugins/",
   "type": "object",
   "required": [ "name" ],
   "properties": {
