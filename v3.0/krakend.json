@@ -7628,7 +7628,7 @@
                       "title": "Media Type",
                       "description": "The type of the response media.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
                       "default": "text",
-                      "enum": [ "text", "audio", "image" ]
+                      "enum": [ "text", "audio", "image", "binary" ]
                     },
                     "input_headers": {
                       "title": "Allowed Headers In",
