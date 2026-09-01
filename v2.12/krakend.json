@@ -3847,7 +3847,7 @@
           "type": "object"
         },
         "modifier/request-body-generator": {
-          "description": "Enterprise only. Freely [transform the request body/payload](https://www.krakend.io/backends/body-generator/) you will send to your services using a templating system.",
+          "description": "Enterprise only. Freely [transform the request body/payload](https://www.krakend.io/docs/enterprise/backends/body-generator/) you will send to your services using a templating system.",
           "$ref": "#/definitions/https%3A~1~1www.krakend.io~1schema~1v2.12~1modifier~1body-generator.json",
           "type": "object"
         },
@@ -4415,7 +4415,7 @@
     "https://www.krakend.io/schema/v2.12/modifier/body-generator.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Template-based body generator",
-      "description": "Enterprise only. Crafts the body/payload using a templating system.\n\nSee: https://www.krakend.io/backends/body-generator/",
+      "description": "Enterprise only. Crafts the body/payload using a templating system.\n\nSee: https://www.krakend.io/docs/enterprise/backends/body-generator/",
       "type": "object",
       "oneOf": [
         {
@@ -7486,13 +7486,13 @@
     "https://www.krakend.io/schema/v2.12/telemetry/backend_log.json": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Enterprise only. Improved logging",
-      "description": "Enables the Backend Log capabilities.\n\nSee: https://www.krakend.io/enterprise/docs/logging/",
+      "description": "Enables the Backend Log capabilities.\n\nSee: https://www.krakend.io/docs/enterprise/logging/",
       "type": "object",
       "minProperties": 1,
       "properties": {
         "custom_format": {
           "title": "Backend Log Format",
-          "description": "Specify the custom format of the Backend Logs.\n\nSee: https://www.krakend.io/enterprise/docs/logging/",
+          "description": "Specify the custom format of the Backend Logs.\n\nSee: https://www.krakend.io/docs/enterprise/logging/",
           "examples": [
             "%{time:kitchen} | (╯°□°)╯( ┻━┻ %{statusCode} | %{method} %{host} %{path}\n"
           ],
@@ -7501,19 +7501,19 @@
         },
         "log_with_level": {
           "title": "Backend Log Level",
-          "description": "What type of **reporting level** do you want to set at the backends? The options below go from more verbose to least. Use the `DEBUG` level in the development stages but not in production. Some components can add extra verbosity while in DEBUG mode and send **multiline content**, which is not always suitable for automated log parsing.\n\nSee: https://www.krakend.io/enterprise/docs/logging/",
+          "description": "What type of **reporting level** do you want to set at the backends? The options below go from more verbose to least. Use the `DEBUG` level in the development stages but not in production. Some components can add extra verbosity while in DEBUG mode and send **multiline content**, which is not always suitable for automated log parsing.\n\nSee: https://www.krakend.io/docs/enterprise/logging/",
           "enum": [ "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL" ]
         },
         "no_value": {
           "title": "Backend Log No Value",
-          "description": "When the variable does not resolve to any value, the string you want to write in the log. If the string is set to an empty value, a dash `-` is printed.\n\nSee: https://www.krakend.io/enterprise/docs/logging/",
+          "description": "When the variable does not resolve to any value, the string you want to write in the log. If the string is set to an empty value, a dash `-` is printed.\n\nSee: https://www.krakend.io/docs/enterprise/logging/",
           "examples": [ "-", "null", "no_value", "<empty>" ],
           "default": "-",
           "type": "string"
         },
         "prefix": {
           "title": "Backend Log Prefix",
-          "description": "Adds the defined string at the beginning of every logged line, so you can quickly filter messages with external tools later on.\n\nSee: https://www.krakend.io/enterprise/docs/logging/",
+          "description": "Adds the defined string at the beginning of every logged line, so you can quickly filter messages with external tools later on.\n\nSee: https://www.krakend.io/docs/enterprise/logging/",
           "examples": [ ">>> " ],
           "default": "",
           "type": "string"
