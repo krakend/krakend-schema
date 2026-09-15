@@ -89,7 +89,11 @@
         "xml",
         "negotiate",
         "string",
-        "no-op"
+        "no-op",
+        "streaming",
+        "sse",
+        "ndjson",
+        "eventstream"
       ]
     },
     "timeout": {

@@ -756,8 +756,30 @@
       "title": "AI LLM Connectors",
       "description": "Ready-to-use LLM connectors available for major AI vendors.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
       "type": "object",
-      "maxProperties": 1,
+      "oneOf": [
+        {
+          "required": [ "anthropic" ]
+        },
+        {
+          "required": [ "gemini" ]
+        },
+        {
+          "required": [ "mistral" ]
+        },
+        {
+          "required": [ "openai" ]
+        },
+        {
+          "required": [ "bedrock" ]
+        }
+      ],
+      "maxProperties": 2,
       "properties": {
+        "format": {
+          "title": "Stream format",
+          "description": "Wire format KrakenD exposes to the client for streaming responses, when not defined, the request and response format is not modified. Only anthropic and openai stream formats are supported client-side, regardless of the upstream connector. When defined, KrakenD translates the client's request into the upstream connector's format, and translates the streamed response back into this format before returning it.",
+          "enum": [ "anthropic", "openai" ]
+        },
         "anthropic": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1anthropic.json"
         },
@@ -7597,7 +7619,11 @@
             "xml",
             "negotiate",
             "string",
-            "no-op"
+            "no-op",
+            "streaming",
+            "sse",
+            "ndjson",
+            "eventstream"
           ]
         },
         "timeout": {
