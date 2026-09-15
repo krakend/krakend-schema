@@ -118,7 +118,7 @@
       "valid": false
     },
     {
-      "description": "Configuration with two provider",
+      "description": "Configuration with two providers",
       "data": {
         "bedrock": {
           "v1": {
