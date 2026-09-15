@@ -24,6 +24,8 @@
   "maxProperties": 2,
   "properties": {
     "format": {
+      "title": "Stream format",
+      "description": "Wire format KrakenD exposes to the client for streaming responses, when not defined, the request and response format is not modified. Only anthropic and openai stream formats are supported client-side, regardless of the upstream connector. When defined, KrakenD translates the client's request into the upstream connector's format, and translates the streamed response back into this format before returning it.",
       "enum": [ "anthropic", "openai" ]
     },
     "anthropic": {
