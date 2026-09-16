@@ -9160,7 +9160,7 @@
         },
         "gzip_profile": {
           "title": "Gzip compression profile",
-          "description": "Enterprise only. Chooses the trade-off between compression ratio and CPU usage when gzipping the response to the end user. Use `speed` to compress faster at the expense of larger payloads, `compression` to get smaller payloads at the expense of more CPU, or `balanced` for an intermediate profile.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+          "description": "Enterprise only. Chooses the trade-off between compression ratio and CPU usage when gzipping the response to the end user. `speed` uses the fastest compression level, spending the least CPU per response and adding the least latency, but sending the largest payloads over the wire. `compression` uses the maximum level, producing the smallest payloads at the cost of noticeably more CPU and time per response, which pays off on large and highly repetitive bodies. `balanced` sits in between and is the right choice for most traffic. All three profiles emit standard gzip that any client decompresses the same way, so the profile only affects the size of the response and the resources needed to produce it. The setting has no effect when `disable_gzip` is `true`.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
           "default": "balanced",
           "enum": [ "balanced", "speed", "compression" ]
         },
