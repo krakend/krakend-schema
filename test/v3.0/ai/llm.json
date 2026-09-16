@@ -77,8 +77,7 @@
           "v1": {
             "credentials": "xxx",
             "debug": false,
-            "variables": {
-            }
+            "variables": {}
           }
         }
       },
@@ -124,8 +123,7 @@
           "v1": {
             "credentials": "xxx",
             "debug": false,
-            "variables": {
-            }
+            "variables": {}
           }
         },
         "mistral": {
@@ -150,12 +148,58 @@
           "v1": {
             "credentials": "xxx",
             "debug": false,
-            "variables": {
-            }
+            "variables": {}
           }
         }
       },
       "valid": true
+    },
+    {
+      "description": "Valid reference to a provider declared in ai/providers",
+      "data": {
+        "provider": "quick_cheap"
+      },
+      "valid": true
+    },
+    {
+      "description": "Valid reference to a provider declared in ai/providers with format",
+      "data": {
+        "provider": "quick_cheap",
+        "format": "openai"
+      },
+      "valid": true
+    },
+    {
+      "description": "A provider reference cannot be combined with a vendor block",
+      "data": {
+        "provider": "quick_cheap",
+        "openai": {
+          "v1": {
+            "credentials": "xxx",
+            "variables": {
+              "model": "model"
+            }
+          }
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "The provider reference must be a string",
+      "data": {
+        "provider": [
+          "quick_cheap"
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Intruder field should not be allowed next to a provider reference",
+      "data": {
+        "provider": "quick_cheap",
+        "intruder": "field"
+      },
+      "valid": false
     }
   ]
 }

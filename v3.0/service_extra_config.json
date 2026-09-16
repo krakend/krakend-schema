@@ -10,6 +10,9 @@
     "ai/semantic-cache": {
       "$ref": "ai/semantic-cache-service.json"
     },
+    "ai/providers": {
+      "$ref": "ai/providers.json"
+    },
     "auth/api-keys": {
       "$ref": "auth/api-keys.json"
     },
