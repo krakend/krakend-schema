@@ -1,0 +1,27 @@
+{
+  "description": "Conditional Routing test",
+  "target": "https://www.krakend.io/schema/v3.0/ai/semantic-cache.json",
+  "tests": [
+    {
+      "description": "Valid minimum configuration",
+      "data": {},
+      "valid": true
+    },
+    {
+      "description": "Valid all fields",
+      "data": {
+        "embedder": "default",
+        "redis_connection": "default",
+        "max_distance": 0.14,
+        "key_variants": [
+            "req_params.Ids",
+            "req_headers.x-user", 
+            "req_query_string.user"
+        ],
+        "req_content": "req_params.Ids",
+        "ttl": "300s"
+      },
+      "valid": true
+    }
+  ]
+}
