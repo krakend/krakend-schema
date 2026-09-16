@@ -90,7 +90,7 @@
       "type": "object"
     },
     "modifier/request-body-generator": {
-      "description": "Enterprise only. Freely [transform the request body/payload](https://www.krakend.io/backends/body-generator/) you will send to your services using a templating system.",
+      "description": "Enterprise only. Freely [transform the request body/payload](https://www.krakend.io/docs/enterprise/backends/body-generator/) you will send to your services using a templating system.",
       "$ref": "modifier/body-generator.json",
       "type": "object"
     },

@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://www.krakend.io/schema/v2.5/modifier/body-generator.json",
   "title": "Template-based body generator",
-  "description": "Enterprise only. Crafts the body/payload using a templating system.\n\nSee: https://www.krakend.io/backends/body-generator/",
+  "description": "Enterprise only. Crafts the body/payload using a templating system.\n\nSee: https://www.krakend.io/docs/enterprise/backends/body-generator/",
   "type": "object",
   "oneOf": [
     {
