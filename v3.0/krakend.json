@@ -9158,6 +9158,12 @@
           "default": false,
           "type": "boolean"
         },
+        "gzip_profile": {
+          "title": "Gzip compression profile",
+          "description": "Enterprise only. Chooses the trade-off between compression ratio and CPU usage when gzipping the response to the end user. Use `speed` to compress faster at the expense of larger payloads, `compression` to get smaller payloads at the expense of more CPU, or `balanced` for an intermediate profile.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
+          "default": "balanced",
+          "enum": [ "balanced", "speed", "compression" ]
+        },
         "health_path": {
           "title": "Health endpoint path",
           "description": "The path where you'd like to expose the health endpoint.\n\nSee: https://www.krakend.io/docs/service-settings/router-options/",
