@@ -2,16 +2,75 @@
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.krakend.io/schema/v3.0/ai/providers.json",
   "title": "AI Providers",
-  "description": "Declares once, at the service level, the AI providers the gateway can talk to. Each entry has a unique `name` that the backends reference, so you don't need to repeat the vendor settings on every backend.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/",
+  "description": "Declares once, at the service level, the AI providers the gateway can talk to. Each entry has a unique `name` that the backends reference, so you don't need to repeat the vendor settings on every backend.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
   "type": "object",
   "required": [ "providers" ],
   "properties": {
     "providers": {
       "title": "Providers",
-      "description": "The array of AI providers available for referencing from the backends. Each object is a different provider declaration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/",
+      "description": "The array of AI providers available for referencing from the backends. Each object is a different provider declaration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
       "type": "array",
       "items": {
         "type": "object",
+        "if": {
+          "required": [ "provider" ],
+          "properties": {
+            "provider": {
+              "const": "openai"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "credentials": {
+              "examples": [ "sk-xxxx" ]
+            },
+            "endpoint": {
+              "default": "https://api.openai.com/v1/responses"
+            },
+            "model": {
+              "examples": [ "gpt-5.4-mini", "gpt-5-nano", "gpt-4" ],
+              "default": "gpt-5.4-mini"
+            },
+            "variables": {
+              "title": "Template Variables",
+              "description": "The variables specific to the OpenAI usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
+              "type": "object",
+              "properties": {
+                "extra_payload": {
+                  "title": "Extra Payload",
+                  "description": "A map of additional payload attributes you want to use in your custom `input_template` (this payload is not used in the default template). The attributes set here are accessible in your custom template as `{{ .variables.extra_payload.yourchosenkey }}`. This option helps adding rare customization and future attributes.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
+                  "type": "object"
+                },
+                "max_output_tokens": {
+                  "title": "Max Output Tokens",
+                  "description": "An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens. Setting this value to `0` does not set any limit.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
+                  "type": "integer"
+                },
+                "temperature": {
+                  "title": "Temperature",
+                  "description": "What sampling temperature to use, between `0` and `2`. Higher values like `0.8` will make the output more random, while lower values like `0.2` will make it more focused and deterministic.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
+                  "type": "number",
+                  "maximum": 2,
+                  "minimum": 0
+                },
+                "top_p": {
+                  "title": "Top P",
+                  "description": "The nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
+                  "type": "number",
+                  "maximum": 1,
+                  "minimum": 0
+                },
+                "truncation": {
+                  "title": "Truncation Strategy",
+                  "description": "The strategy to use when truncating messages to fit within the model's context length (, the model will truncate the response to fit the context window by dropping items from the beginning of the conversation.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
+                  "default": "disabled",
+                  "enum": [ "auto", "disabled" ]
+                }
+              }
+            }
+          }
+        },
         "allOf": [
           {
             "if": {
@@ -24,6 +83,17 @@
             },
             "then": {
               "properties": {
+                "endpoint": {
+                  "default": "https://api.anthropic.com/v1/messages"
+                },
+                "model": {
+                  "examples": [
+                    "claude-haiku-4-5",
+                    "claude-opus-4-1-20250805",
+                    "claude-sonnet-4-20250514"
+                  ],
+                  "default": "claude-haiku-4-5"
+                },
                 "variables": {
                   "title": "Model Variables",
                   "description": "The variables specific to the Anthropic usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
@@ -81,6 +151,13 @@
             },
             "then": {
               "properties": {
+                "endpoint": {
+                  "default": "https://bedrock-runtime.eu-west-1.amazonaws.com/model/eu.amazon.nova-lite-v1:0/converse"
+                },
+                "model": {
+                  "examples": [ "eu.amazon.nova-lite-v1:0" ],
+                  "default": "eu.amazon.nova-lite-v1:0"
+                },
                 "variables": {
                   "title": "Model Variables",
                   "description": "The variables specific to the Bedrock usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/",
@@ -141,6 +218,13 @@
             },
             "then": {
               "properties": {
+                "endpoint": {
+                  "default": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent"
+                },
+                "model": {
+                  "examples": [ "gemini-3.5-flash" ],
+                  "default": "gemini-3.5-flash"
+                },
                 "variables": {
                   "title": "Model Variables",
                   "description": "The variables specific to the Google Gemini usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
@@ -203,6 +287,13 @@
             },
             "then": {
               "properties": {
+                "endpoint": {
+                  "default": "https://api.mistral.ai/v1/chat/completions"
+                },
+                "model": {
+                  "examples": [ "mistral-small-latest", "codestral-latest" ],
+                  "default": "mistral-small-latest"
+                },
                 "variables": {
                   "title": "Model Variables",
                   "description": "The variables specific to the Mistral usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
@@ -261,61 +352,11 @@
             }
           }
         ],
-        "if": {
-          "required": [ "provider" ],
-          "properties": {
-            "provider": {
-              "const": "openai"
-            }
-          }
-        },
-        "then": {
-          "properties": {
-            "variables": {
-              "title": "Template Variables",
-              "description": "The variables specific to the OpenAI usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
-              "type": "object",
-              "properties": {
-                "extra_payload": {
-                  "title": "Extra Payload",
-                  "description": "A map of additional payload attributes you want to use in your custom `input_template` (this payload is not used in the default template). The attributes set here are accessible in your custom template as `{{ .variables.extra_payload.yourchosenkey }}`. This option helps adding rare customization and future attributes.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
-                  "type": "object"
-                },
-                "max_output_tokens": {
-                  "title": "Max Output Tokens",
-                  "description": "An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens. Setting this value to `0` does not set any limit.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
-                  "type": "integer"
-                },
-                "temperature": {
-                  "title": "Temperature",
-                  "description": "What sampling temperature to use, between `0` and `2`. Higher values like `0.8` will make the output more random, while lower values like `0.2` will make it more focused and deterministic.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
-                  "type": "number",
-                  "maximum": 2,
-                  "minimum": 0
-                },
-                "top_p": {
-                  "title": "Top P",
-                  "description": "The nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
-                  "type": "number",
-                  "maximum": 1,
-                  "minimum": 0
-                },
-                "truncation": {
-                  "title": "Truncation Strategy",
-                  "description": "The strategy to use when truncating messages to fit within the model's context length (, the model will truncate the response to fit the context window by dropping items from the beginning of the conversation.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
-                  "default": "disabled",
-                  "enum": [ "auto", "disabled" ]
-                }
-              }
-            }
-          }
-        },
         "required": [ "name", "provider" ],
         "properties": {
           "credentials": {
             "title": "Credentials",
             "description": "The API key used to authenticate against the provider. You can set it as an environment variable for better security.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
-            "examples": [ "sk-xxxx" ],
             "type": "string"
           },
           "debug": {
@@ -326,8 +367,7 @@
           },
           "endpoint": {
             "title": "Endpoint",
-            "description": "Overrides the default API endpoint of the provider. Set it when you need to reach a proxy, a private deployment, or a region-specific host instead of the vendor's public API.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
-            "examples": [ "https://api.openai.com/v1/responses" ],
+            "description": "Overrides the default API endpoint of the provider. Set it when you need to reach a proxy, a private deployment, or a region-specific host instead of the vendor's public API. When you don't set it, each provider uses its own default endpoint, and Gemini and Bedrock build theirs from the `model` and `streaming` values.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
             "type": "string"
           },
           "input_template": {
@@ -337,19 +377,15 @@
           },
           "model": {
             "title": "Model Name",
-            "description": "The name of the model you want to use. The value you provide is passed as is to the provider and KrakenD does not check if the model is currently accepted by the vendor. Check the available models on the vendor documentation.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
-            "examples": [
-              "gpt-5-nano",
-              "claude-sonnet-4-20250514",
-              "mistral-small-latest"
-            ],
+            "description": "The name of the model you want to use. The value you provide is passed as is to the provider and KrakenD does not check if the model is currently accepted by the vendor. Check the available models on the vendor documentation. When you don't set it, each provider uses its own default model.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
             "type": "string"
           },
           "name": {
             "title": "Provider Name",
             "description": "A unique name for this provider declaration. This is the name you use to reference the provider from the backends, so you declare its settings once and reuse them everywhere.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
             "examples": [ "fast-chat" ],
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "output_template": {
             "title": "Output Template",

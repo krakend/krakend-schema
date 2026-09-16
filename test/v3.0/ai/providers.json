@@ -53,7 +53,9 @@
             "credentials": "xxx",
             "variables": {
               "max_tokens": 1024,
-              "stop_sequences": [ "END" ],
+              "stop_sequences": [
+                "END"
+              ],
               "top_k": 3
             }
           },
@@ -66,7 +68,9 @@
               "n": 1,
               "random_seed": 42,
               "safe_prompt": true,
-              "stop": [ "END" ]
+              "stop": [
+                "END"
+              ]
             }
           }
         ]
@@ -238,6 +242,30 @@
         }
       },
       "valid": false
+    },
+    {
+      "description": "An empty name is not a usable reference",
+      "data": {
+        "providers": [
+          {
+            "name": "",
+            "provider": "openai"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Defaults are annotations only, so an entry relying on them stays valid",
+      "data": {
+        "providers": [
+          {
+            "name": "defaulted",
+            "provider": "gemini"
+          }
+        ]
+      },
+      "valid": true
     }
   ]
 }

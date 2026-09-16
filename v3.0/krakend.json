@@ -7792,13 +7792,13 @@
     "https://www.krakend.io/schema/v3.0/ai/providers.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "AI Providers",
-      "description": "Declares once, at the service level, the AI providers the gateway can talk to. Each entry has a unique `name` that the backends reference, so you don't need to repeat the vendor settings on every backend.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/",
+      "description": "Declares once, at the service level, the AI providers the gateway can talk to. Each entry has a unique `name` that the backends reference, so you don't need to repeat the vendor settings on every backend.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
       "type": "object",
       "required": [ "providers" ],
       "properties": {
         "providers": {
           "title": "Providers",
-          "description": "The array of AI providers available for referencing from the backends. Each object is a different provider declaration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/",
+          "description": "The array of AI providers available for referencing from the backends. Each object is a different provider declaration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
           "type": "array",
           "items": {
             "type": "object",
@@ -7814,6 +7814,17 @@
                 },
                 "then": {
                   "properties": {
+                    "endpoint": {
+                      "default": "https://api.anthropic.com/v1/messages"
+                    },
+                    "model": {
+                      "examples": [
+                        "claude-haiku-4-5",
+                        "claude-opus-4-1-20250805",
+                        "claude-sonnet-4-20250514"
+                      ],
+                      "default": "claude-haiku-4-5"
+                    },
                     "variables": {
                       "title": "Model Variables",
                       "description": "The variables specific to the Anthropic usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
@@ -7871,6 +7882,13 @@
                 },
                 "then": {
                   "properties": {
+                    "endpoint": {
+                      "default": "https://bedrock-runtime.eu-west-1.amazonaws.com/model/eu.amazon.nova-lite-v1:0/converse"
+                    },
+                    "model": {
+                      "examples": [ "eu.amazon.nova-lite-v1:0" ],
+                      "default": "eu.amazon.nova-lite-v1:0"
+                    },
                     "variables": {
                       "title": "Model Variables",
                       "description": "The variables specific to the Bedrock usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/",
@@ -7931,6 +7949,13 @@
                 },
                 "then": {
                   "properties": {
+                    "endpoint": {
+                      "default": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent"
+                    },
+                    "model": {
+                      "examples": [ "gemini-3.5-flash" ],
+                      "default": "gemini-3.5-flash"
+                    },
                     "variables": {
                       "title": "Model Variables",
                       "description": "The variables specific to the Google Gemini usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
@@ -7993,6 +8018,13 @@
                 },
                 "then": {
                   "properties": {
+                    "endpoint": {
+                      "default": "https://api.mistral.ai/v1/chat/completions"
+                    },
+                    "model": {
+                      "examples": [ "mistral-small-latest", "codestral-latest" ],
+                      "default": "mistral-small-latest"
+                    },
                     "variables": {
                       "title": "Model Variables",
                       "description": "The variables specific to the Mistral usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
@@ -8061,6 +8093,16 @@
             },
             "then": {
               "properties": {
+                "credentials": {
+                  "examples": [ "sk-xxxx" ]
+                },
+                "endpoint": {
+                  "default": "https://api.openai.com/v1/responses"
+                },
+                "model": {
+                  "examples": [ "gpt-5.4-mini", "gpt-5-nano", "gpt-4" ],
+                  "default": "gpt-5.4-mini"
+                },
                 "variables": {
                   "title": "Template Variables",
                   "description": "The variables specific to the OpenAI usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
@@ -8105,7 +8147,6 @@
               "credentials": {
                 "title": "Credentials",
                 "description": "The API key used to authenticate against the provider. You can set it as an environment variable for better security.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
-                "examples": [ "sk-xxxx" ],
                 "type": "string"
               },
               "debug": {
@@ -8116,8 +8157,7 @@
               },
               "endpoint": {
                 "title": "Endpoint",
-                "description": "Overrides the default API endpoint of the provider. Set it when you need to reach a proxy, a private deployment, or a region-specific host instead of the vendor's public API.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
-                "examples": [ "https://api.openai.com/v1/responses" ],
+                "description": "Overrides the default API endpoint of the provider. Set it when you need to reach a proxy, a private deployment, or a region-specific host instead of the vendor's public API. When you don't set it, each provider uses its own default endpoint, and Gemini and Bedrock build theirs from the `model` and `streaming` values.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
                 "type": "string"
               },
               "input_template": {
@@ -8127,19 +8167,15 @@
               },
               "model": {
                 "title": "Model Name",
-                "description": "The name of the model you want to use. The value you provide is passed as is to the provider and KrakenD does not check if the model is currently accepted by the vendor. Check the available models on the vendor documentation.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
-                "examples": [
-                  "gpt-5-nano",
-                  "claude-sonnet-4-20250514",
-                  "mistral-small-latest"
-                ],
+                "description": "The name of the model you want to use. The value you provide is passed as is to the provider and KrakenD does not check if the model is currently accepted by the vendor. Check the available models on the vendor documentation. When you don't set it, each provider uses its own default model.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
                 "type": "string"
               },
               "name": {
                 "title": "Provider Name",
                 "description": "A unique name for this provider declaration. This is the name you use to reference the provider from the backends, so you declare its settings once and reuse them everywhere.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
                 "examples": [ "fast-chat" ],
-                "type": "string"
+                "type": "string",
+                "minLength": 1
               },
               "output_template": {
                 "title": "Output Template",
