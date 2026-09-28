@@ -57,6 +57,9 @@
           "$ref": "plugin.json#/$defs/on_load_error"
         }
       },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
       "additionalProperties": false
     }
   }

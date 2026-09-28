@@ -87,6 +87,95 @@
       "valid": true
     },
     {
+      "description": "disabled keys inside plugin entries and http-client",
+      "data": {
+        "version": 3,
+        "host": [
+          "http://localhost:8080"
+        ],
+        "extra_config": {
+          "plugin": {
+            "pattern": ".so",
+            "folder": "/etc/krakend/plugins",
+            "on_load_default_error": "critical"
+          },
+          "plugin/http-server": {
+            "plugins": [
+              {
+                "name": "server-test",
+                "on_load_error": "passthrough",
+                "config": {
+                  "key": "value"
+                },
+                "#on_load_error": "error"
+              }
+            ]
+          }
+        },
+        "endpoints": [
+          {
+            "endpoint": "/",
+            "backend": [
+              {
+                "url_pattern": "/__echo/",
+                "extra_config": {
+                  "plugin/http-client": {
+                    "name": "client-test",
+                    "config": {
+                      "some": "config"
+                    },
+                    "#config": {
+                      "other": "config"
+                    }
+                  }
+                }
+              }
+            ],
+            "extra_config": {
+              "plugin/req-resp-modifier": {
+                "plugins": [
+                  {
+                    "name": "ip-filter",
+                    "config": {
+                      "allow": true,
+                      "CIDR": [
+                        "1.2.3.4/32"
+                      ]
+                    }
+                  },
+                  {
+                    "name": "modifier-test-request",
+                    "config": {
+                      "option": "for-request-option"
+                    }
+                  },
+                  {
+                    "name": "modifier-test-response",
+                    "config": {
+                      "option": "for-response-option"
+                    }
+                  }
+                ]
+              },
+              "plugin/middleware": {
+                "plugins": [
+                  {
+                    "name": "mw-test",
+                    "on_load_error": "error",
+                    "config": {
+                      "variable": "value"
+                    },
+                    "@comment": "disabled override"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
       "description": "plugin loader at the root level",
       "data": {
         "version": 3,

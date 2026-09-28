@@ -3170,6 +3170,9 @@
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1plugin.json/$defs/on_load_error"
         }
       },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
       "additionalProperties": false
     },
     "https://www.krakend.io/schema/v3.0/plugin/middleware.json": {
@@ -3214,6 +3217,9 @@
             "on_load_error": {
               "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1plugin.json/$defs/on_load_error"
             }
+          },
+          "patternProperties": {
+            "^[@$_#]": true
           },
           "additionalProperties": false
         }
@@ -3328,6 +3334,9 @@
             "on_load_error": {
               "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1plugin.json/$defs/on_load_error"
             }
+          },
+          "patternProperties": {
+            "^[@$_#]": true
           },
           "additionalProperties": false
         }
@@ -8774,6 +8783,9 @@
             "on_load_error": {
               "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1plugin.json/$defs/on_load_error"
             }
+          },
+          "patternProperties": {
+            "^[@$_#]": true
           },
           "additionalProperties": false
         }
