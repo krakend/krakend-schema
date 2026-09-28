@@ -784,9 +784,9 @@
           "enum": [ "anthropic", "openai" ]
         },
         "provider": {
-          "title": "Provider reference",
-          "description": "The name of a provider declared in the service-level `ai/providers` configuration. The name used must match the `name` in the `ai/providers` configuration at the root level. Use this option instead of declaring a vendor block here, so the connection settings are written once and reused by every backend.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
-          "examples": [ "quick_cheap" ],
+          "title": "Provider Reference",
+          "description": "The `name` of a provider declared in the service-level `ai/providers` configuration. Use it instead of a vendor block so you declare the connection settings once and reuse them on every backend.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+          "examples": [ "fast-chat" ],
           "type": "string"
         },
         "anthropic": {
@@ -8146,18 +8146,18 @@
             "properties": {
               "credentials": {
                 "title": "Credentials",
-                "description": "The API key used to authenticate against the provider. You can set it as an environment variable for better security.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+                "description": "The API key used to authenticate against the provider. Inject it with an environment variable instead of writing it in the configuration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
                 "type": "string"
               },
               "debug": {
                 "title": "Debug Mode",
-                "description": "Enables the debug mode to log activity for troubleshooting. Do not set this value to true in production as it may log sensitive data.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+                "description": "Enables the debug mode to log activity for troubleshooting. Do not set this value to `true` in production as it may log sensitive data.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
                 "default": false,
                 "type": "boolean"
               },
               "endpoint": {
                 "title": "Endpoint",
-                "description": "Overrides the default API endpoint of the provider. Set it when you need to reach a proxy, a private deployment, or a region-specific host instead of the vendor's public API. When you don't set it, each provider uses its own default endpoint, and Gemini and Bedrock build theirs from the `model` and `streaming` values.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+                "description": "Overrides the default API endpoint of the provider. Set it when you need to reach a proxy, a private deployment, or a region-specific host instead of the vendor's public API. When you don't set it, each provider uses its own default endpoint. Gemini and Bedrock build theirs from the `model` and `streaming` values, so their default shown here corresponds to the default `model` without streaming.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
                 "type": "string"
               },
               "input_template": {
@@ -8201,7 +8201,7 @@
               },
               "variables": {
                 "title": "Template Variables",
-                "description": "The variables specific to the chosen `provider` that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+                "description": "The variables KrakenD uses to build the payload for the chosen `provider`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
                 "type": "object"
               }
             },
