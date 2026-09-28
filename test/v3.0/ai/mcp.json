@@ -196,6 +196,307 @@
         ]
       },
       "valid": true
+    },
+    {
+      "description": "Tool filtering by header and path param with audiences per tool",
+      "data": {
+        "servers": [
+          {
+            "name": "tool-filtering",
+            "version": "0.2.1",
+            "title": "Tool filtering",
+            "stateless": true,
+            "tool_audience_source": {
+              "header_name": "X-Role",
+              "param_name": "filter",
+              "on_absent_value": "deny"
+            },
+            "tools": [
+              {
+                "name": "tool-1",
+                "title": "Tool 1",
+                "description": "Tool 1",
+                "audiences": [
+                  "admin",
+                  "a"
+                ],
+                "workflow": {
+                  "endpoint": "/__mcp/tool-1",
+                  "backend": [
+                    {
+                      "url_pattern": "/__debug/t1"
+                    }
+                  ]
+                },
+                "return_error_msg": true
+              },
+              {
+                "name": "tool-2",
+                "title": "Tool 2",
+                "description": "Tool 2",
+                "audiences": [
+                  "admin",
+                  "dev",
+                  "b"
+                ],
+                "workflow": {
+                  "endpoint": "/__mcp/tool-2",
+                  "backend": [
+                    {
+                      "url_pattern": "/__debug/t2"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "tool-3",
+                "title": "Tool 3",
+                "description": "Tool 3",
+                "audiences": [
+                  "c",
+                  "dev"
+                ],
+                "workflow": {
+                  "endpoint": "/__mcp/tool-3",
+                  "backend": [
+                    {
+                      "url_pattern": "/__debug/t3"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "tool-4",
+                "title": "Tool 4",
+                "description": "Tool 4",
+                "audiences": [
+                  "*"
+                ],
+                "workflow": {
+                  "endpoint": "/__mcp/tool-4",
+                  "backend": [
+                    {
+                      "url_pattern": "/__debug/t4"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Tool filtering by header only, listing all tools when absent",
+      "data": {
+        "servers": [
+          {
+            "name": "tool-filtering",
+            "version": "0.2.1",
+            "title": "Tool filtering",
+            "stateless": true,
+            "tool_audience_source": {
+              "header_name": "X-Role",
+              "on_absent_value": "allow"
+            },
+            "tools": [
+              {
+                "name": "tool-1",
+                "title": "Tool 1",
+                "description": "Tool 1",
+                "audiences": [
+                  "admin"
+                ],
+                "workflow": {
+                  "endpoint": "/__mcp/tool-1",
+                  "backend": [
+                    {
+                      "url_pattern": "/__debug/t1"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Tool filtering by path param only",
+      "data": {
+        "servers": [
+          {
+            "name": "tool-filtering",
+            "version": "0.2.1",
+            "title": "Tool filtering",
+            "stateless": true,
+            "tool_audience_source": {
+              "param_name": "filter"
+            },
+            "tools": [
+              {
+                "name": "tool-1",
+                "title": "Tool 1",
+                "description": "Tool 1",
+                "audiences": [
+                  "admin"
+                ],
+                "workflow": {
+                  "endpoint": "/__mcp/tool-1",
+                  "backend": [
+                    {
+                      "url_pattern": "/__debug/t1"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Tool audience source without header or param",
+      "data": {
+        "servers": [
+          {
+            "name": "tool-filtering",
+            "version": "0.2.1",
+            "title": "Tool filtering",
+            "stateless": true,
+            "tool_audience_source": {
+              "on_absent_value": "deny"
+            },
+            "tools": [
+              {
+                "name": "tool-1",
+                "title": "Tool 1",
+                "description": "Tool 1",
+                "audiences": [
+                  "admin"
+                ],
+                "workflow": {
+                  "endpoint": "/__mcp/tool-1",
+                  "backend": [
+                    {
+                      "url_pattern": "/__debug/t1"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Tool audience source with an unknown on_absent_value",
+      "data": {
+        "servers": [
+          {
+            "name": "tool-filtering",
+            "version": "0.2.1",
+            "title": "Tool filtering",
+            "stateless": true,
+            "tool_audience_source": {
+              "header_name": "X-Role",
+              "on_absent_value": "block"
+            },
+            "tools": [
+              {
+                "name": "tool-1",
+                "title": "Tool 1",
+                "description": "Tool 1",
+                "audiences": [
+                  "admin"
+                ],
+                "workflow": {
+                  "endpoint": "/__mcp/tool-1",
+                  "backend": [
+                    {
+                      "url_pattern": "/__debug/t1"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Tool audience source with an unknown property",
+      "data": {
+        "servers": [
+          {
+            "name": "tool-filtering",
+            "version": "0.2.1",
+            "title": "Tool filtering",
+            "stateless": true,
+            "tool_audience_source": {
+              "header_name": "X-Role",
+              "query_name": "role"
+            },
+            "tools": [
+              {
+                "name": "tool-1",
+                "title": "Tool 1",
+                "description": "Tool 1",
+                "audiences": [
+                  "admin"
+                ],
+                "workflow": {
+                  "endpoint": "/__mcp/tool-1",
+                  "backend": [
+                    {
+                      "url_pattern": "/__debug/t1"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Tool audiences declared as a string",
+      "data": {
+        "servers": [
+          {
+            "name": "tool-filtering",
+            "version": "0.2.1",
+            "title": "Tool filtering",
+            "stateless": true,
+            "tool_audience_source": {
+              "header_name": "X-Role"
+            },
+            "tools": [
+              {
+                "name": "tool-1",
+                "title": "Tool 1",
+                "description": "Tool 1",
+                "audiences": "admin",
+                "workflow": {
+                  "endpoint": "/__mcp/tool-1",
+                  "backend": [
+                    {
+                      "url_pattern": "/__debug/t1"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "valid": false
     }
   ]
 }

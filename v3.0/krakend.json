@@ -7691,6 +7691,43 @@
                 "default": false,
                 "type": "boolean"
               },
+              "tool_audience_source": {
+                "title": "Tool Audience Source",
+                "description": "Restricts the tools of this server to the audience of each request. KrakenD reads the audience values from a header, a path param, or both, and exposes only the tools whose `audiences` match at least one value. The `tools/list` method omits the tools that don't match, and the `tools/call` method rejects calls to them. When you set both sources, KrakenD merges their values.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                "type": "object",
+                "anyOf": [
+                  {
+                    "required": [ "header_name" ]
+                  },
+                  {
+                    "required": [ "param_name" ]
+                  }
+                ],
+                "properties": {
+                  "header_name": {
+                    "title": "Audience Header",
+                    "description": "The name of the request header that carries the audience values. The header accepts several values, either repeated or separated by commas.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                    "examples": [ "X-Role" ],
+                    "type": "string"
+                  },
+                  "on_absent_value": {
+                    "title": "Behavior on Absent Audience",
+                    "description": "Decides which tools KrakenD exposes when the request carries no audience, because the header or param is missing or empty. Use `deny` to list no tools and reject every tool call, or `allow` to list and accept calls to all of them.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                    "default": "deny",
+                    "enum": [ "deny", "allow" ]
+                  },
+                  "param_name": {
+                    "title": "Audience Path Param",
+                    "description": "The name of the path param in the endpoint URL that carries the audience values, without curly braces. The param accepts several values separated by commas. For instance, an endpoint `/mcp/{filter}` uses `filter`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                    "examples": [ "filter" ],
+                    "type": "string"
+                  }
+                },
+                "patternProperties": {
+                  "^[@$_#]": true
+                },
+                "additionalProperties": false
+              },
               "tools": {
                 "description": "The Model Context Protocol (MCP) allows servers to expose tools ([RFC](https://modelcontextprotocol.io/specification/2025-06-18/server/tools)) that can be invoked by language models. Tools enable models to interact with internal/external systems. Each tool is uniquely identified by a name and includes metadata describing its schema.",
                 "type": "array",
@@ -7698,6 +7735,17 @@
                   "type": "object",
                   "required": [ "name", "title", "description", "workflow" ],
                   "properties": {
+                    "audiences": {
+                      "title": "Tool Audiences",
+                      "description": "The audiences allowed to list and call this tool when the server sets `tool_audience_source`. KrakenD exposes the tool when any request audience matches an entry here, and rejects calls to it otherwise. A `*` entry matches any audience.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
+                      "type": "array",
+                      "uniqueItems": true,
+                      "items": {
+                        "title": "Audience",
+                        "examples": [ "admin", "dev", "*" ],
+                        "type": "string"
+                      }
+                    },
                     "title": {
                       "title": "MCP Server Title",
                       "description": "The description of the purpose of this MCP tool. Provide a meaningful text to help AI understand its use case.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
