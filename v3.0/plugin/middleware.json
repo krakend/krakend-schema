@@ -4,15 +4,45 @@
   "title": "Middleware plugins",
   "description": "Enterprise only. Inject your own Go middleware plugins in the proxy layer.\n\nSee: https://www.krakend.io/docs/enterprise/extending/middleware-plugins/",
   "type": "object",
-  "required": [ "name" ],
+  "required": [ "plugins" ],
   "properties": {
-    "name": {
-      "title": "Plugin name",
-      "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/middleware-plugins/",
+    "plugins": {
+      "title": "Plugins",
+      "description": "The list of plugins to load, each one with its own configuration.\n\nSee: https://www.krakend.io/docs/enterprise/extending/middleware-plugins/",
       "type": "array",
+      "minItems": 1,
       "items": {
-        "type": "string"
+        "$ref": "#/$defs/plugin"
       }
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "plugin": {
+      "title": "Plugin",
+      "description": "A plugin to load and its configuration.\n\nSee: https://www.krakend.io/docs/enterprise/extending/middleware-plugins/",
+      "type": "object",
+      "required": [ "name" ],
+      "properties": {
+        "config": {
+          "title": "Plugin configuration",
+          "description": "The configuration passed to the plugin. Its content depends on each plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/middleware-plugins/",
+          "type": "object"
+        },
+        "name": {
+          "title": "Plugin name",
+          "description": "The name of the plugin to load. The name is defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/middleware-plugins/",
+          "examples": [ "myplugin" ],
+          "type": "string"
+        },
+        "on_load_error": {
+          "$ref": "plugin.json#/$defs/on_load_error"
+        }
+      },
+      "additionalProperties": false
     }
   }
 }

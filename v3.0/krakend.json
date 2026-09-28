@@ -173,28 +173,6 @@
         "no-op"
       ]
     },
-    "plugin": {
-      "title": "Plugin",
-      "description": "Enterprise only. Enables external plugins that are copied in a specific folder",
-      "type": "object",
-      "required": [ "pattern", "folder" ],
-      "properties": {
-        "pattern": {
-          "title": "Pattern",
-          "description": "The pattern narrows down the contents of the folder. It represents the substring that must be present in the plugin name to load.",
-          "examples": [ ".so", "-production.so" ],
-          "default": ".so",
-          "type": "string"
-        },
-        "folder": {
-          "title": "Folder",
-          "description": "The path in the filesystem where all the plugins you want to load are. MUST END IN SLASH. The folder can be a relative or absolute path. KrakenD Enterprise uses /opt/krakend/plugins/ for all plugins.",
-          "examples": [ "/opt/krakend/plugins/", "./plugins/" ],
-          "default": "/opt/krakend/plugins/",
-          "type": "string"
-        }
-      }
-    },
     "port": {
       "title": "Port",
       "description": "The TCP port where KrakenD is listening to. Recommended value is in the range 1024-65535 to run as an unpriviliged user",
@@ -3130,69 +3108,115 @@
       },
       "additionalProperties": false
     },
+    "https://www.krakend.io/schema/v3.0/plugin/plugin.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Plugin",
+      "description": "Enterprise only. Enables external plugins that are copied in a specific folder.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
+      "type": "object",
+      "required": [ "pattern", "folder" ],
+      "properties": {
+        "folder": {
+          "title": "Folder",
+          "description": "The path in the filesystem where all the plugins you want to load are. MUST END IN SLASH. The folder can be a relative or absolute path. KrakenD Enterprise uses /opt/krakend/plugins/ for all plugins.",
+          "examples": [ "/opt/krakend/plugins/", "./plugins/" ],
+          "default": "/opt/krakend/plugins/",
+          "type": "string"
+        },
+        "on_load_default_error": {
+          "title": "Default behavior on load error",
+          "description": "The default behavior when a plugin fails to load. It applies to every plugin that does not declare its own `on_load_error`. The options are:\n\n`critical`: KrakenD stops and does not start, so a configuration with a broken plugin never serves traffic.\n\n`error`: KrakenD starts, but every endpoint or backend where the failing plugin is attached responds with a pipe error. Everything else works normally. HTTP server plugins are the exception: they run in the router layer, so a failing server plugin makes the whole gateway fail even though KrakenD starts normally.\n\n`passthrough`: KrakenD starts, and the endpoints or backends where the plugin is attached work without it, skipping its logic. Use it carefully with plugins that enforce security, like authentication or IP filtering, because traffic flows through without them.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
+          "default": "critical",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1plugin.json/$defs/on_load_error_behavior"
+        },
+        "pattern": {
+          "title": "Pattern",
+          "description": "The pattern narrows down the contents of the folder. It represents the substring that must be present in the plugin name to load.",
+          "examples": [ ".so", "-production.so" ],
+          "default": ".so",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "$defs": {
+        "on_load_error": {
+          "title": "Behavior on load error",
+          "description": "What to do when this plugin fails to load. It overrides the `on_load_default_error` set in the service `plugin` settings, and when it's not set, that value applies. Use it to treat plugins differently: for example, a security plugin as `critical` and an optional enrichment plugin as `passthrough`. The options are:\n\n`critical`: KrakenD stops and does not start.\n\n`error`: the endpoint or backend where this plugin is attached responds with a pipe error, and the rest of the gateway works normally. For HTTP server plugins, which run in the router layer, the whole gateway fails even though KrakenD starts normally.\n\n`passthrough`: the plugin logic is skipped, and the endpoint or backend works without it. Use it carefully with plugins that enforce security, like authentication or IP filtering, because traffic flows through without them.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1plugin.json/$defs/on_load_error_behavior"
+        },
+        "on_load_error_behavior": {
+          "enum": [ "critical", "error", "passthrough" ]
+        }
+      }
+    },
     "https://www.krakend.io/schema/v3.0/plugin/http-client.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "HTTP client plugins",
-      "description": "Enterprise only. Inject your own Go HTTP client plugin, replacing the client KrakenD uses to call this backend.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-client-plugins/",
+      "description": "Enterprise only. Inject your own Go HTTP client plugin, replacing the client KrakenD uses to call this backend. Only one plugin is supported per backend.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-client-plugins/",
       "type": "object",
+      "required": [ "name" ],
       "properties": {
+        "config": {
+          "title": "Plugin configuration",
+          "description": "The configuration passed to the plugin. Its content depends on each plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-client-plugins/",
+          "type": "object"
+        },
         "name": {
           "title": "Plugin name",
-          "description": "The name of the plugin to load. Only one plugin is supported per backend.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
-          "examples": [ "no-redirect", "http-logger", "static-filesystem" ],
+          "description": "The name of the plugin to load. Only one plugin is supported per backend.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-client-plugins/",
+          "examples": [ "http-logger" ],
           "type": "string"
+        },
+        "on_load_error": {
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1plugin.json/$defs/on_load_error"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "https://www.krakend.io/schema/v3.0/plugin/middleware.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "Middleware plugins",
       "description": "Enterprise only. Inject your own Go middleware plugins in the proxy layer.\n\nSee: https://www.krakend.io/docs/enterprise/extending/middleware-plugins/",
       "type": "object",
-      "required": [ "name" ],
+      "required": [ "plugins" ],
       "properties": {
-        "name": {
-          "title": "Plugin name",
-          "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/middleware-plugins/",
+        "plugins": {
+          "title": "Plugins",
+          "description": "The list of plugins to load, each one with its own configuration.\n\nSee: https://www.krakend.io/docs/enterprise/extending/middleware-plugins/",
           "type": "array",
+          "minItems": 1,
           "items": {
-            "type": "string"
+            "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1middleware.json/$defs/plugin"
           }
         }
-      }
-    },
-    "https://www.krakend.io/schema/v3.0/plugin/content-replacer.json": {
-      "$schema": "https://json-schema.org/draft/2019-09/schema",
-      "title": "Content Replacer",
-      "description": "Enterprise only. The content replacer plugin allows you to modify the response of your services by doing literal replacements or more sophisticated replacements with regular expressions.\n\nSee: See: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
-      "deprecated": true,
-      "type": "object",
-      "minProperties": 1,
-      "additionalProperties": {
-        "type": "object",
-        "required": [ "find", "replace" ],
-        "properties": {
-          "find": {
-            "title": "Find",
-            "description": "The find expression or literal you want to use.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
-            "type": "string"
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false,
+      "$defs": {
+        "plugin": {
+          "title": "Plugin",
+          "description": "A plugin to load and its configuration.\n\nSee: https://www.krakend.io/docs/enterprise/extending/middleware-plugins/",
+          "type": "object",
+          "required": [ "name" ],
+          "properties": {
+            "config": {
+              "title": "Plugin configuration",
+              "description": "The configuration passed to the plugin. Its content depends on each plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/middleware-plugins/",
+              "type": "object"
+            },
+            "name": {
+              "title": "Plugin name",
+              "description": "The name of the plugin to load. The name is defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/middleware-plugins/",
+              "examples": [ "myplugin" ],
+              "type": "string"
+            },
+            "on_load_error": {
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1plugin.json/$defs/on_load_error"
+            }
           },
-          "regexp": {
-            "title": "Is a regexp?",
-            "description": "When you are passing regular expressions instead of literal values, set it to true.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
-            "default": false,
-            "type": "boolean"
-          },
-          "replace": {
-            "title": "Find",
-            "description": "The literal string or expression you want to use as a replacement.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/content-replacer/",
-            "type": "string"
-          }
-        },
-        "patternProperties": {
-          "^[@$_#]": true
-        },
-        "additionalProperties": false
+          "additionalProperties": false
+        }
       }
     },
     "https://www.krakend.io/schema/v3.0/plugin/ip-filter.json": {
@@ -3247,80 +3271,65 @@
       },
       "additionalProperties": false
     },
-    "https://www.krakend.io/schema/v3.0/plugin/response-schema-validator.json": {
-      "$schema": "https://json-schema.org/draft/2019-09/schema",
-      "title": "Response Schema Validator",
-      "description": "Enterprise only. The response schema validator plugin adds a schema validation before the gateway returns the response to the end-user or before it’s merged in the endpoint with the rest of the backends.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
-      "deprecated": true,
-      "type": "object",
-      "required": [ "schema" ],
-      "properties": {
-        "error": {
-          "title": "Error definition",
-          "description": "In case the validation fails, the error definition containing body and status.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
-          "examples": [
-            {
-              "body": "We couldn't process you request, try again later.",
-              "status": 401
-            }
-          ],
-          "type": "object",
-          "properties": {
-            "body": {
-              "title": "Error body",
-              "description": "The error message you want to show when the validation fails. Set it to an empty string `\"\"` to show the JSON-schema validation error.",
-              "default": "",
-              "type": "string"
-            },
-            "status": {
-              "title": "Error code",
-              "description": "The HTTP status code you want to set back in the response.",
-              "default": 500,
-              "type": "integer"
-            }
-          },
-          "patternProperties": {
-            "^[@$_#]": true
-          },
-          "additionalProperties": false
-        },
-        "schema": {
-          "title": "JSON Schema",
-          "description": "Write your JSON schema directly in this field, with any number of fields or validations you need.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/response-schema-validator/",
-          "type": "object"
-        }
-      },
-      "patternProperties": {
-        "^[@$_#]": true
-      },
-      "additionalProperties": false
-    },
     "https://www.krakend.io/schema/v3.0/plugin/req-resp-modifier.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "Request-Response modifier plugins",
       "description": "Enterprise only. Inject your own Go request and response modifier plugins.\n\nSee: https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/",
       "type": "object",
+      "required": [ "plugins" ],
       "properties": {
-        "content-replacer": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1content-replacer.json"
-        },
-        "ip-filter": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1ip-filter.json"
-        },
-        "name": {
-          "title": "Plugin name",
-          "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/",
-          "examples": [
-            [ "myplugin" ]
-          ],
-          "default": [],
+        "plugins": {
+          "title": "Plugins",
+          "description": "The list of plugins to load, each one with its own configuration.\n\nSee: https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/",
           "type": "array",
+          "minItems": 1,
           "items": {
-            "type": "string"
+            "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1req-resp-modifier.json/$defs/plugin"
           }
-        },
-        "response-schema-validator": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1response-schema-validator.json"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false,
+      "$defs": {
+        "plugin": {
+          "title": "Plugin",
+          "description": "A plugin to load and its configuration.\n\nSee: https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/",
+          "type": "object",
+          "if": {
+            "required": [ "name" ],
+            "properties": {
+              "name": {
+                "const": "ip-filter"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "config": {
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1ip-filter.json"
+              }
+            }
+          },
+          "required": [ "name" ],
+          "properties": {
+            "config": {
+              "title": "Plugin configuration",
+              "description": "The configuration passed to the plugin. Its content depends on each plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/",
+              "type": "object"
+            },
+            "name": {
+              "title": "Plugin name",
+              "description": "The name of the plugin to load. The name is defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/",
+              "examples": [ "myplugin" ],
+              "type": "string"
+            },
+            "on_load_error": {
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1plugin.json/$defs/on_load_error"
+            }
+          },
+          "additionalProperties": false
         }
       }
     },
@@ -8554,43 +8563,6 @@
       },
       "additionalProperties": false
     },
-    "https://www.krakend.io/schema/v3.0/plugin/static-filesystem.json": {
-      "$schema": "https://json-schema.org/draft/2019-09/schema",
-      "title": "Static Filesystem",
-      "description": "Enterprise only. Allows you to fetch and serve static content in two different use cases. When the plugin is used as an http server handler, the static content is for your end-users, giving them CSS, JS, images, or JSON files, to name a few examples. On the other side, when the plugin is used as an http client executor, the KrakenD endpoints use static content as if it were a backend.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
-      "deprecated": true,
-      "type": "object",
-      "required": [ "prefix", "path" ],
-      "properties": {
-        "path": {
-          "title": "Path",
-          "description": "The folder in the filesystem containing the static files. Relative to the working dir where KrakenD config is (e.g.: `./assets`) or absolute (e.g.: `/var/www/assets`).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
-          "examples": [ "./static/" ],
-          "type": "string"
-        },
-        "prefix": {
-          "title": "Prefix",
-          "description": "This is the beginning (prefix) of all URLs that are resolved using this plugin. All matching URLs won't be passed to the router, meaning that they are not considered endpoints. Make sure you are not overwriting valid endpoints. When the `prefix` is `/`, then **all traffic is served as static** and you must declare a prefix under `skip` (e.g.: `/api`) to match endpoints.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
-          "examples": [ "/media/assets" ],
-          "type": "string"
-        },
-        "skip": {
-          "title": "Skip paths",
-          "description": "An array with all the prefix URLs that despite they could match with the `prefix`, you don't want to treat them as static content and pass them to the router.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
-          "examples": [
-            [ "/media/ignore/this/directory", "/media/file.json" ]
-          ],
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      },
-      "patternProperties": {
-        "^[@$_#]": true
-      },
-      "additionalProperties": false
-    },
     "https://www.krakend.io/schema/v3.0/plugin/url-rewrite.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "URL rewrite",
@@ -8633,31 +8605,6 @@
       },
       "additionalProperties": false
     },
-    "https://www.krakend.io/schema/v3.0/plugin/virtualhost.json": {
-      "$schema": "https://json-schema.org/draft/2019-09/schema",
-      "title": "VirtualHost",
-      "description": "Enterprise only. The Virtual Host plugin allows you to run different configurations of KrakenD endpoints based on the host accessing the server.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/virtual-hosts/",
-      "deprecated": true,
-      "type": "object",
-      "required": [ "hosts" ],
-      "properties": {
-        "hosts": {
-          "title": "Virtualhosts",
-          "description": "All recognized virtual hosts by KrakenD must be listed here. The values declared here must match the content of the `Host` header when passed by the client.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/virtual-hosts/",
-          "examples": [
-            [ "api-a.host.com", "api-b.host.com" ]
-          ],
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      },
-      "patternProperties": {
-        "^[@$_#]": true
-      },
-      "additionalProperties": false
-    },
     "https://www.krakend.io/schema/v3.0/plugin/wildcard.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "Wildcard",
@@ -8686,47 +8633,149 @@
       "title": "HTTP Server plugins",
       "description": "Enterprise only. Inject your own Go HTTP server plugins, executed in the router layer.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
       "type": "object",
-      "required": [ "name" ],
+      "required": [ "plugins" ],
       "properties": {
-        "geoip": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1geoip.json"
-        },
-        "ip-filter": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1ip-filter.json"
-        },
-        "jwk-aggregator": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1jwk-aggregator.json"
-        },
-        "name": {
-          "title": "Plugin name",
-          "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
-          "examples": [
-            [ "myplugin" ]
-          ],
-          "default": [],
+        "plugins": {
+          "title": "Plugins",
+          "description": "The list of plugins to load, each one with its own configuration.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
           "type": "array",
+          "minItems": 1,
           "items": {
-            "type": "string"
+            "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1http-server.json/$defs/plugin"
           }
-        },
-        "redis-ratelimit": {
-          "deprecated": true,
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1redis-ratelimit.json"
-        },
-        "static-filesystem": {
-          "deprecated": true,
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1static-filesystem.json"
-        },
-        "url-rewrite": {
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1url-rewrite.json"
-        },
-        "virtualhost": {
-          "deprecated": true,
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1virtualhost.json"
-        },
-        "wildcard": {
-          "deprecated": true,
-          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1wildcard.json"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false,
+      "$defs": {
+        "plugin": {
+          "title": "Plugin",
+          "description": "A plugin to load and its configuration.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
+          "type": "object",
+          "allOf": [
+            {
+              "if": {
+                "required": [ "name" ],
+                "properties": {
+                  "name": {
+                    "const": "geoip"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "config": {
+                    "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1geoip.json"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [ "name" ],
+                "properties": {
+                  "name": {
+                    "const": "ip-filter"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "config": {
+                    "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1ip-filter.json"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [ "name" ],
+                "properties": {
+                  "name": {
+                    "const": "jwk-aggregator"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "config": {
+                    "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1jwk-aggregator.json"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [ "name" ],
+                "properties": {
+                  "name": {
+                    "const": "redis-ratelimit"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "config": {
+                    "deprecated": true,
+                    "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1redis-ratelimit.json"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [ "name" ],
+                "properties": {
+                  "name": {
+                    "const": "url-rewrite"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "config": {
+                    "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1url-rewrite.json"
+                  }
+                }
+              }
+            }
+          ],
+          "if": {
+            "required": [ "name" ],
+            "properties": {
+              "name": {
+                "const": "wildcard"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "config": {
+                "deprecated": true,
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1wildcard.json"
+              }
+            }
+          },
+          "required": [ "name" ],
+          "properties": {
+            "config": {
+              "title": "Plugin configuration",
+              "description": "The configuration passed to the plugin. Its content depends on each plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
+              "type": "object"
+            },
+            "name": {
+              "title": "Plugin name",
+              "description": "The name of the plugin to load. The name is defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
+              "examples": [ "myplugin" ],
+              "type": "string"
+            },
+            "on_load_error": {
+              "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1plugin.json/$defs/on_load_error"
+            }
+          },
+          "additionalProperties": false
         }
       }
     },
@@ -10343,6 +10392,9 @@
           "title": "Response Headers modifier",
           "description": "Enterprise only. Allows you to transform response headers declaratively.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1response-headers.json"
+        },
+        "plugin": {
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1plugin.json"
         },
         "plugin/http-server": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1http-server.json"
