@@ -138,7 +138,7 @@
         },
         "name": {
           "title": "Plugin name",
-          "description": "The name of the plugin to load. The name is defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
+          "description": "The name of the plugin to load. It must match the name your plugin registers.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
           "examples": [ "myplugin" ],
           "type": "string"
         },

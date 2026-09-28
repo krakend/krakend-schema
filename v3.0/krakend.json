@@ -3111,7 +3111,7 @@
     "https://www.krakend.io/schema/v3.0/plugin/plugin.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "Plugin",
-      "description": "Enterprise only. Enables external plugins that are copied in a specific folder.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
+      "description": "Enterprise only. Loads your plugins from a folder and sets the default behavior when one of them fails to load.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
       "type": "object",
       "required": [ "pattern", "folder" ],
       "properties": {
@@ -3124,7 +3124,7 @@
         },
         "on_load_default_error": {
           "title": "Default behavior on load error",
-          "description": "The default behavior when a plugin fails to load. It applies to every plugin that does not declare its own `on_load_error`. The options are:\n\n`critical`: KrakenD stops and does not start, so a configuration with a broken plugin never serves traffic.\n\n`error`: KrakenD starts, but every endpoint or backend where the failing plugin is attached responds with a pipe error. Everything else works normally. HTTP server plugins are the exception: they run in the router layer, so a failing server plugin makes the whole gateway fail even though KrakenD starts normally.\n\n`passthrough`: KrakenD starts, and the endpoints or backends where the plugin is attached work without it, skipping its logic. Use it carefully with plugins that enforce security, like authentication or IP filtering, because traffic flows through without them.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
+          "description": "The default behavior when a plugin fails to load. It applies to every plugin that does not declare its own `on_load_error`. The options are:\n`critical`: KrakenD stops and does not start, so a configuration with a broken plugin never serves traffic.\n`error`: KrakenD starts, but every endpoint or backend where the failing plugin is attached responds with a pipe error. Everything else works normally. Plugins under `plugin/http-server` are the exception: they run in the router layer, so a failing server plugin makes the whole gateway fail even though KrakenD starts normally.\n`passthrough`: KrakenD starts, and the endpoints or backends where the plugin is attached work without it, skipping its logic. Use it carefully with plugins that enforce security, like authentication or IP filtering, because traffic flows through without them.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
           "default": "critical",
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1plugin.json/$defs/on_load_error_behavior"
         },
@@ -3140,7 +3140,7 @@
       "$defs": {
         "on_load_error": {
           "title": "Behavior on load error",
-          "description": "What to do when this plugin fails to load. It overrides the `on_load_default_error` set in the service `plugin` settings, and when it's not set, that value applies. Use it to treat plugins differently: for example, a security plugin as `critical` and an optional enrichment plugin as `passthrough`. The options are:\n\n`critical`: KrakenD stops and does not start.\n\n`error`: the endpoint or backend where this plugin is attached responds with a pipe error, and the rest of the gateway works normally. For HTTP server plugins, which run in the router layer, the whole gateway fails even though KrakenD starts normally.\n\n`passthrough`: the plugin logic is skipped, and the endpoint or backend works without it. Use it carefully with plugins that enforce security, like authentication or IP filtering, because traffic flows through without them.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
+          "description": "What to do when this plugin fails to load. It overrides the service `on_load_default_error`. When you don't set it, the service value applies. Use it to treat plugins differently: for example, a security plugin as `critical` and an optional enrichment plugin as `passthrough`. The options are:\n`critical`: KrakenD stops and does not start.\n`error`: the endpoint or backend where this plugin is attached responds with a pipe error, and the rest of the gateway works normally. Plugins under `plugin/http-server` run in the router layer, so the whole gateway fails even though KrakenD starts normally.\n`passthrough`: KrakenD skips the plugin logic, and the endpoint or backend works without it. Use it carefully with plugins that enforce security, like authentication or IP filtering, because traffic flows through without them.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1plugin~1plugin.json/$defs/on_load_error_behavior"
         },
         "on_load_error_behavior": {
@@ -3151,7 +3151,7 @@
     "https://www.krakend.io/schema/v3.0/plugin/http-client.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "HTTP client plugins",
-      "description": "Enterprise only. Inject your own Go HTTP client plugin, replacing the client KrakenD uses to call this backend. Only one plugin is supported per backend.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-client-plugins/",
+      "description": "Enterprise only. Inject your own Go HTTP client plugin, replacing the client KrakenD uses to call this backend. Each backend accepts only one client plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-client-plugins/",
       "type": "object",
       "required": [ "name" ],
       "properties": {
@@ -3162,7 +3162,7 @@
         },
         "name": {
           "title": "Plugin name",
-          "description": "The name of the plugin to load. Only one plugin is supported per backend.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-client-plugins/",
+          "description": "The name of the plugin to load. Each backend accepts only one client plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-client-plugins/",
           "examples": [ "http-logger" ],
           "type": "string"
         },
@@ -3210,7 +3210,7 @@
             },
             "name": {
               "title": "Plugin name",
-              "description": "The name of the plugin to load. The name is defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/middleware-plugins/",
+              "description": "The name of the plugin to load. It must match the name your plugin registers.\n\nSee: https://www.krakend.io/docs/enterprise/extending/middleware-plugins/",
               "examples": [ "myplugin" ],
               "type": "string"
             },
@@ -3327,7 +3327,7 @@
             },
             "name": {
               "title": "Plugin name",
-              "description": "The name of the plugin to load. The name is defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/",
+              "description": "The name of the plugin to load. It must match the name your plugin registers.\n\nSee: https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/",
               "examples": [ "myplugin" ],
               "type": "string"
             },
@@ -8776,7 +8776,7 @@
             },
             "name": {
               "title": "Plugin name",
-              "description": "The name of the plugin to load. The name is defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
+              "description": "The name of the plugin to load. It must match the name your plugin registers.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
               "examples": [ "myplugin" ],
               "type": "string"
             },
