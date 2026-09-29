@@ -51,7 +51,7 @@
                 "title": "Classifier config",
                 "description": "Configuration fields for an external classifier",
                 "type": "object",
-                "required": ["url", "score_threshold"],
+                "required": [ "url", "score_threshold" ],
                 "properties": {
                   "score_threshold": {
                     "title": "Score threshold",
@@ -76,7 +76,7 @@
                 "title": "Policy config",
                 "description": "Configuration fields for a policy classifier",
                 "type": "object",
-                "required": ["expressions"],
+                "required": [ "expressions" ],
                 "properties": {
                   "expressions": {
                     "title": "Expressions",

@@ -8429,6 +8429,7 @@
                     "title": "Regular expressions config",
                     "description": "Configuration fields for a classifier",
                     "type": "object",
+                    "required": [ "patterns" ],
                     "properties": {
                       "patterns": {
                         "description": "List of regular expression to check",
@@ -8444,6 +8445,7 @@
                     "title": "Classifier config",
                     "description": "Configuration fields for an external classifier",
                     "type": "object",
+                    "required": [ "url", "score_threshold" ],
                     "properties": {
                       "score_threshold": {
                         "title": "Score threshold",
@@ -8470,6 +8472,7 @@
                     "title": "Policy config",
                     "description": "Configuration fields for a policy classifier",
                     "type": "object",
+                    "required": [ "expressions" ],
                     "properties": {
                       "expressions": {
                         "title": "Expressions",
