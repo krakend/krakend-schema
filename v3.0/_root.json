@@ -174,28 +174,6 @@
         "no-op"
       ]
     },
-    "plugin": {
-      "title": "Plugin",
-      "description": "Enterprise only. Enables external plugins that are copied in a specific folder",
-      "type": "object",
-      "required": [ "pattern", "folder" ],
-      "properties": {
-        "pattern": {
-          "title": "Pattern",
-          "description": "The pattern narrows down the contents of the folder. It represents the substring that must be present in the plugin name to load.",
-          "examples": [ ".so", "-production.so" ],
-          "default": ".so",
-          "type": "string"
-        },
-        "folder": {
-          "title": "Folder",
-          "description": "The path in the filesystem where all the plugins you want to load are. MUST END IN SLASH. The folder can be a relative or absolute path. KrakenD Enterprise uses /opt/krakend/plugins/ for all plugins.",
-          "examples": [ "/opt/krakend/plugins/", "./plugins/" ],
-          "default": "/opt/krakend/plugins/",
-          "type": "string"
-        }
-      }
-    },
     "port": {
       "title": "Port",
       "description": "The TCP port where KrakenD is listening to. Recommended value is in the range 1024-65535 to run as an unpriviliged user",

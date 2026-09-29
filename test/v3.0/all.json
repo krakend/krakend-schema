@@ -85,10 +85,6 @@
                         "ca.pem"
                     ]
                 },
-                "plugin": {
-                    "folder": "/opt/krakend/plugins/",
-                    "pattern": ".so"
-                },
                 "async_agent": [
                     {
                         "name": "cool-agent",
@@ -351,16 +347,20 @@
                             {
                                 "extra_config": {
                                     "plugin/middleware": {
-                                        "name": [
-                                            "your-plugin-A",
-                                            "your-plugin-B"
-                                        ],
-                                        "your-plugin-A": {
-                                            "your-A-setting": true
-                                        },
-                                        "your-plugin-B": {
-                                            "your-B-setting": true
-                                        }
+                                        "plugins": [
+                                            {
+                                                "name": "your-plugin-A",
+                                                "config": {
+                                                    "your-A-setting": true
+                                                }
+                                            },
+                                            {
+                                                "name": "your-plugin-B",
+                                                "config": {
+                                                    "your-B-setting": true
+                                                }
+                                            }
+                                        ]
                                     },
                                     "security/policies": {
                                         "resp": {
@@ -424,12 +424,14 @@
                         ],
                         "extra_config": {
                             "plugin/middleware": {
-                                "name": [
-                                    "your-plugin-A"
-                                ],
-                                "your-plugin-A": {
-                                    "your-A-setting": true
-                                }
+                                "plugins": [
+                                    {
+                                        "name": "your-plugin-A",
+                                        "config": {
+                                            "your-A-setting": true
+                                        }
+                                    }
+                                ]
                             },
                             "telemetry/opentelemetry": {
                                 "proxy": {
@@ -494,15 +496,6 @@
                                 "users": {
                                     "admin": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ...",
                                     "user2": "$2y$05$HpdPmv2Z3h3skMCVaf/CEep/UUBuhZ..."
-                                }
-                            },
-                            "plugin/req-resp-modifier": {
-                                "content-replacer": {
-                                    "key.a": {
-                                        "find": "",
-                                        "regexp": false,
-                                        "replace": ""
-                                    }
                                 }
                             },
                             "websocket": {
@@ -730,78 +723,35 @@
                                 "is_collection": true,
                                 "extra_config": {
                                     "plugin/req-resp-modifier": {
-                                        "name": [
-                                            "krakend-debugger"
-                                        ],
-                                        "ip-filter": {
-                                            "allow": false,
-                                            "CIDR": [
-                                                "192.168.0.0/24",
-                                                "172.17.2.56/32"
-                                            ],
-                                            "client_ip_headers": [
-                                                "X-Forwarded-For",
-                                                "X-Real-IP",
-                                                "X-Appengine-Remote-Addr"
-                                            ],
-                                            "trusted_proxies": [
-                                                "10.0.0.0/16"
-                                            ]
-                                        },
-                                        "content-replacer": {
-                                            "data.credit_card": {
-                                                "@comment": "Ridiculous card masking. Take 4 digits and remove the rest. Credit card is inside a data object.",
-                                                "find": "(^\\d{4})(.*)",
-                                                "replace": "${1}-XXXX",
-                                                "regexp": true
+                                        "plugins": [
+                                            {
+                                                "name": "krakend-debugger"
                                             },
-                                            "message": {
-                                                "@comment": "Replace '6 items left' with '6' on the message field",
-                                                "find": " items left",
-                                                "replace": ""
+                                            {
+                                                "name": "ip-filter",
+                                                "config": {
+                                                    "allow": false,
+                                                    "CIDR": [
+                                                        "192.168.0.0/24",
+                                                        "172.17.2.56/32"
+                                                    ],
+                                                    "client_ip_headers": [
+                                                        "X-Forwarded-For",
+                                                        "X-Real-IP",
+                                                        "X-Appengine-Remote-Addr"
+                                                    ],
+                                                    "trusted_proxies": [
+                                                        "10.0.0.0/16"
+                                                    ]
+                                                }
                                             }
-                                        },
-                                        "response-schema-validator": {
-                                            "schema": {
-                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                "type": "object",
-                                                "properties": {
-                                                    "user": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "username": {
-                                                                "type": "string"
-                                                            },
-                                                            "user_id": {
-                                                                "type": "number"
-                                                            },
-                                                            "status": {
-                                                                "type": "string",
-                                                                "enum": [
-                                                                    "registered",
-                                                                    "banned"
-                                                                ]
-                                                            }
-                                                        },
-                                                        "required": [
-                                                            "username",
-                                                            "user_id"
-                                                        ]
-                                                    }
-                                                },
-                                                "required": [
-                                                    "user"
-                                                ]
-                                            },
-                                            "error": {
-                                                "body": "We couldn't process you request, try again later.",
-                                                "status": 401
-                                            }
-                                        }
+                                        ]
                                     },
                                     "plugin/http-client": {
-                                        "name": "static-filesystem",
-                                        "path": "/var/log/application/"
+                                        "name": "http-logger",
+                                        "config": {
+                                            "path": "/var/log/application/"
+                                        }
                                     },
                                     "backend/pubsub/publisher": {
                                         "topic_url": "",
@@ -1166,8 +1116,10 @@
                                 "@extra_comment": "here"
                             },
                             "plugin/req-resp-modifier": {
-                                "name": [
-                                    "krakend-debugger"
+                                "plugins": [
+                                    {
+                                        "name": "krakend-debugger"
+                                    }
                                 ]
                             }
                         }
@@ -2481,64 +2433,79 @@
                             }
                         ]
                     },
+                    "plugin": {
+                        "folder": "/opt/krakend/plugins/",
+                        "pattern": ".so",
+                        "on_load_default_error": "exit"
+                    },
                     "plugin/http-server": {
-                        "name": [
-                            "a-plugin"
-                        ],
-                        "a_plugin_conf": {},
-                        "ip-filter": {
-                            "allow": false,
-                            "CIDR": [
-                                "192.168.0.0/24",
-                                "172.17.2.56/32"
-                            ],
-                            "client_ip_headers": [
-                                "X-Forwarded-For",
-                                "X-Real-IP",
-                                "X-Appengine-Remote-Addr"
-                            ],
-                            "trusted_proxies": [
-                                "10.0.0.0/16"
-                            ]
-                        },
-                        "jwk-aggregator": {
-                            "origins": [
-                                "https://jwk1.tld/jwk.json",
-                                "http://foo.bar/public_keys"
-                            ],
-                            "port": 9876
-                        },
-                        "url-rewrite": {
-                            "literal": {
-                                "/hi-there": "/hello",
-                                "/whatsup": "/hello"
+                        "plugins": [
+                            {
+                                "name": "a-plugin",
+                                "on_load_error": "passthrough",
+                                "config": {}
                             },
-                            "regexp": [
-                                [
-                                    "/hi-there/([.+)/bar",
-                                    "/hello/${1}"
-                                ]
-                            ]
-                        },
-                        "geoip": {
-                            "citydb_path": "path/to/GeoIP2-City.mmdb"
-                        },
-                        "redis-ratelimit": {
-                            "burst": 0,
-                            "host": "redis",
-                            "period": "3s",
-                            "rate": 0,
-                            "tokenizer": "cookie",
-                            "tokenizer_field": "aaa"
-                        },
-                        "wildcard": {
-                            "endpoints": {
-                                "/__wildcard/foo": [
-                                    "/foo",
-                                    "/aliasfoo"
-                                ]
+                            {
+                                "name": "ip-filter",
+                                "config": {
+                                    "allow": false,
+                                    "CIDR": [
+                                        "192.168.0.0/24",
+                                        "172.17.2.56/32"
+                                    ],
+                                    "client_ip_headers": [
+                                        "X-Forwarded-For",
+                                        "X-Real-IP",
+                                        "X-Appengine-Remote-Addr"
+                                    ],
+                                    "trusted_proxies": [
+                                        "10.0.0.0/16"
+                                    ]
+                                }
+                            },
+                            {
+                                "name": "jwk-aggregator",
+                                "config": {
+                                    "origins": [
+                                        "https://jwk1.tld/jwk.json",
+                                        "http://foo.bar/public_keys"
+                                    ],
+                                    "port": 9876
+                                }
+                            },
+                            {
+                                "name": "url-rewrite",
+                                "config": {
+                                    "literal": {
+                                        "/hi-there": "/hello",
+                                        "/whatsup": "/hello"
+                                    },
+                                    "regexp": [
+                                        [
+                                            "/hi-there/([.+)/bar",
+                                            "/hello/${1}"
+                                        ]
+                                    ]
+                                }
+                            },
+                            {
+                                "name": "geoip",
+                                "config": {
+                                    "citydb_path": "path/to/GeoIP2-City.mmdb"
+                                }
+                            },
+                            {
+                                "name": "wildcard",
+                                "config": {
+                                    "endpoints": {
+                                        "/__wildcard/foo": [
+                                            "/foo",
+                                            "/aliasfoo"
+                                        ]
+                                    }
+                                }
                             }
-                        }
+                        ]
                     },
                     "modifier/lua-endpoint": {
                         "pre": "print('Lua service!'); local c = ctx.load(); c:headers('X-from-lua', '1234');"

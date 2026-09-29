@@ -50,6 +50,9 @@
       "description": "Enterprise only. Allows you to transform response headers declaratively.\n\nSee: https://www.krakend.io/docs/enterprise/service-settings/response-headers-modifier/",
       "$ref": "modifier/response-headers.json"
     },
+    "plugin": {
+      "$ref": "plugin/plugin.json"
+    },
     "plugin/http-server": {
       "$ref": "plugin/http-server.json"
     },

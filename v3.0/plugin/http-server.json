@@ -4,47 +4,134 @@
   "title": "HTTP Server plugins",
   "description": "Enterprise only. Inject your own Go HTTP server plugins, executed in the router layer.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
   "type": "object",
-  "required": [ "name" ],
+  "required": [ "plugins" ],
   "properties": {
-    "geoip": {
-      "$ref": "geoip.json"
-    },
-    "ip-filter": {
-      "$ref": "ip-filter.json"
-    },
-    "jwk-aggregator": {
-      "$ref": "jwk-aggregator.json"
-    },
-    "name": {
-      "title": "Plugin name",
-      "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
-      "examples": [
-        [ "myplugin" ]
-      ],
-      "default": [],
+    "plugins": {
+      "title": "Plugins",
+      "description": "The list of plugins to load, each one with its own configuration.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
       "type": "array",
+      "minItems": 1,
       "items": {
-        "type": "string"
+        "$ref": "#/$defs/plugin"
       }
-    },
-    "redis-ratelimit": {
-      "deprecated": true,
-      "$ref": "redis-ratelimit.json"
-    },
-    "static-filesystem": {
-      "deprecated": true,
-      "$ref": "static-filesystem.json"
-    },
-    "url-rewrite": {
-      "$ref": "url-rewrite.json"
-    },
-    "virtualhost": {
-      "deprecated": true,
-      "$ref": "virtualhost.json"
-    },
-    "wildcard": {
-      "deprecated": true,
-      "$ref": "wildcard.json"
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "plugin": {
+      "title": "Plugin",
+      "description": "A plugin to load and its configuration.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "name" ],
+            "properties": {
+              "name": {
+                "const": "geoip"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "config": {
+                "$ref": "geoip.json"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [ "name" ],
+            "properties": {
+              "name": {
+                "const": "ip-filter"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "config": {
+                "$ref": "ip-filter.json"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [ "name" ],
+            "properties": {
+              "name": {
+                "const": "jwk-aggregator"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "config": {
+                "$ref": "jwk-aggregator.json"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [ "name" ],
+            "properties": {
+              "name": {
+                "const": "url-rewrite"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "config": {
+                "$ref": "url-rewrite.json"
+              }
+            }
+          }
+        }
+      ],
+      "if": {
+        "required": [ "name" ],
+        "properties": {
+          "name": {
+            "const": "wildcard"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "config": {
+            "deprecated": true,
+            "$ref": "wildcard.json"
+          }
+        }
+      },
+      "required": [ "name" ],
+      "properties": {
+        "config": {
+          "title": "Plugin configuration",
+          "description": "The configuration passed to the plugin. Its content depends on each plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
+          "type": "object"
+        },
+        "name": {
+          "title": "Plugin name",
+          "description": "The name of the plugin to load. It must match the name your plugin registers.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
+          "examples": [ "myplugin" ],
+          "type": "string"
+        },
+        "on_load_error": {
+          "$ref": "plugin.json#/$defs/on_load_error"
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
     }
   }
 }

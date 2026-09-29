@@ -2,14 +2,27 @@
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.krakend.io/schema/v3.0/plugin/http-client.json",
   "title": "HTTP client plugins",
-  "description": "Enterprise only. Inject your own Go HTTP client plugin, replacing the client KrakenD uses to call this backend.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-client-plugins/",
+  "description": "Enterprise only. Inject your own Go HTTP client plugin, replacing the client KrakenD uses to call this backend. Each backend accepts only one client plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-client-plugins/",
   "type": "object",
+  "required": [ "name" ],
   "properties": {
+    "config": {
+      "title": "Plugin configuration",
+      "description": "The configuration passed to the plugin. Its content depends on each plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-client-plugins/",
+      "type": "object"
+    },
     "name": {
       "title": "Plugin name",
-      "description": "The name of the plugin to load. Only one plugin is supported per backend.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
-      "examples": [ "no-redirect", "http-logger", "static-filesystem" ],
+      "description": "The name of the plugin to load. Each backend accepts only one client plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-client-plugins/",
+      "examples": [ "http-logger" ],
       "type": "string"
+    },
+    "on_load_error": {
+      "$ref": "plugin.json#/$defs/on_load_error"
     }
-  }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false
 }
