@@ -21,6 +21,15 @@
       "required": [ "bedrock" ]
     },
     {
+      "required": [ "alibaba" ]
+    },
+    {
+      "not": {
+        "required": [ "format" ],
+        "properties": {
+          "format": true
+        }
+      },
       "required": [ "provider" ]
     }
   ],
@@ -51,6 +60,9 @@
     },
     "bedrock": {
       "$ref": "bedrock.json"
+    },
+    "alibaba": {
+      "$ref": "alibaba.json"
     }
   },
   "patternProperties": {
