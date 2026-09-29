@@ -242,6 +242,97 @@
   },
   "additionalProperties": false,
   "$defs": {
+    "https://www.krakend.io/schema/v3.0/ai/alibaba.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "Alibaba integration",
+      "description": "Connect to Alibaba's models easily by providing your API key and optional parameters.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+      "type": "object",
+      "maxProperties": 1,
+      "minProperties": 1,
+      "properties": {
+        "v1": {
+          "title": "Version v1",
+          "description": "All settings depend on  a specific version, as the vendor might change the API over time.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+          "required": [ "credentials", "variables" ],
+          "properties": {
+            "credentials": {
+              "title": "API Key",
+              "description": "Your Alibaba API key. You can set it as an environment variable for better security.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+              "examples": [ "sk-xxxx" ],
+              "type": "string"
+            },
+            "debug": {
+              "title": "Debug Mode",
+              "description": "Enables the debug mode to log activity for troubleshooting. Do not set this value to true in production as it may log sensitive data.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+              "default": false,
+              "type": "boolean"
+            },
+            "input_template": {
+              "title": "Input Template",
+              "description": "A path to a custom [Go template](https://pkg.go.dev/text/template) that sets the payload format sent to Alibaba. You don't need to set this value unless you want to override the default template making use of all the `variables` listed in this configuration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+              "type": "string"
+            },
+            "output_template": {
+              "title": "Output Template",
+              "description": "A path to a custom [Go template](https://pkg.go.dev/text/template) that sets how the response from Alibaba is transformed before being sent to the client. The default template extracts the text from the first choice returned by Alibaba so in most cases you don't need to set a custom output template.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+              "type": "string"
+            },
+            "variables": {
+              "title": "Template Variables",
+              "description": "The variables specific to the Alibaba usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+              "type": "object",
+              "required": [ "model" ],
+              "properties": {
+                "extra_payload": {
+                  "title": "Extra Payload",
+                  "description": "A map of additional payload attributes you want to use in your custom `input_template` (this payload is not used in the default template). The attributes set here are accessible in your custom template as `{{ .variables.extra_payload.yourchosenkey }}`. This option helps adding rare customization and future attributes.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+                  "type": "object"
+                },
+                "max_output_tokens": {
+                  "title": "Max Output Tokens",
+                  "description": "An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens. Setting this value to `0` does not set any limit.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+                  "type": "integer"
+                },
+                "model": {
+                  "title": "Model Name",
+                  "description": "The name of the Alibaba model you want to use. The value you provide is passed as is to Alibaba and KrakenD does not prove if the model is currently accepted by the vendor. Check the available models on Alibaba documentation.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+                  "examples": [ "qwen3.8-flash" ],
+                  "type": "string"
+                },
+                "temperature": {
+                  "title": "Temperature",
+                  "description": "What sampling temperature to use, between `0` and `2`. Higher values like `0.8` will make the output more random, while lower values like `0.2` will make it more focused and deterministic.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+                  "type": "number",
+                  "maximum": 2,
+                  "minimum": 0
+                },
+                "top_p": {
+                  "title": "Top P",
+                  "description": "The nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+                  "type": "number",
+                  "maximum": 1,
+                  "minimum": 0
+                },
+                "truncation": {
+                  "title": "Truncation Strategy",
+                  "description": "The strategy to use when truncating messages to fit within the model's context length (, the model will truncate the response to fit the context window by dropping items from the beginning of the conversation.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+                  "default": "disabled",
+                  "enum": [ "auto", "disabled" ]
+                }
+              }
+            }
+          },
+          "patternProperties": {
+            "^[@$_#]": true
+          },
+          "additionalProperties": false
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
     "https://www.krakend.io/schema/v3.0/ai/anthropic.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "Anthropic integration",
@@ -751,6 +842,15 @@
           "required": [ "bedrock" ]
         },
         {
+          "required": [ "alibaba" ]
+        },
+        {
+          "not": {
+            "required": [ "format" ],
+            "properties": {
+              "format": true
+            }
+          },
           "required": [ "provider" ]
         }
       ],
@@ -781,6 +881,9 @@
         },
         "bedrock": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1bedrock.json"
+        },
+        "alibaba": {
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1alibaba.json"
         }
       },
       "patternProperties": {
@@ -8189,6 +8292,67 @@
                     }
                   }
                 }
+              },
+              {
+                "if": {
+                  "required": [ "provider" ],
+                  "properties": {
+                    "provider": {
+                      "const": "alibaba"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "credentials": {
+                      "examples": [ "sk-xxxx" ]
+                    },
+                    "endpoint": {
+                      "default": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1/responses"
+                    },
+                    "model": {
+                      "examples": [ "qwen3.8-flash" ],
+                      "default": "qwen3.8-flash"
+                    },
+                    "variables": {
+                      "title": "Template Variables",
+                      "description": "The variables specific to the Alibaba usage that are used to construct the payload.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+                      "type": "object",
+                      "properties": {
+                        "extra_payload": {
+                          "title": "Extra Payload",
+                          "description": "A map of additional payload attributes you want to use in your custom `input_template` (this payload is not used in the default template). The attributes set here are accessible in your custom template as `{{ .variables.extra_payload.yourchosenkey }}`. This option helps adding rare customization and future attributes.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+                          "type": "object"
+                        },
+                        "max_output_tokens": {
+                          "title": "Max Output Tokens",
+                          "description": "An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens. Setting this value to `0` does not set any limit.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+                          "type": "integer"
+                        },
+                        "temperature": {
+                          "title": "Temperature",
+                          "description": "What sampling temperature to use, between `0` and `2`. Higher values like `0.8` will make the output more random, while lower values like `0.2` will make it more focused and deterministic.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+                          "type": "number",
+                          "maximum": 2,
+                          "minimum": 0
+                        },
+                        "top_p": {
+                          "title": "Top P",
+                          "description": "The nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+                          "type": "number",
+                          "maximum": 1,
+                          "minimum": 0
+                        },
+                        "truncation": {
+                          "title": "Truncation Strategy",
+                          "description": "The strategy to use when truncating messages to fit within the model's context length (, the model will truncate the response to fit the context window by dropping items from the beginning of the conversation.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
+                          "default": "disabled",
+                          "enum": [ "auto", "disabled" ]
+                        }
+                      }
+                    }
+                  }
+                }
               }
             ],
             "if": {
@@ -8306,6 +8470,11 @@
                 "description": "Enables streaming responses, so the tokens generated by the model are forwarded to the client as they are produced instead of waiting for the complete response.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
                 "default": false,
                 "type": "boolean"
+              },
+              "format": {
+                "title": "Stream format",
+                "description": "Wire format KrakenD exposes to the client for streaming responses, when not defined, the request and response format is not modified. Only anthropic and openai stream formats are supported client-side, regardless of the upstream connector. When defined, KrakenD translates the client's request into the upstream connector's format, and translates the streamed response back into this format before returning it.",
+                "enum": [ "anthropic", "openai" ]
               },
               "variables": {
                 "title": "Template Variables",

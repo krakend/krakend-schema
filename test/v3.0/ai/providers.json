@@ -43,6 +43,34 @@
       "valid": true
     },
     {
+      "description": "Fully populated Alibaba provider",
+      "data": {
+        "providers": [
+          {
+            "name": "quen",
+            "provider": "alibaba",
+            "model": "qwen3.8-flash",
+            "credentials": "sk-xxxx",
+            "endpoint": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1/responses",
+            "input_template": "/templates/alibaba-in.tmpl",
+            "output_template": "/templates/alibaba-out.tmpl",
+            "debug": true,
+            "streaming": true,
+            "variables": {
+              "max_output_tokens": 1024,
+              "temperature": 0.2,
+              "top_p": 0.9,
+              "truncation": "auto",
+              "extra_payload": {
+                "foo": "bar"
+              }
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
       "description": "Several providers declared at once",
       "data": {
         "providers": [

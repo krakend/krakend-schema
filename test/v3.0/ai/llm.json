@@ -162,12 +162,12 @@
       "valid": true
     },
     {
-      "description": "Valid reference to a provider declared in ai/providers with format",
+      "description": "A provider declared in ai/providers with format is not valid",
       "data": {
         "provider": "quick_cheap",
         "format": "openai"
       },
-      "valid": true
+      "valid": false
     },
     {
       "description": "A provider reference cannot be combined with a vendor block",
