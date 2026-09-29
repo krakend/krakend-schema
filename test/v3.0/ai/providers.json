@@ -1,0 +1,271 @@
+{
+  "description": "AI providers registry test",
+  "target": "https://www.krakend.io/schema/v3.0/ai/providers.json",
+  "tests": [
+    {
+      "description": "Minimum configuration with a single provider",
+      "data": {
+        "providers": [
+          {
+            "name": "fast-chat",
+            "provider": "openai"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Fully populated OpenAI provider",
+      "data": {
+        "providers": [
+          {
+            "name": "fast-chat",
+            "provider": "openai",
+            "model": "gpt-5-nano",
+            "credentials": "sk-xxxx",
+            "endpoint": "https://api.openai.com/v1/responses",
+            "input_template": "/templates/openai-in.tmpl",
+            "output_template": "/templates/openai-out.tmpl",
+            "debug": true,
+            "streaming": true,
+            "variables": {
+              "max_output_tokens": 1024,
+              "temperature": 0.2,
+              "top_p": 0.9,
+              "truncation": "auto",
+              "extra_payload": {
+                "foo": "bar"
+              }
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Several providers declared at once",
+      "data": {
+        "providers": [
+          {
+            "name": "reasoning",
+            "provider": "anthropic",
+            "model": "claude-sonnet-4-20250514",
+            "credentials": "xxx",
+            "variables": {
+              "max_tokens": 1024,
+              "stop_sequences": [
+                "END"
+              ],
+              "top_k": 3
+            }
+          },
+          {
+            "name": "cheap",
+            "provider": "mistral",
+            "model": "mistral-small-latest",
+            "credentials": "xxx",
+            "variables": {
+              "n": 1,
+              "random_seed": 42,
+              "safe_prompt": true,
+              "stop": [
+                "END"
+              ]
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Gemini provider with its own variables",
+      "data": {
+        "providers": [
+          {
+            "name": "summaries",
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "credentials": "xxx",
+            "variables": {
+              "candidate_count": 3,
+              "max_output_tokens": 512,
+              "temperature": 0.5
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Bedrock provider with its own variables",
+      "data": {
+        "providers": [
+          {
+            "name": "bedrock-claude",
+            "provider": "bedrock",
+            "model": "anthropic.claude-sonnet-4-20250514-v1:0",
+            "credentials": "xxx",
+            "variables": {
+              "max_tokens": 1024,
+              "top_k": 3
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "An empty providers array is allowed",
+      "data": {
+        "providers": []
+      },
+      "valid": true
+    },
+    {
+      "description": "Unknown variables are accepted by providers that do not close the object",
+      "data": {
+        "providers": [
+          {
+            "name": "fast-chat",
+            "provider": "openai",
+            "variables": {
+              "foo": "bar",
+              "baz": 123
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Comment keys are allowed",
+      "data": {
+        "@comment": "The providers used by the AI gateway",
+        "providers": [
+          {
+            "@comment": "Used by the chat endpoints",
+            "name": "fast-chat",
+            "provider": "openai"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Empty declaration",
+      "data": {},
+      "valid": false
+    },
+    {
+      "description": "The provider is mandatory",
+      "data": {
+        "providers": [
+          {
+            "name": "fast-chat"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "The name is mandatory",
+      "data": {
+        "providers": [
+          {
+            "provider": "openai"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Unsupported providers are rejected",
+      "data": {
+        "providers": [
+          {
+            "name": "fast-chat",
+            "provider": "deepseek"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Intruder field should not be allowed",
+      "data": {
+        "providers": [
+          {
+            "name": "fast-chat",
+            "provider": "openai",
+            "intruder": "field"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Bedrock does not allow unknown variables",
+      "data": {
+        "providers": [
+          {
+            "name": "bedrock-claude",
+            "provider": "bedrock",
+            "variables": {
+              "model": "foo"
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Variables are type checked",
+      "data": {
+        "providers": [
+          {
+            "name": "fast-chat",
+            "provider": "openai",
+            "variables": {
+              "temperature": "hot"
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "The providers list must be an array",
+      "data": {
+        "providers": {
+          "name": "fast-chat",
+          "provider": "openai"
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "An empty name is not a usable reference",
+      "data": {
+        "providers": [
+          {
+            "name": "",
+            "provider": "openai"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Defaults are annotations only, so an entry relying on them stays valid",
+      "data": {
+        "providers": [
+          {
+            "name": "defaulted",
+            "provider": "gemini"
+          }
+        ]
+      },
+      "valid": true
+    }
+  ]
+}
