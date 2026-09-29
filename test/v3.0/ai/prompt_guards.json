@@ -1,0 +1,57 @@
+{
+  "description": "AI Prompt Guard test",
+  "target": "https://www.krakend.io/schema/v3.0/ai/prompt-guard.json",
+  "tests": [
+    {
+      "description": "Basic ai/prompt-guard config",
+      "data": {
+          "guards": [
+            {
+              "name": "reguloides",
+              "kind": "regex",
+              "severity": "high",
+              "config": {
+                "patterns": [
+                  "foo.*bar",
+                  "tupu.*supu"
+                ]
+              }
+            },
+            {
+              "name": "reguleras",
+              "kind": "regex",
+              "severity": "medium",
+              "config": {
+                "patterns": [
+                  "medium_foo",
+                  "medium_bar"
+                ]
+              }
+            },
+            {
+              "name": "my_scorer",
+              "kind": "classifier",
+              "severity": "high",
+              "config": {
+                "score_threshold": 0.6,
+                "on_failure_block": false,
+                "url": "https://nonexistinglongdomainexample.com"
+              }
+            },
+            {
+              "name": "my_policy",
+              "kind": "policy",
+              "severity": "medium",
+              "config": {
+                "expressions": [
+                  "meta.something in [\"BENIGN\"]",
+                  "size(body) > 256"
+                ]
+              }
+            }
+          ]
+      },
+      "valid": true
+    }
+  ]
+}
