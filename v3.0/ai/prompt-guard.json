@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v3.0/ai/prompt-guard.json",
+  "title": "AI Prompt Guard Service Config",
+  "description": "Enterprise only. Adds [Prompt Guard](https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/) protection to the endpoint.",
+  "type": "object",
+  "properties": {
+    "guards": {
+      "description": "The list of guards.",
+      "type": "array",
+      "items": {
+        "description": "A guard definition.",
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name of the custom prompt guard",
+            "description": "A free form name to be used from the endpoint config to select this prompt guard.",
+            "examples": [ "my_scorer", "my_policy" ],
+            "type": "string"
+          },
+          "kind": {
+            "title": "The kind of prompt guarding to apply",
+            "description": "The fields of the `config` field depend on the kind of prompt guard selected.",
+            "enum": [ "regex", "policy", "classifier" ]
+          },
+          "severity": {
+            "title": "Severity level",
+            "description": "Select what how critical this guard is.",
+            "enum": [ "critical", "high", "medium", "low" ]
+          },
+          "config": {
+            "title": "Specific options for the kind of prompt guard",
+            "oneOf": [
+              {
+                "title": "Regular expressions config",
+                "description": "Configuration fields for a classifier",
+                "type": "object",
+                "properties": {
+                  "patterns": {
+                    "description": "List of regular expression to check",
+                    "type": "array",
+                    "items": {
+                      "examples": [ "foo.*bar", "medium_bar" ],
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              {
+                "title": "Classifier config",
+                "description": "Configuration fields for an external classifier",
+                "type": "object",
+                "properties": {
+                  "score_threshold": {
+                    "title": "Score threshold",
+                    "description": "If the external classifier score is below the provided value, the prompt guard blocks the request.",
+                    "examples": [ 0.6, 0.99 ],
+                    "type": "number"
+                  },
+                  "on_failure_block": {
+                    "title": "On Failure Block",
+                    "description": "If the external classifier service is unavailable or returns an error, decide if the request should be blocked.",
+                    "type": "boolean"
+                  },
+                  "url": {
+                    "title": "URL",
+                    "description": "The external classifier service url.",
+                    "examples": [ "https://nonexistinglongdomainexample.com" ],
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "title": "Policy config",
+                "description": "Configuration fields for a policy classifier",
+                "type": "object",
+                "properties": {
+                  "expressions": {
+                    "title": "Expressions",
+                    "description": "A list of CEL expressions to be evauluated.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false
+}

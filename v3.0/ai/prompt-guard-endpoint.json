@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v3.0/ai/prompt-guard-endpoint.json",
+  "title": "AI Prompt Guard Endpoint Config",
+  "description": "Enterprise only. Adds [Prompt Guard](https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/) protection to the endpoint.",
+  "type": "object",
+  "properties": {
+    "guards": {
+      "description": "The list of guards to apply to the endpoint.",
+      "type": "array",
+      "items": {
+        "description": "A guard definition.",
+        "examples": [ "!medium", "my_scorer" ],
+        "type": "string"
+      }
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false
+}

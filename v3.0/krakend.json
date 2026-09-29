@@ -5176,6 +5176,27 @@
       },
       "additionalProperties": false
     },
+    "https://www.krakend.io/schema/v3.0/ai/prompt-guard-endpoint.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "AI Prompt Guard Endpoint Config",
+      "description": "Enterprise only. Adds [Prompt Guard](https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/) protection to the endpoint.",
+      "type": "object",
+      "properties": {
+        "guards": {
+          "description": "The list of guards to apply to the endpoint.",
+          "type": "array",
+          "items": {
+            "description": "A guard definition.",
+            "examples": [ "!medium", "my_scorer" ],
+            "type": "string"
+          }
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
     "https://www.krakend.io/schema/v3.0/auth/basic.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "Basic Authentication",
@@ -7541,6 +7562,9 @@
         "ai/semantic-cache": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1semantic-cache.json"
         },
+        "ai/prompt-guard": {
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1prompt-guard-endpoint.json"
+        },
         "auth/api-keys": {
           "title": "API-key validation",
           "description": "Enterprise only. Validates that users of this endpoint pass a valid API-key containing one of the declared roles.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
@@ -8368,6 +8392,105 @@
           }
         }
       }
+    },
+    "https://www.krakend.io/schema/v3.0/ai/prompt-guard.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "AI Prompt Guard Service Config",
+      "description": "Enterprise only. Adds [Prompt Guard](https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/) protection to the endpoint.",
+      "type": "object",
+      "properties": {
+        "guards": {
+          "description": "The list of guards.",
+          "type": "array",
+          "items": {
+            "description": "A guard definition.",
+            "type": "object",
+            "properties": {
+              "name": {
+                "title": "Name of the custom prompt guard",
+                "description": "A free form name to be used from the endpoint config to select this prompt guard.",
+                "examples": [ "my_scorer", "my_policy" ],
+                "type": "string"
+              },
+              "kind": {
+                "title": "The kind of prompt guarding to apply",
+                "description": "The fields of the `config` field depend on the kind of prompt guard selected.",
+                "enum": [ "regex", "policy", "classifier" ]
+              },
+              "severity": {
+                "title": "Severity level",
+                "description": "Select what how critical this guard is.",
+                "enum": [ "critical", "high", "medium", "low" ]
+              },
+              "config": {
+                "title": "Specific options for the kind of prompt guard",
+                "oneOf": [
+                  {
+                    "title": "Regular expressions config",
+                    "description": "Configuration fields for a classifier",
+                    "type": "object",
+                    "properties": {
+                      "patterns": {
+                        "description": "List of regular expression to check",
+                        "type": "array",
+                        "items": {
+                          "examples": [ "foo.*bar", "medium_bar" ],
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "title": "Classifier config",
+                    "description": "Configuration fields for an external classifier",
+                    "type": "object",
+                    "properties": {
+                      "score_threshold": {
+                        "title": "Score threshold",
+                        "description": "If the external classifier score is below the provided value, the prompt guard blocks the request.",
+                        "examples": [ 0.6, 0.99 ],
+                        "type": "number"
+                      },
+                      "on_failure_block": {
+                        "title": "On Failure Block",
+                        "description": "If the external classifier service is unavailable or returns an error, decide if the request should be blocked.",
+                        "type": "boolean"
+                      },
+                      "url": {
+                        "title": "URL",
+                        "description": "The external classifier service url.",
+                        "examples": [
+                          "https://nonexistinglongdomainexample.com"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  },
+                  {
+                    "title": "Policy config",
+                    "description": "Configuration fields for a policy classifier",
+                    "type": "object",
+                    "properties": {
+                      "expressions": {
+                        "title": "Expressions",
+                        "description": "A list of CEL expressions to be evauluated.",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
     },
     "https://www.krakend.io/schema/v3.0/ai/providers.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
@@ -11376,6 +11499,9 @@
           "title": "AI Providers",
           "description": "Enterprise only. Declares once, at the service level, the AI providers the gateway can talk to, so backends can reference them by `name`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1providers.json"
+        },
+        "ai/prompt-guard": {
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1prompt-guard.json"
         },
         "auth/api-keys": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1auth~1api-keys.json"

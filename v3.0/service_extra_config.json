@@ -20,6 +20,9 @@
       "description": "Enterprise only. Declares once, at the service level, the AI providers the gateway can talk to, so backends can reference them by `name`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
       "$ref": "ai/providers.json"
     },
+    "ai/prompt-guard": {
+      "$ref": "ai/prompt-guard.json"
+    },
     "auth/api-keys": {
       "$ref": "auth/api-keys.json"
     },
