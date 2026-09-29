@@ -17,6 +17,9 @@
     "ai/semantic-cache": {
       "$ref": "ai/semantic-cache.json"
     },
+    "ai/prompt-guard": {
+      "$ref": "ai/prompt-guard-endpoint.json"
+    },
     "auth/aws-sigv4": {
       "$ref": "auth/aws-sigv4.json"
     },

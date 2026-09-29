@@ -891,6 +891,27 @@
       },
       "additionalProperties": false
     },
+    "https://www.krakend.io/schema/v3.0/ai/prompt-guard-endpoint.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "AI Prompt Guard Endpoint Config",
+      "description": "Enterprise only. Adds [Prompt Guard](https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/) protection to the endpoint.",
+      "type": "object",
+      "properties": {
+        "guards": {
+          "description": "The list of guards to apply to the endpoint.",
+          "type": "array",
+          "items": {
+            "description": "A guard definition.",
+            "examples": [ "!medium", "my_scorer" ],
+            "type": "string"
+          }
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
     "https://www.krakend.io/schema/v3.0/ai/router.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "AI Router",
@@ -4394,6 +4415,9 @@
         "ai/semantic-cache": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1semantic-cache.json"
         },
+        "ai/prompt-guard": {
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1prompt-guard-endpoint.json"
+        },
         "auth/aws-sigv4": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1auth~1aws-sigv4.json"
         },
@@ -5169,27 +5193,6 @@
           "title": "Server name",
           "description": "The MCP server you want to attach to this endpoint. When you add this namespace, the endpoint becomes the MCP server entry point URL. The name used must match the name in the `ai/mcp` configuration in the root level.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mcp-server/",
           "examples": [ "stories-tracker" ]
-        }
-      },
-      "patternProperties": {
-        "^[@$_#]": true
-      },
-      "additionalProperties": false
-    },
-    "https://www.krakend.io/schema/v3.0/ai/prompt-guard-endpoint.json": {
-      "$schema": "https://json-schema.org/draft/2019-09/schema",
-      "title": "AI Prompt Guard Endpoint Config",
-      "description": "Enterprise only. Adds [Prompt Guard](https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/) protection to the endpoint.",
-      "type": "object",
-      "properties": {
-        "guards": {
-          "description": "The list of guards to apply to the endpoint.",
-          "type": "array",
-          "items": {
-            "description": "A guard definition.",
-            "examples": [ "!medium", "my_scorer" ],
-            "type": "string"
-          }
         }
       },
       "patternProperties": {
