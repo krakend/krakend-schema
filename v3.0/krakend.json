@@ -788,6 +788,112 @@
       },
       "additionalProperties": false
     },
+    "https://www.krakend.io/schema/v3.0/ai/router.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "AI Router",
+      "description": "Selects, on every request, which provider from the `ai/providers` inventory handles it. KrakenD evaluates the `routes` from top to bottom and uses the first one that matches, so the client never chooses the model or the vendor.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+      "type": "object",
+      "required": [ "routes" ],
+      "properties": {
+        "failover": {
+          "title": "Failover Provider",
+          "description": "The name of the provider in the `ai/providers` inventory that handles the request when no route matches, or when a classifier cannot return a choice and its route sets no `failover` of its own. It is the safety net of the whole router, and an alternative to a trailing route without `gates`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+          "examples": [ "gpt-default" ],
+          "type": "string",
+          "minLength": 1
+        },
+        "routes": {
+          "title": "Routes",
+          "description": "The ordered list of routes. KrakenD evaluates them from top to bottom and uses the first one that matches. A route without `gates` always matches, so place it last as an inline fallback.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1router.json/$defs/route"
+          }
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false,
+      "$defs": {
+        "route": {
+          "title": "Route",
+          "description": "A routing rule. When the route matches, KrakenD forwards the request to its `provider`, lets its `classifier` choose among its `providers`, or evaluates its nested `routes`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+          "type": "object",
+          "not": {
+            "required": [ "provider", "classifier" ]
+          },
+          "properties": {
+            "classifier": {
+              "title": "Classifier",
+              "description": "The name of a classifier declared in `ai/classifiers` that chooses the best provider from the `providers` list. You cannot use it together with `provider`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+              "examples": [ "smart" ],
+              "type": "string",
+              "minLength": 1
+            },
+            "failover": {
+              "title": "Route Failover Provider",
+              "description": "The name of the provider in the `ai/providers` inventory that handles the request when the `classifier` of this route cannot return a choice. It takes precedence over the router-level `failover`, and requires a `classifier`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+              "examples": [ "gpt-default" ],
+              "type": "string",
+              "minLength": 1
+            },
+            "gates": {
+              "title": "Gates",
+              "description": "The names of the gates declared in `ai/classifiers` that must all pass for the route to match. Omit it to create a route that always matches.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+              "examples": [
+                [ "plan_enterprise", "usecase_code" ]
+              ],
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "provider": {
+              "title": "Provider",
+              "description": "The name of the provider in the `ai/providers` inventory that handles the request when the route matches. You cannot use it together with `classifier`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+              "examples": [ "cheap-quick" ],
+              "type": "string",
+              "minLength": 1
+            },
+            "providers": {
+              "title": "Candidate Providers",
+              "description": "The names of the providers in the `ai/providers` inventory that the `classifier` chooses from. It requires a `classifier`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+              "examples": [
+                [ "cheap-quick", "gemini-flash", "coding-basic" ]
+              ],
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "routes": {
+              "title": "Nested Routes",
+              "description": "The ordered list of routes that KrakenD evaluates only when the gates of this route pass. Nested routes can go to any depth, forming a decision tree, and a route that only groups other routes needs no `provider`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1router.json/$defs/route"
+              }
+            }
+          },
+          "patternProperties": {
+            "^[@$_#]": true
+          },
+          "additionalProperties": false,
+          "dependentRequired": {
+            "classifier": [ "providers" ],
+            "failover": [ "classifier" ],
+            "providers": [ "classifier" ]
+          }
+        }
+      }
+    },
     "https://www.krakend.io/schema/v3.0/timeunits.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "Time units / Duration patterns",
@@ -4176,6 +4282,11 @@
           "title": "AI LLM Backend",
           "description": "Enterprise only. Connects the backend to the major AI vendors through a single interface.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1llm.json"
+        },
+        "ai/router": {
+          "title": "AI Router",
+          "description": "Enterprise only. Selects, on every request, which provider from the `ai/providers` inventory handles it, using gates, classifiers, and a failover.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1router.json"
         },
         "ai/semantic-cache": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1semantic-cache.json"
@@ -7674,6 +7785,218 @@
       },
       "additionalProperties": false
     },
+    "https://www.krakend.io/schema/v3.0/ai/classifiers.json": {
+      "$schema": "https://json-schema.org/draft/2019-09/schema",
+      "title": "AI Router Gates and Classifiers",
+      "description": "Declares once, at the service level, the reusable gates and classifiers of the AI router. The `ai/router` of each backend references them by `name`, so you define every condition and engine once and reuse it across routes.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+      "type": "object",
+      "properties": {
+        "classifiers": {
+          "title": "Classifiers",
+          "description": "The list of classifiers available to the routes. A classifier delegates the provider choice to an external engine that scores the request against the candidate `providers` of a route and returns the best fit.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "if": {
+              "required": [ "engine" ],
+              "properties": {
+                "engine": {
+                  "const": "notdiamond"
+                }
+              }
+            },
+            "then": {
+              "required": [ "notdiamond" ]
+            },
+            "required": [ "name", "engine" ],
+            "properties": {
+              "engine": {
+                "title": "Classification Engine",
+                "description": "The external engine that chooses the provider. The `notdiamond` engine calls the Not Diamond model selection endpoint, and requires you to add its configuration under the `notdiamond` key.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+                "const": "notdiamond"
+              },
+              "name": {
+                "title": "Classifier Name",
+                "description": "A unique name for this classifier. Routes reference the classifier through this value in their `classifier` field.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+                "examples": [ "smart" ],
+                "type": "string",
+                "minLength": 1
+              },
+              "notdiamond": {
+                "title": "Not Diamond Engine",
+                "description": "The configuration of the `notdiamond` engine, which calls the Not Diamond model selection endpoint to pick the best provider from the candidates of the route. Set either `tradeoff` or `cost_quality_tradeoff`, but not both.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+                "type": "object",
+                "not": {
+                  "required": [ "tradeoff", "cost_quality_tradeoff" ]
+                },
+                "required": [ "credentials" ],
+                "properties": {
+                  "base_url": {
+                    "title": "Base URL",
+                    "description": "The base URL of the Not Diamond API. Override it only when you target a custom or proxied deployment of the service.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+                    "examples": [ "https://api.example.com" ],
+                    "type": "string"
+                  },
+                  "cost_quality_tradeoff": {
+                    "title": "Cost and Quality Tradeoff",
+                    "description": "An integer that balances cost against quality in the model selection. You cannot use it together with `tradeoff`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+                    "default": 0,
+                    "type": "integer"
+                  },
+                  "credentials": {
+                    "title": "Credentials",
+                    "description": "The API key that authenticates KrakenD against the Not Diamond service. Set it through an environment variable instead of writing it in the configuration file.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "disable_hash_content": {
+                    "title": "Disable Content Hashing",
+                    "description": "KrakenD asks the Not Diamond API to hash the request content it receives, for extra security. Set this flag to `true` to turn that option off, and Not Diamond uses its own default of not hashing the content.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+                    "default": false,
+                    "type": "boolean"
+                  },
+                  "metric": {
+                    "title": "Metric",
+                    "description": "The metric the engine optimizes for when it chooses the provider.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+                    "default": "accuracy",
+                    "const": "accuracy"
+                  },
+                  "req_content": {
+                    "title": "Request Content",
+                    "description": "The part of the request that KrakenD sends to the classifier. It works like the same field in the semantic cache: use `req_body` with dot-notation to reach nested fields, or `req_params`, `req_query_string`, and `req_headers`. Path parameters are capitalized, so `{id}` becomes `req_params.Id`. When you don't set it, KrakenD sends the entire request body.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+                    "examples": [
+                      "req_body.messages",
+                      "req_params.Id",
+                      "req_headers.x-user",
+                      "req_query_string.user"
+                    ],
+                    "type": "string"
+                  },
+                  "tradeoff": {
+                    "title": "Tradeoff",
+                    "description": "The optimization preference of the model selection. Use `cost` to favor cheaper providers or `latency` to favor faster ones. You cannot use it together with `cost_quality_tradeoff`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+                    "default": "cost",
+                    "enum": [ "cost", "latency" ]
+                  }
+                },
+                "patternProperties": {
+                  "^[@$_#]": true
+                },
+                "additionalProperties": false
+              }
+            },
+            "patternProperties": {
+              "^[@$_#]": true
+            },
+            "additionalProperties": false
+          }
+        },
+        "gates": {
+          "title": "Gates",
+          "description": "The list of gates available to the routes. A gate is a named matching condition, and a route matches only when all the gates it lists pass. Header gates match on values the client controls, so route on headers your gateway sets after validating an API key or a JWT.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "allOf": [
+              {
+                "if": {
+                  "required": [ "rule" ],
+                  "properties": {
+                    "rule": {
+                      "const": "header"
+                    }
+                  }
+                },
+                "then": {
+                  "required": [ "header" ],
+                  "properties": {
+                    "header": true
+                  }
+                }
+              }
+            ],
+            "if": {
+              "required": [ "rule" ],
+              "properties": {
+                "rule": {
+                  "const": "policy"
+                }
+              }
+            },
+            "then": {
+              "required": [ "policy" ]
+            },
+            "required": [ "name", "rule" ],
+            "properties": {
+              "header": {
+                "title": "Header Rule",
+                "description": "The configuration of a `header` rule. The gate passes when the request header `name` equals `value`. Add the header to the `input_headers` of the endpoint so the router can see it.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+                "type": "object",
+                "required": [ "name", "value" ],
+                "properties": {
+                  "name": {
+                    "title": "Header Name",
+                    "description": "The name of the request header you want to inspect.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+                    "examples": [ "X-Plan" ],
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "value": {
+                    "title": "Header Value",
+                    "description": "The value the header must have for the gate to pass.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+                    "examples": [ "enterprise" ],
+                    "type": "string"
+                  }
+                },
+                "patternProperties": {
+                  "^[@$_#]": true
+                },
+                "additionalProperties": false
+              },
+              "name": {
+                "title": "Gate Name",
+                "description": "A unique name for this gate. Routes reference the gate through this value in their `gates` list.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+                "examples": [ "plan_enterprise" ],
+                "type": "string",
+                "minLength": 1
+              },
+              "policy": {
+                "title": "Policy Rule",
+                "description": "The configuration of a `policy` rule. The gate passes when the CEL expression in `value` evaluates to `true`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+                "type": "object",
+                "required": [ "value" ],
+                "properties": {
+                  "value": {
+                    "title": "Policy Expression",
+                    "description": "The CEL expression to evaluate. You can use the built-in functions of the security policies, such as `hasHeader` and `getHeader`, to compare values or combine several checks that a header rule cannot express.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+                    "examples": [ "getHeader('X-Plan') == 'enterprise'" ],
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "patternProperties": {
+                  "^[@$_#]": true
+                },
+                "additionalProperties": false
+              },
+              "rule": {
+                "title": "Matching Rule",
+                "description": "The mechanism the gate uses to match the request. Use `header` to compare a request header with a value, or `policy` to evaluate a CEL expression. Each rule requires its configuration under the key with the same name.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+                "enum": [ "header", "policy" ]
+              }
+            },
+            "patternProperties": {
+              "^[@$_#]": true
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false
+    },
     "https://www.krakend.io/schema/v3.0/ai/mcp.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "MCP functionality",
@@ -10822,6 +11145,11 @@
       "title": "Schema definition for service extra_config",
       "type": "object",
       "properties": {
+        "ai/classifiers": {
+          "title": "AI Router Gates and Classifiers",
+          "description": "Enterprise only. Declares once, at the service level, the gates and classifiers that the `ai/router` of any backend can reference by `name`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+          "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1classifiers.json"
+        },
         "ai/mcp": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1mcp.json"
         },

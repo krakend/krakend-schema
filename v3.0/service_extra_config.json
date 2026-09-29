@@ -4,6 +4,11 @@
   "title": "Schema definition for service extra_config",
   "type": "object",
   "properties": {
+    "ai/classifiers": {
+      "title": "AI Router Gates and Classifiers",
+      "description": "Enterprise only. Declares once, at the service level, the gates and classifiers that the `ai/router` of any backend can reference by `name`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+      "$ref": "ai/classifiers.json"
+    },
     "ai/mcp": {
       "$ref": "ai/mcp.json"
     },

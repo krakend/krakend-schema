@@ -9,6 +9,11 @@
       "description": "Enterprise only. Connects the backend to the major AI vendors through a single interface.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
       "$ref": "ai/llm.json"
     },
+    "ai/router": {
+      "title": "AI Router",
+      "description": "Enterprise only. Selects, on every request, which provider from the `ai/providers` inventory handles it, using gates, classifiers, and a failover.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+      "$ref": "ai/router.json"
+    },
     "ai/semantic-cache": {
       "$ref": "ai/semantic-cache.json"
     },
