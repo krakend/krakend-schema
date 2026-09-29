@@ -456,7 +456,14 @@
           "provider": {
             "title": "Provider",
             "description": "The AI vendor this declaration connects to. The chosen vendor determines which `variables` are accepted.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
-            "enum": [ "anthropic", "bedrock", "gemini", "mistral", "openai", "alibaba" ]
+            "enum": [
+              "anthropic",
+              "bedrock",
+              "gemini",
+              "mistral",
+              "openai",
+              "alibaba"
+            ]
           },
           "streaming": {
             "title": "Streaming",

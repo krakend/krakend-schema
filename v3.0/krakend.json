@@ -8462,7 +8462,8 @@
                   "bedrock",
                   "gemini",
                   "mistral",
-                  "openai"
+                  "openai",
+                  "alibaba"
                 ]
               },
               "streaming": {
