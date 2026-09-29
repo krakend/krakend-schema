@@ -1,0 +1,17 @@
+{
+  "description": "AI Prompt Guard at endpoint",
+  "target": "https://www.krakend.io/schema/v3.0/ai/prompt-guard-endpoint.json",
+  "tests": [
+    {
+      "description": "Basic ai/prompt-guard endpoint config",
+      "data": {
+          "guards": [
+            "reguloides",
+            "!medium",
+            "!unicode_steganography"
+          ]
+      },
+      "valid": true
+    }
+  ]
+}
