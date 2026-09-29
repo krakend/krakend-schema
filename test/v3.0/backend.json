@@ -55,6 +55,66 @@
             "valid": false
         },
         {
+            "description": "Lambda backend without url_pattern",
+            "data": {
+                "extra_config": {
+                    "backend/lambda": {
+                        "function_name": "lambda-function"
+                    }
+                }
+            },
+            "valid": true
+        },
+        {
+            "description": "LLM backend with provider reference without url_pattern",
+            "data": {
+                "extra_config": {
+                    "ai/llm": {
+                        "provider": "fast-chat"
+                    }
+                }
+            },
+            "valid": true
+        },
+        {
+            "description": "LLM backend with empty provider requires url_pattern",
+            "data": {
+                "extra_config": {
+                    "ai/llm": {
+                        "provider": ""
+                    }
+                }
+            },
+            "valid": false
+        },
+        {
+            "description": "LLM backend with vendor block requires url_pattern",
+            "data": {
+                "extra_config": {
+                    "ai/llm": {
+                        "openai": {
+                            "v1": {
+                                "credentials": "xxx"
+                            }
+                        }
+                    }
+                }
+            },
+            "valid": false
+        },
+        {
+            "description": "Backend with unrelated extra_config requires url_pattern",
+            "data": {
+                "host": [ "http://foo" ],
+                "extra_config": {
+                    "backend/http": {
+                        "return_error_code": true
+                    }
+                }
+            },
+            "valid": false
+        },
+        {
             "description": "Backend declaration with a few components",
             "data": {
                 "host": [

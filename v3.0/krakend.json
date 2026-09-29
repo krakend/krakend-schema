@@ -4612,7 +4612,53 @@
       "title": "Backend Object",
       "description": "A backend object is an array of all the services that an endpoint connects to. It defines the list of hostnames that connects to and the URL to send or receive the data.",
       "type": "object",
-      "required": [ "url_pattern" ],
+      "if": {
+        "not": {
+          "required": [ "extra_config" ],
+          "properties": {
+            "extra_config": {
+              "anyOf": [
+                {
+                  "required": [ "backend/lambda" ],
+                  "properties": {
+                    "backend/lambda": true
+                  }
+                },
+                {
+                  "required": [ "ai/router" ],
+                  "properties": {
+                    "ai/router": true
+                  }
+                },
+                {
+                  "required": [ "ai/mcp" ],
+                  "properties": {
+                    "ai/mcp": true
+                  }
+                },
+                {
+                  "required": [ "ai/llm" ],
+                  "properties": {
+                    "ai/llm": {
+                      "type": "object",
+                      "required": [ "provider" ],
+                      "properties": {
+                        "provider": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [ "url_pattern" ]
+      },
       "properties": {
         "allow": {
           "title": "Allow (data manipulation)",
