@@ -2436,7 +2436,7 @@
                     "plugin": {
                         "folder": "/opt/krakend/plugins/",
                         "pattern": ".so",
-                        "on_load_default_error": "critical"
+                        "on_load_default_error": "exit"
                     },
                     "plugin/http-server": {
                         "plugins": [
@@ -2492,17 +2492,6 @@
                                 "name": "geoip",
                                 "config": {
                                     "citydb_path": "path/to/GeoIP2-City.mmdb"
-                                }
-                            },
-                            {
-                                "name": "redis-ratelimit",
-                                "config": {
-                                    "burst": 0,
-                                    "host": "redis",
-                                    "period": "3s",
-                                    "rate": 0,
-                                    "tokenizer": "cookie",
-                                    "tokenizer_field": "aaa"
                                 }
                             },
                             {

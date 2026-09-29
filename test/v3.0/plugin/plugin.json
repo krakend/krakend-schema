@@ -13,7 +13,7 @@
           "plugin": {
             "pattern": ".so",
             "folder": "/etc/krakend/plugins",
-            "on_load_default_error": "critical"
+            "on_load_default_error": "exit"
           },
           "plugin/http-server": {
             "plugins": [
@@ -73,7 +73,7 @@
                 "plugins": [
                   {
                     "name": "mw-test",
-                    "on_load_error": "error",
+                    "on_load_error": "reject",
                     "config": {
                       "variable": "value"
                     }
@@ -97,7 +97,7 @@
           "plugin": {
             "pattern": ".so",
             "folder": "/etc/krakend/plugins",
-            "on_load_default_error": "critical"
+            "on_load_default_error": "exit"
           },
           "plugin/http-server": {
             "plugins": [
@@ -107,7 +107,7 @@
                 "config": {
                   "key": "value"
                 },
-                "#on_load_error": "error"
+                "#on_load_error": "reject"
               }
             ]
           }
@@ -161,7 +161,7 @@
                 "plugins": [
                   {
                     "name": "mw-test",
-                    "on_load_error": "error",
+                    "on_load_error": "reject",
                     "config": {
                       "variable": "value"
                     },
@@ -241,7 +241,7 @@
                 "plugins": [
                   {
                     "name": "mw-test",
-                    "on_load_error": "error",
+                    "on_load_error": "reject",
                     "config": {
                       "variable": "value"
                     }
@@ -254,7 +254,7 @@
         "plugin": {
           "pattern": ".so",
           "folder": "/etc/krakend/plugins",
-          "on_load_default_error": "critical"
+          "on_load_default_error": "exit"
         }
       },
       "valid": false
@@ -269,7 +269,7 @@
         "extra_config": {
           "plugin": {
             "pattern": ".so",
-            "on_load_default_error": "critical"
+            "on_load_default_error": "exit"
           },
           "plugin/http-server": {
             "plugins": [
@@ -329,7 +329,7 @@
                 "plugins": [
                   {
                     "name": "mw-test",
-                    "on_load_error": "error",
+                    "on_load_error": "reject",
                     "config": {
                       "variable": "value"
                     }
@@ -413,7 +413,7 @@
                 "plugins": [
                   {
                     "name": "mw-test",
-                    "on_load_error": "error",
+                    "on_load_error": "reject",
                     "config": {
                       "variable": "value"
                     }
@@ -437,7 +437,7 @@
           "plugin": {
             "pattern": ".so",
             "folder": "/etc/krakend/plugins",
-            "on_load_default_error": "critical"
+            "on_load_default_error": "exit"
           },
           "plugin/http-server": {
             "plugins": [
@@ -497,7 +497,7 @@
                 "plugins": [
                   {
                     "name": "mw-test",
-                    "on_load_error": "error",
+                    "on_load_error": "reject",
                     "config": {
                       "variable": "value"
                     }
@@ -521,7 +521,7 @@
           "plugin": {
             "pattern": ".so",
             "folder": "/etc/krakend/plugins",
-            "on_load_default_error": "critical"
+            "on_load_default_error": "exit"
           },
           "plugin/http-server": {
             "plugins": [
@@ -602,7 +602,7 @@
           "plugin": {
             "pattern": ".so",
             "folder": "/etc/krakend/plugins",
-            "on_load_default_error": "critical"
+            "on_load_default_error": "exit"
           },
           "plugin/http-server": {
             "plugins": [
@@ -665,7 +665,7 @@
                 "plugins": [
                   {
                     "name": "mw-test",
-                    "on_load_error": "error",
+                    "on_load_error": "reject",
                     "config": {
                       "variable": "value"
                     }
@@ -689,7 +689,7 @@
           "plugin": {
             "pattern": ".so",
             "folder": "/etc/krakend/plugins",
-            "on_load_default_error": "critical"
+            "on_load_default_error": "exit"
           },
           "plugin/http-server": {
             "plugins": [
@@ -749,7 +749,7 @@
                 "plugins": [
                   {
                     "name": "mw-test",
-                    "on_load_error": "error",
+                    "on_load_error": "reject",
                     "config": {
                       "variable": "value"
                     },
@@ -774,7 +774,7 @@
           "plugin": {
             "pattern": ".so",
             "folder": "/etc/krakend/plugins",
-            "on_load_default_error": "critical"
+            "on_load_default_error": "exit"
           },
           "plugin/http-server": {
             "plugins": []
@@ -826,7 +826,7 @@
                 "plugins": [
                   {
                     "name": "mw-test",
-                    "on_load_error": "error",
+                    "on_load_error": "reject",
                     "config": {
                       "variable": "value"
                     }
@@ -850,7 +850,7 @@
           "plugin": {
             "pattern": ".so",
             "folder": "/etc/krakend/plugins",
-            "on_load_default_error": "critical"
+            "on_load_default_error": "exit"
           },
           "plugin/http-server": {
             "plugins": [
@@ -909,7 +909,7 @@
                 "plugins": [
                   {
                     "name": "mw-test",
-                    "on_load_error": "error",
+                    "on_load_error": "reject",
                     "config": {
                       "variable": "value"
                     }
@@ -933,7 +933,7 @@
           "plugin": {
             "pattern": ".so",
             "folder": "/etc/krakend/plugins",
-            "on_load_default_error": "critical"
+            "on_load_default_error": "exit"
           },
           "plugin/http-server": {
             "plugins": [
@@ -994,7 +994,7 @@
                 "plugins": [
                   {
                     "name": "mw-test",
-                    "on_load_error": "error",
+                    "on_load_error": "reject",
                     "config": {
                       "variable": "value"
                     }
@@ -1018,7 +1018,7 @@
           "plugin": {
             "pattern": ".so",
             "folder": "/etc/krakend/plugins",
-            "on_load_default_error": "critical"
+            "on_load_default_error": "exit"
           },
           "plugin/http-server": {
             "plugins": [
@@ -1075,7 +1075,7 @@
                 "plugins": [
                   {
                     "name": "mw-test",
-                    "on_load_error": "error",
+                    "on_load_error": "reject",
                     "config": {
                       "variable": "value"
                     }
@@ -1090,6 +1090,96 @@
     },
     {
       "description": "retired content-replacer plugin settings",
+      "data": {
+        "version": 3,
+        "host": [
+          "http://localhost:8080"
+        ],
+        "extra_config": {
+          "plugin": {
+            "pattern": ".so",
+            "folder": "/etc/krakend/plugins",
+            "on_load_default_error": "exit"
+          },
+          "plugin/http-server": {
+            "plugins": [
+              {
+                "name": "server-test",
+                "on_load_error": "passthrough",
+                "config": {
+                  "key": "value"
+                }
+              }
+            ]
+          }
+        },
+        "endpoints": [
+          {
+            "endpoint": "/",
+            "backend": [
+              {
+                "url_pattern": "/__echo/",
+                "extra_config": {
+                  "plugin/http-client": {
+                    "name": "client-test",
+                    "config": {
+                      "some": "config"
+                    }
+                  }
+                }
+              }
+            ],
+            "extra_config": {
+              "plugin/req-resp-modifier": {
+                "plugins": [
+                  {
+                    "name": "ip-filter",
+                    "config": {
+                      "allow": true,
+                      "CIDR": [
+                        "1.2.3.4/32"
+                      ]
+                    }
+                  },
+                  {
+                    "name": "modifier-test-request",
+                    "config": {
+                      "option": "for-request-option"
+                    }
+                  },
+                  {
+                    "name": "modifier-test-response",
+                    "config": {
+                      "option": "for-response-option"
+                    }
+                  }
+                ],
+                "content-replacer": {
+                  "message": {
+                    "find": "a",
+                    "replace": "b"
+                  }
+                }
+              },
+              "plugin/middleware": {
+                "plugins": [
+                  {
+                    "name": "mw-test",
+                    "on_load_error": "reject",
+                    "config": {
+                      "variable": "value"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "old critical value",
       "data": {
         "version": 3,
         "host": [
@@ -1153,13 +1243,91 @@
                       "option": "for-response-option"
                     }
                   }
-                ],
-                "content-replacer": {
-                  "message": {
-                    "find": "a",
-                    "replace": "b"
+                ]
+              },
+              "plugin/middleware": {
+                "plugins": [
+                  {
+                    "name": "mw-test",
+                    "on_load_error": "reject",
+                    "config": {
+                      "variable": "value"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "old error value",
+      "data": {
+        "version": 3,
+        "host": [
+          "http://localhost:8080"
+        ],
+        "extra_config": {
+          "plugin": {
+            "pattern": ".so",
+            "folder": "/etc/krakend/plugins",
+            "on_load_default_error": "exit"
+          },
+          "plugin/http-server": {
+            "plugins": [
+              {
+                "name": "server-test",
+                "on_load_error": "passthrough",
+                "config": {
+                  "key": "value"
+                }
+              }
+            ]
+          }
+        },
+        "endpoints": [
+          {
+            "endpoint": "/",
+            "backend": [
+              {
+                "url_pattern": "/__echo/",
+                "extra_config": {
+                  "plugin/http-client": {
+                    "name": "client-test",
+                    "config": {
+                      "some": "config"
+                    }
                   }
                 }
+              }
+            ],
+            "extra_config": {
+              "plugin/req-resp-modifier": {
+                "plugins": [
+                  {
+                    "name": "ip-filter",
+                    "config": {
+                      "allow": true,
+                      "CIDR": [
+                        "1.2.3.4/32"
+                      ]
+                    }
+                  },
+                  {
+                    "name": "modifier-test-request",
+                    "config": {
+                      "option": "for-request-option"
+                    }
+                  },
+                  {
+                    "name": "modifier-test-response",
+                    "config": {
+                      "option": "for-response-option"
+                    }
+                  }
+                ]
               },
               "plugin/middleware": {
                 "plugins": [
