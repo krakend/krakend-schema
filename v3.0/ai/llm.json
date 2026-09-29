@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.krakend.io/schema/v3.0/ai/llm.json",
-  "title": "AI LLM Connectors",
-  "description": "Ready-to-use LLM connectors available for major AI vendors.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+  "title": "AI LLM Backend",
+  "description": "Connects the backend to the major AI vendors through a single interface.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
   "type": "object",
   "oneOf": [
     {

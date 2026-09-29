@@ -5,6 +5,8 @@
   "type": "object",
   "properties": {
     "ai/llm": {
+      "title": "AI LLM Backend",
+      "description": "Enterprise only. Connects the backend to the major AI vendors through a single interface.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
       "$ref": "ai/llm.json"
     },
     "ai/semantic-cache": {

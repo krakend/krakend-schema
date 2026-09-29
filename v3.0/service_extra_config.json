@@ -11,6 +11,8 @@
       "$ref": "ai/semantic-cache-service.json"
     },
     "ai/providers": {
+      "title": "AI Providers",
+      "description": "Enterprise only. Declares once, at the service level, the AI providers the gateway can talk to, so backends can reference them by `name`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
       "$ref": "ai/providers.json"
     },
     "auth/api-keys": {
