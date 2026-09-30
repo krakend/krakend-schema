@@ -9,7 +9,7 @@
                 "_comment": "Attribute not in schema, but ignored as it starts with _",
                 "$comment": "Attribute not in schema, but ignored as it starts with $",
                 "#comment": "Attribute not in schema, but ignored as it starts with #",
-                "version": 3,
+                "version": 4,
                 "name": "KrakenD configuration at MyCompany",
                 "port": 8080,
                 "host": [

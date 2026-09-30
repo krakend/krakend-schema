@@ -5,7 +5,7 @@
     {
       "description": "new plugin configuration",
       "data": {
-        "version": 3,
+        "version": 4,
         "host": [
           "http://localhost:8080"
         ],
@@ -89,7 +89,7 @@
     {
       "description": "disabled keys inside plugin entries and http-client",
       "data": {
-        "version": 3,
+        "version": 4,
         "host": [
           "http://localhost:8080"
         ],
@@ -178,7 +178,7 @@
     {
       "description": "plugin loader at the root level",
       "data": {
-        "version": 3,
+        "version": 4,
         "host": [
           "http://localhost:8080"
         ],
@@ -262,7 +262,7 @@
     {
       "description": "missing folder in the plugin loader",
       "data": {
-        "version": 3,
+        "version": 4,
         "host": [
           "http://localhost:8080"
         ],
@@ -345,7 +345,7 @@
     {
       "description": "unknown on_load_default_error",
       "data": {
-        "version": 3,
+        "version": 4,
         "host": [
           "http://localhost:8080"
         ],
@@ -429,7 +429,7 @@
     {
       "description": "unknown on_load_error",
       "data": {
-        "version": 3,
+        "version": 4,
         "host": [
           "http://localhost:8080"
         ],
@@ -513,7 +513,7 @@
     {
       "description": "2.x style array of names",
       "data": {
-        "version": 3,
+        "version": 4,
         "host": [
           "http://localhost:8080"
         ],
@@ -594,7 +594,7 @@
     {
       "description": "settings next to the plugins list",
       "data": {
-        "version": 3,
+        "version": 4,
         "host": [
           "http://localhost:8080"
         ],
@@ -681,7 +681,7 @@
     {
       "description": "unknown key in a plugin entry",
       "data": {
-        "version": 3,
+        "version": 4,
         "host": [
           "http://localhost:8080"
         ],
@@ -766,7 +766,7 @@
     {
       "description": "empty plugins list",
       "data": {
-        "version": 3,
+        "version": 4,
         "host": [
           "http://localhost:8080"
         ],
@@ -842,7 +842,7 @@
     {
       "description": "plugin entry without name",
       "data": {
-        "version": 3,
+        "version": 4,
         "host": [
           "http://localhost:8080"
         ],
@@ -925,7 +925,7 @@
     {
       "description": "http client declared as a plugins list",
       "data": {
-        "version": 3,
+        "version": 4,
         "host": [
           "http://localhost:8080"
         ],
@@ -1010,7 +1010,7 @@
     {
       "description": "ip-filter config missing CIDR",
       "data": {
-        "version": 3,
+        "version": 4,
         "host": [
           "http://localhost:8080"
         ],
@@ -1091,7 +1091,7 @@
     {
       "description": "retired content-replacer plugin settings",
       "data": {
-        "version": 3,
+        "version": 4,
         "host": [
           "http://localhost:8080"
         ],
@@ -1181,7 +1181,7 @@
     {
       "description": "old critical value",
       "data": {
-        "version": 3,
+        "version": 4,
         "host": [
           "http://localhost:8080"
         ],
@@ -1265,7 +1265,7 @@
     {
       "description": "old error value",
       "data": {
-        "version": 3,
+        "version": 4,
         "host": [
           "http://localhost:8080"
         ],

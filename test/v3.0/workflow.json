@@ -5,7 +5,7 @@
         {
             "description": "Workflow test case",
             "data": {
-                "version": 3,
+                "version": 4,
                 "endpoints": [{
                     "endpoint": "/foo/{var1}/{var2}",
                     "backend": [{
