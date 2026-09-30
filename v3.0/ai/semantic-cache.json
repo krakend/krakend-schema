@@ -17,6 +17,7 @@
     },
     "max_distance": {
       "description": "The maximum cosine distance allowed when searching for semantically similar vectors. A value of 0 represents identical vectors; larger values allow greater differences.",
+      "default": 0.25,
       "type": "number"
     },
     "key_variants": {
