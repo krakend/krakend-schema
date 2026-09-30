@@ -1,17 +1,77 @@
 {
-  "description": "AI Prompt Guard at endpoint",
+  "description": "AI Prompt Guard endpoint and backend test",
   "target": "https://www.krakend.io/schema/v3.0/ai/prompt-guard-endpoint.json",
   "tests": [
     {
-      "description": "Basic ai/prompt-guard endpoint config",
+      "description": "Empty configuration keeps the default guards",
+      "data": {},
+      "valid": true
+    },
+    {
+      "description": "Named guards",
       "data": {
-          "guards": [
-            "reguloides",
-            "!medium",
-            "!unicode_steganography"
-          ]
+        "guards": [
+          "block_jailbreak_terms",
+          "injection_classifier"
+        ]
       },
       "valid": true
+    },
+    {
+      "description": "Named guards with negations",
+      "data": {
+        "guards": [
+          "block_jailbreak_terms",
+          "injection_classifier",
+          "!medium",
+          "!unicode_steganography"
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Disable all default guards",
+      "data": {
+        "guards": [
+          "!all_defaults"
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Invalid non-string guard",
+      "data": {
+        "guards": [
+          1
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid empty guard name",
+      "data": {
+        "guards": [
+          ""
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid guards as string",
+      "data": {
+        "guards": "block_jailbreak_terms"
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid unknown property",
+      "data": {
+        "guards": [
+          "block_jailbreak_terms"
+        ],
+        "enabled": true
+      },
+      "valid": false
     }
   ]
 }

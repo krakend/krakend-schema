@@ -1,57 +1,614 @@
 {
-  "description": "AI Prompt Guard test",
+  "description": "AI Prompt Guard service test",
   "target": "https://www.krakend.io/schema/v3.0/ai/prompt-guard.json",
   "tests": [
     {
-      "description": "Basic ai/prompt-guard config",
+      "description": "Empty configuration",
+      "data": {},
+      "valid": true
+    },
+    {
+      "description": "Empty guard list",
       "data": {
-          "guards": [
-            {
-              "name": "reguloides",
-              "kind": "regex",
-              "severity": "high",
-              "config": {
-                "patterns": [
-                  "foo.*bar",
-                  "tupu.*supu"
-                ]
-              }
-            },
-            {
-              "name": "reguleras",
-              "kind": "regex",
-              "severity": "medium",
-              "config": {
-                "patterns": [
-                  "medium_foo",
-                  "medium_bar"
-                ]
-              }
-            },
-            {
-              "name": "my_scorer",
-              "kind": "classifier",
-              "severity": "high",
-              "config": {
-                "score_threshold": 0.6,
-                "on_failure_block": false,
-                "url": "https://nonexistinglongdomainexample.com"
-              }
-            },
-            {
-              "name": "my_policy",
-              "kind": "policy",
-              "severity": "medium",
-              "config": {
-                "expressions": [
-                  "meta.something in [\"BENIGN\"]",
-                  "size(body) > 256"
-                ]
-              }
-            }
-          ]
+        "guards": []
       },
       "valid": true
+    },
+    {
+      "description": "All guard kinds",
+      "data": {
+        "guards": [
+          {
+            "name": "block_jailbreak_terms",
+            "kind": "regex",
+            "severity": "high",
+            "config": {
+              "patterns": [
+                "(?i)ignore (all )?previous instructions",
+                "(?i)disregard .*(system )?prompt"
+              ]
+            }
+          },
+          {
+            "name": "block_sensitive_terms",
+            "kind": "regex",
+            "severity": "medium",
+            "config": {
+              "patterns": [
+                "(?i)reveal .*(system )?prompt",
+                "(?i)you are now .*(DAN|jailbroken)"
+              ]
+            }
+          },
+          {
+            "name": "injection_classifier",
+            "kind": "classifier",
+            "severity": "high",
+            "config": {
+              "score_threshold": 0.6,
+              "on_failure_block": false,
+              "url": "https://example.com/classify"
+            }
+          },
+          {
+            "name": "payload_policy",
+            "kind": "policy",
+            "severity": "medium",
+            "config": {
+              "expressions": [
+                "meta.method == 'POST'",
+                "size(body) <= 8192"
+              ]
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Regex guard",
+      "data": {
+        "guards": [
+          {
+            "name": "block_jailbreak_terms",
+            "kind": "regex",
+            "severity": "high",
+            "config": {
+              "patterns": [
+                "(?i)ignore (all )?previous instructions",
+                "(?i)disregard .*(system )?prompt"
+              ]
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Classifier guard",
+      "data": {
+        "guards": [
+          {
+            "name": "injection_classifier",
+            "kind": "classifier",
+            "severity": "high",
+            "config": {
+              "score_threshold": 0.6,
+              "on_failure_block": false,
+              "url": "https://example.com/classify"
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Classifier guard without on_failure_block",
+      "data": {
+        "guards": [
+          {
+            "name": "injection_classifier",
+            "kind": "classifier",
+            "severity": "high",
+            "config": {
+              "score_threshold": 0.6,
+              "url": "https://example.com/classify"
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Classifier guard with threshold boundaries",
+      "data": {
+        "guards": [
+          {
+            "name": "injection_classifier",
+            "kind": "classifier",
+            "severity": "high",
+            "config": {
+              "score_threshold": 0,
+              "on_failure_block": false,
+              "url": "https://example.com/classify"
+            }
+          },
+          {
+            "name": "strict_classifier",
+            "kind": "classifier",
+            "severity": "high",
+            "config": {
+              "score_threshold": 1,
+              "on_failure_block": false,
+              "url": "https://example.com/classify"
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Policy guard",
+      "data": {
+        "guards": [
+          {
+            "name": "payload_policy",
+            "kind": "policy",
+            "severity": "medium",
+            "config": {
+              "expressions": [
+                "meta.method == 'POST'",
+                "size(body) <= 8192"
+              ]
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Comments are allowed in guards and configs",
+      "data": {
+        "guards": [
+          {
+            "name": "block_jailbreak_terms",
+            "kind": "regex",
+            "severity": "high",
+            "config": {
+              "patterns": [
+                "(?i)ignore (all )?previous instructions",
+                "(?i)disregard .*(system )?prompt"
+              ],
+              "@comment": "Blocks common jailbreak phrases"
+            },
+            "@comment": "Custom regex guard"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Invalid guard without name",
+      "data": {
+        "guards": [
+          {
+            "kind": "regex",
+            "severity": "high",
+            "config": {
+              "patterns": [
+                "(?i)ignore (all )?previous instructions",
+                "(?i)disregard .*(system )?prompt"
+              ]
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid guard with empty name",
+      "data": {
+        "guards": [
+          {
+            "name": "",
+            "kind": "regex",
+            "severity": "high",
+            "config": {
+              "patterns": [
+                "(?i)ignore (all )?previous instructions",
+                "(?i)disregard .*(system )?prompt"
+              ]
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid guard without kind",
+      "data": {
+        "guards": [
+          {
+            "name": "block_jailbreak_terms",
+            "severity": "high",
+            "config": {
+              "patterns": [
+                "(?i)ignore (all )?previous instructions",
+                "(?i)disregard .*(system )?prompt"
+              ]
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid guard without severity",
+      "data": {
+        "guards": [
+          {
+            "name": "block_jailbreak_terms",
+            "kind": "regex",
+            "config": {
+              "patterns": [
+                "(?i)ignore (all )?previous instructions",
+                "(?i)disregard .*(system )?prompt"
+              ]
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid guard without config",
+      "data": {
+        "guards": [
+          {
+            "name": "block_jailbreak_terms",
+            "kind": "regex",
+            "severity": "high"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid unknown kind",
+      "data": {
+        "guards": [
+          {
+            "name": "block_jailbreak_terms",
+            "kind": "keyword",
+            "severity": "high",
+            "config": {
+              "patterns": [
+                "(?i)ignore (all )?previous instructions",
+                "(?i)disregard .*(system )?prompt"
+              ]
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid unknown severity",
+      "data": {
+        "guards": [
+          {
+            "name": "block_jailbreak_terms",
+            "kind": "regex",
+            "severity": "urgent",
+            "config": {
+              "patterns": [
+                "(?i)ignore (all )?previous instructions",
+                "(?i)disregard .*(system )?prompt"
+              ]
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid unknown property in guard",
+      "data": {
+        "guards": [
+          {
+            "name": "block_jailbreak_terms",
+            "kind": "regex",
+            "severity": "high",
+            "config": {
+              "patterns": [
+                "(?i)ignore (all )?previous instructions",
+                "(?i)disregard .*(system )?prompt"
+              ]
+            },
+            "enabled": true
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid regex guard without patterns",
+      "data": {
+        "guards": [
+          {
+            "name": "block_jailbreak_terms",
+            "kind": "regex",
+            "severity": "high",
+            "config": {}
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid regex guard with empty patterns",
+      "data": {
+        "guards": [
+          {
+            "name": "block_jailbreak_terms",
+            "kind": "regex",
+            "severity": "high",
+            "config": {
+              "patterns": []
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid regex guard with empty pattern",
+      "data": {
+        "guards": [
+          {
+            "name": "block_jailbreak_terms",
+            "kind": "regex",
+            "severity": "high",
+            "config": {
+              "patterns": [
+                ""
+              ]
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid regex guard with unknown config property",
+      "data": {
+        "guards": [
+          {
+            "name": "block_jailbreak_terms",
+            "kind": "regex",
+            "severity": "high",
+            "config": {
+              "patterns": [
+                "(?i)ignore (all )?previous instructions",
+                "(?i)disregard .*(system )?prompt"
+              ],
+              "case_insensitive": true
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid classifier guard without url",
+      "data": {
+        "guards": [
+          {
+            "name": "injection_classifier",
+            "kind": "classifier",
+            "severity": "high",
+            "config": {
+              "score_threshold": 0.6,
+              "on_failure_block": false
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid classifier guard without score_threshold",
+      "data": {
+        "guards": [
+          {
+            "name": "injection_classifier",
+            "kind": "classifier",
+            "severity": "high",
+            "config": {
+              "on_failure_block": false,
+              "url": "https://example.com/classify"
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid classifier guard with score_threshold above 1",
+      "data": {
+        "guards": [
+          {
+            "name": "injection_classifier",
+            "kind": "classifier",
+            "severity": "high",
+            "config": {
+              "score_threshold": 1.5,
+              "on_failure_block": false,
+              "url": "https://example.com/classify"
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid classifier guard with negative score_threshold",
+      "data": {
+        "guards": [
+          {
+            "name": "injection_classifier",
+            "kind": "classifier",
+            "severity": "high",
+            "config": {
+              "score_threshold": -0.1,
+              "on_failure_block": false,
+              "url": "https://example.com/classify"
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid classifier guard with non-boolean on_failure_block",
+      "data": {
+        "guards": [
+          {
+            "name": "injection_classifier",
+            "kind": "classifier",
+            "severity": "high",
+            "config": {
+              "score_threshold": 0.6,
+              "on_failure_block": "true",
+              "url": "https://example.com/classify"
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid policy guard without expressions",
+      "data": {
+        "guards": [
+          {
+            "name": "payload_policy",
+            "kind": "policy",
+            "severity": "medium",
+            "config": {}
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid policy guard with empty expressions",
+      "data": {
+        "guards": [
+          {
+            "name": "payload_policy",
+            "kind": "policy",
+            "severity": "medium",
+            "config": {
+              "expressions": []
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid regex kind with classifier config",
+      "data": {
+        "guards": [
+          {
+            "name": "block_jailbreak_terms",
+            "kind": "regex",
+            "severity": "high",
+            "config": {
+              "score_threshold": 0.6,
+              "on_failure_block": false,
+              "url": "https://example.com/classify"
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid classifier kind with policy config",
+      "data": {
+        "guards": [
+          {
+            "name": "injection_classifier",
+            "kind": "classifier",
+            "severity": "high",
+            "config": {
+              "expressions": [
+                "meta.method == 'POST'",
+                "size(body) <= 8192"
+              ]
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid policy kind with regex config",
+      "data": {
+        "guards": [
+          {
+            "name": "payload_policy",
+            "kind": "policy",
+            "severity": "medium",
+            "config": {
+              "patterns": [
+                "(?i)ignore (all )?previous instructions",
+                "(?i)disregard .*(system )?prompt"
+              ]
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid guards as object",
+      "data": {
+        "guards": {
+          "name": "block_jailbreak_terms",
+          "kind": "regex",
+          "severity": "high",
+          "config": {
+            "patterns": [
+              "(?i)ignore (all )?previous instructions",
+              "(?i)disregard .*(system )?prompt"
+            ]
+          }
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid unknown root property",
+      "data": {
+        "guards": [
+          {
+            "name": "block_jailbreak_terms",
+            "kind": "regex",
+            "severity": "high",
+            "config": {
+              "patterns": [
+                "(?i)ignore (all )?previous instructions",
+                "(?i)disregard .*(system )?prompt"
+              ]
+            }
+          }
+        ],
+        "enabled": true
+      },
+      "valid": false
     }
   ]
 }

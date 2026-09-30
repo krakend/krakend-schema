@@ -1,17 +1,18 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.krakend.io/schema/v3.0/ai/prompt-guard-endpoint.json",
-  "title": "AI Prompt Guard Endpoint Config",
-  "description": "Enterprise only. Adds [Prompt Guard](https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/) protection to the endpoint.",
+  "title": "AI Prompt Guard Selection",
+  "description": "Enterprise only. Enables prompt guarding on this endpoint or backend, and selects which guards inspect the request body. The default guards are active even when you leave the object empty.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
   "type": "object",
   "properties": {
     "guards": {
-      "description": "The list of guards to apply to the endpoint.",
+      "title": "Guards",
+      "description": "The guards to apply, in addition to the default ones. Add the `name` of a guard declared at the service level to apply it, or prefix an entry with `!` to disable default guards: `!all_defaults` removes all of them, `!critical`, `!high`, `!medium`, and `!low` remove those of that severity, and `!` followed by a group name, such as `!unicode_steganography`, removes that group.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
       "type": "array",
       "items": {
-        "description": "A guard definition.",
-        "examples": [ "!medium", "my_scorer" ],
-        "type": "string"
+        "examples": [ "block_jailbreak_terms", "!medium", "!all_defaults" ],
+        "type": "string",
+        "minLength": 1
       }
     }
   },
