@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v3.0/ai/llm.json",
+  "title": "AI LLM Backend",
+  "description": "Connects the backend to the major AI vendors through a single interface.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+  "type": "object",
+  "oneOf": [
+    {
+      "required": [ "anthropic" ]
+    },
+    {
+      "required": [ "gemini" ]
+    },
+    {
+      "required": [ "mistral" ]
+    },
+    {
+      "required": [ "openai" ]
+    },
+    {
+      "required": [ "bedrock" ]
+    },
+    {
+      "required": [ "alibaba" ]
+    },
+    {
+      "not": {
+        "required": [ "format" ],
+        "properties": {
+          "format": true
+        }
+      },
+      "required": [ "provider" ]
+    }
+  ],
+  "maxProperties": 2,
+  "properties": {
+    "format": {
+      "title": "Stream format",
+      "description": "Wire format KrakenD exposes to the client for streaming responses, when not defined, the request and response format is not modified. Only anthropic and openai stream formats are supported client-side, regardless of the upstream connector. When defined, KrakenD translates the client's request into the upstream connector's format, and translates the streamed response back into this format before returning it.",
+      "enum": [ "anthropic", "openai" ]
+    },
+    "provider": {
+      "title": "Provider Reference",
+      "description": "The `name` of a provider declared in the service-level `ai/providers` configuration. Use it instead of a vendor block so you declare the connection settings once and reuse them on every backend.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+      "examples": [ "fast-chat" ],
+      "type": "string"
+    },
+    "anthropic": {
+      "$ref": "anthropic.json"
+    },
+    "gemini": {
+      "$ref": "gemini.json"
+    },
+    "mistral": {
+      "$ref": "mistral.json"
+    },
+    "openai": {
+      "$ref": "openai.json"
+    },
+    "bedrock": {
+      "$ref": "bedrock.json"
+    },
+    "alibaba": {
+      "$ref": "alibaba.json"
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false
+}

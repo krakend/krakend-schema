@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v3.0/backend/pubsub/subscriber.json",
+  "title": "Pubsub subscriber",
+  "description": "Subscribes a backend using the desired driver.\n\nSee: https://www.krakend.io/docs/backends/pubsub/",
+  "type": "object",
+  "required": [ "subscription_url" ],
+  "properties": {
+    "subscription_url": {
+      "title": "Subscription URL",
+      "description": "Subscription URL according to the selected driver\n\nSee: https://www.krakend.io/docs/backends/pubsub/",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false
+}

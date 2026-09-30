@@ -1,0 +1,86 @@
+{
+  "description": "Grpc test",
+  "target": "https://www.krakend.io/schema/v3.0/backend/grpc.json",
+  "tests": [
+    {
+      "description": "Valid unset max_call_recv_msg_size",
+      "data": {
+        "input_assume_bytes": true,
+        "use_request_body": false,
+        "idle_conn_disconnect_time": "10m",
+        "use_alternate_host_on_error": true,
+        "client_tls": {
+            "@comment": "Allow untrusted certificates in development stage",
+            "allow_insecure_connections": true
+        },
+        "input_mapping": {
+            "lat": "where.latitude",
+            "lon": "where.longitude"
+        },
+        "header_mapping": {
+            "X-Tenant": "haha"
+        },
+        "read_buffer_size": -1,
+        "output_duration_as_string": false,
+        "output_enum_as_string": false,
+        "output_timestamp_as_string": false,
+        "response_naming_convention": "snake_case"
+      },
+      "valid": true
+    },
+    {
+      "description": "Valid 0 max_call_recv_msg_size",
+      "data": {
+        "input_assume_bytes": true,
+        "use_request_body": false,
+        "idle_conn_disconnect_time": "10m",
+        "use_alternate_host_on_error": true,
+        "client_tls": {
+            "@comment": "Allow untrusted certificates in development stage",
+            "allow_insecure_connections": true
+        },
+        "input_mapping": {
+            "lat": "where.latitude",
+            "lon": "where.longitude"
+        },
+        "header_mapping": {
+            "X-Tenant": "haha"
+        },
+        "read_buffer_size": -1,
+        "output_duration_as_string": false,
+        "output_enum_as_string": false,
+        "output_timestamp_as_string": false,
+        "response_naming_convention": "snake_case",
+        "max_call_recv_msg_size": 0
+      },
+      "valid": true
+    },
+    {
+      "description": "Valid max_call_recv_msg_size",
+      "data": {
+        "input_assume_bytes": true,
+        "use_request_body": false,
+        "idle_conn_disconnect_time": "10m",
+        "use_alternate_host_on_error": true,
+        "client_tls": {
+            "@comment": "Allow untrusted certificates in development stage",
+            "allow_insecure_connections": true
+        },
+        "input_mapping": {
+            "lat": "where.latitude",
+            "lon": "where.longitude"
+        },
+        "header_mapping": {
+            "X-Tenant": "haha"
+        },
+        "read_buffer_size": -1,
+        "output_duration_as_string": false,
+        "output_enum_as_string": false,
+        "output_timestamp_as_string": false,
+        "response_naming_convention": "snake_case",
+        "max_call_recv_msg_size": 33554432
+      },
+      "valid": true
+    }
+  ]
+}

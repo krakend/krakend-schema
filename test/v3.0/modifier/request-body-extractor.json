@@ -1,0 +1,237 @@
+{
+  "description": "request-body-extractor",
+  "target": "https://www.krakend.io/schema/v3.0/modifier/request-body-extractor.json",
+  "tests": [
+    {
+      "description": "happy case with dotnotation and query_string",
+      "data": {
+        "operations": [
+          {
+            "type": "query_string",
+            "strategy": "dotnotation",
+            "expression": "user.id",
+            "target": "uid",
+            "on_conflict": "replace"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "happy case with header extraction and skip conflict",
+      "data": {
+        "operations": [
+          {
+            "type": "header",
+            "strategy": "dotnotation",
+            "expression": "auth.role_key",
+            "target": "Authorization",
+            "on_conflict": "skip"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "happy case with jmespath strategy",
+      "data": {
+        "operations": [
+          {
+            "type": "header",
+            "strategy": "jmespath",
+            "expression": "data.items[0].name",
+            "target": "X-Item-Name",
+            "on_conflict": "append"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "multiple operations in sequence",
+      "data": {
+        "operations": [
+          {
+            "type": "query_string",
+            "strategy": "dotnotation",
+            "expression": "user.id",
+            "target": "uid",
+            "on_conflict": "replace"
+          },
+          {
+            "type": "header",
+            "strategy": "jmespath",
+            "expression": "auth.token",
+            "target": "Authorization",
+            "on_conflict": "skip"
+          },
+          {
+            "type": "query_string",
+            "strategy": "dotnotation",
+            "expression": "tenant.id",
+            "target": "tid",
+            "on_conflict": "append"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "empty object is not valid (missing operations)",
+      "data": {},
+      "valid": false
+    },
+    {
+      "description": "missing required field type in operation",
+      "data": {
+        "operations": [
+          {
+            "strategy": "dotnotation",
+            "expression": "user.id",
+            "target": "uid",
+            "on_conflict": "replace"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "missing required field strategy in operation",
+      "data": {
+        "operations": [
+          {
+            "type": "header",
+            "expression": "user.id",
+            "target": "uid",
+            "on_conflict": "replace"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "missing required field expression in operation",
+      "data": {
+        "operations": [
+          {
+            "type": "header",
+            "strategy": "dotnotation",
+            "target": "uid",
+            "on_conflict": "replace"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "missing required field target in operation",
+      "data": {
+        "operations": [
+          {
+            "type": "header",
+            "strategy": "dotnotation",
+            "expression": "user.id",
+            "on_conflict": "replace"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "missing required field on_conflict in operation",
+      "data": {
+        "operations": [
+          {
+            "type": "header",
+            "strategy": "dotnotation",
+            "expression": "user.id",
+            "target": "uid"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "invalid type value",
+      "data": {
+        "operations": [
+          {
+            "type": "cookie",
+            "strategy": "dotnotation",
+            "expression": "user.id",
+            "target": "uid",
+            "on_conflict": "replace"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "invalid strategy value",
+      "data": {
+        "operations": [
+          {
+            "type": "header",
+            "strategy": "xpath",
+            "expression": "user.id",
+            "target": "uid",
+            "on_conflict": "replace"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "invalid on_conflict value",
+      "data": {
+        "operations": [
+          {
+            "type": "header",
+            "strategy": "dotnotation",
+            "expression": "user.id",
+            "target": "uid",
+            "on_conflict": "overwrite"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "additional properties not allowed in operation",
+      "data": {
+        "operations": [
+          {
+            "type": "header",
+            "strategy": "dotnotation",
+            "expression": "user.id",
+            "target": "uid",
+            "on_conflict": "replace",
+            "unknown_field": true
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "additional properties not allowed at root level",
+      "data": {
+        "operations": [],
+        "unknown_field": true
+      },
+      "valid": false
+    },
+    {
+      "description": "operations must be an array not an object",
+      "data": {
+        "operations": {
+          "type": "header",
+          "strategy": "dotnotation",
+          "expression": "user.id",
+          "target": "uid",
+          "on_conflict": "replace"
+        }
+      },
+      "valid": false
+    }
+  ]
+}

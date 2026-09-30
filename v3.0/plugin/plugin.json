@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v3.0/plugin/plugin.json",
+  "title": "Plugin",
+  "description": "Enterprise only. Loads your plugins from a folder and sets the default behavior when one of them fails to load.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
+  "type": "object",
+  "required": [ "pattern", "folder" ],
+  "properties": {
+    "folder": {
+      "title": "Folder",
+      "description": "The path in the filesystem where all the plugins you want to load are. MUST END IN SLASH. The folder can be a relative or absolute path. KrakenD Enterprise uses /opt/krakend/plugins/ for all plugins.",
+      "examples": [ "/opt/krakend/plugins/", "./plugins/" ],
+      "default": "/opt/krakend/plugins/",
+      "type": "string"
+    },
+    "on_load_default_error": {
+      "title": "Default behavior on load error",
+      "description": "The default behavior when a plugin fails to load. It applies to every plugin that does not declare its own `on_load_error`. The options are:\n`exit`: KrakenD stops and does not start, so a configuration with a broken plugin never serves traffic.\n`reject`: KrakenD starts, but every endpoint or backend where the failing plugin is attached responds with a pipe error. Everything else works normally. Plugins under `plugin/http-server` are the exception: they run in the router layer, so a failing server plugin makes the whole gateway fail even though KrakenD starts normally.\n`passthrough`: KrakenD starts, and the endpoints or backends where the plugin is attached work without it, skipping its logic. Use it carefully with plugins that enforce security, like authentication or IP filtering, because traffic flows through without them.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
+      "default": "exit",
+      "$ref": "#/$defs/on_load_error_behavior"
+    },
+    "pattern": {
+      "title": "Pattern",
+      "description": "The pattern narrows down the contents of the folder. It represents the substring that must be present in the plugin name to load.",
+      "examples": [ ".so", "-production.so" ],
+      "default": ".so",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "on_load_error": {
+      "title": "Behavior on load error",
+      "description": "What to do when this plugin fails to load. It overrides the service `on_load_default_error`. When you don't set it, the service value applies. Use it to treat plugins differently: for example, a security plugin as `exit` and an optional enrichment plugin as `passthrough`. The options are:\n`exit`: KrakenD stops and does not start.\n`reject`: the endpoint or backend where this plugin is attached responds with a pipe error, and the rest of the gateway works normally. Plugins under `plugin/http-server` run in the router layer, so the whole gateway fails even though KrakenD starts normally.\n`passthrough`: KrakenD skips the plugin logic, and the endpoint or backend works without it. Use it carefully with plugins that enforce security, like authentication or IP filtering, because traffic flows through without them.\n\nSee: https://www.krakend.io/docs/enterprise/extending/injecting-plugins/",
+      "$ref": "#/$defs/on_load_error_behavior"
+    },
+    "on_load_error_behavior": {
+      "enum": [ "exit", "reject", "passthrough" ]
+    }
+  }
+}

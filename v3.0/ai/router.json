@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v3.0/ai/router.json",
+  "title": "AI Router",
+  "description": "Selects, on every request, which provider from the `ai/providers` inventory handles it. KrakenD evaluates the `routes` from top to bottom and uses the first one that matches, so the client never chooses the model or the vendor.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+  "type": "object",
+  "required": [ "routes" ],
+  "properties": {
+    "failover": {
+      "title": "Failover Provider",
+      "description": "The name of the provider in the `ai/providers` inventory that handles the request when no route matches, or when a classifier cannot return a choice and its route sets no `failover` of its own. It is the safety net of the whole router, and an alternative to a trailing route without `gates`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+      "examples": [ "gpt-default" ],
+      "type": "string",
+      "minLength": 1
+    },
+    "routes": {
+      "title": "Routes",
+      "description": "The ordered list of routes. KrakenD evaluates them from top to bottom and uses the first one that matches. A route without `gates` always matches, so place it last as an inline fallback.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/route"
+      }
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "route": {
+      "title": "Route",
+      "description": "A routing rule. When the route matches, KrakenD forwards the request to its `provider`, lets its `classifier` choose among its `providers`, or evaluates its nested `routes`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+      "type": "object",
+      "not": {
+        "required": [ "provider", "classifier" ]
+      },
+      "properties": {
+        "classifier": {
+          "title": "Classifier",
+          "description": "The name of a classifier declared in `ai/classifiers` that chooses the best provider from the `providers` list. You cannot use it together with `provider`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+          "examples": [ "smart" ],
+          "type": "string",
+          "minLength": 1
+        },
+        "failover": {
+          "title": "Route Failover Provider",
+          "description": "The name of the provider in the `ai/providers` inventory that handles the request when the `classifier` of this route cannot return a choice. It takes precedence over the router-level `failover`, and requires a `classifier`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+          "examples": [ "gpt-default" ],
+          "type": "string",
+          "minLength": 1
+        },
+        "gates": {
+          "title": "Gates",
+          "description": "The names of the gates declared in `ai/classifiers` that must all pass for the route to match. Omit it to create a route that always matches.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+          "examples": [
+            [ "plan_enterprise", "usecase_code" ]
+          ],
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "provider": {
+          "title": "Provider",
+          "description": "The name of the provider in the `ai/providers` inventory that handles the request when the route matches. You cannot use it together with `classifier`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+          "examples": [ "cheap-quick" ],
+          "type": "string",
+          "minLength": 1
+        },
+        "providers": {
+          "title": "Candidate Providers",
+          "description": "The names of the providers in the `ai/providers` inventory that the `classifier` chooses from. It requires a `classifier`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+          "examples": [
+            [ "cheap-quick", "gemini-flash", "coding-basic" ]
+          ],
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "routes": {
+          "title": "Nested Routes",
+          "description": "The ordered list of routes that KrakenD evaluates only when the gates of this route pass. Nested routes can go to any depth, forming a decision tree, and a route that only groups other routes needs no `provider`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/route"
+          }
+        }
+      },
+      "patternProperties": {
+        "^[@$_#]": true
+      },
+      "additionalProperties": false,
+      "dependentRequired": {
+        "classifier": [ "providers" ],
+        "failover": [ "classifier" ],
+        "providers": [ "classifier" ]
+      }
+    }
+  }
+}

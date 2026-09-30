@@ -1,7 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://www.krakend.io/schema/v2.7/plugin/http-server.json",
-  "title": "HTTP Server plugins.\n\nSee: https://www.krakend.io/docs/extending/http-server-plugins/",
+  "title": "HTTP Server plugins",
+  "description": "Enterprise only. HTTP Server plugins.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
   "type": "object",
   "required": [ "name" ],
   "properties": {
@@ -17,7 +18,7 @@
     "name": {
       "$id": "#plugin/http-server",
       "title": "Plugin name",
-      "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/extending/http-server-plugins/",
+      "description": "An array with the names of plugins to load. The names are defined inside your plugin.\n\nSee: https://www.krakend.io/docs/enterprise/extending/http-server-plugins/",
       "examples": [
         [ "myplugin" ]
       ],

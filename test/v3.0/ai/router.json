@@ -1,0 +1,288 @@
+{
+  "description": "AI router test",
+  "target": "https://www.krakend.io/schema/v3.0/ai/router.json",
+  "tests": [
+    {
+      "description": "Single fallback route",
+      "data": {
+        "routes": [
+          {
+            "provider": "cheap-quick"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Gated route with fallback",
+      "data": {
+        "routes": [
+          {
+            "provider": "coding-basic",
+            "gates": [
+              "plan_pro"
+            ]
+          },
+          {
+            "provider": "cheap-quick"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Nested decision tree",
+      "data": {
+        "routes": [
+          {
+            "gates": [
+              "plan_enterprise"
+            ],
+            "routes": [
+              {
+                "provider": "coding-team",
+                "gates": [
+                  "usecase_code"
+                ]
+              },
+              {
+                "provider": "gemini-flash"
+              }
+            ]
+          },
+          {
+            "provider": "coding-basic",
+            "gates": [
+              "plan_pro"
+            ]
+          },
+          {
+            "provider": "cheap-quick"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Classifier route with failover",
+      "data": {
+        "failover": "gpt-default",
+        "routes": [
+          {
+            "gates": [
+              "enterprise_policy"
+            ],
+            "classifier": "smart",
+            "providers": [
+              "cheap-quick",
+              "gemini-flash",
+              "coding-basic"
+            ]
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Deeply nested routes with comments",
+      "data": {
+        "@comment": "tree",
+        "routes": [
+          {
+            "gates": [
+              "a"
+            ],
+            "routes": [
+              {
+                "gates": [
+                  "b"
+                ],
+                "routes": [
+                  {
+                    "@comment": "leaf",
+                    "classifier": "smart",
+                    "providers": [
+                      "x",
+                      "y"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Classifier route with its own failover",
+      "data": {
+        "failover": "gpt-default",
+        "routes": [
+          {
+            "gates": [
+              "enterprise_policy"
+            ],
+            "classifier": "smart",
+            "providers": [
+              "cheap-quick",
+              "gemini-flash"
+            ],
+            "failover": "coding-basic"
+          },
+          {
+            "provider": "cheap-quick"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Missing routes",
+      "data": {
+        "failover": "gpt-default"
+      },
+      "valid": false
+    },
+    {
+      "description": "Empty routes",
+      "data": {
+        "routes": []
+      },
+      "valid": false
+    },
+    {
+      "description": "Classifier without providers",
+      "data": {
+        "routes": [
+          {
+            "classifier": "smart"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Providers without classifier",
+      "data": {
+        "routes": [
+          {
+            "providers": [
+              "a",
+              "b"
+            ]
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Provider and classifier together",
+      "data": {
+        "routes": [
+          {
+            "provider": "a",
+            "classifier": "smart",
+            "providers": [
+              "a",
+              "b"
+            ]
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Empty gates list",
+      "data": {
+        "routes": [
+          {
+            "gates": [],
+            "provider": "a"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Unknown property in nested route",
+      "data": {
+        "routes": [
+          {
+            "gates": [
+              "a"
+            ],
+            "routes": [
+              {
+                "provider": "a",
+                "model": "gpt-4o"
+              }
+            ]
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid classifier inside nested route",
+      "data": {
+        "routes": [
+          {
+            "gates": [
+              "a"
+            ],
+            "routes": [
+              {
+                "classifier": "smart"
+              }
+            ]
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Unknown top-level property",
+      "data": {
+        "routes": [
+          {
+            "provider": "a"
+          }
+        ],
+        "gates": []
+      },
+      "valid": false
+    },
+    {
+      "description": "Route failover without classifier",
+      "data": {
+        "routes": [
+          {
+            "provider": "a",
+            "failover": "b"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Nested route failover without classifier",
+      "data": {
+        "routes": [
+          {
+            "gates": [
+              "a"
+            ],
+            "failover": "b",
+            "routes": [
+              {
+                "provider": "c"
+              }
+            ]
+          }
+        ]
+      },
+      "valid": false
+    }
+  ]
+}

@@ -1,0 +1,332 @@
+{
+  "description": "AI router gates and classifiers test",
+  "target": "https://www.krakend.io/schema/v3.0/ai/classifiers.json",
+  "tests": [
+    {
+      "description": "Empty configuration",
+      "data": {},
+      "valid": true
+    },
+    {
+      "description": "Header gate",
+      "data": {
+        "gates": [
+          {
+            "name": "plan_enterprise",
+            "rule": "header",
+            "header": {
+              "name": "X-Plan",
+              "value": "enterprise"
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Policy gate",
+      "data": {
+        "gates": [
+          {
+            "name": "enterprise_policy",
+            "rule": "policy",
+            "policy": {
+              "value": "getHeader('X-Plan') == 'enterprise'"
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Minimal notdiamond classifier",
+      "data": {
+        "classifiers": [
+          {
+            "name": "smart",
+            "engine": "notdiamond",
+            "notdiamond": {
+              "credentials": "xxx"
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Full notdiamond classifier with tradeoff",
+      "data": {
+        "classifiers": [
+          {
+            "name": "smart",
+            "engine": "notdiamond",
+            "notdiamond": {
+              "credentials": "xxx",
+              "base_url": "https://api.example.com",
+              "req_content": "req_body.messages",
+              "tradeoff": "latency",
+              "metric": "accuracy",
+              "disable_hash_content": true
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Notdiamond classifier with cost_quality_tradeoff",
+      "data": {
+        "classifiers": [
+          {
+            "name": "smart",
+            "engine": "notdiamond",
+            "notdiamond": {
+              "credentials": "xxx",
+              "req_content": "req_body.messages",
+              "cost_quality_tradeoff": 1,
+              "metric": "accuracy"
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Gates and classifiers with comments",
+      "data": {
+        "@comment": "shared definitions",
+        "gates": [
+          {
+            "name": "plan_enterprise",
+            "rule": "header",
+            "header": {
+              "name": "X-Plan",
+              "value": "enterprise"
+            }
+          },
+          {
+            "name": "enterprise_policy",
+            "rule": "policy",
+            "policy": {
+              "value": "getHeader('X-Plan') == 'enterprise'"
+            }
+          },
+          {
+            "name": "usecase_code",
+            "rule": "header",
+            "header": {
+              "name": "X-Use-Case",
+              "value": "code"
+            }
+          }
+        ],
+        "classifiers": [
+          {
+            "name": "smart",
+            "engine": "notdiamond",
+            "notdiamond": {
+              "credentials": "xxx",
+              "req_content": "req_body.messages"
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Header rule without header object",
+      "data": {
+        "gates": [
+          {
+            "name": "g",
+            "rule": "header"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Policy rule without policy object",
+      "data": {
+        "gates": [
+          {
+            "name": "g",
+            "rule": "policy"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Unknown rule",
+      "data": {
+        "gates": [
+          {
+            "name": "g",
+            "rule": "jwt"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Gate without name",
+      "data": {
+        "gates": [
+          {
+            "rule": "header",
+            "header": {
+              "name": "X-Plan",
+              "value": "pro"
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Header object without value",
+      "data": {
+        "gates": [
+          {
+            "name": "g",
+            "rule": "header",
+            "header": {
+              "name": "X-Plan"
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Unknown gate property",
+      "data": {
+        "gates": [
+          {
+            "name": "plan_enterprise",
+            "rule": "header",
+            "header": {
+              "name": "X-Plan",
+              "value": "enterprise"
+            },
+            "foo": "bar"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Both tradeoff options",
+      "data": {
+        "classifiers": [
+          {
+            "name": "smart",
+            "engine": "notdiamond",
+            "notdiamond": {
+              "credentials": "xxx",
+              "tradeoff": "cost",
+              "cost_quality_tradeoff": 1
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid tradeoff value",
+      "data": {
+        "classifiers": [
+          {
+            "name": "smart",
+            "engine": "notdiamond",
+            "notdiamond": {
+              "credentials": "xxx",
+              "tradeoff": "quality"
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid metric value",
+      "data": {
+        "classifiers": [
+          {
+            "name": "smart",
+            "engine": "notdiamond",
+            "notdiamond": {
+              "credentials": "xxx",
+              "metric": "latency"
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Non integer cost_quality_tradeoff",
+      "data": {
+        "classifiers": [
+          {
+            "name": "smart",
+            "engine": "notdiamond",
+            "notdiamond": {
+              "credentials": "xxx",
+              "cost_quality_tradeoff": 0.5
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Notdiamond without credentials",
+      "data": {
+        "classifiers": [
+          {
+            "name": "smart",
+            "engine": "notdiamond",
+            "notdiamond": {}
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Notdiamond engine without its configuration",
+      "data": {
+        "classifiers": [
+          {
+            "name": "smart",
+            "engine": "notdiamond"
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Unknown engine",
+      "data": {
+        "classifiers": [
+          {
+            "name": "smart",
+            "engine": "other",
+            "notdiamond": {
+              "credentials": "xxx"
+            }
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Unknown top-level property",
+      "data": {
+        "routes": []
+      },
+      "valid": false
+    }
+  ]
+}

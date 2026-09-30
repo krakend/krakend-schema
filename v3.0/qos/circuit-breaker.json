@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v3.0/qos/circuit-breaker.json",
+  "title": "Circuit Breaker",
+  "description": "The circuit breaker prevents sending more traffic to a failing backend.\n\nSee: https://www.krakend.io/docs/backends/circuit-breaker/",
+  "type": "object",
+  "required": [ "interval", "timeout", "max_errors" ],
+  "properties": {
+    "interval": {
+      "title": "Interval",
+      "description": "Time window where the errors count, in seconds.\n\nSee: https://www.krakend.io/docs/backends/circuit-breaker/",
+      "type": "integer"
+    },
+    "log_status_change": {
+      "title": "Log status change",
+      "description": "Whether to log the changes of state of this circuit breaker or not.\n\nSee: https://www.krakend.io/docs/backends/circuit-breaker/",
+      "default": false,
+      "type": "boolean"
+    },
+    "max_errors": {
+      "title": "Max Errors",
+      "description": "The **CONSECUTIVE** (not total) number of errors within the `interval` window to consider the backend unhealthy. All HTTP status codes different than `20x` are considered an error, except for the `no-op` encoding that does not evaluate status codes and is limited to connectivity/networking, security and component errors. See the definition of error below.\n\nSee: https://www.krakend.io/docs/backends/circuit-breaker/",
+      "type": "integer"
+    },
+    "name": {
+      "title": "Name",
+      "description": "A friendly name to follow this circuit breaker's activity in the logs.\n\nSee: https://www.krakend.io/docs/backends/circuit-breaker/",
+      "examples": [ "cb-backend-1" ],
+      "type": "string"
+    },
+    "timeout": {
+      "title": "Timeout",
+      "description": "For how many seconds the circuit breaker will wait before testing again if the backend is healthy.\n\nSee: https://www.krakend.io/docs/backends/circuit-breaker/",
+      "type": "integer"
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false
+}
