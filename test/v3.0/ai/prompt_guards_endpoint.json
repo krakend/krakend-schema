@@ -8,6 +8,22 @@
       "valid": true
     },
     {
+      "description": "Empty guard list",
+      "data": {
+        "guards": []
+      },
+      "valid": true
+    },
+    {
+      "description": "Empty guard name",
+      "data": {
+        "guards": [
+          ""
+        ]
+      },
+      "valid": true
+    },
+    {
       "description": "Named guards",
       "data": {
         "guards": [
@@ -43,15 +59,6 @@
       "data": {
         "guards": [
           1
-        ]
-      },
-      "valid": false
-    },
-    {
-      "description": "Invalid empty guard name",
-      "data": {
-        "guards": [
-          ""
         ]
       },
       "valid": false

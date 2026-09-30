@@ -346,7 +346,7 @@
       "valid": false
     },
     {
-      "description": "Invalid regex guard with empty patterns",
+      "description": "Regex guard with empty patterns",
       "data": {
         "guards": [
           {
@@ -359,7 +359,7 @@
           }
         ]
       },
-      "valid": false
+      "valid": true
     },
     {
       "description": "Invalid regex guard with empty pattern",
@@ -502,7 +502,7 @@
       "valid": false
     },
     {
-      "description": "Invalid policy guard with empty expressions",
+      "description": "Policy guard with empty expressions",
       "data": {
         "guards": [
           {
@@ -515,7 +515,7 @@
           }
         ]
       },
-      "valid": false
+      "valid": true
     },
     {
       "description": "Invalid regex kind with classifier config",

@@ -142,7 +142,6 @@
           "title": "Expressions",
           "description": "The list of CEL expressions to evaluate. Each expression returns a boolean that decides whether the request can continue. Use `body` to inspect the raw payload as a string, and `meta` to access the request `headers`, `params`, `method`, `path`, `query`, and `url`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
           "type": "array",
-          "minItems": 1,
           "items": {
             "examples": [ "size(body) <= 8192", "meta.method == 'POST'" ],
             "type": "string",
@@ -165,7 +164,6 @@
           "title": "Patterns",
           "description": "The list of regular expressions to match against the request body. The guard blocks the request when any pattern matches. KrakenD merges the patterns of all regex guards, including the default ones, into a single set that it evaluates in one pass.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
           "type": "array",
-          "minItems": 1,
           "items": {
             "examples": [
               "(?i)ignore (all )?previous instructions",
