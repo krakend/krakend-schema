@@ -1782,6 +1782,34 @@
                                 }
                             }
                         ]
+                    },
+                    {
+                        "endpoint": "/test/prompt-guard",
+                        "method": "POST",
+                        "extra_config": {
+                            "ai/prompt-guard": {
+                                "guards": [
+                                    "block_jailbreak_terms",
+                                    "injection_classifier",
+                                    "!medium",
+                                    "!unicode_steganography"
+                                ]
+                            }
+                        },
+                        "backend": [
+                            {
+                                "url_pattern": "/__echo/prompt-guard",
+                                "method": "POST",
+                                "extra_config": {
+                                    "ai/prompt-guard": {
+                                        "guards": [
+                                            "payload_policy",
+                                            "!all_defaults"
+                                        ]
+                                    }
+                                }
+                            }
+                        ]
                     }
                 ],
                 "extra_config": {
@@ -1848,6 +1876,40 @@
                                         }
                                     }
                                 ]
+                            }
+                        ]
+                    },
+                    "ai/prompt-guard": {
+                        "guards": [
+                            {
+                                "name": "block_jailbreak_terms",
+                                "kind": "regex",
+                                "severity": "high",
+                                "config": {
+                                    "patterns": [
+                                        "(?i)ignore (all )?previous instructions"
+                                    ]
+                                }
+                            },
+                            {
+                                "name": "injection_classifier",
+                                "kind": "classifier",
+                                "severity": "high",
+                                "config": {
+                                    "score_threshold": 0.6,
+                                    "on_failure_block": false,
+                                    "url": "https://example.com/classify"
+                                }
+                            },
+                            {
+                                "name": "payload_policy",
+                                "kind": "policy",
+                                "severity": "medium",
+                                "config": {
+                                    "expressions": [
+                                        "size(body) <= 8192"
+                                    ]
+                                }
                             }
                         ]
                     },

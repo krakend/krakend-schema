@@ -893,16 +893,16 @@
     },
     "https://www.krakend.io/schema/v3.0/ai/prompt-guard-endpoint.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
-      "title": "AI Prompt Guard Endpoint Config",
-      "description": "Enterprise only. Adds [Prompt Guard](https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/) protection to the endpoint.",
+      "title": "AI Prompt Guard Selection",
+      "description": "Enterprise only. Enables prompt guarding on this endpoint or backend, and selects which guards inspect the request body. The default guards are active even when you leave the object empty.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
       "type": "object",
       "properties": {
         "guards": {
-          "description": "The list of guards to apply to the endpoint.",
+          "title": "Guards",
+          "description": "The guards to apply, in addition to the default ones. Add the `name` of a guard declared at the service level to apply it, or prefix an entry with `!` to disable default guards: `!all_defaults` removes all of them, `!critical`, `!high`, `!medium`, and `!low` remove those of that severity, and `!` followed by a group name, such as `!unicode_steganography`, removes that group.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
           "type": "array",
           "items": {
-            "description": "A guard definition.",
-            "examples": [ "!medium", "my_scorer" ],
+            "examples": [ "block_jailbreak_terms", "!medium", "!all_defaults" ],
             "type": "string"
           }
         }
@@ -8398,105 +8398,185 @@
     },
     "https://www.krakend.io/schema/v3.0/ai/prompt-guard.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
-      "title": "AI Prompt Guard Service Config",
-      "description": "Enterprise only. Adds [Prompt Guard](https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/) protection to the endpoint.",
+      "title": "AI Prompt Guard",
+      "description": "Enterprise only. Declares once, at the service level, the custom guards that inspect the request body and block prompt injection, jailbreaks, and other malicious content. Endpoints and backends select these guards by `name`, together with the default guards that KrakenD ships.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
       "type": "object",
       "properties": {
         "guards": {
-          "description": "The list of guards.",
+          "title": "Guards",
+          "description": "The list of custom guards available to endpoints and backends. Each guard has a unique `name`, a `kind` that defines how it evaluates the request, a `severity`, and a `config` whose fields depend on the `kind`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
           "type": "array",
           "items": {
-            "description": "A guard definition.",
+            "title": "Guard",
             "type": "object",
-            "properties": {
-              "name": {
-                "title": "Name of the custom prompt guard",
-                "description": "A free form name to be used from the endpoint config to select this prompt guard.",
-                "examples": [ "my_scorer", "my_policy" ],
-                "type": "string"
-              },
-              "kind": {
-                "title": "The kind of prompt guarding to apply",
-                "description": "The fields of the `config` field depend on the kind of prompt guard selected.",
-                "enum": [ "regex", "policy", "classifier" ]
-              },
-              "severity": {
-                "title": "Severity level",
-                "description": "Select what how critical this guard is.",
-                "enum": [ "critical", "high", "medium", "low" ]
-              },
-              "config": {
-                "title": "Specific options for the kind of prompt guard",
-                "oneOf": [
-                  {
-                    "title": "Regular expressions config",
-                    "description": "Configuration fields for a classifier",
-                    "type": "object",
-                    "required": [ "patterns" ],
-                    "properties": {
-                      "patterns": {
-                        "description": "List of regular expression to check",
-                        "type": "array",
-                        "items": {
-                          "examples": [ "foo.*bar", "medium_bar" ],
-                          "type": "string"
-                        }
-                      }
-                    }
-                  },
-                  {
-                    "title": "Classifier config",
-                    "description": "Configuration fields for an external classifier",
-                    "type": "object",
-                    "required": [ "url", "score_threshold" ],
-                    "properties": {
-                      "score_threshold": {
-                        "title": "Score threshold",
-                        "description": "If the external classifier score is below the provided value, the prompt guard blocks the request.",
-                        "examples": [ 0.6, 0.99 ],
-                        "type": "number"
-                      },
-                      "on_failure_block": {
-                        "title": "On Failure Block",
-                        "description": "If the external classifier service is unavailable or returns an error, decide if the request should be blocked.",
-                        "type": "boolean"
-                      },
-                      "url": {
-                        "title": "URL",
-                        "description": "The external classifier service url.",
-                        "examples": [
-                          "https://nonexistinglongdomainexample.com"
-                        ],
-                        "type": "string"
-                      }
-                    }
-                  },
-                  {
-                    "title": "Policy config",
-                    "description": "Configuration fields for a policy classifier",
-                    "type": "object",
-                    "required": [ "expressions" ],
-                    "properties": {
-                      "expressions": {
-                        "title": "Expressions",
-                        "description": "A list of CEL expressions to be evauluated.",
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      }
+            "allOf": [
+              {
+                "if": {
+                  "required": [ "kind" ],
+                  "properties": {
+                    "kind": {
+                      "const": "regex"
                     }
                   }
-                ]
+                },
+                "then": {
+                  "properties": {
+                    "config": {
+                      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1prompt-guard.json/$defs/regex_config"
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "required": [ "kind" ],
+                  "properties": {
+                    "kind": {
+                      "const": "classifier"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "config": {
+                      "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1prompt-guard.json/$defs/classifier_config"
+                    }
+                  }
+                }
               }
-            }
+            ],
+            "if": {
+              "required": [ "kind" ],
+              "properties": {
+                "kind": {
+                  "const": "policy"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "config": {
+                  "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1ai~1prompt-guard.json/$defs/policy_config"
+                }
+              }
+            },
+            "required": [ "config", "kind", "name", "severity" ],
+            "properties": {
+              "config": {
+                "title": "Guard Configuration",
+                "description": "The settings of the guard. Its fields depend on the `kind`: `patterns` for a `regex` guard, `url` and `score_threshold` for a `classifier` guard, and `expressions` for a `policy` guard.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
+                "type": "object"
+              },
+              "kind": {
+                "title": "Guard Kind",
+                "description": "How the guard evaluates the request. A `regex` guard matches the body against a list of regular expressions, a `classifier` guard sends the body to an external service that returns a score, and a `policy` guard evaluates CEL expressions against the body and the request metadata.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
+                "enum": [ "regex", "classifier", "policy" ]
+              },
+              "name": {
+                "title": "Guard Name",
+                "description": "A unique name for this guard. Endpoints and backends reference the guard through this value in their `guards` list.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
+                "examples": [ "block_jailbreak_terms", "injection_classifier" ],
+                "type": "string",
+                "minLength": 1
+              },
+              "severity": {
+                "title": "Severity",
+                "description": "The severity level assigned to the guard, from `critical` (highest) to `low` (lowest). Endpoints and backends can disable all the default guards of a given severity by adding `!critical`, `!high`, `!medium`, or `!low` to their `guards` list.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
+                "enum": [ "critical", "high", "medium", "low" ]
+              }
+            },
+            "patternProperties": {
+              "^[@$_#]": true
+            },
+            "additionalProperties": false
           }
         }
       },
       "patternProperties": {
         "^[@$_#]": true
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "$defs": {
+        "classifier_config": {
+          "title": "Classifier Guard Configuration",
+          "description": "The settings of a `classifier` guard, which delegates the decision to an external service. KrakenD sends the request body to the `url`, and the service responds with a JSON object containing a `score` between `0.0` and `1.0`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
+          "type": "object",
+          "required": [ "score_threshold", "url" ],
+          "properties": {
+            "on_failure_block": {
+              "title": "Block on Failure",
+              "description": "Decides what happens when the external classifier cannot be reached or returns an error. Set it to `true` to block the request, or to `false` to let it through.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
+              "type": "boolean"
+            },
+            "score_threshold": {
+              "title": "Score Threshold",
+              "description": "The score that decides whether the request passes. The guard blocks the request when the score returned by the external classifier is below this value.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
+              "examples": [ 0.6, 0.99 ],
+              "type": "number",
+              "maximum": 1,
+              "minimum": 0
+            },
+            "url": {
+              "title": "Classifier URL",
+              "description": "The full URL of the external classifier service that receives the request body.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
+              "examples": [ "https://example.com/classify" ],
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "patternProperties": {
+            "^[@$_#]": true
+          },
+          "additionalProperties": false
+        },
+        "policy_config": {
+          "title": "Policy Guard Configuration",
+          "description": "The settings of a `policy` guard, which evaluates CEL expressions against the request.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
+          "type": "object",
+          "required": [ "expressions" ],
+          "properties": {
+            "expressions": {
+              "title": "Expressions",
+              "description": "The list of CEL expressions to evaluate. Each expression returns a boolean that decides whether the request can continue. Use `body` to inspect the raw payload as a string, and `meta` to access the request `headers`, `params`, `method`, `path`, `query`, and `url`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
+              "type": "array",
+              "items": {
+                "examples": [ "size(body) <= 8192", "meta.method == 'POST'" ],
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "patternProperties": {
+            "^[@$_#]": true
+          },
+          "additionalProperties": false
+        },
+        "regex_config": {
+          "title": "Regex Guard Configuration",
+          "description": "The settings of a `regex` guard, which matches the request body against a list of regular expressions.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
+          "type": "object",
+          "required": [ "patterns" ],
+          "properties": {
+            "patterns": {
+              "title": "Patterns",
+              "description": "The list of regular expressions to match against the request body. The guard blocks the request when any pattern matches. KrakenD merges the patterns of all regex guards, including the default ones, into a single set that it evaluates in one pass.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
+              "type": "array",
+              "items": {
+                "examples": [
+                  "(?i)ignore (all )?previous instructions",
+                  "(?i)disregard .*(system )?prompt"
+                ],
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "patternProperties": {
+            "^[@$_#]": true
+          },
+          "additionalProperties": false
+        }
+      }
     },
     "https://www.krakend.io/schema/v3.0/ai/providers.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
