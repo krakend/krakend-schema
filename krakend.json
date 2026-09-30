@@ -8,5 +8,5 @@
       "version": 3
     }
   ],
-  "$ref": "v3.0/krakend.json"
+  "$ref": "v2.13/krakend.json"
 }
