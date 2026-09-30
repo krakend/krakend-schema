@@ -227,7 +227,7 @@
     },
     "version": {
       "title": "Version of this syntax",
-      "description": "The syntax version tells KrakenD how to read this configuration. This is not the KrakenD version. Each KrakenD version is linked to a syntax version, and since KrakenD v2.0 the version must be `3`",
+      "description": "The syntax version tells KrakenD how to read this configuration. This is not the KrakenD version, but the syntax version. From KrakenD v3.0 the version must be `4`.",
       "const": 4
     },
     "write_timeout": {
