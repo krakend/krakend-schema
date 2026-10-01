@@ -16,7 +16,8 @@
           "title": "API Key",
           "description": "Your Alibaba API key. You can set it as an environment variable for better security.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
           "examples": [ "sk-xxxx" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "debug": {
           "title": "Debug Mode",

@@ -8,7 +8,8 @@
       "title": "Allow insecure connections",
       "description": "By default, KrakenD verifies every SSL connection. This option allows you to connect to backends considered **insecure**, for instance when you are using self-signed certificates",
       "default": false,
-      "type": "boolean"
+      "type": "boolean",
+      "@sensitive": 2
     },
     "ca_certs": {
       "title": "CA certificates",
@@ -17,7 +18,8 @@
         [ "ca.pem" ]
       ],
       "default": [],
-      "type": "array"
+      "type": "array",
+      "@sensitive": 2
     },
     "cipher_suites": {
       "$id": "client_tls/cipher_suites",
@@ -25,7 +27,8 @@
       "description": "The list of cipher suites as defined in the documentation.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
       "default": [ 4865, 4866, 4867 ],
       "type": "array",
-      "uniqueItems": true
+      "uniqueItems": true,
+      "@sensitive": 2
     },
     "client_certs": {
       "$id": "client_tls/client_certs",
@@ -39,12 +42,14 @@
           "certificate": {
             "title": "Certificate",
             "description": "The path to the certificate you will use for mTLS connections.",
-            "type": "string"
+            "type": "string",
+            "@sensitive": 2
           },
           "private_key": {
             "title": "Private key",
             "description": "The path to the private key you will use for mTLS connections.",
-            "type": "string"
+            "type": "string",
+            "@sensitive": 2
           }
         },
         "patternProperties": {
@@ -68,7 +73,8 @@
       "title": "Disable system's CA",
       "description": "Ignore any certificate in the system's CA. The only certificates loaded will be the ones in the `ca_certs` list when true.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
       "default": false,
-      "type": "boolean"
+      "type": "boolean",
+      "@sensitive": 2
     },
     "max_version": {
       "$id": "client_tls/max_version",

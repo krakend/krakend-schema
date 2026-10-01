@@ -117,7 +117,8 @@
         "type": "string",
         "pattern": ".+",
         "minLength": 1
-      }
+      },
+      "@sensitive": 6
     },
     "input_headers": {
       "title": "Allowed Headers In",
@@ -202,7 +203,8 @@
       "title": "URL Pattern",
       "description": "The path inside the service (no protocol, no host, no method). E.g: `/users`. Some functionalities under `extra_config` might drop the requirement of declaring a valid `url_pattern`, but they are exceptions. The URL must be RESTful, if it is not (e.g.: `/url.{some_variable}.json`), then see how to [disable RESTful checking](#disable-restful-checking).\n\nSee: https://www.krakend.io/docs/backends/",
       "examples": [ "/users", "/user/{id_user}" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 7
     }
   },
   "patternProperties": {

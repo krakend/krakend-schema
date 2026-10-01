@@ -24,13 +24,15 @@
                 "description": "The value of the header, usually an API token.",
                 "type": "string"
               }
-            }
+            },
+            "@sensitive": 4
           },
           "name": {
             "title": "Name",
             "description": "The **exact name** you used to define the exporter under `telemetry/opentelemetry`.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry-security/",
             "examples": [ "newrelic", "remote_datadog" ],
-            "type": "string"
+            "type": "string",
+            "@sensitive": 4
           }
         },
         "patternProperties": {

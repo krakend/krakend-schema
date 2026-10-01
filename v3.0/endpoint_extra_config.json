@@ -28,7 +28,8 @@
         "identifier": {
           "title": "Override Identifier",
           "description": "The header name or the query string name that contains the API key. By default uses any value declared in the `auth/api-keys` component in the service level.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 5
         },
         "roles": {
           "title": "",

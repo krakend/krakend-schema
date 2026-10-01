@@ -28,7 +28,8 @@
       "title": "Exchange",
       "description": "The entity name where messages are retrieved (it will be created, or it must have a **topic** type if already exists).\n\nSee: https://www.krakend.io/docs/async/amqp/",
       "examples": [ "some-exchange" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 3
     },
     "exclusive": {
       "title": "Exclusive",
@@ -39,7 +40,8 @@
     "host": {
       "title": "Host",
       "description": "The connection string, ends in slash. E.g: `amqp://user:password@host:5672/`.\n\nSee: https://www.krakend.io/docs/async/amqp/",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 3
     },
     "nack_discard": {
       "title": "NACK Discard",
@@ -50,7 +52,8 @@
     "name": {
       "title": "Name",
       "description": "The queue name.\n\nSee: https://www.krakend.io/docs/async/amqp/",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 3
     },
     "no_local": {
       "title": "No local",

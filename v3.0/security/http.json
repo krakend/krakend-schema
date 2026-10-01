@@ -12,7 +12,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 6
     },
     "allowed_hosts_are_regex": {
       "title": "Hosts are regexps",
@@ -66,7 +67,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 6
     },
     "hpkp_public_key": {
       "title": "HTTP Public Key Pinning (HPKP)",
@@ -75,7 +77,8 @@
         "pin-sha256=\"base64==\"; max-age=expireTime [; includeSubDomains][; report-uri=\"reportURI\"]"
       ],
       "default": "",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 2
     },
     "is_development": {
       "title": "Development flag",
@@ -94,7 +97,8 @@
       "description": "When the SSL redirect is true, the host where the request is redirected to.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
       "examples": [ "ssl.host.domain" ],
       "default": "ssl.host.domain",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 6
     },
     "ssl_proxy_headers": {
       "title": "SSL Proxy Headers",
@@ -104,7 +108,8 @@
           "X-Forwarded-Proto": "https"
         }
       ],
-      "type": "object"
+      "type": "object",
+      "@sensitive": 6
     },
     "ssl_redirect": {
       "title": "SSL redirect",

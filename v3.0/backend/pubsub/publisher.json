@@ -9,7 +9,8 @@
     "topic_url": {
       "title": "Topic URL",
       "description": "Topic URL according to the selected driver\n\nSee: https://www.krakend.io/docs/backends/pubsub/",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 3
     }
   },
   "patternProperties": {

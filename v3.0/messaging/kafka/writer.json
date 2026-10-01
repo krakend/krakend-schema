@@ -21,7 +21,8 @@
     "topic": {
       "title": "Topic",
       "description": "Topic to write to",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 3
     },
     "key_meta": {
       "title": "Key Meta Name",

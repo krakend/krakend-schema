@@ -40,7 +40,8 @@
       "title": "Exchange",
       "description": "The exchange name (must have a **topic** type if already exists).\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
       "examples": [ "some-exchange" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 3
     },
     "exclusive": {
       "title": "Exclusive",
@@ -63,7 +64,8 @@
     "name": {
       "title": "Name",
       "description": "Queue name.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 3
     },
     "no_local": {
       "title": "No local",
@@ -90,7 +92,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 3
     }
   },
   "patternProperties": {

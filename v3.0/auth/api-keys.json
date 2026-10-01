@@ -17,7 +17,8 @@
       "description": "The header name or the query string name that contains the API key. Defaults to `key` when using the `query_string` strategy and to `Authorization` when using the `header` strategy. The identifier set here is used across all endpoints with API key authentication enabled, but they can override this entry individually.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
       "examples": [ "Authorization", "X-Key" ],
       "default": "Authorization",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 5
     },
     "keys": {
       "title": "API Keys",
@@ -29,7 +30,8 @@
           "key": {
             "title": "API Key",
             "description": "The secret key used by the client to access the resources. Don't have a key? Execute in a terminal `uuidgen` to generate a random one.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
-            "type": "string"
+            "type": "string",
+            "@sensitive": 1
           },
           "roles": {
             "title": "Roles",
@@ -37,7 +39,8 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "@sensitive": 1
           }
         },
         "patternProperties": {
@@ -51,14 +54,16 @@
       "description": "The name of a header that will propagate to the backend containing the matching role. The backend receives no header when the string is empty, or the attribute is not declared. Otherwise, the backend receives the declared header name containing **the first matching role of the user**. The header value will be  `ANY` when the endpoint does not require roles. For instance, if an API key has roles `[A, B]`, and the endpoint demands roles `[B, C]`, the backend will receive a header with the value `B`.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
       "examples": [ "X-Krakend-Role" ],
       "default": "",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 5
     },
     "salt": {
       "title": "Salt",
       "description": "A salt string for the desired hashing function. When provided, the API key is concatenated after the salt string and both hashed together.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
       "examples": [ "mySalt" ],
       "default": "",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "strategy": {
       "title": "Strategy",

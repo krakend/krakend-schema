@@ -9,7 +9,8 @@
     "address": {
       "title": "Address",
       "description": "The address (including the port) of your Graylog cluster (or any other service that receives GELF inputs). E.g., `myGraylogInstance:12201`\n\nSee: https://www.krakend.io/docs/logging/graylog-gelf/",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 4
     },
     "enable_tcp": {
       "title": "Enable TCP",

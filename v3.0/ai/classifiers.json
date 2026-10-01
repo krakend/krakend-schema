@@ -49,7 +49,8 @@
                 "title": "Base URL",
                 "description": "The base URL of the Not Diamond API. Override it only when you target a custom or proxied deployment of the service.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
                 "examples": [ "https://api.example.com" ],
-                "type": "string"
+                "type": "string",
+                "@sensitive": 3
               },
               "cost_quality_tradeoff": {
                 "title": "Cost and Quality Tradeoff",
@@ -61,7 +62,8 @@
                 "title": "Credentials",
                 "description": "The API key that authenticates KrakenD against the Not Diamond service. Set it through an environment variable instead of writing it in the configuration file.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
                 "type": "string",
-                "minLength": 1
+                "minLength": 1,
+                "@sensitive": 1
               },
               "disable_hash_content": {
                 "title": "Disable Content Hashing",

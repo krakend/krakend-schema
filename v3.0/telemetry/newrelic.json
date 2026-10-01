@@ -26,7 +26,8 @@
     "license": {
       "title": "License key",
       "description": "The API key provided by New Relic to push data into your account.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/newrelic/",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 4
     }
   },
   "patternProperties": {

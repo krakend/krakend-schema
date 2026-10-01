@@ -18,7 +18,8 @@
             "examples": [
               "/etc/krakend/models/sentence-transformers_all-MiniLM-L6-v2"
             ],
-            "type": "string"
+            "type": "string",
+            "@sensitive": 7
           },
           "name": {
             "title": "Embedder Name",

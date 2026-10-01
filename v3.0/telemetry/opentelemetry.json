@@ -48,7 +48,8 @@
               "host": {
                 "title": "Host",
                 "description": "The host where you want to push the data. It can be a sidecar or a remote collector.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-                "type": "string"
+                "type": "string",
+                "@sensitive": 4
               },
               "name": {
                 "title": "Name",
@@ -106,7 +107,8 @@
                 "description": "The IP address that KrakenD listens to in IPv4 or IPv6. You can, for instance, expose the Prometheus metrics only in a private IP address. An empty string, or no declaration means listening on all interfaces. The inclusion of `::` is intended for IPv6 format only (**this is not the port**). Examples of valid addresses are `192.0.2.1` (IPv4), `2001:db8::68` (IPv6). The values `::` and `0.0.0.0` listen to all addresses, which are valid for IPv4 and IPv6 simultaneously.",
                 "examples": [ "172.12.1.1", "::1" ],
                 "default": "0.0.0.0",
-                "type": "string"
+                "type": "string",
+                "@sensitive": 4
               },
               "name": {
                 "title": "Name",

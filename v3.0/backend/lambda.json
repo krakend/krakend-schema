@@ -8,7 +8,8 @@
     "endpoint": {
       "title": "Endpoint",
       "description": "An optional parameter to customize the Lambda endpoint to call. Useful when Localstack is used for testing instead of direct AWS usage.\n\nSee: https://www.krakend.io/docs/backends/",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 3
     },
     "function_name": {
       "title": "Function name",
@@ -30,7 +31,8 @@
       "title": "AWS Region",
       "description": "The AWS identifier region\n\nSee: https://www.krakend.io/docs/backends/",
       "examples": [ "us-east-1", "eu-west-2" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 3
     }
   },
   "patternProperties": {

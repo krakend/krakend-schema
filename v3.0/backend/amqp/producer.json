@@ -34,7 +34,8 @@
       "title": "Exchange",
       "description": "The exchange name (must have a topic type if already exists).\n\nSee: https://www.krakend.io/docs/backends/amqp-producer/",
       "examples": [ "some-exchange" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 3
     },
     "exclusive": {
       "title": "Exclusive",
@@ -75,7 +76,8 @@
     "name": {
       "title": "Name",
       "description": "Queue name.\n\nSee: https://www.krakend.io/docs/backends/amqp-producer/",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 3
     },
     "no_local": {
       "title": "No local",
@@ -103,7 +105,8 @@
       "title": "Routing key",
       "description": "The routing key you will use to send messages, case sensitive.\n\nSee: https://www.krakend.io/docs/backends/amqp-producer/",
       "default": "#",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 3
     },
     "static_routing_key": {
       "title": "Static Routing key",

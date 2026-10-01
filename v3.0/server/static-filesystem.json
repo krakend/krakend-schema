@@ -15,7 +15,8 @@
       "title": "Path",
       "description": "The folder in the filesystem containing the static files. Relative to the working dir where KrakenD config is (e.g.: `./assets`) or absolute (e.g.: `/var/www/assets`).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
       "examples": [ "./static/" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 7
     },
     "prefix": {
       "title": "Prefix",

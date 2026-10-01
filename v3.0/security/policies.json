@@ -48,7 +48,8 @@
           "items": {
             "title": "The policy you want to evaluate",
             "type": "string"
-          }
+          },
+          "@sensitive": 7
         }
       },
       "patternProperties": {
@@ -93,7 +94,8 @@
           "items": {
             "title": "The policy you want to evaluate",
             "type": "string"
-          }
+          },
+          "@sensitive": 7
         }
       },
       "patternProperties": {
@@ -138,7 +140,8 @@
           "items": {
             "title": "The policy you want to evaluate",
             "type": "string"
-          }
+          },
+          "@sensitive": 7
         }
       },
       "patternProperties": {

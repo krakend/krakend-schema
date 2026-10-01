@@ -105,7 +105,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 6
     },
     "idle_connection_timeout": {
       "title": "HTTP Idle timeout",
@@ -226,7 +227,7 @@
     },
     "version": {
       "title": "Version of this syntax",
-      "description": "The syntax version tells KrakenD how to read this configuration. This is not the KrakenD version. Each KrakenD version is linked to a syntax version, and since KrakenD v2.0 the version must be `3`",
+      "description": "The syntax version tells KrakenD how to read this configuration. This is not the KrakenD version, but the syntax version. From KrakenD v3.0 the version must be `4`.",
       "const": 4
     },
     "write_timeout": {
@@ -259,7 +260,8 @@
               "title": "API Key",
               "description": "Your Alibaba API key. You can set it as an environment variable for better security.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/alibaba/",
               "examples": [ "sk-xxxx" ],
-              "type": "string"
+              "type": "string",
+              "@sensitive": 1
             },
             "debug": {
               "title": "Debug Mode",
@@ -350,7 +352,8 @@
             "credentials": {
               "title": "API Key",
               "description": "Your Anthropic API key. You can set it as an environment variable for better security.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
-              "type": "string"
+              "type": "string",
+              "@sensitive": 1
             },
             "debug": {
               "title": "Debug Mode",
@@ -451,7 +454,8 @@
             "credentials": {
               "title": "API Key",
               "description": "Your Bedrock API key. You can set it as an environment variable for better security.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/bedrock/",
-              "type": "string"
+              "type": "string",
+              "@sensitive": 1
             },
             "debug": {
               "title": "Debug Mode",
@@ -544,7 +548,8 @@
             "credentials": {
               "title": "API Key",
               "description": "Your Google Gemini API key. You can set it as an environment variable for better security.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/gemini/",
-              "type": "string"
+              "type": "string",
+              "@sensitive": 1
             },
             "debug": {
               "title": "Debug Mode",
@@ -638,7 +643,8 @@
             "credentials": {
               "title": "API Key",
               "description": "Your Mistral API key. You can set it as an environment variable for better security.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/mistral/",
-              "type": "string"
+              "type": "string",
+              "@sensitive": 1
             },
             "debug": {
               "title": "Debug Mode",
@@ -746,7 +752,8 @@
               "title": "API Key",
               "description": "Your OpenAI API key. You can set it as an environment variable for better security.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/openai/",
               "examples": [ "sk-xxxx" ],
-              "type": "string"
+              "type": "string",
+              "@sensitive": 1
             },
             "debug": {
               "title": "Debug Mode",
@@ -1098,7 +1105,8 @@
           "title": "Assume Role ARN",
           "description": "The Amazon Resource Name (ARN) of the role to assume.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/aws-sigv4/",
           "examples": [ "arn:aws:sts::{account ID}:assumed-role/{resource}" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "debug": {
           "title": "Debug",
@@ -1110,19 +1118,22 @@
           "title": "Region",
           "description": "The AWS region where the service is deployed.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/aws-sigv4/",
           "examples": [ "us-east-1" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "service": {
           "title": "Service",
           "description": "The name of the service in AWS you'd like to sign the request.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/aws-sigv4/",
           "examples": [ "dynamodb" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "sts_region": {
           "title": "STS Region",
           "description": "The AWS region where the STS service is deployed.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/aws-sigv4/",
           "examples": [ "us-west-1" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         }
       },
       "patternProperties": {
@@ -1140,13 +1151,15 @@
         "client_id": {
           "title": "Client ID",
           "description": "The Client ID provided to the Auth server\n\nSee: https://www.krakend.io/docs/authorization/client-credentials/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "client_secret": {
           "title": "Client secret",
           "description": "The secret string provided to the Auth server.\n\nSee: https://www.krakend.io/docs/authorization/client-credentials/",
           "examples": [ "mys3cr3t" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "endpoint_params": {
           "title": "Endpoint parameters",
@@ -1156,13 +1169,15 @@
               "audience": [ "YOUR-AUDIENCE" ]
             }
           ],
-          "type": "object"
+          "type": "object",
+          "@sensitive": 1
         },
         "scopes": {
           "title": "Scopes",
           "description": "A comma-separated list of scopes needed, e.g.: `scopeA,scopeB`\n\nSee: https://www.krakend.io/docs/authorization/client-credentials/",
           "examples": [ "scopeA,scopeB" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "token_url": {
           "title": "Token URL",
@@ -1170,7 +1185,8 @@
           "examples": [
             "https://your.custom.identity.service.tld/token_endpoint"
           ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         }
       },
       "patternProperties": {
@@ -1199,13 +1215,15 @@
           "title": "Audience",
           "description": "The audience in GCP looks like an URL, and contains the destination service you will ask a token for. Most of the times this URL will match exactly with the `host` entry.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
           "examples": [ "https://gcptest-76fewi6rca-uc.a.run.app" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "credentials_file": {
           "title": "Path to credentials file",
           "description": "The relative or absolute path to a credentials file in JSON format that contains all the credentials to authenticate API calls to the given service account.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
           "examples": [ "/etc/krakend/gcp.json" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "credentials_json": {
           "title": "JSON credentials file",
@@ -1224,19 +1242,22 @@
               "token_uri": "https://accounts.google.com/o/oauth2/token"
             }
           ],
-          "type": "object"
+          "type": "object",
+          "@sensitive": 1
         },
         "custom_claims": {
           "title": "Custom claims",
           "description": "Custom private claims that you can optionally add to an ID token.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
-          "type": "object"
+          "type": "object",
+          "@sensitive": 1
         },
         "s2s_auth_header": {
           "title": "Service-to-service authentication header",
           "description": "The header name to use in service-to-service authentication. This is useful to honor the original Authorization header in case it's needed by the backend (for example, CloudRun).\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
           "examples": [ "X-Serverless-Authorization" ],
           "default": "",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         }
       },
       "patternProperties": {
@@ -1255,13 +1276,15 @@
           "title": "Password",
           "description": "The password you will use, in clear text.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/ntlm/",
           "examples": [ "myp4ssw0rd" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "user": {
           "title": "User",
           "description": "The username you will send as NTLM authentication user.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/ntlm/",
           "examples": [ "krakendclient" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         }
       },
       "patternProperties": {
@@ -1310,7 +1333,8 @@
           "title": "Exchange",
           "description": "The exchange name (must have a **topic** type if already exists).\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
           "examples": [ "some-exchange" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 3
         },
         "exclusive": {
           "title": "Exclusive",
@@ -1333,7 +1357,8 @@
         "name": {
           "title": "Name",
           "description": "Queue name.\n\nSee: https://www.krakend.io/docs/backends/amqp-consumer/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 3
         },
         "no_local": {
           "title": "No local",
@@ -1360,7 +1385,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 3
         }
       },
       "patternProperties": {
@@ -1403,7 +1429,8 @@
           "title": "Exchange",
           "description": "The exchange name (must have a topic type if already exists).\n\nSee: https://www.krakend.io/docs/backends/amqp-producer/",
           "examples": [ "some-exchange" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 3
         },
         "exclusive": {
           "title": "Exclusive",
@@ -1444,7 +1471,8 @@
         "name": {
           "title": "Name",
           "description": "Queue name.\n\nSee: https://www.krakend.io/docs/backends/amqp-producer/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 3
         },
         "no_local": {
           "title": "No local",
@@ -1472,7 +1500,8 @@
           "title": "Routing key",
           "description": "The routing key you will use to send messages, case sensitive.\n\nSee: https://www.krakend.io/docs/backends/amqp-producer/",
           "default": "#",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 3
         },
         "static_routing_key": {
           "title": "Static Routing key",
@@ -1550,13 +1579,15 @@
           "examples": [
             "{ \n find_follower(func: uid(\"0x3\")) {\n name \n }\n }"
           ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 7
         },
         "query_path": {
           "title": "Query path",
           "description": "Path to the file containing the query. This file is loaded during startup and never checked again, if it changes KrakenD will be unaware of it.\n\nSee: https://www.krakend.io/docs/backends/graphql/",
           "examples": [ "./graphql/mutations/marketing.graphql" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 7
         },
         "variables": {
           "title": "Variables",
@@ -1578,7 +1609,8 @@
           "title": "Allow insecure connections",
           "description": "By default, KrakenD verifies every SSL connection. This option allows you to connect to backends considered **insecure**, for instance when you are using self-signed certificates",
           "default": false,
-          "type": "boolean"
+          "type": "boolean",
+          "@sensitive": 2
         },
         "ca_certs": {
           "title": "CA certificates",
@@ -1587,14 +1619,16 @@
             [ "ca.pem" ]
           ],
           "default": [],
-          "type": "array"
+          "type": "array",
+          "@sensitive": 2
         },
         "cipher_suites": {
           "title": "Cipher Suites",
           "description": "The list of cipher suites as defined in the documentation.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
           "default": [ 4865, 4866, 4867 ],
           "type": "array",
-          "uniqueItems": true
+          "uniqueItems": true,
+          "@sensitive": 2
         },
         "client_certs": {
           "title": "Client certificates",
@@ -1607,12 +1641,14 @@
               "certificate": {
                 "title": "Certificate",
                 "description": "The path to the certificate you will use for mTLS connections.",
-                "type": "string"
+                "type": "string",
+                "@sensitive": 2
               },
               "private_key": {
                 "title": "Private key",
                 "description": "The path to the private key you will use for mTLS connections.",
-                "type": "string"
+                "type": "string",
+                "@sensitive": 2
               }
             },
             "patternProperties": {
@@ -1635,7 +1671,8 @@
           "title": "Disable system's CA",
           "description": "Ignore any certificate in the system's CA. The only certificates loaded will be the ones in the `ca_certs` list when true.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
           "default": false,
-          "type": "boolean"
+          "type": "boolean",
+          "@sensitive": 2
         },
         "max_version": {
           "title": "Maximum TLS version",
@@ -1802,7 +1839,8 @@
         "proxy_address": {
           "title": "Proxy address",
           "description": "The proxy address used to forward the traffic. The address must contain the protocol and the port.\n\nSee: https://www.krakend.io/docs/enterprise/backends/http-client/",
-          "examples": [ "http://proxy.corp:9099" ]
+          "examples": [ "http://proxy.corp:9099" ],
+          "@sensitive": 3
         },
         "send_body_on_redirect": {
           "title": "Enable redirect POST",
@@ -1825,7 +1863,8 @@
         "endpoint": {
           "title": "Endpoint",
           "description": "An optional parameter to customize the Lambda endpoint to call. Useful when Localstack is used for testing instead of direct AWS usage.\n\nSee: https://www.krakend.io/docs/backends/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 3
         },
         "function_name": {
           "title": "Function name",
@@ -1847,7 +1886,8 @@
           "title": "AWS Region",
           "description": "The AWS identifier region\n\nSee: https://www.krakend.io/docs/backends/",
           "examples": [ "us-east-1", "eu-west-2" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 3
         }
       },
       "patternProperties": {
@@ -1865,7 +1905,8 @@
         "topic_url": {
           "title": "Topic URL",
           "description": "Topic URL according to the selected driver\n\nSee: https://www.krakend.io/docs/backends/pubsub/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 3
         }
       },
       "patternProperties": {
@@ -1883,7 +1924,8 @@
           "title": "SASL Mechanism",
           "description": "Name of the enabled SASL mechanism",
           "default": "PLAIN",
-          "enum": [ "PLAIN", "OAUTHBEARER" ]
+          "enum": [ "PLAIN", "OAUTHBEARER" ],
+          "@sensitive": 3
         },
         "azure_event_hub": {
           "title": "Connect to Azure Event Hub",
@@ -1900,22 +1942,26 @@
         "auth_identity": {
           "title": "Auth Identity",
           "description": "Auth Identity is an (optional) authorization identity (authzid) to use for SASL/PLAIN authentication (if different from User) when an authenticated user is permitted to act as the presented alternative user. See RFC4616 for details",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 3
         },
         "user": {
           "title": "User",
           "description": "Authentication identity (authcid) to present for SASL/PLAIN or SASL/SCRAM authentication",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "password": {
           "title": "Password",
           "description": "Password for SASL/PLAIN authentication",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "scram_auth_id": {
           "title": "SCRAM Auth ID",
           "description": "Authz id used for SASL/SCRAM authentication",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 3
         }
       },
       "patternProperties": {
@@ -1936,7 +1982,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 3
         },
         "client_tls": {
           "title": "TLS client options",
@@ -1982,13 +2029,15 @@
           "title": "Client ID",
           "description": "A name to give to the client stablishing the connection",
           "default": "KrakenD v[X].[Y].[Z]",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 3
         },
         "rack_id": {
           "title": "Rack ID",
           "description": "A name to identify the rack we are connecting from",
           "default": "",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 3
         },
         "channel_buffer_size": {
           "title": "Channel Buffer Size",
@@ -2107,7 +2156,8 @@
         "topic": {
           "title": "Topic",
           "description": "Topic to write to",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 3
         },
         "key_meta": {
           "title": "Key Meta Name",
@@ -2157,7 +2207,8 @@
         "subscription_url": {
           "title": "Subscription URL",
           "description": "Subscription URL according to the selected driver\n\nSee: https://www.krakend.io/docs/backends/pubsub/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 3
         }
       },
       "patternProperties": {
@@ -2252,7 +2303,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 3
         },
         "key_meta": {
           "title": "Key Meta Name",
@@ -2315,12 +2367,14 @@
           "title": "Path to template",
           "description": "The path to the Go template file you want to use to craft the body.\n\nSee: https://www.krakend.io/docs/backends/soap/",
           "examples": [ "./path/to.xml" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 7
         },
         "template": {
           "title": "Template",
           "description": "An inline base64 encoded Go template with the body XML content you want to send to the SOAP service. This option is useful if you don't want to rely on external files and embed the template in the configuration.\n\nSee: https://www.krakend.io/docs/backends/soap/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 7
         }
       },
       "patternProperties": {
@@ -2344,7 +2398,8 @@
           "title": "Path",
           "description": "The folder in the filesystem containing the static files. Relative to the working dir where KrakenD config is (e.g.: `./assets`) or absolute (e.g.: `/var/www/assets`).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
           "examples": [ "./static/" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 7
         }
       },
       "patternProperties": {
@@ -2458,12 +2513,14 @@
           "title": "Path to template",
           "description": "The path to the Go template file you want to use to craft the body.\n\nSee: https://www.krakend.io/docs/enterprise/backends/body-generator/",
           "examples": [ "./path/to.tmpl" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 7
         },
         "template": {
           "title": "Template",
           "description": "An inline base64 encoded Go template with the body you want to generate. This option is useful if you want to have the template embedded in the configuration instead of an external file.\n\nSee: https://www.krakend.io/docs/enterprise/backends/body-generator/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 7
         },
         "variables": {
           "title": "Variables",
@@ -2510,7 +2567,8 @@
           "title": "Live reload",
           "description": "For security and efficiency, the Lua script is loaded once into memory and not reloaded even if the file contents change. Set this flag to `true` if you want to modify the Lua script while KrakenD is running and apply the changes live (mostly during development to avoid the snippet being cached).\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
           "default": false,
-          "type": "boolean"
+          "type": "boolean",
+          "@sensitive": 7
         },
         "md5": {
           "title": "MD5 Checksum",
@@ -2520,7 +2578,8 @@
               "./path/to/file1.lua": "49ae50f58e35f4821ad4550e1a4d1de0"
             }
           ],
-          "type": "object"
+          "type": "object",
+          "@sensitive": 7
         },
         "post": {
           "title": "post-execution code",
@@ -2528,7 +2587,8 @@
           "examples": [
             "local r = response.load(); r:headers('Set-Cookie', 'key1='.. r:data('response'));"
           ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 7
         },
         "pre": {
           "title": "Pre-execution code",
@@ -2536,7 +2596,8 @@
           "examples": [
             "print('Backend response, pre-logic:'); local r = request.load(); print(r:body());"
           ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 7
         },
         "skip_next": {
           "title": "Skip next",
@@ -2550,7 +2611,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 7
         }
       },
       "patternProperties": {
@@ -3365,7 +3427,8 @@
           "description": "The path in the filesystem where all the plugins you want to load are. MUST END IN SLASH. The folder can be a relative or absolute path. KrakenD Enterprise uses /opt/krakend/plugins/ for all plugins.",
           "examples": [ "/opt/krakend/plugins/", "./plugins/" ],
           "default": "/opt/krakend/plugins/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 7
         },
         "on_load_default_error": {
           "title": "Default behavior on load error",
@@ -3486,7 +3549,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 6
         },
         "allow": {
           "title": "Allow or deny mode",
@@ -3503,7 +3567,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 6
         },
         "trusted_proxies": {
           "title": "Trusted proxies",
@@ -3514,7 +3579,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 6
         }
       },
       "patternProperties": {
@@ -4005,7 +4071,8 @@
             "title": "Check expression",
             "description": "The expression that evaluates as a boolean, you can write here any conditional. If the result of the expression is `true`, the execution continues. See in the docs how to use additional variables to retrieve data from requests, responses, and tokens.\n\nSee: https://www.krakend.io/docs/endpoints/common-expression-language-cel/",
             "examples": [ "int(req_params.Id) % 3 == 0" ],
-            "type": "string"
+            "type": "string",
+            "@sensitive": 7
           }
         },
         "patternProperties": {
@@ -4117,7 +4184,8 @@
               "items": {
                 "title": "The policy you want to evaluate",
                 "type": "string"
-              }
+              },
+              "@sensitive": 7
             }
           },
           "patternProperties": {
@@ -4162,7 +4230,8 @@
               "items": {
                 "title": "The policy you want to evaluate",
                 "type": "string"
-              }
+              },
+              "@sensitive": 7
             }
           },
           "patternProperties": {
@@ -4207,7 +4276,8 @@
               "items": {
                 "title": "The policy you want to evaluate",
                 "type": "string"
-              }
+              },
+              "@sensitive": 7
             }
           },
           "patternProperties": {
@@ -4508,7 +4578,8 @@
           "title": "Martian modifiers",
           "description": "Transform requests and responses through a simple DSL definition in the configuration file.\n\nSee: https://www.krakend.io/docs/backends/martian/",
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1martian.json",
-          "type": "object"
+          "type": "object",
+          "@sensitive": 7
         },
         "modifier/request-body-generator": {
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1modifier~1body-generator.json"
@@ -4649,7 +4720,8 @@
                   "items": {
                     "title": "The policy you want to evaluate",
                     "type": "string"
-                  }
+                  },
+                  "@sensitive": 7
                 }
               },
               "patternProperties": {
@@ -4694,7 +4766,8 @@
                   "items": {
                     "title": "The policy you want to evaluate",
                     "type": "string"
-                  }
+                  },
+                  "@sensitive": 7
                 }
               },
               "patternProperties": {
@@ -4861,7 +4934,8 @@
             "type": "string",
             "pattern": ".+",
             "minLength": 1
-          }
+          },
+          "@sensitive": 6
         },
         "input_headers": {
           "title": "Allowed Headers In",
@@ -4946,7 +5020,8 @@
           "title": "URL Pattern",
           "description": "The path inside the service (no protocol, no host, no method). E.g: `/users`. Some functionalities under `extra_config` might drop the requirement of declaring a valid `url_pattern`, but they are exceptions. The URL must be RESTful, if it is not (e.g.: `/url.{some_variable}.json`), then see how to [disable RESTful checking](#disable-restful-checking).\n\nSee: https://www.krakend.io/docs/backends/",
           "examples": [ "/users", "/user/{id_user}" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 7
         }
       },
       "patternProperties": {
@@ -4983,7 +5058,8 @@
           "title": "Exchange",
           "description": "The entity name where messages are retrieved (it will be created, or it must have a **topic** type if already exists).\n\nSee: https://www.krakend.io/docs/async/amqp/",
           "examples": [ "some-exchange" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 3
         },
         "exclusive": {
           "title": "Exclusive",
@@ -4994,7 +5070,8 @@
         "host": {
           "title": "Host",
           "description": "The connection string, ends in slash. E.g: `amqp://user:password@host:5672/`.\n\nSee: https://www.krakend.io/docs/async/amqp/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 3
         },
         "nack_discard": {
           "title": "NACK Discard",
@@ -5005,7 +5082,8 @@
         "name": {
           "title": "Name",
           "description": "The queue name.\n\nSee: https://www.krakend.io/docs/async/amqp/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 3
         },
         "no_local": {
           "title": "No local",
@@ -5211,7 +5289,8 @@
           "title": "Path to htpasswd file",
           "description": "Absolute Path to the `htpasswd` filename (recommended) or relative `./` to the workdir (less secure).\n\nSee: https://www.krakend.io/docs/enterprise/authentication/basic-authentication/",
           "examples": [ "/path/to/.htpasswd" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "users": {
           "title": "Additional users",
@@ -5228,7 +5307,8 @@
               "type": "string"
             }
           },
-          "additionalProperties": false
+          "additionalProperties": false,
+          "@sensitive": 1
         }
       },
       "patternProperties": {
@@ -5307,7 +5387,8 @@
         "cypher_key": {
           "title": "Cypher key",
           "description": "The cyphering key.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "disable_jwk_security": {
           "title": "Disable_jwk_security",
@@ -5327,24 +5408,28 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 1
         },
         "jwk_local_ca": {
           "title": "Local CA",
           "description": "Path to the CA’s certificate verifying a secure connection when downloading the JWK. Use when not recognized by the system (e.g., self-signed certificates).\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "jwk_local_path": {
           "title": "JWK local path",
           "description": "Local path to the JWK public keys, has preference over `jwk_url`. Instead of pointing to an external URL (with `jwk_url`), public keys are kept locally, in a plain JWK file (security alert!), or encrypted. When encrypted, also add `secret_url` and `cypher_key`.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
           "examples": [ "./jwk.txt" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "jwk_url": {
           "title": "JWK URL",
           "description": "The URL to the JWK endpoint with the private keys used to sign the token.\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
           "examples": [ "http://your-backend/jwk/symmetric.json" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "keys_to_sign": {
           "title": "Keys to sign",
@@ -5355,13 +5440,15 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 1
         },
         "kid": {
           "title": "Kid",
           "description": "The key ID purpose is to match a specific key, as the jwk_url might contain several keys.\n\nSee: https://www.krakend.io/docs/enterprise/authorization/jwt-validation/",
           "examples": [ "sim2" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "leeway": {
           "title": "Leeway",
@@ -5382,7 +5469,8 @@
             "hashivault://keyID"
           ],
           "type": "string",
-          "pattern": "(base64key|awskms|azurekeyvault|gcpkms|hashivault)://(.*)"
+          "pattern": "(base64key|awskms|azurekeyvault|gcpkms|hashivault)://(.*)",
+          "@sensitive": 1
         }
       },
       "patternProperties": {
@@ -5433,14 +5521,16 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 1
         },
         "auth_header_name": {
           "title": "Authorization header",
           "description": "Allows to parse the token from a custom header.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
           "examples": [ "X-Custom-Auth" ],
           "default": "Authorization",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 5
         },
         "cache": {
           "title": "Cache",
@@ -5492,12 +5582,14 @@
           "title": "Cookie key",
           "description": "Add the key name of the cookie containing the token when it is not passed in the headers\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
           "examples": [ "cookie_jwt" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 5
         },
         "cypher_key": {
           "title": "Cypher key",
           "description": "The cyphering key.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "disable_jwk_security": {
           "title": "Disable_jwk_security",
@@ -5516,7 +5608,8 @@
           "title": "Issuer",
           "description": "When set, tokens not matching the issuer are rejected.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
           "examples": [ "issuer" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "jwk_fingerprints": {
           "title": "Roles",
@@ -5524,18 +5617,21 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 1
         },
         "jwk_local_ca": {
           "title": "Local CA",
           "description": "Path to the CA's certificate verifying a secure connection when downloading the JWK. Use when not recognized by the system (e.g., self-signed certificates).\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "jwk_local_path": {
           "title": "JWK local path",
           "description": "Local path to the JWK public keys, has preference over `jwk_url`. Instead of pointing to an external URL (with `jwk_url`), public keys are kept locally, in a plain JWK file (security alert!), or encrypted. When encrypted, also add `secret_url` and `cypher_key`.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
           "examples": [ "./jwk.txt" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "jwk_url": {
           "title": "JWK URL",
@@ -5545,7 +5641,8 @@
             "http://KEYCLOAK:8080/auth/realms/master/protocol/openid-connect/certs",
             "https://yourOktaBaseUrl/v1/keys"
           ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "key_identify_strategy": {
           "title": "Key identify strategy",
@@ -5577,7 +5674,8 @@
             "items": {
               "type": "string"
             }
-          }
+          },
+          "@sensitive": 5
         },
         "propagate_claims_preserve_array": {
           "title": "Preserve array structure",
@@ -5591,13 +5689,15 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 1
         },
         "roles_key": {
           "title": "Roles key",
           "description": "When validating users through roles, provide the key name inside the JWT payload that lists their roles. If this key is nested inside another object, add `roles_key_is_nested` and use the dot notation `.` to traverse each level. E.g.: `resource_access.myclient.roles` represents the payload `{resource_access: { myclient: { roles: [\"myrole\"] } }`. Notice that the roles object you choose is a list, not a map.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
           "examples": [ "resource_access.myclient.roles" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "roles_key_is_nested": {
           "title": "Roles key is nested",
@@ -5610,12 +5710,14 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 1
         },
         "scopes_key": {
           "title": "Scopes key",
           "description": "The key name where KrakenD can find the scopes. The key can be a nested object using the `.` dot notation, e.g.: `data.access.my_scopes`.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "scopes_matcher": {
           "title": "Scopes matcher",
@@ -5634,7 +5736,8 @@
             "hashivault://keyID"
           ],
           "type": "string",
-          "pattern": "(base64key|awskms|azurekeyvault|gcpkms|hashivault)://(.*)"
+          "pattern": "(base64key|awskms|azurekeyvault|gcpkms|hashivault)://(.*)",
+          "@sensitive": 1
         }
       },
       "patternProperties": {
@@ -6891,7 +6994,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 6
         },
         "allow_private_network": {
           "title": "Allow private network",
@@ -6953,7 +7057,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 6
         },
         "allowed_hosts_are_regex": {
           "title": "Hosts are regexps",
@@ -7007,7 +7112,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 6
         },
         "hpkp_public_key": {
           "title": "HTTP Public Key Pinning (HPKP)",
@@ -7016,7 +7122,8 @@
             "pin-sha256=\"base64==\"; max-age=expireTime [; includeSubDomains][; report-uri=\"reportURI\"]"
           ],
           "default": "",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 2
         },
         "is_development": {
           "title": "Development flag",
@@ -7035,7 +7142,8 @@
           "description": "When the SSL redirect is true, the host where the request is redirected to.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
           "examples": [ "ssl.host.domain" ],
           "default": "ssl.host.domain",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 6
         },
         "ssl_proxy_headers": {
           "title": "SSL Proxy Headers",
@@ -7045,7 +7153,8 @@
               "X-Forwarded-Proto": "https"
             }
           ],
-          "type": "object"
+          "type": "object",
+          "@sensitive": 6
         },
         "ssl_redirect": {
           "title": "SSL redirect",
@@ -7583,7 +7692,8 @@
             "identifier": {
               "title": "Override Identifier",
               "description": "The header name or the query string name that contains the API key. By default uses any value declared in the `auth/api-keys` component in the service level.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
-              "type": "string"
+              "type": "string",
+              "@sensitive": 5
             },
             "roles": {
               "title": "",
@@ -8012,7 +8122,8 @@
                     "title": "Base URL",
                     "description": "The base URL of the Not Diamond API. Override it only when you target a custom or proxied deployment of the service.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
                     "examples": [ "https://api.example.com" ],
-                    "type": "string"
+                    "type": "string",
+                    "@sensitive": 3
                   },
                   "cost_quality_tradeoff": {
                     "title": "Cost and Quality Tradeoff",
@@ -8024,7 +8135,8 @@
                     "title": "Credentials",
                     "description": "The API key that authenticates KrakenD against the Not Diamond service. Set it through an environment variable instead of writing it in the configuration file.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
                     "type": "string",
-                    "minLength": 1
+                    "minLength": 1,
+                    "@sensitive": 1
                   },
                   "disable_hash_content": {
                     "title": "Disable Content Hashing",
@@ -8522,7 +8634,8 @@
               "description": "The full URL of the external classifier service that receives the request body.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
               "examples": [ "https://example.com/classify" ],
               "type": "string",
-              "minLength": 1
+              "minLength": 1,
+              "@sensitive": 3
             }
           },
           "patternProperties": {
@@ -8884,7 +8997,8 @@
                 "then": {
                   "properties": {
                     "credentials": {
-                      "examples": [ "sk-xxxx" ]
+                      "examples": [ "sk-xxxx" ],
+                      "@sensitive": 1
                     },
                     "endpoint": {
                       "default": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1/responses"
@@ -8945,7 +9059,8 @@
             "then": {
               "properties": {
                 "credentials": {
-                  "examples": [ "sk-xxxx" ]
+                  "examples": [ "sk-xxxx" ],
+                  "@sensitive": 1
                 },
                 "endpoint": {
                   "default": "https://api.openai.com/v1/responses"
@@ -8998,7 +9113,8 @@
               "credentials": {
                 "title": "Credentials",
                 "description": "The API key used to authenticate against the provider. Inject it with an environment variable instead of writing it in the configuration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
-                "type": "string"
+                "type": "string",
+                "@sensitive": 1
               },
               "debug": {
                 "title": "Debug Mode",
@@ -9009,7 +9125,8 @@
               "endpoint": {
                 "title": "Endpoint",
                 "description": "Overrides the default API endpoint of the provider. Set it when you need to reach a proxy, a private deployment, or a region-specific host instead of the vendor's public API. When you don't set it, each provider uses its own default endpoint. Gemini and Bedrock build theirs from the `model` and `streaming` values, so their default shown here corresponds to the default `model` without streaming.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
-                "type": "string"
+                "type": "string",
+                "@sensitive": 3
               },
               "input_template": {
                 "title": "Input Template",
@@ -9093,7 +9210,8 @@
                 "examples": [
                   "/etc/krakend/models/sentence-transformers_all-MiniLM-L6-v2"
                 ],
-                "type": "string"
+                "type": "string",
+                "@sensitive": 7
               },
               "name": {
                 "title": "Embedder Name",
@@ -9133,7 +9251,8 @@
           "description": "The header name or the query string name that contains the API key. Defaults to `key` when using the `query_string` strategy and to `Authorization` when using the `header` strategy. The identifier set here is used across all endpoints with API key authentication enabled, but they can override this entry individually.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
           "examples": [ "Authorization", "X-Key" ],
           "default": "Authorization",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 5
         },
         "keys": {
           "title": "API Keys",
@@ -9145,7 +9264,8 @@
               "key": {
                 "title": "API Key",
                 "description": "The secret key used by the client to access the resources. Don't have a key? Execute in a terminal `uuidgen` to generate a random one.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
-                "type": "string"
+                "type": "string",
+                "@sensitive": 1
               },
               "roles": {
                 "title": "Roles",
@@ -9153,7 +9273,8 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+                "@sensitive": 1
               }
             },
             "patternProperties": {
@@ -9167,14 +9288,16 @@
           "description": "The name of a header that will propagate to the backend containing the matching role. The backend receives no header when the string is empty, or the attribute is not declared. Otherwise, the backend receives the declared header name containing **the first matching role of the user**. The header value will be  `ANY` when the endpoint does not require roles. For instance, if an API key has roles `[A, B]`, and the endpoint demands roles `[B, C]`, the backend will receive a header with the value `B`.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
           "examples": [ "X-Krakend-Role" ],
           "default": "",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 5
         },
         "salt": {
           "title": "Salt",
           "description": "A salt string for the desired hashing function. When provided, the API key is concatenated after the salt string and both hashed together.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/api-keys/",
           "examples": [ "mySalt" ],
           "default": "",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "strategy": {
           "title": "Strategy",
@@ -9220,13 +9343,15 @@
         "port": {
           "title": "Port",
           "description": "The port number exposed on each KrakenD instance for the RPC service to interact with the bloomfilter. This port is allocated only to the clients (running KrakenDs).\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
-          "type": "integer"
+          "type": "integer",
+          "@sensitive": 1
         },
         "revoke_server_api_key": {
           "title": "Revoke Server Ping URL",
           "description": "A string used as an exchange API key to secure the communication between the Revoke Server and the KrakenD instances and to consume the REST API of the Revoker Server as well. E.g., a string generated with `uuidgen`.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/revoke-server/",
           "examples": [ "639ee23f-f4c5-40c4-855c-912bf01fae87" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "revoke_server_max_retries": {
           "title": "Revoke Server Max Retries",
@@ -9251,7 +9376,8 @@
           "title": "Revoke Server Ping URL",
           "description": "The address to the `/instances` endpoint in the Revoke Server.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/revoke-server/",
           "examples": [],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "token_keys": {
           "title": "Token keys",
@@ -9262,7 +9388,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 1
         }
       },
       "patternProperties": {
@@ -9280,7 +9407,8 @@
         "shared_cache_duration": {
           "title": "Shared cache duration",
           "description": "The cache duration in seconds for the JWK client retrieving the `jwk_url`. The endpoint must enable the `cache` option in order to use this second level cache.\n\nSee: https://www.krakend.io/docs/authorization/jwk-caching/",
-          "type": "integer"
+          "type": "integer",
+          "@sensitive": 5
         }
       },
       "patternProperties": {
@@ -9534,7 +9662,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 7
         },
         "server": {
           "title": "gRPC Server",
@@ -9762,7 +9891,8 @@
           "title": "CityDB path",
           "description": "The path in the filesystem containing the database in GeoIP2 Binary (`.mmdb`) format. Relative to the working dir or absolute path.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/geoip/",
           "examples": [ "path/to/GeoIP2-City.mmdb" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 7
         }
       },
       "patternProperties": {
@@ -9788,7 +9918,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 5
         },
         "port": {
           "title": "Port",
@@ -10028,13 +10159,15 @@
                   "title": "Redis member",
                   "description": "The address of a Redis member in the cluster",
                   "type": "string"
-                }
+                },
+                "@sensitive": 3
               },
               "client_name": {
                 "title": "Client name",
                 "description": "You can set how this connection shows in Redis when listing all the connections `CONN LIST`",
                 "examples": [ "krakend_pool" ],
-                "type": "string"
+                "type": "string",
+                "@sensitive": 3
               },
               "conn_max_idle_time": {
                 "title": "Connection Max Idle Time",
@@ -10148,7 +10281,8 @@
               "password": {
                 "title": "password",
                 "description": "Sets the password to connect to Redis.",
-                "type": "string"
+                "type": "string",
+                "@sensitive": 1
               },
               "pool_size": {
                 "title": "Pool size",
@@ -10171,7 +10305,8 @@
               "user_name": {
                 "title": "Username",
                 "description": "The username to connect to Redis",
-                "type": "string"
+                "type": "string",
+                "@sensitive": 3
               }
             },
             "additionalProperties": false
@@ -10189,13 +10324,15 @@
                 "title": "Address",
                 "description": "The Redis host where you want to connect using the format `host:port`.",
                 "examples": [ "shared.redis.example.com" ],
-                "type": "string"
+                "type": "string",
+                "@sensitive": 3
               },
               "client_name": {
                 "title": "Client name",
                 "description": "You can set how this connection shows in Redis when listing all the connections `CONN LIST`",
                 "examples": [ "krakend_pool" ],
-                "type": "string"
+                "type": "string",
+                "@sensitive": 3
               },
               "conn_max_idle_time": {
                 "title": "Connection Max Idle Time",
@@ -10214,7 +10351,8 @@
                 "title": "DB",
                 "description": "The database number to select after connecting",
                 "default": 0,
-                "type": "integer"
+                "type": "integer",
+                "@sensitive": 3
               },
               "dial_timeout": {
                 "title": "Dial Timeout",
@@ -10309,7 +10447,8 @@
               "password": {
                 "title": "password",
                 "description": "Sets the password to connect to Redis.",
-                "type": "string"
+                "type": "string",
+                "@sensitive": 1
               },
               "pool_size": {
                 "title": "Pool size",
@@ -10332,7 +10471,8 @@
               "user_name": {
                 "title": "Username",
                 "description": "The username to connect to Redis",
-                "type": "string"
+                "type": "string",
+                "@sensitive": 3
               }
             },
             "additionalProperties": false
@@ -10475,7 +10615,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 6
         },
         "remove_extra_slash": {
           "title": "Remove extra slash",
@@ -10495,7 +10636,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 6
         }
       },
       "patternProperties": {
@@ -10519,7 +10661,8 @@
           "title": "Path",
           "description": "The folder in the filesystem containing the static files. Relative to the working dir where KrakenD config is (e.g.: `./assets`) or absolute (e.g.: `/var/www/assets`).\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/",
           "examples": [ "./static/" ],
-          "type": "string"
+          "type": "string",
+          "@sensitive": 7
         },
         "prefix": {
           "title": "Prefix",
@@ -10573,7 +10716,8 @@
               "description": "The key of this map must compile with the regexp `a-z0-9_` and the host name is the string that matches the value sent by the user in the `Host` header.",
               "type": "string"
             }
-          }
+          },
+          "@sensitive": 6
         },
         "hosts": {
           "title": "Virtualhosts",
@@ -10584,7 +10728,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 6
         }
       },
       "patternProperties": {
@@ -10602,7 +10747,8 @@
         "address": {
           "title": "Address",
           "description": "The address (including the port) of your Graylog cluster (or any other service that receives GELF inputs). E.g., `myGraylogInstance:12201`\n\nSee: https://www.krakend.io/docs/logging/graylog-gelf/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 4
         },
         "enable_tcp": {
           "title": "Enable TCP",
@@ -10744,7 +10890,8 @@
         "application_id": {
           "title": "Collector Application ID",
           "description": "The Collector Application ID is used to send events, actions, users, and companies to Moesif's Collector API. Moesif provides it under the 'API Keys' section.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 4
         },
         "batch_size": {
           "title": "Batch Size",
@@ -10820,7 +10967,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 4
         },
         "request_header_masks": {
           "title": "Request header masks",
@@ -10831,7 +10979,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 4
         },
         "response_body_masks": {
           "title": "Response body masks",
@@ -10842,7 +10991,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 4
         },
         "response_header_masks": {
           "title": "Response header masks",
@@ -10853,7 +11003,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 4
         },
         "should_skip": {
           "title": "Should Skip",
@@ -10878,14 +11029,16 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 4
         },
         "user_id_jwt_claim": {
           "title": "User ID JWT claim",
           "description": "When using JWT tokens, it defines which claim contains the user ID. The claim value you access must be of type string. You can access nested structured using the dot `.` separator. When using dots, literals with an exact match containing the dot are checked first.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
           "examples": [ "sub", "user.id" ],
           "default": "sub",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 4
         }
       },
       "patternProperties": {
@@ -10920,7 +11073,8 @@
         "license": {
           "title": "License key",
           "description": "The API key provided by New Relic to push data into your account.\n\nSee: https://www.krakend.io/docs/enterprise/telemetry/newrelic/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 4
         }
       },
       "patternProperties": {
@@ -10977,7 +11131,8 @@
                   "host": {
                     "title": "Host",
                     "description": "The host where you want to push the data. It can be a sidecar or a remote collector.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry/",
-                    "type": "string"
+                    "type": "string",
+                    "@sensitive": 4
                   },
                   "name": {
                     "title": "Name",
@@ -11035,7 +11190,8 @@
                     "description": "The IP address that KrakenD listens to in IPv4 or IPv6. You can, for instance, expose the Prometheus metrics only in a private IP address. An empty string, or no declaration means listening on all interfaces. The inclusion of `::` is intended for IPv6 format only (**this is not the port**). Examples of valid addresses are `192.0.2.1` (IPv4), `2001:db8::68` (IPv6). The values `::` and `0.0.0.0` listen to all addresses, which are valid for IPv4 and IPv6 simultaneously.",
                     "examples": [ "172.12.1.1", "::1" ],
                     "default": "0.0.0.0",
-                    "type": "string"
+                    "type": "string",
+                    "@sensitive": 4
                   },
                   "name": {
                     "title": "Name",
@@ -11545,13 +11701,15 @@
                     "description": "The value of the header, usually an API token.",
                     "type": "string"
                   }
-                }
+                },
+                "@sensitive": 4
               },
               "name": {
                 "title": "Name",
                 "description": "The **exact name** you used to define the exporter under `telemetry/opentelemetry`.\n\nSee: https://www.krakend.io/docs/telemetry/opentelemetry-security/",
                 "examples": [ "newrelic", "remote_datadog" ],
-                "type": "string"
+                "type": "string",
+                "@sensitive": 4
               }
             },
             "patternProperties": {
@@ -11708,7 +11866,8 @@
                 "title": "Allowed origins list",
                 "examples": [ "*", "https://example.com" ],
                 "type": "string"
-              }
+              },
+              "@sensitive": 6
             },
             "debug": {
               "title": "Show debug",
@@ -11794,7 +11953,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "@sensitive": 2
         },
         "cipher_suites": {
           "title": "Cipher Suites",
@@ -11804,7 +11964,8 @@
           "uniqueItems": true,
           "items": {
             "type": "integer"
-          }
+          },
+          "@sensitive": 2
         },
         "curve_preferences": {
           "title": "Curve identifiers",
@@ -11820,7 +11981,8 @@
           "title": "Disable system's CA",
           "description": "Ignore any certificate in the system's CA. The only certificates loaded will be the ones in the `ca_certs` list when true.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
           "default": false,
-          "type": "boolean"
+          "type": "boolean",
+          "@sensitive": 2
         },
         "disabled": {
           "title": "Disable TLS",
@@ -11832,7 +11994,8 @@
           "title": "Enable Mutual Authentication",
           "description": "Whether to enable or not Mutual Authentication. When mTLS is enabled, **all KrakenD endpoints** require clients to provide a known client-side X.509 authentication certificate. KrakenD relies on the system’s CA to validate certificates.\n\nSee: https://www.krakend.io/docs/authorization/mutual-authentication/",
           "default": false,
-          "type": "boolean"
+          "type": "boolean",
+          "@sensitive": 2
         },
         "keys": {
           "description": "An array with all the key pairs you want the TLS to work with. You can support multiple and unrelated domains in a single process.",
@@ -11845,14 +12008,16 @@
                 "description": "Absolute path to the private key, or relative to the current [working directory](https://www.krakend.io/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
                 "examples": [ "/path/to/key.pem", "./certs/key.pem" ],
                 "default": "./certs/key.pem",
-                "type": "string"
+                "type": "string",
+                "@sensitive": 2
               },
               "public_key": {
                 "title": "Public key",
                 "description": "Absolute path to the public key, or relative to the current [working directory](https://www.krakend.io/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
                 "examples": [ "/path/to/cert.pem", "./certs/cert.pem" ],
                 "default": "./certs/cert.pem",
-                "type": "string"
+                "type": "string",
+                "@sensitive": 2
               }
             }
           }
@@ -11867,7 +12032,8 @@
           "title": "Minimum TLS version",
           "description": "Minimum TLS version supported. When specifiying very old and insecure versions under TLS12 you must provide the `ciphers_list`.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
           "default": "TLS13",
-          "enum": [ "SSL3.0", "TLS10", "TLS11", "TLS12", "TLS13" ]
+          "enum": [ "SSL3.0", "TLS10", "TLS11", "TLS12", "TLS13" ],
+          "@sensitive": 2
         }
       },
       "patternProperties": {

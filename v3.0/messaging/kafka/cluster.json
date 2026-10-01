@@ -12,7 +12,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 3
     },
     "client_tls": {
       "title": "TLS client options",
@@ -58,13 +59,15 @@
       "title": "Client ID",
       "description": "A name to give to the client stablishing the connection",
       "default": "KrakenD v[X].[Y].[Z]",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 3
     },
     "rack_id": {
       "title": "Rack ID",
       "description": "A name to identify the rack we are connecting from",
       "default": "",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 3
     },
     "channel_buffer_size": {
       "title": "Channel Buffer Size",

@@ -39,7 +39,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 6
     },
     "allow_private_network": {
       "title": "Allow private network",

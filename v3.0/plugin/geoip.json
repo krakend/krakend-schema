@@ -10,7 +10,8 @@
       "title": "CityDB path",
       "description": "The path in the filesystem containing the database in GeoIP2 Binary (`.mmdb`) format. Relative to the working dir or absolute path.\n\nSee: https://www.krakend.io/docs/enterprise/endpoints/geoip/",
       "examples": [ "path/to/GeoIP2-City.mmdb" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 7
     }
   },
   "patternProperties": {

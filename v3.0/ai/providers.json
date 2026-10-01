@@ -304,7 +304,8 @@
             "then": {
               "properties": {
                 "credentials": {
-                  "examples": [ "sk-xxxx" ]
+                  "examples": [ "sk-xxxx" ],
+                  "@sensitive": 1
                 },
                 "endpoint": {
                   "default": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1/responses"
@@ -365,7 +366,8 @@
         "then": {
           "properties": {
             "credentials": {
-              "examples": [ "sk-xxxx" ]
+              "examples": [ "sk-xxxx" ],
+              "@sensitive": 1
             },
             "endpoint": {
               "default": "https://api.openai.com/v1/responses"
@@ -418,7 +420,8 @@
           "credentials": {
             "title": "Credentials",
             "description": "The API key used to authenticate against the provider. Inject it with an environment variable instead of writing it in the configuration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
-            "type": "string"
+            "type": "string",
+            "@sensitive": 1
           },
           "debug": {
             "title": "Debug Mode",
@@ -429,7 +432,8 @@
           "endpoint": {
             "title": "Endpoint",
             "description": "Overrides the default API endpoint of the provider. Set it when you need to reach a proxy, a private deployment, or a region-specific host instead of the vendor's public API. When you don't set it, each provider uses its own default endpoint. Gemini and Bedrock build theirs from the `model` and `streaming` values, so their default shown here corresponds to the default `model` without streaming.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
-            "type": "string"
+            "type": "string",
+            "@sensitive": 3
           },
           "input_template": {
             "title": "Input Template",

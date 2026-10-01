@@ -17,7 +17,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 5
     },
     "port": {
       "title": "Port",
