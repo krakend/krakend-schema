@@ -5649,10 +5649,10 @@
       "type": "object",
       "properties": {
         "description": {
-          "title": "API Description",
-          "description": "An introductory, optionally verbose, explanation supporting [CommonMark](http://commonmark.org/help/) syntax. If you'd like to load an **external markdown file**, you can use flexible configuration, for instance `\"description\": {{include \"openapi/intro.md\" | toJson }}`\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "title": "Endpoint description",
+          "description": "A detailed explanation of what the endpoint does, supporting [CommonMark](https://commonmark.org/help/) syntax. Use `summary` for a short version.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [
-            "Hi there, I am [OpenAPI](https://www.krakend.io/docs/enterprise/endpoints/openapi/)"
+            "Lists all users in the system, paginated in blocks of 50 users"
           ],
           "type": "string"
         },
@@ -5669,7 +5669,7 @@
         },
         "custom_security_schemes": {
           "title": "Custom security schemes",
-          "description": "At the endpoint level, write only the object name with no properties inside, e.g, `{\"OAuth2Security\":{}`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "description": "The custom security schemes that apply to this endpoint. Write each scheme name as declared in the service-level `custom_security_schemes`, with an empty object as value, e.g., `{\"OAuth2Security\":{}}`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [
             {
               "OAuth2Security": {}
@@ -5687,7 +5687,7 @@
         },
         "disable_default_response_definitions": {
           "title": "Disable default response definitions",
-          "description": "By default, KrakenD adds a `500` and a `200` response definition to each endpoint. Set this property to `true` if you want to avoid this behavior.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "description": "By default, KrakenD adds a `500` and a `200` response definition to the endpoint. Set this property to `true` to avoid this behavior.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "default": false,
           "type": "boolean"
         },
@@ -5711,11 +5711,18 @@
           "items": {
             "title": "Headers definition",
             "type": "object",
-            "required": [ "name" ],
+            "anyOf": [
+              {
+                "required": [ "name" ]
+              },
+              {
+                "required": [ "ref" ]
+              }
+            ],
             "properties": {
               "description": {
-                "title": "Name",
-                "description": "The description of the header",
+                "title": "Description",
+                "description": "The description of the header.",
                 "examples": [
                   "The Content-Type sets the encoding of the request"
                 ],
@@ -5756,19 +5763,25 @@
               },
               "required": {
                 "title": "Required",
-                "description": "Set to `true` when this query string is required",
+                "description": "Set to `true` when this header is required.",
                 "default": false,
                 "type": "boolean"
               },
               "hide": {
                 "title": "Hide header",
-                "description": "Avoids this header from showing in the generated documentation",
+                "description": "Hides this header from the generated documentation.",
                 "default": false,
                 "type": "boolean"
               },
               "name": {
                 "title": "Name",
                 "description": "The name of the header, as declared in `input_headers`",
+                "type": "string"
+              },
+              "ref": {
+                "title": "Reference",
+                "description": "The name of a parameter declared in the service-level `components_parameters`, without the `#/components/parameters/` prefix. When you set `ref`, the `name` is not needed.",
+                "examples": [ "PageParam" ],
                 "type": "string"
               }
             },
@@ -5780,13 +5793,13 @@
         },
         "operation_id": {
           "title": "Operation ID",
-          "description": "A unique string identifying the operation identifier. Usually the method + the endpoint. If provided, these IDs must be unique among all operations described in your API.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "description": "A unique identifier of the operation, usually the method plus the endpoint. If provided, each ID must be unique among all operations described in your API.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [ "GET/foo" ],
           "type": "string"
         },
         "param_definition": {
           "title": "Param definition",
-          "description": "Sets a detailed description for the URL parameters (e.g.: `/foo/{param}`) required in the endpoint. Make sure to include to write the param exactly as in the endpoint definition.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "description": "Sets a detailed description for the URL parameters (e.g., `/foo/{param}`) required in the endpoint. Write each parameter name exactly as in the endpoint definition.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [
             [
               {
@@ -5799,16 +5812,23 @@
           "items": {
             "title": "Parameters",
             "type": "object",
-            "required": [ "name" ],
+            "anyOf": [
+              {
+                "required": [ "name" ]
+              },
+              {
+                "required": [ "ref" ]
+              }
+            ],
             "properties": {
               "description": {
-                "title": "Name",
-                "description": "The description of the parameter",
+                "title": "Description",
+                "description": "The description of the parameter.",
                 "type": "string"
               },
               "examples": {
                 "title": "Examples",
-                "description": "Guess what? Multiple example values for this parameter.",
+                "description": "Multiple example values for this parameter, where each key is the name of the example.",
                 "type": "object",
                 "patternProperties": {
                   "^.*$": {
@@ -5852,7 +5872,7 @@
               },
               "format": {
                 "title": "Format",
-                "description": "The extending format for the previously defined type. If the type is `number` or `string` you can apply them one of the available formats. If you choose string formats for numbers or viceversa de linter does not check it.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                "description": "The extending format for the previously defined type. If the type is `number` or `string`, you can apply one of the available formats. The linter does not check that the format matches the type.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
                 "enum": [
                   "int32",
                   "int64",
@@ -5878,13 +5898,19 @@
               },
               "hide": {
                 "title": "Hide param",
-                "description": "Avoids this param from showing in the generated documentation, although is still part of the endpoint definition.",
+                "description": "Hides this parameter from the generated documentation, although it is still part of the endpoint definition.",
                 "default": false,
                 "type": "boolean"
               },
               "name": {
                 "title": "Name",
                 "description": "The name of the parameter, as declared in `endpoint` without the curly braces `{}`",
+                "type": "string"
+              },
+              "ref": {
+                "title": "Reference",
+                "description": "The name of a parameter declared in the service-level `components_parameters`, without the `#/components/parameters/` prefix. When you set `ref`, the `name` is not needed.",
+                "examples": [ "PageParam" ],
                 "type": "string"
               }
             },
@@ -5909,11 +5935,18 @@
           "items": {
             "title": "Query strings",
             "type": "object",
-            "required": [ "name" ],
+            "anyOf": [
+              {
+                "required": [ "name" ]
+              },
+              {
+                "required": [ "ref" ]
+              }
+            ],
             "properties": {
               "description": {
-                "title": "Name",
-                "description": "The description of the querystring",
+                "title": "Description",
+                "description": "The description of the query string.",
                 "type": "string"
               },
               "type": {
@@ -5948,7 +5981,7 @@
               },
               "format": {
                 "title": "Format",
-                "description": "The extending format for the previously defined type. If the type is `number` or `string` you can apply them one of the available formats. If you choose string formats for numbers or viceversa de linter does not check it.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                "description": "The extending format for the previously defined type. If the type is `number` or `string`, you can apply one of the available formats. The linter does not check that the format matches the type.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
                 "enum": [
                   "int32",
                   "int64",
@@ -5963,24 +5996,24 @@
               },
               "required": {
                 "title": "Required",
-                "description": "Set to `true` when this query string is required",
+                "description": "Set to `true` when this query string is required.",
                 "default": true,
                 "type": "boolean"
               },
               "hide": {
-                "title": "Hide querystring",
-                "description": "Avoids this querystring from showing in the generated documentation",
+                "title": "Hide query string",
+                "description": "Hides this query string from the generated documentation.",
                 "default": false,
                 "type": "boolean"
               },
               "name": {
                 "title": "Name",
-                "description": "The name of the querystring, as declared in `input_query_strings`",
+                "description": "The name of the query string, as declared in `input_query_strings`.",
                 "type": "string"
               },
               "example": {
                 "title": "Example",
-                "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                "description": "An example value for this query string.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
                 "type": [
                   "string",
                   "object",
@@ -5990,6 +6023,12 @@
                   "null",
                   "number"
                 ]
+              },
+              "ref": {
+                "title": "Reference",
+                "description": "The name of a parameter declared in the service-level `components_parameters`, without the `#/components/parameters/` prefix. When you set `ref`, the `name` is not needed.",
+                "examples": [ "PageParam" ],
+                "type": "string"
               }
             },
             "patternProperties": {
@@ -6000,7 +6039,7 @@
         },
         "request_definition": {
           "title": "Definition of a request",
-          "description": "Describes the payload needed to consume the endpoint. If a JSON Schema validation exists, it takes precedence when generating the documentation. An example use case is when you need to document a `multipart/form-data` request body.This property is an array because you can document requests with multiple content types.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "description": "Describes the payload needed to consume the endpoint. If a JSON Schema validation exists, it takes precedence when generating the documentation. An example use case is when you need to document a `multipart/form-data` request body. This property is an array because you can document requests with multiple content types.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [
             [
               {
@@ -6024,12 +6063,12 @@
               },
               "content_type": {
                 "title": "Content Type",
-                "description": "The content type returned by this error, e.g., `application/json`. You cannot repeat this content type in another item.",
+                "description": "The content type of the request payload, e.g., `application/json`. You cannot repeat this content type in another item.",
                 "type": "string"
               },
               "example": {
                 "title": "Example",
-                "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                "description": "A free form JSON object or a string you would like to show as a sample request payload of the endpoint. The examples assume they are JSON content types.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
                 "type": [
                   "string",
                   "object",
@@ -6042,7 +6081,7 @@
               },
               "examples": {
                 "title": "Examples",
-                "description": "A free form JSON object or a string you would like to show as a sample response of the endpoint. The examples assume they are JSON content types except when using the `output_encoding=string`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                "description": "A free form JSON object or a string you would like to show as a sample request payload of the endpoint. The examples assume they are JSON content types.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
                 "examples": [
                   {
                     "Example 1": {
@@ -6073,12 +6112,12 @@
                 }
               },
               "example_schema": {
-                "description": "A JSON schema that describes the request format for the accepted payload in the endpoint. Use either example or example_schema, but not both.",
+                "description": "A JSON schema that describes the request format for the accepted payload in the endpoint. Use either `example` or `example_schema`, but not both.",
                 "type": [ "string", "object" ]
               },
               "ref": {
                 "title": "Reference",
-                "description": "The relative reference to the `components/schema` OpenAPI definition that will be used as definition of the accepted request. Notice that the path `#/components/schemas/` is not needed.",
+                "description": "The relative reference to the `components/schemas` OpenAPI definition that describes the accepted request. Notice that the path `#/components/schemas/` is not needed.",
                 "examples": [ "your_schema_name" ],
                 "type": "string"
               }
@@ -6090,8 +6129,8 @@
           }
         },
         "response_definition": {
-          "title": "Definition of errors (OAS3 only)",
-          "description": "Describes the different status codes returned by this endpoint. Each key is the definition of the status code, represented by a string. E.g., `200` (success), `500` (internal error), etc.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "title": "Definition of responses (OAS3 only)",
+          "description": "Describes the different status codes returned by this endpoint. Each key is a status code represented as a string, e.g., `200` (success), `500` (internal error), or `default`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [
             {
               "404": {
@@ -6113,12 +6152,12 @@
                   "properties": {
                     "description": {
                       "title": "Description",
-                      "description": "The description of this error code, e.g., `Page not found`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                      "description": "The description of this status code, e.g., `Page not found`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
                       "type": "string"
                     },
                     "content_type": {
                       "title": "Content Type",
-                      "description": "The content type returned by this error, e.g., `application/json`",
+                      "description": "The content type returned with this status code, e.g., `application/json`.",
                       "type": "string"
                     },
                     "example": {
@@ -6167,12 +6206,12 @@
                       }
                     },
                     "example_schema": {
-                      "description": "A JSON schema that describes the response format for the endpoint, directly as a JSON object, or encoded as a base64 string. Use either example or example_schema, but not both.",
+                      "description": "A JSON schema that describes the response format for the endpoint, directly as a JSON object, or encoded as a base64 string. Use either `example` or `example_schema`, but not both.",
                       "type": [ "string", "object" ]
                     },
                     "ref": {
                       "title": "Reference",
-                      "description": "The relative reference to the `components/schema` OpenAPI definition that will be used as definition of the accepted request. Notice that the path `#/components/schemas/` is not needed.",
+                      "description": "The relative reference to the `components/schemas` OpenAPI definition that describes this response. Notice that the path `#/components/schemas/` is not needed.",
                       "examples": [ "your_schema_name" ],
                       "type": "string"
                     }
@@ -6189,12 +6228,12 @@
                     "properties": {
                       "description": {
                         "title": "Description",
-                        "description": "The description of this error code, e.g., `Page not found`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+                        "description": "The description of this status code, e.g., `Page not found`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
                         "type": "string"
                       },
                       "content_type": {
                         "title": "Content Type",
-                        "description": "The content type returned by this error, e.g., `application/json`",
+                        "description": "The content type returned with this status code, e.g., `application/json`.",
                         "type": "string"
                       },
                       "example": {
@@ -6243,12 +6282,12 @@
                         }
                       },
                       "example_schema": {
-                        "description": "A JSON schema that describes the response format for the endpoint, directly as a JSON object, or encoded as a base64 string. Use either example or example_schema, but not both.",
+                        "description": "A JSON schema that describes the response format for the endpoint, directly as a JSON object, or encoded as a base64 string. Use either `example` or `example_schema`, but not both.",
                         "type": [ "string", "object" ]
                       },
                       "ref": {
                         "title": "Reference",
-                        "description": "The relative reference to the `components/schema` OpenAPI definition that will be used as definition of the accepted request. Notice that the path `#/components/schemas/` is not needed.",
+                        "description": "The relative reference to the `components/schemas` OpenAPI definition that describes this response. Notice that the path `#/components/schemas/` is not needed.",
                         "examples": [ "your_schema_name" ],
                         "type": "string"
                       }
@@ -6266,7 +6305,7 @@
         },
         "servers": {
           "title": "Servers",
-          "description": "The list of servers where the API is hosted. The server URL can be a relative path, e.g., `/v1` or an absolute path. The URL might contain `{variables}`, although these are only recognized by OpenAPI and to KrakenD they are just literal strings because it does not use them.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "description": "The list of servers where this endpoint is hosted, when they differ from the service-level `servers`. The server URL can be a relative path, e.g., `/v1`, or an absolute URL. The URL might contain `{variables}`, although only OpenAPI recognizes them: KrakenD treats them as literal strings.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [
             [
               {
@@ -6297,7 +6336,7 @@
               },
               "url": {
                 "title": "URL",
-                "description": "The URL of the server. This URL will be used as the base path for all endpoints.",
+                "description": "The URL of the server, used as the base path for this endpoint.",
                 "type": [ "string", "object" ]
               },
               "variables": {
@@ -6319,7 +6358,7 @@
         },
         "summary": {
           "title": "Summary",
-          "description": "A short summary for the endpoint. Use the description field for the longest explanation.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "description": "A short summary for the endpoint. Use `description` for a longer explanation.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "type": "string"
         },
         "tags": {
@@ -9155,7 +9194,7 @@
       "properties": {
         "description": {
           "title": "API Description",
-          "description": "An introductory, optionally verbose, explanation supporting [CommonMark](http://commonmark.org/help/) syntax. If you'd like to load an **external markdown file**, you can use flexible configuration, for instance `\"description\": {{include \"openapi/intro.md\" | toJson }}`\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "description": "An introductory, optionally verbose, explanation of your API supporting [CommonMark](https://commonmark.org/help/) syntax. To load an **external markdown file**, use flexible configuration, for instance `\"description\": {{include \"openapi/intro.md\" | toJson }}`\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [
             "Hi there, I am [OpenAPI](https://www.krakend.io/docs/enterprise/endpoints/openapi/)"
           ],
@@ -9163,13 +9202,13 @@
         },
         "base_path": {
           "title": "Base path",
-          "description": "A starting path that is appended to any endpoint.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "description": "A starting path that prefixes every endpoint.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [ "/v1" ],
           "type": "string"
         },
         "components_schemas": {
           "title": "Component Schemas",
-          "description": "The JSON Schemas you can reuse inside endpoint definitions using `ref`. You can either pass the JSON Schema object, or a bas64 string.",
+          "description": "The JSON Schemas you can reuse inside endpoint definitions using `ref`. You can pass either the JSON Schema object or a base64 string.",
           "examples": [
             {
               "Pet": {
@@ -9189,7 +9228,7 @@
         },
         "components_parameters": {
           "title": "Component Parameters",
-          "description": "The parameter definitions you can reuse inside endpoint definitions using `ref`. You can either pass the parameter object, or a base64 string.",
+          "description": "Reusable OpenAPI parameter objects that the generated spec declares under `components/parameters`. You can pass either the parameter object or a base64 string.",
           "examples": [
             {
               "MyParam": {
@@ -9212,31 +9251,31 @@
         },
         "contact_email": {
           "title": "Contact email",
-          "description": "Email where users of your API can write to.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "examples": [ "/v1" ],
+          "description": "The email address where consumers of your API can reach you.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "examples": [ "contact@example.com" ],
           "type": "string"
         },
         "contact_name": {
           "title": "Contact name",
-          "description": "Contact name.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "examples": [ "/v1" ],
+          "description": "The name of the person or team responsible for the API.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "examples": [ "API Support" ],
           "type": "string"
         },
         "contact_url": {
           "title": "Contact URL",
-          "description": "Contact URL that users of your API can read.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "examples": [ "/v1" ],
+          "description": "The URL where consumers of your API find contact information.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "examples": [ "https://example.com/developers" ],
           "type": "string"
         },
         "cookie_name": {
           "title": "Cookie name",
-          "description": "When generating an OpenAPI spec, the name of the cookie used under components securitySchemes.",
+          "description": "The name of the cookie declared under `components/securitySchemes` in the generated OpenAPI spec.",
           "default": "SESSIONID",
           "type": "string"
         },
         "custom_security_schemes": {
           "title": "Custom security schemes",
-          "description": "Allows you to add custom security schemes under `components/securitySchemes` in the generated OpenAPI spec. This is useful when you want to define your own security schemes, different from the built-in ones (e.g., `jwt`, `apikey`, `cookie`, etc.). When the property is in the service level you must declare the schema (e.g., `\"OAuth2Security\":{...}`), and when it is in the endpoint you should only write the object name with not properties inside, e.g, `{\"OAuth2Security\":{}`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "description": "Adds custom security schemes under `components/securitySchemes` in the generated OpenAPI spec. Use it to define security schemes different from the built-in ones (e.g., `jwt`, `apikey`, `cookie`). Declare each scheme with its full definition (e.g., `\"OAuth2Security\":{...}`), and enable it in each endpoint by writing its name with an empty object (e.g., `{\"OAuth2Security\":{}}`).\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [
             {
               "OAuth2Security": {
@@ -9264,30 +9303,30 @@
         "host": {
           "title": "Host",
           "description": "The hostname where you will publish your API.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "examples": [ "my.api.com" ],
+          "examples": [ "api.example.com" ],
           "type": "string"
         },
         "jwt_key": {
           "title": "JWT key",
-          "description": "When generating an OpenAPI spec, the name of the JWT key used under components securitySchemes.",
+          "description": "The name of the JWT key declared under `components/securitySchemes` in the generated OpenAPI spec.",
           "default": "KrakenD-JWT",
           "type": "string"
         },
         "license_name": {
           "title": "License name",
-          "description": "The license name (e.g.: Apache License)\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "examples": [ "/v1" ],
+          "description": "The name of the license of your API, e.g., `Apache 2.0`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "examples": [ "MIT" ],
           "type": "string"
         },
         "license_url": {
           "title": "License URL",
-          "description": "The URL where the license is hosted\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "examples": [ "/v1" ],
+          "description": "The URL where the license is hosted.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "examples": [ "https://opensource.org/licenses/MIT" ],
           "type": "string"
         },
         "servers": {
           "title": "Servers",
-          "description": "The list of servers where the API is hosted. The server URL can be a relative path, e.g., `/v1` or an absolute path. The URL might contain `{variables}`, although these are only recognized by OpenAPI and to KrakenD they are just literal strings because it does not use them.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "description": "The list of servers where the API is hosted. The server URL can be a relative path, e.g., `/v1`, or an absolute URL. The URL might contain `{variables}`, although only OpenAPI recognizes them: KrakenD treats them as literal strings.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [
             [
               {
@@ -9318,7 +9357,7 @@
               },
               "url": {
                 "title": "URL",
-                "description": "The URL of the server. This URL will be used as the base path for all endpoints.",
+                "description": "The URL of the server, used as the base path for all endpoints.",
                 "type": [ "string", "object" ]
               },
               "variables": {
@@ -9340,7 +9379,7 @@
         },
         "tag_definition": {
           "title": "Tag definition",
-          "description": "Sets a detailed description for the tags classifiying endpoints when generating the OpenAPI spec.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "description": "Sets a detailed description for the tags classifying endpoints when generating the OpenAPI spec.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [
             [
               {
@@ -9357,7 +9396,7 @@
             "properties": {
               "description": {
                 "title": "Tag Description",
-                "description": "Describe what this tag is grouping",
+                "description": "Describes what this tag groups.",
                 "type": "string"
               },
               "name": {
@@ -9375,12 +9414,12 @@
         "terms_of_service": {
           "title": "Terms of Service",
           "description": "The URL to the terms of service for using this API.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
-          "examples": [ "/v1" ],
+          "examples": [ "https://example.com/terms" ],
           "type": "string"
         },
         "version": {
           "title": "Version",
-          "description": "The version numbering you want to apply to this release of API., e.g.: `1.0`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+          "description": "The version of your API, e.g., `1.0`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
           "examples": [ "1.0" ],
           "type": "string"
         }
