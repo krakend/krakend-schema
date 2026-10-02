@@ -16,7 +16,8 @@
         "credentials": {
           "title": "API Key",
           "description": "Your Anthropic API key. You can set it as an environment variable for better security.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
-          "type": "string"
+          "type": "string",
+          "@sensitive": 1
         },
         "debug": {
           "title": "Debug Mode",

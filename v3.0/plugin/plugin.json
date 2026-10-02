@@ -11,7 +11,8 @@
       "description": "The path in the filesystem where all the plugins you want to load are. MUST END IN SLASH. The folder can be a relative or absolute path. KrakenD Enterprise uses /opt/krakend/plugins/ for all plugins.",
       "examples": [ "/opt/krakend/plugins/", "./plugins/" ],
       "default": "/opt/krakend/plugins/",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 7
     },
     "on_load_default_error": {
       "title": "Default behavior on load error",

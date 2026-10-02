@@ -10,13 +10,15 @@
       "title": "Password",
       "description": "The password you will use, in clear text.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/ntlm/",
       "examples": [ "myp4ssw0rd" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "user": {
       "title": "User",
       "description": "The username you will send as NTLM authentication user.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/ntlm/",
       "examples": [ "krakendclient" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     }
   },
   "patternProperties": {

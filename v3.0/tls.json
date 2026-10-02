@@ -23,7 +23,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 2
     },
     "cipher_suites": {
       "title": "Cipher Suites",
@@ -33,7 +34,8 @@
       "uniqueItems": true,
       "items": {
         "type": "integer"
-      }
+      },
+      "@sensitive": 2
     },
     "curve_preferences": {
       "title": "Curve identifiers",
@@ -49,7 +51,8 @@
       "title": "Disable system's CA",
       "description": "Ignore any certificate in the system's CA. The only certificates loaded will be the ones in the `ca_certs` list when true.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
       "default": false,
-      "type": "boolean"
+      "type": "boolean",
+      "@sensitive": 2
     },
     "disabled": {
       "title": "Disable TLS",
@@ -61,7 +64,8 @@
       "title": "Enable Mutual Authentication",
       "description": "Whether to enable or not Mutual Authentication. When mTLS is enabled, **all KrakenD endpoints** require clients to provide a known client-side X.509 authentication certificate. KrakenD relies on the system’s CA to validate certificates.\n\nSee: https://www.krakend.io/docs/authorization/mutual-authentication/",
       "default": false,
-      "type": "boolean"
+      "type": "boolean",
+      "@sensitive": 2
     },
     "keys": {
       "description": "An array with all the key pairs you want the TLS to work with. You can support multiple and unrelated domains in a single process.",
@@ -74,14 +78,16 @@
             "description": "Absolute path to the private key, or relative to the current [working directory](https://www.krakend.io/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
             "examples": [ "/path/to/key.pem", "./certs/key.pem" ],
             "default": "./certs/key.pem",
-            "type": "string"
+            "type": "string",
+            "@sensitive": 2
           },
           "public_key": {
             "title": "Public key",
             "description": "Absolute path to the public key, or relative to the current [working directory](https://www.krakend.io/docs/configuration/working-directory/).\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
             "examples": [ "/path/to/cert.pem", "./certs/cert.pem" ],
             "default": "./certs/cert.pem",
-            "type": "string"
+            "type": "string",
+            "@sensitive": 2
           }
         }
       }
@@ -96,7 +102,8 @@
       "title": "Minimum TLS version",
       "description": "Minimum TLS version supported. When specifiying very old and insecure versions under TLS12 you must provide the `ciphers_list`.\n\nSee: https://www.krakend.io/docs/service-settings/tls/",
       "default": "TLS13",
-      "enum": [ "SSL3.0", "TLS10", "TLS11", "TLS12", "TLS13" ]
+      "enum": [ "SSL3.0", "TLS10", "TLS11", "TLS12", "TLS13" ],
+      "@sensitive": 2
     }
   },
   "patternProperties": {

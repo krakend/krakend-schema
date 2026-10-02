@@ -15,7 +15,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 7
     },
     "server": {
       "title": "gRPC Server",

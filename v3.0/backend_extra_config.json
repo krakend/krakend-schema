@@ -109,7 +109,8 @@
       "title": "Martian modifiers",
       "description": "Transform requests and responses through a simple DSL definition in the configuration file.\n\nSee: https://www.krakend.io/docs/backends/martian/",
       "$ref": "modifier/martian.json",
-      "type": "object"
+      "type": "object",
+      "@sensitive": 7
     },
     "modifier/request-body-generator": {
       "$ref": "modifier/body-generator.json"
@@ -250,7 +251,8 @@
               "items": {
                 "title": "The policy you want to evaluate",
                 "type": "string"
-              }
+              },
+              "@sensitive": 7
             }
           },
           "patternProperties": {
@@ -295,7 +297,8 @@
               "items": {
                 "title": "The policy you want to evaluate",
                 "type": "string"
-              }
+              },
+              "@sensitive": 7
             }
           },
           "patternProperties": {

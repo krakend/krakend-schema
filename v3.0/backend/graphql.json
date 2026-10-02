@@ -28,13 +28,15 @@
       "title": "Query",
       "description": "An inline GraphQL query you want to send to the server. Use this attribute for simple and inline queries, use `query_path` instead for larger queries. Use escaping when needed.\n\nSee: https://www.krakend.io/docs/backends/graphql/",
       "examples": [ "{ \n find_follower(func: uid(\"0x3\")) {\n name \n }\n }" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 7
     },
     "query_path": {
       "title": "Query path",
       "description": "Path to the file containing the query. This file is loaded during startup and never checked again, if it changes KrakenD will be unaware of it.\n\nSee: https://www.krakend.io/docs/backends/graphql/",
       "examples": [ "./graphql/mutations/marketing.graphql" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 7
     },
     "variables": {
       "title": "Variables",

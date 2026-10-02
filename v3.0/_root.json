@@ -106,7 +106,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 6
     },
     "idle_connection_timeout": {
       "title": "HTTP Idle timeout",

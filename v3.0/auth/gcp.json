@@ -20,13 +20,15 @@
       "title": "Audience",
       "description": "The audience in GCP looks like an URL, and contains the destination service you will ask a token for. Most of the times this URL will match exactly with the `host` entry.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
       "examples": [ "https://gcptest-76fewi6rca-uc.a.run.app" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "credentials_file": {
       "title": "Path to credentials file",
       "description": "The relative or absolute path to a credentials file in JSON format that contains all the credentials to authenticate API calls to the given service account.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
       "examples": [ "/etc/krakend/gcp.json" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "credentials_json": {
       "title": "JSON credentials file",
@@ -45,19 +47,22 @@
           "token_uri": "https://accounts.google.com/o/oauth2/token"
         }
       ],
-      "type": "object"
+      "type": "object",
+      "@sensitive": 1
     },
     "custom_claims": {
       "title": "Custom claims",
       "description": "Custom private claims that you can optionally add to an ID token.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
-      "type": "object"
+      "type": "object",
+      "@sensitive": 1
     },
     "s2s_auth_header": {
       "title": "Service-to-service authentication header",
       "description": "The header name to use in service-to-service authentication. This is useful to honor the original Authorization header in case it's needed by the backend (for example, CloudRun).\n\nSee: https://www.krakend.io/docs/enterprise/authentication/gcp/",
       "examples": [ "X-Serverless-Authorization" ],
       "default": "",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     }
   },
   "patternProperties": {

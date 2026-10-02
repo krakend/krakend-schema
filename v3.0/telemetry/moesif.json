@@ -9,7 +9,8 @@
     "application_id": {
       "title": "Collector Application ID",
       "description": "The Collector Application ID is used to send events, actions, users, and companies to Moesif's Collector API. Moesif provides it under the 'API Keys' section.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 4
     },
     "batch_size": {
       "title": "Batch Size",
@@ -85,7 +86,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 4
     },
     "request_header_masks": {
       "title": "Request header masks",
@@ -96,7 +98,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 4
     },
     "response_body_masks": {
       "title": "Response body masks",
@@ -107,7 +110,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 4
     },
     "response_header_masks": {
       "title": "Response header masks",
@@ -118,7 +122,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 4
     },
     "should_skip": {
       "title": "Should Skip",
@@ -143,14 +148,16 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 4
     },
     "user_id_jwt_claim": {
       "title": "User ID JWT claim",
       "description": "When using JWT tokens, it defines which claim contains the user ID. The claim value you access must be of type string. You can access nested structured using the dot `.` separator. When using dots, literals with an exact match containing the dot are checked first.\n\nSee: https://www.krakend.io/docs/enterprise/governance/moesif/",
       "examples": [ "sub", "user.id" ],
       "default": "sub",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 4
     }
   },
   "patternProperties": {

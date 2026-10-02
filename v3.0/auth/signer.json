@@ -70,7 +70,8 @@
     "cypher_key": {
       "title": "Cypher key",
       "description": "The cyphering key.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "disable_jwk_security": {
       "title": "Disable_jwk_security",
@@ -90,24 +91,28 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 1
     },
     "jwk_local_ca": {
       "title": "Local CA",
       "description": "Path to the CA’s certificate verifying a secure connection when downloading the JWK. Use when not recognized by the system (e.g., self-signed certificates).\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "jwk_local_path": {
       "title": "JWK local path",
       "description": "Local path to the JWK public keys, has preference over `jwk_url`. Instead of pointing to an external URL (with `jwk_url`), public keys are kept locally, in a plain JWK file (security alert!), or encrypted. When encrypted, also add `secret_url` and `cypher_key`.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
       "examples": [ "./jwk.txt" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "jwk_url": {
       "title": "JWK URL",
       "description": "The URL to the JWK endpoint with the private keys used to sign the token.\n\nSee: https://www.krakend.io/docs/authorization/jwt-signing/",
       "examples": [ "http://your-backend/jwk/symmetric.json" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "keys_to_sign": {
       "title": "Keys to sign",
@@ -118,13 +123,15 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 1
     },
     "kid": {
       "title": "Kid",
       "description": "The key ID purpose is to match a specific key, as the jwk_url might contain several keys.\n\nSee: https://www.krakend.io/docs/enterprise/authorization/jwt-validation/",
       "examples": [ "sim2" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "leeway": {
       "title": "Leeway",
@@ -145,7 +152,8 @@
         "hashivault://keyID"
       ],
       "type": "string",
-      "pattern": "(base64key|awskms|azurekeyvault|gcpkms|hashivault)://(.*)"
+      "pattern": "(base64key|awskms|azurekeyvault|gcpkms|hashivault)://(.*)",
+      "@sensitive": 1
     }
   },
   "patternProperties": {

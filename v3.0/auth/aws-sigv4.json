@@ -10,7 +10,8 @@
       "title": "Assume Role ARN",
       "description": "The Amazon Resource Name (ARN) of the role to assume.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/aws-sigv4/",
       "examples": [ "arn:aws:sts::{account ID}:assumed-role/{resource}" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "debug": {
       "title": "Debug",
@@ -22,19 +23,22 @@
       "title": "Region",
       "description": "The AWS region where the service is deployed.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/aws-sigv4/",
       "examples": [ "us-east-1" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "service": {
       "title": "Service",
       "description": "The name of the service in AWS you'd like to sign the request.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/aws-sigv4/",
       "examples": [ "dynamodb" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "sts_region": {
       "title": "STS Region",
       "description": "The AWS region where the STS service is deployed.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/aws-sigv4/",
       "examples": [ "us-west-1" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     }
   },
   "patternProperties": {

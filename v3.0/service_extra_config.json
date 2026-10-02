@@ -141,7 +141,8 @@
             "title": "Allowed origins list",
             "examples": [ "*", "https://example.com" ],
             "type": "string"
-          }
+          },
+          "@sensitive": 6
         },
         "debug": {
           "title": "Show debug",

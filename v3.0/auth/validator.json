@@ -42,14 +42,16 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 1
     },
     "auth_header_name": {
       "title": "Authorization header",
       "description": "Allows to parse the token from a custom header.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
       "examples": [ "X-Custom-Auth" ],
       "default": "Authorization",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 5
     },
     "cache": {
       "title": "Cache",
@@ -101,12 +103,14 @@
       "title": "Cookie key",
       "description": "Add the key name of the cookie containing the token when it is not passed in the headers\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
       "examples": [ "cookie_jwt" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 5
     },
     "cypher_key": {
       "title": "Cypher key",
       "description": "The cyphering key.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "disable_jwk_security": {
       "title": "Disable_jwk_security",
@@ -125,7 +129,8 @@
       "title": "Issuer",
       "description": "When set, tokens not matching the issuer are rejected.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
       "examples": [ "issuer" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "jwk_fingerprints": {
       "title": "Roles",
@@ -133,18 +138,21 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 1
     },
     "jwk_local_ca": {
       "title": "Local CA",
       "description": "Path to the CA's certificate verifying a secure connection when downloading the JWK. Use when not recognized by the system (e.g., self-signed certificates).\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "jwk_local_path": {
       "title": "JWK local path",
       "description": "Local path to the JWK public keys, has preference over `jwk_url`. Instead of pointing to an external URL (with `jwk_url`), public keys are kept locally, in a plain JWK file (security alert!), or encrypted. When encrypted, also add `secret_url` and `cypher_key`.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
       "examples": [ "./jwk.txt" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "jwk_url": {
       "title": "JWK URL",
@@ -154,7 +162,8 @@
         "http://KEYCLOAK:8080/auth/realms/master/protocol/openid-connect/certs",
         "https://yourOktaBaseUrl/v1/keys"
       ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "key_identify_strategy": {
       "title": "Key identify strategy",
@@ -186,7 +195,8 @@
         "items": {
           "type": "string"
         }
-      }
+      },
+      "@sensitive": 5
     },
     "propagate_claims_preserve_array": {
       "title": "Preserve array structure",
@@ -200,13 +210,15 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 1
     },
     "roles_key": {
       "title": "Roles key",
       "description": "When validating users through roles, provide the key name inside the JWT payload that lists their roles. If this key is nested inside another object, add `roles_key_is_nested` and use the dot notation `.` to traverse each level. E.g.: `resource_access.myclient.roles` represents the payload `{resource_access: { myclient: { roles: [\"myrole\"] } }`. Notice that the roles object you choose is a list, not a map.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
       "examples": [ "resource_access.myclient.roles" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "roles_key_is_nested": {
       "title": "Roles key is nested",
@@ -219,12 +231,14 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 1
     },
     "scopes_key": {
       "title": "Scopes key",
       "description": "The key name where KrakenD can find the scopes. The key can be a nested object using the `.` dot notation, e.g.: `data.access.my_scopes`.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "scopes_matcher": {
       "title": "Scopes matcher",
@@ -243,7 +257,8 @@
         "hashivault://keyID"
       ],
       "type": "string",
-      "pattern": "(base64key|awskms|azurekeyvault|gcpkms|hashivault)://(.*)"
+      "pattern": "(base64key|awskms|azurekeyvault|gcpkms|hashivault)://(.*)",
+      "@sensitive": 1
     }
   },
   "patternProperties": {

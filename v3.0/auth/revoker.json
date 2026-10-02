@@ -31,13 +31,15 @@
     "port": {
       "title": "Port",
       "description": "The port number exposed on each KrakenD instance for the RPC service to interact with the bloomfilter. This port is allocated only to the clients (running KrakenDs).\n\nSee: https://www.krakend.io/docs/authorization/revoking-tokens/",
-      "type": "integer"
+      "type": "integer",
+      "@sensitive": 1
     },
     "revoke_server_api_key": {
       "title": "Revoke Server Ping URL",
       "description": "A string used as an exchange API key to secure the communication between the Revoke Server and the KrakenD instances and to consume the REST API of the Revoker Server as well. E.g., a string generated with `uuidgen`.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/revoke-server/",
       "examples": [ "639ee23f-f4c5-40c4-855c-912bf01fae87" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "revoke_server_max_retries": {
       "title": "Revoke Server Max Retries",
@@ -62,7 +64,8 @@
       "title": "Revoke Server Ping URL",
       "description": "The address to the `/instances` endpoint in the Revoke Server.\n\nSee: https://www.krakend.io/docs/enterprise/authentication/revoke-server/",
       "examples": [],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "token_keys": {
       "title": "Token keys",
@@ -73,7 +76,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 1
     }
   },
   "patternProperties": {

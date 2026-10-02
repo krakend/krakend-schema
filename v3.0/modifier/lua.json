@@ -15,7 +15,8 @@
       "title": "Live reload",
       "description": "For security and efficiency, the Lua script is loaded once into memory and not reloaded even if the file contents change. Set this flag to `true` if you want to modify the Lua script while KrakenD is running and apply the changes live (mostly during development to avoid the snippet being cached).\n\nSee: https://www.krakend.io/docs/endpoints/lua/",
       "default": false,
-      "type": "boolean"
+      "type": "boolean",
+      "@sensitive": 7
     },
     "md5": {
       "title": "MD5 Checksum",
@@ -25,7 +26,8 @@
           "./path/to/file1.lua": "49ae50f58e35f4821ad4550e1a4d1de0"
         }
       ],
-      "type": "object"
+      "type": "object",
+      "@sensitive": 7
     },
     "post": {
       "title": "post-execution code",
@@ -33,7 +35,8 @@
       "examples": [
         "local r = response.load(); r:headers('Set-Cookie', 'key1='.. r:data('response'));"
       ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 7
     },
     "pre": {
       "title": "Pre-execution code",
@@ -41,7 +44,8 @@
       "examples": [
         "print('Backend response, pre-logic:'); local r = request.load(); print(r:body());"
       ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 7
     },
     "skip_next": {
       "title": "Skip next",
@@ -55,7 +59,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 7
     }
   },
   "patternProperties": {

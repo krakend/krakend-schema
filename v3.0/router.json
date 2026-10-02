@@ -130,7 +130,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 6
     },
     "remove_extra_slash": {
       "title": "Remove extra slash",
@@ -150,7 +151,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 6
     }
   },
   "patternProperties": {

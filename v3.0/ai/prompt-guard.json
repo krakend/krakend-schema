@@ -124,7 +124,8 @@
           "description": "The full URL of the external classifier service that receives the request body.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
           "examples": [ "https://example.com/classify" ],
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "@sensitive": 3
         }
       },
       "patternProperties": {

@@ -9,7 +9,8 @@
     "shared_cache_duration": {
       "title": "Shared cache duration",
       "description": "The cache duration in seconds for the JWK client retrieving the `jwk_url`. The endpoint must enable the `cache` option in order to use this second level cache.\n\nSee: https://www.krakend.io/docs/authorization/jwk-caching/",
-      "type": "integer"
+      "type": "integer",
+      "@sensitive": 5
     }
   },
   "patternProperties": {

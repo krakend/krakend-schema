@@ -28,7 +28,8 @@
           "description": "The key of this map must compile with the regexp `a-z0-9_` and the host name is the string that matches the value sent by the user in the `Host` header.",
           "type": "string"
         }
-      }
+      },
+      "@sensitive": 6
     },
     "hosts": {
       "title": "Virtualhosts",
@@ -39,7 +40,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 6
     }
   },
   "patternProperties": {

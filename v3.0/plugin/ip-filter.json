@@ -15,7 +15,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 6
     },
     "allow": {
       "title": "Allow or deny mode",
@@ -32,7 +33,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 6
     },
     "trusted_proxies": {
       "title": "Trusted proxies",
@@ -43,7 +45,8 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "@sensitive": 6
     }
   },
   "patternProperties": {

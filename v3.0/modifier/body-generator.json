@@ -31,12 +31,14 @@
       "title": "Path to template",
       "description": "The path to the Go template file you want to use to craft the body.\n\nSee: https://www.krakend.io/docs/enterprise/backends/body-generator/",
       "examples": [ "./path/to.tmpl" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 7
     },
     "template": {
       "title": "Template",
       "description": "An inline base64 encoded Go template with the body you want to generate. This option is useful if you want to have the template embedded in the configuration instead of an external file.\n\nSee: https://www.krakend.io/docs/enterprise/backends/body-generator/",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 7
     },
     "variables": {
       "title": "Variables",

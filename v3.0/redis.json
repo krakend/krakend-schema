@@ -24,13 +24,15 @@
               "title": "Redis member",
               "description": "The address of a Redis member in the cluster",
               "type": "string"
-            }
+            },
+            "@sensitive": 3
           },
           "client_name": {
             "title": "Client name",
             "description": "You can set how this connection shows in Redis when listing all the connections `CONN LIST`",
             "examples": [ "krakend_pool" ],
-            "type": "string"
+            "type": "string",
+            "@sensitive": 3
           },
           "conn_max_idle_time": {
             "title": "Connection Max Idle Time",
@@ -144,7 +146,8 @@
           "password": {
             "title": "password",
             "description": "Sets the password to connect to Redis.",
-            "type": "string"
+            "type": "string",
+            "@sensitive": 1
           },
           "pool_size": {
             "title": "Pool size",
@@ -167,7 +170,8 @@
           "user_name": {
             "title": "Username",
             "description": "The username to connect to Redis",
-            "type": "string"
+            "type": "string",
+            "@sensitive": 3
           }
         },
         "additionalProperties": false
@@ -185,13 +189,15 @@
             "title": "Address",
             "description": "The Redis host where you want to connect using the format `host:port`.",
             "examples": [ "shared.redis.example.com" ],
-            "type": "string"
+            "type": "string",
+            "@sensitive": 3
           },
           "client_name": {
             "title": "Client name",
             "description": "You can set how this connection shows in Redis when listing all the connections `CONN LIST`",
             "examples": [ "krakend_pool" ],
-            "type": "string"
+            "type": "string",
+            "@sensitive": 3
           },
           "conn_max_idle_time": {
             "title": "Connection Max Idle Time",
@@ -210,7 +216,8 @@
             "title": "DB",
             "description": "The database number to select after connecting",
             "default": 0,
-            "type": "integer"
+            "type": "integer",
+            "@sensitive": 3
           },
           "dial_timeout": {
             "title": "Dial Timeout",
@@ -305,7 +312,8 @@
           "password": {
             "title": "password",
             "description": "Sets the password to connect to Redis.",
-            "type": "string"
+            "type": "string",
+            "@sensitive": 1
           },
           "pool_size": {
             "title": "Pool size",
@@ -328,7 +336,8 @@
           "user_name": {
             "title": "Username",
             "description": "The username to connect to Redis",
-            "type": "string"
+            "type": "string",
+            "@sensitive": 3
           }
         },
         "additionalProperties": false

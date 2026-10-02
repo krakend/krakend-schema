@@ -30,12 +30,14 @@
       "title": "Path to template",
       "description": "The path to the Go template file you want to use to craft the body.\n\nSee: https://www.krakend.io/docs/backends/soap/",
       "examples": [ "./path/to.xml" ],
-      "type": "string"
+      "type": "string",
+      "@sensitive": 7
     },
     "template": {
       "title": "Template",
       "description": "An inline base64 encoded Go template with the body XML content you want to send to the SOAP service. This option is useful if you don't want to rely on external files and embed the template in the configuration.\n\nSee: https://www.krakend.io/docs/backends/soap/",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 7
     }
   },
   "patternProperties": {

@@ -9,7 +9,8 @@
       "title": "SASL Mechanism",
       "description": "Name of the enabled SASL mechanism",
       "default": "PLAIN",
-      "enum": [ "PLAIN", "OAUTHBEARER" ]
+      "enum": [ "PLAIN", "OAUTHBEARER" ],
+      "@sensitive": 3
     },
     "azure_event_hub": {
       "title": "Connect to Azure Event Hub",
@@ -26,22 +27,26 @@
     "auth_identity": {
       "title": "Auth Identity",
       "description": "Auth Identity is an (optional) authorization identity (authzid) to use for SASL/PLAIN authentication (if different from User) when an authenticated user is permitted to act as the presented alternative user. See RFC4616 for details",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 3
     },
     "user": {
       "title": "User",
       "description": "Authentication identity (authcid) to present for SASL/PLAIN or SASL/SCRAM authentication",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "password": {
       "title": "Password",
       "description": "Password for SASL/PLAIN authentication",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 1
     },
     "scram_auth_id": {
       "title": "SCRAM Auth ID",
       "description": "Authz id used for SASL/SCRAM authentication",
-      "type": "string"
+      "type": "string",
+      "@sensitive": 3
     }
   },
   "patternProperties": {
