@@ -23,5 +23,5 @@
       }
     }
   ],
-  "$ref": "v2.13/flexible_config.json"
+  "$ref": "v3.0/flexible_config.json"
 }
