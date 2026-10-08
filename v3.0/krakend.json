@@ -965,7 +965,7 @@
             },
             "failover": {
               "title": "Route Failover Provider",
-              "description": "The name of the provider in the `ai/providers` inventory that takes over when this route cannot serve the request: its `provider` fails, its `classifier` cannot return a choice, or the provider the classifier chose fails. It overrides the router-level `failover`. You cannot use it together with `routes`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+              "description": "The provider to use when this route fails. A route fails when its provider returns an error or its classifier cannot pick one. It overrides the router-level `failover`. You cannot use it with `routes`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
               "examples": [ "gpt-default" ],
               "type": "string",
               "minLength": 1
