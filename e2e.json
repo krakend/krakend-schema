@@ -5,7 +5,7 @@
   "description": "Schema validation for the latest version of KrakenD End to End testing. Consider sticking to the specific version you are using",
   "examples": [
     {
-      "$schema": "https://www.krakend.io/schema/v2.13/e2e.json",
+      "$schema": "https://www.krakend.io/schema/v3.0/e2e.json",
       "@comment": "Makes sure that the debug endpoint returns a status ok",
       "in": {
         "header": {
@@ -27,5 +27,5 @@
       }
     }
   ],
-  "$ref": "v2.13/e2e.json"
+  "$ref": "v3.0/e2e.json"
 }
