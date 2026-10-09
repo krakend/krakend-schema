@@ -138,6 +138,37 @@
       "valid": true
     },
     {
+      "description": "Provider route with its own failover",
+      "data": {
+        "routes": [
+          {
+            "provider": "a",
+            "failover": "b"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Nested provider route with its own failover",
+      "data": {
+        "routes": [
+          {
+            "gates": [
+              "a"
+            ],
+            "routes": [
+              {
+                "provider": "c",
+                "failover": "b"
+              }
+            ]
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
       "description": "Missing routes",
       "data": {
         "failover": "gpt-default"
@@ -254,19 +285,7 @@
       "valid": false
     },
     {
-      "description": "Route failover without classifier",
-      "data": {
-        "routes": [
-          {
-            "provider": "a",
-            "failover": "b"
-          }
-        ]
-      },
-      "valid": false
-    },
-    {
-      "description": "Nested route failover without classifier",
+      "description": "Route failover together with nested routes",
       "data": {
         "routes": [
           {
