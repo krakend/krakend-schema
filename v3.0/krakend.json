@@ -928,14 +928,14 @@
       "properties": {
         "failover": {
           "title": "Failover Provider",
-          "description": "The name of the provider in the `ai/providers` inventory that handles the request when no route matches, or when a classifier cannot return a choice and its route sets no `failover` of its own. It is the safety net of the whole router, and an alternative to a trailing route without `gates`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+          "description": "The name of the provider in the `ai/providers` inventory that handles the request when a classifier cannot return a choice, or when the provider a route chose fails, and that route sets no `failover` of its own. It does not apply to requests that match no route: place a route without `gates` last in `routes` for those.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
           "examples": [ "gpt-default" ],
           "type": "string",
           "minLength": 1
         },
         "routes": {
           "title": "Routes",
-          "description": "The ordered list of routes. KrakenD evaluates them from top to bottom and uses the first one that matches. A route without `gates` always matches, so place it last as an inline fallback.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+          "description": "The ordered list of routes. KrakenD evaluates them from top to bottom and uses the first one that matches. A route without `gates` always matches, so place it last as the fallback for requests that match no other route; without it, such a request fails, even with a `failover`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
           "type": "array",
           "minItems": 1,
           "items": {
@@ -965,7 +965,7 @@
             },
             "failover": {
               "title": "Route Failover Provider",
-              "description": "The name of the provider in the `ai/providers` inventory that handles the request when the `classifier` of this route cannot return a choice. It takes precedence over the router-level `failover`, and requires a `classifier`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+              "description": "The provider to use when this route fails. A route fails when its provider returns an error or its classifier cannot pick one. It overrides the router-level `failover`. You cannot use it with `routes`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
               "examples": [ "gpt-default" ],
               "type": "string",
               "minLength": 1
@@ -1019,8 +1019,14 @@
           "additionalProperties": false,
           "dependentRequired": {
             "classifier": [ "providers" ],
-            "failover": [ "classifier" ],
             "providers": [ "classifier" ]
+          },
+          "dependentSchemas": {
+            "failover": {
+              "properties": {
+                "routes": false
+              }
+            }
           }
         }
       }
