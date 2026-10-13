@@ -9542,7 +9542,7 @@
             "patternProperties": {
               "^[@$_#]": true
             },
-            "additionalProperties": false
+            "additionalProperties": true
           }
         },
         "terms_of_service": {
