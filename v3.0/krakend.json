@@ -6951,7 +6951,7 @@
     "https://www.krakend.io/schema/v3.0/security/http.json": {
       "$schema": "https://json-schema.org/draft/2019-09/schema",
       "title": "HTTP Security",
-      "description": "Security through HTTP headers, including HSTS, HPKP, MIME-Sniffing prevention, Clickjacking protection, and others.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+      "description": "Security through HTTP headers, including HSTS, MIME-Sniffing prevention, Clickjacking protection, and others.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
       "type": "object",
       "properties": {
         "allowed_hosts": {
@@ -7021,10 +7021,11 @@
         },
         "hpkp_public_key": {
           "title": "HTTP Public Key Pinning (HPKP)",
-          "description": "HTTP Public Key Pinning (HPKP) is a security mechanism which allows HTTPS websites to resist impersonation by attackers using mis-issued or otherwise fraudulent certificates. (For example, sometimes attackers can compromise certificate authorities, and then can mis-issue certificates for a web origin.).\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+          "description": "Deprecated: KrakenD ignores this setting and does not send the `Public-Key-Pins` header. Browsers no longer support HTTP Public Key Pinning (HPKP), so remove it from your configuration.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
           "examples": [
             "pin-sha256=\"base64==\"; max-age=expireTime [; includeSubDomains][; report-uri=\"reportURI\"]"
           ],
+          "deprecated": true,
           "default": "",
           "type": "string",
           "@sensitive": 2
@@ -7825,7 +7826,7 @@
           "type": "object"
         },
         "security/http": {
-          "description": "[Security HTTP headers](https://www.krakend.io/docs/service-settings/security/), including HSTS, HPKP, MIME-Sniffing prevention, Clickjacking protection, and others.",
+          "description": "[Security HTTP headers](https://www.krakend.io/docs/service-settings/security/), including HSTS, MIME-Sniffing prevention, Clickjacking protection, and others.",
           "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1security~1http.json",
           "type": "object"
         },

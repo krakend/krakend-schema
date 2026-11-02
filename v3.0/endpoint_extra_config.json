@@ -257,7 +257,7 @@
       "type": "object"
     },
     "security/http": {
-      "description": "[Security HTTP headers](https://www.krakend.io/docs/service-settings/security/), including HSTS, HPKP, MIME-Sniffing prevention, Clickjacking protection, and others.",
+      "description": "[Security HTTP headers](https://www.krakend.io/docs/service-settings/security/), including HSTS, MIME-Sniffing prevention, Clickjacking protection, and others.",
       "$ref": "security/http.json",
       "type": "object"
     },
