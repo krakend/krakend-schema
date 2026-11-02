@@ -972,9 +972,9 @@
             },
             "gates": {
               "title": "Gates",
-              "description": "The names of the gates declared in `ai/classifiers` that must all pass for the route to match. Omit it to create a route that always matches.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+              "description": "The names of the gates declared in `ai/classifiers` that this route checks, in order. The route matches as soon as one of them passes. To require several gates at once, nest routes instead of listing the gates together. Omit it to create a route that always matches.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
               "examples": [
-                [ "plan_enterprise", "usecase_code" ]
+                [ "plan_pro", "plan_enterprise" ]
               ],
               "type": "array",
               "minItems": 1,
@@ -8086,7 +8086,7 @@
         },
         "gates": {
           "title": "Gates",
-          "description": "The list of gates available to the routes. A gate is a named matching condition, and a route matches only when all the gates it lists pass. Header gates match on values the client controls, so route on headers your gateway sets after validating an API key or a JWT.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+          "description": "The list of gates available to the routes. A gate is a named matching condition, and a route matches when any of the gates it lists passes. To require several gates at once, nest routes. Header gates match on values the client controls, so route on headers your gateway sets after validating an API key or a JWT.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
           "type": "array",
           "items": {
             "type": "object",
@@ -8555,10 +8555,10 @@
           "properties": {
             "expressions": {
               "title": "Expressions",
-              "description": "The list of CEL expressions to evaluate. Each expression returns a boolean that decides whether the request can continue. Use `body` to inspect the raw payload as a string, and `meta` to access the request `headers`, `params`, `method`, `path`, `query`, and `url`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
+              "description": "The list of CEL expressions to evaluate. The guard blocks the request when any expression evaluates to `true`; an expression that cannot be evaluated does not block. Use `body` to inspect the raw payload as a string, and `meta` to access the request `headers`, `params`, `method`, `path`, `query`, and `url`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
               "type": "array",
               "items": {
-                "examples": [ "size(body) <= 8192", "meta.method == 'POST'" ],
+                "examples": [ "size(body) > 8192", "meta.method != 'POST'" ],
                 "type": "string",
                 "minLength": 1
               }
