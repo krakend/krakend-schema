@@ -109,7 +109,7 @@
     },
     "gates": {
       "title": "Gates",
-      "description": "The list of gates available to the routes. A gate is a named matching condition, and a route matches only when all the gates it lists pass. Header gates match on values the client controls, so route on headers your gateway sets after validating an API key or a JWT.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
+      "description": "The list of gates available to the routes. A gate is a named matching condition, and a route matches when any of the gates it lists passes. To require several gates at once, nest routes. Header gates match on values the client controls, so route on headers your gateway sets after validating an API key or a JWT.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/ai-router/",
       "type": "array",
       "items": {
         "type": "object",
