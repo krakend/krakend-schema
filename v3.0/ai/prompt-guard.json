@@ -141,10 +141,10 @@
       "properties": {
         "expressions": {
           "title": "Expressions",
-          "description": "The list of CEL expressions to evaluate. Each expression returns a boolean that decides whether the request can continue. Use `body` to inspect the raw payload as a string, and `meta` to access the request `headers`, `params`, `method`, `path`, `query`, and `url`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
+          "description": "The list of CEL expressions to evaluate. The guard blocks the request when any expression evaluates to `true`; an expression that cannot be evaluated does not block. Use `body` to inspect the raw payload as a string, and `meta` to access the request `headers`, `params`, `method`, `path`, `query`, and `url`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
           "type": "array",
           "items": {
-            "examples": [ "size(body) <= 8192", "meta.method == 'POST'" ],
+            "examples": [ "size(body) > 8192", "meta.method != 'POST'" ],
             "type": "string",
             "minLength": 1
           }
