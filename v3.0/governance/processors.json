@@ -123,15 +123,7 @@
                       },
                       "unit": {
                         "description": "The time unit for the limit.\n\nSee: https://www.krakend.io/docs/enterprise/governance/quota/",
-                        "enum": [
-                          "second",
-                          "minute",
-                          "hour",
-                          "day",
-                          "week",
-                          "month",
-                          "year"
-                        ]
+                        "enum": [ "hour", "day", "week", "month", "year" ]
                       }
                     },
                     "patternProperties": {
