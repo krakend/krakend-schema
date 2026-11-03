@@ -113,7 +113,7 @@
         },
         "score_threshold": {
           "title": "Score Threshold",
-          "description": "The score that decides whether the request passes. The guard blocks the request when the score returned by the external classifier is below this value.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
+          "description": "The score that decides whether the request is blocked. The guard blocks the request when the score returned by the external classifier is equal to or greater than this value. The classifier returns `0` when the request should not be blocked, and `1` when it is fully confident that it should.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/",
           "examples": [ 0.6, 0.99 ],
           "type": "number",
           "maximum": 1,
