@@ -176,6 +176,36 @@
                 }
             },
             "valid": true
+        },
+        {
+            "description": "Backend Log attributes directly under telemetry/logging",
+            "data": {
+                "url_pattern": "/__debug/root",
+                "extra_config": {
+                    "telemetry/logging": {
+                        "@comment": "Overrides the service Backend Log",
+                        "prefix": ">>> ",
+                        "custom_format": "%{prefix}%{statusCode} %{method} %{path}\n",
+                        "log_with_level": "INFO",
+                        "no_value": "-"
+                    }
+                }
+            },
+            "valid": true
+        },
+        {
+            "description": "Backend Log wrapped in a backend object is not accepted",
+            "data": {
+                "url_pattern": "/__debug/root",
+                "extra_config": {
+                    "telemetry/logging": {
+                        "backend": {
+                            "prefix": ">>> "
+                        }
+                    }
+                }
+            },
+            "valid": false
         }
     ]
 }
