@@ -9,7 +9,7 @@
     },
     "cache_ttl": {
       "title": "Cache TTL",
-      "description": "Sets a default `Cache-Control: public, max-age=%d` header to all endpoints where `%d` is the conversion to seconds of any duration you write, indicating for how long the client (or CDN) can cache the content of the request. You can override this value per endpoint, but setting an endpoint to 0 will use the default value instead. Notice that KrakenD does not cache the content with this parameter, but tells the client how to do it. Defaults to `0s` (no cache). **For KrakenD cache, see [backend caching](https://www.krakend.io/docs/backends/caching/)**.",
+      "description": "Sets a default `Cache-Control: public, max-age=%d` header to all endpoints where `%d` is the conversion to seconds of any duration you write, indicating for how long the client (or CDN) can cache the content of the request. You can override this value per endpoint, but setting an endpoint to 0 will use the default value instead. Notice that KrakenD does not cache the content with this parameter, but tells the client how to do it. Defaults to `0s` (no cache). **For KrakenD cache, see [backend caching](https://www.krakend.io/docs/backends/caching/)**.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
       "default": "0s",
       "$ref": "#/$defs/https:~1~1www.krakend.io~1schema~1v3.0~1timeunits.json/$defs/timeunit",
       "type": "string"
@@ -21,7 +21,7 @@
     },
     "debug_endpoint": {
       "title": "Debug endpoint",
-      "description": "Enables the `/__debug/` endpoint for this configuration. You can safely enable it in production.",
+      "description": "Enables the `/__debug/` endpoint for this configuration. You can safely enable it in production.\n\nSee: https://www.krakend.io/docs/endpoints/debug-endpoint/",
       "default": false,
       "type": "boolean"
     },
@@ -60,7 +60,7 @@
     },
     "disable_rest": {
       "title": "Disable RESTful URLs",
-      "description": "Endpoints require in its `endpoint` definition the usage of a RESTful pattern. If you require unrestful patterns, like `/file.{ext}` (instead of its RESTful counterpart `/file/{ext}`), then you must set this parameter to `true`.\nYou can use multiple variables if needed, but only one can be in an unrestful position, and when you do, it must be in the last position of the definition. E.g.: you can declare an endpoint `/file/{name}/base.{ext}` but you cannot do `/file.{ext}.json` because the variable `{ext}` is not in the last position of the definitino, and therefore the remaining path after `{ext}` is ignored by the router.",
+      "description": "Endpoints require in its `endpoint` definition the usage of a RESTful pattern. If you require unrestful patterns, like `/file.{ext}` (instead of its RESTful counterpart `/file/{ext}`), then you must set this parameter to `true`.\nYou can use multiple variables if needed, but only one can be in an unrestful position, and when you do, it must be in the last position of the definition. E.g.: you can declare an endpoint `/file/{name}/base.{ext}` but you cannot do `/file.{ext}.json` because the variable `{ext}` is not in the last position of the definition, and therefore the remaining path after `{ext}` is ignored by the router.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
       "default": false,
       "type": "boolean"
     },
@@ -73,7 +73,7 @@
     },
     "echo_endpoint": {
       "title": "Echo endpoint",
-      "description": "Enables the `/__echo/` endpoint for this configuration, that returns information about the incoming request. When using /__echo as a backend you can check the actual headers and content a backend receives after all the zero-trust filtering.",
+      "description": "Enables the `/__echo/` endpoint for this configuration, that returns information about the incoming request. When using /__echo as a backend you can check the actual headers and content a backend receives after all the zero-trust filtering.\n\nSee: https://www.krakend.io/docs/endpoints/echo-endpoint/",
       "default": false,
       "type": "boolean"
     },
@@ -124,7 +124,7 @@
     },
     "listen_ip": {
       "title": "Listen IP",
-      "description": "The IP address that KrakenD listens to in IPv4 or IPv6. An empty string, or no declaration at all means listening on all interfaces. The inclusion of `::` is meant for IPv6 format only (**this is not the port**). Examples of valid addresses are `192.0.2.1` (IPv4), `2001:db8::68` (IPv6). The values `::` and `0.0.0.0` listen to all addresses and both are valid for IPv4 and IPv6 simultaneously.",
+      "description": "The IP address that KrakenD listens to in IPv4 or IPv6. An empty string, or no declaration at all means listening on all interfaces. The inclusion of `::` is meant for IPv6 format only (**this is not the port**). Examples of valid addresses are `192.0.2.1` (IPv4), `2001:db8::68` (IPv6). The values `::` and `0.0.0.0` listen to all addresses and both are valid for IPv4 and IPv6 simultaneously.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
       "examples": [ "172.12.1.1", "::1" ],
       "default": "0.0.0.0",
       "type": "string"
@@ -176,7 +176,7 @@
     },
     "port": {
       "title": "Port",
-      "description": "The TCP port where KrakenD is listening to. Recommended value is in the range 1024-65535 to run as an unpriviliged user",
+      "description": "The TCP port where KrakenD listens. Recommended value is in the range 1024-65535 to run as an unprivileged user.\n\nSee: https://www.krakend.io/docs/service-settings/http-server-settings/",
       "default": 8080,
       "type": "integer",
       "maximum": 65535,
