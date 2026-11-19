@@ -5733,6 +5733,77 @@
           "type": "string",
           "pattern": "(base64key|awskms|azurekeyvault|gcpkms|hashivault)://(.*)",
           "@sensitive": 1
+        },
+        "www_authenticate": {
+          "title": "WWW-Authenticate header",
+          "description": "Adds a `WWW-Authenticate` header to the `401` responses, announcing the authentication scheme the client must use to access the endpoint (RFC 9110). The challenge is the `auth_scheme` followed by either a `token68` or a list of `params`, but not both. If the configuration is invalid, the header is not sent.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+          "examples": [
+            {
+              "auth_scheme": "Bearer",
+              "params": [
+                {
+                  "key": "realm",
+                  "value": "example"
+                },
+                {
+                  "key": "scope",
+                  "value": "openid profile"
+                }
+              ]
+            },
+            {
+              "auth_scheme": "Newauth",
+              "token68": "abc=="
+            }
+          ],
+          "type": "object",
+          "not": {
+            "required": [ "token68", "params" ]
+          },
+          "required": [ "auth_scheme" ],
+          "properties": {
+            "auth_scheme": {
+              "title": "Authentication scheme",
+              "description": "The authentication scheme of the challenge. It must be a valid token (no spaces, commas or quotes).\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+              "examples": [ "Bearer", "Basic" ],
+              "type": "string",
+              "pattern": "^[!#$%&'*+.^_`|~0-9A-Za-z-]+$"
+            },
+            "params": {
+              "title": "Parameters",
+              "description": "The list of auth-params added after the scheme, rendered as `key=\"value\"` and separated by commas. Cannot be used together with `token68`.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [ "key", "value" ],
+                "properties": {
+                  "key": {
+                    "title": "Key",
+                    "description": "The name of the param. It must be a valid token (no spaces, commas or quotes).\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+                    "examples": [ "realm", "scope", "error" ],
+                    "type": "string",
+                    "pattern": "^[!#$%&'*+.^_`|~0-9A-Za-z-]+$"
+                  },
+                  "value": {
+                    "title": "Value",
+                    "description": "The value of the param. It is always sent quoted, and cannot have control characters other than tabs.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+                    "examples": [ "example", "openid profile" ],
+                    "type": "string",
+                    "pattern": "^[^\\u0000-\\u0008\\u000A-\\u001F\\u007F]*$"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "token68": {
+              "title": "Token68",
+              "description": "A token68 added after the scheme. It can only contain letters, digits, and `-._~+/`, followed by optional `=` padding. Cannot be used together with `params`.\n\nSee: https://www.krakend.io/docs/authorization/jwt-validation/",
+              "examples": [ "abc==" ],
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._~+/-]+=*$"
+            }
+          },
+          "additionalProperties": false
         }
       },
       "patternProperties": {
