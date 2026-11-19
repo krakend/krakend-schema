@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.krakend.io/schema/v3.1/documentation/openapi.json",
+  "title": "Generate documentation using OpenAPI",
+  "description": "Enterprise only. Generates OpenAPI documentation automatically through `krakend openapi export` command.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+  "type": "object",
+  "properties": {
+    "description": {
+      "title": "API Description",
+      "description": "An introductory, optionally verbose, explanation of your API supporting [CommonMark](https://commonmark.org/help/) syntax. To load an **external markdown file**, use flexible configuration, for instance `\"description\": {{include \"openapi/intro.md\" | toJson }}`\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "examples": [
+        "Hi there, I am [OpenAPI](https://www.krakend.io/docs/enterprise/endpoints/openapi/)"
+      ],
+      "type": "string"
+    },
+    "base_path": {
+      "title": "Base path",
+      "description": "A starting path that prefixes every endpoint.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "examples": [ "/v1" ],
+      "type": "string"
+    },
+    "components_schemas": {
+      "title": "Component Schemas",
+      "description": "The JSON Schemas you can reuse inside endpoint definitions using `ref`. You can pass either the JSON Schema object or a base64 string.",
+      "examples": [
+        {
+          "Pet": {
+            "type": "object",
+            "required": [ "id", "name" ]
+          }
+        }
+      ],
+      "type": "object",
+      "patternProperties": {
+        ".*": {
+          "title": "JSON Schema",
+          "description": "JSON Schema in base64 or as an object",
+          "type": [ "string", "object" ]
+        }
+      }
+    },
+    "components_parameters": {
+      "title": "Component Parameters",
+      "description": "Reusable OpenAPI parameter objects that the generated spec declares under `components/parameters`. You can pass either the parameter object or a base64 string.",
+      "examples": [
+        {
+          "MyParam": {
+            "name": "my_param",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      ],
+      "type": "object",
+      "patternProperties": {
+        ".*": {
+          "title": "Parameter",
+          "description": "OpenAPI parameter definition in base64 or as an object",
+          "type": [ "string", "object" ]
+        }
+      }
+    },
+    "contact_email": {
+      "title": "Contact email",
+      "description": "The email address where consumers of your API can reach you.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "examples": [ "contact@example.com" ],
+      "type": "string"
+    },
+    "contact_name": {
+      "title": "Contact name",
+      "description": "The name of the person or team responsible for the API.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "examples": [ "API Support" ],
+      "type": "string"
+    },
+    "contact_url": {
+      "title": "Contact URL",
+      "description": "The URL where consumers of your API find contact information.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "examples": [ "https://example.com/developers" ],
+      "type": "string"
+    },
+    "cookie_name": {
+      "title": "Cookie name",
+      "description": "The name of the cookie declared under `components/securitySchemes` in the generated OpenAPI spec.",
+      "default": "SESSIONID",
+      "type": "string"
+    },
+    "custom_security_schemes": {
+      "title": "Custom security schemes",
+      "description": "Adds custom security schemes under `components/securitySchemes` in the generated OpenAPI spec. Use it to define security schemes different from the built-in ones (e.g., `jwt`, `apikey`, `cookie`). Declare each scheme with its full definition (e.g., `\"OAuth2Security\":{...}`), and enable it in each endpoint by writing its name with an empty object (e.g., `{\"OAuth2Security\":{}}`).\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "examples": [
+        {
+          "OAuth2Security": {
+            "description": "OAuth2 security scheme",
+            "type": "oauth2",
+            "flows": {
+              "authorizationCode": {
+                "authorizationUrl": "https://example.com/oauth/authorize",
+                "scopes": {},
+                "tokenUrl": "https://example.com/oauth/token"
+              }
+            }
+          }
+        }
+      ],
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "title": "Security Scheme",
+          "description": "A valid OpenAPI Security Scheme object.",
+          "type": "object"
+        }
+      }
+    },
+    "host": {
+      "title": "Host",
+      "description": "The hostname where you will publish your API.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "examples": [ "api.example.com" ],
+      "type": "string"
+    },
+    "jwt_key": {
+      "title": "JWT key",
+      "description": "The name of the JWT key declared under `components/securitySchemes` in the generated OpenAPI spec.",
+      "default": "KrakenD-JWT",
+      "type": "string"
+    },
+    "license_name": {
+      "title": "License name",
+      "description": "The name of the license of your API, e.g., `Apache 2.0`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "examples": [ "MIT" ],
+      "type": "string"
+    },
+    "license_url": {
+      "title": "License URL",
+      "description": "The URL where the license is hosted.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "examples": [ "https://opensource.org/licenses/MIT" ],
+      "type": "string"
+    },
+    "servers": {
+      "title": "Servers",
+      "description": "The list of servers where the API is hosted. The server URL can be a relative path, e.g., `/v1`, or an absolute URL. The URL might contain `{variables}`, although only OpenAPI recognizes them: KrakenD treats them as literal strings.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "examples": [
+        [
+          {
+            "url": "/v1"
+          }
+        ],
+        [
+          {
+            "url": "https://example.com:{port}",
+            "variables": {
+              "port": {
+                "default": "8443",
+                "enum": [ "8443", "443" ]
+              }
+            }
+          }
+        ]
+      ],
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [ "url" ],
+        "properties": {
+          "description": {
+            "title": "Description",
+            "description": "A short description of the server URL.",
+            "type": "string"
+          },
+          "url": {
+            "title": "URL",
+            "description": "The URL of the server, used as the base path for all endpoints.",
+            "type": [ "string", "object" ]
+          },
+          "variables": {
+            "title": "Variables",
+            "description": "A [Server Variable Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#server-variable-object) according to the OpenAPI specification. The variable name is the key and the value is the default value for that variable.",
+            "type": "object",
+            "patternProperties": {
+              "^.*$": {
+                "type": [ "string", "object" ]
+              }
+            }
+          }
+        },
+        "patternProperties": {
+          "^[@$_#]": true
+        },
+        "additionalProperties": false
+      }
+    },
+    "tag_definition": {
+      "title": "Tag definition",
+      "description": "Sets a detailed description for the tags classifying endpoints when generating the OpenAPI spec.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "examples": [
+        [
+          {
+            "description": "Description of tag1",
+            "name": "Tag1"
+          }
+        ]
+      ],
+      "type": "array",
+      "items": {
+        "title": "Tags",
+        "type": "object",
+        "required": [ "name" ],
+        "properties": {
+          "description": {
+            "title": "Tag Description",
+            "description": "Describes what this tag groups.",
+            "type": "string"
+          },
+          "name": {
+            "title": "Tag name",
+            "description": "The name of the tag. You will use this name in each endpoint.",
+            "type": "string"
+          }
+        },
+        "patternProperties": {
+          "^[@$_#]": true
+        },
+        "additionalProperties": true
+      }
+    },
+    "terms_of_service": {
+      "title": "Terms of Service",
+      "description": "The URL to the terms of service for using this API.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "examples": [ "https://example.com/terms" ],
+      "type": "string"
+    },
+    "version": {
+      "title": "Version",
+      "description": "The version of your API, e.g., `1.0`.\n\nSee: https://www.krakend.io/docs/enterprise/developer/openapi/",
+      "examples": [ "1.0" ],
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^[@$_#]": true
+  },
+  "additionalProperties": false
+}

@@ -1,6 +1,6 @@
 .PHONY: all build test
 
-VERSION?="v3.0"
+VERSION?="v3.1"
 BIN?="docker run -i --rm -v \"${PWD}:/workspace\" ghcr.io/sourcemeta/jsonschema:v14.6.0"
 
 all: build test

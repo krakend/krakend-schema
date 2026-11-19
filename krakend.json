@@ -3,5 +3,5 @@
   "$id": "https://www.krakend.io/schema/krakend.json",
   "title": "KrakenD Configuration Schema",
   "description": "Schema validation for the latest version of KrakenD. Consider sticking to the specific version you are using",
-  "$ref": "v3.0/krakend.json"
+  "$ref": "v3.1/krakend.json"
 }
