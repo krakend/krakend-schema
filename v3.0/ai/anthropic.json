@@ -72,19 +72,19 @@
             },
             "temperature": {
               "title": "Temperature",
-              "description": "The temperature is used for sampling during response generation, which occurs when topP and topK are applied. Temperature controls the degree of randomness in token selection. Lower temperatures are good for prompts that require a less open-ended or creative response, while higher temperatures can lead to more diverse or creative results.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+              "description": "The temperature is used for sampling during response generation, which occurs when topP and topK are applied. Temperature controls the degree of randomness in token selection. Lower temperatures are good for prompts that require a less open-ended or creative response, while higher temperatures can lead to more diverse or creative results. Claude Opus 4.7 and newer models reject requests that set it with a `400` error, so use it only with earlier models such as Claude Sonnet 4.6 or Claude Haiku 4.5.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
               "type": "number",
               "maximum": 2,
               "minimum": 0
             },
             "top_k": {
               "title": "Top K",
-              "description": "Top-K changes how the model selects tokens for output. A top-K of 1 means the next selected token is the most probable among all tokens in the model's vocabulary (also called greedy decoding), while a top-K of 3 means that the next token is selected from among the three most probable tokens by using temperature.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+              "description": "Top-K changes how the model selects tokens for output. A top-K of 1 means the next selected token is the most probable among all tokens in the model's vocabulary (also called greedy decoding), while a top-K of 3 means that the next token is selected from among the three most probable tokens by using temperature. Claude Opus 4.7 and newer models reject requests that set it with a `400` error, so use it only with earlier models such as Claude Sonnet 4.6 or Claude Haiku 4.5.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
               "type": "integer"
             },
             "top_p": {
               "title": "Top P",
-              "description": "Top-P changes how the model selects tokens for output. Tokens are selected from the most probable to least probable until the sum of their probabilities equals the top-P value. For example, if tokens A, B, and C have a probability of 0.3, 0.2, and 0.1 and the top-P value is 0.5, then the model will select either A or B as the next token by using temperature and excludes C as a candidate.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+              "description": "Top-P changes how the model selects tokens for output. Tokens are selected from the most probable to least probable until the sum of their probabilities equals the top-P value. For example, if tokens A, B, and C have a probability of 0.3, 0.2, and 0.1 and the top-P value is 0.5, then the model will select either A or B as the next token by using temperature and excludes C as a candidate. Claude Opus 4.7 and newer models reject requests that set it with a `400` error, so use it only with earlier models such as Claude Sonnet 4.6 or Claude Haiku 4.5.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
               "type": "number"
             }
           }
