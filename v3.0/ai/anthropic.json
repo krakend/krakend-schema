@@ -56,10 +56,9 @@
               "title": "Model Name",
               "description": "The name of the Anthropic model you want to use.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
               "examples": [
-                "claude-opus-4-1-20250805",
-                "claude-sonnet-4-20250514",
-                "claude-3-7-sonnet-latest",
-                "claude-3-5-haiku-latest"
+                "claude-haiku-4-5",
+                "claude-sonnet-5-5",
+                "claude-opus-5-5"
               ],
               "type": "string"
             },
