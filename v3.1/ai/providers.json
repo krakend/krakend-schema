@@ -2,13 +2,13 @@
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://www.krakend.io/schema/v3.1/ai/providers.json",
   "title": "AI Providers",
-  "description": "Declares once, at the service level, the AI providers the gateway can talk to. Each entry has a unique `name` that the backends reference, so you don't need to repeat the vendor settings on every backend.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+  "description": "Declares once, at the service level, the AI providers the gateway can talk to. Each entry has a unique `name` that the backends reference, so you don't need to repeat the vendor settings on every backend.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/",
   "type": "object",
   "required": [ "providers" ],
   "properties": {
     "providers": {
       "title": "Providers",
-      "description": "The array of AI providers available for referencing from the backends. Each object is a different provider declaration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+      "description": "The array of AI providers available for referencing from the backends. Each object is a different provider declaration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/",
       "type": "array",
       "items": {
         "type": "object",
@@ -30,8 +30,8 @@
                 "model": {
                   "examples": [
                     "claude-haiku-4-5",
-                    "claude-opus-4-1-20250805",
-                    "claude-sonnet-4-20250514"
+                    "claude-sonnet-5-5",
+                    "claude-opus-5-5"
                   ],
                   "default": "claude-haiku-4-5"
                 },
@@ -61,19 +61,19 @@
                     },
                     "temperature": {
                       "title": "Temperature",
-                      "description": "The temperature is used for sampling during response generation, which occurs when topP and topK are applied. Temperature controls the degree of randomness in token selection. Lower temperatures are good for prompts that require a less open-ended or creative response, while higher temperatures can lead to more diverse or creative results.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+                      "description": "The temperature is used for sampling during response generation, which occurs when topP and topK are applied. Temperature controls the degree of randomness in token selection. Lower temperatures are good for prompts that require a less open-ended or creative response, while higher temperatures can lead to more diverse or creative results. Claude Opus 4.7 and newer models reject requests that set it with a `400` error, so use it only with earlier models such as Claude Sonnet 4.6 or Claude Haiku 4.5.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
                       "type": "number",
                       "maximum": 2,
                       "minimum": 0
                     },
                     "top_k": {
                       "title": "Top K",
-                      "description": "Top-K changes how the model selects tokens for output. A top-K of 1 means the next selected token is the most probable among all tokens in the model's vocabulary (also called greedy decoding), while a top-K of 3 means that the next token is selected from among the three most probable tokens by using temperature.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+                      "description": "Top-K changes how the model selects tokens for output. A top-K of 1 means the next selected token is the most probable among all tokens in the model's vocabulary (also called greedy decoding), while a top-K of 3 means that the next token is selected from among the three most probable tokens by using temperature. Claude Opus 4.7 and newer models reject requests that set it with a `400` error, so use it only with earlier models such as Claude Sonnet 4.6 or Claude Haiku 4.5.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
                       "type": "integer"
                     },
                     "top_p": {
                       "title": "Top P",
-                      "description": "Top-P changes how the model selects tokens for output. Tokens are selected from the most probable to least probable until the sum of their probabilities equals the top-P value. For example, if tokens A, B, and C have a probability of 0.3, 0.2, and 0.1 and the top-P value is 0.5, then the model will select either A or B as the next token by using temperature and excludes C as a candidate.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
+                      "description": "Top-P changes how the model selects tokens for output. Tokens are selected from the most probable to least probable until the sum of their probabilities equals the top-P value. For example, if tokens A, B, and C have a probability of 0.3, 0.2, and 0.1 and the top-P value is 0.5, then the model will select either A or B as the next token by using temperature and excludes C as a candidate. Claude Opus 4.7 and newer models reject requests that set it with a `400` error, so use it only with earlier models such as Claude Sonnet 4.6 or Claude Haiku 4.5.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/anthropic/",
                       "type": "number"
                     }
                   }
@@ -419,47 +419,47 @@
         "properties": {
           "credentials": {
             "title": "Credentials",
-            "description": "The API key used to authenticate against the provider. Inject it with an environment variable instead of writing it in the configuration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+            "description": "The API key used to authenticate against the provider. Inject it with an environment variable instead of writing it in the configuration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/",
             "type": "string",
             "@sensitive": 1
           },
           "debug": {
             "title": "Debug Mode",
-            "description": "Enables the debug mode to log activity for troubleshooting. Do not set this value to `true` in production as it may log sensitive data.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+            "description": "Enables the debug mode to log activity for troubleshooting. Do not set this value to `true` in production as it may log sensitive data.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/",
             "default": false,
             "type": "boolean"
           },
           "endpoint": {
             "title": "Endpoint",
-            "description": "Overrides the default API endpoint of the provider. Set it when you need to reach a proxy, a private deployment, or a region-specific host instead of the vendor's public API. When you don't set it, each provider uses its own default endpoint. Gemini and Bedrock build theirs from the `model` and `streaming` values, so their default shown here corresponds to the default `model` without streaming.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+            "description": "Overrides the default API endpoint of the provider. Set it when you need to reach a proxy, a private deployment, or a region-specific host instead of the vendor's public API. When you don't set it, each provider uses its own default endpoint. Gemini and Bedrock build theirs from the `model` and `streaming` values, so their default shown here corresponds to the default `model` without streaming.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/",
             "type": "string",
             "@sensitive": 3
           },
           "input_template": {
             "title": "Input Template",
-            "description": "A path to a custom [Go template](https://pkg.go.dev/text/template) that sets the payload format sent to the provider. You don't need to set this value unless you want to override the default template making use of all the `variables` listed in this configuration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+            "description": "A path to a custom [Go template](https://pkg.go.dev/text/template) that sets the payload format sent to the provider. You don't need to set this value unless you want to override the default template making use of all the `variables` listed in this configuration.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/",
             "type": "string"
           },
           "model": {
             "title": "Model Name",
-            "description": "The name of the model you want to use. The value you provide is passed as is to the provider and KrakenD does not check if the model is currently accepted by the vendor. Check the available models on the vendor documentation. When you don't set it, each provider uses its own default model.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+            "description": "The name of the model you want to use. The value you provide is passed as is to the provider and KrakenD does not check if the model is currently accepted by the vendor. Check the available models on the vendor documentation. When you don't set it, each provider uses its own default model.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/",
             "type": "string"
           },
           "name": {
             "title": "Provider Name",
-            "description": "A unique name for this provider declaration. This is the name you use to reference the provider from the backends, so you declare its settings once and reuse them everywhere.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+            "description": "A unique name for this provider declaration. This is the name you use to reference the provider from the backends, so you declare its settings once and reuse them everywhere.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/",
             "examples": [ "fast-chat" ],
             "type": "string",
             "minLength": 1
           },
           "output_template": {
             "title": "Output Template",
-            "description": "A path to a custom [Go template](https://pkg.go.dev/text/template) that sets how the response from the provider is transformed before being sent to the client. The default template extracts the text from the first choice returned by the provider so in most cases you don't need to set a custom output template.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+            "description": "A path to a custom [Go template](https://pkg.go.dev/text/template) that sets how the response from the provider is transformed before being sent to the client. The default template extracts the text from the first choice returned by the provider so in most cases you don't need to set a custom output template.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/",
             "type": "string"
           },
           "provider": {
             "title": "Provider",
-            "description": "The AI vendor this declaration connects to. The chosen vendor determines which `variables` are accepted.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+            "description": "The AI vendor this declaration connects to. The chosen vendor determines which `variables` are accepted.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/",
             "enum": [
               "anthropic",
               "bedrock",
@@ -471,18 +471,18 @@
           },
           "streaming": {
             "title": "Streaming",
-            "description": "Enables streaming responses, so the tokens generated by the model are forwarded to the client as they are produced instead of waiting for the complete response.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+            "description": "Enables streaming responses, so the tokens generated by the model are forwarded to the client as they are produced instead of waiting for the complete response.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/",
             "default": false,
             "type": "boolean"
           },
           "format": {
             "title": "Stream format",
-            "description": "Wire format KrakenD exposes to the client for streaming responses, when not defined, the request and response format is not modified. Only anthropic and openai stream formats are supported client-side, regardless of the upstream connector. When defined, KrakenD translates the client's request into the upstream connector's format, and translates the streamed response back into this format before returning it.",
+            "description": "Wire format KrakenD exposes to the client for streaming responses, when not defined, the request and response format is not modified. Only anthropic and openai stream formats are supported client-side, regardless of the upstream connector. When defined, KrakenD translates the client's request into the upstream connector's format, and translates the streamed response back into this format before returning it.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/llm-streaming/",
             "enum": [ "anthropic", "openai" ]
           },
           "variables": {
             "title": "Template Variables",
-            "description": "The variables KrakenD uses to build the payload for the chosen `provider`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/",
+            "description": "The variables KrakenD uses to build the payload for the chosen `provider`.\n\nSee: https://www.krakend.io/docs/enterprise/ai-gateway/provider-inventory/",
             "type": "object"
           }
         },
