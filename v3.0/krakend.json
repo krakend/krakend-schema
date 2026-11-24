@@ -6996,10 +6996,10 @@
           "type": "boolean"
         },
         "host_proxy_headers": {
-          "title": "SSL Host",
-          "description": "A set of header keys that may hold a proxied hostname value for the request.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
+          "title": "Host proxy headers",
+          "description": "A set of header keys that may hold a proxied hostname value for the request. When the request carries one of them, `allowed_hosts` checks its value instead of the `Host` header, so set it only when the proxy in front of KrakenD always overwrites that header.\n\nSee: https://www.krakend.io/docs/service-settings/security/",
           "examples": [
-            [ "X-Forwarded-Hosts" ]
+            [ "X-Forwarded-Host" ]
           ],
           "type": "array",
           "items": {
